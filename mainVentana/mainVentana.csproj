@@ -121,6 +121,9 @@
       <HintPath>..\packages\Microsoft.Extensions.Primitives.5.0.0\lib\net461\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -214,6 +217,12 @@
     <Compile Include="VistaEntrada\BusquedasEnt.Designer.cs">
       <DependentUpon>BusquedasEnt.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaEntrada\Desbloqueo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaEntrada\Desbloqueo.Designer.cs">
+      <DependentUpon>Desbloqueo.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaEntrada\Picture.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -250,6 +259,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VistaEntrada\BusquedasEnt.resx">
       <DependentUpon>BusquedasEnt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaEntrada\Desbloqueo.resx">
+      <DependentUpon>Desbloqueo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaEntrada\Picture.resx">
       <DependentUpon>Picture.cs</DependentUpon>

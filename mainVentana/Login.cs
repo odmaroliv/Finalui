@@ -25,7 +25,7 @@ namespace mainVentana
         private void iconButton1_Click(object sender, EventArgs e)
         {   
             //--------------------validamos si hay coneccion, de lo contrario no ejecuta el showD />
-            validacionesdatos vld = new validacionesdatos();
+            Servicios vld = new Servicios();
 
             bool internet = vld.Test();
             if (internet == true)

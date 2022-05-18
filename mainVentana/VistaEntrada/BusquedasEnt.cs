@@ -42,7 +42,7 @@ namespace mainVentana.VistaEntrada
         private AutoCompleteStringCollection aliasList()
         {
             AutoCompleteStringCollection List = new AutoCompleteStringCollection();
-            validacionesdatos datos = new validacionesdatos();
+            Servicios datos = new Servicios();
             if (label2.Text == "ALIAS")
             {
                 
@@ -122,7 +122,7 @@ namespace mainVentana.VistaEntrada
         {
             if (label2.Text == "ALIAS")
             {
-                validacionesdatos datos = new validacionesdatos();
+                Servicios datos = new Servicios();
                 var lst = datos.llenaAlias();
                 int bandera = 0;
                 foreach (var d in lst)
@@ -154,7 +154,7 @@ namespace mainVentana.VistaEntrada
             }
             else if (label2.Text == "CLIENTE")
             {
-                validacionesdatos datos = new validacionesdatos();
+                Servicios datos = new Servicios();
                 var lst = datos.llenaClientes();
                 int bandera = 0;
                 foreach (var d in lst)
@@ -190,7 +190,7 @@ namespace mainVentana.VistaEntrada
           
             
            
-            validacionesdatos datos2 = new validacionesdatos();
+            Servicios datos2 = new Servicios();
             var lst2 = datos2.llenaClientes();
               string cliente = "";
              string cord = "";

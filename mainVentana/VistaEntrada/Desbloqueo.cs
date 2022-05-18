@@ -1,0 +1,38 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace mainVentana.VistaEntrada
+{
+    public partial class Desbloqueo : Form
+    {
+        public delegate void cambio (bool check);
+        public event cambio cambiar;
+        public Desbloqueo()
+        {
+            InitializeComponent();
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            if (gunaLineTextBox2.Text.Trim() == 12345.ToString().Trim())
+            {
+                cambiar(true);
+                this.Dispose();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("LA CONTRASEÑA ES INCORRECTA");
+                gunaLineTextBox2.Text = "";
+                gunaLineTextBox2.Focus();
+            }
+        }
+    }
+}

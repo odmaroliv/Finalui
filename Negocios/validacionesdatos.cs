@@ -12,7 +12,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Page;
 
 namespace Negocios
 {
-    public class validacionesdatos
+    public class Servicios
     {
 
 
@@ -376,5 +376,35 @@ namespace Negocios
             }
         }
 
+        public List<vmAlmacenes> llenaAlmacenes()
+        {
+            try
+            {
+                using (modelo2Entities modelo = new modelo2Entities())
+
+                {
+                    var lista = from d in modelo.KDMS
+
+                                select new vmAlmacenes
+                                {
+                                    c1 = d.C1.Trim(),
+                                    c2 = d.C2.Trim()
+                                    
+                                };
+                    return lista.ToList();
+
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
+
+        
     }
 }

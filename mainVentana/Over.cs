@@ -16,7 +16,7 @@ namespace mainVentana
 {
     public partial class Over : Form
     {   
-        validacionesdatos vd = new validacionesdatos(); // Indxa la clase de validcaiones 
+        Servicios vd = new Servicios(); // Indxa la clase de validcaiones 
         public Over()
         {
             InitializeComponent();
@@ -81,7 +81,7 @@ namespace mainVentana
 
         public void refresh(string id)
         {
-            Negocios.validacionesdatos vld = new Negocios.validacionesdatos();
+            Negocios.Servicios vld = new Negocios.Servicios();
             
             gunaDataGridView1.DataSource =  vld.Cargabuscque(id);
             if(gunaDataGridView1.RowCount <= 0)

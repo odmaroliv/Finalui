@@ -21,6 +21,8 @@ using Document = iTextSharp.text.Document;
 using System.Windows.Input;
 using Datos.Datosenti;
 using Datos.ViewModels;
+using Datos.ViewModels.Servicios;
+using Newtonsoft.Json;
 
 namespace mainVentana.VistaEntrada
 {
@@ -247,7 +249,7 @@ namespace mainVentana.VistaEntrada
         {
             try
             {
-                validacionesdatos datos = new validacionesdatos();
+                Servicios datos = new Servicios();
                 var lst1 = datos.llenaCord();
                 cord.ValueMember = "C2";
                 cord.DisplayMember = "C3";
@@ -287,13 +289,27 @@ namespace mainVentana.VistaEntrada
                 cmbPeso.DataSource = lst6;
 
 
-               var lst7 = datos.llenaOpera();
+                var lst7 = datos.llenaOpera();
 
                 tipoOper.DisplayMember = "C2";
                 tipoOper.ValueMember = "C1";
                 tipoOper.DataSource = lst7;
 
-                tbxRastreo.Text = datos.generaRastreo()[0].ToString();
+                //
+
+                foreach (var i in datos.generaRastreo())
+                {
+                    tbxRastreo.Text = i.c1.ToString();
+                }
+
+                var lst8 = datos.llenaAlmacenes();
+
+                cmbAlmacen.DisplayMember = "C2";
+                cmbAlmacen.ValueMember = "C1";
+                cmbAlmacen.DataSource = lst8;
+
+
+                Cargaparidad();
 
             }
             catch (Exception)
@@ -309,7 +325,7 @@ namespace mainVentana.VistaEntrada
         private AutoCompleteStringCollection proveeList()
         {
             AutoCompleteStringCollection List = new AutoCompleteStringCollection();
-            validacionesdatos datos = new validacionesdatos();
+            Servicios datos = new Servicios();
             var lst = datos.llenaProveedores();
 
             foreach (var p in lst)
@@ -467,6 +483,99 @@ namespace mainVentana.VistaEntrada
                     throw;
                 }
             }
+        }
+
+        public async void Cargaparidad()
+        {
+            Servicio datos = new Servicio();
+            string paridad1 = await datos.GetParidad();
+            var lst = JsonConvert.DeserializeObject<Root>(paridad1);
+
+            //var lst = JsonConvert.DeserializeObject<List<Paridad>>(paridad1);
+            //Paridad lst = JsonConvert.DeserializeObject<ListParidad>>(paridad1);
+
+            var lista = from d in lst.ListaIndicadores.Where(c=>c.codTipoIndicador == 158)
+
+                        select new ListaIndicadore
+                        {
+                            valor = d.valor
+
+                        };
+            
+            foreach (var i in lista.ToList())
+            {
+                label33.Text = i.valor.ToString(); 
+            }
+            
+
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(comboBox2.SelectedItem.ToString() == "PESOS")
+            {
+                label33.Text = "";
+            }
+            else if (comboBox2.SelectedIndex.ToString() == "DLLS")
+            {
+                Cargaparidad();
+            }
+        }
+
+        private void Especificos_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void label38_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gunaMediumRadioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            gunaMediumRadioButton2.Enabled = false;
+            gunaMediumRadioButton1.Enabled = true;
+        }
+
+        private void label39_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gunaMediumRadioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            gunaMediumRadioButton1.Enabled = false;
+            
+        }
+
+        private void gunaTileButton3_Click(object sender, EventArgs e)
+
+        {
+
+            if (gunaMediumRadioButton2.Checked == true)
+            {
+                MessageBox.Show("Para liberar una entrada primero tiene que estar pagada");
+                return;
+
+            }
+            VistaEntrada.Desbloqueo buscador = new Desbloqueo();
+            
+            buscador.cambiar += new Desbloqueo.cambio(deledesbloqueo);
+            buscador.ShowDialog();
+        }
+
+        public void deledesbloqueo(bool dato)
+        {
+            if (dato == true)
+            {
+                gunaMediumRadioButton2.Enabled = true;
+            }
+            else
+            {
+                gunaMediumRadioButton2.Enabled = false;
+            }
+            
         }
     }
 }

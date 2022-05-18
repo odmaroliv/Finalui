@@ -131,6 +131,7 @@
     <Compile Include="ViewModels\Entradas\Alias.cs" />
     <Compile Include="ViewModels\Entradas\Clientes.cs" />
     <Compile Include="ViewModels\Entradas\mvlistas\clientecord.cs" />
+    <Compile Include="ViewModels\Entradas\vmAlmacenes.cs" />
     <Compile Include="ViewModels\Entradas\vmPeso.cs" />
     <Compile Include="ViewModels\Entradas\vmPiezas.cs" />
     <Compile Include="ViewModels\Entradas\Proveedores.cs" />
@@ -138,6 +139,8 @@
     <Compile Include="ViewModels\Entradas\Sucursales.cs" />
     <Compile Include="ViewModels\Entradas\vmRastreo.cs" />
     <Compile Include="ViewModels\Entradas\vmTOperacion.cs" />
+    <Compile Include="ViewModels\Servicios\FechaActual.cs" />
+    <Compile Include="ViewModels\Servicios\Paridad.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
