@@ -49,6 +49,13 @@
             this.iconButton2 = new FontAwesome.Sharp.IconButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.alias = new System.Windows.Forms.TextBox();
+            this.gunaTileButton2 = new Guna.UI.WinForms.GunaTileButton();
+            this.cliente = new System.Windows.Forms.TextBox();
             this.gunaTileButton1 = new Guna.UI.WinForms.GunaTileButton();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -62,6 +69,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             this.proveedor = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -73,8 +82,8 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.bultos = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.cmbPeso = new System.Windows.Forms.ComboBox();
+            this.cmbUnidades = new System.Windows.Forms.ComboBox();
             this.peso = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.unidades = new System.Windows.Forms.TextBox();
@@ -91,9 +100,11 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.cliente = new System.Windows.Forms.TextBox();
-            this.gunaTileButton2 = new Guna.UI.WinForms.GunaTileButton();
-            this.alias = new System.Windows.Forms.TextBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.tbxRastreo = new Guna.UI.WinForms.GunaTextBox();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -409,6 +420,10 @@
             // groupBox2
             // 
             this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox2.Controls.Add(this.label26);
+            this.groupBox2.Controls.Add(this.label25);
+            this.groupBox2.Controls.Add(this.label24);
+            this.groupBox2.Controls.Add(this.label23);
             this.groupBox2.Controls.Add(this.alias);
             this.groupBox2.Controls.Add(this.gunaTileButton2);
             this.groupBox2.Controls.Add(this.cliente);
@@ -416,13 +431,92 @@
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Location = new System.Drawing.Point(241, 169);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(292, 252);
             this.groupBox2.TabIndex = 105;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Cliente";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(11, 211);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(0, 16);
+            this.label26.TabIndex = 114;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(87, 231);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(0, 16);
+            this.label25.TabIndex = 113;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(87, 211);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(0, 16);
+            this.label24.TabIndex = 112;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(87, 191);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(0, 16);
+            this.label23.TabIndex = 111;
+            // 
+            // alias
+            // 
+            this.alias.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.alias.Location = new System.Drawing.Point(85, 114);
+            this.alias.Margin = new System.Windows.Forms.Padding(4);
+            this.alias.Name = "alias";
+            this.alias.ReadOnly = true;
+            this.alias.Size = new System.Drawing.Size(184, 22);
+            this.alias.TabIndex = 107;
+            this.alias.TextChanged += new System.EventHandler(this.alias_TextChanged);
+            // 
+            // gunaTileButton2
+            // 
+            this.gunaTileButton2.AnimationHoverSpeed = 0.07F;
+            this.gunaTileButton2.AnimationSpeed = 0.03F;
+            this.gunaTileButton2.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.gunaTileButton2.BorderColor = System.Drawing.Color.Black;
+            this.gunaTileButton2.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.gunaTileButton2.FocusedColor = System.Drawing.Color.Empty;
+            this.gunaTileButton2.Font = new System.Drawing.Font("Segoe UI Light", 15.75F);
+            this.gunaTileButton2.ForeColor = System.Drawing.Color.White;
+            this.gunaTileButton2.Image = null;
+            this.gunaTileButton2.ImageSize = new System.Drawing.Size(52, 52);
+            this.gunaTileButton2.Location = new System.Drawing.Point(87, 154);
+            this.gunaTileButton2.Margin = new System.Windows.Forms.Padding(4);
+            this.gunaTileButton2.Name = "gunaTileButton2";
+            this.gunaTileButton2.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
+            this.gunaTileButton2.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.gunaTileButton2.OnHoverForeColor = System.Drawing.Color.White;
+            this.gunaTileButton2.OnHoverImage = null;
+            this.gunaTileButton2.OnPressedColor = System.Drawing.Color.Black;
+            this.gunaTileButton2.Size = new System.Drawing.Size(185, 27);
+            this.gunaTileButton2.TabIndex = 110;
+            this.gunaTileButton2.Text = "Buscar";
+            this.gunaTileButton2.Click += new System.EventHandler(this.gunaTileButton2_Click);
+            // 
+            // cliente
+            // 
+            this.cliente.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cliente.Location = new System.Drawing.Point(87, 27);
+            this.cliente.Margin = new System.Windows.Forms.Padding(4);
+            this.cliente.Name = "cliente";
+            this.cliente.ReadOnly = true;
+            this.cliente.Size = new System.Drawing.Size(184, 22);
+            this.cliente.TabIndex = 106;
+            this.cliente.TextChanged += new System.EventHandler(this.cliente_TextChanged);
             // 
             // gunaTileButton1
             // 
@@ -437,7 +531,7 @@
             this.gunaTileButton1.Image = null;
             this.gunaTileButton1.ImageSize = new System.Drawing.Size(52, 52);
             this.gunaTileButton1.Location = new System.Drawing.Point(87, 63);
-            this.gunaTileButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gunaTileButton1.Margin = new System.Windows.Forms.Padding(4);
             this.gunaTileButton1.Name = "gunaTileButton1";
             this.gunaTileButton1.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.gunaTileButton1.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -484,9 +578,9 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(241, 16);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(908, 148);
             this.groupBox1.TabIndex = 100;
             this.groupBox1.TabStop = false;
@@ -496,18 +590,18 @@
             // 
             this.cord.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.cord.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cord.Font = new System.Drawing.Font("Microsoft JhengHei UI", 8.5F, System.Drawing.FontStyle.Bold);
             this.cord.FormattingEnabled = true;
             this.cord.Items.AddRange(new object[] {
             "Daniel Olivares"});
             this.cord.Location = new System.Drawing.Point(597, 76);
             this.cord.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cord.Name = "cord";
-            this.cord.Size = new System.Drawing.Size(192, 21);
+            this.cord.Size = new System.Drawing.Size(192, 22);
             this.cord.TabIndex = 105;
             // 
             // tipoOper
             // 
-            this.tipoOper.DisplayMember = "SD";
             this.tipoOper.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.tipoOper.FormattingEnabled = true;
             this.tipoOper.Items.AddRange(new object[] {
@@ -604,18 +698,36 @@
             // groupBox3
             // 
             this.groupBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox3.Controls.Add(this.label20);
+            this.groupBox3.Controls.Add(this.label19);
             this.groupBox3.Controls.Add(this.proveedor);
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Location = new System.Drawing.Point(541, 169);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox3.Size = new System.Drawing.Size(327, 252);
             this.groupBox3.TabIndex = 110;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Proveedor";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(63, 177);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(0, 16);
+            this.label20.TabIndex = 111;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(63, 117);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(0, 16);
+            this.label19.TabIndex = 110;
             // 
             // proveedor
             // 
@@ -631,12 +743,13 @@
             this.proveedor.Name = "proveedor";
             this.proveedor.Size = new System.Drawing.Size(184, 24);
             this.proveedor.TabIndex = 108;
+            this.proveedor.Leave += new System.EventHandler(this.proveedor_Leave);
             // 
             // label4
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(8, 149);
+            this.label4.Location = new System.Drawing.Point(8, 177);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(139, 31);
@@ -668,13 +781,15 @@
             // groupBox4
             // 
             this.groupBox4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox4.Controls.Add(this.tbxRastreo);
+            this.groupBox4.Controls.Add(this.label29);
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.label10);
             this.groupBox4.Location = new System.Drawing.Point(1169, 16);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox4.Size = new System.Drawing.Size(272, 148);
             this.groupBox4.TabIndex = 111;
             this.groupBox4.TabStop = false;
@@ -715,8 +830,8 @@
             this.groupBox5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.groupBox5.Controls.Add(this.bultos);
             this.groupBox5.Controls.Add(this.label17);
-            this.groupBox5.Controls.Add(this.comboBox6);
-            this.groupBox5.Controls.Add(this.comboBox5);
+            this.groupBox5.Controls.Add(this.cmbPeso);
+            this.groupBox5.Controls.Add(this.cmbUnidades);
             this.groupBox5.Controls.Add(this.peso);
             this.groupBox5.Controls.Add(this.label16);
             this.groupBox5.Controls.Add(this.unidades);
@@ -726,9 +841,9 @@
             this.groupBox5.Controls.Add(this.label12);
             this.groupBox5.Controls.Add(this.label13);
             this.groupBox5.Location = new System.Drawing.Point(876, 171);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox5.Size = new System.Drawing.Size(565, 250);
             this.groupBox5.TabIndex = 112;
             this.groupBox5.TabStop = false;
@@ -738,7 +853,7 @@
             // 
             this.bultos.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.bultos.Location = new System.Drawing.Point(383, 107);
-            this.bultos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bultos.Margin = new System.Windows.Forms.Padding(4);
             this.bultos.Name = "bultos";
             this.bultos.Size = new System.Drawing.Size(149, 22);
             this.bultos.TabIndex = 111;
@@ -747,54 +862,57 @@
             // 
             this.label17.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label17.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label17.Location = new System.Drawing.Point(395, 73);
+            this.label17.Location = new System.Drawing.Point(380, 72);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(139, 31);
             this.label17.TabIndex = 117;
             this.label17.Text = "Bultos:";
             // 
-            // comboBox6
+            // cmbPeso
             // 
-            this.comboBox6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.comboBox6.AutoCompleteCustomSource.AddRange(new string[] {
+            this.cmbPeso.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cmbPeso.AutoCompleteCustomSource.AddRange(new string[] {
             "SD",
             "TJ",
             "CSL"});
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Items.AddRange(new object[] {
+            this.cmbPeso.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPeso.FormattingEnabled = true;
+            this.cmbPeso.Items.AddRange(new object[] {
             "SD",
             "TJ",
             "CSL"});
-            this.comboBox6.Location = new System.Drawing.Point(293, 182);
-            this.comboBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(79, 24);
-            this.comboBox6.TabIndex = 115;
+            this.cmbPeso.Location = new System.Drawing.Point(293, 182);
+            this.cmbPeso.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbPeso.Name = "cmbPeso";
+            this.cmbPeso.Size = new System.Drawing.Size(152, 24);
+            this.cmbPeso.TabIndex = 115;
             // 
-            // comboBox5
+            // cmbUnidades
             // 
-            this.comboBox5.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.comboBox5.AutoCompleteCustomSource.AddRange(new string[] {
+            this.cmbUnidades.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cmbUnidades.AutoCompleteCustomSource.AddRange(new string[] {
             "SD",
             "TJ",
             "CSL"});
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Items.AddRange(new object[] {
+            this.cmbUnidades.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbUnidades.FormattingEnabled = true;
+            this.cmbUnidades.Items.AddRange(new object[] {
             "SD",
             "TJ",
             "CSL"});
-            this.comboBox5.Location = new System.Drawing.Point(293, 143);
-            this.comboBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(79, 24);
-            this.comboBox5.TabIndex = 113;
+            this.cmbUnidades.Location = new System.Drawing.Point(293, 143);
+            this.cmbUnidades.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbUnidades.Name = "cmbUnidades";
+            this.cmbUnidades.Size = new System.Drawing.Size(152, 24);
+            this.cmbUnidades.TabIndex = 113;
+            this.cmbUnidades.Click += new System.EventHandler(this.cmbUnidades_Click);
             // 
             // peso
             // 
             this.peso.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.peso.Location = new System.Drawing.Point(187, 183);
-            this.peso.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.peso.Margin = new System.Windows.Forms.Padding(4);
             this.peso.Name = "peso";
             this.peso.Size = new System.Drawing.Size(73, 22);
             this.peso.TabIndex = 114;
@@ -820,7 +938,7 @@
             this.unidades.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.unidades.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.unidades.Location = new System.Drawing.Point(187, 143);
-            this.unidades.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.unidades.Margin = new System.Windows.Forms.Padding(4);
             this.unidades.Name = "unidades";
             this.unidades.Size = new System.Drawing.Size(73, 22);
             this.unidades.TabIndex = 112;
@@ -829,7 +947,7 @@
             // 
             this.numFlete.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.numFlete.Location = new System.Drawing.Point(187, 107);
-            this.numFlete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numFlete.Margin = new System.Windows.Forms.Padding(4);
             this.numFlete.Name = "numFlete";
             this.numFlete.Size = new System.Drawing.Size(184, 22);
             this.numFlete.TabIndex = 110;
@@ -838,7 +956,7 @@
             // 
             this.ordenCompra.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ordenCompra.Location = new System.Drawing.Point(187, 46);
-            this.ordenCompra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ordenCompra.Margin = new System.Windows.Forms.Padding(4);
             this.ordenCompra.Name = "ordenCompra";
             this.ordenCompra.Size = new System.Drawing.Size(184, 22);
             this.ordenCompra.TabIndex = 109;
@@ -879,6 +997,8 @@
             // groupBox6
             // 
             this.groupBox6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox6.Controls.Add(this.label28);
+            this.groupBox6.Controls.Add(this.label27);
             this.groupBox6.Controls.Add(this.button1);
             this.groupBox6.Controls.Add(this.btnagregar);
             this.groupBox6.Controls.Add(this.textBox10);
@@ -886,9 +1006,9 @@
             this.groupBox6.Controls.Add(this.label21);
             this.groupBox6.Controls.Add(this.label22);
             this.groupBox6.Location = new System.Drawing.Point(241, 428);
-            this.groupBox6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox6.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox6.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox6.Size = new System.Drawing.Size(1200, 245);
             this.groupBox6.TabIndex = 119;
             this.groupBox6.TabStop = false;
@@ -901,7 +1021,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(928, 114);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(184, 31);
             this.button1.TabIndex = 113;
@@ -915,18 +1035,19 @@
             this.btnagregar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnagregar.ForeColor = System.Drawing.Color.White;
             this.btnagregar.Location = new System.Drawing.Point(928, 50);
-            this.btnagregar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnagregar.Margin = new System.Windows.Forms.Padding(4);
             this.btnagregar.Name = "btnagregar";
             this.btnagregar.Size = new System.Drawing.Size(184, 31);
             this.btnagregar.TabIndex = 118;
             this.btnagregar.Text = "Agregar PDF1";
             this.btnagregar.UseVisualStyleBackColor = false;
+            this.btnagregar.Click += new System.EventHandler(this.btnagregar_Click);
             // 
             // textBox10
             // 
             this.textBox10.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBox10.Location = new System.Drawing.Point(87, 182);
-            this.textBox10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox10.Margin = new System.Windows.Forms.Padding(4);
             this.textBox10.Multiline = true;
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(801, 45);
@@ -936,7 +1057,7 @@
             // 
             this.detalles.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.detalles.Location = new System.Drawing.Point(87, 50);
-            this.detalles.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.detalles.Margin = new System.Windows.Forms.Padding(4);
             this.detalles.Multiline = true;
             this.detalles.Name = "detalles";
             this.detalles.Size = new System.Drawing.Size(801, 94);
@@ -978,50 +1099,53 @@
             this.label18.Text = "Alta de Entrada";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // cliente
+            // openFileDialog1
             // 
-            this.cliente.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cliente.Location = new System.Drawing.Point(87, 27);
-            this.cliente.Margin = new System.Windows.Forms.Padding(4);
-            this.cliente.Name = "cliente";
-            this.cliente.ReadOnly = true;
-            this.cliente.Size = new System.Drawing.Size(184, 22);
-            this.cliente.TabIndex = 106;
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // gunaTileButton2
+            // label27
             // 
-            this.gunaTileButton2.AnimationHoverSpeed = 0.07F;
-            this.gunaTileButton2.AnimationSpeed = 0.03F;
-            this.gunaTileButton2.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.gunaTileButton2.BorderColor = System.Drawing.Color.Black;
-            this.gunaTileButton2.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.gunaTileButton2.FocusedColor = System.Drawing.Color.Empty;
-            this.gunaTileButton2.Font = new System.Drawing.Font("Segoe UI Light", 15.75F);
-            this.gunaTileButton2.ForeColor = System.Drawing.Color.White;
-            this.gunaTileButton2.Image = null;
-            this.gunaTileButton2.ImageSize = new System.Drawing.Size(52, 52);
-            this.gunaTileButton2.Location = new System.Drawing.Point(87, 154);
-            this.gunaTileButton2.Margin = new System.Windows.Forms.Padding(4);
-            this.gunaTileButton2.Name = "gunaTileButton2";
-            this.gunaTileButton2.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
-            this.gunaTileButton2.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.gunaTileButton2.OnHoverForeColor = System.Drawing.Color.White;
-            this.gunaTileButton2.OnHoverImage = null;
-            this.gunaTileButton2.OnPressedColor = System.Drawing.Color.Black;
-            this.gunaTileButton2.Size = new System.Drawing.Size(185, 27);
-            this.gunaTileButton2.TabIndex = 110;
-            this.gunaTileButton2.Text = "Buscar";
-            this.gunaTileButton2.Click += new System.EventHandler(this.gunaTileButton2_Click);
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(928, 91);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(51, 16);
+            this.label27.TabIndex = 119;
+            this.label27.Text = "label27";
             // 
-            // alias
+            // label28
             // 
-            this.alias.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.alias.Location = new System.Drawing.Point(86, 114);
-            this.alias.Margin = new System.Windows.Forms.Padding(4);
-            this.alias.Name = "alias";
-            this.alias.ReadOnly = true;
-            this.alias.Size = new System.Drawing.Size(184, 22);
-            this.alias.TabIndex = 107;
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(931, 153);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(51, 16);
+            this.label28.TabIndex = 120;
+            this.label28.Text = "label28";
+            // 
+            // label29
+            // 
+            this.label29.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label29.Location = new System.Drawing.Point(29, 116);
+            this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(100, 19);
+            this.label29.TabIndex = 110;
+            this.label29.Tag = "c";
+            this.label29.Text = "No. de rastreo:";
+            // 
+            // tbxRastreo
+            // 
+            this.tbxRastreo.BaseColor = System.Drawing.Color.White;
+            this.tbxRastreo.BorderColor = System.Drawing.Color.Silver;
+            this.tbxRastreo.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tbxRastreo.FocusedBaseColor = System.Drawing.Color.White;
+            this.tbxRastreo.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.tbxRastreo.FocusedForeColor = System.Drawing.SystemColors.ControlText;
+            this.tbxRastreo.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tbxRastreo.Location = new System.Drawing.Point(136, 109);
+            this.tbxRastreo.Name = "tbxRastreo";
+            this.tbxRastreo.PasswordChar = '\0';
+            this.tbxRastreo.Size = new System.Drawing.Size(128, 26);
+            this.tbxRastreo.TabIndex = 111;
             // 
             // AltaEntrada
             // 
@@ -1067,6 +1191,7 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
@@ -1121,11 +1246,9 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox bultos;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.ComboBox comboBox6;
-        private System.Windows.Forms.ComboBox comboBox5;
-        private System.Windows.Forms.TextBox peso;
+        private System.Windows.Forms.ComboBox cmbPeso;
+        private System.Windows.Forms.ComboBox cmbUnidades;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox unidades;
         private System.Windows.Forms.TextBox numFlete;
@@ -1144,5 +1267,18 @@
         private System.Windows.Forms.TextBox cliente;
         private System.Windows.Forms.TextBox alias;
         private Guna.UI.WinForms.GunaTileButton gunaTileButton2;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox peso;
+        private System.Windows.Forms.TextBox bultos;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label29;
+        private Guna.UI.WinForms.GunaTextBox tbxRastreo;
     }
 }

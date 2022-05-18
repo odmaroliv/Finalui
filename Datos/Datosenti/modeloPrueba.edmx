@@ -4,8 +4,22 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="PuebasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="KEPLER_PRUEBASModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="KDID">
+          <Key>
+            <PropertyRef Name="C1" />
+          </Key>
+          <Property Name="C1" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="C2" Type="char" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="KDIDO">
+          <Key>
+            <PropertyRef Name="C1" />
+          </Key>
+          <Property Name="C1" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="C2" Type="char" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="KDIDP">
           <Key>
             <PropertyRef Name="C1" />
           </Key>
@@ -422,8 +436,13 @@
           <Property Name="C26" Type="char" MaxLength="40" />
           <Property Name="C27" Type="char" MaxLength="10" />
         </EntityType>
-        <EntityContainer Name="PuebasModelStoreContainer">
+        <Function Name="NO_RASTREO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NoRastCrear" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="KEPLER_PRUEBASModelStoreContainer">
           <EntitySet Name="KDID" EntityType="Self.KDID" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KDIDO" EntityType="Self.KDIDO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KDIDP" EntityType="Self.KDIDP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KDM1" EntityType="Self.KDM1" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KDM1COMEN" EntityType="Self.KDM1COMEN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KDMENT" EntityType="Self.KDMENT" Schema="dbo" store:Type="Tables" />
@@ -437,8 +456,15 @@
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="PuebasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="KEPLER_PRUEBASModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="KDID">
+          <Key>
+            <PropertyRef Name="C1" />
+          </Key>
+          <Property Name="C1" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="C2" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="KDIDP">
           <Key>
             <PropertyRef Name="C1" />
           </Key>
@@ -692,6 +718,23 @@
           <Property Name="C80" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
           <Property Name="C81" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
         </EntityType>
+        <EntityType Name="KDMS">
+          <Key>
+            <PropertyRef Name="C1" />
+          </Key>
+          <Property Name="C1" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="C2" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="C3" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="C4" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="C5" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="C6" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="C7" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="C8" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="C9" Type="String" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="C10" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="C11" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="C12" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+        </EntityType>
         <EntityType Name="KDUD">
           <Key>
             <PropertyRef Name="C2" />
@@ -806,41 +849,12 @@
           <Property Name="C21" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
           <Property Name="C22" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
         </EntityType>
-        <EntityContainer Name="PruebasEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="KDID" EntityType="Self.KDID" />
-          <EntitySet Name="KDM1" EntityType="Self.KDM1" />
-          <EntitySet Name="KDM1COMEN" EntityType="Self.KDM1COMEN" />
-          <EntitySet Name="KDMENT" EntityType="Self.KDMENT" />
-          <EntitySet Name="KDUD" EntityType="Self.KDUD" />
-          <EntitySet Name="KDUDA" EntityType="Self.KDUDA" />
-          <EntitySet Name="KDUSUARIOS" EntityType="Self.KDUSUARIOS" />
-          <EntitySet Name="KDUV" EntityType="Self.KDUV" />
-          <EntitySet Name="KDMS" EntityType="PuebasModel.KDMS" />
-          <EntitySet Name="KDXD" EntityType="PuebasModel.KDXD" />
-        </EntityContainer>
-        <EntityType Name="KDMS">
-          <Key>
-            <PropertyRef Name="C1" />
-          </Key>
-          <Property Name="C1" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
-          <Property Name="C2" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
-          <Property Name="C3" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
-          <Property Name="C4" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
-          <Property Name="C5" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
-          <Property Name="C6" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
-          <Property Name="C7" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
-          <Property Name="C8" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
-          <Property Name="C9" Type="String" MaxLength="7" FixedLength="true" Unicode="false" />
-          <Property Name="C10" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
-          <Property Name="C11" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
-          <Property Name="C12" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
-        </EntityType>
         <EntityType Name="KDXD">
           <Key>
             <PropertyRef Name="C2" />
           </Key>
           <Property Name="C1" Type="String" MaxLength="7" FixedLength="true" Unicode="false" />
-          <Property Name="C2" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="C2" Type="String" MaxLength="7" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="C3" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
           <Property Name="C4" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
           <Property Name="C5" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
@@ -867,22 +881,59 @@
           <Property Name="C26" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
           <Property Name="C27" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
         </EntityType>
+        <EntityContainer Name="modelo2Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="KDID" EntityType="Self.KDID" />
+          <EntitySet Name="KDIDP" EntityType="Self.KDIDP" />
+          <EntitySet Name="KDM1" EntityType="Self.KDM1" />
+          <EntitySet Name="KDM1COMEN" EntityType="Self.KDM1COMEN" />
+          <EntitySet Name="KDMENT" EntityType="Self.KDMENT" />
+          <EntitySet Name="KDMS" EntityType="Self.KDMS" />
+          <EntitySet Name="KDUD" EntityType="Self.KDUD" />
+          <EntitySet Name="KDUDA" EntityType="Self.KDUDA" />
+          <EntitySet Name="KDUSUARIOS" EntityType="Self.KDUSUARIOS" />
+          <EntitySet Name="KDUV" EntityType="Self.KDUV" />
+          <EntitySet Name="KDXD" EntityType="Self.KDXD" />
+          <FunctionImport Name="NO_RASTREO" ReturnType="Collection(KEPLER_PRUEBASModel.NO_RASTREO_Result)">
+          <Parameter Name="NoRastCrear" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="KDIDO" EntityType="KEPLER_PRUEBASModel.KDIDO" />
+        </EntityContainer>
+        <ComplexType Name="NO_RASTREO_Result">
+          <Property Type="String" Name="rand_number" Nullable="false" MaxLength="13" />
+          <Property Type="DateTime" Name="fecha_creacion" Nullable="true" Precision="23" />
+          <Property Type="String" Name="estatus" Nullable="true" MaxLength="1" />
+        </ComplexType>
+        <EntityType Name="KDIDO">
+          <Key>
+            <PropertyRef Name="C1" />
+          </Key>
+          <Property Name="C1" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="C2" Type="String" MaxLength="200" FixedLength="true" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PuebasModelStoreContainer" CdmEntityContainer="PruebasEntities">
+        <EntityContainerMapping StorageEntityContainer="KEPLER_PRUEBASModelStoreContainer" CdmEntityContainer="modelo2Entities">
           <EntitySetMapping Name="KDID">
-            <EntityTypeMapping TypeName="PuebasModel.KDID">
+            <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.KDID">
               <MappingFragment StoreEntitySet="KDID">
                 <ScalarProperty Name="C1" ColumnName="C1" />
                 <ScalarProperty Name="C2" ColumnName="C2" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="KDIDP">
+            <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.KDIDP">
+              <MappingFragment StoreEntitySet="KDIDP">
+                <ScalarProperty Name="C1" ColumnName="C1" />
+                <ScalarProperty Name="C2" ColumnName="C2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="KDM1">
-            <EntityTypeMapping TypeName="PuebasModel.KDM1">
+            <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.KDM1">
               <MappingFragment StoreEntitySet="KDM1">
                 <ScalarProperty Name="C1" ColumnName="C1" />
                 <ScalarProperty Name="C2" ColumnName="C2" />
@@ -1003,7 +1054,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="KDM1COMEN">
-            <EntityTypeMapping TypeName="PuebasModel.KDM1COMEN">
+            <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.KDM1COMEN">
               <MappingFragment StoreEntitySet="KDM1COMEN">
                 <ScalarProperty Name="C1" ColumnName="C1" />
                 <ScalarProperty Name="C2" ColumnName="C2" />
@@ -1029,7 +1080,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="KDMENT">
-            <EntityTypeMapping TypeName="PuebasModel.KDMENT">
+            <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.KDMENT">
               <MappingFragment StoreEntitySet="KDMENT">
                 <ScalarProperty Name="C1" ColumnName="C1" />
                 <ScalarProperty Name="C2" ColumnName="C2" />
@@ -1115,8 +1166,26 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="KDMS">
+            <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.KDMS">
+              <MappingFragment StoreEntitySet="KDMS">
+                <ScalarProperty Name="C1" ColumnName="C1" />
+                <ScalarProperty Name="C2" ColumnName="C2" />
+                <ScalarProperty Name="C3" ColumnName="C3" />
+                <ScalarProperty Name="C4" ColumnName="C4" />
+                <ScalarProperty Name="C5" ColumnName="C5" />
+                <ScalarProperty Name="C6" ColumnName="C6" />
+                <ScalarProperty Name="C7" ColumnName="C7" />
+                <ScalarProperty Name="C8" ColumnName="C8" />
+                <ScalarProperty Name="C9" ColumnName="C9" />
+                <ScalarProperty Name="C10" ColumnName="C10" />
+                <ScalarProperty Name="C11" ColumnName="C11" />
+                <ScalarProperty Name="C12" ColumnName="C12" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="KDUD">
-            <EntityTypeMapping TypeName="PuebasModel.KDUD">
+            <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.KDUD">
               <MappingFragment StoreEntitySet="KDUD">
                 <ScalarProperty Name="C1" ColumnName="C1" />
                 <ScalarProperty Name="C2" ColumnName="C2" />
@@ -1154,7 +1223,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="KDUDA">
-            <EntityTypeMapping TypeName="PuebasModel.KDUDA">
+            <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.KDUDA">
               <MappingFragment StoreEntitySet="KDUDA">
                 <ScalarProperty Name="C1" ColumnName="C1" />
                 <ScalarProperty Name="C2" ColumnName="C2" />
@@ -1169,7 +1238,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="KDUSUARIOS">
-            <EntityTypeMapping TypeName="PuebasModel.KDUSUARIOS">
+            <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.KDUSUARIOS">
               <MappingFragment StoreEntitySet="KDUSUARIOS">
                 <ScalarProperty Name="C1" ColumnName="C1" />
                 <ScalarProperty Name="C2" ColumnName="C2" />
@@ -1206,7 +1275,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="KDUV">
-            <EntityTypeMapping TypeName="PuebasModel.KDUV">
+            <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.KDUV">
               <MappingFragment StoreEntitySet="KDUV">
                 <ScalarProperty Name="C1" ColumnName="C1" />
                 <ScalarProperty Name="C2" ColumnName="C2" />
@@ -1233,52 +1302,51 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="KDMS">
-            <EntityTypeMapping TypeName="PuebasModel.KDMS">
-              <MappingFragment StoreEntitySet="KDMS">
-                <ScalarProperty Name="C12" ColumnName="C12" />
-                <ScalarProperty Name="C11" ColumnName="C11" />
-                <ScalarProperty Name="C10" ColumnName="C10" />
-                <ScalarProperty Name="C9" ColumnName="C9" />
-                <ScalarProperty Name="C8" ColumnName="C8" />
-                <ScalarProperty Name="C7" ColumnName="C7" />
-                <ScalarProperty Name="C6" ColumnName="C6" />
-                <ScalarProperty Name="C5" ColumnName="C5" />
-                <ScalarProperty Name="C4" ColumnName="C4" />
-                <ScalarProperty Name="C3" ColumnName="C3" />
-                <ScalarProperty Name="C2" ColumnName="C2" />
+          <EntitySetMapping Name="KDXD">
+            <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.KDXD">
+              <MappingFragment StoreEntitySet="KDXD">
                 <ScalarProperty Name="C1" ColumnName="C1" />
+                <ScalarProperty Name="C2" ColumnName="C2" />
+                <ScalarProperty Name="C3" ColumnName="C3" />
+                <ScalarProperty Name="C4" ColumnName="C4" />
+                <ScalarProperty Name="C5" ColumnName="C5" />
+                <ScalarProperty Name="C6" ColumnName="C6" />
+                <ScalarProperty Name="C7" ColumnName="C7" />
+                <ScalarProperty Name="C8" ColumnName="C8" />
+                <ScalarProperty Name="C9" ColumnName="C9" />
+                <ScalarProperty Name="C10" ColumnName="C10" />
+                <ScalarProperty Name="C11" ColumnName="C11" />
+                <ScalarProperty Name="C12" ColumnName="C12" />
+                <ScalarProperty Name="C13" ColumnName="C13" />
+                <ScalarProperty Name="C14" ColumnName="C14" />
+                <ScalarProperty Name="C15" ColumnName="C15" />
+                <ScalarProperty Name="C16" ColumnName="C16" />
+                <ScalarProperty Name="C17" ColumnName="C17" />
+                <ScalarProperty Name="C18" ColumnName="C18" />
+                <ScalarProperty Name="C19" ColumnName="C19" />
+                <ScalarProperty Name="C20" ColumnName="C20" />
+                <ScalarProperty Name="C21" ColumnName="C21" />
+                <ScalarProperty Name="C22" ColumnName="C22" />
+                <ScalarProperty Name="C23" ColumnName="C23" />
+                <ScalarProperty Name="C24" ColumnName="C24" />
+                <ScalarProperty Name="C25" ColumnName="C25" />
+                <ScalarProperty Name="C26" ColumnName="C26" />
+                <ScalarProperty Name="C27" ColumnName="C27" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="KDXD">
-            <EntityTypeMapping TypeName="PuebasModel.KDXD">
-              <MappingFragment StoreEntitySet="KDXD">
-                <ScalarProperty Name="C27" ColumnName="C27" />
-                <ScalarProperty Name="C26" ColumnName="C26" />
-                <ScalarProperty Name="C25" ColumnName="C25" />
-                <ScalarProperty Name="C24" ColumnName="C24" />
-                <ScalarProperty Name="C23" ColumnName="C23" />
-                <ScalarProperty Name="C22" ColumnName="C22" />
-                <ScalarProperty Name="C21" ColumnName="C21" />
-                <ScalarProperty Name="C20" ColumnName="C20" />
-                <ScalarProperty Name="C19" ColumnName="C19" />
-                <ScalarProperty Name="C18" ColumnName="C18" />
-                <ScalarProperty Name="C17" ColumnName="C17" />
-                <ScalarProperty Name="C16" ColumnName="C16" />
-                <ScalarProperty Name="C15" ColumnName="C15" />
-                <ScalarProperty Name="C14" ColumnName="C14" />
-                <ScalarProperty Name="C13" ColumnName="C13" />
-                <ScalarProperty Name="C12" ColumnName="C12" />
-                <ScalarProperty Name="C11" ColumnName="C11" />
-                <ScalarProperty Name="C10" ColumnName="C10" />
-                <ScalarProperty Name="C9" ColumnName="C9" />
-                <ScalarProperty Name="C8" ColumnName="C8" />
-                <ScalarProperty Name="C7" ColumnName="C7" />
-                <ScalarProperty Name="C6" ColumnName="C6" />
-                <ScalarProperty Name="C5" ColumnName="C5" />
-                <ScalarProperty Name="C4" ColumnName="C4" />
-                <ScalarProperty Name="C3" ColumnName="C3" />
+          <FunctionImportMapping FunctionImportName="NO_RASTREO" FunctionName="KEPLER_PRUEBASModel.Store.NO_RASTREO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KEPLER_PRUEBASModel.NO_RASTREO_Result">
+                <ScalarProperty Name="rand_number" ColumnName="rand_number" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="KDIDO">
+            <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.KDIDO">
+              <MappingFragment StoreEntitySet="KDIDO">
                 <ScalarProperty Name="C2" ColumnName="C2" />
                 <ScalarProperty Name="C1" ColumnName="C1" />
               </MappingFragment>

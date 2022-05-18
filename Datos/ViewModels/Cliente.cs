@@ -11,6 +11,7 @@ namespace Datos.ViewModels
     {
         [DisplayName ("Cliente")]
         public string C3 { get; set; }
+        public string C12 { get; set; }
     }
      
 

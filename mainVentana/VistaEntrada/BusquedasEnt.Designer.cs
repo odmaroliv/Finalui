@@ -32,9 +32,11 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.gunaShadowPanel1 = new Guna.UI.WinForms.GunaShadowPanel();
+            this.label2 = new System.Windows.Forms.Label();
             this.gunaGradientTileButton4 = new Guna.UI.WinForms.GunaGradientTileButton();
             this.gunaShadowPanel2 = new Guna.UI.WinForms.GunaShadowPanel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.gunaTextBox1 = new Guna.UI.WinForms.GunaTextBox();
+            this.gunaTextBox3 = new Guna.UI.WinForms.GunaTextBox();
             this.gunaShadowPanel1.SuspendLayout();
             this.gunaShadowPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -48,13 +50,14 @@
             this.gunaTextBox2.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.gunaTextBox2.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.gunaTextBox2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.gunaTextBox2.Location = new System.Drawing.Point(39, 30);
-            this.gunaTextBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.gunaTextBox2.Location = new System.Drawing.Point(39, 87);
+            this.gunaTextBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gunaTextBox2.Name = "gunaTextBox2";
             this.gunaTextBox2.PasswordChar = '\0';
             this.gunaTextBox2.ReadOnly = true;
-            this.gunaTextBox2.Size = new System.Drawing.Size(394, 58);
+            this.gunaTextBox2.Size = new System.Drawing.Size(395, 34);
             this.gunaTextBox2.TabIndex = 2;
+            this.gunaTextBox2.Visible = false;
             this.gunaTextBox2.TextChanged += new System.EventHandler(this.gunaTextBox2_TextChanged);
             // 
             // comboBox1
@@ -63,9 +66,9 @@
             this.comboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(39, 60);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(394, 24);
+            this.comboBox1.Size = new System.Drawing.Size(393, 24);
             this.comboBox1.TabIndex = 1;
             this.comboBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox1_KeyPress);
             // 
@@ -90,12 +93,21 @@
             this.gunaShadowPanel1.Controls.Add(this.comboBox1);
             this.gunaShadowPanel1.Controls.Add(this.label1);
             this.gunaShadowPanel1.Location = new System.Drawing.Point(12, 12);
+            this.gunaShadowPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gunaShadowPanel1.Name = "gunaShadowPanel1";
             this.gunaShadowPanel1.Radius = 10;
             this.gunaShadowPanel1.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
             this.gunaShadowPanel1.ShadowDepth = 30;
-            this.gunaShadowPanel1.Size = new System.Drawing.Size(470, 229);
+            this.gunaShadowPanel1.Size = new System.Drawing.Size(469, 203);
             this.gunaShadowPanel1.TabIndex = 7;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(388, 25);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(0, 16);
+            this.label2.TabIndex = 6;
             // 
             // gunaGradientTileButton4
             // 
@@ -113,7 +125,8 @@
             this.gunaGradientTileButton4.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             this.gunaGradientTileButton4.Image = null;
             this.gunaGradientTileButton4.ImageSize = new System.Drawing.Size(100, 80);
-            this.gunaGradientTileButton4.Location = new System.Drawing.Point(39, 95);
+            this.gunaGradientTileButton4.Location = new System.Drawing.Point(39, 128);
+            this.gunaGradientTileButton4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gunaGradientTileButton4.Name = "gunaGradientTileButton4";
             this.gunaGradientTileButton4.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
             this.gunaGradientTileButton4.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
@@ -122,7 +135,7 @@
             this.gunaGradientTileButton4.OnHoverImage = null;
             this.gunaGradientTileButton4.OnPressedColor = System.Drawing.Color.Black;
             this.gunaGradientTileButton4.Radius = 5;
-            this.gunaGradientTileButton4.Size = new System.Drawing.Size(394, 51);
+            this.gunaGradientTileButton4.Size = new System.Drawing.Size(395, 50);
             this.gunaGradientTileButton4.TabIndex = 21;
             this.gunaGradientTileButton4.Text = "Validar y aceptar";
             this.gunaGradientTileButton4.Click += new System.EventHandler(this.gunaGradientTileButton4_Click);
@@ -134,36 +147,67 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gunaShadowPanel2.BackColor = System.Drawing.Color.Transparent;
             this.gunaShadowPanel2.BaseColor = System.Drawing.Color.White;
+            this.gunaShadowPanel2.Controls.Add(this.gunaTextBox1);
+            this.gunaShadowPanel2.Controls.Add(this.gunaTextBox3);
             this.gunaShadowPanel2.Controls.Add(this.gunaGradientTileButton4);
             this.gunaShadowPanel2.Controls.Add(this.gunaTextBox2);
-            this.gunaShadowPanel2.Location = new System.Drawing.Point(12, 247);
+            this.gunaShadowPanel2.Location = new System.Drawing.Point(12, 222);
+            this.gunaShadowPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gunaShadowPanel2.Name = "gunaShadowPanel2";
             this.gunaShadowPanel2.Radius = 10;
             this.gunaShadowPanel2.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
             this.gunaShadowPanel2.ShadowDepth = 30;
-            this.gunaShadowPanel2.Size = new System.Drawing.Size(470, 165);
+            this.gunaShadowPanel2.Size = new System.Drawing.Size(469, 191);
             this.gunaShadowPanel2.TabIndex = 8;
             // 
-            // label2
+            // gunaTextBox1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(388, 25);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 16);
-            this.label2.TabIndex = 6;
+            this.gunaTextBox1.BaseColor = System.Drawing.Color.White;
+            this.gunaTextBox1.BorderColor = System.Drawing.Color.Silver;
+            this.gunaTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.gunaTextBox1.FocusedBaseColor = System.Drawing.Color.White;
+            this.gunaTextBox1.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.gunaTextBox1.FocusedForeColor = System.Drawing.SystemColors.ControlText;
+            this.gunaTextBox1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.gunaTextBox1.Location = new System.Drawing.Point(39, 12);
+            this.gunaTextBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gunaTextBox1.Name = "gunaTextBox1";
+            this.gunaTextBox1.PasswordChar = '\0';
+            this.gunaTextBox1.ReadOnly = true;
+            this.gunaTextBox1.Size = new System.Drawing.Size(395, 34);
+            this.gunaTextBox1.TabIndex = 23;
+            this.gunaTextBox1.Visible = false;
+            // 
+            // gunaTextBox3
+            // 
+            this.gunaTextBox3.BaseColor = System.Drawing.Color.White;
+            this.gunaTextBox3.BorderColor = System.Drawing.Color.Silver;
+            this.gunaTextBox3.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.gunaTextBox3.FocusedBaseColor = System.Drawing.Color.White;
+            this.gunaTextBox3.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.gunaTextBox3.FocusedForeColor = System.Drawing.SystemColors.ControlText;
+            this.gunaTextBox3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.gunaTextBox3.Location = new System.Drawing.Point(39, 49);
+            this.gunaTextBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gunaTextBox3.Name = "gunaTextBox3";
+            this.gunaTextBox3.PasswordChar = '\0';
+            this.gunaTextBox3.ReadOnly = true;
+            this.gunaTextBox3.Size = new System.Drawing.Size(395, 34);
+            this.gunaTextBox3.TabIndex = 22;
+            this.gunaTextBox3.Visible = false;
             // 
             // BusquedasEnt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(494, 424);
+            this.ClientSize = new System.Drawing.Size(493, 423);
             this.Controls.Add(this.gunaShadowPanel2);
             this.Controls.Add(this.gunaShadowPanel1);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(510, 463);
-            this.MinimumSize = new System.Drawing.Size(510, 463);
+            this.MaximumSize = new System.Drawing.Size(509, 462);
+            this.MinimumSize = new System.Drawing.Size(509, 462);
             this.Name = "BusquedasEnt";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -184,5 +228,7 @@
         private Guna.UI.WinForms.GunaGradientTileButton gunaGradientTileButton4;
         private Guna.UI.WinForms.GunaShadowPanel gunaShadowPanel2;
         public System.Windows.Forms.Label label2;
+        private Guna.UI.WinForms.GunaTextBox gunaTextBox3;
+        private Guna.UI.WinForms.GunaTextBox gunaTextBox1;
     }
 }

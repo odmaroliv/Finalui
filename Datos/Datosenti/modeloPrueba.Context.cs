@@ -12,11 +12,13 @@ namespace Datos.Datosenti
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
-    public partial class PruebasEntities : DbContext
+    public partial class modelo2Entities : DbContext
     {
-        public PruebasEntities()
-            : base("name=PruebasEntities")
+        public modelo2Entities()
+            : base("name=modelo2Entities")
         {
         }
     
@@ -26,14 +28,25 @@ namespace Datos.Datosenti
         }
     
         public virtual DbSet<KDID> KDID { get; set; }
+        public virtual DbSet<KDIDP> KDIDP { get; set; }
         public virtual DbSet<KDM1> KDM1 { get; set; }
         public virtual DbSet<KDM1COMEN> KDM1COMEN { get; set; }
         public virtual DbSet<KDMENT> KDMENT { get; set; }
+        public virtual DbSet<KDMS> KDMS { get; set; }
         public virtual DbSet<KDUD> KDUD { get; set; }
         public virtual DbSet<KDUDA> KDUDA { get; set; }
         public virtual DbSet<KDUSUARIOS> KDUSUARIOS { get; set; }
         public virtual DbSet<KDUV> KDUV { get; set; }
-        public virtual DbSet<KDMS> KDMS { get; set; }
         public virtual DbSet<KDXD> KDXD { get; set; }
+        public virtual DbSet<KDIDO> KDIDO { get; set; }
+    
+        public virtual ObjectResult<NO_RASTREO_Result> NO_RASTREO(Nullable<int> noRastCrear)
+        {
+            var noRastCrearParameter = noRastCrear.HasValue ?
+                new ObjectParameter("NoRastCrear", noRastCrear) :
+                new ObjectParameter("NoRastCrear", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<NO_RASTREO_Result>("NO_RASTREO", noRastCrearParameter);
+        }
     }
 }

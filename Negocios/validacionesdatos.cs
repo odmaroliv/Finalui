@@ -16,7 +16,7 @@ namespace Negocios
     {
 
 
-        PruebasEntities modelo = new PruebasEntities(); //REFERENCIA A LA CONECCION DE BD
+        modelo2Entities modelo = new modelo2Entities(); //REFERENCIA A LA CONECCION DE BD
 
 
 
@@ -127,7 +127,8 @@ namespace Negocios
                             {
 
 
-                                c3 = d.C3
+                                c3 = d.C3,
+                                c2 = d.C2
 
 
                             };
@@ -144,7 +145,7 @@ namespace Negocios
 
             try
             {
-                using (PruebasEntities modelo = new PruebasEntities())
+                using (modelo2Entities modelo = new modelo2Entities())
 
                 {
                     var lista = from d in modelo.KDMS
@@ -176,7 +177,7 @@ namespace Negocios
 
             try
             {
-                using (PruebasEntities modelo = new PruebasEntities())
+                using (modelo2Entities modelo = new modelo2Entities())
 
                 {
                     var lista = from d in modelo.KDXD
@@ -184,8 +185,8 @@ namespace Negocios
                                 select new Proveedores
                                 {
 
-                                    c2 = d.C2.Trim(),
-                                    c3 = d.C3.Trim()
+                                    c2 = d.C2.Trim(),//clave
+                                    c3 = d.C3.Trim()//nombre prov
 
 
                                 };
@@ -205,7 +206,7 @@ namespace Negocios
         {
             try
             {
-                using (PruebasEntities modelo = new PruebasEntities())
+                using (modelo2Entities modelo = new modelo2Entities())
 
                 {
                     var lista = from d in modelo.KDUD
@@ -214,7 +215,11 @@ namespace Negocios
                                 {
 
                                     c2 = d.C2,
-                                    c3 = d.C3.Trim()
+                                    c3 = d.C3.Trim(),
+                                    c4 = d.C4.Trim(),
+                                    c5 = d.C5.Trim(),
+                                    c6 = d.C6.Trim(),
+                                    c12 = d.C12.Trim()
 
 
                                 };
@@ -234,7 +239,7 @@ namespace Negocios
         {
             try
             {
-                using (PruebasEntities modelo = new PruebasEntities())
+                using (modelo2Entities modelo = new modelo2Entities())
 
                 {
                     var lista = from d in modelo.KDUDA
@@ -243,7 +248,12 @@ namespace Negocios
                                 {
 
                                     c1 = d.C1.Trim(),
-                                    c3 = d.C3
+                                    c3 = d.C3.Trim(),
+                                    c4 = d.C4.Trim(),
+                                    c5 = d.C5.Trim(), 
+                                    c6 = d.C6.Trim(),
+                                    c7 = d.C7.Trim(),
+                                    c8 = d.C8.Trim()
 
 
                                 };
@@ -259,8 +269,112 @@ namespace Negocios
             }
         }
 
+        public List<vmPiezas> llenaPieza()
+        {
+            try
+            {
+                using (modelo2Entities modelo = new modelo2Entities())
+
+                {
+                    var lista = from d in modelo.KDID
+
+                                select new vmPiezas
+                                {
+
+                                    c1 = d.C1.Trim(),
+                                    c2 = d.C2.Trim(),
+                                };
+                    return lista.ToList();
+
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public List<vmPeso> llenaPeso()
+        {
+            try
+            {
+                using (modelo2Entities modelo = new modelo2Entities())
+
+                {
+                    var lista = from d in modelo.KDIDP
+
+                                select new vmPeso
+                                {
+
+                                    c1 = d.C1.Trim(),
+                                    c2 = d.C2.Trim(),
+                                };
+                    return lista.ToList();
+
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public List<vmTOperacion> llenaOpera()
+        {
+            try
+            {
+                using (modelo2Entities modelo = new modelo2Entities())
+
+                {
+                    var lista = from d in modelo.KDIDO
+
+                                select new vmTOperacion
+                                {
+                                    c1= d.C1.Trim(),
+                                    c2= d.C2.Trim()
+                                };
+                    return lista.ToList();
+
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
 
 
+        }
+        public List<vmRastreo> generaRastreo()
+        {
+            try
+            {
+                using (modelo2Entities modelo = new modelo2Entities())
+
+                {
+                    var lista = from d in modelo.NO_RASTREO(1)
+
+                                select new vmRastreo
+                                {
+                                    c1 = d.rand_number.Trim(),
+                                    //c2 = (DateTime)d.fecha_creacion
+                                };
+                    return lista.ToList();
+
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
 
     }
 }

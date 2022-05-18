@@ -1,10 +1,12 @@
-﻿using Negocios;
+﻿using Datos.ViewModels.Entradas.mvlistas;
+using Negocios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,8 +16,10 @@ namespace mainVentana.VistaEntrada
     public partial class BusquedasEnt : Form
     {
 
-        public delegate void pasar(string dato, int bandera);
+        public delegate void pasar(string alias, string cliente, string cord, string calle, string colonia, string ciudad, int bandera);
+        //public delegate void pasar2(string dato,string cliente, int bandera);
         public event pasar pasado;
+       // public event pasar2 pasado2;
         public BusquedasEnt()
         {
             InitializeComponent();
@@ -24,20 +28,15 @@ namespace mainVentana.VistaEntrada
         private void BusquedasEnt_Load(object sender, EventArgs e)
         {
             comboBox1.AutoCompleteCustomSource = aliasList();
-            validacionesdatos datos = new validacionesdatos();
-
-
-
+ 
         }
 
         private void pasarinfo()
         {
             if (label2.Text == "CLIENTE")
-            { pasado(gunaTextBox2.Text,0); }
+            { pasado(gunaTextBox2.Text,"",gunaTextBox1.Text,calle,colonia,ciudad, 0); }
             else if (label2.Text == "ALIAS")
-            { pasado(gunaTextBox2.Text, 1); }
-
-
+            { pasado(gunaTextBox2.Text, gunaTextBox3.Text, gunaTextBox1.Text,calle,colonia,ciudad, 1); }
         }
 
         private AutoCompleteStringCollection aliasList()
@@ -116,7 +115,9 @@ namespace mainVentana.VistaEntrada
         {
 
         }
-
+        string calle;
+        string colonia;
+        string ciudad;
         private void gunaGradientTileButton4_Click(object sender, EventArgs e)
         {
             if (label2.Text == "ALIAS")
@@ -130,6 +131,11 @@ namespace mainVentana.VistaEntrada
                     {
                         bandera = 1;
                         gunaTextBox2.Text = d.c1.ToString().Trim();
+                        gunaTextBox3.Text = validCli(d.c3.ToString())[0].ToString();
+                        gunaTextBox1.Text = validCli(d.c3.ToString())[1].ToString();
+                        calle = d.c4.ToString();
+                        colonia = d.c5.ToString();
+                        ciudad = d.c6.ToString();
                         pasarinfo();
                         this.Dispose();
                         this.Close();
@@ -157,6 +163,10 @@ namespace mainVentana.VistaEntrada
                     {
                         bandera = 1;
                         gunaTextBox2.Text = d.c3.ToString().Trim();
+                        gunaTextBox1.Text = d.c12.ToString().Trim();
+                        calle = d.c4.ToString();
+                        colonia = d.c5.ToString();
+                        ciudad = d.c6.ToString();
                         pasarinfo();
                         this.Dispose();
                         this.Close();
@@ -175,7 +185,39 @@ namespace mainVentana.VistaEntrada
             
         }
 
+        private List<string> validCli(string clave)//dado un alias busca un cliente para rellenarlo automaticamente
+        {
+          
+            
+           
+            validacionesdatos datos2 = new validacionesdatos();
+            var lst2 = datos2.llenaClientes();
+              string cliente = "";
+             string cord = "";
+            List<string> lista = new List<string>();
+            foreach (var d in lst2)
+            {
+                if (d.c2.ToString().Trim() == clave.Trim())
+                {
 
+                    lista.Add(cliente = d.c3.ToString().Trim());
+                    lista.Add(cord = (d.c12.ToString().Trim()));
+
+
+
+                }
+
+
+
+
+
+
+                
+            }
+            return lista.ToList();
+        }
+
+        
 
     }
 }

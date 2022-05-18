@@ -53,36 +53,60 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Datosenti\KDIDO.cs">
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datosenti\KDIDP.cs">
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
+    </Compile>
     <Compile Include="Datosenti\KDMS.cs">
-      <DependentUpon>ServPruebas.tt</DependentUpon>
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
     <Compile Include="Datosenti\KDXD.cs">
-      <DependentUpon>ServPruebas.tt</DependentUpon>
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datosenti\modeloPrueba.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>modeloPrueba.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datosenti\modeloPrueba.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datosenti\modeloPrueba.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>modeloPrueba.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Datosenti\NO_RASTREO_Result.cs">
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Cliente.cs" />
     <Compile Include="Datosenti\KDID.cs">
-      <DependentUpon>ServPruebas.tt</DependentUpon>
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
     <Compile Include="Datosenti\KDM1.cs">
-      <DependentUpon>ServPruebas.tt</DependentUpon>
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
     <Compile Include="Datosenti\KDM1COMEN.cs">
-      <DependentUpon>ServPruebas.tt</DependentUpon>
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
     <Compile Include="Datosenti\KDMENT.cs">
-      <DependentUpon>ServPruebas.tt</DependentUpon>
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
     <Compile Include="Datosenti\KDUD.cs">
-      <DependentUpon>ServPruebas.tt</DependentUpon>
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
     <Compile Include="Datosenti\KDUDA.cs">
-      <DependentUpon>ServPruebas.tt</DependentUpon>
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
     <Compile Include="Datosenti\KDUSUARIOS.cs">
-      <DependentUpon>ServPruebas.tt</DependentUpon>
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
     <Compile Include="Datosenti\KDUV.cs">
-      <DependentUpon>ServPruebas.tt</DependentUpon>
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
     <Compile Include="Datosenti\Model1.Context.cs">
       <AutoGen>True</AutoGen>
@@ -102,28 +126,18 @@
     <Compile Include="Datosenti\PBN1.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Datosenti\ServPruebas.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ServPruebas.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Datosenti\ServPruebas.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ServPruebas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Datosenti\ServPruebas.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ServPruebas.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BusquedaInicial.cs" />
     <Compile Include="ViewModels\Entradas\Alias.cs" />
     <Compile Include="ViewModels\Entradas\Clientes.cs" />
+    <Compile Include="ViewModels\Entradas\mvlistas\clientecord.cs" />
+    <Compile Include="ViewModels\Entradas\vmPeso.cs" />
+    <Compile Include="ViewModels\Entradas\vmPiezas.cs" />
     <Compile Include="ViewModels\Entradas\Proveedores.cs" />
     <Compile Include="ViewModels\Entradas\vmCordinadores.cs" />
     <Compile Include="ViewModels\Entradas\Sucursales.cs" />
+    <Compile Include="ViewModels\Entradas\vmRastreo.cs" />
+    <Compile Include="ViewModels\Entradas\vmTOperacion.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -134,12 +148,12 @@
     <None Include="Datosenti\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>
-    <EntityDeploy Include="Datosenti\ServPruebas.edmx">
+    <EntityDeploy Include="Datosenti\modeloPrueba.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ServPruebas.Designer.cs</LastGenOutput>
+      <LastGenOutput>modeloPrueba.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Datosenti\ServPruebas.edmx.diagram">
-      <DependentUpon>ServPruebas.edmx</DependentUpon>
+    <None Include="Datosenti\modeloPrueba.edmx.diagram">
+      <DependentUpon>modeloPrueba.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -154,20 +168,21 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-    <Content Include="Datosenti\ServPruebas.Context.tt">
+    <Content Include="Datosenti\modeloPrueba.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ServPruebas.edmx</DependentUpon>
-      <LastGenOutput>ServPruebas.Context.cs</LastGenOutput>
+      <DependentUpon>modeloPrueba.edmx</DependentUpon>
+      <LastGenOutput>modeloPrueba.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Datosenti\ServPruebas.tt">
+    <Content Include="Datosenti\modeloPrueba.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ServPruebas.edmx</DependentUpon>
-      <LastGenOutput>ServPruebas.cs</LastGenOutput>
+      <DependentUpon>modeloPrueba.edmx</DependentUpon>
+      <LastGenOutput>modeloPrueba.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -73,24 +73,21 @@ namespace mainVentana
         private void Entradas_FormClosing(object sender, FormClosingEventArgs e)
 
         {
-
-            this.Dispose();
-        }
-
-        private void iconButton4_Click(object sender, EventArgs e)
-        {
             if (MessageBox.Show("Estas apunto de cerrar la ventada de Entradas, si no has guardado da click en cancelar y guarda, de lo contrario da click en SI para salir al menu principal\n\n\n¿Deseas Sali?", "Hey, cuidado!", MessageBoxButtons.YesNo) == DialogResult.No)
             {
+                
+                e.Cancel = true;
                 return;
             }
             else
             {
-                this.Close();
+                
                 this.Dispose();
             }
-
+           
         }
 
+      
         private void tabPage1_Click(object sender, EventArgs e)
         {
 
@@ -124,24 +121,16 @@ namespace mainVentana
                     tabControl1.TabPages.Insert(0, tabPage2);
 
 
-                }
-                
-                    
+                 }   
                 tabPage1.Parent = null;
                 tabPage3.Parent = null;
             }
             else if (dato == 2) // 2 Consulta entrada
             {
-
                 if (tabPage3.Parent == null)
-                {
-                  
+                {       
                     tabControl1.TabPages.Insert(0, tabPage3);
-
-
                 }
-                
-                    
                 tabPage2.Parent = null;
                 tabPage1.Parent = null;
             }
@@ -161,6 +150,48 @@ namespace mainVentana
         private void gunaShadowPanel4_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             cerrartabs(2);
+        }
+
+        private void gunaGradientTileButton3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gunaGradientTileButton3_Click_1(object sender, EventArgs e)
+        {
+            if (gunaShadowPanel1.Visible == false)
+            {
+
+                gunaShadowPanel1.Visible=true;
+            }
+            else
+            {
+                gunaShadowPanel1.Visible=false;
+            }
+        }
+
+       
+
+       
+        private void btnAlta_DoubleClick(object sender, EventArgs e)
+        {
+            gunaShadowPanel1.ShadowColor = Color.FromArgb(250, 95, 73);  
+        }
+
+        private void btnModifica_DoubleClick(object sender, EventArgs e)
+        {
+            gunaShadowPanel1.ShadowColor = Color.FromArgb(245, 217, 181);
+        }
+
+        private void btnBaja_DoubleClick(object sender, EventArgs e)
+        {
+            gunaShadowPanel1.ShadowColor = Color.FromArgb(50, 202, 206);
+            
+        }
+
+        private void btnConsulta_DoubleClick(object sender, EventArgs e)
+        {
+            gunaShadowPanel1.ShadowColor = Color.FromArgb(114, 91, 121);
         }
     }
 }
