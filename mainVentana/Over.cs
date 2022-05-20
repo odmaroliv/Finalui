@@ -79,11 +79,11 @@ namespace mainVentana
         #endregion
 
 
-        public void refresh(string id)
+        public async void refresh(string id)
         {
             Negocios.Servicios vld = new Negocios.Servicios();
             
-            gunaDataGridView1.DataSource =  vld.Cargabuscque(id);
+            gunaDataGridView1.DataSource =  await vld.Cargabuscque(id);
             if(gunaDataGridView1.RowCount <= 0)
             {
                 MessageBox.Show("No se encontraron datos");

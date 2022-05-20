@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Data.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -42,7 +43,7 @@ namespace mainVentana.VistaEntrada
             peso.Text = "0";
             //Desk.SpecialKeyButtons(false);
             llenaCampos();
-            
+
 
 
             #region Autocompletar ref
@@ -126,7 +127,7 @@ namespace mainVentana.VistaEntrada
             }
 
         }
-        
+
 
         private void iconButton2_Click(object sender, EventArgs e) //lo utiliazmos para pasar las imagenes del form camara al forma alta de entrada <Tiene que conectarse con CAM2>
         {
@@ -157,19 +158,19 @@ namespace mainVentana.VistaEntrada
             pic.Image = null;
         }
 
-        
+
 
 
         private void iconButton1_Click(object sender, EventArgs e) //Click al boton guardar
         {
-            trakinNumber();
-            ValidacionEntradas validacion = new ValidacionEntradas();   
 
-            if (validacion.validacampo(sucEntrada.Text,sucDestino.Text,tipoOper.Text,cord.Text,cliente.Text,proveedor.Text,ordenCompra.Text,numFlete.Text,unidades.Text,bultos.Text,peso.Text,detalles.Text) == true)
+            ValidacionEntradas validacion = new ValidacionEntradas();
+
+            if (validacion.validacampo(sucEntrada.Text, sucDestino.Text, tipoOper.Text, cord.Text, cliente.Text, proveedor.Text, ordenCompra.Text, numFlete.Text, unidades.Text, bultos.Text, peso.Text, detalles.Text) == true)
             {
                 impirmepdf();
             }
-       
+
         }
 
         private void impirmepdf()
@@ -238,26 +239,26 @@ namespace mainVentana.VistaEntrada
 
         private void AltaEntrada_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+
         }
 
-      
 
 
 
-        private void llenaCampos()
+
+        private async void llenaCampos()
         {
             try
             {
                 Servicios datos = new Servicios();
-                var lst1 = datos.llenaCord();
+                var lst1 = await datos.llenaCord();
                 cord.ValueMember = "C2";
                 cord.DisplayMember = "C3";
                 cord.DataSource = lst1;
 
 
 
-                var lst2 = datos.llenaSuc();
+                var lst2 = await datos.llenaSuc();
 
                 sucEntrada.DisplayMember = "C2";
                 sucEntrada.ValueMember = "C1";
@@ -270,26 +271,26 @@ namespace mainVentana.VistaEntrada
                 sucDestino.ValueMember = "C1";
                 sucDestino.DataSource = lst3;
 
-                var lst4 = datos.llenaProveedores();
+                var lst4 =  datos.llenaProveedores();
 
                 proveedor.DisplayMember = "C3";
                 proveedor.ValueMember = "C2";
                 proveedor.DataSource = lst4;
 
-                var lst5 = datos.llenaPieza();
+                var lst5 = await datos.llenaPieza();
 
                 cmbUnidades.DisplayMember = "C2";
                 cmbUnidades.ValueMember = "C1";
                 cmbUnidades.DataSource = lst5;
 
-                var lst6 = datos.llenaPeso();
+                var lst6 = await datos.llenaPeso();
 
                 cmbPeso.DisplayMember = "C2";
                 cmbPeso.ValueMember = "C1";
                 cmbPeso.DataSource = lst6;
 
 
-                var lst7 = datos.llenaOpera();
+                var lst7 = await datos.llenaOpera();
 
                 tipoOper.DisplayMember = "C2";
                 tipoOper.ValueMember = "C1";
@@ -297,12 +298,12 @@ namespace mainVentana.VistaEntrada
 
                 //
 
-                foreach (var i in datos.generaRastreo())
+                foreach (var i in await datos.generaRastreo())
                 {
                     tbxRastreo.Text = i.c1.ToString();
                 }
 
-                var lst8 = datos.llenaAlmacenes();
+                var lst8 = await datos.llenaAlmacenes();
 
                 cmbAlmacen.DisplayMember = "C2";
                 cmbAlmacen.ValueMember = "C1";
@@ -310,14 +311,15 @@ namespace mainVentana.VistaEntrada
 
 
                 Cargaparidad();
-
+                cargafecha();
+                Moneda();
             }
             catch (Exception)
             {
 
                 throw;
             }
-            
+
         }
 
 
@@ -336,20 +338,10 @@ namespace mainVentana.VistaEntrada
 
             return List;
         }
-       
-        
+
+
 
         #endregion
-
-
-
-        private void label21_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-       
 
 
 
@@ -361,7 +353,7 @@ namespace mainVentana.VistaEntrada
             buscador.ShowDialog();
         }
 
-        public void moverinfo(string dato,string dato2,string dato3,string dato4, string dato5,string dato6, int bandera) //cambia los datos de los textbox alias y clientes, la bandera dependera de la manera en la que se haya abierto el frm buscar, 0 clientes 1 alias, ADEMAS tambien sirve para cambiar el campo de cord
+        public void moverinfo(string dato, string dato2, string dato3, string dato4, string dato5, string dato6, int bandera) //cambia los datos de los textbox alias y clientes, la bandera dependera de la manera en la que se haya abierto el frm buscar, 0 clientes 1 alias, ADEMAS tambien sirve para cambiar el campo de cord
         {
 
             if (bandera == 0) //clientes
@@ -379,13 +371,13 @@ namespace mainVentana.VistaEntrada
                     {
                         cord.SelectedValue = i.c2;
                         break;
-                        
+
                     }
-                    
+
                 }
 
             }
-            else if(bandera == 1)//alias
+            else if (bandera == 1)//alias
             {
                 alias.Text = dato;
                 cliente.Text = dato2;
@@ -393,7 +385,7 @@ namespace mainVentana.VistaEntrada
                 label24.Text = dato5;
                 label25.Text = dato6;
                 label26.Text = "Dir Alias";
-                
+
                 foreach (vmCordinadores i in cord.Items)
                 {
                     if (i.c2.Trim() == dato3)
@@ -406,7 +398,7 @@ namespace mainVentana.VistaEntrada
                 }
             }
         }
-       
+
 
         private void gunaTileButton2_Click(object sender, EventArgs e) //abre el formulario de busqueda con datos de alias
         {
@@ -414,12 +406,6 @@ namespace mainVentana.VistaEntrada
             buscador.label2.Text = "ALIAS";
             buscador.pasado += new BusquedasEnt.pasar(moverinfo);
             buscador.ShowDialog();
-        }
-
-        private void alias_TextChanged(object sender, EventArgs e)
-        {
-       
-
         }
 
         private void cliente_TextChanged(object sender, EventArgs e)
@@ -433,13 +419,13 @@ namespace mainVentana.VistaEntrada
             foreach (Proveedores d in proveedor.Items)
             {
                 string dato = proveedor.Text.ToString().Trim();
-               
+
                 if (d.c3.Trim() == dato)
                 {
                     bandera = 1;
                     break;
                 }
-                
+
             }
             if (bandera == 0)
             {
@@ -447,21 +433,11 @@ namespace mainVentana.VistaEntrada
                 proveedor.Focus();
             }
         }
-        
+
 
         private void coloresSucursales()//cambia los coleres del control de seleccion de sucursales
         {
-          
-        }
 
-        private void cmbUnidades_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void trakinNumber()
-        {
-            
         }
 
         private void btnagregar_Click(object sender, EventArgs e)
@@ -494,43 +470,49 @@ namespace mainVentana.VistaEntrada
             //var lst = JsonConvert.DeserializeObject<List<Paridad>>(paridad1);
             //Paridad lst = JsonConvert.DeserializeObject<ListParidad>>(paridad1);
 
-            var lista = from d in lst.ListaIndicadores.Where(c=>c.codTipoIndicador == 158)
+            var lista = from d in lst.ListaIndicadores.Where(c => c.codTipoIndicador == 158)
 
                         select new ListaIndicadore
                         {
                             valor = d.valor
 
                         };
-            
+
             foreach (var i in lista.ToList())
             {
-                label33.Text = i.valor.ToString(); 
+                label33.Text = i.valor.ToString();
             }
-            
+
+
+        }
+
+
+        private async void cargafecha()
+        {
+            Servicio datos = new Servicio();
+            string fecha1 = await datos.fechaLapaz();
+            //List<FechaActual> lst = JsonConvert.DeserializeObject<List<FechaActual>>(paridad1);
+            //var lst = JsonConvert.DeserializeObject<List<FechaActual>>(fecha1);
+            FechaActual lst = JsonConvert.DeserializeObject<FechaActual>(fecha1);
+
+            label40.Text = lst.datetime.Date.ToString("dd-MM-yyyy");
 
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(comboBox2.SelectedItem.ToString() == "PESOS")
+            if (Convert.ToInt32(comboBox2.SelectedIndex) == 0)
             {
                 label33.Text = "";
             }
-            else if (comboBox2.SelectedIndex.ToString() == "DLLS")
+            else if (Convert.ToInt32(comboBox2.SelectedIndex) == 1)
             {
                 Cargaparidad();
             }
         }
 
-        private void Especificos_Click(object sender, EventArgs e)
-        {
-            
-        }
 
-        private void label38_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void gunaMediumRadioButton2_CheckedChanged(object sender, EventArgs e)
         {
@@ -538,19 +520,14 @@ namespace mainVentana.VistaEntrada
             gunaMediumRadioButton1.Enabled = true;
         }
 
-        private void label39_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void gunaMediumRadioButton1_CheckedChanged(object sender, EventArgs e)
         {
             gunaMediumRadioButton1.Enabled = false;
-            
         }
 
         private void gunaTileButton3_Click(object sender, EventArgs e)
-
         {
 
             if (gunaMediumRadioButton2.Checked == true)
@@ -560,7 +537,7 @@ namespace mainVentana.VistaEntrada
 
             }
             VistaEntrada.Desbloqueo buscador = new Desbloqueo();
-            
+
             buscador.cambiar += new Desbloqueo.cambio(deledesbloqueo);
             buscador.ShowDialog();
         }
@@ -575,7 +552,31 @@ namespace mainVentana.VistaEntrada
             {
                 gunaMediumRadioButton2.Enabled = false;
             }
-            
+
+        }
+
+        private void Moneda()
+        {
+            List<Moneda> mnd = new List<Moneda> {
+                new Moneda{id=1,moneda="PESOS"},
+                new Moneda{id=2,moneda="DLLS"}};
+
+
+
+
+            var lista = from d in mnd
+                        select new Moneda
+                        {
+                            id = d.id,
+                            moneda = d.moneda
+
+                        };
+            lista = lista.ToList();
+
+            comboBox2.DisplayMember = "moneda";
+            comboBox2.ValueMember = "id";
+            comboBox2.DataSource = lista;
+
         }
     }
 }

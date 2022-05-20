@@ -130,6 +130,7 @@
     <Compile Include="ViewModels\BusquedaInicial.cs" />
     <Compile Include="ViewModels\Entradas\Alias.cs" />
     <Compile Include="ViewModels\Entradas\Clientes.cs" />
+    <Compile Include="ViewModels\Entradas\Moneda.cs" />
     <Compile Include="ViewModels\Entradas\mvlistas\clientecord.cs" />
     <Compile Include="ViewModels\Entradas\vmAlmacenes.cs" />
     <Compile Include="ViewModels\Entradas\vmPeso.cs" />

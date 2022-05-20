@@ -81,6 +81,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label40 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -126,6 +127,7 @@
             this.label38 = new System.Windows.Forms.Label();
             this.gunaMediumRadioButton2 = new Guna.UI.WinForms.GunaMediumRadioButton();
             this.gunaMediumRadioButton1 = new Guna.UI.WinForms.GunaMediumRadioButton();
+            this.label41 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -504,7 +506,6 @@
             this.alias.ReadOnly = true;
             this.alias.Size = new System.Drawing.Size(139, 20);
             this.alias.TabIndex = 107;
-            this.alias.TextChanged += new System.EventHandler(this.alias_TextChanged);
             // 
             // gunaTileButton2
             // 
@@ -855,6 +856,8 @@
             // groupBox4
             // 
             this.groupBox4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox4.Controls.Add(this.label41);
+            this.groupBox4.Controls.Add(this.label40);
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.label10);
@@ -864,6 +867,14 @@
             this.groupBox4.TabIndex = 111;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Alta de Entrada";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(77, 37);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(0, 13);
+            this.label40.TabIndex = 110;
             // 
             // label8
             // 
@@ -879,7 +890,7 @@
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label9.Location = new System.Drawing.Point(5, 37);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(104, 25);
+            this.label9.Size = new System.Drawing.Size(66, 25);
             this.label9.TabIndex = 108;
             this.label9.Text = "Fecha:";
             // 
@@ -969,7 +980,6 @@
             this.cmbUnidades.Name = "cmbUnidades";
             this.cmbUnidades.Size = new System.Drawing.Size(115, 21);
             this.cmbUnidades.TabIndex = 113;
-            this.cmbUnidades.Click += new System.EventHandler(this.cmbUnidades_Click);
             // 
             // peso
             // 
@@ -1141,7 +1151,6 @@
             this.label21.Size = new System.Drawing.Size(104, 25);
             this.label21.TabIndex = 117;
             this.label21.Text = "Notas";
-            this.label21.Click += new System.EventHandler(this.label21_Click);
             // 
             // label22
             // 
@@ -1197,7 +1206,6 @@
             this.Especificos.TabIndex = 123;
             this.Especificos.Text = "Especificos";
             this.Especificos.TextLocation = new System.Drawing.Point(10, 8);
-            this.Especificos.Click += new System.EventHandler(this.Especificos_Click);
             // 
             // label37
             // 
@@ -1286,9 +1294,6 @@
             // 
             this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "PESOS",
-            "DLLS"});
             this.comboBox2.Location = new System.Drawing.Point(6, 135);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox2.Name = "comboBox2";
@@ -1367,7 +1372,6 @@
             this.label39.Size = new System.Drawing.Size(70, 13);
             this.label39.TabIndex = 3;
             this.label39.Text = "No Pagado";
-            this.label39.Click += new System.EventHandler(this.label39_Click);
             // 
             // label38
             // 
@@ -1378,7 +1382,6 @@
             this.label38.Size = new System.Drawing.Size(50, 13);
             this.label38.TabIndex = 2;
             this.label38.Text = "Pagado";
-            this.label38.Click += new System.EventHandler(this.label38_Click);
             // 
             // gunaMediumRadioButton2
             // 
@@ -1405,6 +1408,15 @@
             this.gunaMediumRadioButton1.Size = new System.Drawing.Size(20, 20);
             this.gunaMediumRadioButton1.TabIndex = 0;
             this.gunaMediumRadioButton1.CheckedChanged += new System.EventHandler(this.gunaMediumRadioButton1_CheckedChanged);
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(122, 16);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(41, 13);
+            this.label41.TabIndex = 111;
+            this.label41.Text = "label41";
             // 
             // AltaEntrada
             // 
@@ -1454,6 +1466,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox6.ResumeLayout(false);
@@ -1566,5 +1579,7 @@
         private System.Windows.Forms.Label label38;
         private Guna.UI.WinForms.GunaMediumRadioButton gunaMediumRadioButton2;
         private Guna.UI.WinForms.GunaMediumRadioButton gunaMediumRadioButton1;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label41;
     }
 }

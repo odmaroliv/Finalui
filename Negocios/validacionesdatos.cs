@@ -21,29 +21,34 @@ namespace Negocios
 
 
 
-        public List<BusquedaInicial> Cargabuscque(string id) //BUSQUEDA RAPIDA POR ENTRADA <Funciona en la pantalla principal Form1>
+        public async Task<List<BusquedaInicial>> Cargabuscque(string id) //BUSQUEDA RAPIDA POR ENTRADA <Funciona en la pantalla principal Form1>
         {
 
             try
             {
-                using (modelo)
-                {
+                var lst2 = new List<BusquedaInicial>();
+                await Task.Run(() => {
+                    using (modelo)
+                    {
 
-                    var lst = from d in modelo.KDMENT
-                              where d.C6.Equals(id)
-                              orderby (d.C7)
-                              select new BusquedaInicial
-                              {
-                                  C9 = d.C9.Trim(),
-                                  C6 = d.C6.Trim(),
-                                  C69 = d.C69.Trim(),
-                                  C10 = d.C10.Trim(),
-                                  C19 = d.C19.Trim(),
-                                  C42 = d.C42.Trim()
-                              };
-                    return lst.ToList();
+                        var lst = from d in modelo.KDMENT
+                                  where d.C6.Equals(id)
+                                  orderby (d.C7)
+                                  select new BusquedaInicial
+                                  {
+                                      C9 = d.C9.Trim(),
+                                      C6 = d.C6.Trim(),
+                                      C69 = d.C69.Trim(),
+                                      C10 = d.C10.Trim(),
+                                      C19 = d.C19.Trim(),
+                                      C42 = d.C42.Trim()
+                                  };
+                        lst2 = lst.ToList();
 
-                }
+                    }
+
+                });
+                return lst2;
 
             }
             catch (Exception EX)
@@ -116,50 +121,67 @@ namespace Negocios
 
 
 
-        public List<vmCordinadores> llenaCord()
-        {
-
-            using (modelo)
-
-            {
-                var lista = from d in modelo.KDUV
-                            select new vmCordinadores
-                            {
-
-
-                                c3 = d.C3,
-                                c2 = d.C2
-
-
-                            };
-                return lista.ToList();
-
-            }
-
-
-        }
-
-
-        public List<Sucursales> llenaSuc()
+        public async Task<List<vmCordinadores>>  llenaCord()
         {
 
             try
             {
-                using (modelo2Entities modelo = new modelo2Entities())
+                var lst2 = new List<vmCordinadores>();
+                await Task.Run(() => {
+                    using (modelo)
 
-                {
-                    var lista = from d in modelo.KDMS
-                                select new Sucursales
-                                {
-
-                                    c1 = d.C1,
-                                    c2 = d.C2
+                    {
+                        var lista = from d in modelo.KDUV
+                                    select new vmCordinadores
+                                    {
 
 
-                                };
-                    return lista.ToList();
+                                        c3 = d.C3,
+                                        c2 = d.C2
 
-                }
+
+                                    };
+                        lst2 = lista.ToList();
+
+                    }
+                });
+
+                return lst2;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
+
+        }
+
+
+        public async Task<List<Sucursales>> llenaSuc()
+        {
+
+            try
+            {
+                var lst2 = new List<Sucursales>();
+                await Task.Run(() => {
+                    using (modelo2Entities modelo = new modelo2Entities())
+
+                    {
+                        var lista = from d in modelo.KDMS
+                                    select new Sucursales
+                                    {
+
+                                        c1 = d.C1,
+                                        c2 = d.C2
+
+
+                                    };
+                        lst2 = lista.ToList();
+
+                    }
+                });
+                return lst2;
             }
             catch (Exception)
             {
@@ -269,24 +291,28 @@ namespace Negocios
             }
         }
 
-        public List<vmPiezas> llenaPieza()
+        public async Task<List<vmPiezas>> llenaPieza()
         {
             try
             {
-                using (modelo2Entities modelo = new modelo2Entities())
+                var lst2 = new List<vmPiezas>();
+                await Task.Run(() => {
+                    using (modelo2Entities modelo = new modelo2Entities())
 
-                {
-                    var lista = from d in modelo.KDID
+                    {
+                        var lista = from d in modelo.KDID
 
-                                select new vmPiezas
-                                {
+                                    select new vmPiezas
+                                    {
 
-                                    c1 = d.C1.Trim(),
-                                    c2 = d.C2.Trim(),
-                                };
-                    return lista.ToList();
+                                        c1 = d.C1.Trim(),
+                                        c2 = d.C2.Trim(),
+                                    };
+                        lst2 = lista.ToList();
 
-                }
+                    }
+                });
+                return lst2;
 
             }
             catch (Exception)
@@ -296,24 +322,28 @@ namespace Negocios
             }
         }
 
-        public List<vmPeso> llenaPeso()
+        public async Task<List<vmPeso>> llenaPeso()
         {
             try
             {
-                using (modelo2Entities modelo = new modelo2Entities())
+                var lst2 = new List<vmPeso>();
+                await Task.Run(() => {
+                    using (modelo2Entities modelo = new modelo2Entities())
 
-                {
-                    var lista = from d in modelo.KDIDP
+                    {
+                        var lista = from d in modelo.KDIDP
 
-                                select new vmPeso
-                                {
+                                    select new vmPeso
+                                    {
 
-                                    c1 = d.C1.Trim(),
-                                    c2 = d.C2.Trim(),
-                                };
-                    return lista.ToList();
+                                        c1 = d.C1.Trim(),
+                                        c2 = d.C2.Trim(),
+                                    };
+                        lst2= lista.ToList();
 
-                }
+                    }
+                });
+                return lst2;
 
             }
             catch (Exception)
@@ -323,23 +353,27 @@ namespace Negocios
             }
         }
 
-        public List<vmTOperacion> llenaOpera()
+        public async Task<List<vmTOperacion>> llenaOpera()
         {
             try
             {
-                using (modelo2Entities modelo = new modelo2Entities())
+                var lst2 = new List<vmTOperacion>();
+                await Task.Run(() => {
+                    using (modelo2Entities modelo = new modelo2Entities())
 
-                {
-                    var lista = from d in modelo.KDIDO
+                    {
+                        var lista = from d in modelo.KDIDO
 
-                                select new vmTOperacion
-                                {
-                                    c1= d.C1.Trim(),
-                                    c2= d.C2.Trim()
-                                };
-                    return lista.ToList();
+                                    select new vmTOperacion
+                                    {
+                                        c1 = d.C1.Trim(),
+                                        c2 = d.C2.Trim()
+                                    };
+                        lst2= lista.ToList();
 
-                }
+                    }
+                });
+                return lst2;
 
             }
             catch (Exception)
@@ -350,24 +384,28 @@ namespace Negocios
 
 
         }
-        public List<vmRastreo> generaRastreo()
+        public async Task<List<vmRastreo>> generaRastreo()
         {
             try
             {
-                using (modelo2Entities modelo = new modelo2Entities())
+                var lst2 = new List<vmRastreo>();
+                await Task.Run(() => {
+                    using (modelo2Entities modelo = new modelo2Entities())
 
-                {
-                    var lista = from d in modelo.NO_RASTREO(1)
+                    {
+                        var lista = from d in modelo.NO_RASTREO(1)
 
-                                select new vmRastreo
-                                {
-                                    c1 = d.rand_number.Trim(),
-                                    //c2 = (DateTime)d.fecha_creacion
-                                };
-                    return lista.ToList();
+                                    select new vmRastreo
+                                    {
+                                        c1 = d.rand_number.Trim(),
+                                        //c2 = (DateTime)d.fecha_creacion
+                                    };
+                        lst2 = lista.ToList();
 
-                }
+                    }
+                });
 
+                return lst2;
             }
             catch (Exception)
             {
@@ -376,25 +414,29 @@ namespace Negocios
             }
         }
 
-        public List<vmAlmacenes> llenaAlmacenes()
+        public async Task<List<vmAlmacenes>>  llenaAlmacenes()
         {
             try
             {
-                using (modelo2Entities modelo = new modelo2Entities())
+                var lst2 = new List<vmAlmacenes>();
+                await Task.Run(() => {
+                    using (modelo2Entities modelo = new modelo2Entities())
 
-                {
-                    var lista = from d in modelo.KDMS
+                    {
+                        var lista = from d in modelo.KDMS
 
-                                select new vmAlmacenes
-                                {
-                                    c1 = d.C1.Trim(),
-                                    c2 = d.C2.Trim()
-                                    
-                                };
-                    return lista.ToList();
+                                    select new vmAlmacenes
+                                    {
+                                        c1 = d.C1.Trim(),
+                                        c2 = d.C2.Trim()
 
-                }
+                                    };
+                        lst2 = lista.ToList();
 
+                    }
+                });
+
+                return lst2;
             }
             catch (Exception)
             {
