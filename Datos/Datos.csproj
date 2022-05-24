@@ -133,6 +133,7 @@
     <Compile Include="ViewModels\Entradas\Moneda.cs" />
     <Compile Include="ViewModels\Entradas\mvlistas\clientecord.cs" />
     <Compile Include="ViewModels\Entradas\vmAlmacenes.cs" />
+    <Compile Include="ViewModels\Entradas\vmNumeroEntrada.cs" />
     <Compile Include="ViewModels\Entradas\vmPeso.cs" />
     <Compile Include="ViewModels\Entradas\vmPiezas.cs" />
     <Compile Include="ViewModels\Entradas\Proveedores.cs" />

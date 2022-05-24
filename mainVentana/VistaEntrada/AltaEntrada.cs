@@ -168,39 +168,30 @@ namespace mainVentana.VistaEntrada
 
             if (validacion.validacampo(sucEntrada.Text, sucDestino.Text, tipoOper.Text, cord.Text, cliente.Text, proveedor.Text, ordenCompra.Text, numFlete.Text, unidades.Text, bultos.Text, peso.Text, detalles.Text) == true)
             {
-                impirmepdf();
+                CreaEriquetas();
+                
+
             }
 
         }
-
+        private void CreaEriquetas()
+        {
+            int bulto = Convert.ToInt32(bultos.Text);
+            
+                impirmepdf();
+            
+        }
         private void impirmepdf()
         {
             SaveFileDialog savefile = new SaveFileDialog();
             savefile.FileName = string.Format("{0}" + ".pdf", DateTime.Now.ToString("ddMMyyyyHHmmss"));
-
-
+            var pgSize = new iTextSharp.text.Rectangle(288, 432);
+            Document pdfDoc = new Document(pgSize, 25, 25, 25, 25);
+            
+           
 
             //string PaginaHTML_Texto = "<table border=\"1\"><tr><td>HOLA MUNDO</td></tr></table>";
-            string PaginaHTML_Texto = Properties.Resources.Plantilla.ToString();
-            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CLIENTE", sucEntrada.Text);
-            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@DOCUMENTO", sucDestino.Text);
-            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FECHA", DateTime.Now.ToString("dd/MM/yyyy"));
-
-            //string filas = string.Empty;
-            //decimal total = 0;
-            //foreach (DataGridViewRow row in dgvproductos.Rows)
-            //{
-            //    filas += "<tr>";
-            //    filas += "<td>" + row.Cells["Cantidad"].Value.ToString() + "</td>";
-            //    filas += "<td>" + row.Cells["Descripcion"].Value.ToString() + "</td>";
-            //    filas += "<td>" + row.Cells["PrecioUnitario"].Value.ToString() + "</td>";
-            //    filas += "<td>" + row.Cells["Importe"].Value.ToString() + "</td>";
-            //    filas += "</tr>";
-            //    total += decimal.Parse(row.Cells["Importe"].Value.ToString());
-            //}
-            //PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS", filas);
-            //PaginaHTML_Texto = PaginaHTML_Texto.Replace("@TOTAL", total.ToString());
-
+           
 
 
             if (savefile.ShowDialog() == DialogResult.OK)
@@ -208,27 +199,78 @@ namespace mainVentana.VistaEntrada
                 using (FileStream stream = new FileStream(savefile.FileName, FileMode.Create))
                 {
                     //Creamos un nuevo documento y lo definimos como PDF
-                    Document pdfDoc = new Document(PageSize.A5, 25, 25, 25, 25);
+                    
 
                     PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
                     pdfDoc.Open();
-                    pdfDoc.Add(new Phrase(""));
+                    
+                    try
+                    {
+                        int bulto = Convert.ToInt32(bultos.Text);
+                        for (int i = 1; i <= bulto; i++)
+                        {
+                            string PaginaHTML_Texto = Properties.Resources.Plantilla.ToString();
+                            pdfDoc.NewPage();
+                            pdfDoc.Add(new Phrase(""));
+                            string etiqueta = sucEntrada.SelectedValue.ToString().Trim() + "-" + label41.Text + "-" + i.ToString();
+                            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@ORIGEN", sucEntrada.GetItemText(sucEntrada.SelectedItem).ToString().Trim());
+                            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@DESTINO", sucDestino.GetItemText(sucDestino.SelectedItem).ToString().Trim());
+                            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FECHA", DateTime.Now.ToString("dd/MM/yyyy"));
+                            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@ENTRADA", label41.Text);
+                            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@OPERACION", tipoOper.GetItemText(tipoOper.SelectedItem).ToString());
+                            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@PROVEEDOR", proveedor.GetItemText(proveedor.SelectedItem).ToString());
+                            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CLIENTE", cliente.Text.ToString());
+                            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@ETIQUETA", etiqueta.ToString());
 
-                    //Agregamos la imagen del banner al documento
-                    iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(Properties.Resources.arniacolor, System.Drawing.Imaging.ImageFormat.Png);
-                    img.ScaleToFit(60, 60);
-                    img.Alignment = iTextSharp.text.Image.UNDERLYING;
+                            BarcodeLib.Barcode b = new BarcodeLib.Barcode(); 
+                            System.Drawing.Image imge = b.Encode(BarcodeLib.TYPE.CODE128,etiqueta.ToString(), Color.Black, Color.White, 250, 40);
+                            iTextSharp.text.Image img2 = iTextSharp.text.Image.GetInstance(imge, System.Drawing.Imaging.ImageFormat.Png);
+                            img2.ScaleToFit(250, 40);
+                            img2.Alignment = iTextSharp.text.Image.ALIGN_CENTER;
 
-                    //img.SetAbsolutePosition(10,100);
-                    img.SetAbsolutePosition(pdfDoc.LeftMargin, pdfDoc.Top - 60);
-                    pdfDoc.Add(img);
+                            //img.SetAbsolutePosition(10,100);
+                           img2.SetAbsolutePosition(20,20);
+                            pdfDoc.Add(img2);
 
+                            //string filas = string.Empty;
+                            //decimal total = 0;
+                            //foreach (DataGridViewRow row in dgvproductos.Rows)
+                            //{
+                            //    filas += "<tr>";
+                            //    filas += "<td>" + row.Cells["Cantidad"].Value.ToString() + "</td>";
+                            //    filas += "<td>" + row.Cells["Descripcion"].Value.ToString() + "</td>";
+                            //    filas += "<td>" + row.Cells["PrecioUnitario"].Value.ToString() + "</td>";
+                            //    filas += "<td>" + row.Cells["Importe"].Value.ToString() + "</td>";
+                            //    filas += "</tr>";
+                            //    total += decimal.Parse(row.Cells["Importe"].Value.ToString());
+                            //}
+                            //PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS", filas);
+                            //PaginaHTML_Texto = PaginaHTML_Texto.Replace("@TOTAL", total.ToString());
+
+                            //Agregamos la imagen del banner al documento
+                            iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(Properties.Resources.arniacolor, System.Drawing.Imaging.ImageFormat.Png);
+                            img.ScaleToFit(60, 60);
+                            img.Alignment = iTextSharp.text.Image.UNDERLYING;
+
+                            //img.SetAbsolutePosition(10,100);
+                            img.SetAbsolutePosition(pdfDoc.LeftMargin, pdfDoc.Top - 60);
+                            pdfDoc.Add(img);
+                            using (StringReader sr = new StringReader(PaginaHTML_Texto))
+                            {
+                                XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
+                            }
+
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+                    
 
                     //pdfDoc.Add(new Phrase("Hola Mundo"));
-                    using (StringReader sr = new StringReader(PaginaHTML_Texto))
-                    {
-                        XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
-                    }
+                    
 
                     pdfDoc.Close();
                     stream.Close();
@@ -251,18 +293,20 @@ namespace mainVentana.VistaEntrada
             try
             {
                 Servicios datos = new Servicios();
+                var lst2 =  datos.llenaSuc();
+
+                sucEntrada.DisplayMember = "C2";
+                sucEntrada.ValueMember = "C1";
+                sucEntrada.DataSource = lst2;
+
+                cargaultent();
+
                 var lst1 = await datos.llenaCord();
                 cord.ValueMember = "C2";
                 cord.DisplayMember = "C3";
                 cord.DataSource = lst1;
 
 
-
-                var lst2 = await datos.llenaSuc();
-
-                sucEntrada.DisplayMember = "C2";
-                sucEntrada.ValueMember = "C1";
-                sucEntrada.DataSource = lst2;
 
                 List<Sucursales> lst3 = new List<Sucursales>(lst2); //clonamos la lista anterior para no volver a hacer la busqueda en la base de datos 
 
@@ -313,6 +357,12 @@ namespace mainVentana.VistaEntrada
                 Cargaparidad();
                 cargafecha();
                 Moneda();
+
+
+                
+
+                
+
             }
             catch (Exception)
             {
@@ -577,6 +627,21 @@ namespace mainVentana.VistaEntrada
             comboBox2.ValueMember = "id";
             comboBox2.DataSource = lista;
 
+        }
+
+        private void sucEntrada_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cargaultent();       
+        }
+        private void cargaultent()
+        {
+            Servicios datos = new Servicios();
+
+            foreach (var i in datos.NumeroEntrada(sucEntrada.SelectedValue.ToString()))
+            {
+                int numero = Convert.ToInt32(i.entrada) + 1;
+                label41.Text = numero.ToString("D7");
+            }
         }
     }
 }

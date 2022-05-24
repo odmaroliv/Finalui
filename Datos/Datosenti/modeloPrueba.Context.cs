@@ -48,5 +48,14 @@ namespace Datos.Datosenti
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<NO_RASTREO_Result>("NO_RASTREO", noRastCrearParameter);
         }
+    
+        public virtual ObjectResult<string> NumeroEntradaMAX(string dATO)
+        {
+            var dATOParameter = dATO != null ?
+                new ObjectParameter("DATO", dATO) :
+                new ObjectParameter("DATO", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("NumeroEntradaMAX", dATOParameter);
+        }
     }
 }

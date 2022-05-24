@@ -439,6 +439,9 @@
         <Function Name="NO_RASTREO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="NoRastCrear" Type="int" Mode="In" />
         </Function>
+        <Function Name="NumeroEntradaMAX" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DATO" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="KEPLER_PRUEBASModelStoreContainer">
           <EntitySet Name="KDID" EntityType="Self.KDID" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KDIDO" EntityType="Self.KDIDO" Schema="dbo" store:Type="Tables" />
@@ -897,6 +900,9 @@
           <Parameter Name="NoRastCrear" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="KDIDO" EntityType="KEPLER_PRUEBASModel.KDIDO" />
+          <FunctionImport Name="NumeroEntradaMAX" ReturnType="Collection(String)">
+            <Parameter Name="DATO" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="NO_RASTREO_Result">
           <Property Type="String" Name="rand_number" Nullable="false" MaxLength="13" />
@@ -1352,6 +1358,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="NumeroEntradaMAX" FunctionName="KEPLER_PRUEBASModel.Store.NumeroEntradaMAX" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

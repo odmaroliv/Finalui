@@ -158,31 +158,28 @@ namespace Negocios
         }
 
 
-        public async Task<List<Sucursales>> llenaSuc()
+        public List<Sucursales> llenaSuc()
         {
 
             try
             {
-                var lst2 = new List<Sucursales>();
-                await Task.Run(() => {
-                    using (modelo2Entities modelo = new modelo2Entities())
 
-                    {
-                        var lista = from d in modelo.KDMS
-                                    select new Sucursales
-                                    {
+                using (modelo2Entities modelo = new modelo2Entities())
 
-                                        c1 = d.C1,
-                                        c2 = d.C2
+                {
+                    var lista = from d in modelo.KDMS
+                                select new Sucursales
+                                {
+
+                                    c1 = d.C1,
+                                    c2 = d.C2
 
 
-                                    };
-                        lst2 = lista.ToList();
-
-                    }
-                });
-                return lst2;
+                                };
+                    return lista.ToList();
+                }
             }
+
             catch (Exception)
             {
 
@@ -445,8 +442,33 @@ namespace Negocios
             }
         }
 
+        public List<vmNumeroEntrada> NumeroEntrada(string dato)
+        {
+            try
+            {
+                
+                    using (modelo2Entities modelo = new modelo2Entities())
+
+                    {
+                        var lista = from d in modelo.NumeroEntradaMAX(dato)
+
+                                    select new vmNumeroEntrada
+                                    {
+                                        entrada = d
+                                    };
+                        return lista.ToList();
+
+                    }
+                
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
 
 
-        
     }
 }
