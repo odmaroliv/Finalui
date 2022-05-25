@@ -24,6 +24,7 @@ using Datos.Datosenti;
 using Datos.ViewModels;
 using Datos.ViewModels.Servicios;
 using Newtonsoft.Json;
+using mainVentana.Email;
 
 namespace mainVentana.VistaEntrada
 {
@@ -62,85 +63,103 @@ namespace mainVentana.VistaEntrada
 
 
         #region PASAR LAS FOTOS DEL FORMULARIO HIJO CAMARA AL FORMULARIO PADRE ALTENTRADA
-        public void ejecutarfoto(System.Drawing.Image img)
+        public void ejecutarfoto(System.Drawing.Image img, string ruta)
         {
 
             if (pictureBox2.Image == null)
             {
                 pictureBox2.Image = img;
+                pictureBox2.ImageLocation = ruta;
             }
             else if (pictureBox3.Image == null)
             {
                 pictureBox3.Image = img;
+                pictureBox3.ImageLocation = ruta;
             }
             else if (pictureBox4.Image == null)
             {
                 pictureBox4.Image = img;
+                pictureBox4.ImageLocation = ruta;
             }
             else if (pictureBox5.Image == null)
             {
                 pictureBox5.Image = img;
+                pictureBox5.ImageLocation = ruta;
             }
             else if (pictureBox6.Image == null)
             {
                 pictureBox6.Image = img;
+                pictureBox6.ImageLocation = ruta;
             }
             else if (pictureBox7.Image == null)
             {
                 pictureBox7.Image = img;
+                pictureBox7.ImageLocation = ruta;
             }
             else if (pictureBox8.Image == null)
             {
                 pictureBox8.Image = img;
+                pictureBox8.ImageLocation = ruta;
             }
             else if (pictureBox9.Image == null)
             {
                 pictureBox9.Image = img;
+                pictureBox9.ImageLocation = ruta;
             }
             else if (pictureBox10.Image == null)
             {
                 pictureBox10.Image = img;
+                pictureBox10.ImageLocation = ruta;
             }
             else if (pictureBox11.Image == null)
             {
                 pictureBox11.Image = img;
-            }
-            else if (pictureBox11.Image == null)
-            {
-                pictureBox11.Image = img;
+                pictureBox11.ImageLocation = ruta;
             }
             else if (pictureBox12.Image == null)
             {
                 pictureBox12.Image = img;
+                pictureBox12.ImageLocation = ruta;
             }
             else if (pictureBox13.Image == null)
             {
                 pictureBox13.Image = img;
+                pictureBox13.ImageLocation = ruta;
             }
             else if (pictureBox14.Image == null)
             {
                 pictureBox14.Image = img;
+                pictureBox14.ImageLocation = ruta;
             }
             else if (pictureBox15.Image == null)
             {
                 pictureBox15.Image = img;
+                pictureBox15.ImageLocation = ruta;
             }
+            
 
         }
 
-
+        
         private void iconButton2_Click(object sender, EventArgs e) //lo utiliazmos para pasar las imagenes del form camara al forma alta de entrada <Tiene que conectarse con CAM2>
         {
+            openFileDialog1.Multiselect = true;
             openFileDialog1.InitialDirectory = "@C:\\";
             openFileDialog1.Filter = "Solo imagenes (JPG,PNG,GIF)|*.JPG;*.PNG;*.GIF"; ;
 
+            
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
-                    string imagen = openFileDialog1.FileName;
-                    ejecutarfoto(System.Drawing.Image.FromFile(imagen));
+                    string[] imagen = openFileDialog1.FileNames;
+
+                    foreach (var i in imagen)
+                    {
+                        ejecutarfoto(System.Drawing.Image.FromFile(i),i.ToString());
+                         
+                    }
                 }
                 catch (Exception)
                 {
@@ -148,6 +167,71 @@ namespace mainVentana.VistaEntrada
                     throw;
                 }
             }
+        }
+        List<string> mnd = new List<string>();
+        private void creaListadeFotos()
+        {
+            mnd.Clear();
+            if (pictureBox2.Image != null)
+            {
+                mnd.Add(pictureBox2.ImageLocation);
+            }
+
+            if (pictureBox3.Image != null)
+            {
+                mnd.Add(pictureBox3.ImageLocation);
+            }
+
+            if (pictureBox4.Image != null)
+            {
+                mnd.Add(pictureBox4.ImageLocation);
+            }
+
+            if (pictureBox5.Image != null)
+            {
+                mnd.Add(pictureBox5.ImageLocation);
+            }
+            if (pictureBox6.Image != null)
+            {
+                mnd.Add(pictureBox6.ImageLocation);
+            }
+            if (pictureBox7.Image != null)
+            {
+                mnd.Add(pictureBox7.ImageLocation);
+            }
+            if (pictureBox8.Image != null)
+            {
+                mnd.Add(pictureBox8.ImageLocation);
+            }
+            if (pictureBox9.Image != null)
+            {
+                mnd.Add(pictureBox9.ImageLocation);
+            }
+            if (pictureBox10.Image != null)
+            {
+                mnd.Add(pictureBox10.ImageLocation);
+            }
+            if (pictureBox11.Image != null)
+            {
+                mnd.Add(pictureBox11.ImageLocation);
+            }
+            if (pictureBox12.Image != null)
+            {
+                mnd.Add(pictureBox12.ImageLocation);
+            }
+            if (pictureBox13.Image != null)
+            {
+                mnd.Add(pictureBox13.ImageLocation);
+            }
+            if (pictureBox14.Image != null)
+            {
+                mnd.Add(pictureBox14.ImageLocation);
+            }
+            if (pictureBox15.Image != null)
+            {
+                mnd.Add(pictureBox15.ImageLocation);
+            }
+           
         }
 
         #endregion
@@ -163,13 +247,25 @@ namespace mainVentana.VistaEntrada
 
         private void iconButton1_Click(object sender, EventArgs e) //Click al boton guardar
         {
-
+            
             ValidacionEntradas validacion = new ValidacionEntradas();
 
             if (validacion.validacampo(sucEntrada.Text, sucDestino.Text, tipoOper.Text, cord.Text, cliente.Text, proveedor.Text, ordenCompra.Text, numFlete.Text, unidades.Text, bultos.Text, peso.Text, detalles.Text) == true)
             {
                 CreaEriquetas();
-                
+                creaListadeFotos();
+                AgregaArchivos();
+                EnviarEmail servicio = new EnviarEmail();
+                var respuesta = servicio.EnviaMail(label41.Text, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, mnd, larch);
+                if (respuesta == 1)
+                {
+                    MessageBox.Show("El correo NO SE ENVIÓ PORQUE supera el límite máximo de 25 MB en cada correo, intenta borrar documentos y reenvía la notificación", "CUIDADO EL CORREO NO SE ENVIO");
+                }
+                else
+                {
+                    MessageBox.Show("Correo enviado con éxito", "éxito!");
+                }
+                // servicio.EnviaMail(label41.Text, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text,mnd);
 
             }
 
@@ -500,8 +596,16 @@ namespace mainVentana.VistaEntrada
             {
                 try
                 {
-                    string imagen = openFileDialog1.FileName;
-                    label27.Text = imagen;
+                    string doc = openFileDialog1.FileName;
+                    if (label27.Text == "")
+                    {
+                        label27.Text = doc;
+                    }
+                    else
+                    {
+                        label28.Text = doc;
+                    }
+                    
                 }
                 catch (Exception)
                 {
@@ -509,6 +613,21 @@ namespace mainVentana.VistaEntrada
                     throw;
                 }
             }
+        }
+        List<string> larch = new List<string>();
+        private void AgregaArchivos()
+        {
+            larch.Clear();
+            if (label27.Text != "")
+            {
+                larch.Add(label27.Text);
+            }
+            if (label28.Text != "")
+            {
+                larch.Add(label28.Text);
+            }
+            
+            
         }
 
         public async void Cargaparidad()
@@ -642,6 +761,21 @@ namespace mainVentana.VistaEntrada
                 int numero = Convert.ToInt32(i.entrada) + 1;
                 label41.Text = numero.ToString("D7");
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            creaListadeFotos();
+        }
+
+        private void label28_DoubleClick(object sender, EventArgs e)
+        {
+            label28.Text = "";
+        }
+
+        private void label27_DoubleClick(object sender, EventArgs e)
+        {
+            label27.Text = "";
         }
     }
 }

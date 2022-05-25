@@ -160,7 +160,8 @@ namespace mainVentana
 
         private void gunaGradientTileButton5_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Hola como estas?");
+           Email.vEmail frm = new Email.vEmail();
+            frm.ShowDialog();
         }
 
 

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace mainVentana.Properties {
+namespace Negocios.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace mainVentana.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("mainVentana.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Negocios.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,69 +61,31 @@ namespace mainVentana.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap arniacolor {
-            get {
-                object obj = ResourceManager.GetObject("arniacolor", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap arnian_gr {
-            get {
-                object obj = ResourceManager.GetObject("arnian-gr", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Busca una cadena traducida similar a &lt;html&gt;
         ///&lt;body&gt;
-        ///    &lt;center&gt;
-        ///        &lt;table style=&quot;font-family: sans-serif; width:100%; border: 1px solid #333;&quot;&gt;
-        ///            &lt;tr&gt;&lt;td&gt; &lt;table style=&quot;width: 100%&quot;&gt;&lt;tr style=&quot;background: #344fb6;&quot;&gt;&lt;td style=&quot;width: 100%; height: 40px;&quot;&gt; &lt;p style=&quot;color: #fff; font-size:26px; text-align: center;&quot;&gt; Orden de Entrada &lt;/p&gt;&lt;/td&gt;&lt;td style=&quot;width: 30%;&quot;&gt; &lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;&lt;/tr&gt;
-        ///            &lt;tr&gt;&lt;td&gt; &lt;table style=&quot;width: 100%;&quot;&gt;&lt;tr&gt;&lt;td style=&quot;width: 70%;&quot;&gt; &lt;table style=&quot;width: 100%;&quot;&gt;&lt;tr&gt;&lt;td style=&quot;width: 30%; borde [resto de la cadena truncado]&quot;;.
+        ///	&lt;center&gt;
+        ///		&lt;table style=&quot;font-family: sans-serif; width:100%; border: 1px solid #333;&quot;&gt;
+        ///			&lt;tr&gt;
+        ///				&lt;td&gt;
+        ///					&lt;table style=&quot;width: 100%&quot;&gt;
+        ///						&lt;tr style=&quot;background: #344fb6;&quot;&gt;
+        ///							&lt;td style=&quot;width: 100%; height: 40px;&quot;&gt;
+        ///								&lt;p style=&quot;color: #fff; font-size:26px; text-align: center;&quot;&gt; Orden de Entrada &lt;/p&gt;
+        ///							&lt;/td&gt;
+        ///							&lt;td style=&quot;width: 30%;&quot;&gt;
+        ///						&lt;/tr&gt;
+        ///					&lt;/table&gt;
+        ///					&lt;/td&gt;
+        ///			&lt;/tr&gt;
+        ///			&lt;tr&gt;
+        ///				&lt;td&gt;
+        ///					&lt;table style=&quot;width: 100%;&quot;&gt;
+        ///						&lt;tr&gt;
+        ///							&lt; [resto de la cadena truncado]&quot;;.
         /// </summary>
         internal static string correoskepler {
             get {
                 return ResourceManager.GetString("correoskepler", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a &lt;!DOCTYPE html&gt;
-        ///&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
-        ///&lt;head&gt;
-        ///    &lt;title&gt;Etiqueta&lt;/title&gt;
-        ///    &lt;style&gt;
-        ///        table.border {
-        ///            border-collapse: collapse;
-        ///        }
-        ///
-        ///            table.border th {
-        ///                padding: 5px;
-        ///                border: 1px solid black;
-        ///            }
-        ///
-        ///            table.border td {
-        ///                padding: 5px;
-        ///                border: 1px solid black;
-        ///            }
-        ///    &lt;/style&gt;
-        ///&lt;/head&gt;
-        ///&lt;body&gt;
-        ///
-        ///    &lt;table style=&quot;width:100%&quot;&gt;
-        ///        &lt;tr&gt;
-        ///     [resto de la cadena truncado]&quot;;.
-        /// </summary>
-        internal static string Plantilla {
-            get {
-                return ResourceManager.GetString("Plantilla", resourceCulture);
             }
         }
     }

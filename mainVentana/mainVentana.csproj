@@ -191,6 +191,12 @@
     <Compile Include="Camara\cam2.Designer.cs">
       <DependentUpon>cam2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Email\vEmail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Email\vEmail.Designer.cs">
+      <DependentUpon>vEmail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entradas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,6 +250,9 @@
     </Compile>
     <EmbeddedResource Include="Camara\cam2.resx">
       <DependentUpon>cam2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Email\vEmail.resx">
+      <DependentUpon>vEmail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Entradas.resx">
       <DependentUpon>Entradas.cs</DependentUpon>
@@ -320,6 +329,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\arniacolor.png" />
+    <Content Include="Resources\correoskepler.html" />
     <Content Include="Resources\Plantilla.html" />
   </ItemGroup>
   <ItemGroup />

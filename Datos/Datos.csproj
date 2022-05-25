@@ -128,6 +128,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BusquedaInicial.cs" />
+    <Compile Include="ViewModels\Email\vmEmail.cs" />
     <Compile Include="ViewModels\Entradas\Alias.cs" />
     <Compile Include="ViewModels\Entradas\Clientes.cs" />
     <Compile Include="ViewModels\Entradas\Moneda.cs" />
