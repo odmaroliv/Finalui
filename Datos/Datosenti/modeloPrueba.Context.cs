@@ -39,6 +39,11 @@ namespace Datos.Datosenti
         public virtual DbSet<KDUV> KDUV { get; set; }
         public virtual DbSet<KDXD> KDXD { get; set; }
         public virtual DbSet<KDIDO> KDIDO { get; set; }
+        public virtual DbSet<DSMODULO> DSMODULO { get; set; }
+        public virtual DbSet<DSOPERACION> DSOPERACION { get; set; }
+        public virtual DbSet<DSROL_OPER> DSROL_OPER { get; set; }
+        public virtual DbSet<DSROL2> DSROL2 { get; set; }
+        public virtual DbSet<DSUSER> DSUSER { get; set; }
     
         public virtual ObjectResult<NO_RASTREO_Result> NO_RASTREO(Nullable<int> noRastCrear)
         {

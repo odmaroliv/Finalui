@@ -5,6 +5,53 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="KEPLER_PRUEBASModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DSMODULO">
+          <Key>
+            <PropertyRef Name="IdModulo" />
+          </Key>
+          <Property Name="IdModulo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="DSOPERACION">
+          <Key>
+            <PropertyRef Name="IdOperacion" />
+          </Key>
+          <Property Name="IdOperacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdModulo" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DSROL_OPER">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdRol" Type="int" Nullable="false" />
+          <Property Name="IdOperacion" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DSROL2">
+          <Key>
+            <PropertyRef Name="IdRol" />
+          </Key>
+          <Property Name="IdRol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="DSUSER">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Apellido" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" />
+          <Property Name="Numero" Type="nvarchar" MaxLength="150" />
+          <Property Name="IdRol" Type="int" Nullable="false" />
+          <Property Name="Activo" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="ExtraA" Type="nchar" MaxLength="10" />
+          <Property Name="ExtraB" Type="nchar" MaxLength="10" />
+          <Property Name="Fecha" Type="date" />
+        </EntityType>
         <EntityType Name="KDID">
           <Key>
             <PropertyRef Name="C1" />
@@ -436,6 +483,54 @@
           <Property Name="C26" Type="char" MaxLength="40" />
           <Property Name="C27" Type="char" MaxLength="10" />
         </EntityType>
+        <Association Name="FK_DSOPERACION_DSMODULO">
+          <End Role="DSMODULO" Type="Self.DSMODULO" Multiplicity="1" />
+          <End Role="DSOPERACION" Type="Self.DSOPERACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DSMODULO">
+              <PropertyRef Name="IdModulo" />
+            </Principal>
+            <Dependent Role="DSOPERACION">
+              <PropertyRef Name="IdModulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DSROL_OPER_DSOPERACION">
+          <End Role="DSOPERACION" Type="Self.DSOPERACION" Multiplicity="1" />
+          <End Role="DSROL_OPER" Type="Self.DSROL_OPER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DSOPERACION">
+              <PropertyRef Name="IdOperacion" />
+            </Principal>
+            <Dependent Role="DSROL_OPER">
+              <PropertyRef Name="IdOperacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DSROL_OPER_DSROL2">
+          <End Role="DSROL2" Type="Self.DSROL2" Multiplicity="1" />
+          <End Role="DSROL_OPER" Type="Self.DSROL_OPER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DSROL2">
+              <PropertyRef Name="IdRol" />
+            </Principal>
+            <Dependent Role="DSROL_OPER">
+              <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DSUSER_DSROL2">
+          <End Role="DSROL2" Type="Self.DSROL2" Multiplicity="1" />
+          <End Role="DSUSER" Type="Self.DSUSER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DSROL2">
+              <PropertyRef Name="IdRol" />
+            </Principal>
+            <Dependent Role="DSUSER">
+              <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="NO_RASTREO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="NoRastCrear" Type="int" Mode="In" />
         </Function>
@@ -443,6 +538,11 @@
           <Parameter Name="DATO" Type="nvarchar" Mode="In" />
         </Function>
         <EntityContainer Name="KEPLER_PRUEBASModelStoreContainer">
+          <EntitySet Name="DSMODULO" EntityType="Self.DSMODULO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DSOPERACION" EntityType="Self.DSOPERACION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DSROL_OPER" EntityType="Self.DSROL_OPER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DSROL2" EntityType="Self.DSROL2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DSUSER" EntityType="Self.DSUSER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KDID" EntityType="Self.KDID" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KDIDO" EntityType="Self.KDIDO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KDIDP" EntityType="Self.KDIDP" Schema="dbo" store:Type="Tables" />
@@ -455,6 +555,22 @@
           <EntitySet Name="KDUSUARIOS" EntityType="Self.KDUSUARIOS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KDUV" EntityType="Self.KDUV" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KDXD" EntityType="Self.KDXD" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DSOPERACION_DSMODULO" Association="Self.FK_DSOPERACION_DSMODULO">
+            <End Role="DSMODULO" EntitySet="DSMODULO" />
+            <End Role="DSOPERACION" EntitySet="DSOPERACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DSROL_OPER_DSOPERACION" Association="Self.FK_DSROL_OPER_DSOPERACION">
+            <End Role="DSOPERACION" EntitySet="DSOPERACION" />
+            <End Role="DSROL_OPER" EntitySet="DSROL_OPER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DSROL_OPER_DSROL2" Association="Self.FK_DSROL_OPER_DSROL2">
+            <End Role="DSROL2" EntitySet="DSROL2" />
+            <End Role="DSROL_OPER" EntitySet="DSROL_OPER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DSUSER_DSROL2" Association="Self.FK_DSUSER_DSROL2">
+            <End Role="DSROL2" EntitySet="DSROL2" />
+            <End Role="DSUSER" EntitySet="DSUSER" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -901,9 +1017,30 @@
           </FunctionImport>
           <EntitySet Name="KDIDO" EntityType="KEPLER_PRUEBASModel.KDIDO" />
           <FunctionImport Name="NumeroEntradaMAX" ReturnType="Collection(String)">
-            <Parameter Name="DATO" Mode="In" Type="String" />
+          <Parameter Name="DATO" Mode="In" Type="String" />
           </FunctionImport>
-        </EntityContainer>
+          <EntitySet Name="DSMODULO" EntityType="KEPLER_PRUEBASModel.DSMODULO" />
+          <EntitySet Name="DSOPERACION" EntityType="KEPLER_PRUEBASModel.DSOPERACION" />
+          <EntitySet Name="DSROL_OPER" EntityType="KEPLER_PRUEBASModel.DSROL_OPER" />
+          <EntitySet Name="DSROL2" EntityType="KEPLER_PRUEBASModel.DSROL2" />
+          <EntitySet Name="DSUSER" EntityType="KEPLER_PRUEBASModel.DSUSER" />
+          <AssociationSet Name="FK_DSOPERACION_DSMODULO" Association="KEPLER_PRUEBASModel.FK_DSOPERACION_DSMODULO">
+            <End Role="DSMODULO" EntitySet="DSMODULO" />
+            <End Role="DSOPERACION" EntitySet="DSOPERACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DSROL_OPER_DSOPERACION" Association="KEPLER_PRUEBASModel.FK_DSROL_OPER_DSOPERACION">
+            <End Role="DSOPERACION" EntitySet="DSOPERACION" />
+            <End Role="DSROL_OPER" EntitySet="DSROL_OPER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DSROL_OPER_DSROL2" Association="KEPLER_PRUEBASModel.FK_DSROL_OPER_DSROL2">
+            <End Role="DSROL2" EntitySet="DSROL2" />
+            <End Role="DSROL_OPER" EntitySet="DSROL_OPER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DSUSER_DSROL2" Association="KEPLER_PRUEBASModel.FK_DSUSER_DSROL2">
+            <End Role="DSROL2" EntitySet="DSROL2" />
+            <End Role="DSUSER" EntitySet="DSUSER" />
+          </AssociationSet>
+          </EntityContainer>
         <ComplexType Name="NO_RASTREO_Result">
           <Property Type="String" Name="rand_number" Nullable="false" MaxLength="13" />
           <Property Type="DateTime" Name="fecha_creacion" Nullable="true" Precision="23" />
@@ -916,7 +1053,110 @@
           <Property Name="C1" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
           <Property Name="C2" Type="String" MaxLength="200" FixedLength="true" Unicode="false" />
         </EntityType>
-      </Schema>
+        <EntityType Name="DSMODULO">
+          <Key>
+            <PropertyRef Name="IdModulo" />
+          </Key>
+          <Property Name="IdModulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DSOPERACION" Relationship="KEPLER_PRUEBASModel.FK_DSOPERACION_DSMODULO" FromRole="DSMODULO" ToRole="DSOPERACION" />
+        </EntityType>
+        <EntityType Name="DSOPERACION">
+          <Key>
+            <PropertyRef Name="IdOperacion" />
+          </Key>
+          <Property Name="IdOperacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdModulo" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DSMODULO" Relationship="KEPLER_PRUEBASModel.FK_DSOPERACION_DSMODULO" FromRole="DSOPERACION" ToRole="DSMODULO" />
+          <NavigationProperty Name="DSROL_OPER" Relationship="KEPLER_PRUEBASModel.FK_DSROL_OPER_DSOPERACION" FromRole="DSOPERACION" ToRole="DSROL_OPER" />
+        </EntityType>
+        <EntityType Name="DSROL_OPER">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdRol" Type="Int32" Nullable="false" />
+          <Property Name="IdOperacion" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DSOPERACION" Relationship="KEPLER_PRUEBASModel.FK_DSROL_OPER_DSOPERACION" FromRole="DSROL_OPER" ToRole="DSOPERACION" />
+          <NavigationProperty Name="DSROL2" Relationship="KEPLER_PRUEBASModel.FK_DSROL_OPER_DSROL2" FromRole="DSROL_OPER" ToRole="DSROL2" />
+        </EntityType>
+        <EntityType Name="DSROL2">
+          <Key>
+            <PropertyRef Name="IdRol" />
+          </Key>
+          <Property Name="IdRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DSROL_OPER" Relationship="KEPLER_PRUEBASModel.FK_DSROL_OPER_DSROL2" FromRole="DSROL2" ToRole="DSROL_OPER" />
+          <NavigationProperty Name="DSUSER" Relationship="KEPLER_PRUEBASModel.FK_DSUSER_DSROL2" FromRole="DSROL2" ToRole="DSUSER" />
+        </EntityType>
+        <EntityType Name="DSUSER">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Apellido" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Numero" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IdRol" Type="Int32" Nullable="false" />
+          <Property Name="Activo" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ExtraA" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ExtraB" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Fecha" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="DSROL2" Relationship="KEPLER_PRUEBASModel.FK_DSUSER_DSROL2" FromRole="DSUSER" ToRole="DSROL2" />
+        </EntityType>
+        <Association Name="FK_DSOPERACION_DSMODULO">
+          <End Type="KEPLER_PRUEBASModel.DSMODULO" Role="DSMODULO" Multiplicity="1" />
+          <End Type="KEPLER_PRUEBASModel.DSOPERACION" Role="DSOPERACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DSMODULO">
+              <PropertyRef Name="IdModulo" />
+            </Principal>
+            <Dependent Role="DSOPERACION">
+              <PropertyRef Name="IdModulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DSROL_OPER_DSOPERACION">
+          <End Type="KEPLER_PRUEBASModel.DSOPERACION" Role="DSOPERACION" Multiplicity="1" />
+          <End Type="KEPLER_PRUEBASModel.DSROL_OPER" Role="DSROL_OPER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DSOPERACION">
+              <PropertyRef Name="IdOperacion" />
+            </Principal>
+            <Dependent Role="DSROL_OPER">
+              <PropertyRef Name="IdOperacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DSROL_OPER_DSROL2">
+          <End Type="KEPLER_PRUEBASModel.DSROL2" Role="DSROL2" Multiplicity="1" />
+          <End Type="KEPLER_PRUEBASModel.DSROL_OPER" Role="DSROL_OPER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DSROL2">
+              <PropertyRef Name="IdRol" />
+            </Principal>
+            <Dependent Role="DSROL_OPER">
+              <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DSUSER_DSROL2">
+          <End Type="KEPLER_PRUEBASModel.DSROL2" Role="DSROL2" Multiplicity="1" />
+          <End Type="KEPLER_PRUEBASModel.DSUSER" Role="DSUSER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DSROL2">
+              <PropertyRef Name="IdRol" />
+            </Principal>
+            <Dependent Role="DSUSER">
+              <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1359,7 +1599,59 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="NumeroEntradaMAX" FunctionName="KEPLER_PRUEBASModel.Store.NumeroEntradaMAX" />
-        </EntityContainerMapping>
+          <EntitySetMapping Name="DSMODULO">
+            <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.DSMODULO">
+              <MappingFragment StoreEntitySet="DSMODULO">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdModulo" ColumnName="IdModulo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DSOPERACION">
+            <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.DSOPERACION">
+              <MappingFragment StoreEntitySet="DSOPERACION">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdModulo" ColumnName="IdModulo" />
+                <ScalarProperty Name="IdOperacion" ColumnName="IdOperacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DSROL_OPER">
+            <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.DSROL_OPER">
+              <MappingFragment StoreEntitySet="DSROL_OPER">
+                <ScalarProperty Name="IdOperacion" ColumnName="IdOperacion" />
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DSROL2">
+            <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.DSROL2">
+              <MappingFragment StoreEntitySet="DSROL2">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DSUSER">
+            <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.DSUSER">
+              <MappingFragment StoreEntitySet="DSUSER">
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="ExtraB" ColumnName="ExtraB" />
+                <ScalarProperty Name="ExtraA" ColumnName="ExtraA" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

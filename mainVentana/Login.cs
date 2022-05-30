@@ -17,10 +17,10 @@ namespace mainVentana
         {
             InitializeComponent();
         }
-
+        
         private void Login_Load(object sender, EventArgs e)
         {
-
+            
         }
         private void iconButton1_Click(object sender, EventArgs e)
         {   
@@ -38,10 +38,20 @@ namespace mainVentana
             }
             //-------------------------Fin de la validacion />
 
-            Form1 frm1 = new Form1();
+           
+            bool valida = vld.cargalogin(txbUsr.Text.Trim(), txbPass.Text.Trim());
+            if (valida == true)
+            {
+                Form1 frm1 = new Form1();
 
-            frm1.Show();
-            this.Hide();
+                frm1.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Usuario o contraseña incorrectos");
+            }
+            
             
         }
 

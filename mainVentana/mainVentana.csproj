@@ -248,6 +248,7 @@
     <Compile Include="VistaEntrada\Picture.Designer.cs">
       <DependentUpon>Picture.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaLogin\vmLogin.cs" />
     <EmbeddedResource Include="Camara\cam2.resx">
       <DependentUpon>cam2.cs</DependentUpon>
     </EmbeddedResource>

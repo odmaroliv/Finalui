@@ -16,7 +16,7 @@ namespace mainVentana.VistaEntrada
     public partial class BusquedasEnt : Form
     {
 
-        public delegate void pasar(string alias, string cliente, string cord, string calle, string colonia, string ciudad, int bandera);
+        public delegate void pasar(string alias, string cliente, string cord, string calle, string colonia, string ciudad, string codigocliente, int bandera);
         //public delegate void pasar2(string dato,string cliente, int bandera);
         public event pasar pasado;
        // public event pasar2 pasado2;
@@ -34,9 +34,9 @@ namespace mainVentana.VistaEntrada
         private void pasarinfo()
         {
             if (label2.Text == "CLIENTE")
-            { pasado(gunaTextBox2.Text,"",gunaTextBox1.Text,calle,colonia,ciudad, 0); }
+            { pasado(gunaTextBox2.Text,"",gunaTextBox1.Text,calle,colonia,ciudad, Codcliente, 0); }
             else if (label2.Text == "ALIAS")
-            { pasado(gunaTextBox2.Text, gunaTextBox3.Text, gunaTextBox1.Text,calle,colonia,ciudad, 1); }
+            { pasado(gunaTextBox2.Text, gunaTextBox3.Text, gunaTextBox1.Text,calle,colonia,ciudad,"", 1); }
         }
 
         private AutoCompleteStringCollection aliasList()
@@ -118,6 +118,7 @@ namespace mainVentana.VistaEntrada
         string calle;
         string colonia;
         string ciudad;
+        string Codcliente;
         private void gunaGradientTileButton4_Click(object sender, EventArgs e)
         {
             if (label2.Text == "ALIAS")
@@ -167,6 +168,7 @@ namespace mainVentana.VistaEntrada
                         calle = d.c4.ToString();
                         colonia = d.c5.ToString();
                         ciudad = d.c6.ToString();
+                        Codcliente = d.c2.Trim();
                         pasarinfo();
                         this.Dispose();
                         this.Close();

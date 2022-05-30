@@ -1,0 +1,85 @@
+﻿using Datos.Datosenti;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity.Validation;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Negocios
+{
+    public class AltasBD
+    {
+       public void agregaKDM1(string sucInicial,string entrada, string Moneda, DateTime fecha, string noCliente, 
+           string noCord, decimal valArn, string nomCliente, string calle,string colonia, string ciudadcodigozip, string valFact,
+           string paridad,string noTrakin, string provedor, string orCompra,string noFlete, string noUnidades, string tipUnidad, string peso,
+           string unidadMedida,string tipOperacion, string sucDestino, string bultos, string Alias)
+        {
+            try
+            {
+                using (modelo2Entities modelo = new modelo2Entities())
+                {
+                    var d = new KDM1();
+                    d.C1 = sucInicial.Trim();
+                    d.C2 = "U";
+                    d.C3 = "D";
+                    d.C4 = 35;
+                    d.C5 = 1;
+                    d.C6 = entrada;
+                    d.C7 = Moneda;
+                    d.C8 = 1;//ALMACEN 
+                    d.C9 = fecha;
+                    d.C10 = noCliente;
+                    d.C12 = noCord;
+                    d.C16 = valArn;
+                    d.C31 = "Ent";
+                    d.C32 = nomCliente;
+                    d.C33 = calle;
+                    d.C34 = colonia;
+                    d.C35 = ciudadcodigozip;
+                    d.C40 = Convert.ToDouble(paridad);
+                    d.C41 = fecha;
+                    d.C42 = Convert.ToDecimal(valArn);
+                    d.C43 = "N";
+                    d.C63 = "UD3501-";
+                    d.C67 = "Usuariotest";//Ultimo en modificar la entrada
+                    d.C68 = fecha;//fecha de la ultima modificacion
+                    d.C69 = fecha.Hour.ToString("HH:mm");
+                    d.C80 = noTrakin; //elaboro
+                    d.C81 = "DOLIVARES"; //elaboro
+                    d.C92 = provedor;
+                    d.C93 = orCompra;
+                    d.C95 = noFlete;
+                    d.C97 = Convert.ToDecimal(noUnidades);
+                    d.C98 = tipUnidad;
+                    d.C99 = Convert.ToDecimal(peso);
+                    d.C100 = unidadMedida;
+                    d.C101 = tipOperacion;
+                    d.C102 = valFact;
+                    d.C103 = sucDestino.Trim();
+                    d.C108 = bultos;
+                    d.C112 = Alias.Trim();
+                    modelo.KDM1.Add(d);
+                    modelo.SaveChanges();
+                    
+                }
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+               
+                throw;
+            }
+            
+        }
+    }
+}

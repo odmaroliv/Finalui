@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using Datos.Datosenti;
 using Datos.ViewModels;
 using Datos.ViewModels.Entradas;
+using mainVentana.vmLogin;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Page;
 
 namespace Negocios
@@ -461,6 +462,60 @@ namespace Negocios
                     }
                 
 
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        
+        public bool cargalogin(string user, string pass)
+        {
+            try
+            {
+
+                using (modelo2Entities modelo = new modelo2Entities())
+
+                {
+                    var lista = from d in modelo.DSUSER
+                                where d.LoginName.Equals(user) && d.Password.Equals(pass)
+                                select new vmLogin
+                                {
+                                    //idusuario = d.IdUsuario,
+                                    username = d.LoginName.Trim(),
+                                    //password = d.Password,
+                                    nombre = d.Nombre.Trim(),
+                                    apellido = d.Apellido.Trim(),
+                                    email = d.Email,
+                                    numero = d.Numero,
+                                    rol = d.IdRol,
+                                    estatus = d.Activo
+
+                                };
+                    foreach (var i in lista.ToList())
+                    {
+                        
+                        Common.Cache.CacheLogin.username = i.username;
+                        Common.Cache.CacheLogin.nombre = i.nombre;
+                        Common.Cache.CacheLogin.apellido = i.apellido;
+                        Common.Cache.CacheLogin.email = i.email;
+
+                    }
+
+                    if (lista.ToList().Count() <= 0)
+                    {
+                        return false; // Query results were empty
+                    }
+                    else
+                    {
+                        return true;
+                    }
+
+
+
+                }
             }
             catch (Exception)
             {

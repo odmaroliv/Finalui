@@ -28,5 +28,14 @@ namespace Negocios
             StreamReader sr = new StreamReader(oResponse.GetResponseStream());
             return await sr.ReadToEndAsync();
         }
+
+        public string retornafechaLapaz()//obtiene la paridad diaria del diario oficial de la federacion 
+        {
+            string urlFecha = "http://worldtimeapi.org/api/timezone/America/la_paz/";
+            WebRequest oRequest = WebRequest.Create(urlFecha);
+            WebResponse oResponse = oRequest.GetResponse();
+            StreamReader sr = new StreamReader(oResponse.GetResponseStream());
+            return sr.ReadToEnd();
+        }
     }
 }

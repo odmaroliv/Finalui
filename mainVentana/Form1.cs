@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Negocios;
+using Negocios.Common.Cache;
 using System.Threading;
 
 
@@ -24,7 +25,7 @@ namespace mainVentana
         public Form1()
         {
             InitializeComponent();
-           
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -33,11 +34,17 @@ namespace mainVentana
             
             string voi = "";
             frm.refresh(voi);
-           
-            
-            
-        }
+            cargasatosUrs();
 
+
+
+        }
+        private void cargasatosUrs()
+        {
+            lblNombreUsr.Text = CacheLogin.nombre + " " + CacheLogin.apellido;
+            lblRol.Text = CacheLogin.email;
+
+        }
 
         #region Enter y Leave de Muse
         //Inicio

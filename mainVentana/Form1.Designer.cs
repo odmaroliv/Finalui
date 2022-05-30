@@ -81,7 +81,7 @@ namespace mainVentana
             this.lbFecha = new System.Windows.Forms.Label();
             this.panel15 = new System.Windows.Forms.Panel();
             this.lblHora = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblNombreUsr = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.panelContenedorForm = new System.Windows.Forms.Panel();
@@ -90,6 +90,7 @@ namespace mainVentana
             this.iconButton9 = new FontAwesome.Sharp.IconButton();
             this.label4 = new System.Windows.Forms.Label();
             this.gunaTextBox1 = new Guna.UI.WinForms.GunaTextBox();
+            this.lblRol = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -449,8 +450,9 @@ namespace mainVentana
             // panel13
             // 
             this.panel13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(58)))), ((int)(((byte)(88)))));
+            this.panel13.Controls.Add(this.lblRol);
             this.panel13.Controls.Add(this.panel14);
-            this.panel13.Controls.Add(this.label5);
+            this.panel13.Controls.Add(this.lblNombreUsr);
             this.panel13.Controls.Add(this.label3);
             this.panel13.Controls.Add(this.pictureBox7);
             this.panel13.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -516,17 +518,16 @@ namespace mainVentana
             this.lblHora.Text = "21:49:45";
             this.lblHora.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label5
+            // lblNombreUsr
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(89, 46);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(124, 20);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Daniel Olivares";
+            this.lblNombreUsr.AutoSize = true;
+            this.lblNombreUsr.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombreUsr.ForeColor = System.Drawing.Color.White;
+            this.lblNombreUsr.Location = new System.Drawing.Point(89, 46);
+            this.lblNombreUsr.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNombreUsr.Name = "lblNombreUsr";
+            this.lblNombreUsr.Size = new System.Drawing.Size(0, 20);
+            this.lblNombreUsr.TabIndex = 7;
             // 
             // label3
             // 
@@ -635,6 +636,17 @@ namespace mainVentana
             this.gunaTextBox1.MouseEnter += new System.EventHandler(this.gunaTextBox1_MouseEnter);
             this.gunaTextBox1.MouseLeave += new System.EventHandler(this.gunaTextBox1_MouseLeave);
             // 
+            // lblRol
+            // 
+            this.lblRol.AutoSize = true;
+            this.lblRol.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRol.ForeColor = System.Drawing.Color.White;
+            this.lblRol.Location = new System.Drawing.Point(455, 46);
+            this.lblRol.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblRol.Name = "lblRol";
+            this.lblRol.Size = new System.Drawing.Size(0, 20);
+            this.lblRol.TabIndex = 9;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -699,7 +711,7 @@ namespace mainVentana
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.Label lblHora;
         private System.Windows.Forms.Timer tmFechaHora;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblNombreUsr;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel14;
         private System.Windows.Forms.Panel panel16;
@@ -708,6 +720,7 @@ namespace mainVentana
         private FontAwesome.Sharp.IconButton iconButton9;
         private System.Windows.Forms.Label label4;
         public Guna.UI.WinForms.GunaTextBox gunaTextBox1;
+        private Label lblRol;
     }
 }
 

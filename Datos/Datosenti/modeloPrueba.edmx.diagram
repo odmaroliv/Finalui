@@ -17,7 +17,16 @@
         <EntityTypeShape EntityType="KEPLER_PRUEBASModel.KDUV" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="KEPLER_PRUEBASModel.KDXD" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="KEPLER_PRUEBASModel.KDIDO" Width="1.5" PointX="13.375" PointY="0.75" />
-      </Diagram>
+        <EntityTypeShape EntityType="KEPLER_PRUEBASModel.DSMODULO" Width="1.5" PointX="11.125" PointY="14.5" />
+        <EntityTypeShape EntityType="KEPLER_PRUEBASModel.DSOPERACION" Width="1.5" PointX="13.375" PointY="14.25" />
+        <EntityTypeShape EntityType="KEPLER_PRUEBASModel.DSROL_OPER" Width="1.5" PointX="15.625" PointY="5.25" />
+        <EntityTypeShape EntityType="KEPLER_PRUEBASModel.DSROL2" Width="1.5" PointX="13.375" PointY="6.375" />
+        <EntityTypeShape EntityType="KEPLER_PRUEBASModel.DSUSER" Width="1.5" PointX="15.625" PointY="8.25" />
+        <AssociationConnector Association="KEPLER_PRUEBASModel.FK_DSOPERACION_DSMODULO" />
+        <AssociationConnector Association="KEPLER_PRUEBASModel.FK_DSROL_OPER_DSOPERACION" />
+        <AssociationConnector Association="KEPLER_PRUEBASModel.FK_DSROL_OPER_DSROL2" />
+        <AssociationConnector Association="KEPLER_PRUEBASModel.FK_DSUSER_DSROL2" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

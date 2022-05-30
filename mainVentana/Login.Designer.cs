@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.gunaLineTextBox2 = new Guna.UI.WinForms.GunaLineTextBox();
+            this.txbPass = new Guna.UI.WinForms.GunaLineTextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.gunaLineTextBox1 = new Guna.UI.WinForms.GunaLineTextBox();
+            this.txbUsr = new Guna.UI.WinForms.GunaLineTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
@@ -51,17 +51,17 @@
             // 
             // gunaLineTextBox2
             // 
-            this.gunaLineTextBox2.BackColor = System.Drawing.Color.White;
-            this.gunaLineTextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.gunaLineTextBox2.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.gunaLineTextBox2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.gunaLineTextBox2.LineColor = System.Drawing.Color.Gainsboro;
-            this.gunaLineTextBox2.Location = new System.Drawing.Point(0, 123);
-            this.gunaLineTextBox2.Name = "gunaLineTextBox2";
-            this.gunaLineTextBox2.PasswordChar = '●';
-            this.gunaLineTextBox2.Size = new System.Drawing.Size(367, 38);
-            this.gunaLineTextBox2.TabIndex = 1;
-            this.gunaLineTextBox2.UseSystemPasswordChar = true;
+            this.txbPass.BackColor = System.Drawing.Color.White;
+            this.txbPass.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbPass.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.txbPass.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txbPass.LineColor = System.Drawing.Color.Gainsboro;
+            this.txbPass.Location = new System.Drawing.Point(0, 123);
+            this.txbPass.Name = "gunaLineTextBox2";
+            this.txbPass.PasswordChar = '●';
+            this.txbPass.Size = new System.Drawing.Size(367, 38);
+            this.txbPass.TabIndex = 1;
+            this.txbPass.UseSystemPasswordChar = true;
             // 
             // label1
             // 
@@ -75,16 +75,16 @@
             // 
             // gunaLineTextBox1
             // 
-            this.gunaLineTextBox1.BackColor = System.Drawing.Color.White;
-            this.gunaLineTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.gunaLineTextBox1.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.gunaLineTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.gunaLineTextBox1.LineColor = System.Drawing.Color.Gainsboro;
-            this.gunaLineTextBox1.Location = new System.Drawing.Point(0, 45);
-            this.gunaLineTextBox1.Name = "gunaLineTextBox1";
-            this.gunaLineTextBox1.PasswordChar = '\0';
-            this.gunaLineTextBox1.Size = new System.Drawing.Size(367, 38);
-            this.gunaLineTextBox1.TabIndex = 0;
+            this.txbUsr.BackColor = System.Drawing.Color.White;
+            this.txbUsr.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbUsr.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.txbUsr.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txbUsr.LineColor = System.Drawing.Color.Gainsboro;
+            this.txbUsr.Location = new System.Drawing.Point(0, 45);
+            this.txbUsr.Name = "gunaLineTextBox1";
+            this.txbUsr.PasswordChar = '\0';
+            this.txbUsr.Size = new System.Drawing.Size(367, 38);
+            this.txbUsr.TabIndex = 0;
             // 
             // panel1
             // 
@@ -131,10 +131,10 @@
             // panel3
             // 
             this.panel3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel3.Controls.Add(this.gunaLineTextBox2);
+            this.panel3.Controls.Add(this.txbPass);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.label1);
-            this.panel3.Controls.Add(this.gunaLineTextBox1);
+            this.panel3.Controls.Add(this.txbUsr);
             this.panel3.Location = new System.Drawing.Point(45, 70);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(372, 184);
@@ -226,9 +226,9 @@
 
         #endregion
 
-        private Guna.UI.WinForms.GunaLineTextBox gunaLineTextBox2;
+        private Guna.UI.WinForms.GunaLineTextBox txbPass;
         private System.Windows.Forms.Label label1;
-        private Guna.UI.WinForms.GunaLineTextBox gunaLineTextBox1;
+        private Guna.UI.WinForms.GunaLineTextBox txbUsr;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel3;

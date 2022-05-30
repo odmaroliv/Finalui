@@ -53,6 +53,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Datosenti\DSMODULO.cs">
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datosenti\DSOPERACION.cs">
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datosenti\DSROL2.cs">
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datosenti\DSROL_OPER.cs">
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datosenti\DSUSER.cs">
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
+    </Compile>
     <Compile Include="Datosenti\KDIDO.cs">
       <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
@@ -144,6 +159,7 @@
     <Compile Include="ViewModels\Entradas\vmTOperacion.cs" />
     <Compile Include="ViewModels\Servicios\FechaActual.cs" />
     <Compile Include="ViewModels\Servicios\Paridad.cs" />
+    <Compile Include="ViewModels\Login\vmLogin.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

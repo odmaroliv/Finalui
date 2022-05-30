@@ -39,9 +39,9 @@ namespace mainVentana.VistaEntrada
 
         private void AltaEntrada_Load(object sender, EventArgs e)
         {
-            unidades.Text = "0";
-            bultos.Text = "0";
-            peso.Text = "0";
+            unidades.Text = "";
+            bultos.Text = "";
+            peso.Text = "";
             //Desk.SpecialKeyButtons(false);
             llenaCampos();
 
@@ -245,16 +245,18 @@ namespace mainVentana.VistaEntrada
 
 
 
-        private void iconButton1_Click(object sender, EventArgs e) //Click al boton guardar
+        private void Guardar_Click(object sender, EventArgs e) //Click al boton guardar
         {
             
             ValidacionEntradas validacion = new ValidacionEntradas();
 
             if (validacion.validacampo(sucEntrada.Text, sucDestino.Text, tipoOper.Text, cord.Text, cliente.Text, proveedor.Text, ordenCompra.Text, numFlete.Text, unidades.Text, bultos.Text, peso.Text, detalles.Text) == true)
             {
-                CreaEriquetas();
+                
                 creaListadeFotos();
                 AgregaArchivos();
+                altaKDM1();
+                CreaEriquetas();
                 EnviarEmail servicio = new EnviarEmail();
                 var respuesta = servicio.EnviaMail(label41.Text, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, mnd, larch);
                 if (respuesta == 1)
@@ -266,10 +268,50 @@ namespace mainVentana.VistaEntrada
                     MessageBox.Show("Correo enviado con éxito", "éxito!");
                 }
                 // servicio.EnviaMail(label41.Text, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text,mnd);
-
+                cargaultent();
             }
 
         }
+
+        private void altaKDM1()
+        {
+            AltasBD bd = new AltasBD();
+
+            string datoSucIni = sucEntrada.SelectedValue.ToString();
+            string datoEntrada = recuperUltimaent();
+            string datoMoneda = cmbMoneda.GetItemText(cmbMoneda.SelectedItem).ToString();
+            DateTime datoFecha = regresafecha();
+            string datoNuCliente = lblCodCliente.Text; // agregar numero de cliente
+            string datoNoCord = cord.SelectedValue.ToString();
+            decimal datoValArn = Convert.ToDecimal(txbValArn.Text);
+            string datoNomCliente = cliente.Text;
+            string datoCalle = label23.Text;
+            string datoColonia = label24.Text;
+            string datoCiudadZip = label25.Text;
+            string datoValFact = txbValFact.Text;
+            string datoParidad = lblParidad.Text;
+            string datoNoTrakin = tbxRastreo.Text;
+            string datoProvedor = proveedor.SelectedValue.ToString();
+            string datoOrdCompra = ordenCompra.Text;
+            string datoNoFlete = numFlete.Text;
+            string datoNoUnidades = unidades.Text;
+            string datoTipoUnidad = cmbUnidades.GetItemText(cmbUnidades.SelectedItem).ToString();
+            string datoPeso = peso.Text;
+            string datoUnidadMedida = cmbPeso.SelectedValue.ToString();
+            string datoTipoOper = tipoOper.SelectedValue.ToString();
+            string datoSucDestino = sucDestino.SelectedValue.ToString();
+            string datoBultos = bultos.Text;
+            string datosAlias = alias.Text;
+
+
+            bd.agregaKDM1(datoSucIni, datoEntrada, datoMoneda, datoFecha, datoNuCliente, datoNoCord, datoValArn, datoNomCliente, datoCalle, datoColonia, datoCiudadZip,
+            datoValFact, datoParidad, datoNoTrakin, datoProvedor, datoOrdCompra, datoNoFlete, datoNoUnidades, datoTipoUnidad, datoPeso, datoUnidadMedida, datoTipoOper,
+            datoSucDestino, datoBultos, datosAlias);
+
+            
+        }
+
+
         private void CreaEriquetas()
         {
             int bulto = Convert.ToInt32(bultos.Text);
@@ -499,7 +541,7 @@ namespace mainVentana.VistaEntrada
             buscador.ShowDialog();
         }
 
-        public void moverinfo(string dato, string dato2, string dato3, string dato4, string dato5, string dato6, int bandera) //cambia los datos de los textbox alias y clientes, la bandera dependera de la manera en la que se haya abierto el frm buscar, 0 clientes 1 alias, ADEMAS tambien sirve para cambiar el campo de cord
+        public void moverinfo(string dato, string dato2, string dato3, string dato4, string dato5, string dato6,string dato7, int bandera) //cambia los datos de los textbox alias y clientes, la bandera dependera de la manera en la que se haya abierto el frm buscar, 0 clientes 1 alias, ADEMAS tambien sirve para cambiar el campo de cord
         {
 
             if (bandera == 0) //clientes
@@ -510,6 +552,7 @@ namespace mainVentana.VistaEntrada
                 label24.Text = dato5;
                 label25.Text = dato6;
                 label26.Text = "Dir Cliente";
+                lblCodCliente.Text = dato7;
 
                 foreach (vmCordinadores i in cord.Items)
                 {
@@ -531,7 +574,7 @@ namespace mainVentana.VistaEntrada
                 label24.Text = dato5;
                 label25.Text = dato6;
                 label26.Text = "Dir Alias";
-
+                lblCodCliente.Text = dato7;
                 foreach (vmCordinadores i in cord.Items)
                 {
                     if (i.c2.Trim() == dato3)
@@ -649,7 +692,7 @@ namespace mainVentana.VistaEntrada
 
             foreach (var i in lista.ToList())
             {
-                label33.Text = i.valor.ToString();
+                lblParidad.Text = i.valor.ToString();
             }
 
 
@@ -668,13 +711,26 @@ namespace mainVentana.VistaEntrada
 
         }
 
+        private DateTime regresafecha()
+        {
+           
+                Servicio datos = new Servicio();
+                string fecha1 = datos.retornafechaLapaz();
+                
+                FechaActual lst = JsonConvert.DeserializeObject<FechaActual>(fecha1);
+
+            return lst.datetime;
+
+            
+        }
+
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(comboBox2.SelectedIndex) == 0)
+            if (Convert.ToInt32(cmbMoneda.SelectedValue) == 1)
             {
-                label33.Text = "";
+                lblParidad.Text = "";
             }
-            else if (Convert.ToInt32(comboBox2.SelectedIndex) == 1)
+            else if (Convert.ToInt32(cmbMoneda.SelectedValue) == 2)
             {
                 Cargaparidad();
             }
@@ -727,8 +783,8 @@ namespace mainVentana.VistaEntrada
         private void Moneda()
         {
             List<Moneda> mnd = new List<Moneda> {
-                new Moneda{id=1,moneda="PESOS"},
-                new Moneda{id=2,moneda="DLLS"}};
+                new Moneda{id=2,moneda="DLLS"},
+                new Moneda{id=1,moneda="PESOS"}};
 
 
 
@@ -742,9 +798,9 @@ namespace mainVentana.VistaEntrada
                         };
             lista = lista.ToList();
 
-            comboBox2.DisplayMember = "moneda";
-            comboBox2.ValueMember = "id";
-            comboBox2.DataSource = lista;
+            cmbMoneda.DisplayMember = "moneda";
+            cmbMoneda.ValueMember = "id";
+            cmbMoneda.DataSource = lista;
 
         }
 
@@ -762,6 +818,17 @@ namespace mainVentana.VistaEntrada
                 label41.Text = numero.ToString("D7");
             }
         }
+        private string recuperUltimaent()
+        {
+            Servicios datos = new Servicios();
+            string dato = default;
+            foreach (var i in datos.NumeroEntrada(sucEntrada.SelectedValue.ToString()))
+            {
+                int numero = Convert.ToInt32(i.entrada) + 1;
+                dato = numero.ToString("D7");
+            }
+            return dato;
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -776,6 +843,11 @@ namespace mainVentana.VistaEntrada
         private void label27_DoubleClick(object sender, EventArgs e)
         {
             label27.Text = "";
+        }
+
+        private void gunaCircleButton1_Click(object sender, EventArgs e)
+        {
+            regresafecha();
         }
     }
 }
