@@ -11,7 +11,7 @@ namespace Negocios
     public class AltasBD
     {
        public void agregaKDM1(string sucInicial,string entrada, string Moneda, DateTime fecha, string noCliente, 
-           string noCord, decimal valArn, string nomCliente, string calle,string colonia, string ciudadcodigozip, string valFact,
+           string noCord, string valArn, string nomCliente, string calle,string colonia, string ciudadcodigozip, string valFact,
            string paridad,string noTrakin, string provedor, string orCompra,string noFlete, string noUnidades, string tipUnidad, string peso,
            string unidadMedida,string tipOperacion, string sucDestino, string bultos, string Alias)
         {
@@ -31,15 +31,15 @@ namespace Negocios
                     d.C9 = fecha;
                     d.C10 = noCliente;
                     d.C12 = noCord;
-                    d.C16 = valArn;
+                    d.C16 = valArn == "" ? 1 : Convert.ToDecimal(valArn);
                     d.C31 = "Ent";
                     d.C32 = nomCliente;
                     d.C33 = calle;
                     d.C34 = colonia;
                     d.C35 = ciudadcodigozip;
-                    d.C40 = Convert.ToDouble(paridad);
+                    if (Moneda == "DLLS"){ d.C40 = paridad == "" ? 20 : Convert.ToDouble(paridad); }
                     d.C41 = fecha;
-                    d.C42 = Convert.ToDecimal(valArn);
+                    d.C42 = valArn == "" ? 1 : Convert.ToDecimal(valArn);
                     d.C43 = "N";
                     d.C63 = "UD3501-";
                     d.C67 = "Usuariotest";//Ultimo en modificar la entrada
@@ -81,5 +81,50 @@ namespace Negocios
             }
             
         }
+
+        public void agregaComentKDM1(string sucEntrada, string codEntrada, string moneda,DateTime fecha, string codCliente,string desc)
+        {
+            try
+            {
+                using (modelo2Entities modelo = new modelo2Entities())
+                {
+                    var d = new KDM1COMEN();
+                    d.C1 = sucEntrada.Trim();
+                    d.C2 = "U";
+                    d.C3 = "D";
+                    d.C4 = 35;
+                    d.C5 = 1;
+                    d.C6 = codEntrada.Trim();
+                    d.C7 = moneda;
+                    d.C8 = 1;
+                    d.C9 = fecha;
+                    d.C10 = codCliente.Trim();
+                    d.C11 = desc;
+
+
+
+                    modelo.KDM1COMEN.Add(d);
+                    modelo.SaveChanges();
+
+                }
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+
+                throw;
+            }
+
+        }
+
     }
 }

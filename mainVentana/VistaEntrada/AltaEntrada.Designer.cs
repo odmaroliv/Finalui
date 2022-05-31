@@ -49,6 +49,7 @@
             this.iconButton2 = new FontAwesome.Sharp.IconButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblCodCliente = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
@@ -81,6 +82,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.lblUser = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -127,8 +129,6 @@
             this.label38 = new System.Windows.Forms.Label();
             this.gunaMediumRadioButton2 = new Guna.UI.WinForms.GunaMediumRadioButton();
             this.gunaMediumRadioButton1 = new Guna.UI.WinForms.GunaMediumRadioButton();
-            this.gunaCircleButton1 = new Guna.UI.WinForms.GunaCircleButton();
-            this.lblCodCliente = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -465,6 +465,14 @@
             this.groupBox2.TabIndex = 105;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Cliente";
+            // 
+            // lblCodCliente
+            // 
+            this.lblCodCliente.AutoSize = true;
+            this.lblCodCliente.Location = new System.Drawing.Point(11, 70);
+            this.lblCodCliente.Name = "lblCodCliente";
+            this.lblCodCliente.Size = new System.Drawing.Size(0, 16);
+            this.lblCodCliente.TabIndex = 115;
             // 
             // label26
             // 
@@ -807,6 +815,7 @@
             // label29
             // 
             this.label29.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label29.Location = new System.Drawing.Point(11, 203);
             this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label29.Name = "label29";
@@ -875,6 +884,7 @@
             // groupBox4
             // 
             this.groupBox4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox4.Controls.Add(this.lblUser);
             this.groupBox4.Controls.Add(this.label41);
             this.groupBox4.Controls.Add(this.label40);
             this.groupBox4.Controls.Add(this.label8);
@@ -888,6 +898,14 @@
             this.groupBox4.TabIndex = 111;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Alta de Entrada";
+            // 
+            // lblUser
+            // 
+            this.lblUser.AutoSize = true;
+            this.lblUser.Location = new System.Drawing.Point(118, 78);
+            this.lblUser.Name = "lblUser";
+            this.lblUser.Size = new System.Drawing.Size(0, 16);
+            this.lblUser.TabIndex = 112;
             // 
             // label41
             // 
@@ -914,7 +932,7 @@
             this.label8.Location = new System.Drawing.Point(8, 78);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(139, 31);
+            this.label8.Size = new System.Drawing.Size(95, 31);
             this.label8.TabIndex = 109;
             this.label8.Text = "Elaboro:";
             // 
@@ -1465,45 +1483,12 @@
             this.gunaMediumRadioButton1.TabIndex = 0;
             this.gunaMediumRadioButton1.CheckedChanged += new System.EventHandler(this.gunaMediumRadioButton1_CheckedChanged);
             // 
-            // gunaCircleButton1
-            // 
-            this.gunaCircleButton1.AnimationHoverSpeed = 0.07F;
-            this.gunaCircleButton1.AnimationSpeed = 0.03F;
-            this.gunaCircleButton1.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.gunaCircleButton1.BorderColor = System.Drawing.Color.Black;
-            this.gunaCircleButton1.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.gunaCircleButton1.FocusedColor = System.Drawing.Color.Empty;
-            this.gunaCircleButton1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.gunaCircleButton1.ForeColor = System.Drawing.Color.White;
-            this.gunaCircleButton1.Image = null;
-            this.gunaCircleButton1.ImageSize = new System.Drawing.Size(52, 52);
-            this.gunaCircleButton1.Location = new System.Drawing.Point(29, 169);
-            this.gunaCircleButton1.Name = "gunaCircleButton1";
-            this.gunaCircleButton1.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
-            this.gunaCircleButton1.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.gunaCircleButton1.OnHoverForeColor = System.Drawing.Color.White;
-            this.gunaCircleButton1.OnHoverImage = null;
-            this.gunaCircleButton1.OnPressedColor = System.Drawing.Color.Black;
-            this.gunaCircleButton1.Size = new System.Drawing.Size(51, 57);
-            this.gunaCircleButton1.TabIndex = 125;
-            this.gunaCircleButton1.Text = "gunaCircleButton1";
-            this.gunaCircleButton1.Click += new System.EventHandler(this.gunaCircleButton1_Click);
-            // 
-            // lblCodCliente
-            // 
-            this.lblCodCliente.AutoSize = true;
-            this.lblCodCliente.Location = new System.Drawing.Point(11, 70);
-            this.lblCodCliente.Name = "lblCodCliente";
-            this.lblCodCliente.Size = new System.Drawing.Size(0, 16);
-            this.lblCodCliente.TabIndex = 115;
-            // 
             // AltaEntrada
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.ClientSize = new System.Drawing.Size(1700, 827);
-            this.Controls.Add(this.gunaCircleButton1);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.groupBox6);
@@ -1660,7 +1645,7 @@
         private Guna.UI.WinForms.GunaMediumRadioButton gunaMediumRadioButton1;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label41;
-        private Guna.UI.WinForms.GunaCircleButton gunaCircleButton1;
         private System.Windows.Forms.Label lblCodCliente;
+        private System.Windows.Forms.Label lblUser;
     }
 }

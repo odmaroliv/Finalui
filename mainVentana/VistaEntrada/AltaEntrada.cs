@@ -13,7 +13,7 @@ using Datos.ViewModels.Entradas;
 using Negocios;
 using System.IO;
 //using DesktopControl;
-
+using Datos.ViewModels.Entradas.mvlistas;
 using iTextSharp.text;
 
 using iTextSharp.text.pdf;
@@ -25,6 +25,7 @@ using Datos.ViewModels;
 using Datos.ViewModels.Servicios;
 using Newtonsoft.Json;
 using mainVentana.Email;
+using Negocios.Common.Cache;
 
 namespace mainVentana.VistaEntrada
 {
@@ -136,18 +137,18 @@ namespace mainVentana.VistaEntrada
                 pictureBox15.Image = img;
                 pictureBox15.ImageLocation = ruta;
             }
-            
+
 
         }
 
-        
+
         private void iconButton2_Click(object sender, EventArgs e) //lo utiliazmos para pasar las imagenes del form camara al forma alta de entrada <Tiene que conectarse con CAM2>
         {
             openFileDialog1.Multiselect = true;
             openFileDialog1.InitialDirectory = "@C:\\";
             openFileDialog1.Filter = "Solo imagenes (JPG,PNG,GIF)|*.JPG;*.PNG;*.GIF"; ;
 
-            
+
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -157,8 +158,8 @@ namespace mainVentana.VistaEntrada
 
                     foreach (var i in imagen)
                     {
-                        ejecutarfoto(System.Drawing.Image.FromFile(i),i.ToString());
-                         
+                        ejecutarfoto(System.Drawing.Image.FromFile(i), i.ToString());
+
                     }
                 }
                 catch (Exception)
@@ -231,7 +232,7 @@ namespace mainVentana.VistaEntrada
             {
                 mnd.Add(pictureBox15.ImageLocation);
             }
-           
+
         }
 
         #endregion
@@ -247,43 +248,37 @@ namespace mainVentana.VistaEntrada
 
         private void Guardar_Click(object sender, EventArgs e) //Click al boton guardar
         {
-            
+
             ValidacionEntradas validacion = new ValidacionEntradas();
 
             if (validacion.validacampo(sucEntrada.Text, sucDestino.Text, tipoOper.Text, cord.Text, cliente.Text, proveedor.Text, ordenCompra.Text, numFlete.Text, unidades.Text, bultos.Text, peso.Text, detalles.Text) == true)
             {
-                
+
                 creaListadeFotos();
                 AgregaArchivos();
                 altaKDM1();
+                altaKDM1coment();
                 CreaEriquetas();
-                EnviarEmail servicio = new EnviarEmail();
-                var respuesta = servicio.EnviaMail(label41.Text, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, mnd, larch);
-                if (respuesta == 1)
-                {
-                    MessageBox.Show("El correo NO SE ENVIÓ PORQUE supera el límite máximo de 25 MB en cada correo, intenta borrar documentos y reenvía la notificación", "CUIDADO EL CORREO NO SE ENVIO");
-                }
-                else
-                {
-                    MessageBox.Show("Correo enviado con éxito", "éxito!");
-                }
-                // servicio.EnviaMail(label41.Text, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text,mnd);
+                envEmail();
+                
+
+
                 cargaultent();
             }
 
         }
-
+        string datoEntrada; //variable global de entrada cuando se click al boton de guardar ---------------------------------------
         private void altaKDM1()
         {
             AltasBD bd = new AltasBD();
 
             string datoSucIni = sucEntrada.SelectedValue.ToString();
-            string datoEntrada = recuperUltimaent();
+            datoEntrada = recuperUltimaent();
             string datoMoneda = cmbMoneda.GetItemText(cmbMoneda.SelectedItem).ToString();
             DateTime datoFecha = regresafecha();
             string datoNuCliente = lblCodCliente.Text; // agregar numero de cliente
             string datoNoCord = cord.SelectedValue.ToString();
-            decimal datoValArn = Convert.ToDecimal(txbValArn.Text);
+            string datoValArn = txbValArn.Text;
             string datoNomCliente = cliente.Text;
             string datoCalle = label23.Text;
             string datoColonia = label24.Text;
@@ -308,16 +303,50 @@ namespace mainVentana.VistaEntrada
             datoValFact, datoParidad, datoNoTrakin, datoProvedor, datoOrdCompra, datoNoFlete, datoNoUnidades, datoTipoUnidad, datoPeso, datoUnidadMedida, datoTipoOper,
             datoSucDestino, datoBultos, datosAlias);
 
-            
+
         }
 
+        private void altaKDM1coment()
+        {
+            AltasBD bd = new AltasBD();
+
+            string datoSucIni = sucEntrada.SelectedValue.ToString();
+            string dtEntrada = datoEntrada;
+            string datoMoneda = cmbMoneda.GetItemText(cmbMoneda.SelectedItem).ToString();
+            DateTime datoFecha = regresafecha();
+            string datoNuCliente = lblCodCliente.Text;
+            string datoDetalles = detalles.Text;
+
+            bd.agregaComentKDM1(datoSucIni,dtEntrada,datoMoneda,datoFecha,datoNuCliente,datoDetalles);
+
+
+        }
+        
+        private void actualizaKDMENT()
+        {
+
+        }
+        private void envEmail()
+        {
+            EnviarEmail servicio = new EnviarEmail();
+            var respuesta = servicio.EnviaMail(label41.Text, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, mnd, larch);
+            if (respuesta == 1)
+            {
+                MessageBox.Show("El correo NO SE ENVIÓ PORQUE supera el límite máximo de 25 MB en cada correo, intenta borrar documentos y reenvía la notificación", "CUIDADO EL CORREO NO SE ENVIO");
+            }
+            else
+            {
+                MessageBox.Show("Correo enviado con éxito", "éxito!");
+            }
+
+        }
 
         private void CreaEriquetas()
         {
             int bulto = Convert.ToInt32(bultos.Text);
-            
-                impirmepdf();
-            
+
+            impirmepdf();
+
         }
         private void impirmepdf()
         {
@@ -325,11 +354,11 @@ namespace mainVentana.VistaEntrada
             savefile.FileName = string.Format("{0}" + ".pdf", DateTime.Now.ToString("ddMMyyyyHHmmss"));
             var pgSize = new iTextSharp.text.Rectangle(288, 432);
             Document pdfDoc = new Document(pgSize, 25, 25, 25, 25);
-            
-           
+
+
 
             //string PaginaHTML_Texto = "<table border=\"1\"><tr><td>HOLA MUNDO</td></tr></table>";
-           
+
 
 
             if (savefile.ShowDialog() == DialogResult.OK)
@@ -337,11 +366,11 @@ namespace mainVentana.VistaEntrada
                 using (FileStream stream = new FileStream(savefile.FileName, FileMode.Create))
                 {
                     //Creamos un nuevo documento y lo definimos como PDF
-                    
+
 
                     PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
                     pdfDoc.Open();
-                    
+
                     try
                     {
                         int bulto = Convert.ToInt32(bultos.Text);
@@ -360,14 +389,14 @@ namespace mainVentana.VistaEntrada
                             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CLIENTE", cliente.Text.ToString());
                             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@ETIQUETA", etiqueta.ToString());
 
-                            BarcodeLib.Barcode b = new BarcodeLib.Barcode(); 
-                            System.Drawing.Image imge = b.Encode(BarcodeLib.TYPE.CODE128,etiqueta.ToString(), Color.Black, Color.White, 250, 40);
+                            BarcodeLib.Barcode b = new BarcodeLib.Barcode();
+                            System.Drawing.Image imge = b.Encode(BarcodeLib.TYPE.CODE128, etiqueta.ToString(), Color.Black, Color.White, 250, 40);
                             iTextSharp.text.Image img2 = iTextSharp.text.Image.GetInstance(imge, System.Drawing.Imaging.ImageFormat.Png);
                             img2.ScaleToFit(250, 40);
                             img2.Alignment = iTextSharp.text.Image.ALIGN_CENTER;
 
                             //img.SetAbsolutePosition(10,100);
-                           img2.SetAbsolutePosition(20,20);
+                            img2.SetAbsolutePosition(20, 20);
                             pdfDoc.Add(img2);
 
                             //string filas = string.Empty;
@@ -405,10 +434,10 @@ namespace mainVentana.VistaEntrada
 
                         throw;
                     }
-                    
+
 
                     //pdfDoc.Add(new Phrase("Hola Mundo"));
-                    
+
 
                     pdfDoc.Close();
                     stream.Close();
@@ -431,13 +460,15 @@ namespace mainVentana.VistaEntrada
             try
             {
                 Servicios datos = new Servicios();
-                var lst2 =  datos.llenaSuc();
+                var lst2 = datos.llenaSuc();
 
                 sucEntrada.DisplayMember = "C2";
                 sucEntrada.ValueMember = "C1";
                 sucEntrada.DataSource = lst2;
 
                 cargaultent();
+
+                lblUser.Text = CacheLogin.username;
 
                 var lst1 = await datos.llenaCord();
                 cord.ValueMember = "C2";
@@ -453,7 +484,7 @@ namespace mainVentana.VistaEntrada
                 sucDestino.ValueMember = "C1";
                 sucDestino.DataSource = lst3;
 
-                var lst4 =  datos.llenaProveedores();
+                var lst4 = datos.llenaProveedores();
 
                 proveedor.DisplayMember = "C3";
                 proveedor.ValueMember = "C2";
@@ -497,9 +528,9 @@ namespace mainVentana.VistaEntrada
                 Moneda();
 
 
-                
 
-                
+
+
 
             }
             catch (Exception)
@@ -541,7 +572,7 @@ namespace mainVentana.VistaEntrada
             buscador.ShowDialog();
         }
 
-        public void moverinfo(string dato, string dato2, string dato3, string dato4, string dato5, string dato6,string dato7, int bandera) //cambia los datos de los textbox alias y clientes, la bandera dependera de la manera en la que se haya abierto el frm buscar, 0 clientes 1 alias, ADEMAS tambien sirve para cambiar el campo de cord
+        public void moverinfo(string dato, string dato2, string dato3, string dato4, string dato5, string dato6, string dato7, int bandera) //cambia los datos de los textbox alias y clientes, la bandera dependera de la manera en la que se haya abierto el frm buscar, 0 clientes 1 alias, ADEMAS tambien sirve para cambiar el campo de cord
         {
 
             if (bandera == 0) //clientes
@@ -648,7 +679,7 @@ namespace mainVentana.VistaEntrada
                     {
                         label28.Text = doc;
                     }
-                    
+
                 }
                 catch (Exception)
                 {
@@ -669,8 +700,8 @@ namespace mainVentana.VistaEntrada
             {
                 larch.Add(label28.Text);
             }
-            
-            
+
+
         }
 
         public async void Cargaparidad()
@@ -713,15 +744,15 @@ namespace mainVentana.VistaEntrada
 
         private DateTime regresafecha()
         {
-           
-                Servicio datos = new Servicio();
-                string fecha1 = datos.retornafechaLapaz();
-                
-                FechaActual lst = JsonConvert.DeserializeObject<FechaActual>(fecha1);
+
+            Servicio datos = new Servicio();
+            string fecha1 = datos.retornafechaLapaz();
+
+            FechaActual lst = JsonConvert.DeserializeObject<FechaActual>(fecha1);
 
             return lst.datetime;
 
-            
+
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -806,7 +837,7 @@ namespace mainVentana.VistaEntrada
 
         private void sucEntrada_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cargaultent();       
+            cargaultent();
         }
         private void cargaultent()
         {

@@ -501,7 +501,9 @@ namespace Negocios
                         Common.Cache.CacheLogin.nombre = i.nombre;
                         Common.Cache.CacheLogin.apellido = i.apellido;
                         Common.Cache.CacheLogin.email = i.email;
-
+                        Common.Cache.CacheLogin.rol = i.rol;
+                        Common.Cache.CacheLogin.estatus = i.estatus;    
+                        Common.Cache.CacheLogin.numero = i.numero;
                     }
 
                     if (lista.ToList().Count() <= 0)

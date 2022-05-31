@@ -58,7 +58,7 @@ namespace Negocios
 
 
 
-                string[] toMail = "sistemas@arnian.com".Split(',');//textBox6.Text.Split(','); // llenar desde la bd con los datos del cliente 
+                string[] toMail = Common.Cache.CacheLogin.email.Split(',');//textBox6.Text.Split(','); // llenar desde la bd con los datos del cliente 
                 foreach (string ToEmailId in toMail)
                 {
                     msg.To.Add(new MailAddress(ToEmailId));
