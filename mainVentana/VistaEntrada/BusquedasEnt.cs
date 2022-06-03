@@ -16,7 +16,7 @@ namespace mainVentana.VistaEntrada
     public partial class BusquedasEnt : Form
     {
 
-        public delegate void pasar(string alias, string cliente, string cord, string calle, string colonia, string ciudad, string codigocliente, int bandera);
+        public delegate void pasar(string alias, string cliente, string cord, string calle, string colonia, string ciudad, string codigocliente,string CorreosCliente, int bandera);
         //public delegate void pasar2(string dato,string cliente, int bandera);
         public event pasar pasado;
        // public event pasar2 pasado2;
@@ -34,9 +34,9 @@ namespace mainVentana.VistaEntrada
         private void pasarinfo()
         {
             if (label2.Text == "CLIENTE")
-            { pasado(gunaTextBox2.Text,"",gunaTextBox1.Text,calle,colonia,ciudad, Codcliente, 0); }
+            { pasado(gunaTextBox2.Text,"",gunaTextBox1.Text,calle,colonia,ciudad, Codcliente, CorreosCliente, 0); }
             else if (label2.Text == "ALIAS")
-            { pasado(gunaTextBox2.Text, gunaTextBox3.Text, gunaTextBox1.Text,calle,colonia,ciudad,"", 1); }
+            { pasado(gunaTextBox2.Text, gunaTextBox3.Text, gunaTextBox1.Text,calle,colonia,ciudad,"", CorreosCliente, 1); }
         }
 
         private AutoCompleteStringCollection aliasList()
@@ -119,6 +119,7 @@ namespace mainVentana.VistaEntrada
         string colonia;
         string ciudad;
         string Codcliente;
+        string CorreosCliente;
         private void gunaGradientTileButton4_Click(object sender, EventArgs e)
         {
             if (label2.Text == "ALIAS")
@@ -134,6 +135,7 @@ namespace mainVentana.VistaEntrada
                         gunaTextBox2.Text = d.c1.ToString().Trim();
                         gunaTextBox3.Text = validCli(d.c3.ToString())[0].ToString();
                         gunaTextBox1.Text = validCli(d.c3.ToString())[1].ToString();
+                        CorreosCliente = validCli(d.c3.ToString())[2].ToString();
                         calle = d.c4.ToString();
                         colonia = d.c5.ToString();
                         ciudad = d.c6.ToString();
@@ -165,10 +167,12 @@ namespace mainVentana.VistaEntrada
                         bandera = 1;
                         gunaTextBox2.Text = d.c3.ToString().Trim();
                         gunaTextBox1.Text = d.c12.ToString().Trim();
+                        CorreosCliente = d.c11.Trim();
                         calle = d.c4.ToString();
                         colonia = d.c5.ToString();
                         ciudad = d.c6.ToString();
                         Codcliente = d.c2.Trim();
+                        //CorreosCliente = d.c11;
                         pasarinfo();
                         this.Dispose();
                         this.Close();
@@ -204,6 +208,7 @@ namespace mainVentana.VistaEntrada
 
                     lista.Add(cliente = d.c3.ToString().Trim());
                     lista.Add(cord = (d.c12.ToString().Trim()));
+                    lista.Add(cord = (d.c11.ToString().Trim()));
 
 
 

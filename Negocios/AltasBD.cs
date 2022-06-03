@@ -5,6 +5,7 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Datos.ViewModels.Entradas;
 
 namespace Negocios
 {
@@ -124,6 +125,109 @@ namespace Negocios
                 throw;
             }
 
+        }
+
+        public void agregaKDMENT(string sucInicio, string folEntrada, string numEtiqueta, string documento, string etiqueta, string sucDestino, string sucActual, string desc, string fecha, 
+            int repEspecial, int modo, string proceso) 
+        {
+            try
+            {
+                using (modelo2Entities modelo = new modelo2Entities())
+                {
+                    modelo.AgregaKDMENT(
+                        sucInicio,
+                        "U",
+                        "D",
+                        "35",
+                        "1",
+                        folEntrada,
+                        numEtiqueta,
+                        documento,
+                        etiqueta,
+                        sucDestino,
+                        sucActual,
+                        desc,
+                        fecha,
+                        "E",
+                        "E",
+                        "E",
+                        "ESPECIAL",
+                        "ESPECIAL",
+                        "ESPECIAL",
+                        "F",
+                        repEspecial,
+                        modo,
+                        proceso,
+                        null,null,null,null,null,null,null,null,null,null,null,null,null
+
+                        );
+                   
+
+
+
+                    
+                    modelo.SaveChanges();
+
+                }
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+
+                throw;
+            }
+        }
+
+        public void agregarFotos(List<vmListaFotos> fotos)
+        {
+            try
+            {
+                using (modelo2Entities modelo = new modelo2Entities())
+                {
+                    var d = new DSIMAGE();
+                    foreach (var i in fotos)
+                    {
+                        d.ENTRADA= i.entrada;
+                        d.NOMBRE = i.nombre;
+                        d.REALNOMBRE = i.realnombre;
+                        d.BYTEDOCUMENTO = i.bytedocumto;
+                        d.EXTRA1 = i.sucursal.Trim();
+                        modelo.DSIMAGE.Add(d);
+                        modelo.SaveChanges();
+                    }
+                    
+                   
+
+
+                    
+
+                }
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+
+                throw;
+            }
+            
         }
 
     }

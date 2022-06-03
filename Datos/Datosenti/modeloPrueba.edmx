@@ -5,6 +5,18 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="KEPLER_PRUEBASModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DSIMAGE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ENTRADA" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NOMBRE" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="REALNOMBRE" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="BYTEDOCUMENTO" Type="image" Nullable="false" />
+          <Property Name="EXTRA1" Type="nvarchar" MaxLength="100" />
+          <Property Name="EXTRA2" Type="nvarchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="DSMODULO">
           <Key>
             <PropertyRef Name="IdModulo" />
@@ -531,6 +543,60 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="AgregaKDMENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SUC" Type="varchar" Mode="In" />
+          <Parameter Name="GEN" Type="varchar" Mode="In" />
+          <Parameter Name="NAT" Type="varchar" Mode="In" />
+          <Parameter Name="GRU" Type="varchar" Mode="In" />
+          <Parameter Name="TIP" Type="varchar" Mode="In" />
+          <Parameter Name="FOL" Type="varchar" Mode="In" />
+          <Parameter Name="PARTIDA" Type="varchar" Mode="In" />
+          <Parameter Name="DOCUMENTO" Type="varchar" Mode="In" />
+          <Parameter Name="ETIQUETA" Type="varchar" Mode="In" />
+          <Parameter Name="SUCD" Type="varchar" Mode="In" />
+          <Parameter Name="SUCA" Type="varchar" Mode="In" />
+          <Parameter Name="DESC" Type="varchar(max)" Mode="In" />
+          <Parameter Name="FECHA_HORA" Type="varchar" Mode="In" />
+          <Parameter Name="C11" Type="char" Mode="In" />
+          <Parameter Name="C12" Type="char" Mode="In" />
+          <Parameter Name="C13" Type="char" Mode="In" />
+          <Parameter Name="C16" Type="varchar" Mode="In" />
+          <Parameter Name="C17" Type="varchar" Mode="In" />
+          <Parameter Name="C18" Type="varchar" Mode="In" />
+          <Parameter Name="C20" Type="char" Mode="In" />
+          <Parameter Name="ESPECIAL" Type="int" Mode="In" />
+          <Parameter Name="MODO" Type="int" Mode="In" />
+          <Parameter Name="PROCESO" Type="varchar" Mode="In" />
+          <Parameter Name="PROCESO_DOCTO" Type="varchar" Mode="In" />
+          <Parameter Name="PROCESO_FECHA_HORA" Type="varchar" Mode="In" />
+          <Parameter Name="AGREGADO" Type="varchar" Mode="In" />
+          <Parameter Name="ESTATUS" Type="varchar" Mode="In" />
+          <Parameter Name="FECHA_ES" Type="varchar" Mode="In" />
+          <Parameter Name="ID_DIR" Type="varchar" Mode="In" />
+          <Parameter Name="DIRECCION" Type="varchar" Mode="In" />
+          <Parameter Name="COLONIA" Type="varchar" Mode="In" />
+          <Parameter Name="POBLACION" Type="varchar" Mode="In" />
+          <Parameter Name="CP" Type="varchar" Mode="In" />
+          <Parameter Name="TEL1" Type="varchar" Mode="In" />
+          <Parameter Name="TEL2" Type="varchar" Mode="In" />
+          <Parameter Name="SUC_GRID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="AgregaKDMENT_Rev" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SUC" Type="varchar" Mode="In" />
+          <Parameter Name="GEN" Type="varchar" Mode="In" />
+          <Parameter Name="NAT" Type="varchar" Mode="In" />
+          <Parameter Name="GRU" Type="varchar" Mode="In" />
+          <Parameter Name="TIP" Type="varchar" Mode="In" />
+          <Parameter Name="FOL" Type="varchar" Mode="In" />
+          <Parameter Name="ETIQUETA" Type="varchar" Mode="In" />
+          <Parameter Name="C41" Type="varchar" Mode="In" />
+          <Parameter Name="C42" Type="varchar" Mode="In" />
+          <Parameter Name="C43" Type="varchar" Mode="In" />
+          <Parameter Name="C44" Type="varchar" Mode="In" />
+          <Parameter Name="C45" Type="varchar" Mode="In" />
+          <Parameter Name="MODO" Type="int" Mode="In" />
+          <Parameter Name="PROCESO" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="NO_RASTREO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="NoRastCrear" Type="int" Mode="In" />
         </Function>
@@ -538,6 +604,7 @@
           <Parameter Name="DATO" Type="nvarchar" Mode="In" />
         </Function>
         <EntityContainer Name="KEPLER_PRUEBASModelStoreContainer">
+          <EntitySet Name="DSIMAGE" EntityType="Self.DSIMAGE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DSMODULO" EntityType="Self.DSMODULO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DSOPERACION" EntityType="Self.DSOPERACION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DSROL_OPER" EntityType="Self.DSROL_OPER" Schema="dbo" store:Type="Tables" />
@@ -1040,6 +1107,61 @@
             <End Role="DSROL2" EntitySet="DSROL2" />
             <End Role="DSUSER" EntitySet="DSUSER" />
           </AssociationSet>
+          <FunctionImport Name="AgregaKDMENT">
+            <Parameter Name="SUC" Mode="In" Type="String" />
+            <Parameter Name="GEN" Mode="In" Type="String" />
+            <Parameter Name="NAT" Mode="In" Type="String" />
+            <Parameter Name="GRU" Mode="In" Type="String" />
+            <Parameter Name="TIP" Mode="In" Type="String" />
+            <Parameter Name="FOL" Mode="In" Type="String" />
+            <Parameter Name="PARTIDA" Mode="In" Type="String" />
+            <Parameter Name="DOCUMENTO" Mode="In" Type="String" />
+            <Parameter Name="ETIQUETA" Mode="In" Type="String" />
+            <Parameter Name="SUCD" Mode="In" Type="String" />
+            <Parameter Name="SUCA" Mode="In" Type="String" />
+            <Parameter Name="DESC" Mode="In" Type="String" />
+            <Parameter Name="FECHA_HORA" Mode="In" Type="String" />
+            <Parameter Name="C11" Mode="In" Type="String" />
+            <Parameter Name="C12" Mode="In" Type="String" />
+            <Parameter Name="C13" Mode="In" Type="String" />
+            <Parameter Name="C16" Mode="In" Type="String" />
+            <Parameter Name="C17" Mode="In" Type="String" />
+            <Parameter Name="C18" Mode="In" Type="String" />
+            <Parameter Name="C20" Mode="In" Type="String" />
+            <Parameter Name="ESPECIAL" Mode="In" Type="Int32" />
+            <Parameter Name="MODO" Mode="In" Type="Int32" />
+            <Parameter Name="PROCESO" Mode="In" Type="String" />
+            <Parameter Name="PROCESO_DOCTO" Mode="In" Type="String" />
+            <Parameter Name="PROCESO_FECHA_HORA" Mode="In" Type="String" />
+            <Parameter Name="AGREGADO" Mode="In" Type="String" />
+            <Parameter Name="ESTATUS" Mode="In" Type="String" />
+            <Parameter Name="FECHA_ES" Mode="In" Type="String" />
+            <Parameter Name="ID_DIR" Mode="In" Type="String" />
+            <Parameter Name="DIRECCION" Mode="In" Type="String" />
+            <Parameter Name="COLONIA" Mode="In" Type="String" />
+            <Parameter Name="POBLACION" Mode="In" Type="String" />
+            <Parameter Name="CP" Mode="In" Type="String" />
+            <Parameter Name="TEL1" Mode="In" Type="String" />
+            <Parameter Name="TEL2" Mode="In" Type="String" />
+            <Parameter Name="SUC_GRID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AgregaKDMENT_Rev">
+            <Parameter Name="SUC" Mode="In" Type="String" />
+            <Parameter Name="GEN" Mode="In" Type="String" />
+            <Parameter Name="NAT" Mode="In" Type="String" />
+            <Parameter Name="GRU" Mode="In" Type="String" />
+            <Parameter Name="TIP" Mode="In" Type="String" />
+            <Parameter Name="FOL" Mode="In" Type="String" />
+            <Parameter Name="ETIQUETA" Mode="In" Type="String" />
+            <Parameter Name="C41" Mode="In" Type="String" />
+            <Parameter Name="C42" Mode="In" Type="String" />
+            <Parameter Name="C43" Mode="In" Type="String" />
+            <Parameter Name="C44" Mode="In" Type="String" />
+            <Parameter Name="C45" Mode="In" Type="String" />
+            <Parameter Name="MODO" Mode="In" Type="Int32" />
+            <Parameter Name="PROCESO" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="DSIMAGE" EntityType="KEPLER_PRUEBASModel.DSIMAGE" />
           </EntityContainer>
         <ComplexType Name="NO_RASTREO_Result">
           <Property Type="String" Name="rand_number" Nullable="false" MaxLength="13" />
@@ -1156,6 +1278,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="DSIMAGE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ENTRADA" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="REALNOMBRE" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="BYTEDOCUMENTO" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="EXTRA1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EXTRA2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1648,6 +1782,21 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="LoginName" ColumnName="LoginName" />
                 <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AgregaKDMENT" FunctionName="KEPLER_PRUEBASModel.Store.AgregaKDMENT" />
+          <FunctionImportMapping FunctionImportName="AgregaKDMENT_Rev" FunctionName="KEPLER_PRUEBASModel.Store.AgregaKDMENT_Rev" />
+          <EntitySetMapping Name="DSIMAGE">
+            <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.DSIMAGE">
+              <MappingFragment StoreEntitySet="DSIMAGE">
+                <ScalarProperty Name="EXTRA2" ColumnName="EXTRA2" />
+                <ScalarProperty Name="EXTRA1" ColumnName="EXTRA1" />
+                <ScalarProperty Name="BYTEDOCUMENTO" ColumnName="BYTEDOCUMENTO" />
+                <ScalarProperty Name="REALNOMBRE" ColumnName="REALNOMBRE" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="ENTRADA" ColumnName="ENTRADA" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

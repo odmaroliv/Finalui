@@ -160,8 +160,7 @@ namespace mainVentana
 
         private void gunaGradientTileButton5_Click(object sender, EventArgs e)
         {
-           Email.vEmail frm = new Email.vEmail();
-            frm.ShowDialog();
+            
         }
 
 

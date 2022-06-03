@@ -13,7 +13,7 @@ namespace Datos.ViewModels.Entradas
         public string c4 { get; set; }
         public string c5 { get; set; }
         public string c6 { get; set; }
-
+        public string c11 { get; set; }
         public string c12 { get; set; }
 
     }

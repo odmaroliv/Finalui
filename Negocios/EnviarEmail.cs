@@ -11,7 +11,8 @@ namespace Negocios
 {
     public class EnviarEmail
     {
-        public int EnviaMail(string Entrada, string Cliente, string Notraking, string Alias, string OrdCompra, string Noflete, string Proveedor, string Desc,List<string> Fotos, List<string> Archivos)
+                
+        public int EnviaMail(string Entrada, string Cliente, string Notraking, string Alias, string OrdCompra, string Noflete, string Proveedor, string Desc,List<string> Fotos, List<string> Archivos,string correosClientes)
         {
             int bandera = default;
             try
@@ -63,15 +64,15 @@ namespace Negocios
                 {
                     msg.To.Add(new MailAddress(ToEmailId));
                 }
-                /*if (textBox5.Text != "")
+                if (correosClientes != "")
                 {
-                    string[] toCC = textBox5.Text.Split(',');
+                    string[] toCC = correosClientes.Split(',');
                     foreach (string ToCCId in toCC)
                     {
                         msg.CC.Add(new MailAddress(ToCCId));
                     }
                 }
-                if (textBox4.Text != "")
+                /*if (textBox4.Text != "")
                 {
                     string[] toBCC = textBox4.Text.Split(',');
                     foreach (string ToBCCId in toBCC)

@@ -239,6 +239,7 @@ namespace Negocios
                                     c4 = d.C4.Trim(),
                                     c5 = d.C5.Trim(),
                                     c6 = d.C6.Trim(),
+                                    c11 = d.C11.Trim(),
                                     c12 = d.C12.Trim()
 
 

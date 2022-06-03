@@ -44,6 +44,7 @@ namespace Datos.Datosenti
         public virtual DbSet<DSROL_OPER> DSROL_OPER { get; set; }
         public virtual DbSet<DSROL2> DSROL2 { get; set; }
         public virtual DbSet<DSUSER> DSUSER { get; set; }
+        public virtual DbSet<DSIMAGE> DSIMAGE { get; set; }
     
         public virtual ObjectResult<NO_RASTREO_Result> NO_RASTREO(Nullable<int> noRastCrear)
         {
@@ -61,6 +62,216 @@ namespace Datos.Datosenti
                 new ObjectParameter("DATO", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("NumeroEntradaMAX", dATOParameter);
+        }
+    
+        public virtual int AgregaKDMENT(string sUC, string gEN, string nAT, string gRU, string tIP, string fOL, string pARTIDA, string dOCUMENTO, string eTIQUETA, string sUCD, string sUCA, string dESC, string fECHA_HORA, string c11, string c12, string c13, string c16, string c17, string c18, string c20, Nullable<int> eSPECIAL, Nullable<int> mODO, string pROCESO, string pROCESO_DOCTO, string pROCESO_FECHA_HORA, string aGREGADO, string eSTATUS, string fECHA_ES, string iD_DIR, string dIRECCION, string cOLONIA, string pOBLACION, string cP, string tEL1, string tEL2, string sUC_GRID)
+        {
+            var sUCParameter = sUC != null ?
+                new ObjectParameter("SUC", sUC) :
+                new ObjectParameter("SUC", typeof(string));
+    
+            var gENParameter = gEN != null ?
+                new ObjectParameter("GEN", gEN) :
+                new ObjectParameter("GEN", typeof(string));
+    
+            var nATParameter = nAT != null ?
+                new ObjectParameter("NAT", nAT) :
+                new ObjectParameter("NAT", typeof(string));
+    
+            var gRUParameter = gRU != null ?
+                new ObjectParameter("GRU", gRU) :
+                new ObjectParameter("GRU", typeof(string));
+    
+            var tIPParameter = tIP != null ?
+                new ObjectParameter("TIP", tIP) :
+                new ObjectParameter("TIP", typeof(string));
+    
+            var fOLParameter = fOL != null ?
+                new ObjectParameter("FOL", fOL) :
+                new ObjectParameter("FOL", typeof(string));
+    
+            var pARTIDAParameter = pARTIDA != null ?
+                new ObjectParameter("PARTIDA", pARTIDA) :
+                new ObjectParameter("PARTIDA", typeof(string));
+    
+            var dOCUMENTOParameter = dOCUMENTO != null ?
+                new ObjectParameter("DOCUMENTO", dOCUMENTO) :
+                new ObjectParameter("DOCUMENTO", typeof(string));
+    
+            var eTIQUETAParameter = eTIQUETA != null ?
+                new ObjectParameter("ETIQUETA", eTIQUETA) :
+                new ObjectParameter("ETIQUETA", typeof(string));
+    
+            var sUCDParameter = sUCD != null ?
+                new ObjectParameter("SUCD", sUCD) :
+                new ObjectParameter("SUCD", typeof(string));
+    
+            var sUCAParameter = sUCA != null ?
+                new ObjectParameter("SUCA", sUCA) :
+                new ObjectParameter("SUCA", typeof(string));
+    
+            var dESCParameter = dESC != null ?
+                new ObjectParameter("DESC", dESC) :
+                new ObjectParameter("DESC", typeof(string));
+    
+            var fECHA_HORAParameter = fECHA_HORA != null ?
+                new ObjectParameter("FECHA_HORA", fECHA_HORA) :
+                new ObjectParameter("FECHA_HORA", typeof(string));
+    
+            var c11Parameter = c11 != null ?
+                new ObjectParameter("C11", c11) :
+                new ObjectParameter("C11", typeof(string));
+    
+            var c12Parameter = c12 != null ?
+                new ObjectParameter("C12", c12) :
+                new ObjectParameter("C12", typeof(string));
+    
+            var c13Parameter = c13 != null ?
+                new ObjectParameter("C13", c13) :
+                new ObjectParameter("C13", typeof(string));
+    
+            var c16Parameter = c16 != null ?
+                new ObjectParameter("C16", c16) :
+                new ObjectParameter("C16", typeof(string));
+    
+            var c17Parameter = c17 != null ?
+                new ObjectParameter("C17", c17) :
+                new ObjectParameter("C17", typeof(string));
+    
+            var c18Parameter = c18 != null ?
+                new ObjectParameter("C18", c18) :
+                new ObjectParameter("C18", typeof(string));
+    
+            var c20Parameter = c20 != null ?
+                new ObjectParameter("C20", c20) :
+                new ObjectParameter("C20", typeof(string));
+    
+            var eSPECIALParameter = eSPECIAL.HasValue ?
+                new ObjectParameter("ESPECIAL", eSPECIAL) :
+                new ObjectParameter("ESPECIAL", typeof(int));
+    
+            var mODOParameter = mODO.HasValue ?
+                new ObjectParameter("MODO", mODO) :
+                new ObjectParameter("MODO", typeof(int));
+    
+            var pROCESOParameter = pROCESO != null ?
+                new ObjectParameter("PROCESO", pROCESO) :
+                new ObjectParameter("PROCESO", typeof(string));
+    
+            var pROCESO_DOCTOParameter = pROCESO_DOCTO != null ?
+                new ObjectParameter("PROCESO_DOCTO", pROCESO_DOCTO) :
+                new ObjectParameter("PROCESO_DOCTO", typeof(string));
+    
+            var pROCESO_FECHA_HORAParameter = pROCESO_FECHA_HORA != null ?
+                new ObjectParameter("PROCESO_FECHA_HORA", pROCESO_FECHA_HORA) :
+                new ObjectParameter("PROCESO_FECHA_HORA", typeof(string));
+    
+            var aGREGADOParameter = aGREGADO != null ?
+                new ObjectParameter("AGREGADO", aGREGADO) :
+                new ObjectParameter("AGREGADO", typeof(string));
+    
+            var eSTATUSParameter = eSTATUS != null ?
+                new ObjectParameter("ESTATUS", eSTATUS) :
+                new ObjectParameter("ESTATUS", typeof(string));
+    
+            var fECHA_ESParameter = fECHA_ES != null ?
+                new ObjectParameter("FECHA_ES", fECHA_ES) :
+                new ObjectParameter("FECHA_ES", typeof(string));
+    
+            var iD_DIRParameter = iD_DIR != null ?
+                new ObjectParameter("ID_DIR", iD_DIR) :
+                new ObjectParameter("ID_DIR", typeof(string));
+    
+            var dIRECCIONParameter = dIRECCION != null ?
+                new ObjectParameter("DIRECCION", dIRECCION) :
+                new ObjectParameter("DIRECCION", typeof(string));
+    
+            var cOLONIAParameter = cOLONIA != null ?
+                new ObjectParameter("COLONIA", cOLONIA) :
+                new ObjectParameter("COLONIA", typeof(string));
+    
+            var pOBLACIONParameter = pOBLACION != null ?
+                new ObjectParameter("POBLACION", pOBLACION) :
+                new ObjectParameter("POBLACION", typeof(string));
+    
+            var cPParameter = cP != null ?
+                new ObjectParameter("CP", cP) :
+                new ObjectParameter("CP", typeof(string));
+    
+            var tEL1Parameter = tEL1 != null ?
+                new ObjectParameter("TEL1", tEL1) :
+                new ObjectParameter("TEL1", typeof(string));
+    
+            var tEL2Parameter = tEL2 != null ?
+                new ObjectParameter("TEL2", tEL2) :
+                new ObjectParameter("TEL2", typeof(string));
+    
+            var sUC_GRIDParameter = sUC_GRID != null ?
+                new ObjectParameter("SUC_GRID", sUC_GRID) :
+                new ObjectParameter("SUC_GRID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AgregaKDMENT", sUCParameter, gENParameter, nATParameter, gRUParameter, tIPParameter, fOLParameter, pARTIDAParameter, dOCUMENTOParameter, eTIQUETAParameter, sUCDParameter, sUCAParameter, dESCParameter, fECHA_HORAParameter, c11Parameter, c12Parameter, c13Parameter, c16Parameter, c17Parameter, c18Parameter, c20Parameter, eSPECIALParameter, mODOParameter, pROCESOParameter, pROCESO_DOCTOParameter, pROCESO_FECHA_HORAParameter, aGREGADOParameter, eSTATUSParameter, fECHA_ESParameter, iD_DIRParameter, dIRECCIONParameter, cOLONIAParameter, pOBLACIONParameter, cPParameter, tEL1Parameter, tEL2Parameter, sUC_GRIDParameter);
+        }
+    
+        public virtual int AgregaKDMENT_Rev(string sUC, string gEN, string nAT, string gRU, string tIP, string fOL, string eTIQUETA, string c41, string c42, string c43, string c44, string c45, Nullable<int> mODO, string pROCESO)
+        {
+            var sUCParameter = sUC != null ?
+                new ObjectParameter("SUC", sUC) :
+                new ObjectParameter("SUC", typeof(string));
+    
+            var gENParameter = gEN != null ?
+                new ObjectParameter("GEN", gEN) :
+                new ObjectParameter("GEN", typeof(string));
+    
+            var nATParameter = nAT != null ?
+                new ObjectParameter("NAT", nAT) :
+                new ObjectParameter("NAT", typeof(string));
+    
+            var gRUParameter = gRU != null ?
+                new ObjectParameter("GRU", gRU) :
+                new ObjectParameter("GRU", typeof(string));
+    
+            var tIPParameter = tIP != null ?
+                new ObjectParameter("TIP", tIP) :
+                new ObjectParameter("TIP", typeof(string));
+    
+            var fOLParameter = fOL != null ?
+                new ObjectParameter("FOL", fOL) :
+                new ObjectParameter("FOL", typeof(string));
+    
+            var eTIQUETAParameter = eTIQUETA != null ?
+                new ObjectParameter("ETIQUETA", eTIQUETA) :
+                new ObjectParameter("ETIQUETA", typeof(string));
+    
+            var c41Parameter = c41 != null ?
+                new ObjectParameter("C41", c41) :
+                new ObjectParameter("C41", typeof(string));
+    
+            var c42Parameter = c42 != null ?
+                new ObjectParameter("C42", c42) :
+                new ObjectParameter("C42", typeof(string));
+    
+            var c43Parameter = c43 != null ?
+                new ObjectParameter("C43", c43) :
+                new ObjectParameter("C43", typeof(string));
+    
+            var c44Parameter = c44 != null ?
+                new ObjectParameter("C44", c44) :
+                new ObjectParameter("C44", typeof(string));
+    
+            var c45Parameter = c45 != null ?
+                new ObjectParameter("C45", c45) :
+                new ObjectParameter("C45", typeof(string));
+    
+            var mODOParameter = mODO.HasValue ?
+                new ObjectParameter("MODO", mODO) :
+                new ObjectParameter("MODO", typeof(int));
+    
+            var pROCESOParameter = pROCESO != null ?
+                new ObjectParameter("PROCESO", pROCESO) :
+                new ObjectParameter("PROCESO", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AgregaKDMENT_Rev", sUCParameter, gENParameter, nATParameter, gRUParameter, tIPParameter, fOLParameter, eTIQUETAParameter, c41Parameter, c42Parameter, c43Parameter, c44Parameter, c45Parameter, mODOParameter, pROCESOParameter);
         }
     }
 }
