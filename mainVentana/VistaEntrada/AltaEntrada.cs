@@ -254,7 +254,7 @@ namespace mainVentana.VistaEntrada
 
 
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox2.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-1", realnombre = filename, bytedocumto = imgbyte(pictureBox2.ImageLocation, pictureBox2.Image),sucursal = sucEntrada.SelectedValue.ToString() });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox2.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-1", realnombre = filename, bytedocumto = imgbyte(pictureBox2.ImageLocation, pictureBox2.Image),sucursal = sucEntrada.SelectedValue.ToString() , tipo = "Imagen"});
             }
 
             if (pictureBox3.Image != null)
@@ -263,7 +263,7 @@ namespace mainVentana.VistaEntrada
                 string filename = null;
                 filename = Path.GetFileName(pictureBox3.ImageLocation);
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox3.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-2", realnombre = filename, bytedocumto = imgbyte(pictureBox3.ImageLocation, pictureBox3.Image), sucursal = sucEntrada.SelectedValue.ToString() });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox3.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-2", realnombre = filename, bytedocumto = imgbyte(pictureBox3.ImageLocation, pictureBox3.Image), sucursal = sucEntrada.SelectedValue.ToString() , tipo = "Imagen" });
             }
 
             if (pictureBox4.Image != null)
@@ -273,7 +273,7 @@ namespace mainVentana.VistaEntrada
                 string filename = null;
                 filename = Path.GetFileName(pictureBox4.ImageLocation);
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox4.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-3", realnombre = filename, bytedocumto = imgbyte(pictureBox4.ImageLocation, pictureBox4.Image), sucursal = sucEntrada.SelectedValue.ToString() });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox4.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-3", realnombre = filename, bytedocumto = imgbyte(pictureBox4.ImageLocation, pictureBox4.Image), sucursal = sucEntrada.SelectedValue.ToString() , tipo = "Imagen" });
             }
 
             if (pictureBox5.Image != null)
@@ -283,7 +283,7 @@ namespace mainVentana.VistaEntrada
                 filename = Path.GetFileName(pictureBox5.ImageLocation);
 
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox5.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-4", realnombre = filename, bytedocumto = imgbyte(pictureBox5.ImageLocation, pictureBox5.Image), sucursal = sucEntrada.SelectedValue.ToString() });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox5.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-4", realnombre = filename, bytedocumto = imgbyte(pictureBox5.ImageLocation, pictureBox5.Image), sucursal = sucEntrada.SelectedValue.ToString() , tipo = "Imagen"  });
 
             }
             if (pictureBox6.Image != null)
@@ -291,7 +291,7 @@ namespace mainVentana.VistaEntrada
                 string filename = null;
                 filename = Path.GetFileName(pictureBox6.ImageLocation);
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox6.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-5", realnombre = filename, bytedocumto = imgbyte(pictureBox6.ImageLocation, pictureBox6.Image), sucursal = sucEntrada.SelectedValue.ToString() });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox6.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-5", realnombre = filename, bytedocumto = imgbyte(pictureBox6.ImageLocation, pictureBox6.Image), sucursal = sucEntrada.SelectedValue.ToString() , tipo = "Imagen" });
 
             }
             if (pictureBox7.Image != null)
@@ -300,14 +300,14 @@ namespace mainVentana.VistaEntrada
                 filename = Path.GetFileName(pictureBox7.ImageLocation);
 
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox7.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-6", realnombre = filename, bytedocumto = imgbyte(pictureBox7.ImageLocation, pictureBox7.Image) , sucursal = sucEntrada.SelectedValue.ToString() });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox7.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-6", realnombre = filename, bytedocumto = imgbyte(pictureBox7.ImageLocation, pictureBox7.Image) , sucursal = sucEntrada.SelectedValue.ToString() , tipo = "Imagen" });
             }
             if (pictureBox8.Image != null)
             {
                 string filename = null;
                 filename = Path.GetFileName(pictureBox8.ImageLocation);
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox8.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-7", realnombre = filename, bytedocumto = imgbyte(pictureBox8.ImageLocation, pictureBox8.Image) , sucursal = sucEntrada.SelectedValue.ToString() });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox8.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-7", realnombre = filename, bytedocumto = imgbyte(pictureBox8.ImageLocation, pictureBox8.Image) , sucursal = sucEntrada.SelectedValue.ToString() , tipo = "Imagen" });
             }
             if (pictureBox9.Image != null)
             {
@@ -315,7 +315,7 @@ namespace mainVentana.VistaEntrada
                 filename = Path.GetFileName(pictureBox9.ImageLocation);
 
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox9.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-8", realnombre = filename, bytedocumto = imgbyte(pictureBox9.ImageLocation, pictureBox9.Image) , sucursal = sucEntrada.SelectedValue.ToString() });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox9.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-8", realnombre = filename, bytedocumto = imgbyte(pictureBox9.ImageLocation, pictureBox9.Image) , sucursal = sucEntrada.SelectedValue.ToString() , tipo = "Imagen" });
             }
             if (pictureBox10.Image != null)
             {
@@ -323,7 +323,7 @@ namespace mainVentana.VistaEntrada
                 filename = Path.GetFileName(pictureBox10.ImageLocation);
 
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox10.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-9", realnombre = filename, bytedocumto = imgbyte(pictureBox10.ImageLocation, pictureBox10.Image) , sucursal = sucEntrada.SelectedValue.ToString() });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox10.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-9", realnombre = filename, bytedocumto = imgbyte(pictureBox10.ImageLocation, pictureBox10.Image) , sucursal = sucEntrada.SelectedValue.ToString() , tipo = "Imagen" });
             }
             if (pictureBox11.Image != null)
             {
@@ -331,7 +331,7 @@ namespace mainVentana.VistaEntrada
                 filename = Path.GetFileName(pictureBox11.ImageLocation);
 
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox11.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-10", realnombre = filename, bytedocumto = imgbyte(pictureBox11.ImageLocation, pictureBox11.Image) , sucursal = sucEntrada.SelectedValue.ToString() });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox11.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-10", realnombre = filename, bytedocumto = imgbyte(pictureBox11.ImageLocation, pictureBox11.Image) , sucursal = sucEntrada.SelectedValue.ToString() , tipo = "Imagen" });
             }
             if (pictureBox12.Image != null)
             {
@@ -339,7 +339,7 @@ namespace mainVentana.VistaEntrada
                 filename = Path.GetFileName(pictureBox12.ImageLocation);
 
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox12.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-11", realnombre = filename, bytedocumto = imgbyte(pictureBox12.ImageLocation, pictureBox12.Image)   , sucursal = sucEntrada.SelectedValue.ToString() });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox12.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-11", realnombre = filename, bytedocumto = imgbyte(pictureBox12.ImageLocation, pictureBox12.Image)   , sucursal = sucEntrada.SelectedValue.ToString() , tipo = "Imagen" });
             }
             if (pictureBox13.Image != null)
             {
@@ -347,7 +347,7 @@ namespace mainVentana.VistaEntrada
                 filename = Path.GetFileName(pictureBox13.ImageLocation);
 
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox13.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-12", realnombre = filename, bytedocumto = imgbyte(pictureBox13.ImageLocation, pictureBox13.Image) , sucursal = sucEntrada.SelectedValue.ToString() });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox13.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-12", realnombre = filename, bytedocumto = imgbyte(pictureBox13.ImageLocation, pictureBox13.Image) , sucursal = sucEntrada.SelectedValue.ToString() , tipo = "Imagen" });
             }
             if (pictureBox14.Image != null)
             {
@@ -355,17 +355,40 @@ namespace mainVentana.VistaEntrada
                 filename = Path.GetFileName(pictureBox14.ImageLocation);
 
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox14.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-13", realnombre = filename, bytedocumto = imgbyte(pictureBox14.ImageLocation, pictureBox14.Image) , sucursal = sucEntrada.SelectedValue.ToString() });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox14.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-13", realnombre = filename, bytedocumto = imgbyte(pictureBox14.ImageLocation, pictureBox14.Image) , sucursal = sucEntrada.SelectedValue.ToString() , tipo = "Imagen" });
             }
             if (pictureBox15.Image != null)
             {
                 string filename = null;
                 filename = Path.GetFileName(pictureBox15.ImageLocation);
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox15.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-14", realnombre = filename, bytedocumto = imgbyte(pictureBox15.ImageLocation, pictureBox15.Image) , sucursal = sucEntrada.SelectedValue.ToString() });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox15.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-14", realnombre = filename, bytedocumto = imgbyte(pictureBox15.ImageLocation, pictureBox15.Image) , sucursal = sucEntrada.SelectedValue.ToString() , tipo = "Imagen" });
             }
-
+            
         }
+        private void AgregaArchivoslist()
+        {
+           
+                
+                if (label27.Text != null && label27.Text != "")
+                {
+                    string filename = null;
+                    filename = Path.GetFileName(label27.Text);
+
+
+
+                    lstFotos.Add(new vmListaFotos { documento = label27.Text, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-1", realnombre = filename, bytedocumto = docbyte(label27.Text), sucursal = sucEntrada.SelectedValue.ToString() ,tipo = "Doc" });
+                }
+
+                if (label28.Text != null && label28.Text != "")
+                {
+
+                    string filename = null;
+                    filename = Path.GetFileName(label28.Text);
+
+                    lstFotos.Add(new vmListaFotos { documento = label28.Text, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-2", realnombre = filename, bytedocumto = docbyte(label28.Text), sucursal = sucEntrada.SelectedValue.ToString() ,tipo = "Doc" });
+                }
+            }
 
         #endregion
 
@@ -391,6 +414,7 @@ namespace mainVentana.VistaEntrada
                 altaKDM1();
                 altaKDM1coment();
                 SubeFotos();
+                
                 CreaEriquetas();
                 envEmail();
                 limpiaImg();
@@ -478,10 +502,11 @@ namespace mainVentana.VistaEntrada
             if (respuesta == 1)
             {
                 MessageBox.Show("El correo NO SE ENVIÓ PORQUE supera el límite máximo de 25 MB en cada correo, intenta borrar documentos y reenvía la notificación", "CUIDADO EL CORREO NO SE ENVIO");
+                NotificaEmail(0, label41.Text, cliente.Text);
             }
             else
             {
-                MessageBox.Show("Correo enviado con éxito", "éxito!");
+                NotificaEmail(1, label41.Text, cliente.Text);
             }
 
         }
@@ -602,6 +627,7 @@ namespace mainVentana.VistaEntrada
 
             AltasBD bd = new AltasBD();
             creaListadepARAMSFotos();
+            AgregaArchivoslist();
             bd.agregarFotos(lstFotos);
         }
         private byte[] imgbyte(string ruta, System.Drawing.Image picture)
@@ -620,7 +646,22 @@ namespace mainVentana.VistaEntrada
             //picture.Dispose();
         }
 
-
+        private byte[] docbyte(string ruta)
+        {
+            byte[] file = null;
+            vmListaFotos lsf = new vmListaFotos();
+            Stream fs = new FileStream(ruta, FileMode.Open);
+            //var img = ruta;
+            // img.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+            using (MemoryStream ms = new MemoryStream())
+            {
+                fs.CopyTo(ms);
+                file = ms.ToArray();
+                fs.Dispose();
+            }
+            return file;
+            //picture.Dispose();
+        }
 
 
         private void AltaEntrada_KeyPress(object sender, KeyPressEventArgs e)
@@ -1060,10 +1101,9 @@ namespace mainVentana.VistaEntrada
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            //limpiaImg();
-            creaListadepARAMSFotos();
-            SubeFotos();
             
+
+
         }
         public void limpiaImg()
         {
@@ -1142,5 +1182,34 @@ namespace mainVentana.VistaEntrada
         
              
         }
+
+        //
+        // Notificaciones-------------------------------------------------------------------------------------------------------------------------------
+        //
+
+        private void NotificaEmail(int nttipo, string ntentrada, string ntcliente)
+        {
+            /*
+             0 = ERROR
+             1 = EXITO
+            */
+
+            if (nttipo == 1)
+            {
+                notifyIcon1.Text = "El email se ha enviado exitosamente";
+                notifyIcon1.BalloonTipTitle = "EXITO: Email Correcto " + ntentrada;
+                notifyIcon1.BalloonTipText = "El email de la entrada " + ntentrada + " ha sido enviado correctamente\r\nCliente: "+ntcliente;
+                notifyIcon1.ShowBalloonTip(10000);
+            }
+            else if (nttipo == 2)
+            {
+                notifyIcon1.Text = "ERROR: El email NO se ha enviado";
+                notifyIcon1.BalloonTipTitle = "ERROR: Email Correcto " + ntentrada;
+                notifyIcon1.BalloonTipText = "El email de la entrada " + ntentrada + "NO ha sido enviado\r\nCliente: " + ntcliente;
+                notifyIcon1.ShowBalloonTip(10000);
+            }
+           
+        }
+
     }
 }

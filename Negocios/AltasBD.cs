@@ -201,6 +201,7 @@ namespace Negocios
                         d.REALNOMBRE = i.realnombre;
                         d.BYTEDOCUMENTO = i.bytedocumto;
                         d.EXTRA1 = i.sucursal.Trim();
+                        d.EXTRA2 = i.tipo.Trim();
                         modelo.DSIMAGE.Add(d);
                         modelo.SaveChanges();
                     }

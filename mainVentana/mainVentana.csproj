@@ -216,6 +216,7 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Notificaciones\Notificciones.cs" />
     <Compile Include="Over.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -15,5 +15,6 @@ namespace Datos.ViewModels.Entradas
         public string realnombre { get; set; }
         public byte[] bytedocumto { get; set; }
         public string sucursal { get; set; }
+        public string tipo { get; set; }
     }
 }
