@@ -16,9 +16,14 @@ namespace mainVentana
     {
         //KunLibertad_DesktopControl Desk = new KunLibertad_DesktopControl();
         AltaEntrada altaEntrada = new AltaEntrada();
+        public delegate void pasa(int dato);
+        
         public Entradas()
         {
             InitializeComponent();
+
+
+
         }
 
         private void Entradas_Load(object sender, EventArgs e)
@@ -30,6 +35,7 @@ namespace mainVentana
         }
         private void AbrirFormEnPanel(object formHijo)
         {
+            
             if (this.panelContenedorForm.Controls.Count > 0)
                 this.panelContenedorForm.Controls.RemoveAt(0);
             Form fh = formHijo as Form;
@@ -38,6 +44,7 @@ namespace mainVentana
             fh.Dock = DockStyle.Fill;
             this.panelContenedorForm.Controls.Add(fh);
             this.panelContenedorForm.Tag = fh;
+
             fh.Show();
         }
 
@@ -136,27 +143,10 @@ namespace mainVentana
             }
         }
 
-        private void iconButton2_Click(object sender, EventArgs e)
-        {
-            cerrartabs(1);
-        }
+      
 
-
-        private void gunaShadowPanel3_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            cerrartabs(1);
-        }
-
-        private void gunaShadowPanel4_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            cerrartabs(2);
-        }
-
-        private void gunaGradientTileButton3_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        
+       
         private void gunaGradientTileButton3_Click_1(object sender, EventArgs e)
         {
             if (gunaShadowPanel1.Visible == false)
@@ -175,14 +165,19 @@ namespace mainVentana
        
         private void btnAlta_DoubleClick(object sender, EventArgs e)
         {
-            gunaShadowPanel1.ShadowColor = Color.FromArgb(250, 95, 73);  
+            gunaShadowPanel1.ShadowColor = Color.FromArgb(250, 95, 73);
+            var pasaa = new pasa(altaEntrada.CambiaDocumento);
+            pasaa(1);
         }
-
+        
         private void btnModifica_DoubleClick(object sender, EventArgs e)
         {
             gunaShadowPanel1.ShadowColor = Color.FromArgb(245, 217, 181);
+            var pasaa = new pasa(altaEntrada.CambiaDocumento);
+            pasaa(2);
+           //-----------
         }
-
+        
         private void btnBaja_DoubleClick(object sender, EventArgs e)
         {
             gunaShadowPanel1.ShadowColor = Color.FromArgb(50, 202, 206);

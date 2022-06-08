@@ -28,7 +28,8 @@ namespace Negocios
             try
             {
                 var lst2 = new List<BusquedaInicial>();
-                await Task.Run(() => {
+                await Task.Run(() =>
+                {
                     using (modelo)
                     {
 
@@ -122,13 +123,14 @@ namespace Negocios
 
 
 
-        public async Task<List<vmCordinadores>>  llenaCord()
+        public async Task<List<vmCordinadores>> llenaCord()
         {
 
             try
             {
                 var lst2 = new List<vmCordinadores>();
-                await Task.Run(() => {
+                await Task.Run(() =>
+                {
                     using (modelo)
 
                     {
@@ -154,7 +156,7 @@ namespace Negocios
 
                 throw;
             }
-            
+
 
         }
 
@@ -187,7 +189,7 @@ namespace Negocios
                 throw;
             }
 
-            
+
 
 
         }
@@ -271,7 +273,7 @@ namespace Negocios
                                     c1 = d.C1.Trim(),
                                     c3 = d.C3.Trim(),
                                     c4 = d.C4.Trim(),
-                                    c5 = d.C5.Trim(), 
+                                    c5 = d.C5.Trim(),
                                     c6 = d.C6.Trim(),
                                     c7 = d.C7.Trim(),
                                     c8 = d.C8.Trim()
@@ -295,7 +297,8 @@ namespace Negocios
             try
             {
                 var lst2 = new List<vmPiezas>();
-                await Task.Run(() => {
+                await Task.Run(() =>
+                {
                     using (modelo2Entities modelo = new modelo2Entities())
 
                     {
@@ -326,7 +329,8 @@ namespace Negocios
             try
             {
                 var lst2 = new List<vmPeso>();
-                await Task.Run(() => {
+                await Task.Run(() =>
+                {
                     using (modelo2Entities modelo = new modelo2Entities())
 
                     {
@@ -338,7 +342,7 @@ namespace Negocios
                                         c1 = d.C1.Trim(),
                                         c2 = d.C2.Trim(),
                                     };
-                        lst2= lista.ToList();
+                        lst2 = lista.ToList();
 
                     }
                 });
@@ -357,7 +361,8 @@ namespace Negocios
             try
             {
                 var lst2 = new List<vmTOperacion>();
-                await Task.Run(() => {
+                await Task.Run(() =>
+                {
                     using (modelo2Entities modelo = new modelo2Entities())
 
                     {
@@ -368,7 +373,7 @@ namespace Negocios
                                         c1 = d.C1.Trim(),
                                         c2 = d.C2.Trim()
                                     };
-                        lst2= lista.ToList();
+                        lst2 = lista.ToList();
 
                     }
                 });
@@ -388,7 +393,8 @@ namespace Negocios
             try
             {
                 var lst2 = new List<vmRastreo>();
-                await Task.Run(() => {
+                await Task.Run(() =>
+                {
                     using (modelo2Entities modelo = new modelo2Entities())
 
                     {
@@ -413,12 +419,13 @@ namespace Negocios
             }
         }
 
-        public async Task<List<vmAlmacenes>>  llenaAlmacenes()
+        public async Task<List<vmAlmacenes>> llenaAlmacenes()
         {
             try
             {
                 var lst2 = new List<vmAlmacenes>();
-                await Task.Run(() => {
+                await Task.Run(() =>
+                {
                     using (modelo2Entities modelo = new modelo2Entities())
 
                     {
@@ -448,20 +455,20 @@ namespace Negocios
         {
             try
             {
-                
-                    using (modelo2Entities modelo = new modelo2Entities())
 
-                    {
-                        var lista = from d in modelo.NumeroEntradaMAX(dato)
+                using (modelo2Entities modelo = new modelo2Entities())
 
-                                    select new vmNumeroEntrada
-                                    {
-                                        entrada = d
-                                    };
-                        return lista.ToList();
+                {
+                    var lista = from d in modelo.NumeroEntradaMAX(dato)
 
-                    }
-                
+                                select new vmNumeroEntrada
+                                {
+                                    entrada = d
+                                };
+                    return lista.ToList();
+
+                }
+
 
             }
             catch (Exception)
@@ -471,7 +478,7 @@ namespace Negocios
             }
         }
 
-        
+
         public bool cargalogin(string user, string pass)
         {
             try
@@ -497,13 +504,13 @@ namespace Negocios
                                 };
                     foreach (var i in lista.ToList())
                     {
-                        
+
                         Common.Cache.CacheLogin.username = i.username;
                         Common.Cache.CacheLogin.nombre = i.nombre;
                         Common.Cache.CacheLogin.apellido = i.apellido;
                         Common.Cache.CacheLogin.email = i.email;
                         Common.Cache.CacheLogin.rol = i.rol;
-                        Common.Cache.CacheLogin.estatus = i.estatus;    
+                        Common.Cache.CacheLogin.estatus = i.estatus;
                         Common.Cache.CacheLogin.numero = i.numero;
                     }
 
@@ -526,6 +533,83 @@ namespace Negocios
                 throw;
             }
         }
+
+
+        public List<vmEntradaById> LLenaEntradaByID(string id, string sucursal)
+        {
+
+
+            try
+            {
+               // var lst2 = new List<vmEntradaById>();
+               
+                    using (modelo2Entities modelo = new modelo2Entities())
+
+                    {
+                        var lista = from d in modelo.KDM1
+                                    join d2 in modelo.KDM1COMEN on new { d.C1, d.C4, d.C6 } equals new { d2.C1, d2.C4, d2.C6 }
+                                    where d.C1.Equals(sucursal) && d.C4.Equals(35) && d.C6.Equals(id)
+                                    //orderby (d.C7)
+                                    select new vmEntradaById
+                                    {
+                                        C1 = d.C1,
+                                        C2 = d.C2,
+                                        C3 = d.C3,
+                                        C4 = d.C4,
+                                        C5 = d.C5,
+                                        C6 = d.C6,
+                                        C7 = d.C7,
+                                        C8 = d.C8,
+                                        C9 = d.C9,
+                                        C10 = d.C10,
+                                        C11 = d.C11,
+                                        C12 = d.C12,
+                                        C16 = d.C16,
+                                        C24 = d.C24,
+                                        C31 = d.C31,
+                                        C32 = d.C32,
+                                        C33 = d.C33,
+                                        C34 = d.C34,
+                                        C35 = d.C35,
+                                        C40 = d.C40,
+                                        C41 = d.C41,
+                                        C42 = d.C42,
+                                        C43 = d.C43,
+                                        C63 = d.C64,
+                                        C67 = d.C67,
+                                        C68 = d.C68,
+                                        C69 = d.C69,
+                                        C80 = d.C80,
+                                        C81 = d.C81,
+                                        C92 = d.C92,
+                                        C93 = d.C93,
+                                        C95 = d.C95,
+                                        C97 = d.C97,
+                                        C98 = d.C98,
+                                        C99 = d.C99,
+                                        C100 = d.C100,
+                                        C101 = d.C101,
+                                        C102 = d.C102,
+                                        C103 = d.C103,
+                                        C108 = d.C108,
+                                        C112 = d.C101,
+                                        descripcion = d2.C11
+
+
+                                    };
+                        return lista.ToList();
+
+                    }
+              
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
 
 
     }

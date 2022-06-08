@@ -33,35 +33,30 @@ namespace mainVentana.VistaEntrada
     public partial class AltaEntrada : Form
     {
         //KunLibertad_DesktopControl Desk = new KunLibertad_DesktopControl();
+
+
+        //int ventana;
+        public int tipodeDocumento = 1;
         public AltaEntrada()
         {
+
             InitializeComponent();
+
         }
 
         private void AltaEntrada_Load(object sender, EventArgs e)
         {
-            unidades.Text = "";
-            bultos.Text = "";
-            peso.Text = "";
-            //Desk.SpecialKeyButtons(false);
-            llenaCampos();
+
+            if (tipodeDocumento == 1)
+            {
+                InicioEntrada();
+            }
 
 
-
-            #region Autocompletar ref
-
-
-
-            proveedor.AutoCompleteCustomSource = proveeList();
-
-            coloresSucursales();
-
-
-            #endregion
         }
 
 
-
+        #region ALTA DE ENTRADA__________________________________________________________________________________________________________________________________
 
         #region PASAR LAS FOTOS DEL FORMULARIO HIJO CAMARA AL FORMULARIO PADRE ALTENTRADA
         public void ejecutarfoto(System.Drawing.Image img, string ruta)
@@ -150,7 +145,8 @@ namespace mainVentana.VistaEntrada
         {
             string[] imagen;
 
-             
+
+
             openFileDialog1.Multiselect = true;
             openFileDialog1.InitialDirectory = "@C:\\";
             openFileDialog1.Filter = "Solo imagenes (JPG,PNG,GIF)|*.JPG;*.PNG;*.GIF"; ;
@@ -254,7 +250,7 @@ namespace mainVentana.VistaEntrada
 
 
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox2.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-1", realnombre = filename, bytedocumto = imgbyte(pictureBox2.ImageLocation, pictureBox2.Image),sucursal = sucEntrada.SelectedValue.ToString() , tipo = "Imagen"});
+                lstFotos.Add(new vmListaFotos { documento = pictureBox2.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-1", realnombre = filename, bytedocumto = imgbyte(pictureBox2.ImageLocation, pictureBox2.Image), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
             }
 
             if (pictureBox3.Image != null)
@@ -263,7 +259,7 @@ namespace mainVentana.VistaEntrada
                 string filename = null;
                 filename = Path.GetFileName(pictureBox3.ImageLocation);
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox3.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-2", realnombre = filename, bytedocumto = imgbyte(pictureBox3.ImageLocation, pictureBox3.Image), sucursal = sucEntrada.SelectedValue.ToString() , tipo = "Imagen" });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox3.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-2", realnombre = filename, bytedocumto = imgbyte(pictureBox3.ImageLocation, pictureBox3.Image), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
             }
 
             if (pictureBox4.Image != null)
@@ -273,17 +269,17 @@ namespace mainVentana.VistaEntrada
                 string filename = null;
                 filename = Path.GetFileName(pictureBox4.ImageLocation);
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox4.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-3", realnombre = filename, bytedocumto = imgbyte(pictureBox4.ImageLocation, pictureBox4.Image), sucursal = sucEntrada.SelectedValue.ToString() , tipo = "Imagen" });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox4.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-3", realnombre = filename, bytedocumto = imgbyte(pictureBox4.ImageLocation, pictureBox4.Image), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
             }
 
             if (pictureBox5.Image != null)
-            { 
+            {
 
                 string filename = null;
                 filename = Path.GetFileName(pictureBox5.ImageLocation);
 
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox5.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-4", realnombre = filename, bytedocumto = imgbyte(pictureBox5.ImageLocation, pictureBox5.Image), sucursal = sucEntrada.SelectedValue.ToString() , tipo = "Imagen"  });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox5.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-4", realnombre = filename, bytedocumto = imgbyte(pictureBox5.ImageLocation, pictureBox5.Image), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
 
             }
             if (pictureBox6.Image != null)
@@ -291,7 +287,7 @@ namespace mainVentana.VistaEntrada
                 string filename = null;
                 filename = Path.GetFileName(pictureBox6.ImageLocation);
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox6.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-5", realnombre = filename, bytedocumto = imgbyte(pictureBox6.ImageLocation, pictureBox6.Image), sucursal = sucEntrada.SelectedValue.ToString() , tipo = "Imagen" });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox6.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-5", realnombre = filename, bytedocumto = imgbyte(pictureBox6.ImageLocation, pictureBox6.Image), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
 
             }
             if (pictureBox7.Image != null)
@@ -300,14 +296,14 @@ namespace mainVentana.VistaEntrada
                 filename = Path.GetFileName(pictureBox7.ImageLocation);
 
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox7.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-6", realnombre = filename, bytedocumto = imgbyte(pictureBox7.ImageLocation, pictureBox7.Image) , sucursal = sucEntrada.SelectedValue.ToString() , tipo = "Imagen" });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox7.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-6", realnombre = filename, bytedocumto = imgbyte(pictureBox7.ImageLocation, pictureBox7.Image), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
             }
             if (pictureBox8.Image != null)
             {
                 string filename = null;
                 filename = Path.GetFileName(pictureBox8.ImageLocation);
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox8.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-7", realnombre = filename, bytedocumto = imgbyte(pictureBox8.ImageLocation, pictureBox8.Image) , sucursal = sucEntrada.SelectedValue.ToString() , tipo = "Imagen" });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox8.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-7", realnombre = filename, bytedocumto = imgbyte(pictureBox8.ImageLocation, pictureBox8.Image), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
             }
             if (pictureBox9.Image != null)
             {
@@ -315,7 +311,7 @@ namespace mainVentana.VistaEntrada
                 filename = Path.GetFileName(pictureBox9.ImageLocation);
 
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox9.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-8", realnombre = filename, bytedocumto = imgbyte(pictureBox9.ImageLocation, pictureBox9.Image) , sucursal = sucEntrada.SelectedValue.ToString() , tipo = "Imagen" });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox9.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-8", realnombre = filename, bytedocumto = imgbyte(pictureBox9.ImageLocation, pictureBox9.Image), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
             }
             if (pictureBox10.Image != null)
             {
@@ -323,7 +319,7 @@ namespace mainVentana.VistaEntrada
                 filename = Path.GetFileName(pictureBox10.ImageLocation);
 
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox10.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-9", realnombre = filename, bytedocumto = imgbyte(pictureBox10.ImageLocation, pictureBox10.Image) , sucursal = sucEntrada.SelectedValue.ToString() , tipo = "Imagen" });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox10.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-9", realnombre = filename, bytedocumto = imgbyte(pictureBox10.ImageLocation, pictureBox10.Image), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
             }
             if (pictureBox11.Image != null)
             {
@@ -331,7 +327,7 @@ namespace mainVentana.VistaEntrada
                 filename = Path.GetFileName(pictureBox11.ImageLocation);
 
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox11.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-10", realnombre = filename, bytedocumto = imgbyte(pictureBox11.ImageLocation, pictureBox11.Image) , sucursal = sucEntrada.SelectedValue.ToString() , tipo = "Imagen" });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox11.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-10", realnombre = filename, bytedocumto = imgbyte(pictureBox11.ImageLocation, pictureBox11.Image), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
             }
             if (pictureBox12.Image != null)
             {
@@ -339,7 +335,7 @@ namespace mainVentana.VistaEntrada
                 filename = Path.GetFileName(pictureBox12.ImageLocation);
 
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox12.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-11", realnombre = filename, bytedocumto = imgbyte(pictureBox12.ImageLocation, pictureBox12.Image)   , sucursal = sucEntrada.SelectedValue.ToString() , tipo = "Imagen" });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox12.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-11", realnombre = filename, bytedocumto = imgbyte(pictureBox12.ImageLocation, pictureBox12.Image), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
             }
             if (pictureBox13.Image != null)
             {
@@ -347,7 +343,7 @@ namespace mainVentana.VistaEntrada
                 filename = Path.GetFileName(pictureBox13.ImageLocation);
 
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox13.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-12", realnombre = filename, bytedocumto = imgbyte(pictureBox13.ImageLocation, pictureBox13.Image) , sucursal = sucEntrada.SelectedValue.ToString() , tipo = "Imagen" });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox13.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-12", realnombre = filename, bytedocumto = imgbyte(pictureBox13.ImageLocation, pictureBox13.Image), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
             }
             if (pictureBox14.Image != null)
             {
@@ -355,40 +351,40 @@ namespace mainVentana.VistaEntrada
                 filename = Path.GetFileName(pictureBox14.ImageLocation);
 
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox14.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-13", realnombre = filename, bytedocumto = imgbyte(pictureBox14.ImageLocation, pictureBox14.Image) , sucursal = sucEntrada.SelectedValue.ToString() , tipo = "Imagen" });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox14.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-13", realnombre = filename, bytedocumto = imgbyte(pictureBox14.ImageLocation, pictureBox14.Image), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
             }
             if (pictureBox15.Image != null)
             {
                 string filename = null;
                 filename = Path.GetFileName(pictureBox15.ImageLocation);
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox15.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim()+"-"+datoEntrada + "-14", realnombre = filename, bytedocumto = imgbyte(pictureBox15.ImageLocation, pictureBox15.Image) , sucursal = sucEntrada.SelectedValue.ToString() , tipo = "Imagen" });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox15.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-14", realnombre = filename, bytedocumto = imgbyte(pictureBox15.ImageLocation, pictureBox15.Image), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
             }
-            
+
         }
         private void AgregaArchivoslist()
         {
-           
-                
-                if (label27.Text != null && label27.Text != "")
-                {
-                    string filename = null;
-                    filename = Path.GetFileName(label27.Text);
+
+
+            if (label27.Text != null && label27.Text != "")
+            {
+                string filename = null;
+                filename = Path.GetFileName(label27.Text);
 
 
 
-                    lstFotos.Add(new vmListaFotos { documento = label27.Text, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-1", realnombre = filename, bytedocumto = docbyte(label27.Text), sucursal = sucEntrada.SelectedValue.ToString() ,tipo = "Doc" });
-                }
-
-                if (label28.Text != null && label28.Text != "")
-                {
-
-                    string filename = null;
-                    filename = Path.GetFileName(label28.Text);
-
-                    lstFotos.Add(new vmListaFotos { documento = label28.Text, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-2", realnombre = filename, bytedocumto = docbyte(label28.Text), sucursal = sucEntrada.SelectedValue.ToString() ,tipo = "Doc" });
-                }
+                lstFotos.Add(new vmListaFotos { documento = label27.Text, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-1", realnombre = filename, bytedocumto = docbyte(label27.Text), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Doc" });
             }
+
+            if (label28.Text != null && label28.Text != "")
+            {
+
+                string filename = null;
+                filename = Path.GetFileName(label28.Text);
+
+                lstFotos.Add(new vmListaFotos { documento = label28.Text, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-2", realnombre = filename, bytedocumto = docbyte(label28.Text), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Doc" });
+            }
+        }
 
         #endregion
 
@@ -398,30 +394,58 @@ namespace mainVentana.VistaEntrada
             pic.Image = null;
         }
 
+        private void InicioEntrada()
+        {
+            unidades.Text = "";
+            bultos.Text = "";
+            peso.Text = "";
+            //Desk.SpecialKeyButtons(false);
+            llenaCampos();
+            #region Autocompletar ref
 
+
+
+            proveedor.AutoCompleteCustomSource = proveeList();
+
+            coloresSucursales();
+
+
+            #endregion
+        }
 
 
         private void Guardar_Click(object sender, EventArgs e) //Click al boton guardar
         {
-
             ValidacionEntradas validacion = new ValidacionEntradas();
-
-            if (validacion.validacampo(sucEntrada.Text, sucDestino.Text, tipoOper.Text, cord.Text, cliente.Text, proveedor.Text, ordenCompra.Text, numFlete.Text, unidades.Text, bultos.Text, peso.Text, detalles.Text) == true)
+            if (tipodeDocumento == 1)
             {
+               
 
-                creaListadeFotos();
-                AgregaArchivos();
-                altaKDM1();
-                altaKDM1coment();
-                SubeFotos();
-                
-                CreaEriquetas();
-                envEmail();
-                limpiaImg();
-                
+                if (validacion.validacampo(sucEntrada.Text, sucDestino.Text, tipoOper.Text, cord.Text, cliente.Text, proveedor.Text, ordenCompra.Text, numFlete.Text, unidades.Text, peso.Text, bultos.Text, detalles.Text) == true)
+                {
 
-                cargaultent();
+                    creaListadeFotos();
+                    AgregaArchivos();
+                    altaKDM1();
+                    altaKDM1coment();
+                    SubeFotos();
+
+                    CreaEriquetas();
+                    envEmail();
+
+                    ReiniciaInfo(0);
+                    //cargaultent();
+                }
+
+
+
             }
+            if (tipodeDocumento == 2)
+            {
+                updateDatos();
+                MessageBox.Show("Se ha modificado el docimento "+lblEntrada.Text);
+            }
+
 
         }
         string datoEntrada; //variable global de entrada cuando se click al boton de guardar ---------------------------------------
@@ -429,36 +453,38 @@ namespace mainVentana.VistaEntrada
         {
             AltasBD bd = new AltasBD();
 
-            string datoSucIni = sucEntrada.SelectedValue.ToString();
-            datoEntrada = recuperUltimaent();
-            string datoMoneda = cmbMoneda.GetItemText(cmbMoneda.SelectedItem).ToString();
-            DateTime datoFecha = regresafecha();
-            string datoNuCliente = lblCodCliente.Text; // agregar numero de cliente
-            string datoNoCord = cord.SelectedValue.ToString();
-            string datoValArn = txbValArn.Text;
-            string datoNomCliente = cliente.Text;
-            string datoCalle = label23.Text;
-            string datoColonia = label24.Text;
-            string datoCiudadZip = label25.Text;
-            string datoValFact = txbValFact.Text;
-            string datoParidad = lblParidad.Text;
-            string datoNoTrakin = tbxRastreo.Text;
-            string datoProvedor = proveedor.SelectedValue.ToString();
-            string datoOrdCompra = ordenCompra.Text;
-            string datoNoFlete = numFlete.Text;
-            string datoNoUnidades = unidades.Text;
-            string datoTipoUnidad = cmbUnidades.GetItemText(cmbUnidades.SelectedItem).ToString();
-            string datoPeso = peso.Text;
+            string datoSucIni       = sucEntrada.SelectedValue.ToString();
+            datoEntrada             = recuperUltimaent();
+            string datoMoneda       = cmbMoneda.GetItemText(cmbMoneda.SelectedItem).ToString();
+            DateTime datoFecha      = regresafecha();
+            string datoNuCliente    = lblCodCliente.Text;
+            string datoNoCord       = cord.SelectedValue.ToString();
+            string datoValArn       = txbValArn.Text;
+            string datoNomCliente   = cliente.Text;
+            string datoCalle        = label23.Text;
+            string datoColonia      = label24.Text;
+            string datoCiudadZip    = label25.Text;
+            string datoValFact      = txbValFact.Text;
+            string datoParidad      = lblParidad.Text;
+            string datoNoTrakin     = tbxRastreo.Text;
+            string datoProvedor     = proveedor.SelectedValue.ToString();
+            string datoOrdCompra    = ordenCompra.Text;
+            string datoNoFlete      = numFlete.Text;
+            string datoNoUnidades   = unidades.Text;
+            string datoTipoUnidad   = cmbUnidades.GetItemText(cmbUnidades.SelectedItem).ToString();
+            string datoPeso         = peso.Text;
             string datoUnidadMedida = cmbPeso.SelectedValue.ToString();
-            string datoTipoOper = tipoOper.SelectedValue.ToString();
-            string datoSucDestino = sucDestino.SelectedValue.ToString();
-            string datoBultos = bultos.Text;
-            string datosAlias = alias.Text;
+            string datoTipoOper     = tipoOper.SelectedValue.ToString();
+            string datoSucDestino   = sucDestino.SelectedValue.ToString();
+            string datoBultos       = bultos.Text;
+            string datosAlias       = alias.Text;
+            string datoNota         = txbNotas.Text;
+            string datoReferencia   = txbReferencia.Text;
 
 
             bd.agregaKDM1(datoSucIni, datoEntrada, datoMoneda, datoFecha, datoNuCliente, datoNoCord, datoValArn, datoNomCliente, datoCalle, datoColonia, datoCiudadZip,
             datoValFact, datoParidad, datoNoTrakin, datoProvedor, datoOrdCompra, datoNoFlete, datoNoUnidades, datoTipoUnidad, datoPeso, datoUnidadMedida, datoTipoOper,
-            datoSucDestino, datoBultos, datosAlias);
+            datoSucDestino, datoBultos, datosAlias, datoNota, datoReferencia);
 
             actualizaKDMENT(datoSucIni, datoEntrada, datoBultos, datoSucDestino, datoFecha);
 
@@ -468,12 +494,12 @@ namespace mainVentana.VistaEntrada
         {
             AltasBD bd = new AltasBD();
 
-            string datoSucIni = sucEntrada.SelectedValue.ToString();
-            string dtEntrada = datoEntrada;
-            string datoMoneda = cmbMoneda.GetItemText(cmbMoneda.SelectedItem).ToString();
-            DateTime datoFecha = regresafecha();
+            string datoSucIni    = sucEntrada.SelectedValue.ToString();
+            string dtEntrada     = datoEntrada;
+            string datoMoneda    = cmbMoneda.GetItemText(cmbMoneda.SelectedItem).ToString();
+            DateTime datoFecha   = regresafecha();
             string datoNuCliente = lblCodCliente.Text;
-            string datoDetalles = detalles.Text;
+            string datoDetalles  = detalles.Text;
 
             bd.agregaComentKDM1(datoSucIni, dtEntrada, datoMoneda, datoFecha, datoNuCliente, datoDetalles);
 
@@ -498,15 +524,15 @@ namespace mainVentana.VistaEntrada
         private void envEmail()
         {
             EnviarEmail servicio = new EnviarEmail();
-            var respuesta = servicio.EnviaMail(label41.Text, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, mnd, larch, coreoClientes);
+            var respuesta = servicio.EnviaMail(lblEntrada.Text, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, mnd, larch, coreoClientes);
             if (respuesta == 1)
             {
                 MessageBox.Show("El correo NO SE ENVIÓ PORQUE supera el límite máximo de 25 MB en cada correo, intenta borrar documentos y reenvía la notificación", "CUIDADO EL CORREO NO SE ENVIO");
-                NotificaEmail(0, label41.Text, cliente.Text);
+                NotificaEmail(0, lblEntrada.Text, cliente.Text);
             }
             else
             {
-                NotificaEmail(1, label41.Text, cliente.Text);
+                NotificaEmail(1, lblEntrada.Text, cliente.Text);
             }
 
         }
@@ -549,11 +575,11 @@ namespace mainVentana.VistaEntrada
                             string PaginaHTML_Texto = Properties.Resources.Plantilla.ToString();
                             pdfDoc.NewPage();
                             pdfDoc.Add(new Phrase(""));
-                            string etiqueta = sucEntrada.SelectedValue.ToString().Trim() + "-" + label41.Text + "-" + i.ToString();
+                            string etiqueta = sucEntrada.SelectedValue.ToString().Trim() + "-" + lblEntrada.Text + "-" + i.ToString();
                             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@ORIGEN", sucEntrada.GetItemText(sucEntrada.SelectedItem).ToString().Trim());
                             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@DESTINO", sucDestino.GetItemText(sucDestino.SelectedItem).ToString().Trim());
                             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FECHA", DateTime.Now.ToString("dd/MM/yyyy"));
-                            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@ENTRADA", label41.Text);
+                            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@ENTRADA", lblEntrada.Text);
                             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@OPERACION", tipoOper.GetItemText(tipoOper.SelectedItem).ToString());
                             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@PROVEEDOR", proveedor.GetItemText(proveedor.SelectedItem).ToString());
                             PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CLIENTE", cliente.Text.ToString());
@@ -619,11 +645,11 @@ namespace mainVentana.VistaEntrada
         private void SubeFotos()
         {
 
-          /* foreach (var I in lstFotos)
+            /* foreach (var I in lstFotos)
             {
-               MessageBox.Show(I.documento.ToString()+"------"+I.bytedocumto.ToString());
+            MessageBox.Show(I.documento.ToString()+"------"+I.bytedocumto.ToString());
             }*/
-            
+
 
             AltasBD bd = new AltasBD();
             creaListadepARAMSFotos();
@@ -636,7 +662,7 @@ namespace mainVentana.VistaEntrada
             vmListaFotos lsf = new vmListaFotos();
             //Stream fs = new FileStream(ruta, FileMode.Create);
             var img = picture;
-           // img.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+            // img.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
             using (MemoryStream ms = new MemoryStream())
             {
                 img.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
@@ -678,6 +704,7 @@ namespace mainVentana.VistaEntrada
             try
             {
                 Servicios datos = new Servicios();
+
                 var lst2 = datos.llenaSuc();
 
                 sucEntrada.DisplayMember = "C2";
@@ -697,7 +724,7 @@ namespace mainVentana.VistaEntrada
 
                 List<Sucursales> lst3 = new List<Sucursales>(lst2); //clonamos la lista anterior para no volver a hacer la busqueda en la base de datos 
 
-                //var lst3 = sucEntrada.DataSource;
+                //var lst3                = sucEntrada.DataSource;
                 sucDestino.DisplayMember = "C2";
                 sucDestino.ValueMember = "C1";
                 sucDestino.DataSource = lst3;
@@ -956,7 +983,7 @@ namespace mainVentana.VistaEntrada
             //var lst = JsonConvert.DeserializeObject<List<FechaActual>>(fecha1);
             FechaActual lst = JsonConvert.DeserializeObject<FechaActual>(fecha1);
 
-            label40.Text = lst.datetime.Date.ToString("dd-MM-yyyy");
+            lblFecha.Text = lst.datetime.Date.ToString("dd-MM-yyyy");
 
         }
 
@@ -1032,11 +1059,8 @@ namespace mainVentana.VistaEntrada
         private void Moneda()
         {
             List<Moneda> mnd = new List<Moneda> {
-                new Moneda{id=2,moneda="DLLS"},
-                new Moneda{id=1,moneda="PESOS"}};
-
-
-
+                         new Moneda{id=2,moneda="DLLS"},
+                         new Moneda{id=1,moneda="PESOS"}};
 
             var lista = from d in mnd
                         select new Moneda
@@ -1055,7 +1079,11 @@ namespace mainVentana.VistaEntrada
 
         private void sucEntrada_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cargaultent();
+            if (tipodeDocumento == 1)
+            {
+                cargaultent();
+            }
+
         }
         private void cargaultent()
         {
@@ -1064,7 +1092,7 @@ namespace mainVentana.VistaEntrada
             foreach (var i in datos.NumeroEntrada(sucEntrada.SelectedValue.ToString()))
             {
                 int numero = Convert.ToInt32(i.entrada) + 1;
-                label41.Text = numero.ToString("D7");
+                lblEntrada.Text = numero.ToString("D7");
             }
         }
         private string recuperUltimaent()
@@ -1079,17 +1107,14 @@ namespace mainVentana.VistaEntrada
             return dato;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            creaListadeFotos();
-        }
 
-        private void label28_DoubleClick(object sender, EventArgs e)
+
+        private void label28_DoubleClick(object sender, EventArgs e) //borra doc
         {
             label28.Text = "";
         }
 
-        private void label27_DoubleClick(object sender, EventArgs e)
+        private void label27_DoubleClick(object sender, EventArgs e) //borra doc
         {
             label27.Text = "";
         }
@@ -1099,88 +1124,83 @@ namespace mainVentana.VistaEntrada
             regresafecha();
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            
 
-
-        }
         public void limpiaImg()
         {
 
             if (pictureBox2.Image != null)
             {
-                
+
                 pictureBox2.Dispose();
-                
+
             }
             if (pictureBox3.Image != null)
             {
-                
+
                 pictureBox3.Dispose();
             }
             if (pictureBox4.Image != null)
             {
-                
+
                 pictureBox4.Dispose();
             }
             if (pictureBox5.Image != null)
             {
-                
+
                 pictureBox5.Dispose();
             }
             if (pictureBox6.Image != null)
             {
-                
+
                 pictureBox6.Dispose();
             }
             if (pictureBox7.Image != null)
             {
-                
+
                 pictureBox7.Dispose();
             }
             if (pictureBox8.Image != null)
             {
-                
+
                 pictureBox8.Dispose();
             }
             if (pictureBox9.Image != null)
             {
-                
+
                 pictureBox9.Dispose();
             }
             if (pictureBox10.Image != null)
             {
-                
+
                 pictureBox10.Dispose();
             }
             if (pictureBox11.Image != null)
             {
-                
+
                 pictureBox11.Dispose();
             }
             if (pictureBox12.Image != null)
             {
-                
+
                 pictureBox12.Dispose();
             }
             if (pictureBox13.Image != null)
             {
-                
+
                 pictureBox13.Dispose();
             }
             if (pictureBox14.Image != null)
             {
-                
+
                 pictureBox14.Dispose();
             }
             if (pictureBox15.Image != null)
             {
-                
+
                 pictureBox15.Dispose();
             }
-        
-             
+
+
         }
 
         //
@@ -1196,20 +1216,442 @@ namespace mainVentana.VistaEntrada
 
             if (nttipo == 1)
             {
-                notifyIcon1.Text = "El email se ha enviado exitosamente";
+                notifyIcon1.Visible = true;
+                notifyIcon1.Text = ntentrada + " Enviado";
                 notifyIcon1.BalloonTipTitle = "EXITO: Email Correcto " + ntentrada;
-                notifyIcon1.BalloonTipText = "El email de la entrada " + ntentrada + " ha sido enviado correctamente\r\nCliente: "+ntcliente;
+                notifyIcon1.BalloonTipText = "El email de la entrada " + ntentrada + " ha sido enviado correctamente\r\nCliente: " + ntcliente;
                 notifyIcon1.ShowBalloonTip(10000);
+
+
             }
             else if (nttipo == 2)
             {
-                notifyIcon1.Text = "ERROR: El email NO se ha enviado";
+                notifyIcon1.Visible = true;
+                notifyIcon1.Text = ntentrada + " ERROR: El email NO se ha enviado";
                 notifyIcon1.BalloonTipTitle = "ERROR: Email Correcto " + ntentrada;
                 notifyIcon1.BalloonTipText = "El email de la entrada " + ntentrada + "NO ha sido enviado\r\nCliente: " + ntcliente;
                 notifyIcon1.ShowBalloonTip(10000);
+
             }
-           
+
         }
+
+        private void notifyIcon1_DoubleClick(object sender, EventArgs e)
+        {
+            notifyIcon1.Visible = false;
+            notifyIcon1.Dispose();
+        }
+
+        //
+        // Notificaciones-------------------------------------------------------------------------------------------------------------------------------
+        //
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            ReiniciaInfo(1);
+            //abreModifica();
+
+        }
+        private async void GeneraRastreo()
+        {
+            Servicios datos = new Servicios();
+            foreach (var i in await datos.generaRastreo())
+            {
+                tbxRastreo.Text = i.c1.ToString();
+            }
+        }
+
+        public void ReiniciaInfo(int msn) // reinicia los valores para una nueva entrada
+        {
+            if (msn == 1) // 1 muestra mensaje
+            {
+                if (MessageBox.Show("Estas seguro de que deseas reiniciar todo los datos?", "Cuidado!", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    sucEntrada.SelectedIndex  = 0;
+                    //datoEntrada               = recuperUltimaent();
+                    cargaultent();
+                    cmbMoneda.SelectedIndex   = 0;
+                    //regresafecha();
+                    cargafecha();
+                    lblCodCliente.Text        = default;
+                    cord.SelectedIndex        = 0;
+                    txbValArn.Text            = default;
+                    cliente.Text              = default;
+                    label23.Text              = default;
+                    label24.Text              = default;
+                    label25.Text              = default;
+                    txbValFact.Text           = default;
+                    lblParidad.Text           = default;
+                    tbxRastreo.Text           = default;
+                    proveedor.SelectedIndex   = 0;
+                    ordenCompra.Text          = default;
+                    numFlete.Text             = default;
+                    unidades.Text             = default;
+                    cmbUnidades.SelectedIndex = 0;
+                    peso.Text                 = default;
+                    cmbPeso.SelectedIndex     = 0;
+                    tipoOper.SelectedIndex    = 0;
+                    sucDestino.SelectedIndex  = 0;
+                    bultos.Text               = default;
+                    alias.Text                = default;
+                    txbNotas.Text             = default;
+                    txbReferencia.Text        = default;
+                    label27.Text              = default;
+                    label28.Text              = default;
+                    detalles.Text             = default;
+
+                    limpiaImg();
+                    GeneraRastreo();
+                    Cargaparidad();
+
+                }
+                return;
+
+            }
+            else if (msn == 0)
+            {
+                sucEntrada.SelectedIndex  = 0;
+                //datoEntrada               = recuperUltimaent();
+                cargaultent();
+                cmbMoneda.SelectedIndex   = 0;
+                //regresafecha();
+                cargafecha();
+                lblCodCliente.Text        = default;
+                cord.SelectedIndex        = 0;
+                txbValArn.Text            = default;
+                cliente.Text              = default;
+                label23.Text              = default;
+                label24.Text              = default;
+                label25.Text              = default;
+                txbValFact.Text           = default;
+                lblParidad.Text           = default;
+                tbxRastreo.Text           = default;
+                proveedor.SelectedIndex   = 0;
+                ordenCompra.Text          = default;
+                numFlete.Text             = default;
+                unidades.Text             = default;
+                cmbUnidades.SelectedIndex = 0;
+                peso.Text                 = default;
+                cmbPeso.SelectedIndex     = 0;
+                tipoOper.SelectedIndex    = 0;
+                sucDestino.SelectedIndex  = 0;
+                bultos.Text               = default;
+                alias.Text                = default;
+                txbNotas.Text             = default;
+                txbReferencia.Text        = default;
+                label27.Text              = default;
+                label28.Text              = default;
+                detalles.Text             = default;
+
+                limpiaImg();
+                GeneraRastreo();
+                Cargaparidad();
+            }
+
+
+        }
+
+        #endregion Fin del Alta de entrada__________________________________________________________________________________________________________________________________
+        /*
+        En esta region se trata de poner todo lo relacionado con el negocio en una modificacion de entrada, la ide es bloaquar los campos y solo permitir algunos.
+        
+        */
+        #region INICIO DE MODIFICA ENTRAD__________________________________________________________________________________________________________________________________
+
+        public void CambiaDocumento(int dato)
+        {
+            if (dato == 1)//Abre alta entrada
+            {
+                tipodeDocumento = dato;
+                abreModifica(true);
+                ReiniciaInfo(1);
+                limpiaImg();
+                btnBuscarEnt.Visible = false;
+                txbBuscarEnt.Visible = false;
+                lblBuscarEnt.Visible = false;
+                btnAgregarBultos.Enabled = false;
+            }
+            if (dato == 2)
+            {
+                tipodeDocumento = dato;
+                abreModifica(false);
+                limpiaImg();
+                btnBuscarEnt.Visible = true;
+                txbBuscarEnt.Visible = true;
+                lblBuscarEnt.Visible = true;
+                btnAgregarBultos.Enabled = true;
+            }
+
+
+        }
+
+
+        private void abreModifica(bool estatus)
+        {
+
+            //tipodeDocumento = tipo;
+
+            //if  (MessageBox.Show("Estas seguro de que deseas cambiar a la pestaña?", "Cuidado!", MessageBoxButtons.OKCancel) == DialogResult.OK)
+
+            //{
+
+
+
+            sucEntrada.SelectedIndex  = 0;
+            //sucEntrada.Enabled      = estatus;
+
+            //cmbMoneda.SelectedIndex = 1;
+            //cmbMoneda.Enabled         = estatus;
+
+            lblCodCliente.Text        = default;
+            lblCodCliente.Enabled     = estatus;
+
+            cord.SelectedIndex        = 0;
+            //cord.Enabled            = estatus;
+
+
+            cliente.Text              = default;
+            cliente.Enabled           = estatus;
+
+            proveedor.SelectedIndex   = 0;
+            proveedor.Enabled         = estatus;
+
+            ordenCompra.Text          = default;
+            ordenCompra.Enabled       = estatus;
+
+            numFlete.Text             = default;
+            numFlete.Enabled          = estatus;
+
+            unidades.Text             = default;
+            unidades.Enabled          = estatus;
+
+            cmbUnidades.SelectedIndex = 0;
+            cmbUnidades.Enabled       = estatus;
+
+            peso.Text                 = default;
+            peso.Enabled              = estatus;
+
+            cmbPeso.SelectedIndex     = 0;
+            cmbPeso.Enabled           = estatus;
+
+
+
+            bultos.Text               = default;
+            bultos.Enabled            = estatus;
+
+            alias.Text                = default;
+            alias.Enabled             = estatus;
+
+            gunaTileButton1.Enabled   = estatus;
+            gunaTileButton2.Enabled   = estatus;
+            
+            detalles.Enabled = estatus;
+
+
+
+            if (estatus != true)
+            {
+                txbNotas.Text            = default;
+                txbReferencia.Text       = default;
+                txbValFact.Text          = default;
+                txbValArn.Text           = default;
+                tipoOper.SelectedIndex   = 0;
+                sucDestino.SelectedIndex = 0;
+                detalles.Text            = default;
+                tbxRastreo.Text          = default;
+
+                lblParidad.Text          = default;
+                label23.Text             = default;
+                label24.Text             = default;
+                label25.Text             = default;
+                label27.Text             = default;
+                label28.Text             = default;
+                lblEntrada.Text          = default;
+                lblFecha.Text            = default;
+
+            }
+
+
+
+
+            //}
+
+        }
+        private void btnBuscarEnt_Click(object sender, EventArgs e)
+        {
+            Validaciones_P_Busqueda();
+            Busqueda_Entrada(txbBuscarEnt.Text.Trim(), sucEntrada.SelectedValue.ToString().Trim());
+        }
+        private void txbBuscarEnt_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                Validaciones_P_Busqueda();
+                Busqueda_Entrada(txbBuscarEnt.Text.Trim(), sucEntrada.SelectedValue.ToString().Trim());
+            }
+        }
+        private void Validaciones_P_Busqueda() //Validacion primitiva antes de hacer la busqueda de entrada
+        {
+            if (txbBuscarEnt.Text == "")
+            {
+                MessageBox.Show("El campo de busqueda esta vacio!");
+                return;
+            }
+            int datparseado;
+            bool bent = Int32.TryParse(txbBuscarEnt.Text, out datparseado);
+            if (bent == true)
+            {
+                txbBuscarEnt.Text = datparseado.ToString("D7");
+            }
+            else
+            {
+                MessageBox.Show("Las entradas tienen que ser un codigo numerico, y no pueden contener letras");
+                return;
+            }
+
+        }
+
+        private void Busqueda_Entrada(string id, string sucursal) //Busca la entrada de maner async
+        {
+            Servicios datos = new Servicios();
+            var lst = datos.LLenaEntradaByID(id, sucursal);
+
+            if (lst.Count < 1)
+            {
+                MessageBox.Show("Entrada no encontrada", "Esta bien escrito todo?");
+                return;
+            }
+
+
+            foreach (var q in lst)
+            {
+                //-------Sucursal inicia---------------
+                foreach (Sucursales i in sucEntrada.Items)
+                {
+                    if (i.c1.Trim() == q.C1.Trim())
+                    {
+                        sucEntrada.SelectedValue = i.c1;
+                        break;
+
+                    }
+
+                }
+                //-----------------------------------
+
+                lblEntrada.Text = q.C6;
+                //cmbMoneda.Text = q.C7;
+                cmbMoneda.Text = q.C7;
+                lblFecha.Text = q.C9.Value.Date.ToString("dd-MM-yyyy");
+                lblCodCliente.Text = q.C10;
+                
+                txbReferencia.Text = q.C11;
+
+                //--------Coordinador asignado-------------------
+                foreach (vmCordinadores i in cord.Items)
+                {
+                    if (i.c2.Trim() == q.C12.Trim())
+                    {
+                        cord.SelectedValue = i.c2;
+                        break;
+
+                    }
+
+                }
+
+                txbValArn.Text = q.C16.ToString();
+                txbNotas.Text = q.C24;
+                cliente.Text = q.C32;
+                lblParidad.Text = q.C40.ToString();
+                lblUser.Text = q.C81;
+                
+
+                //------Peso-------------------
+                foreach (Proveedores i in proveedor.Items)
+                {
+                    if (i.c2.Trim() == q.C92.Trim())
+                    {
+                        proveedor.SelectedValue = i.c2;
+                        break;
+
+                    }
+
+                }
+
+                ordenCompra.Text = q.C93.Trim();
+                numFlete.Text = q.C95.Trim();
+                unidades.Text = Convert.ToInt32(q.C97).ToString();
+
+                //------Tipo de unidad-----------
+                foreach (vmPiezas i in cmbUnidades.Items)
+                {
+                    if (i.c1.Trim() == q.C98.Trim())
+                    {
+                        cmbUnidades.SelectedValue = i.c1;
+                        break;
+
+                    }
+
+                }
+
+                peso.Text = q.C99.ToString();
+                
+                //------Peso-------------------
+                foreach (vmPeso i in cmbPeso.Items)
+                {
+                    if (i.c1.Trim() == q.C100.Trim())
+                    {
+                        cmbPeso.SelectedValue = i.c1;
+                        break;
+
+                    }
+
+                }
+
+                tipoOper.Text = q.C101;
+                txbValFact.Text = q.C102;
+
+                //-------Sucursal destino---------------
+                foreach (Sucursales i in sucDestino.Items)
+                {
+                    if (i.c1.Trim() == q.C103.Trim())
+                    {
+                        sucDestino.SelectedValue = i.c1;
+                        break;
+
+                    }
+
+                }
+                //-----------------------------------
+
+                bultos.Text =  Convert.ToInt32(q.C108).ToString().Trim();
+                detalles.Text = q.descripcion;
+               // alias.Text = q.C112;
+            }
+
+        }
+
+        private void updateDatos()
+        {
+            string datoSucDestino = sucDestino.SelectedValue.ToString();
+            string datoNoCord = cord.SelectedValue.ToString();
+            string datoNota = txbNotas.Text;
+            string datoReferencia = txbReferencia.Text;
+            string datoTipoOper = tipoOper.SelectedValue.ToString();
+            string datoValFact = txbValFact.Text;
+            string datoValArn = txbValArn.Text;
+            AltasBD bd = new AltasBD();
+            bd.UpdateKDM1(lblEntrada.Text.Trim(),datoSucDestino,datoNoCord,datoNota,datoReferencia,"",datoTipoOper,datoValFact,datoValArn);
+        }
+
+        #endregion Fin de Modifica entrada__________________________________________________________________________________________________________________________________
+        private void abreBaja()
+        {
+
+        }
+        private void abreConsulta()
+        {
+
+        }
+
 
     }
 }

@@ -181,6 +181,7 @@ namespace mainVentana
 
         private void iconButton9_MouseEnter(object sender, EventArgs e)
         {
+            ValidabPrincipal();
             iconButton9.IconColor = Color.FromArgb(0, 0, 0);
         }
 
@@ -234,18 +235,40 @@ namespace mainVentana
 
         private void gunaTextBox1_KeyDown(object sender, KeyEventArgs e)
         {
+            
             if (e.KeyCode == Keys.Enter)
             {
+                ValidabPrincipal();
                 string id = gunaTextBox1.Text;
                 frm.refresh(id);
 
                 e.SuppressKeyPress = true;
-                
-               
+
+
 
 
             }
         }
+        private void ValidabPrincipal()
+        {
+            if (gunaTextBox1.Text == "")
+            {
+                MessageBox.Show("El campo de busqueda esta vacio!");
+                return;
+            }
+            int datparseado;
+            bool bent = Int32.TryParse(gunaTextBox1.Text, out datparseado);
+            if (bent == true)
+            {
+                gunaTextBox1.Text = datparseado.ToString("D7");
+            }
+            else
+            {
+                MessageBox.Show("Las entradas tienen que ser un codigo numerico, y no pueden contener letras");
+                return;
+            }
+        }
+
 
         private void iconButton1_Click(object sender, EventArgs e)
         {

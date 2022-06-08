@@ -331,6 +331,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\arniacolor.png" />
+    <None Include="Resources\56. Bulb.png" />
+    <None Include="Resources\58. Glasses.png" />
+    <None Include="Resources\1. Plus.png" />
     <Content Include="Resources\correoskepler.html" />
     <Content Include="Resources\Plantilla.html" />
   </ItemGroup>

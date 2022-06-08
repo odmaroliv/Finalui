@@ -57,7 +57,7 @@ namespace Negocios
                 System.Windows.Forms.MessageBox.Show("El campo de Unidades no puede ser menor a 0, no puede estar vacio y no puede ser una cadena de texto", "Error campo Unidades en 0");
                 return false;
             }
-            if (peso == null || peso == "0" || peso == "" || int.TryParse(peso, out int b) == false)
+            if (peso == null || peso == "0" || peso == "" || double.TryParse(peso, out double b) == false)
             {
                 System.Windows.Forms.MessageBox.Show("El campo de Peso no puede ser menor a 0, no puede estar vacio y no puede ser una cadena de texto", "Error campo Peso en 0");
                 return false;

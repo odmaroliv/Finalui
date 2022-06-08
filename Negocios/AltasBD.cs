@@ -14,7 +14,7 @@ namespace Negocios
        public void agregaKDM1(string sucInicial,string entrada, string Moneda, DateTime fecha, string noCliente, 
            string noCord, string valArn, string nomCliente, string calle,string colonia, string ciudadcodigozip, string valFact,
            string paridad,string noTrakin, string provedor, string orCompra,string noFlete, string noUnidades, string tipUnidad, string peso,
-           string unidadMedida,string tipOperacion, string sucDestino, string bultos, string Alias)
+           string unidadMedida,string tipOperacion, string sucDestino, string bultos, string Alias, string nota, string referencia)
         {
             try
             {
@@ -31,8 +31,10 @@ namespace Negocios
                     d.C8 = 1;//ALMACEN 
                     d.C9 = fecha;
                     d.C10 = noCliente;
+                    d.C11 = referencia;
                     d.C12 = noCord;
                     d.C16 = valArn == "" ? 1 : Convert.ToDecimal(valArn);
+                    d.C24 = nota;
                     d.C31 = "Ent";
                     d.C32 = nomCliente;
                     d.C33 = calle;
@@ -43,11 +45,11 @@ namespace Negocios
                     d.C42 = valArn == "" ? 1 : Convert.ToDecimal(valArn);
                     d.C43 = "N";
                     d.C63 = "UD3501-";
-                    d.C67 = "Usuariotest";//Ultimo en modificar la entrada
+                    d.C67 = Common.Cache.CacheLogin.username.ToString().Trim();//Ultimo en modificar la entrada
                     d.C68 = fecha;//fecha de la ultima modificacion
-                    d.C69 = fecha.Hour.ToString("HH:mm");
+                    d.C69 = fecha.Hour.ToString("HH:mm");//Hora de la ultima modificacion
                     d.C80 = noTrakin; //elaboro
-                    d.C81 = "DOLIVARES"; //elaboro
+                    d.C81 = Common.Cache.CacheLogin.username.ToString().Trim(); //elaboro
                     d.C92 = provedor;
                     d.C93 = orCompra;
                     d.C95 = noFlete;
@@ -189,30 +191,29 @@ namespace Negocios
 
         public void agregarFotos(List<vmListaFotos> fotos)
         {
+            
             try
             {
-                using (modelo2Entities modelo = new modelo2Entities())
-                {
-                    var d = new DSIMAGE();
-                    foreach (var i in fotos)
+               
+                    using (modelo2Entities modelo = new modelo2Entities())
                     {
-                        d.ENTRADA= i.entrada;
-                        d.NOMBRE = i.nombre;
-                        d.REALNOMBRE = i.realnombre;
-                        d.BYTEDOCUMENTO = i.bytedocumto;
-                        d.EXTRA1 = i.sucursal.Trim();
-                        d.EXTRA2 = i.tipo.Trim();
-                        modelo.DSIMAGE.Add(d);
-                        modelo.SaveChanges();
+                        var d = new DSIMAGE();
+                        foreach (var i in fotos)
+                        {
+                            d.ENTRADA = i.entrada;
+                            d.NOMBRE = i.nombre;
+                            d.REALNOMBRE = i.realnombre;
+                            d.BYTEDOCUMENTO = i.bytedocumto;
+                            d.EXTRA1 = i.sucursal.Trim();
+                            d.EXTRA2 = i.tipo.Trim();
+                            modelo.DSIMAGE.Add(d);
+                            modelo.SaveChanges();
+                        }
+                      
                     }
-                    
-                   
 
-
-                    
-
-                }
             }
+
             catch (DbEntityValidationException e)
             {
                 foreach (var eve in e.EntityValidationErrors)
@@ -230,6 +231,49 @@ namespace Negocios
             }
             
         }
+
+        public void UpdateKDM1(string id, string sucursaldestino, string cord, string notas, string referencia, string pagado, string tipooperacion, string valfact, string valarn)
+        {
+            try
+            {
+                using (modelo2Entities modelo = new modelo2Entities())
+                {
+                    var d = (from q in modelo.KDM1
+                             where q.C6 == id
+                             select q).First();
+                    d.C103 = sucursaldestino.Trim();
+                    d.C112 = cord.Trim();
+                    d.C24 = notas.Trim();
+                    d.C11 = referencia.Trim();
+                    d.C44 = pagado.Trim();
+                    d.C101 = tipooperacion.Trim();
+                    d.C102 = valfact.Trim();
+                    d.C16 = Convert.ToDecimal(valarn.Trim());
+                    d.C42 = Convert.ToDecimal(valarn.Trim());
+                    modelo.SaveChanges();
+                    
+                }
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+
+                throw;
+            }
+
+        }
+
+
+
 
     }
 }

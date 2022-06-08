@@ -49,7 +49,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gunaPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // gunaLineTextBox2
+            // txbPass
             // 
             this.txbPass.BackColor = System.Drawing.Color.White;
             this.txbPass.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -57,11 +57,12 @@
             this.txbPass.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbPass.LineColor = System.Drawing.Color.Gainsboro;
             this.txbPass.Location = new System.Drawing.Point(0, 123);
-            this.txbPass.Name = "gunaLineTextBox2";
+            this.txbPass.Name = "txbPass";
             this.txbPass.PasswordChar = '●';
             this.txbPass.Size = new System.Drawing.Size(367, 38);
             this.txbPass.TabIndex = 1;
             this.txbPass.UseSystemPasswordChar = true;
+            this.txbPass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbPass_KeyDown);
             // 
             // label1
             // 
@@ -69,11 +70,11 @@
             this.label1.Font = new System.Drawing.Font("Microsoft JhengHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(0, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 25);
+            this.label1.Size = new System.Drawing.Size(68, 20);
             this.label1.TabIndex = 2;
             this.label1.Text = "Usuario";
             // 
-            // gunaLineTextBox1
+            // txbUsr
             // 
             this.txbUsr.BackColor = System.Drawing.Color.White;
             this.txbUsr.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -81,7 +82,7 @@
             this.txbUsr.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbUsr.LineColor = System.Drawing.Color.Gainsboro;
             this.txbUsr.Location = new System.Drawing.Point(0, 45);
-            this.txbUsr.Name = "gunaLineTextBox1";
+            this.txbUsr.Name = "txbUsr";
             this.txbUsr.PasswordChar = '\0';
             this.txbUsr.Size = new System.Drawing.Size(367, 38);
             this.txbUsr.TabIndex = 0;
@@ -92,16 +93,16 @@
             this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(534, 0);
+            this.panel1.Location = new System.Drawing.Point(536, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(442, 418);
+            this.panel1.Size = new System.Drawing.Size(442, 426);
             this.panel1.TabIndex = 5;
             // 
             // panel4
             // 
             this.panel4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel4.Controls.Add(this.iconButton1);
-            this.panel4.Location = new System.Drawing.Point(45, 278);
+            this.panel4.Location = new System.Drawing.Point(45, 282);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(372, 47);
             this.panel4.TabIndex = 5;
@@ -135,7 +136,7 @@
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.txbUsr);
-            this.panel3.Location = new System.Drawing.Point(45, 70);
+            this.panel3.Location = new System.Drawing.Point(45, 74);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(372, 184);
             this.panel3.TabIndex = 4;
@@ -146,7 +147,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft JhengHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(0, 96);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(122, 25);
+            this.label2.Size = new System.Drawing.Size(97, 20);
             this.label2.TabIndex = 3;
             this.label2.Text = "Contraseña";
             // 
@@ -158,7 +159,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(534, 418);
+            this.panel2.Size = new System.Drawing.Size(536, 426);
             this.panel2.TabIndex = 6;
             // 
             // panel5
@@ -167,7 +168,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(534, 418);
+            this.panel5.Size = new System.Drawing.Size(536, 426);
             this.panel5.TabIndex = 1;
             // 
             // pictureBox1
@@ -177,7 +178,7 @@
             this.pictureBox1.Image = global::mainVentana.Properties.Resources.arnian_gr;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(534, 418);
+            this.pictureBox1.Size = new System.Drawing.Size(536, 426);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
@@ -190,7 +191,7 @@
             this.gunaPictureBox1.InitialImage = global::mainVentana.Properties.Resources.arnian_gr;
             this.gunaPictureBox1.Location = new System.Drawing.Point(0, 0);
             this.gunaPictureBox1.Name = "gunaPictureBox1";
-            this.gunaPictureBox1.Size = new System.Drawing.Size(534, 418);
+            this.gunaPictureBox1.Size = new System.Drawing.Size(536, 426);
             this.gunaPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.gunaPictureBox1.TabIndex = 0;
             this.gunaPictureBox1.TabStop = false;
@@ -199,7 +200,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(976, 418);
+            this.ClientSize = new System.Drawing.Size(978, 426);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.IsMdiContainer = true;

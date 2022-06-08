@@ -63,6 +63,36 @@ namespace mainVentana.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _1__Plus {
+            get {
+                object obj = ResourceManager.GetObject("1. Plus", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _56__Bulb {
+            get {
+                object obj = ResourceManager.GetObject("56. Bulb", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _58__Glasses {
+            get {
+                object obj = ResourceManager.GetObject("58. Glasses", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap arniacolor {
             get {
                 object obj = ResourceManager.GetObject("arniacolor", resourceCulture);
@@ -83,10 +113,25 @@ namespace mainVentana.Properties {
         /// <summary>
         ///   Busca una cadena traducida similar a &lt;html&gt;
         ///&lt;body&gt;
-        ///    &lt;center&gt;
-        ///        &lt;table style=&quot;font-family: sans-serif; width:100%; border: 1px solid #333;&quot;&gt;
-        ///            &lt;tr&gt;&lt;td&gt; &lt;table style=&quot;width: 100%&quot;&gt;&lt;tr style=&quot;background: #344fb6;&quot;&gt;&lt;td style=&quot;width: 100%; height: 40px;&quot;&gt; &lt;p style=&quot;color: #fff; font-size:26px; text-align: center;&quot;&gt; Orden de Entrada &lt;/p&gt;&lt;/td&gt;&lt;td style=&quot;width: 30%;&quot;&gt; &lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;&lt;/tr&gt;
-        ///            &lt;tr&gt;&lt;td&gt; &lt;table style=&quot;width: 100%;&quot;&gt;&lt;tr&gt;&lt;td style=&quot;width: 70%;&quot;&gt; &lt;table style=&quot;width: 100%;&quot;&gt;&lt;tr&gt;&lt;td style=&quot;width: 30%; borde [resto de la cadena truncado]&quot;;.
+        ///	&lt;center&gt;
+        ///		&lt;table style=&quot;font-family: sans-serif; width:100%; border: 1px solid #333;&quot;&gt;
+        ///			&lt;tr&gt;
+        ///				&lt;td&gt;
+        ///					&lt;table style=&quot;width: 100%&quot;&gt;
+        ///						&lt;tr style=&quot;background: #344fb6;&quot;&gt;
+        ///							&lt;td style=&quot;width: 100%; height: 40px;&quot;&gt;
+        ///								&lt;p style=&quot;color: #fff; font-size:26px; text-align: center;&quot;&gt; Orden de Entrada &lt;/p&gt;
+        ///							&lt;/td&gt;
+        ///							&lt;td style=&quot;width: 30%;&quot;&gt;
+        ///						&lt;/tr&gt;
+        ///					&lt;/table&gt;
+        ///					&lt;/td&gt;
+        ///			&lt;/tr&gt;
+        ///			&lt;tr&gt;
+        ///				&lt;td&gt;
+        ///					&lt;table style=&quot;width: 100%;&quot;&gt;
+        ///						&lt;tr&gt;
+        ///							&lt; [resto de la cadena truncado]&quot;;.
         /// </summary>
         internal static string correoskepler {
             get {

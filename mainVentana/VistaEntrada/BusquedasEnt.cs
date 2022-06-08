@@ -36,7 +36,7 @@ namespace mainVentana.VistaEntrada
             if (label2.Text == "CLIENTE")
             { pasado(gunaTextBox2.Text,"",gunaTextBox1.Text,calle,colonia,ciudad, Codcliente, CorreosCliente, 0); }
             else if (label2.Text == "ALIAS")
-            { pasado(gunaTextBox2.Text, gunaTextBox3.Text, gunaTextBox1.Text,calle,colonia,ciudad,"", CorreosCliente, 1); }
+            { pasado(gunaTextBox2.Text, gunaTextBox3.Text, gunaTextBox1.Text,calle,colonia,ciudad,Codcliente, CorreosCliente, 1); }
         }
 
         private AutoCompleteStringCollection aliasList()
@@ -73,36 +73,8 @@ namespace mainVentana.VistaEntrada
 
         private void comboBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char)13)
-            {
-                MessageBox.Show("dacaaaaa");
-            }
-            if (e.KeyChar == Convert.ToChar(Keys.Enter))
-            {
-                /*validacionesdatos datos = new validacionesdatos();
-                var lst = datos.llenaAlias();
-                foreach (var d in lst)
-                {
-                    if (d.ToString() == comboBox1.Text)
-                    {
-                        MessageBox.Show("Dato correcto" + comboBox1.Text);
 
-                    }
-                    else
-                    {
-                        MessageBox.Show("Dato incorrecto" + comboBox1.Text);
-                    }
-                    MessageBox.Show(d.ToString());
-
-
-
-                }
-            */
-                MessageBox.Show("dacaaaaa");
-            }
-
-
-
+            
 
         }
 
@@ -122,6 +94,13 @@ namespace mainVentana.VistaEntrada
         string CorreosCliente;
         private void gunaGradientTileButton4_Click(object sender, EventArgs e)
         {
+            Ejecuta();
+
+
+        }
+
+        private void Ejecuta()
+        {
             if (label2.Text == "ALIAS")
             {
                 Servicios datos = new Servicios();
@@ -136,6 +115,7 @@ namespace mainVentana.VistaEntrada
                         gunaTextBox3.Text = validCli(d.c3.ToString())[0].ToString();
                         gunaTextBox1.Text = validCli(d.c3.ToString())[1].ToString();
                         CorreosCliente = validCli(d.c3.ToString())[2].ToString();
+                        Codcliente = validCli(d.c3.ToString())[3].ToString();
                         calle = d.c4.ToString();
                         colonia = d.c5.ToString();
                         ciudad = d.c6.ToString();
@@ -188,8 +168,8 @@ namespace mainVentana.VistaEntrada
 
                 }
             }
-            
         }
+
 
         private List<string> validCli(string clave)//dado un alias busca un cliente para rellenarlo automaticamente
         {
@@ -200,6 +180,7 @@ namespace mainVentana.VistaEntrada
             var lst2 = datos2.llenaClientes();
               string cliente = "";
              string cord = "";
+            string codclient = "";
             List<string> lista = new List<string>();
             foreach (var d in lst2)
             {
@@ -209,7 +190,7 @@ namespace mainVentana.VistaEntrada
                     lista.Add(cliente = d.c3.ToString().Trim());
                     lista.Add(cord = (d.c12.ToString().Trim()));
                     lista.Add(cord = (d.c11.ToString().Trim()));
-
+                    lista.Add(codclient = (d.c2.ToString().Trim()));
 
 
                 }
@@ -224,7 +205,12 @@ namespace mainVentana.VistaEntrada
             return lista.ToList();
         }
 
-        
-
+        private void comboBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Ejecuta();
+            }
+        }
     }
 }
