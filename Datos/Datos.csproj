@@ -155,6 +155,7 @@
     <Compile Include="ViewModels\Entradas\vmAlmacenes.cs" />
     <Compile Include="ViewModels\Entradas\vmEntradaById.cs" />
     <Compile Include="ViewModels\Entradas\vmEntradaByIdComent.cs" />
+    <Compile Include="ViewModels\Entradas\vmFotosById.cs" />
     <Compile Include="ViewModels\Entradas\vmListaFotos.cs" />
     <Compile Include="ViewModels\Entradas\vmNumeroEntrada.cs" />
     <Compile Include="ViewModels\Entradas\vmPeso.cs" />

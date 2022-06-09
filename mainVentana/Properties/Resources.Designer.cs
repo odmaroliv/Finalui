@@ -111,6 +111,26 @@ namespace mainVentana.Properties {
         }
         
         /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cargador {
+            get {
+                object obj = ResourceManager.GetObject("cargador", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cargandopatogif {
+            get {
+                object obj = ResourceManager.GetObject("cargandopatogif", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a &lt;html&gt;
         ///&lt;body&gt;
         ///	&lt;center&gt;

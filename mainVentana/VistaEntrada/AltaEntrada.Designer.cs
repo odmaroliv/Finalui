@@ -105,6 +105,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.panelLoading = new System.Windows.Forms.Panel();
             this.label33 = new System.Windows.Forms.Label();
             this.txbReferencia = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
@@ -131,8 +132,8 @@
             this.gunaTileButton3 = new Guna.UI.WinForms.GunaTileButton();
             this.label39 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
-            this.gunaMediumRadioButton2 = new Guna.UI.WinForms.GunaMediumRadioButton();
-            this.gunaMediumRadioButton1 = new Guna.UI.WinForms.GunaMediumRadioButton();
+            this.rdbNoPagado = new Guna.UI.WinForms.GunaMediumRadioButton();
+            this.rdbPagado = new Guna.UI.WinForms.GunaMediumRadioButton();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.txbBuscarEnt = new System.Windows.Forms.TextBox();
             this.lblBuscarEnt = new System.Windows.Forms.Label();
@@ -1174,6 +1175,7 @@
             // groupBox6
             // 
             this.groupBox6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox6.Controls.Add(this.panelLoading);
             this.groupBox6.Controls.Add(this.label33);
             this.groupBox6.Controls.Add(this.txbReferencia);
             this.groupBox6.Controls.Add(this.label28);
@@ -1191,6 +1193,14 @@
             this.groupBox6.TabIndex = 119;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Detalles";
+            // 
+            // panelLoading
+            // 
+            this.panelLoading.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panelLoading.Location = new System.Drawing.Point(11, 43);
+            this.panelLoading.Name = "panelLoading";
+            this.panelLoading.Size = new System.Drawing.Size(90, 184);
+            this.panelLoading.TabIndex = 123;
             // 
             // label33
             // 
@@ -1458,8 +1468,8 @@
             this.groupBox7.Controls.Add(this.gunaTileButton3);
             this.groupBox7.Controls.Add(this.label39);
             this.groupBox7.Controls.Add(this.label38);
-            this.groupBox7.Controls.Add(this.gunaMediumRadioButton2);
-            this.groupBox7.Controls.Add(this.gunaMediumRadioButton1);
+            this.groupBox7.Controls.Add(this.rdbNoPagado);
+            this.groupBox7.Controls.Add(this.rdbPagado);
             this.groupBox7.Location = new System.Drawing.Point(1293, 463);
             this.groupBox7.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox7.Name = "groupBox7";
@@ -1517,33 +1527,33 @@
             this.label38.TabIndex = 2;
             this.label38.Text = "Pagado";
             // 
-            // gunaMediumRadioButton2
+            // rdbNoPagado
             // 
-            this.gunaMediumRadioButton2.BaseColor = System.Drawing.Color.White;
-            this.gunaMediumRadioButton2.Checked = true;
-            this.gunaMediumRadioButton2.CheckedOffColor = System.Drawing.Color.Gray;
-            this.gunaMediumRadioButton2.CheckedOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.gunaMediumRadioButton2.Enabled = false;
-            this.gunaMediumRadioButton2.FillColor = System.Drawing.Color.White;
-            this.gunaMediumRadioButton2.Location = new System.Drawing.Point(12, 90);
-            this.gunaMediumRadioButton2.Margin = new System.Windows.Forms.Padding(4);
-            this.gunaMediumRadioButton2.Name = "gunaMediumRadioButton2";
-            this.gunaMediumRadioButton2.Size = new System.Drawing.Size(20, 20);
-            this.gunaMediumRadioButton2.TabIndex = 1;
-            this.gunaMediumRadioButton2.CheckedChanged += new System.EventHandler(this.gunaMediumRadioButton2_CheckedChanged);
+            this.rdbNoPagado.BaseColor = System.Drawing.Color.White;
+            this.rdbNoPagado.Checked = true;
+            this.rdbNoPagado.CheckedOffColor = System.Drawing.Color.Gray;
+            this.rdbNoPagado.CheckedOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.rdbNoPagado.Enabled = false;
+            this.rdbNoPagado.FillColor = System.Drawing.Color.White;
+            this.rdbNoPagado.Location = new System.Drawing.Point(12, 90);
+            this.rdbNoPagado.Margin = new System.Windows.Forms.Padding(4);
+            this.rdbNoPagado.Name = "rdbNoPagado";
+            this.rdbNoPagado.Size = new System.Drawing.Size(20, 20);
+            this.rdbNoPagado.TabIndex = 1;
+            this.rdbNoPagado.CheckedChanged += new System.EventHandler(this.gunaMediumRadioButton2_CheckedChanged);
             // 
-            // gunaMediumRadioButton1
+            // rdbPagado
             // 
-            this.gunaMediumRadioButton1.BaseColor = System.Drawing.Color.White;
-            this.gunaMediumRadioButton1.CheckedOffColor = System.Drawing.Color.Gray;
-            this.gunaMediumRadioButton1.CheckedOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.gunaMediumRadioButton1.FillColor = System.Drawing.Color.White;
-            this.gunaMediumRadioButton1.Location = new System.Drawing.Point(12, 46);
-            this.gunaMediumRadioButton1.Margin = new System.Windows.Forms.Padding(4);
-            this.gunaMediumRadioButton1.Name = "gunaMediumRadioButton1";
-            this.gunaMediumRadioButton1.Size = new System.Drawing.Size(20, 20);
-            this.gunaMediumRadioButton1.TabIndex = 0;
-            this.gunaMediumRadioButton1.CheckedChanged += new System.EventHandler(this.gunaMediumRadioButton1_CheckedChanged);
+            this.rdbPagado.BaseColor = System.Drawing.Color.White;
+            this.rdbPagado.CheckedOffColor = System.Drawing.Color.Gray;
+            this.rdbPagado.CheckedOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.rdbPagado.FillColor = System.Drawing.Color.White;
+            this.rdbPagado.Location = new System.Drawing.Point(12, 46);
+            this.rdbPagado.Margin = new System.Windows.Forms.Padding(4);
+            this.rdbPagado.Name = "rdbPagado";
+            this.rdbPagado.Size = new System.Drawing.Size(20, 20);
+            this.rdbPagado.TabIndex = 0;
+            this.rdbPagado.CheckedChanged += new System.EventHandler(this.gunaMediumRadioButton1_CheckedChanged);
             // 
             // notifyIcon1
             // 
@@ -1765,8 +1775,8 @@
         private Guna.UI.WinForms.GunaTileButton gunaTileButton3;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label label38;
-        private Guna.UI.WinForms.GunaMediumRadioButton gunaMediumRadioButton2;
-        private Guna.UI.WinForms.GunaMediumRadioButton gunaMediumRadioButton1;
+        private Guna.UI.WinForms.GunaMediumRadioButton rdbNoPagado;
+        private Guna.UI.WinForms.GunaMediumRadioButton rdbPagado;
         private System.Windows.Forms.Label lblFecha;
         private System.Windows.Forms.Label lblEntrada;
         private System.Windows.Forms.Label lblCodCliente;
@@ -1779,5 +1789,6 @@
         private System.Windows.Forms.Label lblBuscarEnt;
         private Guna.UI.WinForms.GunaCircleButton btnBuscarEnt;
         private Guna.UI.WinForms.GunaGradientTileButton btnAgregarBultos;
+        private System.Windows.Forms.Panel panelLoading;
     }
 }

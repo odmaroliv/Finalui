@@ -102,6 +102,12 @@
     <Reference Include="itextsharp.xmlworker, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\itextsharp.xmlworker.5.5.13.2\lib\itextsharp.xmlworker.dll</HintPath>
     </Reference>
+    <Reference Include="Magick.NET-Q16-AnyCPU, Version=11.1.0.0, Culture=neutral, PublicKeyToken=2004825badfa91ec, processorArchitecture=MSIL">
+      <HintPath>..\packages\Magick.NET-Q16-AnyCPU.11.1.2\lib\netstandard20\Magick.NET-Q16-AnyCPU.dll</HintPath>
+    </Reference>
+    <Reference Include="Magick.NET.Core, Version=11.1.0.0, Culture=neutral, PublicKeyToken=2004825badfa91ec, processorArchitecture=MSIL">
+      <HintPath>..\packages\Magick.NET.Core.11.1.2\lib\net20\Magick.NET.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -210,6 +216,12 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="iconButton.cs" />
+    <Compile Include="Loading\LoadingPatoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Loading\LoadingPatoControl.Designer.cs">
+      <DependentUpon>LoadingPatoControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -261,6 +273,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Loading\LoadingPatoControl.resx">
+      <DependentUpon>LoadingPatoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -334,6 +349,8 @@
     <None Include="Resources\56. Bulb.png" />
     <None Include="Resources\58. Glasses.png" />
     <None Include="Resources\1. Plus.png" />
+    <None Include="Resources\cargandopatogif.gif" />
+    <None Include="Resources\cargador.gif" />
     <Content Include="Resources\correoskepler.html" />
     <Content Include="Resources\Plantilla.html" />
   </ItemGroup>
@@ -345,6 +362,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Magick.NET-Q16-AnyCPU.11.1.2\build\netstandard20\Magick.NET-Q16-AnyCPU.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Magick.NET-Q16-AnyCPU.11.1.2\build\netstandard20\Magick.NET-Q16-AnyCPU.targets'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\Magick.NET-Q16-AnyCPU.11.1.2\build\netstandard20\Magick.NET-Q16-AnyCPU.targets" Condition="Exists('..\packages\Magick.NET-Q16-AnyCPU.11.1.2\build\netstandard20\Magick.NET-Q16-AnyCPU.targets')" />
 </Project>

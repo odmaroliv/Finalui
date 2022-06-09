@@ -242,7 +242,7 @@ namespace Negocios
                              where q.C6 == id
                              select q).First();
                     d.C103 = sucursaldestino.Trim();
-                    d.C112 = cord.Trim();
+                    d.C12 = cord.Trim();
                     d.C24 = notas.Trim();
                     d.C11 = referencia.Trim();
                     d.C44 = pagado.Trim();
@@ -272,6 +272,8 @@ namespace Negocios
 
         }
 
+        
+        
 
 
 

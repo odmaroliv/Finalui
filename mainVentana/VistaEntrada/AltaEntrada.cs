@@ -26,6 +26,9 @@ using Datos.ViewModels.Servicios;
 using Newtonsoft.Json;
 using mainVentana.Email;
 using Negocios.Common.Cache;
+using System.Diagnostics;
+using mainVentana.Loading;
+using ImageMagick;
 
 namespace mainVentana.VistaEntrada
 {
@@ -173,6 +176,14 @@ namespace mainVentana.VistaEntrada
 
             }
         }
+
+
+        private void LimpiaList()
+        {
+            mnd.Clear();
+            lstFotos.Clear();
+        }
+
         List<string> mnd = new List<string>();
         private void creaListadeFotos()
         {
@@ -250,7 +261,7 @@ namespace mainVentana.VistaEntrada
 
 
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox2.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-1", realnombre = filename, bytedocumto = imgbyte(pictureBox2.ImageLocation, pictureBox2.Image), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox2.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-1", realnombre = filename, bytedocumto = RedimencionaIMG(pictureBox2.ImageLocation.ToString()), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
             }
 
             if (pictureBox3.Image != null)
@@ -259,7 +270,7 @@ namespace mainVentana.VistaEntrada
                 string filename = null;
                 filename = Path.GetFileName(pictureBox3.ImageLocation);
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox3.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-2", realnombre = filename, bytedocumto = imgbyte(pictureBox3.ImageLocation, pictureBox3.Image), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox3.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-2", realnombre = filename, bytedocumto = RedimencionaIMG(pictureBox3.ImageLocation.ToString()), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
             }
 
             if (pictureBox4.Image != null)
@@ -269,7 +280,7 @@ namespace mainVentana.VistaEntrada
                 string filename = null;
                 filename = Path.GetFileName(pictureBox4.ImageLocation);
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox4.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-3", realnombre = filename, bytedocumto = imgbyte(pictureBox4.ImageLocation, pictureBox4.Image), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox4.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-3", realnombre = filename, bytedocumto = RedimencionaIMG(pictureBox4.ImageLocation.ToString()), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
             }
 
             if (pictureBox5.Image != null)
@@ -279,7 +290,7 @@ namespace mainVentana.VistaEntrada
                 filename = Path.GetFileName(pictureBox5.ImageLocation);
 
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox5.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-4", realnombre = filename, bytedocumto = imgbyte(pictureBox5.ImageLocation, pictureBox5.Image), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox5.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-4", realnombre = filename, bytedocumto = RedimencionaIMG(pictureBox5.ImageLocation.ToString()), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
 
             }
             if (pictureBox6.Image != null)
@@ -287,7 +298,7 @@ namespace mainVentana.VistaEntrada
                 string filename = null;
                 filename = Path.GetFileName(pictureBox6.ImageLocation);
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox6.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-5", realnombre = filename, bytedocumto = imgbyte(pictureBox6.ImageLocation, pictureBox6.Image), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox6.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-5", realnombre = filename, bytedocumto = RedimencionaIMG(pictureBox6.ImageLocation.ToString()), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
 
             }
             if (pictureBox7.Image != null)
@@ -296,14 +307,14 @@ namespace mainVentana.VistaEntrada
                 filename = Path.GetFileName(pictureBox7.ImageLocation);
 
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox7.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-6", realnombre = filename, bytedocumto = imgbyte(pictureBox7.ImageLocation, pictureBox7.Image), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox7.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-6", realnombre = filename, bytedocumto = RedimencionaIMG(pictureBox7.ImageLocation.ToString()), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
             }
             if (pictureBox8.Image != null)
             {
                 string filename = null;
                 filename = Path.GetFileName(pictureBox8.ImageLocation);
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox8.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-7", realnombre = filename, bytedocumto = imgbyte(pictureBox8.ImageLocation, pictureBox8.Image), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox8.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-7", realnombre = filename, bytedocumto = RedimencionaIMG(pictureBox8.ImageLocation.ToString()), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
             }
             if (pictureBox9.Image != null)
             {
@@ -311,7 +322,7 @@ namespace mainVentana.VistaEntrada
                 filename = Path.GetFileName(pictureBox9.ImageLocation);
 
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox9.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-8", realnombre = filename, bytedocumto = imgbyte(pictureBox9.ImageLocation, pictureBox9.Image), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox9.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-8", realnombre = filename, bytedocumto = RedimencionaIMG(pictureBox9.ImageLocation.ToString()), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
             }
             if (pictureBox10.Image != null)
             {
@@ -319,7 +330,7 @@ namespace mainVentana.VistaEntrada
                 filename = Path.GetFileName(pictureBox10.ImageLocation);
 
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox10.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-9", realnombre = filename, bytedocumto = imgbyte(pictureBox10.ImageLocation, pictureBox10.Image), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox10.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-9", realnombre = filename, bytedocumto = RedimencionaIMG(pictureBox10.ImageLocation.ToString()), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
             }
             if (pictureBox11.Image != null)
             {
@@ -327,7 +338,7 @@ namespace mainVentana.VistaEntrada
                 filename = Path.GetFileName(pictureBox11.ImageLocation);
 
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox11.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-10", realnombre = filename, bytedocumto = imgbyte(pictureBox11.ImageLocation, pictureBox11.Image), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox11.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-10", realnombre = filename, bytedocumto = RedimencionaIMG(pictureBox11.ImageLocation.ToString()), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
             }
             if (pictureBox12.Image != null)
             {
@@ -335,7 +346,7 @@ namespace mainVentana.VistaEntrada
                 filename = Path.GetFileName(pictureBox12.ImageLocation);
 
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox12.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-11", realnombre = filename, bytedocumto = imgbyte(pictureBox12.ImageLocation, pictureBox12.Image), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox12.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-11", realnombre = filename, bytedocumto = RedimencionaIMG(pictureBox12.ImageLocation.ToString()), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
             }
             if (pictureBox13.Image != null)
             {
@@ -343,7 +354,7 @@ namespace mainVentana.VistaEntrada
                 filename = Path.GetFileName(pictureBox13.ImageLocation);
 
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox13.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-12", realnombre = filename, bytedocumto = imgbyte(pictureBox13.ImageLocation, pictureBox13.Image), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox13.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-12", realnombre = filename, bytedocumto = RedimencionaIMG(pictureBox13.ImageLocation.ToString()), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
             }
             if (pictureBox14.Image != null)
             {
@@ -351,14 +362,14 @@ namespace mainVentana.VistaEntrada
                 filename = Path.GetFileName(pictureBox14.ImageLocation);
 
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox14.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-13", realnombre = filename, bytedocumto = imgbyte(pictureBox14.ImageLocation, pictureBox14.Image), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox14.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-13", realnombre = filename, bytedocumto = RedimencionaIMG(pictureBox14.ImageLocation.ToString()), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
             }
             if (pictureBox15.Image != null)
             {
                 string filename = null;
                 filename = Path.GetFileName(pictureBox15.ImageLocation);
 
-                lstFotos.Add(new vmListaFotos { documento = pictureBox15.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-14", realnombre = filename, bytedocumto = imgbyte(pictureBox15.ImageLocation, pictureBox15.Image), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
+                lstFotos.Add(new vmListaFotos { documento = pictureBox15.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-14", realnombre = filename, bytedocumto = RedimencionaIMG(pictureBox15.ImageLocation.ToString()), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
             }
 
         }
@@ -419,7 +430,7 @@ namespace mainVentana.VistaEntrada
             ValidacionEntradas validacion = new ValidacionEntradas();
             if (tipodeDocumento == 1)
             {
-               
+
 
                 if (validacion.validacampo(sucEntrada.Text, sucDestino.Text, tipoOper.Text, cord.Text, cliente.Text, proveedor.Text, ordenCompra.Text, numFlete.Text, unidades.Text, peso.Text, bultos.Text, detalles.Text) == true)
                 {
@@ -427,25 +438,48 @@ namespace mainVentana.VistaEntrada
                     creaListadeFotos();
                     AgregaArchivos();
                     altaKDM1();
+                    envEmail();
                     altaKDM1coment();
                     SubeFotos();
 
                     CreaEriquetas();
-                    envEmail();
+                    //envEmail();
 
                     ReiniciaInfo(0);
+                    LimpiaList();
                     //cargaultent();
                 }
-
-
-
             }
+
             if (tipodeDocumento == 2)
             {
-                updateDatos();
-                MessageBox.Show("Se ha modificado el docimento "+lblEntrada.Text);
-            }
+                if (validacion.validacampo(sucEntrada.Text, sucDestino.Text, tipoOper.Text, cord.Text, cliente.Text, proveedor.Text, ordenCompra.Text, numFlete.Text, unidades.Text, peso.Text, bultos.Text, detalles.Text) == true)
+                {
+                    if (lblEntrada.Text != "" || lblEntrada.Text != null)
+                    {
+                        string pagado = default;
+                        if (rdbPagado.Checked == true)
+                        {
+                            pagado = "Pagado";
+                        }
+                        else
+                        {
+                            pagado = "NoPagado";
+                        }
+                        updateDatos(pagado);
 
+                        MessageBox.Show("Se ha modificado el docimento " + lblEntrada.Text);
+                        InicioModifica();
+
+
+                    }
+                    else
+                    {
+
+                        MessageBox.Show("No se ha ingresado ninguna entrada!");
+                    }
+                }
+            }
 
         }
         string datoEntrada; //variable global de entrada cuando se click al boton de guardar ---------------------------------------
@@ -453,33 +487,33 @@ namespace mainVentana.VistaEntrada
         {
             AltasBD bd = new AltasBD();
 
-            string datoSucIni       = sucEntrada.SelectedValue.ToString();
-            datoEntrada             = recuperUltimaent();
-            string datoMoneda       = cmbMoneda.GetItemText(cmbMoneda.SelectedItem).ToString();
-            DateTime datoFecha      = regresafecha();
-            string datoNuCliente    = lblCodCliente.Text;
-            string datoNoCord       = cord.SelectedValue.ToString();
-            string datoValArn       = txbValArn.Text;
-            string datoNomCliente   = cliente.Text;
-            string datoCalle        = label23.Text;
-            string datoColonia      = label24.Text;
-            string datoCiudadZip    = label25.Text;
-            string datoValFact      = txbValFact.Text;
-            string datoParidad      = lblParidad.Text;
-            string datoNoTrakin     = tbxRastreo.Text;
-            string datoProvedor     = proveedor.SelectedValue.ToString();
-            string datoOrdCompra    = ordenCompra.Text;
-            string datoNoFlete      = numFlete.Text;
-            string datoNoUnidades   = unidades.Text;
-            string datoTipoUnidad   = cmbUnidades.GetItemText(cmbUnidades.SelectedItem).ToString();
-            string datoPeso         = peso.Text;
+            string datoSucIni = sucEntrada.SelectedValue.ToString();
+            datoEntrada = recuperUltimaent();
+            string datoMoneda = cmbMoneda.GetItemText(cmbMoneda.SelectedItem).ToString();
+            DateTime datoFecha = regresafecha();
+            string datoNuCliente = lblCodCliente.Text;
+            string datoNoCord = cord.SelectedValue.ToString();
+            string datoValArn = txbValArn.Text;
+            string datoNomCliente = cliente.Text;
+            string datoCalle = label23.Text;
+            string datoColonia = label24.Text;
+            string datoCiudadZip = label25.Text;
+            string datoValFact = txbValFact.Text;
+            string datoParidad = lblParidad.Text;
+            string datoNoTrakin = tbxRastreo.Text;
+            string datoProvedor = proveedor.SelectedValue.ToString();
+            string datoOrdCompra = ordenCompra.Text;
+            string datoNoFlete = numFlete.Text;
+            string datoNoUnidades = unidades.Text;
+            string datoTipoUnidad = cmbUnidades.GetItemText(cmbUnidades.SelectedItem).ToString();
+            string datoPeso = peso.Text;
             string datoUnidadMedida = cmbPeso.SelectedValue.ToString();
-            string datoTipoOper     = tipoOper.SelectedValue.ToString();
-            string datoSucDestino   = sucDestino.SelectedValue.ToString();
-            string datoBultos       = bultos.Text;
-            string datosAlias       = alias.Text;
-            string datoNota         = txbNotas.Text;
-            string datoReferencia   = txbReferencia.Text;
+            string datoTipoOper = tipoOper.SelectedValue.ToString();
+            string datoSucDestino = sucDestino.SelectedValue.ToString();
+            string datoBultos = bultos.Text;
+            string datosAlias = alias.Text;
+            string datoNota = txbNotas.Text;
+            string datoReferencia = txbReferencia.Text;
 
 
             bd.agregaKDM1(datoSucIni, datoEntrada, datoMoneda, datoFecha, datoNuCliente, datoNoCord, datoValArn, datoNomCliente, datoCalle, datoColonia, datoCiudadZip,
@@ -494,12 +528,12 @@ namespace mainVentana.VistaEntrada
         {
             AltasBD bd = new AltasBD();
 
-            string datoSucIni    = sucEntrada.SelectedValue.ToString();
-            string dtEntrada     = datoEntrada;
-            string datoMoneda    = cmbMoneda.GetItemText(cmbMoneda.SelectedItem).ToString();
-            DateTime datoFecha   = regresafecha();
+            string datoSucIni = sucEntrada.SelectedValue.ToString();
+            string dtEntrada = datoEntrada;
+            string datoMoneda = cmbMoneda.GetItemText(cmbMoneda.SelectedItem).ToString();
+            DateTime datoFecha = regresafecha();
             string datoNuCliente = lblCodCliente.Text;
-            string datoDetalles  = detalles.Text;
+            string datoDetalles = detalles.Text;
 
             bd.agregaComentKDM1(datoSucIni, dtEntrada, datoMoneda, datoFecha, datoNuCliente, datoDetalles);
 
@@ -521,10 +555,10 @@ namespace mainVentana.VistaEntrada
 
             //bd.agregaKDMENT();
         }
-        private void envEmail()
+        private async void envEmail()
         {
             EnviarEmail servicio = new EnviarEmail();
-            var respuesta = servicio.EnviaMail(lblEntrada.Text, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, mnd, larch, coreoClientes);
+            var respuesta = await servicio.EnviaMail(lblEntrada.Text, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, mnd, larch, coreoClientes);
             if (respuesta == 1)
             {
                 MessageBox.Show("El correo NO SE ENVIÓ PORQUE supera el límite máximo de 25 MB en cada correo, intenta borrar documentos y reenvía la notificación", "CUIDADO EL CORREO NO SE ENVIO");
@@ -643,13 +677,7 @@ namespace mainVentana.VistaEntrada
         }
 
         private void SubeFotos()
-        {
-
-            /* foreach (var I in lstFotos)
-            {
-            MessageBox.Show(I.documento.ToString()+"------"+I.bytedocumto.ToString());
-            }*/
-
+        { 
 
             AltasBD bd = new AltasBD();
             creaListadepARAMSFotos();
@@ -658,6 +686,7 @@ namespace mainVentana.VistaEntrada
         }
         private byte[] imgbyte(string ruta, System.Drawing.Image picture)
         {
+            
             byte[] file = null;
             vmListaFotos lsf = new vmListaFotos();
             //Stream fs = new FileStream(ruta, FileMode.Create);
@@ -688,15 +717,23 @@ namespace mainVentana.VistaEntrada
             return file;
             //picture.Dispose();
         }
+        private byte[] RedimencionaIMG(string path)
+        {
+            byte[] pic;
+            using (MagickImage imk = new MagickImage(path))
+            {
+                imk.Resize(1000, 0);
+                pic = imk.ToByteArray();
+               
+            }
+            return pic;
 
+        }
 
         private void AltaEntrada_KeyPress(object sender, KeyPressEventArgs e)
         {
 
         }
-
-
-
 
 
         private async void llenaCampos()
@@ -1017,21 +1054,21 @@ namespace mainVentana.VistaEntrada
 
         private void gunaMediumRadioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            gunaMediumRadioButton2.Enabled = false;
-            gunaMediumRadioButton1.Enabled = true;
+            rdbNoPagado.Enabled = false;
+            rdbPagado.Enabled = true;
         }
 
 
 
         private void gunaMediumRadioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            gunaMediumRadioButton1.Enabled = false;
+            rdbPagado.Enabled = false;
         }
 
         private void gunaTileButton3_Click(object sender, EventArgs e)
         {
 
-            if (gunaMediumRadioButton2.Checked == true)
+            if (rdbNoPagado.Checked == true)
             {
                 MessageBox.Show("Para liberar una entrada primero tiene que estar pagada");
                 return;
@@ -1047,11 +1084,11 @@ namespace mainVentana.VistaEntrada
         {
             if (dato == true)
             {
-                gunaMediumRadioButton2.Enabled = true;
+                rdbNoPagado.Enabled = true;
             }
             else
             {
-                gunaMediumRadioButton2.Enabled = false;
+                rdbNoPagado.Enabled = false;
             }
 
         }
@@ -1127,77 +1164,86 @@ namespace mainVentana.VistaEntrada
 
         public void limpiaImg()
         {
-
             if (pictureBox2.Image != null)
             {
-
-                pictureBox2.Dispose();
+                //pictureBox2.Dispose();
+                pictureBox2.Image = null;
+                pictureBox2.ImageLocation = null;
 
             }
             if (pictureBox3.Image != null)
             {
 
-                pictureBox3.Dispose();
+                pictureBox3.Image = null;
+                pictureBox3.ImageLocation = null;
+
             }
             if (pictureBox4.Image != null)
             {
-
-                pictureBox4.Dispose();
+                pictureBox4.Image = null;
+                pictureBox4.ImageLocation = null;
             }
             if (pictureBox5.Image != null)
             {
-
-                pictureBox5.Dispose();
+                pictureBox5.Image = null;
+                pictureBox5.ImageLocation = null;
             }
             if (pictureBox6.Image != null)
             {
 
-                pictureBox6.Dispose();
+                pictureBox6.Image = null;
+                pictureBox6.ImageLocation = null;
             }
             if (pictureBox7.Image != null)
             {
 
-                pictureBox7.Dispose();
+                pictureBox7.Image = null;
+                pictureBox7.ImageLocation = null;
             }
             if (pictureBox8.Image != null)
             {
 
-                pictureBox8.Dispose();
+                pictureBox8.Image = null;
+                pictureBox8.ImageLocation = null;
             }
             if (pictureBox9.Image != null)
             {
 
-                pictureBox9.Dispose();
+                pictureBox9.Image = null;
+                pictureBox9.ImageLocation = null;
             }
             if (pictureBox10.Image != null)
             {
-
-                pictureBox10.Dispose();
+                pictureBox10.Image = null;
+                pictureBox10.ImageLocation = null;
             }
             if (pictureBox11.Image != null)
             {
-
-                pictureBox11.Dispose();
+                pictureBox11.Image = null;
+                pictureBox11.ImageLocation = null;
             }
             if (pictureBox12.Image != null)
             {
 
-                pictureBox12.Dispose();
+                pictureBox12.Image = null;
+                pictureBox12.ImageLocation = null;
             }
             if (pictureBox13.Image != null)
             {
-
-                pictureBox13.Dispose();
+                pictureBox13.Image = null;
+                pictureBox13.ImageLocation = null;
             }
             if (pictureBox14.Image != null)
             {
 
-                pictureBox14.Dispose();
+                pictureBox14.Image = null;
+                pictureBox14.ImageLocation = null;
             }
             if (pictureBox15.Image != null)
             {
 
-                pictureBox15.Dispose();
+                pictureBox15.Image = null;
+                pictureBox15.ImageLocation = null;
             }
 
 
@@ -1266,38 +1312,38 @@ namespace mainVentana.VistaEntrada
             {
                 if (MessageBox.Show("Estas seguro de que deseas reiniciar todo los datos?", "Cuidado!", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
-                    sucEntrada.SelectedIndex  = 0;
+                    sucEntrada.SelectedIndex = 0;
                     //datoEntrada               = recuperUltimaent();
                     cargaultent();
-                    cmbMoneda.SelectedIndex   = 0;
+                    cmbMoneda.SelectedIndex = 0;
                     //regresafecha();
                     cargafecha();
-                    lblCodCliente.Text        = default;
-                    cord.SelectedIndex        = 0;
-                    txbValArn.Text            = default;
-                    cliente.Text              = default;
-                    label23.Text              = default;
-                    label24.Text              = default;
-                    label25.Text              = default;
-                    txbValFact.Text           = default;
-                    lblParidad.Text           = default;
-                    tbxRastreo.Text           = default;
-                    proveedor.SelectedIndex   = 0;
-                    ordenCompra.Text          = default;
-                    numFlete.Text             = default;
-                    unidades.Text             = default;
+                    lblCodCliente.Text = default;
+                    cord.SelectedIndex = 0;
+                    txbValArn.Text = default;
+                    cliente.Text = default;
+                    label23.Text = default;
+                    label24.Text = default;
+                    label25.Text = default;
+                    txbValFact.Text = default;
+                    lblParidad.Text = default;
+                    tbxRastreo.Text = default;
+                    proveedor.SelectedIndex = 0;
+                    ordenCompra.Text = default;
+                    numFlete.Text = default;
+                    unidades.Text = default;
                     cmbUnidades.SelectedIndex = 0;
-                    peso.Text                 = default;
-                    cmbPeso.SelectedIndex     = 0;
-                    tipoOper.SelectedIndex    = 0;
-                    sucDestino.SelectedIndex  = 0;
-                    bultos.Text               = default;
-                    alias.Text                = default;
-                    txbNotas.Text             = default;
-                    txbReferencia.Text        = default;
-                    label27.Text              = default;
-                    label28.Text              = default;
-                    detalles.Text             = default;
+                    peso.Text = default;
+                    cmbPeso.SelectedIndex = 0;
+                    tipoOper.SelectedIndex = 0;
+                    sucDestino.SelectedIndex = 0;
+                    bultos.Text = default;
+                    alias.Text = default;
+                    txbNotas.Text = default;
+                    txbReferencia.Text = default;
+                    label27.Text = default;
+                    label28.Text = default;
+                    detalles.Text = default;
 
                     limpiaImg();
                     GeneraRastreo();
@@ -1309,38 +1355,38 @@ namespace mainVentana.VistaEntrada
             }
             else if (msn == 0)
             {
-                sucEntrada.SelectedIndex  = 0;
+                sucEntrada.SelectedIndex = 0;
                 //datoEntrada               = recuperUltimaent();
                 cargaultent();
-                cmbMoneda.SelectedIndex   = 0;
+                cmbMoneda.SelectedIndex = 0;
                 //regresafecha();
                 cargafecha();
-                lblCodCliente.Text        = default;
-                cord.SelectedIndex        = 0;
-                txbValArn.Text            = default;
-                cliente.Text              = default;
-                label23.Text              = default;
-                label24.Text              = default;
-                label25.Text              = default;
-                txbValFact.Text           = default;
-                lblParidad.Text           = default;
-                tbxRastreo.Text           = default;
-                proveedor.SelectedIndex   = 0;
-                ordenCompra.Text          = default;
-                numFlete.Text             = default;
-                unidades.Text             = default;
+                lblCodCliente.Text = default;
+                cord.SelectedIndex = 0;
+                txbValArn.Text = default;
+                cliente.Text = default;
+                label23.Text = default;
+                label24.Text = default;
+                label25.Text = default;
+                txbValFact.Text = default;
+                lblParidad.Text = default;
+                tbxRastreo.Text = default;
+                proveedor.SelectedIndex = 0;
+                ordenCompra.Text = default;
+                numFlete.Text = default;
+                unidades.Text = default;
                 cmbUnidades.SelectedIndex = 0;
-                peso.Text                 = default;
-                cmbPeso.SelectedIndex     = 0;
-                tipoOper.SelectedIndex    = 0;
-                sucDestino.SelectedIndex  = 0;
-                bultos.Text               = default;
-                alias.Text                = default;
-                txbNotas.Text             = default;
-                txbReferencia.Text        = default;
-                label27.Text              = default;
-                label28.Text              = default;
-                detalles.Text             = default;
+                peso.Text = default;
+                cmbPeso.SelectedIndex = 0;
+                tipoOper.SelectedIndex = 0;
+                sucDestino.SelectedIndex = 0;
+                bultos.Text = default;
+                alias.Text = default;
+                txbNotas.Text = default;
+                txbReferencia.Text = default;
+                label27.Text = default;
+                label28.Text = default;
+                detalles.Text = default;
 
                 limpiaImg();
                 GeneraRastreo();
@@ -1373,17 +1419,20 @@ namespace mainVentana.VistaEntrada
             if (dato == 2)
             {
                 tipodeDocumento = dato;
-                abreModifica(false);
-                limpiaImg();
-                btnBuscarEnt.Visible = true;
-                txbBuscarEnt.Visible = true;
-                lblBuscarEnt.Visible = true;
-                btnAgregarBultos.Enabled = true;
+                InicioModifica();
             }
 
 
         }
-
+        private void InicioModifica()
+        {
+            abreModifica(false);
+            limpiaImg();
+            btnBuscarEnt.Visible = true;
+            txbBuscarEnt.Visible = true;
+            lblBuscarEnt.Visible = true;
+            btnAgregarBultos.Enabled = true;
+        }
 
         private void abreModifica(bool estatus)
         {
@@ -1396,77 +1445,77 @@ namespace mainVentana.VistaEntrada
 
 
 
-            sucEntrada.SelectedIndex  = 0;
+            sucEntrada.SelectedIndex = 0;
             //sucEntrada.Enabled      = estatus;
 
             //cmbMoneda.SelectedIndex = 1;
             //cmbMoneda.Enabled         = estatus;
 
-            lblCodCliente.Text        = default;
-            lblCodCliente.Enabled     = estatus;
+            lblCodCliente.Text = default;
+            lblCodCliente.Enabled = estatus;
 
-            cord.SelectedIndex        = 0;
+            cord.SelectedIndex = 0;
             //cord.Enabled            = estatus;
 
 
-            cliente.Text              = default;
-            cliente.Enabled           = estatus;
+            cliente.Text = default;
+            cliente.Enabled = estatus;
 
-            proveedor.SelectedIndex   = 0;
-            proveedor.Enabled         = estatus;
+            proveedor.SelectedIndex = 0;
+            proveedor.Enabled = estatus;
 
-            ordenCompra.Text          = default;
-            ordenCompra.Enabled       = estatus;
+            ordenCompra.Text = default;
+            ordenCompra.Enabled = estatus;
 
-            numFlete.Text             = default;
-            numFlete.Enabled          = estatus;
+            numFlete.Text = default;
+            numFlete.Enabled = estatus;
 
-            unidades.Text             = default;
-            unidades.Enabled          = estatus;
+            unidades.Text = default;
+            unidades.Enabled = estatus;
 
             cmbUnidades.SelectedIndex = 0;
-            cmbUnidades.Enabled       = estatus;
+            cmbUnidades.Enabled = estatus;
 
-            peso.Text                 = default;
-            peso.Enabled              = estatus;
+            peso.Text = default;
+            peso.Enabled = estatus;
 
-            cmbPeso.SelectedIndex     = 0;
-            cmbPeso.Enabled           = estatus;
+            cmbPeso.SelectedIndex = 0;
+            cmbPeso.Enabled = estatus;
 
 
 
-            bultos.Text               = default;
-            bultos.Enabled            = estatus;
+            bultos.Text = default;
+            bultos.Enabled = estatus;
 
-            alias.Text                = default;
-            alias.Enabled             = estatus;
+            alias.Text = default;
+            alias.Enabled = estatus;
 
-            gunaTileButton1.Enabled   = estatus;
-            gunaTileButton2.Enabled   = estatus;
-            
+            gunaTileButton1.Enabled = estatus;
+            gunaTileButton2.Enabled = estatus;
+
             detalles.Enabled = estatus;
 
 
 
             if (estatus != true)
             {
-                txbNotas.Text            = default;
-                txbReferencia.Text       = default;
-                txbValFact.Text          = default;
-                txbValArn.Text           = default;
-                tipoOper.SelectedIndex   = 0;
+                txbNotas.Text = default;
+                txbReferencia.Text = default;
+                txbValFact.Text = default;
+                txbValArn.Text = default;
+                tipoOper.SelectedIndex = 0;
                 sucDestino.SelectedIndex = 0;
-                detalles.Text            = default;
-                tbxRastreo.Text          = default;
+                detalles.Text = default;
+                tbxRastreo.Text = default;
 
-                lblParidad.Text          = default;
-                label23.Text             = default;
-                label24.Text             = default;
-                label25.Text             = default;
-                label27.Text             = default;
-                label28.Text             = default;
-                lblEntrada.Text          = default;
-                lblFecha.Text            = default;
+                lblParidad.Text = default;
+                label23.Text = default;
+                label24.Text = default;
+                label25.Text = default;
+                label27.Text = default;
+                label28.Text = default;
+                lblEntrada.Text = default;
+                lblFecha.Text = default;
 
             }
 
@@ -1479,14 +1528,25 @@ namespace mainVentana.VistaEntrada
         private void btnBuscarEnt_Click(object sender, EventArgs e)
         {
             Validaciones_P_Busqueda();
+            LimpiaIMG2();
             Busqueda_Entrada(txbBuscarEnt.Text.Trim(), sucEntrada.SelectedValue.ToString().Trim());
+            
+            CargaFotos(txbBuscarEnt.Text.Trim(), sucEntrada.SelectedValue.ToString().Trim());
+           
+            
         }
         private void txbBuscarEnt_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Return)
             {
+
                 Validaciones_P_Busqueda();
+                LimpiaIMG2();
                 Busqueda_Entrada(txbBuscarEnt.Text.Trim(), sucEntrada.SelectedValue.ToString().Trim());
+                
+                CargaFotos(txbBuscarEnt.Text.Trim(), sucEntrada.SelectedValue.ToString().Trim());
+              
+                
             }
         }
         private void Validaciones_P_Busqueda() //Validacion primitiva antes de hacer la busqueda de entrada
@@ -1537,13 +1597,13 @@ namespace mainVentana.VistaEntrada
                 }
                 //-----------------------------------
 
-                lblEntrada.Text = q.C6;
+                lblEntrada.Text = q.C6.Trim();
                 //cmbMoneda.Text = q.C7;
-                cmbMoneda.Text = q.C7;
+                cmbMoneda.Text = q.C7.Trim();
                 lblFecha.Text = q.C9.Value.Date.ToString("dd-MM-yyyy");
-                lblCodCliente.Text = q.C10;
-                
-                txbReferencia.Text = q.C11;
+                lblCodCliente.Text = q.C10.Trim();
+                string vtxtref = q.C11 ?? "";
+                txbReferencia.Text = vtxtref.Trim();
 
                 //--------Coordinador asignado-------------------
                 foreach (vmCordinadores i in cord.Items)
@@ -1557,12 +1617,12 @@ namespace mainVentana.VistaEntrada
 
                 }
 
-                txbValArn.Text = q.C16.ToString();
-                txbNotas.Text = q.C24;
-                cliente.Text = q.C32;
-                lblParidad.Text = q.C40.ToString();
-                lblUser.Text = q.C81;
-                
+                txbValArn.Text = q.C16.ToString().Trim();
+                txbNotas.Text = q.C24?.Trim();
+                cliente.Text = q.C32.Trim();
+                lblParidad.Text = q.C40.ToString().Trim();
+                lblUser.Text = q.C81.Trim();
+
 
                 //------Peso-------------------
                 foreach (Proveedores i in proveedor.Items)
@@ -1578,7 +1638,7 @@ namespace mainVentana.VistaEntrada
 
                 ordenCompra.Text = q.C93.Trim();
                 numFlete.Text = q.C95.Trim();
-                unidades.Text = Convert.ToInt32(q.C97).ToString();
+                unidades.Text = Convert.ToInt32(q.C97).ToString().Trim();
 
                 //------Tipo de unidad-----------
                 foreach (vmPiezas i in cmbUnidades.Items)
@@ -1593,7 +1653,7 @@ namespace mainVentana.VistaEntrada
                 }
 
                 peso.Text = q.C99.ToString();
-                
+
                 //------Peso-------------------
                 foreach (vmPeso i in cmbPeso.Items)
                 {
@@ -1606,8 +1666,8 @@ namespace mainVentana.VistaEntrada
 
                 }
 
-                tipoOper.Text = q.C101;
-                txbValFact.Text = q.C102;
+                tipoOper.Text = q.C101.Trim();
+                txbValFact.Text = q.C102.Trim();
 
                 //-------Sucursal destino---------------
                 foreach (Sucursales i in sucDestino.Items)
@@ -1622,24 +1682,302 @@ namespace mainVentana.VistaEntrada
                 }
                 //-----------------------------------
 
-                bultos.Text =  Convert.ToInt32(q.C108).ToString().Trim();
-                detalles.Text = q.descripcion;
-               // alias.Text = q.C112;
+                bultos.Text = Convert.ToInt32(q.C108).ToString().Trim();
+                detalles.Text = q.descripcion.Trim();
+                string rbt = q.C44 ?? "NoPagado";
+                RDBpagar(rbt.Trim());
+
+                // alias.Text = q.C112;
+            }
+
+        }
+        private void RDBpagar(string dato)
+        {
+            if (dato == "Pagado")
+            {
+                rdbPagado.Checked = true;
+                rdbNoPagado.Checked = false;
+                rdbNoPagado.Enabled = false;
+                rdbPagado.Enabled = false;
+            }
+            else if (dato == "NoPagado")
+            {
+                rdbPagado.Checked = false;
+                rdbNoPagado.Checked = true;
+                rdbNoPagado.Enabled = false;
+                //rdbPagado.Enabled = false;
             }
 
         }
 
-        private void updateDatos()
+        private void updateDatos(string pagado)
         {
-            string datoSucDestino = sucDestino.SelectedValue.ToString();
-            string datoNoCord = cord.SelectedValue.ToString();
-            string datoNota = txbNotas.Text;
-            string datoReferencia = txbReferencia.Text;
-            string datoTipoOper = tipoOper.SelectedValue.ToString();
-            string datoValFact = txbValFact.Text;
-            string datoValArn = txbValArn.Text;
+            string datoSucDestino = sucDestino.SelectedValue.ToString().Trim();
+            string datoNoCord = cord.SelectedValue.ToString().Trim();
+            string datoNota = txbNotas.Text.Trim();
+            string datoReferencia = txbReferencia.Text.Trim();
+            string datoTipoOper = tipoOper.SelectedValue.ToString().Trim();
+            string datoValFact = txbValFact.Text.Trim();
+            string datoValArn = txbValArn.Text.Trim();
             AltasBD bd = new AltasBD();
-            bd.UpdateKDM1(lblEntrada.Text.Trim(),datoSucDestino,datoNoCord,datoNota,datoReferencia,"",datoTipoOper,datoValFact,datoValArn);
+            bd.UpdateKDM1(lblEntrada.Text.Trim(), datoSucDestino, datoNoCord, datoNota, datoReferencia, pagado, datoTipoOper, datoValFact, datoValArn);
+        }
+        private async void CargaFotos(string entrada, string sucursalOri)
+        {
+            Servicios datos = new Servicios();
+            GifLoading(1);
+            var lst = await datos.ObtieneIMG(entrada, sucursalOri);
+
+            foreach (var i in lst)
+            {
+                var ms = new MemoryStream(i.bytedocumento.ToArray());
+                System.Drawing.Image img = System.Drawing.Image.FromStream(ms);
+                Recarga_fotos(img);
+                ms.Dispose();
+            }
+            GifLoading(2);
+        }
+        private void Recarga_fotos(System.Drawing.Image img)
+        {
+            if (pictureBox2.Image == null)
+            {
+                using (Bitmap bmp = new Bitmap(img))
+                {
+                    img = new Bitmap(bmp);
+                    pictureBox2.Image = img;
+                }
+            }
+
+            else if (pictureBox3.Image == null)
+            {
+                using (Bitmap bmp = new Bitmap(img))
+                {
+                    img = new Bitmap(bmp);
+                    pictureBox3.Image = img;
+                }
+
+            }
+            else if (pictureBox4.Image == null)
+            {
+                using (Bitmap bmp = new Bitmap(img))
+                {
+                    img = new Bitmap(bmp);
+                    pictureBox4.Image = img;
+                }
+
+            }
+            else if (pictureBox5.Image == null)
+            {
+                using (Bitmap bmp = new Bitmap(img))
+                {
+                    img = new Bitmap(bmp);
+                    pictureBox5.Image = img;
+                }
+
+            }
+            else if (pictureBox6.Image == null)
+            {
+                using (Bitmap bmp = new Bitmap(img))
+                {
+                    img = new Bitmap(bmp);
+                    pictureBox6.Image = img;
+                }
+
+            }
+            else if (pictureBox7.Image == null)
+            {
+                using (Bitmap bmp = new Bitmap(img))
+                {
+                    img = new Bitmap(bmp);
+                    pictureBox7.Image = img;
+                }
+
+            }
+            else if (pictureBox8.Image == null)
+            {
+                using (Bitmap bmp = new Bitmap(img))
+                {
+                    img = new Bitmap(bmp);
+                    pictureBox8.Image = img;
+                }
+
+            }
+            else if (pictureBox9.Image == null)
+            {
+                using (Bitmap bmp = new Bitmap(img))
+                {
+                    img = new Bitmap(bmp);
+                    pictureBox9.Image = img;
+                }
+
+            }
+            else if (pictureBox10.Image == null)
+            {
+                using (Bitmap bmp = new Bitmap(img))
+                {
+                    img = new Bitmap(bmp);
+                    pictureBox10.Image = img;
+                }
+
+            }
+            else if (pictureBox11.Image == null)
+            {
+                using (Bitmap bmp = new Bitmap(img))
+                {
+                    img = new Bitmap(bmp);
+                    pictureBox11.Image = img;
+                }
+
+
+            }
+            else if (pictureBox12.Image == null)
+            {
+                using (Bitmap bmp = new Bitmap(img))
+                {
+                    img = new Bitmap(bmp);
+                    pictureBox12.Image = img;
+                }
+
+
+            }
+            else if (pictureBox13.Image == null)
+            {
+                using (Bitmap bmp = new Bitmap(img))
+                {
+                    img = new Bitmap(bmp);
+                    pictureBox13.Image = img;
+                }
+
+            }
+            else if (pictureBox14.Image == null)
+            {
+                using (Bitmap bmp = new Bitmap(img))
+                {
+                    img = new Bitmap(bmp);
+                    pictureBox14.Image = img;
+                }
+
+
+            }
+            else if (pictureBox15.Image == null)
+            {
+                using (Bitmap bmp = new Bitmap(img))
+                {
+                    img = new Bitmap(bmp);
+                    pictureBox15.Image = img;
+                }
+
+
+            }
+
+        }
+        private void Abre_Fotos_P_Defecto(List<vmFotosById> Lista)
+        {
+            foreach (var i in Lista)
+            {
+                string path = AppDomain.CurrentDomain.BaseDirectory;
+                string folder = path + "/temp/";
+                string fullFilePath = folder + i.realnombre;
+
+                if (!Directory.Exists(folder))
+                    Directory.CreateDirectory(folder);
+
+                if (File.Exists(fullFilePath))
+                    Directory.Delete(fullFilePath);
+
+                File.WriteAllBytes(fullFilePath, i.bytedocumento);
+
+                Process.Start(fullFilePath);
+            }
+        }
+
+
+        public void LimpiaIMG2()
+        {
+
+            if (pictureBox2.Image != null)
+            {
+                
+                pictureBox2.Image = null;
+                pictureBox2.ImageLocation = null;
+
+            }
+            if (pictureBox3.Image != null)
+            {
+               
+                pictureBox3.Image = null;
+                pictureBox3.ImageLocation = null;
+
+            }
+            if (pictureBox4.Image != null)
+            {
+                pictureBox4.Image = null;
+                pictureBox4.ImageLocation = null;
+            }
+            if (pictureBox5.Image != null)
+            {
+                
+                pictureBox5.Image = null;
+                pictureBox5.ImageLocation = null;
+            }
+            if (pictureBox6.Image != null)
+            {
+               
+                pictureBox6.Image = null;
+                pictureBox6.ImageLocation = null;
+            }
+            if (pictureBox7.Image != null)
+            {
+                
+                pictureBox7.Image = null;
+                pictureBox7.ImageLocation = null;
+            }
+            if (pictureBox8.Image != null)
+            {
+               
+                pictureBox8.Image = null;
+                pictureBox8.ImageLocation = null;
+            }
+            if (pictureBox9.Image != null)
+            {
+               
+                pictureBox9.Image = null;
+                pictureBox9.ImageLocation = null;
+            }
+            if (pictureBox10.Image != null)
+            {
+              
+                pictureBox10.Image = null;
+                pictureBox10.ImageLocation = null;
+            }
+            if (pictureBox11.Image != null)
+            {
+                
+                pictureBox11.Image = null;
+                pictureBox11.ImageLocation = null;
+            }
+            if (pictureBox12.Image != null)
+            {
+               
+                pictureBox12.Image = null;
+                pictureBox12.ImageLocation = null;
+            }
+            if (pictureBox13.Image != null)
+            {
+                pictureBox13.Image = null;
+                pictureBox13.ImageLocation = null;
+            }
+            if (pictureBox14.Image != null)
+            {
+                pictureBox14.Image = null;
+                pictureBox14.ImageLocation = null;
+            }
+            if (pictureBox15.Image != null)
+            {
+               
+                pictureBox15.Image = null;
+                pictureBox15.ImageLocation = null;
+            }
         }
 
         #endregion Fin de Modifica entrada__________________________________________________________________________________________________________________________________
@@ -1651,7 +1989,24 @@ namespace mainVentana.VistaEntrada
         {
 
         }
+        /************************************************************
+         Aqui cargo las iamgenes de loading, asi como el agregado al contenerdor 
+         ************************************************************/
+        public LoadingPatoControl usss { get; set; }
+        private void GifLoading(int estado)//1 abre el el gif 2 detiene el gif
+        {
+            LoadingPatoControl loadingPatoControl = new LoadingPatoControl();
+            if (estado ==1)
+            {
+                loadingPatoControl.Dock = DockStyle.Fill;
+                panelLoading.Controls.Add(loadingPatoControl);
 
-
+            }
+            if (estado==2)
+            {
+                panelLoading.Controls.Clear();
+               
+            }
+        }
     }
 }

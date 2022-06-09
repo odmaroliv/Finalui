@@ -11,89 +11,94 @@ namespace Negocios
 {
     public class EnviarEmail
     {
-                
-        public int EnviaMail(string Entrada, string Cliente, string Notraking, string Alias, string OrdCompra, string Noflete, string Proveedor, string Desc,List<string> Fotos, List<string> Archivos,string correosClientes)
+
+        public async Task<int> EnviaMail(string Entrada, string Cliente, string Notraking, string Alias, string OrdCompra, string Noflete, string Proveedor, string Desc, List<string> Fotos, List<string> Archivos, string correosClientes)
         {
             int bandera = default;
+
             try
             {
-                MailMessage msg = new MailMessage();
-                SmtpClient smtp = new SmtpClient();
-                msg.IsBodyHtml = true;
-                msg.From = new MailAddress("smtpdniell@gmail.com");
-                msg.Subject = "Notificacion Arnian entrada: "+Entrada;
-                long pesoArch = 0;
+                await Task.Run(() =>
+                {
+                    MailMessage msg = new MailMessage();
+                    SmtpClient smtp = new SmtpClient();
+                    msg.IsBodyHtml = true;
+                    msg.From = new MailAddress("smtpdniell@gmail.com");
+                    msg.Subject = "Notificacion Arnian entrada: " + Entrada;
+                    long pesoArch = 0;
 
-                foreach (var item in Fotos) //Attachment
-                {
-                    msg.Attachments.Add(new Attachment(item));
-                    FileInfo fileinfo = new FileInfo(item);
-                    pesoArch = pesoArch + fileinfo.Length;
-                }
-                foreach (var item in Archivos) //Attachment
-                {
-                    msg.Attachments.Add(new Attachment(item));
-                    FileInfo fileinfo = new FileInfo(item);
-                    pesoArch = pesoArch + fileinfo.Length;
-                }
-                
-                if (pesoArch >= 25000000)
-                {
-                    bandera = 1;
-                    return bandera;
-                }
-                string plantilla = Properties.Resources.correoskepler.ToString();
-                plantilla = plantilla.Replace("@ENTRADA", Entrada);
-                plantilla = plantilla.Replace("@CLIENTE", Cliente);
-                plantilla = plantilla.Replace("@TRAKING", Notraking);
-                plantilla = plantilla.Replace("@ALIAS", Alias);
-                plantilla = plantilla.Replace("@ORDCOMPRA", OrdCompra);
-                plantilla = plantilla.Replace("@NOFLETE", Noflete);
-                plantilla = plantilla.Replace("@PROVEEDOR", Proveedor);
-                plantilla = plantilla.Replace("@CUERPO", Desc);
-                using (StringReader sr = new StringReader(plantilla))
-                {
-                    msg.Body = sr.ReadToEnd().ToString();
-                }
-
-
-
-
-                string[] toMail = Common.Cache.CacheLogin.email.Split(',');//textBox6.Text.Split(','); // llenar desde la bd con los datos del cliente 
-                foreach (string ToEmailId in toMail)
-                {
-                    msg.To.Add(new MailAddress(ToEmailId));
-                }
-                if (correosClientes != "")
-                {
-                    string[] toCC = correosClientes.Split(',');
-                    foreach (string ToCCId in toCC)
+                    foreach (var item in Fotos) //Attachment
                     {
-                        msg.CC.Add(new MailAddress(ToCCId));
+                        msg.Attachments.Add(new Attachment(item));
+                        FileInfo fileinfo = new FileInfo(item);
+                        pesoArch = pesoArch + fileinfo.Length;
                     }
-                }
-                /*if (textBox4.Text != "")
-                {
-                    string[] toBCC = textBox4.Text.Split(',');
-                    foreach (string ToBCCId in toBCC)
+                    foreach (var item in Archivos) //Attachment
                     {
-                        msg.Bcc.Add(new MailAddress(ToBCCId));
+                        msg.Attachments.Add(new Attachment(item));
+                        FileInfo fileinfo = new FileInfo(item);
+                        pesoArch = pesoArch + fileinfo.Length;
                     }
-                }*/
-                smtp.Host = "smtp.gmail.com";//textBox8.Text;
-                smtp.Port = 587;
-                smtp.EnableSsl = true;
-                smtp.UseDefaultCredentials = false;
-                NetworkCredential nc = new NetworkCredential("smtpdniell@gmail.com", "uukcdonkhscscxwt");
-                smtp.Credentials = nc;
-                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+                    if (pesoArch >= 25000000)
+                    {
+                        bandera = 1;
+                        
+                    }
+                    string plantilla = Properties.Resources.correoskepler.ToString();
+                    plantilla = plantilla.Replace("@ENTRADA", Entrada);
+                    plantilla = plantilla.Replace("@CLIENTE", Cliente);
+                    plantilla = plantilla.Replace("@TRAKING", Notraking);
+                    plantilla = plantilla.Replace("@ALIAS", Alias);
+                    plantilla = plantilla.Replace("@ORDCOMPRA", OrdCompra);
+                    plantilla = plantilla.Replace("@NOFLETE", Noflete);
+                    plantilla = plantilla.Replace("@PROVEEDOR", Proveedor);
+                    plantilla = plantilla.Replace("@CUERPO", Desc);
+                    using (StringReader sr = new StringReader(plantilla))
+                    {
+                        msg.Body = sr.ReadToEnd().ToString();
+                    }
 
 
-                smtp.Send(msg);
-                msg.Attachments.Clear();
-                msg.Attachments.Dispose();
-                msg.Dispose();
-                return bandera = 2;
+
+
+                    string[] toMail = Common.Cache.CacheLogin.email.Split(',');//textBox6.Text.Split(','); // llenar desde la bd con los datos del cliente 
+                    foreach (string ToEmailId in toMail)
+                    {
+                        msg.To.Add(new MailAddress(ToEmailId));
+                    }
+                    if (correosClientes != "")
+                    {
+                        string[] toCC = correosClientes.Split(',');
+                        foreach (string ToCCId in toCC)
+                        {
+                            msg.CC.Add(new MailAddress(ToCCId));
+                        }
+                    }
+                    /*if (textBox4.Text != "")
+                    {
+                        string[] toBCC = textBox4.Text.Split(',');
+                        foreach (string ToBCCId in toBCC)
+                        {
+                            msg.Bcc.Add(new MailAddress(ToBCCId));
+                        }
+                    }*/
+                    smtp.Host = "smtp.gmail.com";//textBox8.Text;
+                    smtp.Port = 587;
+                    smtp.EnableSsl = true;
+                    smtp.UseDefaultCredentials = false;
+                    NetworkCredential nc = new NetworkCredential("smtpdniell@gmail.com", "uukcdonkhscscxwt");
+                    smtp.Credentials = nc;
+                    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+
+                    smtp.Send(msg);
+                    msg.Attachments.Clear();
+                    msg.Attachments.Dispose();
+                    msg.Dispose();
+                    bandera = 2;
+                });
+                return bandera;
             }
             catch (Exception)
             {
@@ -101,6 +106,6 @@ namespace Negocios
                 throw;
             }
         }
-    
+
     }
 }

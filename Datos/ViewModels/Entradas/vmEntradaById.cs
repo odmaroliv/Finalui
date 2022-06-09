@@ -32,6 +32,7 @@ namespace Datos.ViewModels.Entradas
                public DateTime? C41  {get; set;}
                public decimal? C42  {get; set;}
                public string C43  {get; set;}
+               public string C44 { get; set; }
                public string C63  {get; set;}
                public string C67  {get; set;}
                public DateTime? C68  {get; set;}

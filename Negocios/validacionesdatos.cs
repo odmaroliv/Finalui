@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -541,66 +543,67 @@ namespace Negocios
 
             try
             {
-               // var lst2 = new List<vmEntradaById>();
-               
-                    using (modelo2Entities modelo = new modelo2Entities())
+                // var lst2 = new List<vmEntradaById>();
 
-                    {
-                        var lista = from d in modelo.KDM1
-                                    join d2 in modelo.KDM1COMEN on new { d.C1, d.C4, d.C6 } equals new { d2.C1, d2.C4, d2.C6 }
-                                    where d.C1.Equals(sucursal) && d.C4.Equals(35) && d.C6.Equals(id)
-                                    //orderby (d.C7)
-                                    select new vmEntradaById
-                                    {
-                                        C1 = d.C1,
-                                        C2 = d.C2,
-                                        C3 = d.C3,
-                                        C4 = d.C4,
-                                        C5 = d.C5,
-                                        C6 = d.C6,
-                                        C7 = d.C7,
-                                        C8 = d.C8,
-                                        C9 = d.C9,
-                                        C10 = d.C10,
-                                        C11 = d.C11,
-                                        C12 = d.C12,
-                                        C16 = d.C16,
-                                        C24 = d.C24,
-                                        C31 = d.C31,
-                                        C32 = d.C32,
-                                        C33 = d.C33,
-                                        C34 = d.C34,
-                                        C35 = d.C35,
-                                        C40 = d.C40,
-                                        C41 = d.C41,
-                                        C42 = d.C42,
-                                        C43 = d.C43,
-                                        C63 = d.C64,
-                                        C67 = d.C67,
-                                        C68 = d.C68,
-                                        C69 = d.C69,
-                                        C80 = d.C80,
-                                        C81 = d.C81,
-                                        C92 = d.C92,
-                                        C93 = d.C93,
-                                        C95 = d.C95,
-                                        C97 = d.C97,
-                                        C98 = d.C98,
-                                        C99 = d.C99,
-                                        C100 = d.C100,
-                                        C101 = d.C101,
-                                        C102 = d.C102,
-                                        C103 = d.C103,
-                                        C108 = d.C108,
-                                        C112 = d.C101,
-                                        descripcion = d2.C11
+                using (modelo2Entities modelo = new modelo2Entities())
+
+                {
+                    var lista = from d in modelo.KDM1
+                                join d2 in modelo.KDM1COMEN on new { d.C1, d.C4, d.C6 } equals new { d2.C1, d2.C4, d2.C6 }
+                                where d.C1.Equals(sucursal) && d.C4.Equals(35) && d.C6.Equals(id)
+                                //orderby (d.C7)
+                                select new vmEntradaById
+                                {
+                                    C1 = d.C1,
+                                    C2 = d.C2,
+                                    C3 = d.C3,
+                                    C4 = d.C4,
+                                    C5 = d.C5,
+                                    C6 = d.C6,
+                                    C7 = d.C7,
+                                    C8 = d.C8,
+                                    C9 = d.C9,
+                                    C10 = d.C10,
+                                    C11 = d.C11,
+                                    C12 = d.C12,
+                                    C16 = d.C16,
+                                    C24 = d.C24,
+                                    C31 = d.C31,
+                                    C32 = d.C32,
+                                    C33 = d.C33,
+                                    C34 = d.C34,
+                                    C35 = d.C35,
+                                    C40 = d.C40,
+                                    C41 = d.C41,
+                                    C42 = d.C42,
+                                    C43 = d.C43,
+                                    C44 = d.C44,
+                                    C63 = d.C64,
+                                    C67 = d.C67,
+                                    C68 = d.C68,
+                                    C69 = d.C69,
+                                    C80 = d.C80,
+                                    C81 = d.C81,
+                                    C92 = d.C92,
+                                    C93 = d.C93,
+                                    C95 = d.C95,
+                                    C97 = d.C97,
+                                    C98 = d.C98,
+                                    C99 = d.C99,
+                                    C100 = d.C100,
+                                    C101 = d.C101,
+                                    C102 = d.C102,
+                                    C103 = d.C103,
+                                    C108 = d.C108,
+                                    C112 = d.C101,
+                                    descripcion = d2.C11
 
 
-                                    };
-                        return lista.ToList();
+                                };
+                    return lista.ToList();
 
-                    }
-              
+                }
+
 
             }
             catch (Exception)
@@ -611,6 +614,38 @@ namespace Negocios
         }
 
 
+        public async  Task<List<vmFotosById>> ObtieneIMG(string id, string sucursal)
+        {
+            try
+            {
+                var lst2 = new List<vmFotosById>();
+                await Task.Run(() =>
+                {
+                    using (modelo2Entities db = new modelo2Entities())
+                    {
+                        lst2.Clear();
+                        var oDocument = (from q in modelo.DSIMAGE
+                                         where q.ENTRADA == id && q.EXTRA1 == sucursal && q.EXTRA2.Contains("Imagen")
+                                         select new vmFotosById
+                                         {
+                                             nombre = q.NOMBRE,
+                                             realnombre = q.REALNOMBRE,
+                                             entrada = q.ENTRADA,
+                                             bytedocumento = q.BYTEDOCUMENTO,
+                                             sucursal = q.EXTRA1,
+                                             tipodedocto = q.EXTRA2
+                                         }).ToList();
 
+                        lst2 = oDocument;
+                    }
+                });
+                return lst2;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }
