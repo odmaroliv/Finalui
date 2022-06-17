@@ -5,6 +5,18 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="KEPLER_PRUEBASModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DSBARCODE">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="C1" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="C6" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="C9" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BARCODE" Type="varbinary(max)" />
+          <Property Name="E1" Type="nvarchar" MaxLength="50" />
+          <Property Name="E2" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="DSIMAGE">
           <Key>
             <PropertyRef Name="ID" />
@@ -604,6 +616,7 @@
           <Parameter Name="DATO" Type="nvarchar" Mode="In" />
         </Function>
         <EntityContainer Name="KEPLER_PRUEBASModelStoreContainer">
+          <EntitySet Name="DSBARCODE" EntityType="Self.DSBARCODE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DSIMAGE" EntityType="Self.DSIMAGE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DSMODULO" EntityType="Self.DSMODULO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DSOPERACION" EntityType="Self.DSOPERACION" Schema="dbo" store:Type="Tables" />
@@ -1162,6 +1175,7 @@
             <Parameter Name="PROCESO" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="DSIMAGE" EntityType="KEPLER_PRUEBASModel.DSIMAGE" />
+          <EntitySet Name="DSBARCODE" EntityType="KEPLER_PRUEBASModel.DSBARCODE" />
           </EntityContainer>
         <ComplexType Name="NO_RASTREO_Result">
           <Property Type="String" Name="rand_number" Nullable="false" MaxLength="13" />
@@ -1289,6 +1303,18 @@
           <Property Name="BYTEDOCUMENTO" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <Property Name="EXTRA1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="EXTRA2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DSBARCODE">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="C1" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="C6" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="C9" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BARCODE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="E1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="E2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1797,6 +1823,19 @@
                 <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
                 <ScalarProperty Name="ENTRADA" ColumnName="ENTRADA" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DSBARCODE">
+            <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.DSBARCODE">
+              <MappingFragment StoreEntitySet="DSBARCODE">
+                <ScalarProperty Name="E2" ColumnName="E2" />
+                <ScalarProperty Name="E1" ColumnName="E1" />
+                <ScalarProperty Name="BARCODE" ColumnName="BARCODE" />
+                <ScalarProperty Name="C9" ColumnName="C9" />
+                <ScalarProperty Name="C6" ColumnName="C6" />
+                <ScalarProperty Name="C1" ColumnName="C1" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

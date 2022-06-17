@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -10,6 +11,7 @@ using System.Windows.Forms;
 using Datos.Datosenti;
 using Datos.ViewModels;
 using Datos.ViewModels.Entradas;
+using Datos.ViewModels.Reportes;
 using mainVentana.vmLogin;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Page;
 
@@ -489,19 +491,20 @@ namespace Negocios
                 using (modelo2Entities modelo = new modelo2Entities())
 
                 {
-                    var lista = from d in modelo.DSUSER
-                                where d.LoginName.Equals(user) && d.Password.Equals(pass)
+                    var lista = from d in modelo.KDUSUARIOS
+                                where d.C1.Equals(user) && d.C3.Equals(pass)
                                 select new vmLogin
                                 {
                                     //idusuario = d.IdUsuario,
-                                    username = d.LoginName.Trim(),
+                                    username = d.C1.Trim(),
                                     //password = d.Password,
-                                    nombre = d.Nombre.Trim(),
-                                    apellido = d.Apellido.Trim(),
-                                    email = d.Email,
-                                    numero = d.Numero,
-                                    rol = d.IdRol,
-                                    estatus = d.Activo
+                                    nombre = d.C2.Trim(),
+                                    //apellido = d.Apellido.Trim(),
+                                    email = d.C8,
+                                    numero = d.C13,
+                                    rol = d.C4,
+                                    sucdefecto = d.C10,
+                                    //estatus = d.Activo
 
                                 };
                     foreach (var i in lista.ToList())
@@ -512,7 +515,7 @@ namespace Negocios
                         Common.Cache.CacheLogin.apellido = i.apellido;
                         Common.Cache.CacheLogin.email = i.email;
                         Common.Cache.CacheLogin.rol = i.rol;
-                        Common.Cache.CacheLogin.estatus = i.estatus;
+                        Common.Cache.CacheLogin.sucdefecto = i.sucdefecto;
                         Common.Cache.CacheLogin.numero = i.numero;
                     }
 
@@ -595,7 +598,7 @@ namespace Negocios
                                     C102 = d.C102,
                                     C103 = d.C103,
                                     C108 = d.C108,
-                                    C112 = d.C101,
+                                    C112 = d.C112,
                                     descripcion = d2.C11
 
 
@@ -647,5 +650,162 @@ namespace Negocios
                 throw;
             }
         }
+
+        public async Task<List<vmFotosById>> ObtieneDOC(string id, string sucursal)
+        {
+            try
+            {
+                var lst2 = new List<vmFotosById>();
+                await Task.Run(() =>
+                {
+                    using (modelo2Entities db = new modelo2Entities())
+                    {
+                        lst2.Clear();
+                        var oDocument = (from q in modelo.DSIMAGE
+                                         where q.ENTRADA == id && q.EXTRA1 == sucursal && q.EXTRA2.Contains("Doc")
+                                         select new vmFotosById
+                                         {
+                                             nombre = q.NOMBRE,
+                                            // realnombre = q.REALNOMBRE,
+                                             //entrada = q.ENTRADA,
+                                             //bytedocumento = q.BYTEDOCUMENTO,
+                                             //sucursal = q.EXTRA1,
+                                             //tipodedocto = q.EXTRA2
+                                         }).ToList();
+
+                        lst2 = oDocument;
+                    }
+                });
+                return lst2;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public async Task<List<vmFotosById>> ObtieneByteDOC(string id, string sucursal)
+        {
+            try
+            {
+                var lst2 = new List<vmFotosById>();
+                await Task.Run(() =>
+                {
+                    using (modelo2Entities db = new modelo2Entities())
+                    {
+                        lst2.Clear();
+                        var oDocument = (from q in modelo.DSIMAGE
+                                         where q.NOMBRE == id && q.EXTRA1 == sucursal && q.EXTRA2.Contains("Doc")
+                                         select new vmFotosById
+                                         {
+                                             //nombre = q.NOMBRE,
+                                             realnombre = q.REALNOMBRE,
+                                             //entrada = q.ENTRADA,
+                                             bytedocumento = q.BYTEDOCUMENTO,
+                                             //sucursal = q.EXTRA1,
+                                             //tipodedocto = q.EXTRA2
+                                         }).ToList();
+
+                        lst2 = oDocument;
+                    }
+                });
+                return lst2;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public async Task<List<vmFotosById>> ObtieneByteDOCUMENTOSALL(string id, string sucursal)
+        {
+            try
+            {
+                var lst2 = new List<vmFotosById>();
+                await Task.Run(() =>
+                {
+                    using (modelo2Entities db = new modelo2Entities())
+                    {
+                        lst2.Clear();
+                        var oDocument = (from q in modelo.DSIMAGE
+                                         where q.NOMBRE == id && q.EXTRA1 == sucursal
+                                         select new vmFotosById
+                                         {
+                                             //nombre = q.NOMBRE,
+                                             realnombre = q.REALNOMBRE,
+                                             //entrada = q.ENTRADA,
+                                             bytedocumento = q.BYTEDOCUMENTO,
+                                             //sucursal = q.EXTRA1,
+                                             //tipodedocto = q.EXTRA2
+                                         }).ToList();
+
+                        lst2 = oDocument;
+                    }
+                });
+                return lst2;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
+        public List<vmEtiquetasReporte> LlenaEtiquetas(string id, string sucursal)
+        {
+
+
+            try
+            {
+                
+                var lst2 = new List<vmEtiquetasReporte>();
+                using (modelo2Entities modelo = new modelo2Entities())
+
+                {
+                    var lista = from d in modelo.KDM1
+                                join d2 in modelo.KDMENT on new { d.C1, d.C4, d.C6 } equals new { d2.C1, d2.C4, d2.C6 } 
+                                join t3 in modelo.DSBARCODE on new { d.C1,d.C6 } equals new {t3.C1,t3.C6}
+                                where d.C1.Equals(sucursal) && d.C4.Equals(35) && d.C6.Equals(id)
+                                orderby (d.C5)
+                                select new vmEtiquetasReporte
+                                {
+                                    Origen = d.C1,
+                                    Destino = d.C103,
+                                    Cliente = d.C32,
+                                    Etiqueta =d2.C9,
+                                    Entrada = d2.C6,
+                                    Fecha = d.C9,
+                                    Alias = d.C112,
+                                    barcode = t3.BARCODE
+                                    //Zona = d2.C6,
+                                    //ZonaNumero = d2.C6, 
+
+                                };
+                   lst2  = lista.ToList();
+
+                }
+                return lst2;
+
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+
+                throw;
+            }
+        }
+
+
     }
 }

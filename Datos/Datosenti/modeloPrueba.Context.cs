@@ -45,6 +45,7 @@ namespace Datos.Datosenti
         public virtual DbSet<DSROL2> DSROL2 { get; set; }
         public virtual DbSet<DSUSER> DSUSER { get; set; }
         public virtual DbSet<DSIMAGE> DSIMAGE { get; set; }
+        public virtual DbSet<DSBARCODE> DSBARCODE { get; set; }
     
         public virtual ObjectResult<NO_RASTREO_Result> NO_RASTREO(Nullable<int> noRastCrear)
         {

@@ -8,7 +8,6 @@ namespace mainVentana.vmLogin
 {
     public class vmLogin
     {
-
         public int idusuario { get; set; }
         public string username { get; set; }
         public string password { get; set; }
@@ -16,7 +15,8 @@ namespace mainVentana.vmLogin
         public string apellido { get; set; }
         public string email { get; set; }
         public string numero { get; set; }
-        public int rol { get; set; }
+        public string rol { get; set; }
         public string estatus { get; set; }
+        public string sucdefecto { get; set; }
     }
 }

@@ -16,8 +16,9 @@ namespace Negocios.Common.Cache
         public static string apellido { get; set; }
         public static string email { get; set; }
         public static string numero { get; set; }
-        public static int rol { get; set; }
+        public static string rol { get; set; }
         public static string estatus { get; set; }
-        
+        public static string sucdefecto { get; set; }
+
     }
 }

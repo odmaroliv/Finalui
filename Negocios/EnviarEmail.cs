@@ -60,16 +60,16 @@ namespace Negocios
                     }
 
 
+                   
 
-
-                    string[] toMail = Common.Cache.CacheLogin.email.Split(',');//textBox6.Text.Split(','); // llenar desde la bd con los datos del cliente 
+                    string[] toMail = Common.Cache.CacheLogin.email.Split(',')[0].Trim() == "" ? "sistemas@arnian.com".Split(','): Common.Cache.CacheLogin.email.Split(',');//textBox6.Text.Split(','); // llenar desde la bd con los datos del cliente 
                     foreach (string ToEmailId in toMail)
                     {
                         msg.To.Add(new MailAddress(ToEmailId));
                     }
                     if (correosClientes != "")
                     {
-                        string[] toCC = correosClientes.Split(',');
+                        string[] toCC = correosClientes.Split(',')[0].Trim() == "" ? "sistemas@arnian.com".Split(',') : correosClientes.Split(',');
                         foreach (string ToCCId in toCC)
                         {
                             msg.CC.Add(new MailAddress(ToCCId));

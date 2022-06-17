@@ -27,6 +27,7 @@
         <AssociationConnector Association="KEPLER_PRUEBASModel.FK_DSROL_OPER_DSROL2" />
         <AssociationConnector Association="KEPLER_PRUEBASModel.FK_DSUSER_DSROL2" />
         <EntityTypeShape EntityType="KEPLER_PRUEBASModel.DSIMAGE" Width="1.5" PointX="7.375" PointY="13.75" />
+        <EntityTypeShape EntityType="KEPLER_PRUEBASModel.DSBARCODE" Width="1.5" PointX="15.375" PointY="0.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

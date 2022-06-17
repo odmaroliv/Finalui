@@ -161,6 +161,27 @@ namespace mainVentana.Properties {
         
         /// <summary>
         ///   Busca una cadena traducida similar a &lt;!DOCTYPE html&gt;
+        ///&lt;!-- Created by pdf2htmlEX (https://github.com/pdf2htmlEX/pdf2htmlEX) --&gt;
+        ///&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+        ///&lt;head&gt;
+        ///&lt;meta charset=&quot;utf-8&quot;/&gt;
+        ///&lt;meta name=&quot;generator&quot; content=&quot;pdf2htmlEX&quot;/&gt;
+        ///&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot;/&gt;
+        ///&lt;style type=&quot;text/css&quot;&gt;
+        ////*! 
+        /// * Base CSS for pdf2htmlEX
+        /// * Copyright 2012,2013 Lu Wang &lt;coolwanglu@gmail.com&gt; 
+        /// * https://github.com/pdf2htmlEX/pdf2htmlEX/blob/master/share/LICENSE
+        /// */#sidebar{position:absolute;top:0;left:0;bottom:0;widt [resto de la cadena truncado]&quot;;.
+        /// </summary>
+        internal static string ejemplo {
+            get {
+                return ResourceManager.GetString("ejemplo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a &lt;!DOCTYPE html&gt;
         ///&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
         ///&lt;head&gt;
         ///    &lt;title&gt;Etiqueta&lt;/title&gt;

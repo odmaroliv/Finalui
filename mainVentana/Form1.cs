@@ -181,7 +181,7 @@ namespace mainVentana
 
         private void iconButton9_MouseEnter(object sender, EventArgs e)
         {
-            ValidabPrincipal();
+            
             iconButton9.IconColor = Color.FromArgb(0, 0, 0);
         }
 
@@ -194,6 +194,7 @@ namespace mainVentana
         {
             iconButton9.IconColor = Color.Tomato;
             string id = gunaTextBox1.Text;
+            ValidabPrincipal();
             frm.refresh(id);
             AbrirFormEnPanel(frm);
 
