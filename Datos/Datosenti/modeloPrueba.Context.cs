@@ -274,5 +274,26 @@ namespace Datos.Datosenti
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AgregaKDMENT_Rev", sUCParameter, gENParameter, nATParameter, gRUParameter, tIPParameter, fOLParameter, eTIQUETAParameter, c41Parameter, c42Parameter, c43Parameter, c44Parameter, c45Parameter, mODOParameter, pROCESOParameter);
         }
+    
+        public virtual ObjectResult<Docto_Prv_Result1> Docto_Prv(string sUC_ACT, string dOCTOS, string mODO, Nullable<int> tIPO)
+        {
+            var sUC_ACTParameter = sUC_ACT != null ?
+                new ObjectParameter("SUC_ACT", sUC_ACT) :
+                new ObjectParameter("SUC_ACT", typeof(string));
+    
+            var dOCTOSParameter = dOCTOS != null ?
+                new ObjectParameter("DOCTOS", dOCTOS) :
+                new ObjectParameter("DOCTOS", typeof(string));
+    
+            var mODOParameter = mODO != null ?
+                new ObjectParameter("MODO", mODO) :
+                new ObjectParameter("MODO", typeof(string));
+    
+            var tIPOParameter = tIPO.HasValue ?
+                new ObjectParameter("TIPO", tIPO) :
+                new ObjectParameter("TIPO", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Docto_Prv_Result1>("Docto_Prv", sUC_ACTParameter, dOCTOSParameter, mODOParameter, tIPOParameter);
+        }
     }
 }

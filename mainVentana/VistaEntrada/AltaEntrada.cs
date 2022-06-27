@@ -1417,6 +1417,8 @@ namespace mainVentana.VistaEntrada
                     label27.Text = default;
                     label28.Text = default;
                     detalles.Text = default;
+                    lblUser.Text = CacheLogin.username;
+
 
                     limpiaImg();
                     GeneraRastreo();
@@ -1460,6 +1462,7 @@ namespace mainVentana.VistaEntrada
                 label27.Text = default;
                 label28.Text = default;
                 detalles.Text = default;
+                lblUser.Text = CacheLogin.username;
 
                 limpiaImg();
                 GeneraRastreo();
@@ -2347,5 +2350,15 @@ namespace mainVentana.VistaEntrada
             }
         }
 
+        private void btnAgrepaFD_Click(object sender, EventArgs e)
+        {
+            AgregarDocs ve = new AgregarDocs();
+
+           ve.entrada = lblEntrada.Text.Trim();
+           ve.sucursalOrigen = sucEntrada.SelectedValue.ToString().Trim();
+            ve.ShowDialog();
+
+
+        }
     }
 }

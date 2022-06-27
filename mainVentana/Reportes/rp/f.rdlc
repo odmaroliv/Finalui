@@ -115,7 +115,7 @@
                 <Top>0.87278in</Top>
                 <Left>0.13479in</Left>
                 <Height>0.25in</Height>
-                <Width>3.82292in</Width>
+                <Width>3.37292in</Width>
                 <ZIndex>2</ZIndex>
                 <Style>
                   <Border>
@@ -147,7 +147,7 @@
                 <Top>0.06319in</Top>
                 <Left>1.20423in</Left>
                 <Height>0.25in</Height>
-                <Width>2.75347in</Width>
+                <Width>2.30347in</Width>
                 <ZIndex>3</ZIndex>
                 <Style>
                   <Border>
@@ -179,7 +179,7 @@
                 <Top>0.43528in</Top>
                 <Left>1.20486in</Left>
                 <Height>0.25in</Height>
-                <Width>2.75347in</Width>
+                <Width>2.30347in</Width>
                 <ZIndex>4</ZIndex>
                 <Style>
                   <Border>
@@ -210,43 +210,11 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox2</rd:DefaultName>
-                <Top>2.11236in</Top>
+                <Top>2.49778in</Top>
                 <Left>0.13605in</Left>
                 <Height>0.25in</Height>
-                <Width>3.82291in</Width>
+                <Width>3.37291in</Width>
                 <ZIndex>5</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="Textbox6">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>Receipt ID:</Value>
-                        <Style>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox2</rd:DefaultName>
-                <Top>2.49778in</Top>
-                <Left>0.13542in</Left>
-                <Height>0.25in</Height>
-                <Width>1in</Width>
-                <ZIndex>6</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -278,7 +246,7 @@
                 <Left>0.13605in</Left>
                 <Height>0.25in</Height>
                 <Width>1in</Width>
-                <ZIndex>7</ZIndex>
+                <ZIndex>6</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -310,7 +278,7 @@
                 <Left>0.13605in</Left>
                 <Height>0.25in</Height>
                 <Width>1in</Width>
-                <ZIndex>8</ZIndex>
+                <ZIndex>7</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -342,39 +310,7 @@
                 <Left>0.13542in</Left>
                 <Height>0.25in</Height>
                 <Width>1in</Width>
-                <ZIndex>9</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="Textbox13">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=Parameters!repEntrada.Value</Value>
-                        <Style>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox2</rd:DefaultName>
-                <Top>2.49778in</Top>
-                <Left>1.20549in</Left>
-                <Height>0.25in</Height>
-                <Width>2.75347in</Width>
-                <ZIndex>10</ZIndex>
+                <ZIndex>8</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -405,8 +341,8 @@
                 <Top>2.81722in</Top>
                 <Left>1.20549in</Left>
                 <Height>0.25in</Height>
-                <Width>2.75347in</Width>
-                <ZIndex>11</ZIndex>
+                <Width>2.30347in</Width>
+                <ZIndex>9</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -437,8 +373,8 @@
                 <Top>3.13667in</Top>
                 <Left>1.20486in</Left>
                 <Height>0.25in</Height>
-                <Width>2.75347in</Width>
-                <ZIndex>12</ZIndex>
+                <Width>2.30347in</Width>
+                <ZIndex>10</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -469,8 +405,8 @@
                 <Top>3.45611in</Top>
                 <Left>1.20549in</Left>
                 <Height>0.25in</Height>
-                <Width>2.75347in</Width>
-                <ZIndex>13</ZIndex>
+                <Width>2.30347in</Width>
+                <ZIndex>11</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -488,9 +424,8 @@
                     <Value>=Parameters!repBarCode.Value</Value>
                     <MIMEType>image/png</MIMEType>
                     <Sizing>Fit</Sizing>
-                    <Top>0.09125in</Top>
-                    <Height>0.75944in</Height>
-                    <Width>3.82166in</Width>
+                    <Height>1.08444in</Height>
+                    <Width>3.37165in</Width>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -501,9 +436,9 @@
                 <KeepTogether>true</KeepTogether>
                 <Top>1.19222in</Top>
                 <Left>0.13605in</Left>
-                <Height>0.85069in</Height>
-                <Width>3.82291in</Width>
-                <ZIndex>14</ZIndex>
+                <Height>1.20944in</Height>
+                <Width>3.37165in</Width>
+                <ZIndex>12</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -512,10 +447,10 @@
               </Rectangle>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Top>0.06944in</Top>
-            <Left>0.08271in</Left>
+            <Top>0.08333in</Top>
+            <Left>0.17646in</Left>
             <Height>3.86111in</Height>
-            <Width>4.12563in</Width>
+            <Width>3.62563in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -530,36 +465,49 @@
           </Border>
         </Style>
       </Body>
-      <Width>4.3425in</Width>
+      <Width>4in</Width>
       <Page>
         <PageHeader>
           <Height>1in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
-            <Textbox Name="Textbox7">
+            <Image Name="Logo">
+              <Source>Embedded</Source>
+              <Value>arniacolor</Value>
+              <Sizing>FitProportional</Sizing>
+              <Top>0.15625in</Top>
+              <Left>0.17646in</Left>
+              <Height>0.77431in</Height>
+              <Width>1.50062in</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
+            </Image>
+            <Textbox Name="Textbox13">
               <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
               <Paragraphs>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Arnian</Value>
+                      <Value>=Parameters!repEntrada.Value</Value>
                       <Style>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                   </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
+                  <Style />
                 </Paragraph>
               </Paragraphs>
-              <rd:DefaultName>Textbox7</rd:DefaultName>
-              <Top>0.70833in</Top>
+              <rd:DefaultName>Textbox2</rd:DefaultName>
+              <Top>0.45833in</Top>
               <Left>1.73264in</Left>
               <Height>0.25in</Height>
-              <Width>2.43277in</Width>
+              <Width>1.95152in</Width>
+              <ZIndex>1</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -570,26 +518,46 @@
                 <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
-            <Image Name="Logo">
-              <Source>Embedded</Source>
-              <Value>arniacolor</Value>
-              <Sizing>FitProportional</Sizing>
+            <Textbox Name="Textbox6">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Receipt ID:</Value>
+                      <Style>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox2</rd:DefaultName>
               <Top>0.15625in</Top>
-              <Left>0.17646in</Left>
-              <Height>0.77431in</Height>
-              <Width>1.50062in</Width>
-              <ZIndex>1</ZIndex>
+              <Left>1.73264in</Left>
+              <Height>0.25in</Height>
+              <Width>1in</Width>
+              <ZIndex>2</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
                 </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
               </Style>
-            </Image>
+            </Textbox>
           </ReportItems>
           <Style>
             <Border>
               <Style>None</Style>
             </Border>
+            <BottomBorder>
+              <Style>None</Style>
+            </BottomBorder>
           </Style>
         </PageHeader>
         <PageFooter>
@@ -600,6 +568,9 @@
             <Border>
               <Style>None</Style>
             </Border>
+            <TopBorder>
+              <Style>None</Style>
+            </TopBorder>
           </Style>
         </PageFooter>
         <LeftMargin>1in</LeftMargin>

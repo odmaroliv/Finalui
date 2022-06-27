@@ -76,6 +76,7 @@ namespace mainVentana
             this.gunaSeparator1 = new Guna.UI.WinForms.GunaSeparator();
             this.panel11 = new System.Windows.Forms.Panel();
             this.panel13 = new System.Windows.Forms.Panel();
+            this.lblRol = new System.Windows.Forms.Label();
             this.panel14 = new System.Windows.Forms.Panel();
             this.panel16 = new System.Windows.Forms.Panel();
             this.lbFecha = new System.Windows.Forms.Label();
@@ -90,7 +91,6 @@ namespace mainVentana
             this.iconButton9 = new FontAwesome.Sharp.IconButton();
             this.label4 = new System.Windows.Forms.Label();
             this.gunaTextBox1 = new Guna.UI.WinForms.GunaTextBox();
-            this.lblRol = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -111,7 +111,7 @@ namespace mainVentana
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(252, 953);
+            this.panel1.Size = new System.Drawing.Size(252, 961);
             this.panel1.TabIndex = 0;
             // 
             // panel3
@@ -134,7 +134,7 @@ namespace mainVentana
             this.panel3.Location = new System.Drawing.Point(0, 184);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(10);
-            this.panel3.Size = new System.Drawing.Size(252, 769);
+            this.panel3.Size = new System.Drawing.Size(252, 777);
             this.panel3.TabIndex = 1;
             // 
             // iconButton7
@@ -262,6 +262,7 @@ namespace mainVentana
             this.iconButton4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.iconButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton4.UseVisualStyleBackColor = false;
+            this.iconButton4.Click += new System.EventHandler(this.iconButton4_Click);
             this.iconButton4.MouseEnter += new System.EventHandler(this.iconButton4_MouseEnter);
             this.iconButton4.MouseLeave += new System.EventHandler(this.iconButton4_MouseLeave);
             // 
@@ -442,9 +443,9 @@ namespace mainVentana
             // 
             this.panel11.Controls.Add(this.panel13);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel11.Location = new System.Drawing.Point(252, 862);
+            this.panel11.Location = new System.Drawing.Point(252, 870);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(1230, 91);
+            this.panel11.Size = new System.Drawing.Size(1232, 91);
             this.panel11.TabIndex = 1;
             // 
             // panel13
@@ -459,15 +460,26 @@ namespace mainVentana
             this.panel13.Location = new System.Drawing.Point(0, 3);
             this.panel13.Margin = new System.Windows.Forms.Padding(4);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(1230, 88);
+            this.panel13.Size = new System.Drawing.Size(1232, 88);
             this.panel13.TabIndex = 6;
+            // 
+            // lblRol
+            // 
+            this.lblRol.AutoSize = true;
+            this.lblRol.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRol.ForeColor = System.Drawing.Color.White;
+            this.lblRol.Location = new System.Drawing.Point(455, 46);
+            this.lblRol.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblRol.Name = "lblRol";
+            this.lblRol.Size = new System.Drawing.Size(0, 16);
+            this.lblRol.TabIndex = 9;
             // 
             // panel14
             // 
             this.panel14.Controls.Add(this.panel16);
             this.panel14.Controls.Add(this.panel15);
             this.panel14.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel14.Location = new System.Drawing.Point(910, 0);
+            this.panel14.Location = new System.Drawing.Point(912, 0);
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(320, 88);
             this.panel14.TabIndex = 8;
@@ -526,7 +538,7 @@ namespace mainVentana
             this.lblNombreUsr.Location = new System.Drawing.Point(89, 46);
             this.lblNombreUsr.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNombreUsr.Name = "lblNombreUsr";
-            this.lblNombreUsr.Size = new System.Drawing.Size(0, 20);
+            this.lblNombreUsr.Size = new System.Drawing.Size(0, 16);
             this.lblNombreUsr.TabIndex = 7;
             // 
             // label3
@@ -537,7 +549,7 @@ namespace mainVentana
             this.label3.Location = new System.Drawing.Point(90, 23);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(108, 20);
+            this.label3.Size = new System.Drawing.Size(85, 16);
             this.label3.TabIndex = 5;
             this.label3.Text = "Arnian Group";
             // 
@@ -557,7 +569,7 @@ namespace mainVentana
             this.panelContenedorForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContenedorForm.Location = new System.Drawing.Point(252, 113);
             this.panelContenedorForm.Name = "panelContenedorForm";
-            this.panelContenedorForm.Size = new System.Drawing.Size(1230, 749);
+            this.panelContenedorForm.Size = new System.Drawing.Size(1232, 757);
             this.panelContenedorForm.TabIndex = 2;
             // 
             // tmFechaHora
@@ -575,7 +587,7 @@ namespace mainVentana
             this.panel17.Location = new System.Drawing.Point(252, 0);
             this.panel17.Name = "panel17";
             this.panel17.Padding = new System.Windows.Forms.Padding(25);
-            this.panel17.Size = new System.Drawing.Size(1230, 113);
+            this.panel17.Size = new System.Drawing.Size(1232, 113);
             this.panel17.TabIndex = 3;
             // 
             // iconButton9
@@ -593,7 +605,7 @@ namespace mainVentana
             this.iconButton9.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
             this.iconButton9.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton9.IconSize = 45;
-            this.iconButton9.Location = new System.Drawing.Point(1144, 32);
+            this.iconButton9.Location = new System.Drawing.Point(1146, 32);
             this.iconButton9.Name = "iconButton9";
             this.iconButton9.Size = new System.Drawing.Size(45, 53);
             this.iconButton9.TabIndex = 3;
@@ -609,7 +621,7 @@ namespace mainVentana
             this.label4.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.label4.Location = new System.Drawing.Point(35, 16);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(0, 15);
+            this.label4.Size = new System.Drawing.Size(0, 13);
             this.label4.TabIndex = 2;
             // 
             // gunaTextBox1
@@ -629,29 +641,18 @@ namespace mainVentana
             this.gunaTextBox1.Name = "gunaTextBox1";
             this.gunaTextBox1.PasswordChar = '\0';
             this.gunaTextBox1.Radius = 10;
-            this.gunaTextBox1.Size = new System.Drawing.Size(1180, 60);
+            this.gunaTextBox1.Size = new System.Drawing.Size(1182, 60);
             this.gunaTextBox1.TabIndex = 1;
             this.gunaTextBox1.Text = "Busqueda rapida de entrada :)";
             this.gunaTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gunaTextBox1_KeyDown);
             this.gunaTextBox1.MouseEnter += new System.EventHandler(this.gunaTextBox1_MouseEnter);
             this.gunaTextBox1.MouseLeave += new System.EventHandler(this.gunaTextBox1_MouseLeave);
             // 
-            // lblRol
-            // 
-            this.lblRol.AutoSize = true;
-            this.lblRol.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRol.ForeColor = System.Drawing.Color.White;
-            this.lblRol.Location = new System.Drawing.Point(455, 46);
-            this.lblRol.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblRol.Name = "lblRol";
-            this.lblRol.Size = new System.Drawing.Size(0, 20);
-            this.lblRol.TabIndex = 9;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1482, 953);
+            this.ClientSize = new System.Drawing.Size(1484, 961);
             this.Controls.Add(this.panelContenedorForm);
             this.Controls.Add(this.panel17);
             this.Controls.Add(this.panel11);

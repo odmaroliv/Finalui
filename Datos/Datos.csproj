@@ -53,6 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Datosenti\Docto_Prv_Result.cs">
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datosenti\Docto_Prv_Result1.cs">
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
+    </Compile>
     <Compile Include="Datosenti\DSBARCODE.cs">
       <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
@@ -169,6 +175,7 @@
     <Compile Include="ViewModels\Entradas\vmRastreo.cs" />
     <Compile Include="ViewModels\Entradas\vmTOperacion.cs" />
     <Compile Include="ViewModels\Reportes\vmEtiquetasReporte.cs" />
+    <Compile Include="ViewModels\Salidas\vmCargaOrdenesDeCarga.cs" />
     <Compile Include="ViewModels\Servicios\FechaActual.cs" />
     <Compile Include="ViewModels\Servicios\Paridad.cs" />
     <Compile Include="ViewModels\Login\vmLogin.cs" />

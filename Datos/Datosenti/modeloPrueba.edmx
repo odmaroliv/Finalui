@@ -609,6 +609,12 @@
           <Parameter Name="MODO" Type="int" Mode="In" />
           <Parameter Name="PROCESO" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="Docto_Prv" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SUC_ACT" Type="varchar" Mode="In" />
+          <Parameter Name="DOCTOS" Type="varchar(max)" Mode="In" />
+          <Parameter Name="MODO" Type="char" Mode="In" />
+          <Parameter Name="TIPO" Type="int" Mode="In" />
+        </Function>
         <Function Name="NO_RASTREO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="NoRastCrear" Type="int" Mode="In" />
         </Function>
@@ -1176,6 +1182,12 @@
           </FunctionImport>
           <EntitySet Name="DSIMAGE" EntityType="KEPLER_PRUEBASModel.DSIMAGE" />
           <EntitySet Name="DSBARCODE" EntityType="KEPLER_PRUEBASModel.DSBARCODE" />
+          <FunctionImport Name="Docto_Prv" ReturnType="Collection(KEPLER_PRUEBASModel.Docto_Prv_Result1)">
+            <Parameter Name="SUC_ACT" Mode="In" Type="String" />
+            <Parameter Name="DOCTOS" Mode="In" Type="String" />
+            <Parameter Name="MODO" Mode="In" Type="String" />
+            <Parameter Name="TIPO" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="NO_RASTREO_Result">
           <Property Type="String" Name="rand_number" Nullable="false" MaxLength="13" />
@@ -1316,6 +1328,52 @@
           <Property Name="E1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="E2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <ComplexType Name="Docto_Prv_Result">
+          <Property Type="String" Name="Column1" Nullable="true" MaxLength="101" />
+          <Property Type="String" Name="C10" Nullable="true" MaxLength="7" />
+          <Property Type="DateTime" Name="C9" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="C16" Nullable="true" Precision="15" Scale="2" />
+          <Property Type="String" Name="C7" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="C11" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Column2" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="C93" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="C94" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="C95" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="C96" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="C97" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="String" Name="C98" Nullable="true" MaxLength="5" />
+          <Property Type="Decimal" Name="C106" Nullable="true" Precision="15" Scale="2" />
+          <Property Type="String" Name="C100" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="C101" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="C102" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="C103" Nullable="true" MaxLength="7" />
+          <Property Type="String" Name="C1" Nullable="false" MaxLength="7" />
+          <Property Type="Decimal" Name="c1061" Nullable="true" Precision="15" Scale="2" />
+          <Property Type="String" Name="c12" Nullable="false" MaxLength="7" />
+        </ComplexType>
+        <ComplexType Name="Docto_Prv_Result1">
+          <Property Type="String" Name="Column1" Nullable="true" MaxLength="101" />
+          <Property Type="String" Name="C10" Nullable="true" MaxLength="7" />
+          <Property Type="DateTime" Name="C9" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="C16" Nullable="true" Precision="15" Scale="2" />
+          <Property Type="String" Name="C7" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="C11" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Column2" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="C93" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="C94" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="C95" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="C96" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="C97" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="String" Name="C98" Nullable="true" MaxLength="5" />
+          <Property Type="Decimal" Name="C106" Nullable="true" Precision="15" Scale="2" />
+          <Property Type="String" Name="C100" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="C101" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="C102" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="C103" Nullable="true" MaxLength="7" />
+          <Property Type="String" Name="C1" Nullable="false" MaxLength="7" />
+          <Property Type="Decimal" Name="c1061" Nullable="true" Precision="15" Scale="2" />
+          <Property Type="String" Name="c12" Nullable="false" MaxLength="7" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1839,6 +1897,33 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Docto_Prv" FunctionName="KEPLER_PRUEBASModel.Store.Docto_Prv">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KEPLER_PRUEBASModel.Docto_Prv_Result1">
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+                <ScalarProperty Name="C10" ColumnName="C10" />
+                <ScalarProperty Name="C9" ColumnName="C9" />
+                <ScalarProperty Name="C16" ColumnName="C16" />
+                <ScalarProperty Name="C7" ColumnName="C7" />
+                <ScalarProperty Name="C11" ColumnName="C11" />
+                <ScalarProperty Name="Column2" ColumnName="Column2" />
+                <ScalarProperty Name="C93" ColumnName="C93" />
+                <ScalarProperty Name="C94" ColumnName="C94" />
+                <ScalarProperty Name="C95" ColumnName="C95" />
+                <ScalarProperty Name="C96" ColumnName="C96" />
+                <ScalarProperty Name="C97" ColumnName="C97" />
+                <ScalarProperty Name="C98" ColumnName="C98" />
+                <ScalarProperty Name="C106" ColumnName="C106" />
+                <ScalarProperty Name="C100" ColumnName="C100" />
+                <ScalarProperty Name="C101" ColumnName="C101" />
+                <ScalarProperty Name="C102" ColumnName="C102" />
+                <ScalarProperty Name="C103" ColumnName="C103" />
+                <ScalarProperty Name="C1" ColumnName="C1" />
+                <ScalarProperty Name="c1061" ColumnName="c1061" />
+                <ScalarProperty Name="c12" ColumnName="c12" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

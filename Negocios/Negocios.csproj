@@ -55,7 +55,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Acceso Salida\AccesoSalidas.cs" />
     <Compile Include="AltasBD.cs" />
+    <Compile Include="BajaDB.cs" />
     <Compile Include="Common\Cache\CacheLogin.cs" />
     <Compile Include="EnviarEmail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -298,6 +298,21 @@ namespace mainVentana
             Login.Show();
 
         }
+
+        private void iconButton4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                VistaOrSalida.frmOrdSalida salida = new VistaOrSalida.frmOrdSalida();
+                salida.ShowDialog();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
+        }
         //Maximize & Restore "Event"
 
 

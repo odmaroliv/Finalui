@@ -616,6 +616,40 @@ namespace Negocios
             }
         }
 
+        public async Task<List<vmFotosById>> ObtieneIMGreal(string id, string sucursal)
+        {
+            try
+            {
+                var lst2 = new List<vmFotosById>();
+
+                await Task.Run(() =>
+                {
+                    using (modelo2Entities db = new modelo2Entities())
+                    {
+                        lst2.Clear();
+                        var oDocument = (from q in modelo.DSIMAGE
+                                         where q.ENTRADA == id && q.EXTRA1 == sucursal
+                                         select new vmFotosById
+                                         {
+                                             nombre = q.NOMBRE,
+                                             realnombre = q.REALNOMBRE,
+                                             entrada = q.ENTRADA,
+                                             bytedocumento = q.BYTEDOCUMENTO,
+                                             sucursal = q.EXTRA1,
+                                             tipodedocto = q.EXTRA2
+                                         }).ToList();
+
+                        lst2 = oDocument;
+                    }
+                });
+                return lst2;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
 
         public async  Task<List<vmFotosById>> ObtieneIMG(string id, string sucursal)
         {
