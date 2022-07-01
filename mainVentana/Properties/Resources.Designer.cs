@@ -161,22 +161,58 @@ namespace mainVentana.Properties {
         
         /// <summary>
         ///   Busca una cadena traducida similar a &lt;!DOCTYPE html&gt;
-        ///&lt;!-- Created by pdf2htmlEX (https://github.com/pdf2htmlEX/pdf2htmlEX) --&gt;
-        ///&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+        ///
+        ///&lt;html&gt;
         ///&lt;head&gt;
-        ///&lt;meta charset=&quot;utf-8&quot;/&gt;
-        ///&lt;meta name=&quot;generator&quot; content=&quot;pdf2htmlEX&quot;/&gt;
-        ///&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot;/&gt;
-        ///&lt;style type=&quot;text/css&quot;&gt;
-        ////*! 
-        /// * Base CSS for pdf2htmlEX
-        /// * Copyright 2012,2013 Lu Wang &lt;coolwanglu@gmail.com&gt; 
-        /// * https://github.com/pdf2htmlEX/pdf2htmlEX/blob/master/share/LICENSE
-        /// */#sidebar{position:absolute;top:0;left:0;bottom:0;widt [resto de la cadena truncado]&quot;;.
+        ///    
+        ///
+        ///    &lt;title&gt;Reporte Kepler ERP&lt;/title&gt;
+        ///&lt;/head&gt;
+        ///&lt;body bgcolor=&quot;#FFFFFF&quot;&gt;
+        ///    &lt;table bgcolor=&quot;#FFFFFF&quot;&gt;
+        ///        &lt;tbody&gt;
+        ///            &lt;tr&gt;
+        ///                &lt;td style=&quot;min-width:371px; &quot; bgcolor=&quot;#FFFFFF&quot;&gt;
+        ///                    &lt;table bgcolor=&quot;#FFFFFF&quot;&gt;
+        ///                        &lt;tbody&gt;
+        ///                            &lt;tr&gt;
+        ///                                &lt;td style=&quot;min-width:6px; &quot;&gt;
+        ///                                &lt;/td&gt;
+        ///                                &lt;td style=&quot;min-w [resto de la cadena truncado]&quot;;.
         /// </summary>
         internal static string ejemplo {
             get {
                 return ResourceManager.GetString("ejemplo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
+        /// </summary>
+        internal static System.Drawing.Icon icoarn {
+            get {
+                object obj = ResourceManager.GetObject("icoarn", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ld2 {
+            get {
+                object obj = ResourceManager.GetObject("ld2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap load {
+            get {
+                object obj = ResourceManager.GetObject("load", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

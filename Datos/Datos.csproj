@@ -179,6 +179,7 @@
     <Compile Include="ViewModels\Servicios\FechaActual.cs" />
     <Compile Include="ViewModels\Servicios\Paridad.cs" />
     <Compile Include="ViewModels\Login\vmLogin.cs" />
+    <Compile Include="vm\Salidas por cotizacion.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

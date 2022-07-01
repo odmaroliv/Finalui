@@ -33,7 +33,7 @@ namespace mainVentana
             AbrirFormEnPanel(frm);
             
             string voi = "";
-            frm.refresh(voi);
+            //frm.refresh(voi);
             cargasatosUrs();
 
 
@@ -313,7 +313,6 @@ namespace mainVentana
             }
            
         }
-        //Maximize & Restore "Event"
 
 
     }

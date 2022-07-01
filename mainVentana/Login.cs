@@ -20,14 +20,13 @@ namespace mainVentana
         
         private void Login_Load(object sender, EventArgs e)
         {
-            
+            Negocios.psisarn psisarn = new Negocios.psisarn();
+            psisarn.CS(Negocios.MB.mbsecurity.SN, Negocios.MB.mbsecurity.CSN);
         }
         private void iconButton1_Click(object sender, EventArgs e)
         {
             
             Inicio();
-
-
 
         }
         private void Inicio()

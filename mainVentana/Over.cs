@@ -30,7 +30,7 @@ namespace mainVentana
 
         private void Over_Load(object sender, EventArgs e)
         {
-            
+           // gunaDataGridView1.CurrentCell = null;
         }
         public void busquedamain()
         {
@@ -105,7 +105,7 @@ namespace mainVentana
                     {
                         gunaDataGridView1.Rows[i].Cells[4].Style.BackColor = Color.FromArgb(250, 95, 73);
                         gunaDataGridView1.Rows[i].Cells[4].Style.ForeColor = Color.FromArgb(255, 255, 255);
-                }
+                    }
                 }
              
 
@@ -160,7 +160,16 @@ namespace mainVentana
 
         private void gunaGradientTileButton5_Click(object sender, EventArgs e)
         {
-           
+            try
+            {
+                VistaOrSalida.frmOrdSalida salida = new VistaOrSalida.frmOrdSalida();
+                salida.ShowDialog();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
 

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Ventana1;
 
 namespace mainVentana.VistaOrSalida
 {
@@ -21,6 +22,12 @@ namespace mainVentana.VistaOrSalida
         {
             frmBuscarOrdCarga oc = new frmBuscarOrdCarga();
             oc.ShowDialog();
+        }
+
+        private void gunaGradientTileButton2_Click(object sender, EventArgs e)
+        {
+           Ventana1.frmSalidas d = new frmSalidas();
+           d.ShowDialog();
         }
     }
 }

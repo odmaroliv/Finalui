@@ -295,5 +295,18 @@ namespace Datos.Datosenti
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Docto_Prv_Result1>("Docto_Prv", sUC_ACTParameter, dOCTOSParameter, mODOParameter, tIPOParameter);
         }
+    
+        public virtual ObjectResult<string> NumeroMAX(string dATO, string tIPO)
+        {
+            var dATOParameter = dATO != null ?
+                new ObjectParameter("DATO", dATO) :
+                new ObjectParameter("DATO", typeof(string));
+    
+            var tIPOParameter = tIPO != null ?
+                new ObjectParameter("TIPO", tIPO) :
+                new ObjectParameter("TIPO", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("NumeroMAX", dATOParameter, tIPOParameter);
+        }
     }
 }

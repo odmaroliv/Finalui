@@ -51,6 +51,27 @@ namespace Negocios.Acceso_Salida
             }
         }
 
+        public List<string> BuscUltimaSalida(string suc)
+        {
+
+            List<string> lista1 = new List<string>();
+
+            using (modelo2Entities db = new modelo2Entities())
+            {
+                var lst = from k in db.NumeroMAX(suc, "45")
+
+                          select k;
+
+                lista1 = lst.ToList();
+
+            }
+
+
+            return lista1;
+
+        }
+
+
 
     }
 }

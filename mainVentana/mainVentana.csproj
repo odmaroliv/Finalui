@@ -15,7 +15,8 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <PublishUrl>publish\</PublishUrl>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\ARNTJ025\Documents\pruebasusanotijuana\FINAL\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -25,10 +26,13 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ProductName>ARSYS</ProductName>
+    <PublisherName>Daniel Olivares H.</PublisherName>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -50,12 +54,24 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icoarn.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>11ECD52FE8DD95E6F0328684CF6C5C6BD8C6261A</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>mainVentana_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
       <HintPath>..\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.Controls, Version=2.2.5.0, Culture=neutral, PublicKeyToken=a8ac264d1dc6b9d9, processorArchitecture=MSIL">
-      <HintPath>..\packages\AForge.Controls.2.2.5\lib\AForge.Controls.dll</HintPath>
     </Reference>
     <Reference Include="AForge.Imaging, Version=2.2.5.0, Culture=neutral, PublicKeyToken=ba8ddea9676ca48b, processorArchitecture=MSIL">
       <HintPath>..\packages\AForge.Imaging.2.2.5\lib\AForge.Imaging.dll</HintPath>
@@ -81,14 +97,17 @@
     <Reference Include="DesktopControl">
       <HintPath>..\..\..\..\Documents\bunifu\DesktopControl.dll</HintPath>
     </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.11.3.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.11.3\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="FontAwesome.Sharp, Version=5.15.4.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f, processorArchitecture=MSIL">
-      <HintPath>..\packages\FontAwesome.Sharp.5.15.4\lib\net48\FontAwesome.Sharp.dll</HintPath>
+    <Reference Include="FontAwesome.Sharp, Version=6.1.1.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.Sharp.6.1.1\lib\net48\FontAwesome.Sharp.dll</HintPath>
     </Reference>
     <Reference Include="Guna.UI">
       <HintPath>..\..\..\..\Documents\dll csha\Guna.UI.dll</HintPath>
@@ -153,6 +172,9 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="SpreadsheetLight, Version=3.5.0.0, Culture=neutral, PublicKeyToken=32fbb46dc1730c57, processorArchitecture=MSIL">
+      <HintPath>..\packages\SpreadsheetLight.3.5.0\lib\netstandard2.0\SpreadsheetLight.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -168,6 +190,14 @@
     </Reference>
     <Reference Include="System.Drawing.Common, Version=4.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Drawing.Common.5.0.2\lib\net461\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Packaging, Version=4.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Packaging.4.7.0\lib\net46\System.IO.Packaging.dll</HintPath>
     </Reference>
     <Reference Include="System.Management" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -209,12 +239,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Camara\cam2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Camara\cam2.Designer.cs">
-      <DependentUpon>cam2.cs</DependentUpon>
-    </Compile>
     <Compile Include="Email\vEmail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -234,6 +258,12 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="iconButton.cs" />
+    <Compile Include="LoadControl\loadControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LoadControl\loadControl.Designer.cs">
+      <DependentUpon>loadControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Loading\LoadingPatoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -293,6 +323,8 @@
     <Compile Include="VistaEntrada\Picture.Designer.cs">
       <DependentUpon>Picture.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaEntrada\vm\Salidas por cotizacion.cs" />
+    <Compile Include="VistaEntrada\vm\vmErroresScanSalidas.cs" />
     <Compile Include="VistaLogin\vmLogin.cs" />
     <Compile Include="VistaOrSalida\frmBuscarOrdCarga.cs">
       <SubType>Form</SubType>
@@ -306,9 +338,6 @@
     <Compile Include="VistaOrSalida\frmOrdSalida.Designer.cs">
       <DependentUpon>frmOrdSalida.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Camara\cam2.resx">
-      <DependentUpon>cam2.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Email\vEmail.resx">
       <DependentUpon>vEmail.cs</DependentUpon>
     </EmbeddedResource>
@@ -317,6 +346,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadControl\loadControl.resx">
+      <DependentUpon>loadControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Loading\LoadingPatoControl.resx">
       <DependentUpon>LoadingPatoControl.cs</DependentUpon>
@@ -362,6 +394,7 @@
     <EmbeddedResource Include="VistaOrSalida\frmOrdSalida.resx">
       <DependentUpon>frmOrdSalida.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="mainVentana_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Datos.ViewModels.Reportes.vmEtiquetasReporte.datasource" />
     <None Include="Properties\Settings.settings">
@@ -381,6 +414,10 @@
     <None Include="Resources\arnian-gr.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Viri\Ventana1\Ventana1.csproj">
+      <Project>{9DD43476-C4E6-43C6-95C7-32554794C13B}</Project>
+      <Name>Ventana1</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Datos\Datos.csproj">
       <Project>{EFB0D481-9862-4C67-8B11-C651E78F82ED}</Project>
       <Name>Datos</Name>
@@ -403,6 +440,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\ld2.gif" />
+    <None Include="Resources\load.gif" />
+    <None Include="Resources\icoarn.ico" />
+    <Content Include="icoarn.ico" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

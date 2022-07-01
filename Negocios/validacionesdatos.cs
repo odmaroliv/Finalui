@@ -500,7 +500,7 @@ namespace Negocios
                                     //password = d.Password,
                                     nombre = d.C2.Trim(),
                                     //apellido = d.Apellido.Trim(),
-                                    email = d.C8,
+                                    email = d.C9,
                                     numero = d.C13,
                                     rol = d.C4,
                                     sucdefecto = d.C10,
@@ -510,13 +510,13 @@ namespace Negocios
                     foreach (var i in lista.ToList())
                     {
 
-                        Common.Cache.CacheLogin.username = i.username;
-                        Common.Cache.CacheLogin.nombre = i.nombre;
-                        Common.Cache.CacheLogin.apellido = i.apellido;
-                        Common.Cache.CacheLogin.email = i.email;
-                        Common.Cache.CacheLogin.rol = i.rol;
-                        Common.Cache.CacheLogin.sucdefecto = i.sucdefecto;
-                        Common.Cache.CacheLogin.numero = i.numero;
+                        Common.Cache.CacheLogin.username = i.username.Trim();
+                        Common.Cache.CacheLogin.nombre = i.nombre.Trim();
+                       // Common.Cache.CacheLogin.apellido = i.apellido;
+                        Common.Cache.CacheLogin.email = i.email.Trim();
+                        Common.Cache.CacheLogin.rol = i.rol.Trim();
+                        Common.Cache.CacheLogin.sucdefecto = i.sucdefecto.Trim();
+                        Common.Cache.CacheLogin.numero = i.numero.Trim();
                     }
 
                     if (lista.ToList().Count() <= 0)

@@ -621,6 +621,10 @@
         <Function Name="NumeroEntradaMAX" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="DATO" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="NumeroMAX" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DATO" Type="nvarchar" Mode="In" />
+          <Parameter Name="TIPO" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="KEPLER_PRUEBASModelStoreContainer">
           <EntitySet Name="DSBARCODE" EntityType="Self.DSBARCODE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DSIMAGE" EntityType="Self.DSIMAGE" Schema="dbo" store:Type="Tables" />
@@ -1187,6 +1191,10 @@
             <Parameter Name="DOCTOS" Mode="In" Type="String" />
             <Parameter Name="MODO" Mode="In" Type="String" />
             <Parameter Name="TIPO" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="NumeroMAX" ReturnType="Collection(String)">
+            <Parameter Name="DATO" Mode="In" Type="String" />
+            <Parameter Name="TIPO" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="NO_RASTREO_Result">
@@ -1924,6 +1932,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NumeroMAX" FunctionName="KEPLER_PRUEBASModel.Store.NumeroMAX" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

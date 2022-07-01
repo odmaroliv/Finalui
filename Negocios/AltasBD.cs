@@ -6,15 +6,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Datos.ViewModels.Entradas;
+using Ventana1.vm;
 
 namespace Negocios
 {
     public class AltasBD
     {
-       public void agregaKDM1(string sucInicial,string entrada, string Moneda, DateTime fecha, string noCliente, 
-           string noCord, string valArn, string nomCliente, string calle,string colonia, string ciudadcodigozip, string valFact,
-           string paridad,string noTrakin, string provedor, string orCompra,string noFlete, string noUnidades, string tipUnidad, string peso,
-           string unidadMedida,string tipOperacion, string sucDestino, string bultos, string Alias, string nota, string referencia)
+        public void agregaKDM1(string sucInicial, string entrada, string Moneda, DateTime fecha, string noCliente,
+            string noCord, string valArn, string nomCliente, string calle, string colonia, string ciudadcodigozip, string valFact,
+            string paridad, string noTrakin, string provedor, string orCompra, string noFlete, string noUnidades, string tipUnidad, string peso,
+            string unidadMedida, string tipOperacion, string sucDestino, string bultos, string Alias, string nota, string referencia)
         {
             try
             {
@@ -40,7 +41,7 @@ namespace Negocios
                     d.C33 = calle;
                     d.C34 = colonia;
                     d.C35 = ciudadcodigozip;
-                    if (Moneda == "DLLS"){ d.C40 = paridad == "" ? 20 : Convert.ToDouble(paridad); }
+                    if (Moneda == "DLLS") { d.C40 = paridad == "" ? 20 : Convert.ToDouble(paridad); }
                     d.C41 = fecha;
                     d.C42 = valArn == "" ? 1 : Convert.ToDecimal(valArn);
                     d.C43 = "N";
@@ -64,7 +65,7 @@ namespace Negocios
                     d.C112 = Alias.Trim();
                     modelo.KDM1.Add(d);
                     modelo.SaveChanges();
-                    
+
                 }
             }
             catch (DbEntityValidationException e)
@@ -79,13 +80,13 @@ namespace Negocios
                             ve.PropertyName, ve.ErrorMessage);
                     }
                 }
-               
+
                 throw;
             }
-            
+
         }
 
-        public void agregaComentKDM1(string sucEntrada, string codEntrada, string moneda,DateTime fecha, string codCliente,string desc)
+        public void agregaComentKDM1(string sucEntrada, string codEntrada, string moneda, DateTime fecha, string codCliente, string desc)
         {
             try
             {
@@ -129,8 +130,8 @@ namespace Negocios
 
         }
 
-        public void agregaKDMENT(string sucInicio, string folEntrada, string numEtiqueta, string documento, string etiqueta, string sucDestino, string sucActual, string desc, string fecha, 
-            int repEspecial, int modo, string proceso) 
+        public void agregaKDMENT(string sucInicio, string folEntrada, string numEtiqueta, string documento, string etiqueta, string sucDestino, string sucActual, string desc, string fecha,
+            int repEspecial, int modo, string proceso)
         {
             try
             {
@@ -160,14 +161,14 @@ namespace Negocios
                         repEspecial,
                         modo,
                         proceso,
-                        null,null,null,null,null,null,null,null,null,null,null,null,null
+                        null, null, null, null, null, null, null, null, null, null, null, null, null
 
                         );
-                   
 
 
 
-                    
+
+
                     modelo.SaveChanges();
 
                 }
@@ -191,26 +192,26 @@ namespace Negocios
 
         public void agregarFotos(List<vmListaFotos> fotos)
         {
-            
+
             try
             {
-               
-                    using (modelo2Entities modelo = new modelo2Entities())
+
+                using (modelo2Entities modelo = new modelo2Entities())
+                {
+                    var d = new DSIMAGE();
+                    foreach (var i in fotos)
                     {
-                        var d = new DSIMAGE();
-                        foreach (var i in fotos)
-                        {
-                            d.ENTRADA = i.entrada;
-                            d.NOMBRE = i.nombre;
-                            d.REALNOMBRE = i.realnombre;
-                            d.BYTEDOCUMENTO = i.bytedocumto;
-                            d.EXTRA1 = i.sucursal.Trim();
-                            d.EXTRA2 = i.tipo.Trim();
-                            modelo.DSIMAGE.Add(d);
-                            modelo.SaveChanges();
-                        }
-                      
+                        d.ENTRADA = i.entrada;
+                        d.NOMBRE = i.nombre;
+                        d.REALNOMBRE = i.realnombre;
+                        d.BYTEDOCUMENTO = i.bytedocumto;
+                        d.EXTRA1 = i.sucursal.Trim();
+                        d.EXTRA2 = i.tipo.Trim();
+                        modelo.DSIMAGE.Add(d);
+                        modelo.SaveChanges();
                     }
+
+                }
 
             }
 
@@ -229,7 +230,7 @@ namespace Negocios
 
                 throw;
             }
-            
+
         }
 
         public void UpdateKDM1(string id, string sucursaldestino, string cord, string notas, string referencia, string pagado, string tipooperacion, string valfact, string valarn)
@@ -251,7 +252,7 @@ namespace Negocios
                     d.C16 = Convert.ToDecimal(valarn.Trim());
                     d.C42 = Convert.ToDecimal(valarn.Trim());
                     modelo.SaveChanges();
-                    
+
                 }
             }
             catch (DbEntityValidationException e)
@@ -288,7 +289,7 @@ namespace Negocios
 
 
                     modelo.DSBARCODE.Add(d);
-                   
+
                     modelo.SaveChanges();
 
                 }
@@ -312,7 +313,130 @@ namespace Negocios
         }
 
 
+        //----------------------------------------------Salidas--------------------------------------------------------------------------
 
 
+        public async void CSalidaEnKDM1(string c1, string c2, string c3, decimal c4, decimal c5, string c6, decimal c8, DateTime c9, string c11, decimal c16, DateTime c18, string c24
+            , string c31, string c43, string c63, string c67, DateTime c68, string c94, string c95, string c96)
+        {
+
+
+
+            using (modelo2Entities modelo = new modelo2Entities())
+            {
+
+
+                var d = new KDM1();
+
+                d.C1 = c1;
+                d.C2 = c2;
+                d.C3 = c3;
+                d.C4 = c4;
+                d.C5 = c5;
+                d.C6 = c6;
+                d.C8 = c8;
+                d.C9 = c9;
+                d.C11 = c11;
+                d.C16 = c16;
+                d.C18 = c18;
+                d.C24 = c24;
+                d.C31 = c31;
+                d.C43 = c43;
+                d.C63 = c63;
+                d.C67 = c67;
+                d.C68 = c68;
+                d.C94 = c94;
+                d.C95 = c95;
+                d.C96 = c96;
+
+
+                modelo.KDM1.Add(d);
+                try
+                {
+                    modelo.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw;
+                }
+            }
+        }
+        
+       /*public async Task<List<List<vmErroresScanSalidas>>> ModifiKDMENTtj(int nrows,string etiq, string salida, string c19, string c20, string c23, string c55, string, string c56, 
+           string c63, string c64, string c65, string c66, string c67, string c68, string c75)
+        {
+            int nm = 0;
+            List<vmErroresScanSalidas> lserror = new List<vmErroresScanSalidas>();
+            List<vmErroresScanSalidas> lsexito = new List<vmErroresScanSalidas>();
+            List<List<vmErroresScanSalidas>> listfinal = new List<List<vmErroresScanSalidas>>();
+            await Task.Run(() =>
+            {
+
+                using (modelo2Entities modelo = new modelo2Entities())
+                {
+
+                    List<KDMENT> kd = new List<KDMENT>();
+                    foreach (var q in dgvInicial.Rows)
+                    {
+                        string msn = dgvInicial.Rows[nm].Cells[0].Value.ToString();
+
+
+
+                        string uld = (string)ulDato.Trim().Clone();
+                        nm = nm + 1;
+
+                        try
+                        {
+                            var d = (from fd in modelo.KDMENT
+                                     where fd.C9 == msn.Trim()// 
+                                     select fd).First();
+
+                            d.C19 = sOrigen;
+                            d.C20 = "PR";
+                            d.C23 = "";
+                            d.C55 = uld;
+                            d.C56 = "";
+
+                            d.C63 = uld;
+                            d.C64 = uld;
+                            d.C65 = "E";
+                            d.C66 = "";
+                            d.C67 = "";
+                            d.C68 = "";
+                            d.C75 = DateTime.Now.ToString("dd/MM/yyyy");
+                            kd.Add(d);
+
+
+
+                            //modelo.SaveChanges();
+                            lsexito.Add(new vmErroresScanSalidas { etiqueta = msn, error = "Actualizada con Exito" });
+
+                        }
+                        catch (Exception J)
+                        {
+
+                            lserror.Add(new vmErroresScanSalidas { etiqueta = msn, error = J.Message.ToString() });
+
+                            continue;
+
+                        }
+                        
+                       
+                    }
+                    modelo.BulkUpdate(kd.ToList());
+                }
+            });
+
+            listfinal.Add(lsexito);
+            listfinal.Add(lserror);
+            return listfinal.ToList();
+        }*/
+
+        
     }
+
+
+
+
+
 }

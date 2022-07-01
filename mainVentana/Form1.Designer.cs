@@ -53,6 +53,7 @@ namespace mainVentana
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.iconButton7 = new FontAwesome.Sharp.IconButton();
@@ -110,6 +111,7 @@ namespace mainVentana
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(252, 961);
             this.panel1.TabIndex = 0;
@@ -131,10 +133,11 @@ namespace mainVentana
             this.panel3.Controls.Add(this.iconButton1);
             this.panel3.Controls.Add(this.panel4);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 184);
+            this.panel3.Location = new System.Drawing.Point(0, 185);
+            this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(10);
-            this.panel3.Size = new System.Drawing.Size(252, 777);
+            this.panel3.Padding = new System.Windows.Forms.Padding(11, 10, 11, 10);
+            this.panel3.Size = new System.Drawing.Size(252, 776);
             this.panel3.TabIndex = 1;
             // 
             // iconButton7
@@ -152,9 +155,10 @@ namespace mainVentana
             this.iconButton7.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(193)))), ((int)(((byte)(193)))));
             this.iconButton7.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton7.Location = new System.Drawing.Point(10, 449);
+            this.iconButton7.Location = new System.Drawing.Point(11, 509);
+            this.iconButton7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.iconButton7.Name = "iconButton7";
-            this.iconButton7.Size = new System.Drawing.Size(232, 56);
+            this.iconButton7.Size = new System.Drawing.Size(230, 66);
             this.iconButton7.TabIndex = 16;
             this.iconButton7.Text = "Traking";
             this.iconButton7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -166,9 +170,10 @@ namespace mainVentana
             // panel10
             // 
             this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel10.Location = new System.Drawing.Point(10, 439);
+            this.panel10.Location = new System.Drawing.Point(11, 499);
+            this.panel10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(232, 10);
+            this.panel10.Size = new System.Drawing.Size(230, 10);
             this.panel10.TabIndex = 15;
             // 
             // iconButton6
@@ -186,9 +191,10 @@ namespace mainVentana
             this.iconButton6.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(193)))), ((int)(((byte)(193)))));
             this.iconButton6.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton6.Location = new System.Drawing.Point(10, 383);
+            this.iconButton6.Location = new System.Drawing.Point(11, 433);
+            this.iconButton6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.iconButton6.Name = "iconButton6";
-            this.iconButton6.Size = new System.Drawing.Size(232, 56);
+            this.iconButton6.Size = new System.Drawing.Size(230, 66);
             this.iconButton6.TabIndex = 14;
             this.iconButton6.Text = "Bill";
             this.iconButton6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -200,9 +206,10 @@ namespace mainVentana
             // panel9
             // 
             this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel9.Location = new System.Drawing.Point(10, 373);
+            this.panel9.Location = new System.Drawing.Point(11, 423);
+            this.panel9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(232, 10);
+            this.panel9.Size = new System.Drawing.Size(230, 10);
             this.panel9.TabIndex = 13;
             // 
             // iconButton5
@@ -220,9 +227,10 @@ namespace mainVentana
             this.iconButton5.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(193)))), ((int)(((byte)(193)))));
             this.iconButton5.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton5.Location = new System.Drawing.Point(10, 317);
+            this.iconButton5.Location = new System.Drawing.Point(11, 357);
+            this.iconButton5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.iconButton5.Name = "iconButton5";
-            this.iconButton5.Size = new System.Drawing.Size(232, 56);
+            this.iconButton5.Size = new System.Drawing.Size(230, 66);
             this.iconButton5.TabIndex = 12;
             this.iconButton5.Text = "Recepcion";
             this.iconButton5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -234,9 +242,10 @@ namespace mainVentana
             // panel8
             // 
             this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel8.Location = new System.Drawing.Point(10, 307);
+            this.panel8.Location = new System.Drawing.Point(11, 347);
+            this.panel8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(232, 10);
+            this.panel8.Size = new System.Drawing.Size(230, 10);
             this.panel8.TabIndex = 11;
             // 
             // iconButton4
@@ -254,9 +263,10 @@ namespace mainVentana
             this.iconButton4.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(193)))), ((int)(((byte)(193)))));
             this.iconButton4.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton4.Location = new System.Drawing.Point(10, 251);
+            this.iconButton4.Location = new System.Drawing.Point(11, 281);
+            this.iconButton4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.iconButton4.Name = "iconButton4";
-            this.iconButton4.Size = new System.Drawing.Size(232, 56);
+            this.iconButton4.Size = new System.Drawing.Size(230, 66);
             this.iconButton4.TabIndex = 10;
             this.iconButton4.Text = "Salida";
             this.iconButton4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -269,9 +279,10 @@ namespace mainVentana
             // panel7
             // 
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(10, 241);
+            this.panel7.Location = new System.Drawing.Point(11, 271);
+            this.panel7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(232, 10);
+            this.panel7.Size = new System.Drawing.Size(230, 10);
             this.panel7.TabIndex = 9;
             // 
             // iconButton3
@@ -289,9 +300,10 @@ namespace mainVentana
             this.iconButton3.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(193)))), ((int)(((byte)(193)))));
             this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton3.Location = new System.Drawing.Point(10, 185);
+            this.iconButton3.Location = new System.Drawing.Point(11, 205);
+            this.iconButton3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.iconButton3.Name = "iconButton3";
-            this.iconButton3.Size = new System.Drawing.Size(232, 56);
+            this.iconButton3.Size = new System.Drawing.Size(230, 66);
             this.iconButton3.TabIndex = 8;
             this.iconButton3.Text = "Carga";
             this.iconButton3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -303,9 +315,10 @@ namespace mainVentana
             // panel6
             // 
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel6.Location = new System.Drawing.Point(10, 175);
+            this.panel6.Location = new System.Drawing.Point(11, 195);
+            this.panel6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(232, 10);
+            this.panel6.Size = new System.Drawing.Size(230, 10);
             this.panel6.TabIndex = 7;
             // 
             // iconButton2
@@ -323,9 +336,10 @@ namespace mainVentana
             this.iconButton2.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(193)))), ((int)(((byte)(193)))));
             this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton2.Location = new System.Drawing.Point(10, 119);
+            this.iconButton2.Location = new System.Drawing.Point(11, 129);
+            this.iconButton2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.iconButton2.Name = "iconButton2";
-            this.iconButton2.Size = new System.Drawing.Size(232, 56);
+            this.iconButton2.Size = new System.Drawing.Size(230, 66);
             this.iconButton2.TabIndex = 6;
             this.iconButton2.Text = "Entrada";
             this.iconButton2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -338,9 +352,10 @@ namespace mainVentana
             // panel5
             // 
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(10, 109);
+            this.panel5.Location = new System.Drawing.Point(11, 119);
+            this.panel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(232, 10);
+            this.panel5.Size = new System.Drawing.Size(230, 10);
             this.panel5.TabIndex = 5;
             // 
             // iconButton1
@@ -358,9 +373,10 @@ namespace mainVentana
             this.iconButton1.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(193)))), ((int)(((byte)(193)))));
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(10, 53);
+            this.iconButton1.Location = new System.Drawing.Point(11, 53);
+            this.iconButton1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(232, 56);
+            this.iconButton1.Size = new System.Drawing.Size(230, 66);
             this.iconButton1.TabIndex = 4;
             this.iconButton1.Text = "Inicio";
             this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -373,9 +389,10 @@ namespace mainVentana
             // panel4
             // 
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(10, 10);
+            this.panel4.Location = new System.Drawing.Point(11, 10);
+            this.panel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(232, 43);
+            this.panel4.Size = new System.Drawing.Size(230, 43);
             this.panel4.TabIndex = 3;
             // 
             // panel2
@@ -386,9 +403,10 @@ namespace mainVentana
             this.panel2.Controls.Add(this.gunaSeparator1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.panel2.Size = new System.Drawing.Size(252, 184);
+            this.panel2.Padding = new System.Windows.Forms.Padding(11, 10, 11, 10);
+            this.panel2.Size = new System.Drawing.Size(252, 185);
             this.panel2.TabIndex = 0;
             // 
             // label2
@@ -396,22 +414,22 @@ namespace mainVentana
             this.label2.Dock = System.Windows.Forms.DockStyle.Top;
             this.label2.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label2.Location = new System.Drawing.Point(10, 99);
+            this.label2.Location = new System.Drawing.Point(11, 99);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(232, 36);
+            this.label2.Size = new System.Drawing.Size(230, 36);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Disponibles para Bill";
+            this.label2.Text = "D";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(10, 73);
+            this.label1.Location = new System.Drawing.Point(11, 73);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(232, 26);
+            this.label1.Size = new System.Drawing.Size(230, 26);
             this.label1.TabIndex = 2;
-            this.label1.Text = "25";
+            this.label1.Text = "nm";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
@@ -424,9 +442,10 @@ namespace mainVentana
             this.iconButton8.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
             this.iconButton8.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton8.IconSize = 60;
-            this.iconButton8.Location = new System.Drawing.Point(10, 10);
+            this.iconButton8.Location = new System.Drawing.Point(11, 10);
+            this.iconButton8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.iconButton8.Name = "iconButton8";
-            this.iconButton8.Size = new System.Drawing.Size(232, 63);
+            this.iconButton8.Size = new System.Drawing.Size(230, 63);
             this.iconButton8.TabIndex = 1;
             this.iconButton8.UseVisualStyleBackColor = true;
             // 
@@ -434,9 +453,10 @@ namespace mainVentana
             // 
             this.gunaSeparator1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.gunaSeparator1.LineColor = System.Drawing.Color.Silver;
-            this.gunaSeparator1.Location = new System.Drawing.Point(10, 164);
+            this.gunaSeparator1.Location = new System.Drawing.Point(11, 165);
+            this.gunaSeparator1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gunaSeparator1.Name = "gunaSeparator1";
-            this.gunaSeparator1.Size = new System.Drawing.Size(232, 10);
+            this.gunaSeparator1.Size = new System.Drawing.Size(230, 10);
             this.gunaSeparator1.TabIndex = 0;
             // 
             // panel11
@@ -444,6 +464,7 @@ namespace mainVentana
             this.panel11.Controls.Add(this.panel13);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel11.Location = new System.Drawing.Point(252, 870);
+            this.panel11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(1232, 91);
             this.panel11.TabIndex = 1;
@@ -457,10 +478,10 @@ namespace mainVentana
             this.panel13.Controls.Add(this.label3);
             this.panel13.Controls.Add(this.pictureBox7);
             this.panel13.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel13.Location = new System.Drawing.Point(0, 3);
+            this.panel13.Location = new System.Drawing.Point(0, 2);
             this.panel13.Margin = new System.Windows.Forms.Padding(4);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(1232, 88);
+            this.panel13.Size = new System.Drawing.Size(1232, 89);
             this.panel13.TabIndex = 6;
             // 
             // lblRol
@@ -480,8 +501,9 @@ namespace mainVentana
             this.panel14.Controls.Add(this.panel15);
             this.panel14.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel14.Location = new System.Drawing.Point(912, 0);
+            this.panel14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(320, 88);
+            this.panel14.Size = new System.Drawing.Size(320, 89);
             this.panel14.TabIndex = 8;
             // 
             // panel16
@@ -489,8 +511,9 @@ namespace mainVentana
             this.panel16.Controls.Add(this.lbFecha);
             this.panel16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel16.Location = new System.Drawing.Point(0, 58);
+            this.panel16.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(320, 30);
+            this.panel16.Size = new System.Drawing.Size(320, 31);
             this.panel16.TabIndex = 1;
             // 
             // lbFecha
@@ -501,7 +524,7 @@ namespace mainVentana
             this.lbFecha.Location = new System.Drawing.Point(0, 0);
             this.lbFecha.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbFecha.Name = "lbFecha";
-            this.lbFecha.Size = new System.Drawing.Size(320, 30);
+            this.lbFecha.Size = new System.Drawing.Size(320, 31);
             this.lbFecha.TabIndex = 4;
             this.lbFecha.Text = "Lunes, 26 de septiembre 2022";
             this.lbFecha.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -511,6 +534,7 @@ namespace mainVentana
             this.panel15.Controls.Add(this.lblHora);
             this.panel15.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel15.Location = new System.Drawing.Point(0, 0);
+            this.panel15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel15.Name = "panel15";
             this.panel15.Size = new System.Drawing.Size(320, 58);
             this.panel15.TabIndex = 0;
@@ -546,7 +570,7 @@ namespace mainVentana
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(90, 23);
+            this.label3.Location = new System.Drawing.Point(91, 23);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(85, 16);
@@ -568,6 +592,7 @@ namespace mainVentana
             // 
             this.panelContenedorForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContenedorForm.Location = new System.Drawing.Point(252, 113);
+            this.panelContenedorForm.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelContenedorForm.Name = "panelContenedorForm";
             this.panelContenedorForm.Size = new System.Drawing.Size(1232, 757);
             this.panelContenedorForm.TabIndex = 2;
@@ -585,6 +610,7 @@ namespace mainVentana
             this.panel17.Controls.Add(this.gunaTextBox1);
             this.panel17.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel17.Location = new System.Drawing.Point(252, 0);
+            this.panel17.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel17.Name = "panel17";
             this.panel17.Padding = new System.Windows.Forms.Padding(25);
             this.panel17.Size = new System.Drawing.Size(1232, 113);
@@ -605,7 +631,8 @@ namespace mainVentana
             this.iconButton9.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
             this.iconButton9.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton9.IconSize = 45;
-            this.iconButton9.Location = new System.Drawing.Point(1146, 32);
+            this.iconButton9.Location = new System.Drawing.Point(1147, 32);
+            this.iconButton9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.iconButton9.Name = "iconButton9";
             this.iconButton9.Size = new System.Drawing.Size(45, 53);
             this.iconButton9.TabIndex = 3;
@@ -638,6 +665,7 @@ namespace mainVentana
             this.gunaTextBox1.Font = new System.Drawing.Font("Trebuchet MS", 9F);
             this.gunaTextBox1.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.gunaTextBox1.Location = new System.Drawing.Point(25, 28);
+            this.gunaTextBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gunaTextBox1.Name = "gunaTextBox1";
             this.gunaTextBox1.PasswordChar = '\0';
             this.gunaTextBox1.Radius = 10;
@@ -657,11 +685,13 @@ namespace mainVentana
             this.Controls.Add(this.panel17);
             this.Controls.Add(this.panel11);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MinimumSize = new System.Drawing.Size(1500, 1000);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "DNArnSys";
+            this.Text = "ARSYS - Sistema Arnian";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
