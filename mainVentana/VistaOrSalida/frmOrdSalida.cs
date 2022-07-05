@@ -20,8 +20,10 @@ namespace mainVentana.VistaOrSalida
 
         private void btnAlta_Click(object sender, EventArgs e)
         {
+
             frmBuscarOrdCarga oc = new frmBuscarOrdCarga();
             oc.ShowDialog();
+            
         }
 
         private void gunaGradientTileButton2_Click(object sender, EventArgs e)
@@ -29,5 +31,7 @@ namespace mainVentana.VistaOrSalida
            Ventana1.frmSalidas d = new frmSalidas();
            d.ShowDialog();
         }
+
+        
     }
 }
