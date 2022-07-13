@@ -203,7 +203,7 @@
             this.gunaGradientTileButton4.Radius = 5;
             this.gunaGradientTileButton4.Size = new System.Drawing.Size(184, 341);
             this.gunaGradientTileButton4.TabIndex = 20;
-            this.gunaGradientTileButton4.Text = "Entradax";
+            this.gunaGradientTileButton4.Text = "Entrada";
             // 
             // panel13
             // 
@@ -246,6 +246,7 @@
             this.gunaGradientTileButton5.Size = new System.Drawing.Size(184, 341);
             this.gunaGradientTileButton5.TabIndex = 20;
             this.gunaGradientTileButton5.Text = "Salidas";
+            this.gunaGradientTileButton5.Click += new System.EventHandler(this.gunaGradientTileButton5_Click);
             // 
             // tableLayoutPanel2
             // 

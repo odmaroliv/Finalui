@@ -202,13 +202,36 @@ namespace mainVentana
             btnTraking.ForeColor = Color.FromArgb(255, 255, 255);
             btnTraking.IconColor = Color.FromArgb(255, 255, 255);
         }
-        #endregion
-        //--------------texbox de busqueda placeholder------
-        #region placehold buscar
-       
-        
+
+        //Reportes
+        private void btnReportes_MouseLeave(object sender, EventArgs e)
+        {
+            btnReportes.ForeColor = Color.FromArgb(193, 193, 193);
+            btnReportes.IconColor = Color.FromArgb(193, 193, 193);
+        }
+        private void btnReportes_MouseEnter(object sender, EventArgs e)
+        {
+            btnReportes.ForeColor = Color.FromArgb(255, 255, 255);
+            btnReportes.IconColor = Color.FromArgb(255, 255, 255);
+
+        }
+
+        //Ajustes
+        private void btnAjustes_MouseLeave(object sender, EventArgs e)
+        {
+            btnAjustes.ForeColor = Color.FromArgb(193, 193, 193);
+            btnAjustes.IconColor = Color.FromArgb(193, 193, 193);
+        }
+        private void btnAjustes_MouseEnter(object sender, EventArgs e)
+        {
+            btnAjustes.ForeColor = Color.FromArgb(255, 255, 255);
+            btnAjustes.IconColor = Color.FromArgb(255, 255, 255);
+        }
+
 
         #endregion
+        
+      
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -300,5 +323,7 @@ namespace mainVentana
             frm.ShowDialog();
             frm.Dispose();
         }
+
+       
     }
 }

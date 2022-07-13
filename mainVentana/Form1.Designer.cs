@@ -181,6 +181,8 @@ namespace mainVentana
             this.btnAjustes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAjustes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAjustes.UseVisualStyleBackColor = false;
+            this.btnAjustes.MouseEnter += new System.EventHandler(this.btnAjustes_MouseEnter);
+            this.btnAjustes.MouseLeave += new System.EventHandler(this.btnAjustes_MouseLeave);
             // 
             // panel12
             // 
@@ -215,6 +217,8 @@ namespace mainVentana
             this.btnReportes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReportes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnReportes.UseVisualStyleBackColor = false;
+            this.btnReportes.MouseEnter += new System.EventHandler(this.btnReportes_MouseEnter);
+            this.btnReportes.MouseLeave += new System.EventHandler(this.btnReportes_MouseLeave);
             // 
             // panel18
             // 
@@ -412,6 +416,7 @@ namespace mainVentana
             this.btnEntrada.AutoSize = true;
             this.btnEntrada.BackColor = System.Drawing.Color.Transparent;
             this.btnEntrada.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnEntrada.Enabled = false;
             this.btnEntrada.FlatAppearance.BorderSize = 0;
             this.btnEntrada.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnEntrada.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
