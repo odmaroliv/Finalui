@@ -18,10 +18,24 @@ namespace mainVentana
             InitializeComponent();
         }
         
-        private void Login_Load(object sender, EventArgs e)
+        private async void Login_Load(object sender, EventArgs e)
         {
+
             Negocios.psisarn psisarn = new Negocios.psisarn();
             psisarn.CS(Negocios.MB.mbsecurity.SN, Negocios.MB.mbsecurity.CSN);
+
+            Servicios vld = new Servicios();
+
+            bool internet = await vld.Test();
+            if (internet == true)
+            {
+            }
+            else
+            {
+                MessageBox.Show("Nececitas una coneccion a internet para poder accesar", "Sin coneccion");
+                return;
+            }
+
         }
         private void iconButton1_Click(object sender, EventArgs e)
         {
@@ -34,23 +48,12 @@ namespace mainVentana
             //--------------------validamos si hay coneccion, de lo contrario no ejecuta el showD />
             Servicios vld = new Servicios();
 
-            bool internet = vld.Test();
-            if (internet == true)
-            {
-            }
-            else
-            {
-                MessageBox.Show("Nececitas una coneccion a internet para poder accesar", "Sin coneccion");
-                return;
-            }
+            
             //-------------------------Fin de la validacion />
-
-
             bool valida = vld.cargalogin(txbUsr.Text.Trim(), txbPass.Text.Trim());
             if (valida == true)
             {
                 Form1 frm1 = new Form1();
-
                 frm1.Show();
                 this.Hide();
             }

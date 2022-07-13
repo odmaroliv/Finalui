@@ -18,6 +18,7 @@ namespace mainVentana
     public partial class Form1 : Form
     {
         Over frm = new Over(); // llama al formulario de Inicio
+        
         Entradas Entradas = new Entradas(); // se llama al formulario de entrada
         Login Login = new Login();
 
@@ -32,13 +33,69 @@ namespace mainVentana
         {
             AbrirFormEnPanel(frm);
             
-            string voi = "";
-            //frm.refresh(voi);
+            
+            
             cargasatosUrs();
-
+            validamenu();
 
 
         }
+
+        private void validamenu()
+        {
+            if (CacheLogin.rol.Trim() == "ADMIN" && CacheLogin.rol.Trim() == "JALMA")
+            {
+                btnSalida.Visible = true;
+                btnOrCarga.Visible = true;
+                btnEntrada.Visible = true;
+                btnRecep.Visible = true;
+                btnTraking.Visible = true;
+                btnReportes.Visible = true;
+                btnAjustes.Visible = true;
+                btnBill.Visible = true;
+            }
+            else if (CacheLogin.rol.Trim() == "OENTRA")
+            {
+                btnOrCarga.Visible = false;
+                btnRecep.Visible = false;
+                btnSalida.Visible = false;
+            }
+            else if (CacheLogin.rol.Trim() == "CSERVI")
+            {
+                btnSalida.Visible = false; 
+                btnOrCarga.Visible = false;
+                btnEntrada.Visible = false;
+                btnRecep.Visible = false; 
+            }
+            else if (CacheLogin.rol.Trim() == "CONT" && CacheLogin.rol.Trim() == "REVISOR")
+            {
+                btnSalida.Visible = false;
+                btnOrCarga.Visible = false;
+                btnEntrada.Visible = false;
+                btnRecep.Visible = false;
+                btnAjustes.Visible = false;
+                btnBill.Visible=false;
+
+            }
+
+
+            else
+            {
+                btnSalida.Visible = false;
+                btnOrCarga.Visible = false;
+                btnEntrada.Visible = false;
+                btnRecep.Visible = false;
+                btnTraking.Visible = false;
+                btnReportes.Visible = false;
+                btnAjustes.Visible = false;
+                btnBill.Visible = false;
+                MessageBox.Show("El usuario con el que ingresaste pertenece a un rol que no es compatible con Arsys, te recomendamos contactar a Daniel para cambiar el rol de tu usuario");
+            }
+
+
+        }
+
+
         private void cargasatosUrs()
         {
             lblNombreUsr.Text = CacheLogin.nombre + " " + CacheLogin.apellido;
@@ -65,104 +122,91 @@ namespace mainVentana
         private void iconButton2_MouseLeave(object sender, EventArgs e)
         {
 
-            iconButton2.ForeColor = Color.FromArgb(193, 193, 193);
-            iconButton2.IconColor = Color.FromArgb(193, 193, 193);
+            btnEntrada.ForeColor = Color.FromArgb(193, 193, 193);
+            btnEntrada.IconColor = Color.FromArgb(193, 193, 193);
 
         }
 
         private void iconButton2_MouseEnter(object sender, EventArgs e)
         {
-            iconButton2.ForeColor = Color.FromArgb(255, 255, 255);
-            iconButton2.IconColor = Color.FromArgb(255, 255, 255);
+            btnEntrada.ForeColor = Color.FromArgb(255, 255, 255);
+            btnEntrada.IconColor = Color.FromArgb(255, 255, 255);
         }
         //Carga
         private void iconButton3_MouseLeave(object sender, EventArgs e)
         {
 
-            iconButton3.ForeColor = Color.FromArgb(193, 193, 193);
-            iconButton3.IconColor = Color.FromArgb(193, 193, 193);
+            btnOrCarga.ForeColor = Color.FromArgb(193, 193, 193);
+            btnOrCarga.IconColor = Color.FromArgb(193, 193, 193);
 
         }
 
         private void iconButton3_MouseEnter(object sender, EventArgs e)
         {
-            iconButton3.ForeColor = Color.FromArgb(255, 255, 255);
-            iconButton3.IconColor = Color.FromArgb(255, 255, 255);
+            btnOrCarga.ForeColor = Color.FromArgb(255, 255, 255);
+            btnOrCarga.IconColor = Color.FromArgb(255, 255, 255);
         }
         //Salida
         private void iconButton4_MouseLeave(object sender, EventArgs e)
         {
 
-            iconButton4.ForeColor = Color.FromArgb(193, 193, 193);
-            iconButton4.IconColor = Color.FromArgb(193, 193, 193);
+            btnSalida.ForeColor = Color.FromArgb(193, 193, 193);
+            btnSalida.IconColor = Color.FromArgb(193, 193, 193);
 
         }
 
         private void iconButton4_MouseEnter(object sender, EventArgs e)
         {
-            iconButton4.ForeColor = Color.FromArgb(255, 255, 255);
-            iconButton4.IconColor = Color.FromArgb(255, 255, 255);
+            btnSalida.ForeColor = Color.FromArgb(255, 255, 255);
+            btnSalida.IconColor = Color.FromArgb(255, 255, 255);
         }
         //Recepcion
         private void iconButton5_MouseLeave(object sender, EventArgs e)
         {
 
-            iconButton5.ForeColor = Color.FromArgb(193, 193, 193);
-            iconButton5.IconColor = Color.FromArgb(193, 193, 193);
+            btnRecep.ForeColor = Color.FromArgb(193, 193, 193);
+            btnRecep.IconColor = Color.FromArgb(193, 193, 193);
 
         }
 
         private void iconButton5_MouseEnter(object sender, EventArgs e)
         {
-            iconButton5.ForeColor = Color.FromArgb(255, 255, 255);
-            iconButton5.IconColor = Color.FromArgb(255, 255, 255);
+            btnRecep.ForeColor = Color.FromArgb(255, 255, 255);
+            btnRecep.IconColor = Color.FromArgb(255, 255, 255);
         }
         //Bill
         private void iconButton6_MouseLeave(object sender, EventArgs e)
         {
 
-            iconButton6.ForeColor = Color.FromArgb(193, 193, 193);
-            iconButton6.IconColor = Color.FromArgb(193, 193, 193);
+            btnBill.ForeColor = Color.FromArgb(193, 193, 193);
+            btnBill.IconColor = Color.FromArgb(193, 193, 193);
 
         }
 
         private void iconButton6_MouseEnter(object sender, EventArgs e)
         {
-            iconButton6.ForeColor = Color.FromArgb(255, 255, 255);
-            iconButton6.IconColor = Color.FromArgb(255, 255, 255);
+            btnBill.ForeColor = Color.FromArgb(255, 255, 255);
+            btnBill.IconColor = Color.FromArgb(255, 255, 255);
         }
         //Traking
         private void iconButton7_MouseLeave(object sender, EventArgs e)
         {
 
-            iconButton7.ForeColor = Color.FromArgb(193, 193, 193);
-            iconButton7.IconColor = Color.FromArgb(193, 193, 193);
+            btnTraking.ForeColor = Color.FromArgb(193, 193, 193);
+            btnTraking.IconColor = Color.FromArgb(193, 193, 193);
 
         }
 
         private void iconButton7_MouseEnter(object sender, EventArgs e)
         {
-            iconButton7.ForeColor = Color.FromArgb(255, 255, 255);
-            iconButton7.IconColor = Color.FromArgb(255, 255, 255);
+            btnTraking.ForeColor = Color.FromArgb(255, 255, 255);
+            btnTraking.IconColor = Color.FromArgb(255, 255, 255);
         }
         #endregion
         //--------------texbox de busqueda placeholder------
         #region placehold buscar
-        private void gunaTextBox1_MouseEnter(object sender, EventArgs e)
-        {
-            if (gunaTextBox1.Text == "Busqueda rapida de entrada :)")
-            {
-                gunaTextBox1.Text = "";
-
-            }
-
-
-        }
-        private void gunaTextBox1_MouseLeave(object sender, EventArgs e)
-        {
-
-            label4.Text = "Busqueda rapida de entrada :)";
-        }
+       
+        
 
         #endregion
 
@@ -179,33 +223,15 @@ namespace mainVentana
 
 
 
-        private void iconButton9_MouseEnter(object sender, EventArgs e)
-        {
-            
-            iconButton9.IconColor = Color.FromArgb(0, 0, 0);
-        }
-
-        private void iconButton9_MouseLeave(object sender, EventArgs e)
-        {
-            iconButton9.IconColor = Color.FromArgb(104, 183, 255);
-        }
-
-        private void iconButton9_Click(object sender, EventArgs e)
-        {
-            iconButton9.IconColor = Color.Tomato;
-            string id = gunaTextBox1.Text;
-            ValidabPrincipal();
-            frm.refresh(id);
-            AbrirFormEnPanel(frm);
-
-        }
-
+       
         #region abrir paneles metodo
 
 
         //METODO PARA ABRIR FORM DENTRO DE PANEL----------------------------------------------------
         private void AbrirFormEnPanel(object formHijo)
         {
+            
+
             if (this.panelContenedorForm.Controls.Count > 0)
                 this.panelContenedorForm.Controls.RemoveAt(0);
             Form fh = formHijo as Form;
@@ -216,60 +242,13 @@ namespace mainVentana
             this.panelContenedorForm.Tag = fh;
             fh.Show();
         }
+
+
+
         #endregion
 
 
-        private void gunaTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void gunaTextBox1_KeyUp(object sender, KeyEventArgs e)
-        {
-
-
-
-            //Cargabuscque(gunaTextBox1.Text.ToString());
-        }
-
-
-
-        private void gunaTextBox1_KeyDown(object sender, KeyEventArgs e)
-        {
-            
-            if (e.KeyCode == Keys.Enter)
-            {
-                ValidabPrincipal();
-                string id = gunaTextBox1.Text;
-                frm.refresh(id);
-
-                e.SuppressKeyPress = true;
-
-
-
-
-            }
-        }
-        private void ValidabPrincipal()
-        {
-            if (gunaTextBox1.Text == "")
-            {
-                MessageBox.Show("El campo de busqueda esta vacio!");
-                return;
-            }
-            int datparseado;
-            bool bent = Int32.TryParse(gunaTextBox1.Text, out datparseado);
-            if (bent == true)
-            {
-                gunaTextBox1.Text = datparseado.ToString("D7");
-            }
-            else
-            {
-                MessageBox.Show("Las entradas tienen que ser un codigo numerico, y no pueden contener letras");
-                return;
-            }
-        }
-
+     
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
@@ -305,6 +284,7 @@ namespace mainVentana
             {
                 VistaOrSalida.frmOrdSalida salida = new VistaOrSalida.frmOrdSalida();
                 salida.ShowDialog();
+                salida.Dispose();
             }
             catch (Exception)
             {
@@ -314,6 +294,11 @@ namespace mainVentana
            
         }
 
-
+        private void iconButton6_Click(object sender, EventArgs e)
+        {
+            VistaBill.frmMBill frm = new VistaBill.frmMBill();
+            frm.ShowDialog();
+            frm.Dispose();
+        }
     }
 }

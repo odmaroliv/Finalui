@@ -33,54 +33,34 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
             this.gunaShadowPanel1 = new Guna.UI.WinForms.GunaShadowPanel();
+            this.iconButton10 = new FontAwesome.Sharp.IconButton();
+            this.gunaTextBox2 = new Guna.UI.WinForms.GunaTextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.gunaDataGridView1 = new Guna.UI.WinForms.GunaDataGridView();
-            this.gunaShadowPanel7 = new Guna.UI.WinForms.GunaShadowPanel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.gunaGradientTileButton2 = new Guna.UI.WinForms.GunaGradientTileButton();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.gunaGradientTileButton3 = new Guna.UI.WinForms.GunaGradientTileButton();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.gunaGradientTileButton4 = new Guna.UI.WinForms.GunaGradientTileButton();
-            this.panel13 = new System.Windows.Forms.Panel();
-            this.gunaGradientTileButton5 = new Guna.UI.WinForms.GunaGradientTileButton();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.gunaShadowPanel4 = new Guna.UI.WinForms.GunaShadowPanel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.iconButton3 = new FontAwesome.Sharp.IconButton();
-            this.gunaShadowPanel3 = new Guna.UI.WinForms.GunaShadowPanel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.iconButton2 = new FontAwesome.Sharp.IconButton();
-            this.gunaShadowPanel2 = new Guna.UI.WinForms.GunaShadowPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
             this.gunaShadowPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gunaDataGridView1)).BeginInit();
-            this.gunaShadowPanel7.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.panel7.SuspendLayout();
-            this.panel11.SuspendLayout();
-            this.panel13.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            this.gunaShadowPanel4.SuspendLayout();
-            this.gunaShadowPanel3.SuspendLayout();
-            this.gunaShadowPanel2.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.gunaShadowPanel1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 328);
+            this.panel2.Location = new System.Drawing.Point(0, 183);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.panel2.Size = new System.Drawing.Size(1230, 421);
+            this.panel2.Padding = new System.Windows.Forms.Padding(8);
+            this.panel2.Size = new System.Drawing.Size(922, 426);
             this.panel2.TabIndex = 2;
             // 
             // gunaShadowPanel1
@@ -90,14 +70,170 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gunaShadowPanel1.BackColor = System.Drawing.Color.Transparent;
             this.gunaShadowPanel1.BaseColor = System.Drawing.Color.White;
+            this.gunaShadowPanel1.Controls.Add(this.iconButton10);
+            this.gunaShadowPanel1.Controls.Add(this.gunaTextBox2);
+            this.gunaShadowPanel1.Controls.Add(this.label8);
+            this.gunaShadowPanel1.Controls.Add(this.panel10);
+            this.gunaShadowPanel1.Controls.Add(this.label7);
+            this.gunaShadowPanel1.Controls.Add(this.panel9);
+            this.gunaShadowPanel1.Controls.Add(this.label6);
+            this.gunaShadowPanel1.Controls.Add(this.panel8);
+            this.gunaShadowPanel1.Controls.Add(this.label5);
+            this.gunaShadowPanel1.Controls.Add(this.panel5);
+            this.gunaShadowPanel1.Controls.Add(this.label4);
+            this.gunaShadowPanel1.Controls.Add(this.panel4);
             this.gunaShadowPanel1.Controls.Add(this.gunaDataGridView1);
-            this.gunaShadowPanel1.Location = new System.Drawing.Point(13, 13);
+            this.gunaShadowPanel1.Location = new System.Drawing.Point(10, 10);
+            this.gunaShadowPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.gunaShadowPanel1.Name = "gunaShadowPanel1";
             this.gunaShadowPanel1.Radius = 10;
             this.gunaShadowPanel1.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
             this.gunaShadowPanel1.ShadowDepth = 80;
-            this.gunaShadowPanel1.Size = new System.Drawing.Size(1204, 396);
+            this.gunaShadowPanel1.Size = new System.Drawing.Size(903, 407);
             this.gunaShadowPanel1.TabIndex = 0;
+            // 
+            // iconButton10
+            // 
+            this.iconButton10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.iconButton10.BackColor = System.Drawing.Color.White;
+            this.iconButton10.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.iconButton10.Enabled = false;
+            this.iconButton10.FlatAppearance.BorderSize = 0;
+            this.iconButton10.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.iconButton10.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.iconButton10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton10.Flip = FontAwesome.Sharp.FlipOrientation.Horizontal;
+            this.iconButton10.ForeColor = System.Drawing.Color.Transparent;
+            this.iconButton10.IconChar = FontAwesome.Sharp.IconChar.Search;
+            this.iconButton10.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
+            this.iconButton10.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton10.IconSize = 20;
+            this.iconButton10.Location = new System.Drawing.Point(848, 19);
+            this.iconButton10.Margin = new System.Windows.Forms.Padding(2);
+            this.iconButton10.Name = "iconButton10";
+            this.iconButton10.Size = new System.Drawing.Size(29, 18);
+            this.iconButton10.TabIndex = 12;
+            this.iconButton10.UseVisualStyleBackColor = false;
+            // 
+            // gunaTextBox2
+            // 
+            this.gunaTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.gunaTextBox2.BackColor = System.Drawing.Color.Transparent;
+            this.gunaTextBox2.BaseColor = System.Drawing.Color.White;
+            this.gunaTextBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(238)))), ((int)(((byte)(254)))));
+            this.gunaTextBox2.BorderSize = 1;
+            this.gunaTextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.gunaTextBox2.FocusedBaseColor = System.Drawing.Color.White;
+            this.gunaTextBox2.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
+            this.gunaTextBox2.FocusedForeColor = System.Drawing.SystemColors.ControlText;
+            this.gunaTextBox2.Font = new System.Drawing.Font("Trebuchet MS", 9F);
+            this.gunaTextBox2.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.gunaTextBox2.Location = new System.Drawing.Point(453, 14);
+            this.gunaTextBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.gunaTextBox2.Name = "gunaTextBox2";
+            this.gunaTextBox2.PasswordChar = '\0';
+            this.gunaTextBox2.Radius = 10;
+            this.gunaTextBox2.Size = new System.Drawing.Size(430, 27);
+            this.gunaTextBox2.TabIndex = 11;
+            this.gunaTextBox2.Text = "Busqueda rapida de entrada :)";
+            this.gunaTextBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gunaTextBox2_KeyDown);
+            this.gunaTextBox2.MouseEnter += new System.EventHandler(this.gunaTextBox2_MouseEnter);
+            this.gunaTextBox2.MouseLeave += new System.EventHandler(this.gunaTextBox2_MouseLeave);
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(533, 374);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(194, 13);
+            this.label8.TabIndex = 10;
+            this.label8.Text = "Menos de 15 dias en el almacen Origen";
+            // 
+            // panel10
+            // 
+            this.panel10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(156)))), ((int)(((byte)(18)))));
+            this.panel10.Location = new System.Drawing.Point(733, 376);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(17, 11);
+            this.panel10.TabIndex = 9;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(306, 374);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(182, 13);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "Mas de 15 dias en el almacen Origen";
+            // 
+            // panel9
+            // 
+            this.panel9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(19)))), ((int)(((byte)(18)))));
+            this.panel9.Location = new System.Drawing.Point(496, 376);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(17, 11);
+            this.panel9.TabIndex = 7;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(218, 374);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(45, 13);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Transito";
+            // 
+            // panel8
+            // 
+            this.panel8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(173)))), ((int)(((byte)(5)))));
+            this.panel8.Location = new System.Drawing.Point(269, 376);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(17, 11);
+            this.panel8.TabIndex = 5;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(118, 374);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(61, 13);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Ya Con Bill ";
+            // 
+            // panel5
+            // 
+            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
+            this.panel5.Location = new System.Drawing.Point(184, 376);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(17, 11);
+            this.panel5.TabIndex = 3;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(19, 374);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(59, 13);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Aun No Bill";
+            // 
+            // panel4
+            // 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(44)))), ((int)(((byte)(155)))));
+            this.panel4.Location = new System.Drawing.Point(85, 376);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(17, 11);
+            this.panel4.TabIndex = 1;
             // 
             // gunaDataGridView1
             // 
@@ -109,11 +245,11 @@
             this.gunaDataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gunaDataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gunaDataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gunaDataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.gunaDataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.gunaDataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.gunaDataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.gunaDataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedVertical;
+            this.gunaDataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.5F);
@@ -122,7 +258,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.gunaDataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.gunaDataGridView1.ColumnHeadersHeight = 27;
+            this.gunaDataGridView1.ColumnHeadersHeight = 35;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
@@ -132,15 +268,18 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gunaDataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             this.gunaDataGridView1.EnableHeadersVisualStyles = false;
-            this.gunaDataGridView1.GridColor = System.Drawing.Color.AliceBlue;
-            this.gunaDataGridView1.Location = new System.Drawing.Point(27, 21);
+            this.gunaDataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.gunaDataGridView1.Location = new System.Drawing.Point(24, 70);
+            this.gunaDataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.gunaDataGridView1.Name = "gunaDataGridView1";
             this.gunaDataGridView1.ReadOnly = true;
             this.gunaDataGridView1.RowHeadersVisible = false;
             this.gunaDataGridView1.RowHeadersWidth = 51;
-            this.gunaDataGridView1.RowTemplate.Height = 24;
-            this.gunaDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gunaDataGridView1.Size = new System.Drawing.Size(1137, 354);
+            this.gunaDataGridView1.RowTemplate.DividerHeight = 1;
+            this.gunaDataGridView1.RowTemplate.Height = 25;
+            this.gunaDataGridView1.RowTemplate.ReadOnly = true;
+            this.gunaDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.gunaDataGridView1.Size = new System.Drawing.Size(853, 287);
             this.gunaDataGridView1.TabIndex = 0;
             this.gunaDataGridView1.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
             this.gunaDataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -149,446 +288,51 @@
             this.gunaDataGridView1.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
             this.gunaDataGridView1.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
             this.gunaDataGridView1.ThemeStyle.BackColor = System.Drawing.Color.White;
-            this.gunaDataGridView1.ThemeStyle.GridColor = System.Drawing.Color.AliceBlue;
+            this.gunaDataGridView1.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.gunaDataGridView1.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.gunaDataGridView1.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.gunaDataGridView1.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.gunaDataGridView1.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
             this.gunaDataGridView1.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.gunaDataGridView1.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.gunaDataGridView1.ThemeStyle.HeaderStyle.Height = 27;
+            this.gunaDataGridView1.ThemeStyle.HeaderStyle.Height = 35;
             this.gunaDataGridView1.ThemeStyle.ReadOnly = true;
             this.gunaDataGridView1.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
-            this.gunaDataGridView1.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.gunaDataGridView1.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedVertical;
             this.gunaDataGridView1.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
             this.gunaDataGridView1.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            this.gunaDataGridView1.ThemeStyle.RowsStyle.Height = 24;
+            this.gunaDataGridView1.ThemeStyle.RowsStyle.Height = 25;
             this.gunaDataGridView1.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.gunaDataGridView1.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             this.gunaDataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gunaDataGridView1_CellContentClick);
             this.gunaDataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gunaDataGridView1_CellFormatting);
             // 
-            // gunaShadowPanel7
-            // 
-            this.gunaShadowPanel7.BackColor = System.Drawing.Color.Transparent;
-            this.gunaShadowPanel7.BaseColor = System.Drawing.Color.White;
-            this.gunaShadowPanel7.Controls.Add(this.panel3);
-            this.gunaShadowPanel7.Controls.Add(this.tableLayoutPanel2);
-            this.gunaShadowPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gunaShadowPanel7.Location = new System.Drawing.Point(10, 10);
-            this.gunaShadowPanel7.Margin = new System.Windows.Forms.Padding(10);
-            this.gunaShadowPanel7.Name = "gunaShadowPanel7";
-            this.gunaShadowPanel7.Padding = new System.Windows.Forms.Padding(25);
-            this.gunaShadowPanel7.Radius = 10;
-            this.gunaShadowPanel7.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
-            this.gunaShadowPanel7.ShadowDepth = 80;
-            this.gunaShadowPanel7.Size = new System.Drawing.Size(1210, 308);
-            this.gunaShadowPanel7.TabIndex = 3;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.tableLayoutPanel1);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(25, 125);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1160, 159);
-            this.panel3.TabIndex = 1;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Controls.Add(this.panel6, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.panel7, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.panel11, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.panel13, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(10);
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1160, 159);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.gunaGradientTileButton2);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(583, 13);
-            this.panel6.Name = "panel6";
-            this.panel6.Padding = new System.Windows.Forms.Padding(5);
-            this.panel6.Size = new System.Drawing.Size(279, 133);
-            this.panel6.TabIndex = 35;
-            // 
-            // gunaGradientTileButton2
-            // 
-            this.gunaGradientTileButton2.Animated = true;
-            this.gunaGradientTileButton2.AnimationHoverSpeed = 0.07F;
-            this.gunaGradientTileButton2.AnimationSpeed = 0.03F;
-            this.gunaGradientTileButton2.BackColor = System.Drawing.Color.Transparent;
-            this.gunaGradientTileButton2.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(110)))), ((int)(((byte)(179)))));
-            this.gunaGradientTileButton2.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(107)))), ((int)(((byte)(251)))));
-            this.gunaGradientTileButton2.BorderColor = System.Drawing.Color.Black;
-            this.gunaGradientTileButton2.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.gunaGradientTileButton2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gunaGradientTileButton2.FocusedColor = System.Drawing.Color.Empty;
-            this.gunaGradientTileButton2.Font = new System.Drawing.Font("Trebuchet MS", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gunaGradientTileButton2.ForeColor = System.Drawing.Color.White;
-            this.gunaGradientTileButton2.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            this.gunaGradientTileButton2.Image = null;
-            this.gunaGradientTileButton2.ImageSize = new System.Drawing.Size(100, 80);
-            this.gunaGradientTileButton2.Location = new System.Drawing.Point(5, 5);
-            this.gunaGradientTileButton2.Name = "gunaGradientTileButton2";
-            this.gunaGradientTileButton2.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
-            this.gunaGradientTileButton2.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
-            this.gunaGradientTileButton2.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.gunaGradientTileButton2.OnHoverForeColor = System.Drawing.Color.White;
-            this.gunaGradientTileButton2.OnHoverImage = null;
-            this.gunaGradientTileButton2.OnPressedColor = System.Drawing.Color.Black;
-            this.gunaGradientTileButton2.Radius = 5;
-            this.gunaGradientTileButton2.Size = new System.Drawing.Size(269, 123);
-            this.gunaGradientTileButton2.TabIndex = 18;
-            this.gunaGradientTileButton2.Text = "Recepciones";
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.gunaGradientTileButton3);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(868, 13);
-            this.panel7.Name = "panel7";
-            this.panel7.Padding = new System.Windows.Forms.Padding(5);
-            this.panel7.Size = new System.Drawing.Size(279, 133);
-            this.panel7.TabIndex = 34;
-            // 
-            // gunaGradientTileButton3
-            // 
-            this.gunaGradientTileButton3.Animated = true;
-            this.gunaGradientTileButton3.AnimationHoverSpeed = 0.07F;
-            this.gunaGradientTileButton3.AnimationSpeed = 0.03F;
-            this.gunaGradientTileButton3.BackColor = System.Drawing.Color.Transparent;
-            this.gunaGradientTileButton3.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(201)))), ((int)(((byte)(3)))));
-            this.gunaGradientTileButton3.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(135)))), ((int)(((byte)(8)))));
-            this.gunaGradientTileButton3.BorderColor = System.Drawing.Color.Black;
-            this.gunaGradientTileButton3.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.gunaGradientTileButton3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gunaGradientTileButton3.FocusedColor = System.Drawing.Color.Empty;
-            this.gunaGradientTileButton3.Font = new System.Drawing.Font("Trebuchet MS", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gunaGradientTileButton3.ForeColor = System.Drawing.Color.White;
-            this.gunaGradientTileButton3.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            this.gunaGradientTileButton3.Image = null;
-            this.gunaGradientTileButton3.ImageSize = new System.Drawing.Size(100, 80);
-            this.gunaGradientTileButton3.Location = new System.Drawing.Point(5, 5);
-            this.gunaGradientTileButton3.Name = "gunaGradientTileButton3";
-            this.gunaGradientTileButton3.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
-            this.gunaGradientTileButton3.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
-            this.gunaGradientTileButton3.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.gunaGradientTileButton3.OnHoverForeColor = System.Drawing.Color.White;
-            this.gunaGradientTileButton3.OnHoverImage = null;
-            this.gunaGradientTileButton3.OnPressedColor = System.Drawing.Color.Black;
-            this.gunaGradientTileButton3.Radius = 5;
-            this.gunaGradientTileButton3.Size = new System.Drawing.Size(269, 123);
-            this.gunaGradientTileButton3.TabIndex = 20;
-            this.gunaGradientTileButton3.Text = "Cargas";
-            // 
-            // panel11
-            // 
-            this.panel11.Controls.Add(this.gunaGradientTileButton4);
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel11.Location = new System.Drawing.Point(13, 13);
-            this.panel11.Name = "panel11";
-            this.panel11.Padding = new System.Windows.Forms.Padding(5);
-            this.panel11.Size = new System.Drawing.Size(279, 133);
-            this.panel11.TabIndex = 33;
-            // 
-            // gunaGradientTileButton4
-            // 
-            this.gunaGradientTileButton4.Animated = true;
-            this.gunaGradientTileButton4.AnimationHoverSpeed = 0.07F;
-            this.gunaGradientTileButton4.AnimationSpeed = 0.03F;
-            this.gunaGradientTileButton4.BackColor = System.Drawing.Color.Transparent;
-            this.gunaGradientTileButton4.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(131)))), ((int)(((byte)(157)))));
-            this.gunaGradientTileButton4.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(11)))), ((int)(((byte)(154)))));
-            this.gunaGradientTileButton4.BorderColor = System.Drawing.Color.Black;
-            this.gunaGradientTileButton4.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.gunaGradientTileButton4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gunaGradientTileButton4.FocusedColor = System.Drawing.Color.Empty;
-            this.gunaGradientTileButton4.Font = new System.Drawing.Font("Trebuchet MS", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gunaGradientTileButton4.ForeColor = System.Drawing.Color.White;
-            this.gunaGradientTileButton4.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            this.gunaGradientTileButton4.Image = null;
-            this.gunaGradientTileButton4.ImageSize = new System.Drawing.Size(100, 80);
-            this.gunaGradientTileButton4.Location = new System.Drawing.Point(5, 5);
-            this.gunaGradientTileButton4.Name = "gunaGradientTileButton4";
-            this.gunaGradientTileButton4.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
-            this.gunaGradientTileButton4.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
-            this.gunaGradientTileButton4.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.gunaGradientTileButton4.OnHoverForeColor = System.Drawing.Color.White;
-            this.gunaGradientTileButton4.OnHoverImage = null;
-            this.gunaGradientTileButton4.OnPressedColor = System.Drawing.Color.Black;
-            this.gunaGradientTileButton4.Radius = 5;
-            this.gunaGradientTileButton4.Size = new System.Drawing.Size(269, 123);
-            this.gunaGradientTileButton4.TabIndex = 20;
-            this.gunaGradientTileButton4.Text = "Entradas";
-            // 
-            // panel13
-            // 
-            this.panel13.Controls.Add(this.gunaGradientTileButton5);
-            this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel13.Location = new System.Drawing.Point(298, 13);
-            this.panel13.Name = "panel13";
-            this.panel13.Padding = new System.Windows.Forms.Padding(5);
-            this.panel13.Size = new System.Drawing.Size(279, 133);
-            this.panel13.TabIndex = 32;
-            // 
-            // gunaGradientTileButton5
-            // 
-            this.gunaGradientTileButton5.Animated = true;
-            this.gunaGradientTileButton5.AnimationHoverSpeed = 0.07F;
-            this.gunaGradientTileButton5.AnimationSpeed = 0.03F;
-            this.gunaGradientTileButton5.BackColor = System.Drawing.Color.Transparent;
-            this.gunaGradientTileButton5.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
-            this.gunaGradientTileButton5.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
-            this.gunaGradientTileButton5.BorderColor = System.Drawing.Color.Black;
-            this.gunaGradientTileButton5.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.gunaGradientTileButton5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gunaGradientTileButton5.FocusedColor = System.Drawing.Color.Empty;
-            this.gunaGradientTileButton5.Font = new System.Drawing.Font("Trebuchet MS", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gunaGradientTileButton5.ForeColor = System.Drawing.Color.White;
-            this.gunaGradientTileButton5.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.BackwardDiagonal;
-            this.gunaGradientTileButton5.Image = null;
-            this.gunaGradientTileButton5.ImageSize = new System.Drawing.Size(100, 80);
-            this.gunaGradientTileButton5.Location = new System.Drawing.Point(5, 5);
-            this.gunaGradientTileButton5.Name = "gunaGradientTileButton5";
-            this.gunaGradientTileButton5.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
-            this.gunaGradientTileButton5.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
-            this.gunaGradientTileButton5.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.gunaGradientTileButton5.OnHoverForeColor = System.Drawing.Color.White;
-            this.gunaGradientTileButton5.OnHoverImage = null;
-            this.gunaGradientTileButton5.OnPressedColor = System.Drawing.Color.Black;
-            this.gunaGradientTileButton5.Radius = 5;
-            this.gunaGradientTileButton5.Size = new System.Drawing.Size(269, 123);
-            this.gunaGradientTileButton5.TabIndex = 20;
-            this.gunaGradientTileButton5.Text = "Salidas";
-            this.gunaGradientTileButton5.Click += new System.EventHandler(this.gunaGradientTileButton5_Click);
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 3;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Controls.Add(this.gunaShadowPanel4, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.gunaShadowPanel3, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.gunaShadowPanel2, 0, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(25, 25);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.Padding = new System.Windows.Forms.Padding(10);
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1160, 100);
-            this.tableLayoutPanel2.TabIndex = 0;
-            // 
-            // gunaShadowPanel4
-            // 
-            this.gunaShadowPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gunaShadowPanel4.BackColor = System.Drawing.Color.Transparent;
-            this.gunaShadowPanel4.BaseColor = System.Drawing.Color.SpringGreen;
-            this.gunaShadowPanel4.Controls.Add(this.label3);
-            this.gunaShadowPanel4.Controls.Add(this.iconButton3);
-            this.gunaShadowPanel4.Location = new System.Drawing.Point(773, 13);
-            this.gunaShadowPanel4.Name = "gunaShadowPanel4";
-            this.gunaShadowPanel4.Radius = 10;
-            this.gunaShadowPanel4.ShadowColor = System.Drawing.Color.Black;
-            this.gunaShadowPanel4.ShadowDepth = 20;
-            this.gunaShadowPanel4.ShadowStyle = Guna.UI.WinForms.ShadowMode.ForwardDiagonal;
-            this.gunaShadowPanel4.Size = new System.Drawing.Size(374, 74);
-            this.gunaShadowPanel4.TabIndex = 3;
-            this.gunaShadowPanel4.Click += new System.EventHandler(this.gunaShadowPanel4_Click);
-            this.gunaShadowPanel4.MouseEnter += new System.EventHandler(this.gunaShadowPanel4_MouseEnter);
-            this.gunaShadowPanel4.MouseLeave += new System.EventHandler(this.gunaShadowPanel4_MouseLeave);
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label3.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold);
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(122, -1);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(167, 71);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "WhatsApp";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label3.Click += new System.EventHandler(this.gunaShadowPanel4_Click);
-            this.label3.MouseEnter += new System.EventHandler(this.gunaShadowPanel4_MouseEnter);
-            this.label3.MouseLeave += new System.EventHandler(this.gunaShadowPanel4_MouseLeave);
-            // 
-            // iconButton3
-            // 
-            this.iconButton3.FlatAppearance.BorderSize = 0;
-            this.iconButton3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.iconButton3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.iconButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton3.IconChar = FontAwesome.Sharp.IconChar.Whatsapp;
-            this.iconButton3.IconColor = System.Drawing.Color.White;
-            this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton3.IconSize = 60;
-            this.iconButton3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton3.Location = new System.Drawing.Point(3, -1);
-            this.iconButton3.Name = "iconButton3";
-            this.iconButton3.Size = new System.Drawing.Size(85, 74);
-            this.iconButton3.TabIndex = 2;
-            this.iconButton3.UseVisualStyleBackColor = true;
-            // 
-            // gunaShadowPanel3
-            // 
-            this.gunaShadowPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gunaShadowPanel3.BackColor = System.Drawing.Color.Transparent;
-            this.gunaShadowPanel3.BaseColor = System.Drawing.Color.Tomato;
-            this.gunaShadowPanel3.Controls.Add(this.label2);
-            this.gunaShadowPanel3.Controls.Add(this.iconButton2);
-            this.gunaShadowPanel3.Location = new System.Drawing.Point(393, 13);
-            this.gunaShadowPanel3.Name = "gunaShadowPanel3";
-            this.gunaShadowPanel3.Radius = 10;
-            this.gunaShadowPanel3.ShadowColor = System.Drawing.Color.Black;
-            this.gunaShadowPanel3.ShadowDepth = 20;
-            this.gunaShadowPanel3.ShadowStyle = Guna.UI.WinForms.ShadowMode.ForwardDiagonal;
-            this.gunaShadowPanel3.Size = new System.Drawing.Size(374, 74);
-            this.gunaShadowPanel3.TabIndex = 2;
-            this.gunaShadowPanel3.Click += new System.EventHandler(this.gunaShadowPanel3_Click);
-            this.gunaShadowPanel3.MouseEnter += new System.EventHandler(this.gunaShadowPanel3_MouseEnter);
-            this.gunaShadowPanel3.MouseLeave += new System.EventHandler(this.gunaShadowPanel3_MouseLeave);
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label2.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(141, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 71);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Gmail";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label2.Click += new System.EventHandler(this.gunaShadowPanel3_Click);
-            this.label2.MouseEnter += new System.EventHandler(this.gunaShadowPanel3_MouseEnter);
-            this.label2.MouseLeave += new System.EventHandler(this.gunaShadowPanel3_MouseLeave);
-            // 
-            // iconButton2
-            // 
-            this.iconButton2.FlatAppearance.BorderSize = 0;
-            this.iconButton2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.iconButton2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.iconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.MailBulk;
-            this.iconButton2.IconColor = System.Drawing.Color.White;
-            this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton2.IconSize = 60;
-            this.iconButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton2.Location = new System.Drawing.Point(3, -3);
-            this.iconButton2.Name = "iconButton2";
-            this.iconButton2.Size = new System.Drawing.Size(83, 74);
-            this.iconButton2.TabIndex = 1;
-            this.iconButton2.UseVisualStyleBackColor = true;
-            // 
-            // gunaShadowPanel2
-            // 
-            this.gunaShadowPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gunaShadowPanel2.BackColor = System.Drawing.Color.Transparent;
-            this.gunaShadowPanel2.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
-            this.gunaShadowPanel2.Controls.Add(this.label1);
-            this.gunaShadowPanel2.Controls.Add(this.iconButton1);
-            this.gunaShadowPanel2.Location = new System.Drawing.Point(13, 13);
-            this.gunaShadowPanel2.Name = "gunaShadowPanel2";
-            this.gunaShadowPanel2.Radius = 10;
-            this.gunaShadowPanel2.ShadowColor = System.Drawing.Color.Black;
-            this.gunaShadowPanel2.ShadowDepth = 20;
-            this.gunaShadowPanel2.ShadowStyle = Guna.UI.WinForms.ShadowMode.ForwardDiagonal;
-            this.gunaShadowPanel2.Size = new System.Drawing.Size(374, 74);
-            this.gunaShadowPanel2.TabIndex = 1;
-            this.gunaShadowPanel2.Click += new System.EventHandler(this.gunaShadowPanel2_Click);
-            this.gunaShadowPanel2.MouseEnter += new System.EventHandler(this.gunaShadowPanel2_MouseEnter);
-            this.gunaShadowPanel2.MouseLeave += new System.EventHandler(this.gunaShadowPanel2_MouseLeave);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(86, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(191, 71);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Calculadora";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label1.Click += new System.EventHandler(this.gunaShadowPanel2_Click);
-            this.label1.MouseEnter += new System.EventHandler(this.gunaShadowPanel2_MouseEnter);
-            this.label1.MouseLeave += new System.EventHandler(this.gunaShadowPanel2_MouseLeave);
-            // 
-            // iconButton1
-            // 
-            this.iconButton1.FlatAppearance.BorderSize = 0;
-            this.iconButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.iconButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Nutritionix;
-            this.iconButton1.IconColor = System.Drawing.Color.White;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 60;
-            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(0, 0);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(74, 74);
-            this.iconButton1.TabIndex = 0;
-            this.iconButton1.UseVisualStyleBackColor = true;
-            // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.gunaShadowPanel7);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(10);
-            this.panel1.Size = new System.Drawing.Size(1230, 328);
+            this.panel1.Padding = new System.Windows.Forms.Padding(8);
+            this.panel1.Size = new System.Drawing.Size(922, 183);
             this.panel1.TabIndex = 1;
             // 
             // Over
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1230, 749);
+            this.ClientSize = new System.Drawing.Size(922, 609);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Over";
             this.Text = "Over";
             this.Load += new System.EventHandler(this.Over_Load);
             this.panel2.ResumeLayout(false);
             this.gunaShadowPanel1.ResumeLayout(false);
+            this.gunaShadowPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gunaDataGridView1)).EndInit();
-            this.gunaShadowPanel7.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.panel6.ResumeLayout(false);
-            this.panel7.ResumeLayout(false);
-            this.panel11.ResumeLayout(false);
-            this.panel13.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.gunaShadowPanel4.ResumeLayout(false);
-            this.gunaShadowPanel3.ResumeLayout(false);
-            this.gunaShadowPanel2.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -597,27 +341,18 @@
         private System.Windows.Forms.Panel panel2;
         private Guna.UI.WinForms.GunaShadowPanel gunaShadowPanel1;
         public Guna.UI.WinForms.GunaDataGridView gunaDataGridView1;
-        private Guna.UI.WinForms.GunaShadowPanel gunaShadowPanel7;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private Guna.UI.WinForms.GunaShadowPanel gunaShadowPanel4;
-        private System.Windows.Forms.Label label3;
-        private FontAwesome.Sharp.IconButton iconButton3;
-        private Guna.UI.WinForms.GunaShadowPanel gunaShadowPanel3;
-        private System.Windows.Forms.Label label2;
-        private FontAwesome.Sharp.IconButton iconButton2;
-        private Guna.UI.WinForms.GunaShadowPanel gunaShadowPanel2;
-        private System.Windows.Forms.Label label1;
-        private FontAwesome.Sharp.IconButton iconButton1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel panel6;
-        private Guna.UI.WinForms.GunaGradientTileButton gunaGradientTileButton2;
-        private System.Windows.Forms.Panel panel7;
-        private Guna.UI.WinForms.GunaGradientTileButton gunaGradientTileButton3;
-        private System.Windows.Forms.Panel panel11;
-        private Guna.UI.WinForms.GunaGradientTileButton gunaGradientTileButton4;
-        private System.Windows.Forms.Panel panel13;
-        private Guna.UI.WinForms.GunaGradientTileButton gunaGradientTileButton5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Panel panel10;
+        private FontAwesome.Sharp.IconButton iconButton10;
+        public Guna.UI.WinForms.GunaTextBox gunaTextBox2;
     }
 }

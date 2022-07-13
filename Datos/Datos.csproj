@@ -110,6 +110,7 @@
     <Compile Include="Datosenti\NO_RASTREO_Result.cs">
       <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Bill\VMSalidasBill.cs" />
     <Compile Include="ViewModels\Cliente.cs" />
     <Compile Include="Datosenti\KDID.cs">
       <DependentUpon>modeloPrueba.tt</DependentUpon>

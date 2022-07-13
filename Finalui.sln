@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Datos", "Datos\Datos.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Negocios", "Negocios\Negocios.csproj", "{339C8425-A7A2-4ECE-B7F8-0DD33BD3727A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ventana1", "..\Viri\Ventana1\Ventana1.csproj", "{9DD43476-C4E6-43C6-95C7-32554794C13B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ventana1", "Ventana1\Ventana1.csproj", "{9DD43476-C4E6-43C6-95C7-32554794C13B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

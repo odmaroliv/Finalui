@@ -28,7 +28,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ProductName>ARSYS</ProductName>
     <PublisherName>Daniel Olivares H.</PublisherName>
-    <ApplicationRevision>8</ApplicationRevision>
+    <ApplicationRevision>14</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -73,9 +73,6 @@
     <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
       <HintPath>..\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
     </Reference>
-    <Reference Include="AForge.Imaging, Version=2.2.5.0, Culture=neutral, PublicKeyToken=ba8ddea9676ca48b, processorArchitecture=MSIL">
-      <HintPath>..\packages\AForge.Imaging.2.2.5\lib\AForge.Imaging.dll</HintPath>
-    </Reference>
     <Reference Include="AForge.Math, Version=2.2.5.0, Culture=neutral, PublicKeyToken=abba2e25397ee8c9, processorArchitecture=MSIL">
       <HintPath>..\packages\AForge.Math.2.2.5\lib\AForge.Math.dll</HintPath>
     </Reference>
@@ -94,17 +91,23 @@
     <Reference Include="Bunifu_UI_v1.5.3">
       <HintPath>..\..\..\..\Documents\bunifu\Bunifu_UI_v1.5.3.dll</HintPath>
     </Reference>
+    <Reference Include="ClosedXML, Version=0.96.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.96.0\lib\net46\ClosedXML.dll</HintPath>
+    </Reference>
     <Reference Include="DesktopControl">
       <HintPath>..\..\..\..\Documents\bunifu\DesktopControl.dll</HintPath>
     </Reference>
-    <Reference Include="DocumentFormat.OpenXml, Version=2.11.3.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
-      <HintPath>..\packages\DocumentFormat.OpenXml.2.11.3\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.16.0.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.16.0\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.1.0.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelNumberFormat.1.1.0\lib\net20\ExcelNumberFormat.dll</HintPath>
     </Reference>
     <Reference Include="FontAwesome.Sharp, Version=6.1.1.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome.Sharp.6.1.1\lib\net48\FontAwesome.Sharp.dll</HintPath>
@@ -293,6 +296,24 @@
     </Compile>
     <Compile Include="Reportes\vmreportes\vmetiqueta.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="tstflirk.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="tstflirk.Designer.cs">
+      <DependentUpon>tstflirk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaBill\frmMBill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaBill\frmMBill.Designer.cs">
+      <DependentUpon>frmMBill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaBill\frmOperSalidas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaBill\frmOperSalidas.Designer.cs">
+      <DependentUpon>frmOperSalidas.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaEntrada\AgregarDocs.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -373,6 +394,15 @@
     <EmbeddedResource Include="Reportes\TestReport.resx">
       <DependentUpon>TestReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="tstflirk.resx">
+      <DependentUpon>tstflirk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaBill\frmMBill.resx">
+      <DependentUpon>frmMBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaBill\frmOperSalidas.resx">
+      <DependentUpon>frmOperSalidas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VistaEntrada\AgregarDocs.resx">
       <DependentUpon>AgregarDocs.cs</DependentUpon>
     </EmbeddedResource>
@@ -414,10 +444,6 @@
     <None Include="Resources\arnian-gr.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Viri\Ventana1\Ventana1.csproj">
-      <Project>{9DD43476-C4E6-43C6-95C7-32554794C13B}</Project>
-      <Name>Ventana1</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Datos\Datos.csproj">
       <Project>{EFB0D481-9862-4C67-8B11-C651E78F82ED}</Project>
       <Name>Datos</Name>
@@ -425,6 +451,10 @@
     <ProjectReference Include="..\Negocios\Negocios.csproj">
       <Project>{339c8425-a7a2-4ece-b7f8-0dd33bd3727a}</Project>
       <Name>Negocios</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ventana1\Ventana1.csproj">
+      <Project>{9dd43476-c4e6-43c6-95c7-32554794c13b}</Project>
+      <Name>Ventana1</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

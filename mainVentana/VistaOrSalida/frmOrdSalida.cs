@@ -30,6 +30,7 @@ namespace mainVentana.VistaOrSalida
         {
            Ventana1.frmSalidas d = new frmSalidas();
            d.ShowDialog();
+            d.Dispose();
         }
 
         

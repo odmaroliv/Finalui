@@ -15,22 +15,29 @@ using System.Threading;
 namespace mainVentana
 {
     public partial class Over : Form
-    {   
+    {
         Servicios vd = new Servicios(); // Indxa la clase de validcaiones 
+
+        
+
         public Over()
         {
             InitializeComponent();
+            
         }
 
         private void gunaDataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
-
-
+        
+        
         private void Over_Load(object sender, EventArgs e)
         {
-           // gunaDataGridView1.CurrentCell = null;
+            tstflirk ts   = new tstflirk();
+            AbrirFormEnPanel(ts);
+
+            // gunaDataGridView1.CurrentCell = null;
         }
         public void busquedamain()
         {
@@ -42,74 +49,112 @@ namespace mainVentana
             }
         }
 
-#region hovers colores
+        #region hovers colores
         //-----botones inicio
-        private void gunaShadowPanel2_MouseEnter(object sender, EventArgs e)
-        {
-            gunaShadowPanel2.BaseColor   = Color.FromArgb(59, 43, 255);
-        }
 
-        private void gunaShadowPanel2_MouseLeave(object sender, EventArgs e)
-        {
-            gunaShadowPanel2.BaseColor = Color.FromArgb(106, 90, 205);
-        }
-
-        private void gunaShadowPanel3_MouseEnter(object sender, EventArgs e)
-        {
-            gunaShadowPanel3.BaseColor = Color.Red;
-        }
-       
-
-        private void gunaShadowPanel3_MouseLeave(object sender, EventArgs e)
-        {
-            gunaShadowPanel3.BaseColor = Color.Tomato;
-        }
-        
-        private void gunaShadowPanel4_MouseEnter(object sender, EventArgs e)
-        {
-            gunaShadowPanel4.BaseColor = Color.FromArgb(0, 255, 88); 
-        }
-
-        private void gunaShadowPanel4_MouseLeave(object sender, EventArgs e)
-        {
-            gunaShadowPanel4.BaseColor = Color.SpringGreen; 
-
-        }
 
         #endregion
+
+
+        private void AbrirFormEnPanel(object formHijo)
+        {
+
+
+            if (this.panel1.Controls.Count > 0)
+                this.panel1.Controls.RemoveAt(0);
+            Form fh = formHijo as Form;
+            fh.TopLevel = false;
+            fh.FormBorderStyle = FormBorderStyle.None;
+            fh.Dock = DockStyle.Fill;
+            this.panel1.Controls.Add(fh);
+            this.panel1.Tag = fh;
+            fh.Show();
+        }
+
 
 
         public async void refresh(string id)
         {
             Negocios.Servicios vld = new Negocios.Servicios();
-            
-            gunaDataGridView1.DataSource =  await vld.Cargabuscque(id);
-            if(gunaDataGridView1.RowCount <= 0)
+            gunaDataGridView1.DataSource = null;
+
+            gunaDataGridView1.DataSource = await vld.Cargabuscque(id);
+            if (gunaDataGridView1.RowCount <= 0)
             {
                 MessageBox.Show("No se encontraron datos");
             }
         }
 
+        
+
         private void gunaDataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            
-           
-                int filas = gunaDataGridView1.Rows.Count;
-                for (int i = 0; i < filas; i++)
-                {
-                    if (gunaDataGridView1.Rows[i].Cells[4].Value.ToString() == gunaDataGridView1.Rows[i].Cells[5].Value.ToString())
-                    {
-                        gunaDataGridView1.Rows[i].Cells[4].Style.BackColor = Color.FromArgb(104, 183, 255);
-                    }
-                    else if (gunaDataGridView1.Rows[i].Cells[4].Value.ToString() != gunaDataGridView1.Rows[i].Cells[5].Value.ToString())
-                    {
-                        gunaDataGridView1.Rows[i].Cells[4].Style.BackColor = Color.FromArgb(250, 95, 73);
-                        gunaDataGridView1.Rows[i].Cells[4].Style.ForeColor = Color.FromArgb(255, 255, 255);
-                    }
-                }
-             
 
-           
+
+        }
+
+
+        private void formatodeceldas()
+        {
+            int filas = gunaDataGridView1.Rows.Count;
+            for (int i = 0; i < filas; i++)
+            {
+                DateTime fechaactual = DateTime.Now;
+                DateTime fechaent;
+                DateTime dt;
+                if (gunaDataGridView1.Rows[i].Cells[2].Value.ToString().Trim() == "")
+                {
+                    fechaent = DateTime.Parse("7/6/2021 12:16:02 PM");
+                }
+                else
+                {
+                    fechaent = DateTime.TryParse(gunaDataGridView1.Rows[i].Cells[2].Value.ToString().Trim(),out dt) == false ? DateTime.Parse("7/6/2021 12:16:02 PM") : dt;
+                }
+
+
+
+                TimeSpan tiempo = fechaactual - fechaent;
+
+                if (gunaDataGridView1.Rows[i].Cells[4].Value.ToString() == gunaDataGridView1.Rows[i].Cells[5].Value.ToString())
+                {//cuando la surusal origen es igual a la destino 
+                    gunaDataGridView1.Rows[i].Cells[5].Style.BackColor = Color.FromArgb(68, 183, 255);
+                    gunaDataGridView1.Rows[i].Cells[5].Style.ForeColor = Color.FromArgb(255, 255, 255);
+                }
+                else if (gunaDataGridView1.Rows[i].Cells[4].Value.ToString() == gunaDataGridView1.Rows[i].Cells[5].Value.ToString() && gunaDataGridView1.Rows[i].Cells[19].Value.ToString().Trim() != "")
+                {//cuando la surusal origen es igual a la destino y no tienen bill 
+                    gunaDataGridView1.Rows[i].Cells[5].Style.BackColor = Color.FromArgb(248, 44, 155);
+                    gunaDataGridView1.Rows[i].Cells[5].Style.ForeColor = Color.FromArgb(255, 255, 255);
+                }
+                else if (gunaDataGridView1.Rows[i].Cells[4].Value.ToString() != gunaDataGridView1.Rows[i].Cells[3].Value.ToString() && gunaDataGridView1.Rows[i].Cells[4].Value.ToString() != gunaDataGridView1.Rows[i].Cells[5].Value.ToString())
+                { //Cuando la sucursal origen es diferente de la sucursal destino y la sucursal actual es diferente de la sucursal origen
+                    gunaDataGridView1.Rows[i].Cells[5].Style.BackColor = Color.FromArgb(252, 173, 5);
+                    gunaDataGridView1.Rows[i].Cells[5].Style.ForeColor = Color.FromArgb(255, 255, 255);
+                }
+                /*else if (gunaDataGridView1.Rows[i].Cells[4].Value.ToString() != gunaDataGridView1.Rows[i].Cells[5].Value.ToString())
+                {//cuando la sucursal actual es diferente de la sucursal final 
+                    gunaDataGridView1.Rows[i].Cells[5].Style.BackColor = Color.FromArgb(156, 19, 18);
+                    gunaDataGridView1.Rows[i].Cells[5].Style.ForeColor = Color.FromArgb(255, 255, 255);
+                }*/
+
+
+
+                if (tiempo > TimeSpan.Parse("15.00:00:0.0") && gunaDataGridView1.Rows[i].Cells[5].Value.ToString() == gunaDataGridView1.Rows[i].Cells[3].Value.ToString() && gunaDataGridView1.Rows[i].Cells[19].Value.ToString().Trim() == "")
+                { //cuando un item tiene mas de 30 dias en el almacen y la sursal actual es igual a la sucursal origen
+                    gunaDataGridView1.Rows[i].Cells[2].Style.BackColor = Color.FromArgb(156, 19, 18);
+                    gunaDataGridView1.Rows[i].Cells[2].Style.ForeColor = Color.FromArgb(255, 255, 255);
+                    gunaDataGridView1.Rows[i].Cells[5].Style.BackColor = Color.FromArgb(156, 19, 18);
+                    gunaDataGridView1.Rows[i].Cells[5].Style.ForeColor = Color.FromArgb(255, 255, 255);
+                }
+
+                if (tiempo < TimeSpan.Parse("15.00:00:0.0") && gunaDataGridView1.Rows[i].Cells[5].Value.ToString() == gunaDataGridView1.Rows[i].Cells[3].Value.ToString() && gunaDataGridView1.Rows[i].Cells[19].Value.ToString().Trim() == "")
+                { //cuando la sucursal actual es la sucursal de origen y tiene menos de 15 dias
+                    gunaDataGridView1.Rows[i].Cells[2].Style.BackColor = Color.FromArgb(19, 156, 18);
+                    gunaDataGridView1.Rows[i].Cells[2].Style.ForeColor = Color.FromArgb(255, 255, 255);
+                    gunaDataGridView1.Rows[i].Cells[5].Style.BackColor = Color.FromArgb(19, 156, 18);
+                    gunaDataGridView1.Rows[i].Cells[5].Style.ForeColor = Color.FromArgb(255, 255, 255);
+                }
+
+            }
         }
 
         private void gunaShadowPanel2_Click(object sender, EventArgs e)
@@ -127,7 +172,7 @@ namespace mainVentana
                 string entrada = gunaDataGridView1.SelectedRows[0].Cells[1].Value.ToString();
                 Process.Start("https://mail.google.com/mail/?ui=2&view=cm&fs=1&tf=1&to=sistemas@arnian.com&su=Info%20sobre%20entrada:" + entrada + "&body=" + entrada);
             }
-                
+
         }
 
         private void gunaShadowPanel4_Click(object sender, EventArgs e)
@@ -144,7 +189,7 @@ namespace mainVentana
         //----------------- campo en blanco------
         public int ValidaTxt(DataGridView tb)
         { //retorna 1 si el campo contien informacion retorna 0 si esta vacio
-            
+
             if (tb == null || tb.Rows.Count == 0)
             {
                 Convert.ToInt32(MessageBox.Show("El campo Buscar Entrada no puede estar vacio", "EROR", MessageBoxButtons.OK));
@@ -155,7 +200,7 @@ namespace mainVentana
                 return 1;
 
             }
-            
+
         }
 
         private void gunaGradientTileButton5_Click(object sender, EventArgs e)
@@ -170,6 +215,55 @@ namespace mainVentana
 
                 throw;
             }
+        }
+
+        private async void gunaTextBox2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+
+                
+
+                ValidabPrincipal();
+                string id = gunaTextBox2.Text;
+                refresh(id);
+                await Task.Run(() => { Thread.Sleep(1000); });
+                formatodeceldas();
+                e.SuppressKeyPress = true;
+            }
+        }
+        private void ValidabPrincipal()
+        {
+            if (gunaTextBox2.Text == "")
+            {
+                MessageBox.Show("El campo de busqueda esta vacio!");
+                return;
+            }
+            int datparseado;
+            bool bent = Int32.TryParse(gunaTextBox2.Text, out datparseado);
+            if (bent == true)
+            {
+                gunaTextBox2.Text = datparseado.ToString("D7");
+            }
+            else
+            {
+                MessageBox.Show("Las entradas tienen que ser un codigo numerico, y no pueden contener letras");
+                return;
+            }
+        }
+
+        private void gunaTextBox2_MouseEnter(object sender, EventArgs e)
+        {
+            if (gunaTextBox2.Text == "Busqueda rapida de entrada :)")
+            {
+                gunaTextBox2.Text = "";
+
+            }
+        }
+
+        private void gunaTextBox2_MouseLeave(object sender, EventArgs e)
+        {
+            //label4.Text = "Busqueda rapida de entrada :)";
         }
 
 

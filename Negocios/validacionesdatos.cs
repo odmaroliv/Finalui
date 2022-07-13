@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Datos.Datosenti;
@@ -25,7 +26,7 @@ namespace Negocios
 
 
 
-
+        
         public async Task<List<BusquedaInicial>> Cargabuscque(string id) //BUSQUEDA RAPIDA POR ENTRADA <Funciona en la pantalla principal Form1>
         {
 
@@ -38,16 +39,38 @@ namespace Negocios
                     {
 
                         var lst = from d in modelo.KDMENT
+                                  join k in modelo.KDM1 on new { d.C1, d.C6, d.C4 } equals new { k.C1, k.C6, k.C4 }
+                                  join c in modelo.KDUV on k.C12 equals  c.C2
                                   where d.C6.Equals(id)
                                   orderby (d.C7)
                                   select new BusquedaInicial
                                   {
-                                      C9 = d.C9.Trim(),
-                                      C6 = d.C6.Trim(),
-                                      C69 = d.C69.Trim(),
-                                      C10 = d.C10.Trim(),
-                                      C19 = d.C19.Trim(),
-                                      C42 = d.C42.Trim()
+                                      
+                                      C6 = d.C6.Trim(), // entrada
+                                      C9 = d.C9.Trim(), //etiqueta
+                                      origen = d.C1.Trim(),
+                                      C69 = d.C69.Trim(), //fecha entrada
+                                      C10 = d.C10.Trim(), //suc destino
+                                      C19 = d.C19.Trim(), //suc actual
+                                      cliente = k.C32.Trim(),
+                                      cargaasig = d.C54.Trim(),
+                                      cafecha = d.C71.Trim(),
+                                      cargaapl = d.C16.Trim(),
+                                      capfecha = d.C72.Trim(),
+                                      osalida = d.C17.Trim(),
+                                      osfecha = d.C73.Trim(),
+                                      receptran = d.C18.Trim(),
+                                      receptranfecha = d.C74.Trim(),
+                                      saltrans = d.C64.Trim(),
+                                      saltransfehcha = d.C75.Trim(),
+                                      repfinal = d.C67.Trim(),
+                                      repfinalfecha = d.C76.Trim(),
+                                      bill = d.C34.Trim(),
+                                      billfecha = d.C77.Trim(),
+                                      C42 = d.C42.Trim(), // descripcion corta
+                                      elaborado = k.C81.Trim(),
+                                      coord=c.C3.Trim()
+
                                   };
                         lst2 = lst.ToList();
 
@@ -102,7 +125,7 @@ namespace Negocios
         //-------------------------------------------Inicia la validacion de Red ---/>
         bool result = false;
 
-        public bool Test()
+        public async Task<bool> Test()
         {
             System.Uri Url = new System.Uri("http://www.google.com/");
             System.Net.WebRequest WebRequest;
@@ -110,7 +133,7 @@ namespace Negocios
             System.Net.WebResponse objResp;
             try
             {
-                objResp = WebRequest.GetResponse();
+                objResp = await WebRequest.GetResponseAsync();
                 result = true;
                 objResp.Close();
                 WebRequest = null;
