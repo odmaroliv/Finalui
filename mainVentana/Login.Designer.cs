@@ -41,6 +41,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.gunaPictureBox1 = new Guna.UI.WinForms.GunaPictureBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -57,10 +58,11 @@
             this.txbPass.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txbPass.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbPass.LineColor = System.Drawing.Color.Gainsboro;
-            this.txbPass.Location = new System.Drawing.Point(0, 123);
+            this.txbPass.Location = new System.Drawing.Point(0, 100);
+            this.txbPass.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txbPass.Name = "txbPass";
             this.txbPass.PasswordChar = '●';
-            this.txbPass.Size = new System.Drawing.Size(367, 38);
+            this.txbPass.Size = new System.Drawing.Size(275, 31);
             this.txbPass.TabIndex = 1;
             this.txbPass.UseSystemPasswordChar = true;
             this.txbPass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbPass_KeyDown);
@@ -69,7 +71,8 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft JhengHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(0, 9);
+            this.label1.Location = new System.Drawing.Point(0, 7);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 20);
             this.label1.TabIndex = 2;
@@ -82,30 +85,34 @@
             this.txbUsr.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txbUsr.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbUsr.LineColor = System.Drawing.Color.Gainsboro;
-            this.txbUsr.Location = new System.Drawing.Point(0, 45);
+            this.txbUsr.Location = new System.Drawing.Point(0, 37);
+            this.txbUsr.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txbUsr.Name = "txbUsr";
             this.txbUsr.PasswordChar = '\0';
-            this.txbUsr.Size = new System.Drawing.Size(367, 38);
+            this.txbUsr.Size = new System.Drawing.Size(275, 31);
             this.txbUsr.TabIndex = 0;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(536, 0);
+            this.panel1.Location = new System.Drawing.Point(402, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(442, 426);
+            this.panel1.Size = new System.Drawing.Size(332, 346);
             this.panel1.TabIndex = 5;
             // 
             // panel4
             // 
             this.panel4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel4.Controls.Add(this.iconButton1);
-            this.panel4.Location = new System.Drawing.Point(45, 282);
+            this.panel4.Location = new System.Drawing.Point(34, 229);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(372, 47);
+            this.panel4.Size = new System.Drawing.Size(279, 38);
             this.panel4.TabIndex = 5;
             // 
             // iconButton1
@@ -122,8 +129,9 @@
             this.iconButton1.IconSize = 30;
             this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.iconButton1.Location = new System.Drawing.Point(0, 0);
+            this.iconButton1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(372, 47);
+            this.iconButton1.Size = new System.Drawing.Size(279, 38);
             this.iconButton1.TabIndex = 6;
             this.iconButton1.Text = "Ingresar";
             this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -137,16 +145,18 @@
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.txbUsr);
-            this.panel3.Location = new System.Drawing.Point(45, 74);
+            this.panel3.Location = new System.Drawing.Point(34, 60);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(372, 184);
+            this.panel3.Size = new System.Drawing.Size(279, 150);
             this.panel3.TabIndex = 4;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft JhengHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(0, 96);
+            this.label2.Location = new System.Drawing.Point(0, 78);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(97, 20);
             this.label2.TabIndex = 3;
@@ -159,8 +169,9 @@
             this.panel2.Controls.Add(this.gunaPictureBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(536, 426);
+            this.panel2.Size = new System.Drawing.Size(402, 346);
             this.panel2.TabIndex = 6;
             // 
             // panel5
@@ -168,8 +179,9 @@
             this.panel5.Controls.Add(this.pictureBox1);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(536, 426);
+            this.panel5.Size = new System.Drawing.Size(402, 346);
             this.panel5.TabIndex = 1;
             // 
             // pictureBox1
@@ -178,8 +190,9 @@
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Image = global::mainVentana.Properties.Resources.arnian_gr;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(536, 426);
+            this.pictureBox1.Size = new System.Drawing.Size(402, 346);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
@@ -191,24 +204,35 @@
             this.gunaPictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gunaPictureBox1.InitialImage = global::mainVentana.Properties.Resources.arnian_gr;
             this.gunaPictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.gunaPictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gunaPictureBox1.Name = "gunaPictureBox1";
-            this.gunaPictureBox1.Size = new System.Drawing.Size(536, 426);
+            this.gunaPictureBox1.Size = new System.Drawing.Size(402, 346);
             this.gunaPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.gunaPictureBox1.TabIndex = 0;
             this.gunaPictureBox1.TabStop = false;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(96, 299);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(69, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Que onda pa";
+            // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(978, 426);
+            this.ClientSize = new System.Drawing.Size(734, 346);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1000, 465);
-            this.MinimumSize = new System.Drawing.Size(994, 465);
+            this.MaximumSize = new System.Drawing.Size(754, 385);
+            this.MinimumSize = new System.Drawing.Size(750, 385);
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
@@ -216,6 +240,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Login_FormClosed);
             this.Load += new System.EventHandler(this.Login_Load);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
@@ -241,5 +266,6 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.PictureBox pictureBox1;
         private Guna.UI.WinForms.GunaPictureBox gunaPictureBox1;
+        private System.Windows.Forms.Label label3;
     }
 }
