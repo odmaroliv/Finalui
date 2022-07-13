@@ -203,7 +203,7 @@
             this.gunaGradientTileButton4.Radius = 5;
             this.gunaGradientTileButton4.Size = new System.Drawing.Size(184, 341);
             this.gunaGradientTileButton4.TabIndex = 20;
-            this.gunaGradientTileButton4.Text = "Entradas";
+            this.gunaGradientTileButton4.Text = "Entradax";
             // 
             // panel13
             // 
