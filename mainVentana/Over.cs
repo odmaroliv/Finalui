@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Datos.Datosenti;
 using Negocios;
 using System.Threading;
+using mainVentana.VistaInicioFoto;
 
 namespace mainVentana
 {
@@ -264,6 +265,35 @@ namespace mainVentana
         private void gunaTextBox2_MouseLeave(object sender, EventArgs e)
         {
             //label4.Text = "Busqueda rapida de entrada :)";
+        }
+
+        private void gunaDataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (gunaDataGridView1.Rows.Count > 0)
+            {
+                /*string nombrecolumna = gunaDataGridView1.Columns[e.ColumnIndex].HeaderText;
+                if (nombrecolumna.Trim() != "Entrada")
+                {
+                    MessageBox.Show("Tienes que seleccionar la entrada.");
+                    return;
+                }*/
+               
+                string id = gunaDataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+                string orig = gunaDataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+
+
+               
+
+                string valorPrimerCelda = gunaDataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+                frmSelectorFotos frm = new frmSelectorFotos();
+                frm.txbEntrada.Text = orig + "-UD3501-"+id;
+                frm.ShowDialog();
+                frm.Dispose();
+            }
+            else
+            {
+                MessageBox.Show("No hay datos para buscar.");
+            }
         }
 
 

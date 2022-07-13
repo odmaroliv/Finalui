@@ -33,7 +33,7 @@
     <MinimumRequiredVersion>1.0.0.21</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>23</ApplicationRevision>
+    <ApplicationRevision>24</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -211,6 +211,7 @@
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
@@ -351,6 +352,12 @@
     </Compile>
     <Compile Include="VistaEntrada\vm\Salidas por cotizacion.cs" />
     <Compile Include="VistaEntrada\vm\vmErroresScanSalidas.cs" />
+    <Compile Include="VistaInicioFoto\frmSelectorFotos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaInicioFoto\frmSelectorFotos.Designer.cs">
+      <DependentUpon>frmSelectorFotos.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaLogin\vmLogin.cs" />
     <Compile Include="VistaOrSalida\frmBuscarOrdCarga.cs">
       <SubType>Form</SubType>
@@ -422,6 +429,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VistaEntrada\Picture.resx">
       <DependentUpon>Picture.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaInicioFoto\frmSelectorFotos.resx">
+      <DependentUpon>frmSelectorFotos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaOrSalida\frmBuscarOrdCarga.resx">
       <DependentUpon>frmBuscarOrdCarga.cs</DependentUpon>

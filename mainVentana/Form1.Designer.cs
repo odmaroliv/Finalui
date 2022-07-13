@@ -261,7 +261,7 @@ namespace mainVentana
             this.panel10.Size = new System.Drawing.Size(173, 8);
             this.panel10.TabIndex = 15;
             // 
-            // iconButton6
+            // btnBill
             // 
             this.btnBill.AutoSize = true;
             this.btnBill.BackColor = System.Drawing.Color.Transparent;
@@ -278,7 +278,7 @@ namespace mainVentana
             this.btnBill.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBill.Location = new System.Drawing.Point(8, 353);
             this.btnBill.Margin = new System.Windows.Forms.Padding(2);
-            this.btnBill.Name = "iconButton6";
+            this.btnBill.Name = "btnBill";
             this.btnBill.Size = new System.Drawing.Size(173, 54);
             this.btnBill.TabIndex = 14;
             this.btnBill.Text = "Bill";
@@ -412,7 +412,6 @@ namespace mainVentana
             this.btnEntrada.AutoSize = true;
             this.btnEntrada.BackColor = System.Drawing.Color.Transparent;
             this.btnEntrada.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnEntrada.Enabled = false;
             this.btnEntrada.FlatAppearance.BorderSize = 0;
             this.btnEntrada.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnEntrada.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));

@@ -175,6 +175,7 @@
     <Compile Include="ViewModels\Entradas\Sucursales.cs" />
     <Compile Include="ViewModels\Entradas\vmRastreo.cs" />
     <Compile Include="ViewModels\Entradas\vmTOperacion.cs" />
+    <Compile Include="ViewModels\InicioFotoVisor\FotoInicioVM.cs" />
     <Compile Include="ViewModels\Reportes\vmEtiquetasReporte.cs" />
     <Compile Include="ViewModels\Salidas\vmCargaOrdenesDeCarga.cs" />
     <Compile Include="ViewModels\Servicios\FechaActual.cs" />
