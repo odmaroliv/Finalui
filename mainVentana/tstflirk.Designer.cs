@@ -30,13 +30,13 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.gunaGradientTileButton2 = new Guna.UI.WinForms.GunaGradientTileButton();
+            this.btnRecep = new Guna.UI.WinForms.GunaGradientTileButton();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.gunaGradientTileButton3 = new Guna.UI.WinForms.GunaGradientTileButton();
+            this.btnCargas = new Guna.UI.WinForms.GunaGradientTileButton();
             this.panel11 = new System.Windows.Forms.Panel();
-            this.gunaGradientTileButton4 = new Guna.UI.WinForms.GunaGradientTileButton();
+            this.btnEntrada = new Guna.UI.WinForms.GunaGradientTileButton();
             this.panel13 = new System.Windows.Forms.Panel();
-            this.gunaGradientTileButton5 = new Guna.UI.WinForms.GunaGradientTileButton();
+            this.btnSalida = new Guna.UI.WinForms.GunaGradientTileButton();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.gunaShadowPanel4 = new Guna.UI.WinForms.GunaShadowPanel();
             this.label3 = new System.Windows.Forms.Label();
@@ -81,7 +81,7 @@
             // 
             // panel6
             // 
-            this.panel6.Controls.Add(this.gunaGradientTileButton2);
+            this.panel6.Controls.Add(this.btnRecep);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(402, 10);
             this.panel6.Margin = new System.Windows.Forms.Padding(2);
@@ -90,40 +90,40 @@
             this.panel6.Size = new System.Drawing.Size(192, 349);
             this.panel6.TabIndex = 35;
             // 
-            // gunaGradientTileButton2
+            // btnRecep
             // 
-            this.gunaGradientTileButton2.Animated = true;
-            this.gunaGradientTileButton2.AnimationHoverSpeed = 0.07F;
-            this.gunaGradientTileButton2.AnimationSpeed = 0.03F;
-            this.gunaGradientTileButton2.BackColor = System.Drawing.Color.Transparent;
-            this.gunaGradientTileButton2.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(110)))), ((int)(((byte)(179)))));
-            this.gunaGradientTileButton2.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(107)))), ((int)(((byte)(251)))));
-            this.gunaGradientTileButton2.BorderColor = System.Drawing.Color.Black;
-            this.gunaGradientTileButton2.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.gunaGradientTileButton2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gunaGradientTileButton2.FocusedColor = System.Drawing.Color.Empty;
-            this.gunaGradientTileButton2.Font = new System.Drawing.Font("Trebuchet MS", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gunaGradientTileButton2.ForeColor = System.Drawing.Color.White;
-            this.gunaGradientTileButton2.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            this.gunaGradientTileButton2.Image = null;
-            this.gunaGradientTileButton2.ImageSize = new System.Drawing.Size(100, 80);
-            this.gunaGradientTileButton2.Location = new System.Drawing.Point(4, 4);
-            this.gunaGradientTileButton2.Margin = new System.Windows.Forms.Padding(2);
-            this.gunaGradientTileButton2.Name = "gunaGradientTileButton2";
-            this.gunaGradientTileButton2.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
-            this.gunaGradientTileButton2.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
-            this.gunaGradientTileButton2.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.gunaGradientTileButton2.OnHoverForeColor = System.Drawing.Color.White;
-            this.gunaGradientTileButton2.OnHoverImage = null;
-            this.gunaGradientTileButton2.OnPressedColor = System.Drawing.Color.Black;
-            this.gunaGradientTileButton2.Radius = 5;
-            this.gunaGradientTileButton2.Size = new System.Drawing.Size(184, 341);
-            this.gunaGradientTileButton2.TabIndex = 18;
-            this.gunaGradientTileButton2.Text = "Recepciones";
+            this.btnRecep.Animated = true;
+            this.btnRecep.AnimationHoverSpeed = 0.07F;
+            this.btnRecep.AnimationSpeed = 0.03F;
+            this.btnRecep.BackColor = System.Drawing.Color.Transparent;
+            this.btnRecep.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(110)))), ((int)(((byte)(179)))));
+            this.btnRecep.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(107)))), ((int)(((byte)(251)))));
+            this.btnRecep.BorderColor = System.Drawing.Color.Black;
+            this.btnRecep.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnRecep.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnRecep.FocusedColor = System.Drawing.Color.Empty;
+            this.btnRecep.Font = new System.Drawing.Font("Trebuchet MS", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRecep.ForeColor = System.Drawing.Color.White;
+            this.btnRecep.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            this.btnRecep.Image = null;
+            this.btnRecep.ImageSize = new System.Drawing.Size(100, 80);
+            this.btnRecep.Location = new System.Drawing.Point(4, 4);
+            this.btnRecep.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRecep.Name = "btnRecep";
+            this.btnRecep.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
+            this.btnRecep.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
+            this.btnRecep.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnRecep.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnRecep.OnHoverImage = null;
+            this.btnRecep.OnPressedColor = System.Drawing.Color.Black;
+            this.btnRecep.Radius = 5;
+            this.btnRecep.Size = new System.Drawing.Size(184, 341);
+            this.btnRecep.TabIndex = 18;
+            this.btnRecep.Text = "Recepciones";
             // 
             // panel7
             // 
-            this.panel7.Controls.Add(this.gunaGradientTileButton3);
+            this.panel7.Controls.Add(this.btnCargas);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel7.Location = new System.Drawing.Point(598, 10);
             this.panel7.Margin = new System.Windows.Forms.Padding(2);
@@ -132,40 +132,40 @@
             this.panel7.Size = new System.Drawing.Size(192, 349);
             this.panel7.TabIndex = 34;
             // 
-            // gunaGradientTileButton3
+            // btnCargas
             // 
-            this.gunaGradientTileButton3.Animated = true;
-            this.gunaGradientTileButton3.AnimationHoverSpeed = 0.07F;
-            this.gunaGradientTileButton3.AnimationSpeed = 0.03F;
-            this.gunaGradientTileButton3.BackColor = System.Drawing.Color.Transparent;
-            this.gunaGradientTileButton3.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(201)))), ((int)(((byte)(3)))));
-            this.gunaGradientTileButton3.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(135)))), ((int)(((byte)(8)))));
-            this.gunaGradientTileButton3.BorderColor = System.Drawing.Color.Black;
-            this.gunaGradientTileButton3.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.gunaGradientTileButton3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gunaGradientTileButton3.FocusedColor = System.Drawing.Color.Empty;
-            this.gunaGradientTileButton3.Font = new System.Drawing.Font("Trebuchet MS", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gunaGradientTileButton3.ForeColor = System.Drawing.Color.White;
-            this.gunaGradientTileButton3.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            this.gunaGradientTileButton3.Image = null;
-            this.gunaGradientTileButton3.ImageSize = new System.Drawing.Size(100, 80);
-            this.gunaGradientTileButton3.Location = new System.Drawing.Point(4, 4);
-            this.gunaGradientTileButton3.Margin = new System.Windows.Forms.Padding(2);
-            this.gunaGradientTileButton3.Name = "gunaGradientTileButton3";
-            this.gunaGradientTileButton3.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
-            this.gunaGradientTileButton3.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
-            this.gunaGradientTileButton3.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.gunaGradientTileButton3.OnHoverForeColor = System.Drawing.Color.White;
-            this.gunaGradientTileButton3.OnHoverImage = null;
-            this.gunaGradientTileButton3.OnPressedColor = System.Drawing.Color.Black;
-            this.gunaGradientTileButton3.Radius = 5;
-            this.gunaGradientTileButton3.Size = new System.Drawing.Size(184, 341);
-            this.gunaGradientTileButton3.TabIndex = 20;
-            this.gunaGradientTileButton3.Text = "Cargas";
+            this.btnCargas.Animated = true;
+            this.btnCargas.AnimationHoverSpeed = 0.07F;
+            this.btnCargas.AnimationSpeed = 0.03F;
+            this.btnCargas.BackColor = System.Drawing.Color.Transparent;
+            this.btnCargas.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(201)))), ((int)(((byte)(3)))));
+            this.btnCargas.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(135)))), ((int)(((byte)(8)))));
+            this.btnCargas.BorderColor = System.Drawing.Color.Black;
+            this.btnCargas.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnCargas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnCargas.FocusedColor = System.Drawing.Color.Empty;
+            this.btnCargas.Font = new System.Drawing.Font("Trebuchet MS", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCargas.ForeColor = System.Drawing.Color.White;
+            this.btnCargas.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            this.btnCargas.Image = null;
+            this.btnCargas.ImageSize = new System.Drawing.Size(100, 80);
+            this.btnCargas.Location = new System.Drawing.Point(4, 4);
+            this.btnCargas.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCargas.Name = "btnCargas";
+            this.btnCargas.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
+            this.btnCargas.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
+            this.btnCargas.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnCargas.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnCargas.OnHoverImage = null;
+            this.btnCargas.OnPressedColor = System.Drawing.Color.Black;
+            this.btnCargas.Radius = 5;
+            this.btnCargas.Size = new System.Drawing.Size(184, 341);
+            this.btnCargas.TabIndex = 20;
+            this.btnCargas.Text = "Cargas";
             // 
             // panel11
             // 
-            this.panel11.Controls.Add(this.gunaGradientTileButton4);
+            this.panel11.Controls.Add(this.btnEntrada);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel11.Location = new System.Drawing.Point(10, 10);
             this.panel11.Margin = new System.Windows.Forms.Padding(2);
@@ -174,40 +174,40 @@
             this.panel11.Size = new System.Drawing.Size(192, 349);
             this.panel11.TabIndex = 33;
             // 
-            // gunaGradientTileButton4
+            // btnEntrada
             // 
-            this.gunaGradientTileButton4.Animated = true;
-            this.gunaGradientTileButton4.AnimationHoverSpeed = 0.07F;
-            this.gunaGradientTileButton4.AnimationSpeed = 0.03F;
-            this.gunaGradientTileButton4.BackColor = System.Drawing.Color.Transparent;
-            this.gunaGradientTileButton4.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(131)))), ((int)(((byte)(157)))));
-            this.gunaGradientTileButton4.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(11)))), ((int)(((byte)(154)))));
-            this.gunaGradientTileButton4.BorderColor = System.Drawing.Color.Black;
-            this.gunaGradientTileButton4.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.gunaGradientTileButton4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gunaGradientTileButton4.FocusedColor = System.Drawing.Color.Empty;
-            this.gunaGradientTileButton4.Font = new System.Drawing.Font("Trebuchet MS", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gunaGradientTileButton4.ForeColor = System.Drawing.Color.White;
-            this.gunaGradientTileButton4.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            this.gunaGradientTileButton4.Image = null;
-            this.gunaGradientTileButton4.ImageSize = new System.Drawing.Size(100, 80);
-            this.gunaGradientTileButton4.Location = new System.Drawing.Point(4, 4);
-            this.gunaGradientTileButton4.Margin = new System.Windows.Forms.Padding(2);
-            this.gunaGradientTileButton4.Name = "gunaGradientTileButton4";
-            this.gunaGradientTileButton4.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
-            this.gunaGradientTileButton4.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
-            this.gunaGradientTileButton4.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.gunaGradientTileButton4.OnHoverForeColor = System.Drawing.Color.White;
-            this.gunaGradientTileButton4.OnHoverImage = null;
-            this.gunaGradientTileButton4.OnPressedColor = System.Drawing.Color.Black;
-            this.gunaGradientTileButton4.Radius = 5;
-            this.gunaGradientTileButton4.Size = new System.Drawing.Size(184, 341);
-            this.gunaGradientTileButton4.TabIndex = 20;
-            this.gunaGradientTileButton4.Text = "Entrada";
+            this.btnEntrada.Animated = true;
+            this.btnEntrada.AnimationHoverSpeed = 0.07F;
+            this.btnEntrada.AnimationSpeed = 0.03F;
+            this.btnEntrada.BackColor = System.Drawing.Color.Transparent;
+            this.btnEntrada.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(131)))), ((int)(((byte)(157)))));
+            this.btnEntrada.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(11)))), ((int)(((byte)(154)))));
+            this.btnEntrada.BorderColor = System.Drawing.Color.Black;
+            this.btnEntrada.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnEntrada.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnEntrada.FocusedColor = System.Drawing.Color.Empty;
+            this.btnEntrada.Font = new System.Drawing.Font("Trebuchet MS", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEntrada.ForeColor = System.Drawing.Color.White;
+            this.btnEntrada.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            this.btnEntrada.Image = null;
+            this.btnEntrada.ImageSize = new System.Drawing.Size(100, 80);
+            this.btnEntrada.Location = new System.Drawing.Point(4, 4);
+            this.btnEntrada.Margin = new System.Windows.Forms.Padding(2);
+            this.btnEntrada.Name = "btnEntrada";
+            this.btnEntrada.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
+            this.btnEntrada.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
+            this.btnEntrada.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnEntrada.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnEntrada.OnHoverImage = null;
+            this.btnEntrada.OnPressedColor = System.Drawing.Color.Black;
+            this.btnEntrada.Radius = 5;
+            this.btnEntrada.Size = new System.Drawing.Size(184, 341);
+            this.btnEntrada.TabIndex = 20;
+            this.btnEntrada.Text = "Entrada";
             // 
             // panel13
             // 
-            this.panel13.Controls.Add(this.gunaGradientTileButton5);
+            this.panel13.Controls.Add(this.btnSalida);
             this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel13.Location = new System.Drawing.Point(206, 10);
             this.panel13.Margin = new System.Windows.Forms.Padding(2);
@@ -216,37 +216,37 @@
             this.panel13.Size = new System.Drawing.Size(192, 349);
             this.panel13.TabIndex = 32;
             // 
-            // gunaGradientTileButton5
+            // btnSalida
             // 
-            this.gunaGradientTileButton5.Animated = true;
-            this.gunaGradientTileButton5.AnimationHoverSpeed = 0.07F;
-            this.gunaGradientTileButton5.AnimationSpeed = 0.03F;
-            this.gunaGradientTileButton5.BackColor = System.Drawing.Color.Transparent;
-            this.gunaGradientTileButton5.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
-            this.gunaGradientTileButton5.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
-            this.gunaGradientTileButton5.BorderColor = System.Drawing.Color.Black;
-            this.gunaGradientTileButton5.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.gunaGradientTileButton5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gunaGradientTileButton5.FocusedColor = System.Drawing.Color.Empty;
-            this.gunaGradientTileButton5.Font = new System.Drawing.Font("Trebuchet MS", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gunaGradientTileButton5.ForeColor = System.Drawing.Color.White;
-            this.gunaGradientTileButton5.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.BackwardDiagonal;
-            this.gunaGradientTileButton5.Image = null;
-            this.gunaGradientTileButton5.ImageSize = new System.Drawing.Size(100, 80);
-            this.gunaGradientTileButton5.Location = new System.Drawing.Point(4, 4);
-            this.gunaGradientTileButton5.Margin = new System.Windows.Forms.Padding(2);
-            this.gunaGradientTileButton5.Name = "gunaGradientTileButton5";
-            this.gunaGradientTileButton5.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
-            this.gunaGradientTileButton5.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
-            this.gunaGradientTileButton5.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.gunaGradientTileButton5.OnHoverForeColor = System.Drawing.Color.White;
-            this.gunaGradientTileButton5.OnHoverImage = null;
-            this.gunaGradientTileButton5.OnPressedColor = System.Drawing.Color.Black;
-            this.gunaGradientTileButton5.Radius = 5;
-            this.gunaGradientTileButton5.Size = new System.Drawing.Size(184, 341);
-            this.gunaGradientTileButton5.TabIndex = 20;
-            this.gunaGradientTileButton5.Text = "Salidas";
-            this.gunaGradientTileButton5.Click += new System.EventHandler(this.gunaGradientTileButton5_Click);
+            this.btnSalida.Animated = true;
+            this.btnSalida.AnimationHoverSpeed = 0.07F;
+            this.btnSalida.AnimationSpeed = 0.03F;
+            this.btnSalida.BackColor = System.Drawing.Color.Transparent;
+            this.btnSalida.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
+            this.btnSalida.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
+            this.btnSalida.BorderColor = System.Drawing.Color.Black;
+            this.btnSalida.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnSalida.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSalida.FocusedColor = System.Drawing.Color.Empty;
+            this.btnSalida.Font = new System.Drawing.Font("Trebuchet MS", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalida.ForeColor = System.Drawing.Color.White;
+            this.btnSalida.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.BackwardDiagonal;
+            this.btnSalida.Image = null;
+            this.btnSalida.ImageSize = new System.Drawing.Size(100, 80);
+            this.btnSalida.Location = new System.Drawing.Point(4, 4);
+            this.btnSalida.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSalida.Name = "btnSalida";
+            this.btnSalida.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
+            this.btnSalida.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
+            this.btnSalida.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnSalida.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnSalida.OnHoverImage = null;
+            this.btnSalida.OnPressedColor = System.Drawing.Color.Black;
+            this.btnSalida.Radius = 5;
+            this.btnSalida.Size = new System.Drawing.Size(184, 341);
+            this.btnSalida.TabIndex = 20;
+            this.btnSalida.Text = "Salidas";
+            this.btnSalida.Click += new System.EventHandler(this.gunaGradientTileButton5_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -428,6 +428,7 @@
             this.Controls.Add(this.tableLayoutPanel2);
             this.Name = "tstflirk";
             this.Text = "tstflirk";
+            this.Load += new System.EventHandler(this.tstflirk_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
@@ -445,13 +446,13 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel6;
-        private Guna.UI.WinForms.GunaGradientTileButton gunaGradientTileButton2;
+        private Guna.UI.WinForms.GunaGradientTileButton btnRecep;
         private System.Windows.Forms.Panel panel7;
-        private Guna.UI.WinForms.GunaGradientTileButton gunaGradientTileButton3;
+        private Guna.UI.WinForms.GunaGradientTileButton btnCargas;
         private System.Windows.Forms.Panel panel11;
-        private Guna.UI.WinForms.GunaGradientTileButton gunaGradientTileButton4;
+        private Guna.UI.WinForms.GunaGradientTileButton btnEntrada;
         private System.Windows.Forms.Panel panel13;
-        private Guna.UI.WinForms.GunaGradientTileButton gunaGradientTileButton5;
+        private Guna.UI.WinForms.GunaGradientTileButton btnSalida;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Guna.UI.WinForms.GunaShadowPanel gunaShadowPanel4;
         private System.Windows.Forms.Label label3;
