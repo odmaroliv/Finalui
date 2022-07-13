@@ -18,7 +18,7 @@ namespace mainVentana
     public partial class Form1 : Form
     {
         Over frm = new Over(); // llama al formulario de Inicio
-        
+
         Entradas Entradas = new Entradas(); // se llama al formulario de entrada
         Login Login = new Login();
 
@@ -26,15 +26,15 @@ namespace mainVentana
         public Form1()
         {
             InitializeComponent();
-            
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             AbrirFormEnPanel(frm);
-            
-            
-            
+
+
+
             cargasatosUrs();
             validamenu();
 
@@ -43,7 +43,7 @@ namespace mainVentana
 
         private void validamenu()
         {
-            if (CacheLogin.rol.Trim() == "ADMIN" && CacheLogin.rol.Trim() == "JALMA")
+            if (CacheLogin.rol.Trim() == "ADMIN" || CacheLogin.rol.Trim() == "JALMA")
             {
                 btnSalida.Visible = true;
                 btnOrCarga.Visible = true;
@@ -67,7 +67,7 @@ namespace mainVentana
                 btnEntrada.Visible = false;
                 btnRecep.Visible = false; 
             }
-            else if (CacheLogin.rol.Trim() == "CONT" && CacheLogin.rol.Trim() == "REVISOR")
+            else if (CacheLogin.rol.Trim() == "CONT" || CacheLogin.rol.Trim() == "REVISOR")
             {
                 btnSalida.Visible = false;
                 btnOrCarga.Visible = false;
