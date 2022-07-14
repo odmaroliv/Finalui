@@ -55,16 +55,16 @@ namespace Datos.ViewModels
         [DisplayName("Salida Fecha")]//c73
         public string osfecha { get; set; }
 
-        [DisplayName("Recepcion Trancito")]//c18
+        [DisplayName("Recepcion Transito")]//c18
         public string receptran { get; set; }
 
-        [DisplayName("Fecha Recepcion Trancito")]//c74
+        [DisplayName("Fecha Recepcion Transito")]//c74
         public string receptranfecha { get; set; }
 
-        [DisplayName("Salida Trancito")]//c64
+        [DisplayName("Salida Transito")]//c64
         public string saltrans { get; set; }
 
-        [DisplayName("Fecha Salida Trancito")]//c75
+        [DisplayName("Fecha Salida Transito")]//c75
         public string saltransfehcha { get; set; }
 
         [DisplayName("Recepcion Final")]//c67
