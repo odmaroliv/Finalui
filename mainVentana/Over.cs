@@ -116,12 +116,12 @@ namespace mainVentana
 
                 TimeSpan tiempo = fechaactual - fechaent;
 
-                if (gunaDataGridView1.Rows[i].Cells[4].Value.ToString() == gunaDataGridView1.Rows[i].Cells[5].Value.ToString())
+                if (gunaDataGridView1.Rows[i].Cells[4].Value.ToString() == gunaDataGridView1.Rows[i].Cells[5].Value.ToString() && gunaDataGridView1.Rows[i].Cells[19].Value.ToString().Trim() != "")
                 {//cuando la surusal origen es igual a la destino 
                     gunaDataGridView1.Rows[i].Cells[5].Style.BackColor = Color.FromArgb(68, 183, 255);
-                    gunaDataGridView1.Rows[i].Cells[5].Style.ForeColor = Color.FromArgb(255, 255, 255);
+                    gunaDataGridView1.Rows[i].Cells[5].Style.ForeColor = Color.FromArgb(255, 255, 255); 
                 }
-                else if (gunaDataGridView1.Rows[i].Cells[4].Value.ToString() == gunaDataGridView1.Rows[i].Cells[5].Value.ToString() && gunaDataGridView1.Rows[i].Cells[19].Value.ToString().Trim() != "")
+                else if (gunaDataGridView1.Rows[i].Cells[4].Value.ToString() == gunaDataGridView1.Rows[i].Cells[5].Value.ToString() && gunaDataGridView1.Rows[i].Cells[19].Value.ToString().Trim() == "")
                 {//cuando la surusal origen es igual a la destino y no tienen bill 
                     gunaDataGridView1.Rows[i].Cells[5].Style.BackColor = Color.FromArgb(248, 44, 155);
                     gunaDataGridView1.Rows[i].Cells[5].Style.ForeColor = Color.FromArgb(255, 255, 255);
