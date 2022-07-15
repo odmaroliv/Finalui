@@ -10,8 +10,7 @@ using System.Windows.Forms;
 using Negocios;
 using Negocios.Common.Cache;
 using System.Threading;
-
-
+using mainVentana.vistaReportes;
 
 namespace mainVentana
 {
@@ -324,6 +323,11 @@ namespace mainVentana
             frm.Dispose();
         }
 
-       
+        private void btnReportes_Click(object sender, EventArgs e)
+        {
+            frmMenuReportes frm = new frmMenuReportes();
+            frm.ShowDialog();
+            frm.Dispose();
+        }
     }
 }

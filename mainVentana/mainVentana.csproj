@@ -30,10 +30,10 @@
     <UpdateUrl>https://raw.githubusercontent.com/odmaroliv/Finalui/master/published/</UpdateUrl>
     <ProductName>ARSYS</ProductName>
     <PublisherName>Daniel Olivares H.</PublisherName>
-    <MinimumRequiredVersion>1.0.0.30</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.0.32</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>31</ApplicationRevision>
+    <ApplicationRevision>33</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -371,6 +371,12 @@
     <Compile Include="VistaOrSalida\frmOrdSalida.Designer.cs">
       <DependentUpon>frmOrdSalida.cs</DependentUpon>
     </Compile>
+    <Compile Include="vistaReportes\frmMenuReportes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vistaReportes\frmMenuReportes.Designer.cs">
+      <DependentUpon>frmMenuReportes.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Email\vEmail.resx">
       <DependentUpon>vEmail.cs</DependentUpon>
     </EmbeddedResource>
@@ -438,6 +444,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VistaOrSalida\frmOrdSalida.resx">
       <DependentUpon>frmOrdSalida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vistaReportes\frmMenuReportes.resx">
+      <DependentUpon>frmMenuReportes.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="mainVentana_TemporaryKey.pfx" />
     <None Include="packages.config" />

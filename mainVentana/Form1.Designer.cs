@@ -217,6 +217,7 @@ namespace mainVentana
             this.btnReportes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReportes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnReportes.UseVisualStyleBackColor = false;
+            this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
             this.btnReportes.MouseEnter += new System.EventHandler(this.btnReportes_MouseEnter);
             this.btnReportes.MouseLeave += new System.EventHandler(this.btnReportes_MouseLeave);
             // 

@@ -67,6 +67,7 @@
     <Compile Include="EnviarEmail.cs" />
     <Compile Include="MB\mbsecurity.cs" />
     <Compile Include="NGBill\BusquedaBill.cs" />
+    <Compile Include="NGReportes\ngbdReportes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
