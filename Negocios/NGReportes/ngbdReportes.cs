@@ -119,7 +119,7 @@ namespace Negocios.NGReportes
                                     //join a in modelo.KDUV on k.C12 equals a.C2
                                     //join u in modelo.KDUSUARIOS on a.C22 equals u.C1
 
-                                    where d.C54=="" && d.C19 == "SD" && d.C10 == dato.Trim() && d.C23 != "T" && k.C12 == Common.Cache.CacheLogin.idusuario.ToString().Trim() && d.C17=="" &&  d.C16 == "" && k.C43 != "C"
+                                    where /*d.C54=="" &&*/ d.C19 == "SD" && d.C10 == dato.Trim() && d.C23 != "T" && k.C12 == Common.Cache.CacheLogin.idusuario.ToString().Trim() /*&& d.C17=="" &&  d.C16 == "" && k.C43 != "C"*/
                                     //orderby d.C6 descending
                                     select new vmSd1Reporte
                                     {
