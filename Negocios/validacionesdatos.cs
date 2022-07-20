@@ -515,10 +515,12 @@ namespace Negocios
 
                 {
                     var lista = from d in modelo.KDUSUARIOS
+                                join v in modelo.KDUV on d.C1 equals v.C22 into fll
+                                from fl in fll.DefaultIfEmpty()
                                 where d.C1.Equals(user) && d.C3.Equals(pass)
                                 select new vmLogin
                                 {
-                                    //idusuario = d.IdUsuario,
+                                    idusuario = fl.C2,
                                     username = d.C1.Trim(),
                                     //password = d.Password,
                                     nombre = d.C2.Trim(),
@@ -540,6 +542,7 @@ namespace Negocios
                         Common.Cache.CacheLogin.rol = i.rol.Trim();
                         Common.Cache.CacheLogin.sucdefecto = i.sucdefecto.Trim();
                         Common.Cache.CacheLogin.numero = i.numero.Trim();
+                        Common.Cache.CacheLogin.idusuario = i.idusuario == null?"": i.idusuario.Trim();
                     }
 
                     if (lista.ToList().Count() <= 0)

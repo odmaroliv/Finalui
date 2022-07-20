@@ -9,7 +9,7 @@ namespace Negocios.Common.Cache
     public static class CacheLogin
     {
 
-        public static int idusuario { get; set; }
+        public static string idusuario { get; set; }
         public static string username { get; set; }
         public static string password { get; set; }
         public static string nombre { get; set; }

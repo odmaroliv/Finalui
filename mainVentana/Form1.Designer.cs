@@ -678,10 +678,10 @@ namespace mainVentana
             // panelContenedorForm
             // 
             this.panelContenedorForm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContenedorForm.Location = new System.Drawing.Point(189, 44);
+            this.panelContenedorForm.Location = new System.Drawing.Point(189, 15);
             this.panelContenedorForm.Margin = new System.Windows.Forms.Padding(2);
             this.panelContenedorForm.Name = "panelContenedorForm";
-            this.panelContenedorForm.Size = new System.Drawing.Size(924, 663);
+            this.panelContenedorForm.Size = new System.Drawing.Size(924, 692);
             this.panelContenedorForm.TabIndex = 2;
             // 
             // tmFechaHora
@@ -698,7 +698,7 @@ namespace mainVentana
             this.panel17.Margin = new System.Windows.Forms.Padding(2);
             this.panel17.Name = "panel17";
             this.panel17.Padding = new System.Windows.Forms.Padding(19, 20, 19, 20);
-            this.panel17.Size = new System.Drawing.Size(924, 44);
+            this.panel17.Size = new System.Drawing.Size(924, 15);
             this.panel17.TabIndex = 3;
             // 
             // label4

@@ -30,10 +30,10 @@
     <UpdateUrl>https://raw.githubusercontent.com/odmaroliv/Finalui/master/published/</UpdateUrl>
     <ProductName>ARSYS</ProductName>
     <PublisherName>Daniel Olivares H.</PublisherName>
-    <MinimumRequiredVersion>1.0.0.32</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.0.33</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>33</ApplicationRevision>
+    <ApplicationRevision>34</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -352,6 +352,24 @@
     </Compile>
     <Compile Include="VistaEntrada\vm\Salidas por cotizacion.cs" />
     <Compile Include="VistaEntrada\vm\vmErroresScanSalidas.cs" />
+    <Compile Include="VistaInicioCoordinadores\ControlEntradaCoor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VistaInicioCoordinadores\ControlEntradaCoor.Designer.cs">
+      <DependentUpon>ControlEntradaCoor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaInicioCoordinadores\frmInfoEntradaCords.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaInicioCoordinadores\frmInfoEntradaCords.Designer.cs">
+      <DependentUpon>frmInfoEntradaCords.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaInicioCoordinadores\frmInicioCoordinadores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaInicioCoordinadores\frmInicioCoordinadores.Designer.cs">
+      <DependentUpon>frmInicioCoordinadores.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaInicioFoto\frmSelectorFotos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -435,6 +453,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VistaEntrada\Picture.resx">
       <DependentUpon>Picture.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaInicioCoordinadores\ControlEntradaCoor.resx">
+      <DependentUpon>ControlEntradaCoor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaInicioCoordinadores\frmInfoEntradaCords.resx">
+      <DependentUpon>frmInfoEntradaCords.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaInicioCoordinadores\frmInicioCoordinadores.resx">
+      <DependentUpon>frmInicioCoordinadores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaInicioFoto\frmSelectorFotos.resx">
       <DependentUpon>frmSelectorFotos.cs</DependentUpon>

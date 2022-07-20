@@ -8,7 +8,7 @@ namespace mainVentana.vmLogin
 {
     public class vmLogin
     {
-        public int idusuario { get; set; }
+        public string idusuario { get; set; }
         public string username { get; set; }
         public string password { get; set; }
         public string nombre { get; set; }

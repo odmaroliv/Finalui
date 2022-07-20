@@ -12,6 +12,7 @@ using Datos.Datosenti;
 using Negocios;
 using System.Threading;
 using mainVentana.VistaInicioFoto;
+using mainVentana.VistaInicioCoordinadores;
 
 namespace mainVentana
 {
@@ -35,9 +36,19 @@ namespace mainVentana
         
         private void Over_Load(object sender, EventArgs e)
         {
+            if (Negocios.Common.Cache.CacheLogin.rol.Trim() == "CSERVI")
+            {
+                frmInicioCoordinadores frm = new frmInicioCoordinadores();
+                frm.pasado += new frmInicioCoordinadores.pasar(refresh);
+                AbrirFormEnPanel(frm);
+            }
+            else
+            {
             tstflirk ts   = new tstflirk();
             AbrirFormEnPanel(ts);
 
+            }
+            
             // gunaDataGridView1.CurrentCell = null;
         }
         public void busquedamain()
@@ -72,10 +83,12 @@ namespace mainVentana
             fh.Show();
         }
 
+//        public delegate void pasado (string id) 
 
 
-        public async void refresh(string id)
+        public async Task refresh(string id)
         {
+           
             Negocios.Servicios vld = new Negocios.Servicios();
             gunaDataGridView1.DataSource = null;
 
@@ -84,6 +97,7 @@ namespace mainVentana
             {
                 MessageBox.Show("No se encontraron datos");
             }
+            vld = null;
         }
 
         
@@ -204,6 +218,7 @@ namespace mainVentana
 
         }
 
+      
         private void gunaGradientTileButton5_Click(object sender, EventArgs e)
         {
             try
@@ -222,12 +237,9 @@ namespace mainVentana
         {
             if (e.KeyCode == Keys.Enter)
             {
-
-                
-
                 ValidabPrincipal();
                 string id = gunaTextBox2.Text;
-                refresh(id);
+                await refresh(id);
                 await Task.Run(() => { Thread.Sleep(1000); });
                 formatodeceldas();
                 e.SuppressKeyPress = true;
@@ -294,6 +306,13 @@ namespace mainVentana
             {
                 MessageBox.Show("No hay datos para buscar.");
             }
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            frmInicioCoordinadores frm = new frmInicioCoordinadores();
+            frm.ShowDialog();
+
         }
 
 

@@ -247,19 +247,6 @@ namespace mainVentana.vistaReportes
 
                     if (q.Equals(d.correo.Trim()))
                     {
-                        /* mensaje += string.Format(
-                             @" < html>
-                       <body>
-
-                       <p><b>Etiqueta:</b>  <br>{0}</p>
-                       <p><b>Entrada:</b> <br>{1}</p>
-                       <p><b>Fecha de entrada:</b> <br>{2}</p>
-                       <p><b>Descripcion Corta:</b> <br>{3} <br></p>
-                       <p>--------------------------------------</p>
-                       </body>
-                       </html>
-                      ", d.eti.Trim(),d.Entrada.Trim(),d.Fechadeentrada,d.Descipcion);*/
-
                         lss.Add(new vmCorreoInforma { eti = d.eti, Entrada = d.Entrada, Fechadeentrada = d.Fechadeentrada, Descipcion = d.Descipcion, correo = d.correo });
                     }
                 }
