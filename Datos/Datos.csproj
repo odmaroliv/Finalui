@@ -178,6 +178,7 @@
     <Compile Include="ViewModels\InicioFotoVisor\FotoInicioVM.cs" />
     <Compile Include="ViewModels\Reportes\vmCorreoInforma.cs" />
     <Compile Include="ViewModels\Reportes\vmEtiquetasReporte.cs" />
+    <Compile Include="ViewModels\Reportes\vmInfoControlCors.cs" />
     <Compile Include="ViewModels\Reportes\vmSd1Reporte.cs" />
     <Compile Include="ViewModels\Salidas\vmCargaOrdenesDeCarga.cs" />
     <Compile Include="ViewModels\Servicios\FechaActual.cs" />

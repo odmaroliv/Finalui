@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Datos.ViewModels.Reportes;
 using Negocios.NGReportes;
 namespace mainVentana.VistaInicioCoordinadores
 {
@@ -23,12 +24,12 @@ namespace mainVentana.VistaInicioCoordinadores
             InitializeComponent();
         }
 
-        public delegate Task pasar(string id);
+        public delegate Task pasar(string id = null);
         public event pasar pasado;
 
         public async Task ejecutaeveto(string id)
         {
-           await pasado(id);
+            await pasado(id);
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -41,7 +42,7 @@ namespace mainVentana.VistaInicioCoordinadores
             await cargacontroldos();
         }
 
-       
+
 
         public async Task CargaControles()
         {
@@ -51,21 +52,89 @@ namespace mainVentana.VistaInicioCoordinadores
 
 
             var ls = await rep.CargaControl("CSL");
-            if (ls.Count > 0)
+            List<vmInfoControlCors> lss = new List<vmInfoControlCors>();
+
+            //lss = ls.Distinct(k).ToList();
+
+            var listanoduplies = new HashSet<string>(ls.Select(s => s.entrada)).ToList();
+            foreach (var q in listanoduplies)
             {
-                ControlEntradaCoor[] lb = new ControlEntradaCoor[ls.Count];
-                
+                foreach (var w in ls)
+                {
+                    if (w.entrada.Trim() == q.Trim())
+                    {
+                        lss.Add( new vmInfoControlCors
+                        {
+                            entrada = w.entrada,
+                            cliente = w.cliente,
+                            fechaentrada = w.fechaentrada,
+                            ordcarga = w.ordcarga,
+                            ordapli = w.ordapli,
+                            salida = w.salida
+                        });
+                        break;
+                    }
+                    else
+                    {
+
+                    }
+
+                }
+
+            }
+
+            
+
+            if (lss.Count > 0)
+            {
+                ControlEntradaCoor[] lb = new ControlEntradaCoor[lss.Count];
+
                 int con = 0;
 
 
-                foreach (var i in ls)
+                foreach (var i in lss)
                 {
-                    
+
                     lb[con] = new ControlEntradaCoor();
                     lb[con].pasado2 += new ControlEntradaCoor.pasar2(ejecutaeveto);
                     lb[con].Tag = i;
 
-                    lb[con].button1.Text = i.etiqueta;
+                    lb[con].button1.Text = i.entrada;
+                    lb[con].lblCarga.Text = i.ordcarga;
+                    lb[con].lblCliente.Text = i.cliente;
+                    lb[con].lblFentrada.Text = i.fechaentrada;
+
+                    string vOrdAs = i.ordcarga == null ? "" : i.ordcarga.Trim();
+                    string vOrdApl = i.ordapli == null ? "" : i.ordapli.Trim();
+                    string vSalida = i.salida == null ? "" : i.salida.Trim();
+
+
+                    if (vOrdAs == "")
+                    {
+                        lb[con].button1.BaseColor = Color.Red;
+                        lb[con].tbar.Value = 0;
+                        lb[con].tbar.TrackColor = Color.Red;
+                    }
+                    if (vOrdAs != "")
+                    {
+                        lb[con].button1.BaseColor = Color.Blue;
+                        lb[con].tbar.Value = 33;
+                        lb[con].tbar.TrackColor = Color.Blue;
+                    }
+                    if (vOrdApl != "")
+                    {
+                        lb[con].button1.BaseColor = Color.Violet;
+                        lb[con].tbar.Value = 66;
+                        lb[con].tbar.TrackColor = Color.Violet;
+                    }
+                    if (vSalida != "")
+                    {
+                        lb[con].button1.BaseColor = Color.LimeGreen;
+                        lb[con].tbar.Value = 100;
+                        lb[con].tbar.TrackColor = Color.LimeGreen;
+                    }
+
+
                     con = con + 1;
 
                 }
@@ -73,7 +142,8 @@ namespace mainVentana.VistaInicioCoordinadores
 
 
                 flowLayoutPanel1.Controls.AddRange(lb);
-
+                ls = null;
+                lb = null;
             }
 
 
@@ -86,34 +156,112 @@ namespace mainVentana.VistaInicioCoordinadores
         public async Task cargacontroldos()
         {
             ngbdReportes rep = new ngbdReportes();
-            var ls2 = await rep.CargaControl("TJ");
+            var ls2 = await rep.CargaControl("CSL");
+            List<vmInfoControlCors> lss = new List<vmInfoControlCors>();
 
-            if (ls2.Count > 0)
+            //lss = ls.Distinct(k).ToList();
+
+            var listanoduplies = new HashSet<string>(ls2.Select(s => s.entrada)).ToList();
+            foreach (var q in listanoduplies)
             {
-            ControlEntradaCoor[] lb = new ControlEntradaCoor[ls2.Count];
-            int con = 0;
+                foreach (var w in ls2)
+                {
+                    if (w.entrada.Trim() == q.Trim())
+                    {
+                        lss.Add(new vmInfoControlCors
+                        {
+                            entrada = w.entrada,
+                            cliente = w.cliente,
+                            fechaentrada = w.fechaentrada,
+                            ordcarga = w.ordcarga,
+                            ordapli = w.ordapli,
+                            salida = w.salida
+                        });
+                        break;
+                    }
+                    else
+                    {
 
+                    }
 
-            foreach (var i in ls2)
-            {
-
-                lb[con] = new ControlEntradaCoor();
-                lb[con].Tag = i;
-                lb[con].button1.Text = i.etiqueta;
-                con = con + 1;
-
+                }
 
             }
 
-            flowLayoutPanel2.Controls.AddRange(lb);
 
-           
+
+            if (ls2.Count > 0)
+            {
+
+                ControlEntradaCoor[] lb = new ControlEntradaCoor[ls2.Count];
+                int con = 0;
+
+
+                foreach (var i in ls2)
+                {
+
+                    lb[con] = new ControlEntradaCoor();
+                    lb[con].pasado2 += new ControlEntradaCoor.pasar2(ejecutaeveto);
+                    lb[con].Tag = i;
+                    lb[con].button1.Text = i.entrada;
+                    lb[con].lblCarga.Text = i.ordcarga;
+                    lb[con].lblCliente.Text = i.cliente;
+                    lb[con].lblFentrada.Text = i.fechaentrada;
+
+
+                    lb[con].button1.Text = i.entrada;
+                    lb[con].lblCarga.Text = i.ordcarga;
+                    lb[con].lblCliente.Text = i.cliente;
+                    lb[con].lblFentrada.Text = i.fechaentrada;
+
+                    string vOrdAs = i.ordcarga == null ? "" : i.ordcarga.Trim();
+                    string vOrdApl = i.ordapli == null ? "" : i.ordapli.Trim();
+                    string vSalida = i.salida == null ? "" : i.salida.Trim();
+
+                    if (vOrdAs == "")
+                    {
+                        lb[con].button1.BaseColor = Color.Red;
+                        lb[con].tbar.Value = 0;
+                        lb[con].tbar.TrackColor = Color.Red;
+                    }
+                    if (vOrdAs != "")
+                    {
+                        lb[con].button1.BaseColor = Color.Blue;
+                        lb[con].tbar.Value =33;
+                        lb[con].tbar.TrackColor = Color.Blue;
+                    }
+                    if (vOrdApl != "")
+                    {
+                        lb[con].button1.BaseColor = Color.Violet;
+                        lb[con].tbar.Value = 66;
+                        lb[con].tbar.TrackColor = Color.Violet;
+                    }
+                    if (vSalida != "")
+                    {
+                        lb[con].button1.BaseColor = Color.LimeGreen;
+                        lb[con].tbar.Value = 100;
+                        lb[con].tbar.TrackColor = Color.LimeGreen;
+                    }
+
+
+
+
+
+                    con = con + 1;
+
+
+                }
+
+                flowLayoutPanel2.Controls.AddRange(lb);
+                ls2 = null;
+                lb = null;
+
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ejecutaeveto("0008218");
+
 
         }
     }

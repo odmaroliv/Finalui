@@ -90,6 +90,7 @@
             this.txbUsr.PasswordChar = '\0';
             this.txbUsr.Size = new System.Drawing.Size(275, 31);
             this.txbUsr.TabIndex = 0;
+            this.txbUsr.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbUsr_KeyDown);
             // 
             // panel1
             // 

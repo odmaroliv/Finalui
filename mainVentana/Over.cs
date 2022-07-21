@@ -39,7 +39,7 @@ namespace mainVentana
             if (Negocios.Common.Cache.CacheLogin.rol.Trim() == "CSERVI")
             {
                 frmInicioCoordinadores frm = new frmInicioCoordinadores();
-                frm.pasado += new frmInicioCoordinadores.pasar(refresh);
+                frm.pasado += new frmInicioCoordinadores.pasar(refrescatabla);
                 AbrirFormEnPanel(frm);
             }
             else
@@ -245,6 +245,16 @@ namespace mainVentana
                 e.SuppressKeyPress = true;
             }
         }
+
+        public async Task refrescatabla( string id)
+        {
+            gunaTextBox2.Text = id;
+            await refresh(id);
+            await Task.Run(() => { Thread.Sleep(1000); });
+            formatodeceldas();
+            
+        }
+
         private void ValidabPrincipal()
         {
             if (gunaTextBox2.Text == "")

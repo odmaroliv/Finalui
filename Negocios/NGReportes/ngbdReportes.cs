@@ -103,30 +103,37 @@ namespace Negocios.NGReportes
         /// <summary>
         /// (SD TO CSL) Reporte Inicial a la hora de entrar al sistema, funciona por coordinador 
         /// </summary>
-        public async Task<List<vmSd1Reporte>> CargaControl(string dato)
+        public async Task<List<vmInfoControlCors>> CargaControl(string dato)
         {
-
+            DateTime Hoy = DateTime.Now;
+            DateTime fc = fecharestada();
             try
             {
-                var lst = new List<vmSd1Reporte>();
+                var lst = new List<vmInfoControlCors>();
                 await Task.Run(() => {
 
                     using (modelo2Entities modelo = new modelo2Entities())
 
                     {
-                        var lista = from d in modelo.KDMENT
+                        var lista = (from d in modelo.KDMENT
                                     join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
                                     //join a in modelo.KDUV on k.C12 equals a.C2
                                     //join u in modelo.KDUSUARIOS on a.C22 equals u.C1
 
-                                    where /*d.C54=="" &&*/ d.C19 == "SD" && d.C10 == dato.Trim() && d.C23 != "T" && k.C12 == Common.Cache.CacheLogin.idusuario.ToString().Trim() /*&& d.C17=="" &&  d.C16 == "" && k.C43 != "C"*/
-                                    //orderby d.C6 descending
-                                    select new vmSd1Reporte
+                                    where k.C9 <= Hoy && k.C9 >=fc && d.C19 == "SD" && d.C10 == dato.Trim() && k.C12 == Common.Cache.CacheLogin.idusuario.ToString().Trim()
+                                    orderby d.C6 descending
+                                   
+                                    select new vmInfoControlCors 
                                     {
                                         
-                                        etiqueta = d.C9.Trim(),
+                                        entrada = d.C6.Trim(),
+                                        fechaentrada = d.C69.Trim(),
+                                        ordcarga = d.C54.Trim(),
+                                        cliente = k.C32.Trim(),
+                                        ordapli = d.C16.Trim(),
+                                        salida = d.C17.Trim()
 
-                                    };
+                                    });
                         lst = lista.ToList();
                     }
                 });
@@ -138,7 +145,13 @@ namespace Negocios.NGReportes
                 throw;
             }
         }
-
+        private DateTime fecharestada()
+        {
+            int NumeroDias = 30;
+            DateTime Hoy = DateTime.Now;
+            DateTime FechaRestada = Hoy.AddDays(-NumeroDias);
+            return FechaRestada;
+        }
 
 
 

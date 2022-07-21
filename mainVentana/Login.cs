@@ -98,5 +98,13 @@ namespace mainVentana
             }
             Inicio();
         }
+
+        private void txbUsr_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                Validaciones_P_Busqueda();
+            }
+        }
     }
 }

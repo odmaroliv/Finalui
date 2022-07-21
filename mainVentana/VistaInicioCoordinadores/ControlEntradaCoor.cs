@@ -30,19 +30,10 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            char[] c = "-".ToCharArray();
-            string tex = button1.Text.Split(c)[1];
+            
+            string tex = button1.Text;
             Clipboard.SetText(tex);
             pasado2(tex);
-            /*using (frmInicioCoordinadores fr = new frmInicioCoordinadores())
-            {
-                fr.ejecutaeveto(tex);
-                
-            };*/
-            
-          
-
-
 
         }
     }
