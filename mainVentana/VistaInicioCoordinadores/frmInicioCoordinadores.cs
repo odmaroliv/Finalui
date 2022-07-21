@@ -92,7 +92,7 @@ namespace mainVentana.VistaInicioCoordinadores
                 int con = 0;
 
 
-                foreach (var i in lss)
+                foreach (var i in lss.OrderBy(x => x.ordcarga).ThenBy(x => x.ordapli).ThenBy(x => x.salida).ThenBy(x => x.entrada))
                 {
 
                     lb[con] = new ControlEntradaCoor();
@@ -156,7 +156,7 @@ namespace mainVentana.VistaInicioCoordinadores
         public async Task cargacontroldos()
         {
             ngbdReportes rep = new ngbdReportes();
-            var ls2 = await rep.CargaControl("CSL");
+            var ls2 = await rep.CargaControl("TJ");
             List<vmInfoControlCors> lss = new List<vmInfoControlCors>();
 
             //lss = ls.Distinct(k).ToList();
@@ -197,7 +197,7 @@ namespace mainVentana.VistaInicioCoordinadores
                 int con = 0;
 
 
-                foreach (var i in ls2)
+                foreach (var i in ls2.OrderBy(x => x.ordcarga).ThenBy(x => x.ordapli).ThenBy(x => x.salida).ThenBy(x => x.entrada))
                 {
 
                     lb[con] = new ControlEntradaCoor();

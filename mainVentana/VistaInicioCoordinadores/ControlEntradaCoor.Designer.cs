@@ -50,7 +50,7 @@
             this.button1.BorderColor = System.Drawing.Color.Black;
             this.button1.DialogResult = System.Windows.Forms.DialogResult.None;
             this.button1.FocusedColor = System.Drawing.Color.Empty;
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Image = null;
             this.button1.ImageSize = new System.Drawing.Size(20, 20);
