@@ -92,7 +92,7 @@ namespace mainVentana.VistaInicioCoordinadores
                 int con = 0;
 
 
-                foreach (var i in lss.OrderBy(x => x.entrada))
+                foreach (var i in lss.OrderByDescending(x => x.entrada))
                 {
 
                     lb[con] = new ControlEntradaCoor();
@@ -103,6 +103,7 @@ namespace mainVentana.VistaInicioCoordinadores
                     lb[con].lblCarga.Text = i.ordcarga;
                     lb[con].lblCliente.Text = i.cliente;
                     lb[con].lblFentrada.Text = i.fechaentrada;
+                    lb[con].lblFilaNum.Text = (con+1).ToString();
 
                     string vOrdAs = i.ordcarga == null ? "" : i.ordcarga.Trim();
                     string vOrdApl = i.ordapli == null ? "" : i.ordapli.Trim();
@@ -121,7 +122,7 @@ namespace mainVentana.VistaInicioCoordinadores
                         lb[con].tbar.Value = 33;
                         lb[con].tbar.TrackColor = Color.Blue;
                     }
-                    if (vOrdApl != "")
+                    if (vOrdApl != "" && vSalida == "")
                     {
                         lb[con].button1.BaseColor = Color.Violet;
                         lb[con].tbar.Value = 66;
@@ -138,8 +139,6 @@ namespace mainVentana.VistaInicioCoordinadores
                     con = con + 1;
 
                 }
-
-
 
                 flowLayoutPanel1.Controls.AddRange(lb);
                 ls = null;
@@ -197,22 +196,20 @@ namespace mainVentana.VistaInicioCoordinadores
                 int con = 0;
 
 
-                foreach (var i in lss.OrderBy(x => x.entrada))
+                foreach (var i in lss.OrderByDescending(x => x.entrada))
                 {
 
                     lb[con] = new ControlEntradaCoor();
                     lb[con].pasado2 += new ControlEntradaCoor.pasar2(ejecutaeveto);
                     lb[con].Tag = i;
-                    lb[con].button1.Text = i.entrada;
-                    lb[con].lblCarga.Text = i.ordcarga;
-                    lb[con].lblCliente.Text = i.cliente;
-                    lb[con].lblFentrada.Text = i.fechaentrada;
+                    
 
 
                     lb[con].button1.Text = i.entrada;
                     lb[con].lblCarga.Text = i.ordcarga;
                     lb[con].lblCliente.Text = i.cliente;
                     lb[con].lblFentrada.Text = i.fechaentrada;
+                    lb[con].lblFilaNum.Text = (con + 1).ToString();
 
                     string vOrdAs = i.ordcarga == null ? "" : i.ordcarga.Trim();
                     string vOrdApl = i.ordapli == null ? "" : i.ordapli.Trim();
@@ -230,7 +227,7 @@ namespace mainVentana.VistaInicioCoordinadores
                         lb[con].tbar.Value =33;
                         lb[con].tbar.TrackColor = Color.Blue;
                     }
-                    if (vOrdApl != "")
+                    if (vOrdApl != "" && vSalida == "")
                     {
                         lb[con].button1.BaseColor = Color.Violet;
                         lb[con].tbar.Value = 66;
@@ -251,7 +248,7 @@ namespace mainVentana.VistaInicioCoordinadores
 
 
                 }
-
+                
                 flowLayoutPanel2.Controls.AddRange(lb);
                 ls2 = null;
                 lb = null;

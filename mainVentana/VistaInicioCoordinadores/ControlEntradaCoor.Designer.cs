@@ -40,6 +40,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.gunaButton1 = new Guna.UI.WinForms.GunaButton();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lblFilaNum = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -50,7 +53,7 @@
             this.button1.BorderColor = System.Drawing.Color.Black;
             this.button1.DialogResult = System.Windows.Forms.DialogResult.None;
             this.button1.FocusedColor = System.Drawing.Color.Empty;
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Image = null;
             this.button1.ImageSize = new System.Drawing.Size(20, 20);
@@ -63,7 +66,7 @@
             this.button1.OnPressedColor = System.Drawing.Color.Black;
             this.button1.Size = new System.Drawing.Size(135, 74);
             this.button1.TabIndex = 0;
-            this.button1.Text = "gunaButton1";
+            this.button1.Text = "0052547";
             this.button1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
@@ -82,11 +85,11 @@
             // lblCliente
             // 
             this.lblCliente.AutoSize = true;
-            this.lblCliente.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCliente.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCliente.ForeColor = System.Drawing.Color.Black;
-            this.lblCliente.Location = new System.Drawing.Point(191, 2);
+            this.lblCliente.Location = new System.Drawing.Point(191, 5);
             this.lblCliente.Name = "lblCliente";
-            this.lblCliente.Size = new System.Drawing.Size(68, 19);
+            this.lblCliente.Size = new System.Drawing.Size(61, 16);
             this.lblCliente.TabIndex = 2;
             this.lblCliente.Text = "Cliente:";
             // 
@@ -105,7 +108,7 @@
             // lblFentrada
             // 
             this.lblFentrada.AutoSize = true;
-            this.lblFentrada.Location = new System.Drawing.Point(244, 27);
+            this.lblFentrada.Location = new System.Drawing.Point(250, 27);
             this.lblFentrada.Name = "lblFentrada";
             this.lblFentrada.Size = new System.Drawing.Size(97, 13);
             this.lblFentrada.TabIndex = 4;
@@ -128,15 +131,15 @@
             this.label4.ForeColor = System.Drawing.Color.DarkGray;
             this.label4.Location = new System.Drawing.Point(141, 49);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(96, 13);
+            this.label4.Size = new System.Drawing.Size(100, 13);
             this.label4.TabIndex = 5;
-            this.label4.Text = "Carga Asignada";
+            this.label4.Text = "Carga Asignada:";
             // 
             // tbar
             // 
             this.tbar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tbar.Enabled = false;
-            this.tbar.Location = new System.Drawing.Point(439, 42);
+            this.tbar.Location = new System.Drawing.Point(455, 42);
             this.tbar.Name = "tbar";
             this.tbar.Size = new System.Drawing.Size(222, 23);
             this.tbar.TabIndex = 7;
@@ -151,7 +154,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(482, 26);
+            this.label3.Location = new System.Drawing.Point(498, 26);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 13);
             this.label3.TabIndex = 8;
@@ -162,7 +165,7 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(562, 26);
+            this.label5.Location = new System.Drawing.Point(578, 26);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(47, 13);
             this.label5.TabIndex = 9;
@@ -173,7 +176,7 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(640, 26);
+            this.label6.Location = new System.Drawing.Point(656, 26);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(36, 13);
             this.label6.TabIndex = 10;
@@ -184,17 +187,68 @@
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(404, 26);
+            this.label7.Location = new System.Drawing.Point(420, 26);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(64, 13);
             this.label7.TabIndex = 11;
             this.label7.Text = "NoAsignada";
+            // 
+            // gunaButton1
+            // 
+            this.gunaButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.gunaButton1.AnimationHoverSpeed = 0.07F;
+            this.gunaButton1.AnimationSpeed = 0.03F;
+            this.gunaButton1.BaseColor = System.Drawing.Color.LightCoral;
+            this.gunaButton1.BorderColor = System.Drawing.Color.Black;
+            this.gunaButton1.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.gunaButton1.FocusedColor = System.Drawing.Color.Empty;
+            this.gunaButton1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.gunaButton1.ForeColor = System.Drawing.Color.White;
+            this.gunaButton1.Image = null;
+            this.gunaButton1.ImageSize = new System.Drawing.Size(20, 20);
+            this.gunaButton1.Location = new System.Drawing.Point(714, 0);
+            this.gunaButton1.Name = "gunaButton1";
+            this.gunaButton1.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
+            this.gunaButton1.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.gunaButton1.OnHoverForeColor = System.Drawing.Color.White;
+            this.gunaButton1.OnHoverImage = null;
+            this.gunaButton1.OnPressedColor = System.Drawing.Color.Black;
+            this.gunaButton1.Size = new System.Drawing.Size(63, 40);
+            this.gunaButton1.TabIndex = 12;
+            this.gunaButton1.Text = "Carga";
+            this.gunaButton1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(711, 43);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(66, 13);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "Fila Numero:";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblFilaNum
+            // 
+            this.lblFilaNum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblFilaNum.AutoSize = true;
+            this.lblFilaNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFilaNum.Location = new System.Drawing.Point(732, 56);
+            this.lblFilaNum.Name = "lblFilaNum";
+            this.lblFilaNum.Size = new System.Drawing.Size(21, 24);
+            this.lblFilaNum.TabIndex = 14;
+            this.lblFilaNum.Text = "1";
+            this.lblFilaNum.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // ControlEntradaCoor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.GhostWhite;
+            this.Controls.Add(this.lblFilaNum);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.gunaButton1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -208,7 +262,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Name = "ControlEntradaCoor";
-            this.Size = new System.Drawing.Size(688, 80);
+            this.Size = new System.Drawing.Size(778, 80);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -228,5 +282,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        public Guna.UI.WinForms.GunaButton gunaButton1;
+        public System.Windows.Forms.Label label8;
+        public System.Windows.Forms.Label lblFilaNum;
     }
 }
