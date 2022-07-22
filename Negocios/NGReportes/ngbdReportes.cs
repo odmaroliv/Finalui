@@ -147,7 +147,7 @@ namespace Negocios.NGReportes
         }
         private DateTime fecharestada()
         {
-            int NumeroDias = 30;
+            int NumeroDias = 62;
             DateTime Hoy = DateTime.Now;
             DateTime FechaRestada = Hoy.AddDays(-NumeroDias);
             return FechaRestada;
