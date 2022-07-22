@@ -70,8 +70,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.GhostWhite;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(141, 4);
+            this.label1.ForeColor = System.Drawing.Color.DarkGray;
+            this.label1.Location = new System.Drawing.Point(141, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(50, 13);
             this.label1.TabIndex = 1;
@@ -80,17 +82,21 @@
             // lblCliente
             // 
             this.lblCliente.AutoSize = true;
-            this.lblCliente.Location = new System.Drawing.Point(189, 4);
+            this.lblCliente.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCliente.ForeColor = System.Drawing.Color.Black;
+            this.lblCliente.Location = new System.Drawing.Point(191, 2);
             this.lblCliente.Name = "lblCliente";
-            this.lblCliente.Size = new System.Drawing.Size(42, 13);
+            this.lblCliente.Size = new System.Drawing.Size(68, 19);
             this.lblCliente.TabIndex = 2;
             this.lblCliente.Text = "Cliente:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.GhostWhite;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(141, 26);
+            this.label2.ForeColor = System.Drawing.Color.DarkGray;
+            this.label2.Location = new System.Drawing.Point(141, 27);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(115, 13);
             this.label2.TabIndex = 3;
@@ -99,7 +105,7 @@
             // lblFentrada
             // 
             this.lblFentrada.AutoSize = true;
-            this.lblFentrada.Location = new System.Drawing.Point(244, 26);
+            this.lblFentrada.Location = new System.Drawing.Point(244, 27);
             this.lblFentrada.Name = "lblFentrada";
             this.lblFentrada.Size = new System.Drawing.Size(97, 13);
             this.lblFentrada.TabIndex = 4;
@@ -108,7 +114,7 @@
             // lblCarga
             // 
             this.lblCarga.AutoSize = true;
-            this.lblCarga.Location = new System.Drawing.Point(244, 48);
+            this.lblCarga.Location = new System.Drawing.Point(244, 49);
             this.lblCarga.Name = "lblCarga";
             this.lblCarga.Size = new System.Drawing.Size(35, 13);
             this.lblCarga.TabIndex = 6;
@@ -117,8 +123,10 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.GhostWhite;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(141, 48);
+            this.label4.ForeColor = System.Drawing.Color.DarkGray;
+            this.label4.Location = new System.Drawing.Point(141, 49);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(96, 13);
             this.label4.TabIndex = 5;

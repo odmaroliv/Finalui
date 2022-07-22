@@ -120,7 +120,7 @@ namespace Negocios.NGReportes
                                     //join a in modelo.KDUV on k.C12 equals a.C2
                                     //join u in modelo.KDUSUARIOS on a.C22 equals u.C1
 
-                                    where k.C9 <= Hoy && k.C9 >=fc && d.C19 == "SD" && d.C10 == dato.Trim() && k.C12 == Common.Cache.CacheLogin.idusuario.ToString().Trim()
+                                    where k.C9 <= Hoy && k.C9 >=fc && d.C19 == "SD" && d.C10 == dato.Trim() && k.C12 == Common.Cache.CacheLogin.idusuario.ToString().Trim() && d.C34 ==""
                                     orderby d.C6 descending
                                    
                                     select new vmInfoControlCors 
@@ -133,7 +133,7 @@ namespace Negocios.NGReportes
                                         ordapli = d.C16.Trim(),
                                         salida = d.C17.Trim()
 
-                                    });
+                                    });;
                         lst = lista.ToList();
                     }
                 });

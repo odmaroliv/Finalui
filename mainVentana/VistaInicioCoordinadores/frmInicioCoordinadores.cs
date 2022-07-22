@@ -190,14 +190,14 @@ namespace mainVentana.VistaInicioCoordinadores
 
 
 
-            if (ls2.Count > 0)
+            if (lss.Count > 0)
             {
 
-                ControlEntradaCoor[] lb = new ControlEntradaCoor[ls2.Count];
+                ControlEntradaCoor[] lb = new ControlEntradaCoor[lss.Count];
                 int con = 0;
 
 
-                foreach (var i in ls2.OrderBy(x => x.ordcarga).ThenBy(x => x.ordapli).ThenBy(x => x.salida).ThenBy(x => x.entrada))
+                foreach (var i in lss.OrderBy(x => x.ordcarga).ThenBy(x => x.ordapli).ThenBy(x => x.salida).ThenBy(x => x.entrada))
                 {
 
                     lb[con] = new ControlEntradaCoor();
