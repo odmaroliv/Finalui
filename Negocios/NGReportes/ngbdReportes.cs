@@ -133,7 +133,7 @@ namespace Negocios.NGReportes
                                         ordapli = d.C16.Trim(),
                                         salida = d.C17.Trim()
 
-                                    });;
+                                    });
                         lst = lista.ToList();
                     }
                 });

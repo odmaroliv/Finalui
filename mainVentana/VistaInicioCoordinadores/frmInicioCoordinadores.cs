@@ -92,7 +92,7 @@ namespace mainVentana.VistaInicioCoordinadores
                 int con = 0;
 
 
-                foreach (var i in lss.OrderBy(x => x.ordcarga).ThenBy(x => x.ordapli).ThenBy(x => x.salida).ThenBy(x => x.entrada))
+                foreach (var i in lss.OrderBy(x => x.entrada))
                 {
 
                     lb[con] = new ControlEntradaCoor();
@@ -197,7 +197,7 @@ namespace mainVentana.VistaInicioCoordinadores
                 int con = 0;
 
 
-                foreach (var i in lss.OrderBy(x => x.ordcarga).ThenBy(x => x.ordapli).ThenBy(x => x.salida).ThenBy(x => x.entrada))
+                foreach (var i in lss.OrderBy(x => x.entrada))
                 {
 
                     lb[con] = new ControlEntradaCoor();
