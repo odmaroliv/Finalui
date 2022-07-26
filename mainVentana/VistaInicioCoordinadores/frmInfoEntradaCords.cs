@@ -23,19 +23,19 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private void btnEntrada_Click(object sender, EventArgs e)
         {
-            char[] c = "-".ToCharArray();
-            string entsp = txbEtiqueta.Text.Split(c)[1];
-            string sucsp = txbEtiqueta.Text.Split(c)[0];
+           
+            string entsp = txbEtiqueta.Text;
+            string sucsp = txbEtiqueta.Text;
 
         
 
-            /*if (MessageBox.Show("Estas apunto de dar de baja na entrada " + entsp + " \nde: " + sucsp,"Alerta",MessageBoxButtons.OKCancel,MessageBoxIcon.Stop) ==DialogResult.OK)
+            if (MessageBox.Show("Estas apunto de dar de baja na entrada " + entsp + " \nde: " + sucsp,"Alerta",MessageBoxButtons.OKCancel,MessageBoxIcon.Stop) ==DialogResult.OK)
             {
                 if (MessageBox.Show("De nuevo, esta entrada se eliminara de las tablas, quedado unicamente disponible para su consulta \nEntrada: " + entsp + " \nDe: " + sucsp, "Ultima Alerta", MessageBoxButtons.OKCancel, MessageBoxIcon.Stop) == DialogResult.OK)
                 {
 
                 }
-            }*/
+            }
             
         }
     }

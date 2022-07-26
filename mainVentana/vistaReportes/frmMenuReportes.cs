@@ -70,8 +70,8 @@ namespace mainVentana.vistaReportes
 
 
 
-                if (tiempo > TimeSpan.Parse("15.00:00:0.0"))
-                { //cuando un item tiene mas de 15 dias en el almacen y la sursal actual es igual a la sucursal origen
+                if (tiempo > TimeSpan.Parse("3.00:00:0.0"))
+                { //cuando un item tiene mas de 3 dias en el almacen y la sursal actual es igual a la sucursal origen
                     dgvRepos.Rows[i].Cells[2].Style.BackColor = Color.FromArgb(156, 19, 18);
                     dgvRepos.Rows[i].Cells[2].Style.ForeColor = Color.FromArgb(255, 255, 255);
                     dgvRepos.Rows[i].Cells[0].Style.BackColor = Color.FromArgb(156, 19, 18);
@@ -81,8 +81,8 @@ namespace mainVentana.vistaReportes
 
                 }
 
-                if (tiempo < TimeSpan.Parse("15.00:00:0.0"))
-                { //cuando la sucursal actual es la sucursal de origen y tiene menos de 15 dias
+                if (tiempo < TimeSpan.Parse("3.00:00:0.0"))
+                { //cuando la sucursal actual es la sucursal de origen y tiene menos de 3 dias
                     dgvRepos.Rows[i].Cells[2].Style.BackColor = Color.FromArgb(19, 156, 18);
                     dgvRepos.Rows[i].Cells[2].Style.ForeColor = Color.FromArgb(255, 255, 255);
                     dgvRepos.Rows[i].Cells[0].Style.BackColor = Color.FromArgb(19, 156, 18);
@@ -143,7 +143,7 @@ namespace mainVentana.vistaReportes
 
 
 
-                if (tiempo > TimeSpan.Parse("15.00:00:0.0"))
+                if (tiempo > TimeSpan.Parse("3.00:00:0.0"))
                 { //cuando un item tiene mas de 15 dias en el almacen y la sursal actual es igual a la sucursal origen
 
                     list.Add(new vmCorreoInforma
@@ -229,8 +229,7 @@ namespace mainVentana.vistaReportes
             List<vmCorreoInforma> lss = new List<vmCorreoInforma>();
             string mensaje = String.Format(@"<html>
                        <body>
-
-                       <p>Las siguientes entradas cuentan con más de <b>15 días en almacén San Diego</b>  <br></p>
+                       <p>Las siguientes entradas cuentan con más de <b>3 días en almacén San Diego</b>  <br></p>
                        <p>Es probable que la mayoría ya hayan salido, de manera aérea, especial, o sean un error, favor de revisarlas.<br><br><br></p>
                        <p>Este reporte se ha enviado de forma automática. Cualquier error favor de comunicarlo al departamento de Sistemas.<br><br></p>
                        <p><b>Reporte Generado Por:</b> <br>{0}<br></p>
@@ -244,7 +243,6 @@ namespace mainVentana.vistaReportes
                 lss.Clear();
                 foreach (var d in dato)
                 {
-
                     if (q.Equals(d.correo.Trim()))
                     {
                         lss.Add(new vmCorreoInforma { eti = d.eti, Entrada = d.Entrada, Fechadeentrada = d.Fechadeentrada, Descipcion = d.Descipcion, correo = d.correo });
@@ -295,7 +293,7 @@ namespace mainVentana.vistaReportes
                 SmtpClient smtp = new SmtpClient();
                 msg.IsBodyHtml = true;
                 msg.From = new MailAddress("smtpdniell@gmail.com");
-                msg.Subject = "Entradas con mas de 15 dias en almacen SD";
+                msg.Subject = "Entradas con mas de 3 dias en almacen SD";
 
 
                 msg.IsBodyHtml = true;
@@ -308,6 +306,9 @@ namespace mainVentana.vistaReportes
 
                 msg.To.Add(new MailAddress(correo));
                 msg.CC.Add(new MailAddress("meliza.garcia@arnian.com"));
+                msg.CC.Add(new MailAddress("sistemas@arnian.com"));
+                msg.CC.Add(new MailAddress("operaciones@arnian.com"));
+                msg.CC.Add(new MailAddress("marcos.martinez@arnian.com "));
 
                 long pesoArch = 0;
 

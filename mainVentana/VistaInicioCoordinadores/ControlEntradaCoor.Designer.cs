@@ -139,13 +139,13 @@
             // 
             this.tbar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tbar.Enabled = false;
-            this.tbar.Location = new System.Drawing.Point(455, 42);
+            this.tbar.Location = new System.Drawing.Point(440, 57);
             this.tbar.Name = "tbar";
             this.tbar.Size = new System.Drawing.Size(222, 23);
             this.tbar.TabIndex = 7;
             this.tbar.TrackColor = System.Drawing.Color.Red;
-            this.tbar.TrackHoverColor = System.Drawing.SystemColors.HighlightText;
-            this.tbar.TrackIdleColor = System.Drawing.Color.Silver;
+            this.tbar.TrackHoverColor = System.Drawing.Color.GhostWhite;
+            this.tbar.TrackIdleColor = System.Drawing.Color.GhostWhite;
             this.tbar.TrackPressedColor = System.Drawing.Color.DarkBlue;
             this.tbar.Value = 66;
             // 
@@ -154,7 +154,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(498, 26);
+            this.label3.Location = new System.Drawing.Point(483, 44);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 13);
             this.label3.TabIndex = 8;
@@ -165,7 +165,7 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(578, 26);
+            this.label5.Location = new System.Drawing.Point(563, 44);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(47, 13);
             this.label5.TabIndex = 9;
@@ -176,7 +176,7 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(656, 26);
+            this.label6.Location = new System.Drawing.Point(641, 44);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(36, 13);
             this.label6.TabIndex = 10;
@@ -187,7 +187,7 @@
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(420, 26);
+            this.label7.Location = new System.Drawing.Point(405, 44);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(64, 13);
             this.label7.TabIndex = 11;
@@ -206,7 +206,7 @@
             this.gunaButton1.ForeColor = System.Drawing.Color.White;
             this.gunaButton1.Image = null;
             this.gunaButton1.ImageSize = new System.Drawing.Size(20, 20);
-            this.gunaButton1.Location = new System.Drawing.Point(714, 0);
+            this.gunaButton1.Location = new System.Drawing.Point(699, 0);
             this.gunaButton1.Name = "gunaButton1";
             this.gunaButton1.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.gunaButton1.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -217,12 +217,13 @@
             this.gunaButton1.TabIndex = 12;
             this.gunaButton1.Text = "Carga";
             this.gunaButton1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.gunaButton1.Click += new System.EventHandler(this.gunaButton1_Click);
             // 
             // label8
             // 
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(711, 43);
+            this.label8.Location = new System.Drawing.Point(696, 43);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(66, 13);
             this.label8.TabIndex = 13;
@@ -234,7 +235,7 @@
             this.lblFilaNum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFilaNum.AutoSize = true;
             this.lblFilaNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFilaNum.Location = new System.Drawing.Point(732, 56);
+            this.lblFilaNum.Location = new System.Drawing.Point(717, 56);
             this.lblFilaNum.Name = "lblFilaNum";
             this.lblFilaNum.Size = new System.Drawing.Size(21, 24);
             this.lblFilaNum.TabIndex = 14;
@@ -262,7 +263,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Name = "ControlEntradaCoor";
-            this.Size = new System.Drawing.Size(778, 80);
+            this.Size = new System.Drawing.Size(763, 80);
             this.ResumeLayout(false);
             this.PerformLayout();
 

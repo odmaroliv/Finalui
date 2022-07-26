@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Datos.ViewModels.Reportes;
@@ -32,12 +33,21 @@ namespace mainVentana.VistaInicioCoordinadores
             await pasado(id);
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
+     
 
+        public async Task ejecutaeveto2()
+        {
+            
+            await Task.Run(() => { Thread.Sleep(1000); });
+            await CargaControles();
+            await cargacontroldos();
         }
+
         private async void frmInicioCoordinadores_Load(object sender, EventArgs e)
         {
+
+            
+
             await CargaControles();
             await cargacontroldos();
         }
@@ -96,6 +106,7 @@ namespace mainVentana.VistaInicioCoordinadores
                 {
 
                     lb[con] = new ControlEntradaCoor();
+                    lb[con].refrescado += new ControlEntradaCoor.refrescarcord(ejecutaeveto2);
                     lb[con].pasado2 += new ControlEntradaCoor.pasar2(ejecutaeveto);
                     lb[con].Tag = i;
 
@@ -200,6 +211,7 @@ namespace mainVentana.VistaInicioCoordinadores
                 {
 
                     lb[con] = new ControlEntradaCoor();
+                    lb[con].refrescado += new ControlEntradaCoor.refrescarcord(ejecutaeveto2);
                     lb[con].pasado2 += new ControlEntradaCoor.pasar2(ejecutaeveto);
                     lb[con].Tag = i;
                     

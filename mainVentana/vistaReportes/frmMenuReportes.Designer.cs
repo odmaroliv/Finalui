@@ -82,7 +82,7 @@
             this.sd1.Radius = 5;
             this.sd1.Size = new System.Drawing.Size(318, 84);
             this.sd1.TabIndex = 25;
-            this.sd1.Text = "SD Entradas + 15 dias en el almacen";
+            this.sd1.Text = "SD Entradas + 3 dias en el almacen";
             this.sd1.TextRenderingHint = Guna.UI.WinForms.DrawingTextRenderingHint.AntiAlias;
             this.sd1.Click += new System.EventHandler(this.sd1_Click);
             // 
