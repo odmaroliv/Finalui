@@ -11,6 +11,7 @@ using Negocios;
 using Negocios.Common.Cache;
 using System.Threading;
 using mainVentana.vistaReportes;
+using mainVentana.VistaRecepcion;
 
 namespace mainVentana
 {
@@ -329,5 +330,16 @@ namespace mainVentana
             frm.ShowDialog();
             frm.Dispose();
         }
+
+        private void btnRecep_Click(object sender, EventArgs e)
+        {
+            frmRecepcion frm = new frmRecepcion();
+            frm.ShowDialog();
+            frm.Dispose();
+        }
+
+
+
+
     }
 }

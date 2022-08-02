@@ -30,10 +30,10 @@
     <UpdateUrl>https://raw.githubusercontent.com/odmaroliv/Finalui/master/published/</UpdateUrl>
     <ProductName>ARSYS</ProductName>
     <PublisherName>Daniel Olivares H.</PublisherName>
-    <MinimumRequiredVersion>1.0.0.43</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.0.44</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>44</ApplicationRevision>
+    <ApplicationRevision>45</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -389,6 +389,24 @@
     <Compile Include="VistaOrSalida\frmOrdSalida.Designer.cs">
       <DependentUpon>frmOrdSalida.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaRecepcion\frmListaSalidasRecep.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaRecepcion\frmListaSalidasRecep.Designer.cs">
+      <DependentUpon>frmListaSalidasRecep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaRecepcion\frmRecepcion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaRecepcion\frmRecepcion.Designer.cs">
+      <DependentUpon>frmRecepcion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaRecepcion\frmRecepcionExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaRecepcion\frmRecepcionExcel.Designer.cs">
+      <DependentUpon>frmRecepcionExcel.cs</DependentUpon>
+    </Compile>
     <Compile Include="vistaReportes\frmMenuReportes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -472,6 +490,15 @@
     <EmbeddedResource Include="VistaOrSalida\frmOrdSalida.resx">
       <DependentUpon>frmOrdSalida.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VistaRecepcion\frmListaSalidasRecep.resx">
+      <DependentUpon>frmListaSalidasRecep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaRecepcion\frmRecepcion.resx">
+      <DependentUpon>frmRecepcion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaRecepcion\frmRecepcionExcel.resx">
+      <DependentUpon>frmRecepcionExcel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="vistaReportes\frmMenuReportes.resx">
       <DependentUpon>frmMenuReportes.cs</DependentUpon>
     </EmbeddedResource>
@@ -548,9 +575,7 @@
     <None Include="Resources\ejemplo.html" />
     <Content Include="Resources\Plantilla.html" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="VistaRecepcion\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

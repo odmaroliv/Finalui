@@ -251,9 +251,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(103, 335);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(140, 13);
+            this.label2.Size = new System.Drawing.Size(134, 13);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Mas de 15 dias en almacen:";
+            this.label2.Text = "Mas de 3 dias en almacen:";
             // 
             // txbMa
             // 

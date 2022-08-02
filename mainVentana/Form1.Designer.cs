@@ -327,6 +327,7 @@ namespace mainVentana
             this.btnRecep.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRecep.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRecep.UseVisualStyleBackColor = false;
+            this.btnRecep.Click += new System.EventHandler(this.btnRecep_Click);
             this.btnRecep.MouseEnter += new System.EventHandler(this.iconButton5_MouseEnter);
             this.btnRecep.MouseLeave += new System.EventHandler(this.iconButton5_MouseLeave);
             // 
