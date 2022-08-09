@@ -37,7 +37,8 @@ namespace mainVentana.VistaInicioCoordinadores
 
         public async Task ejecutaeveto2()
         {
-            
+            flowLayoutPanel1.Controls.Clear();
+            flowLayoutPanel2.Controls.Clear();
             await Task.Run(() => { Thread.Sleep(1000); });
             await CargaControles();
             await cargacontroldos();
@@ -106,6 +107,7 @@ namespace mainVentana.VistaInicioCoordinadores
                 {
 
                     lb[con] = new ControlEntradaCoor();
+                    
                     lb[con].refrescado += new ControlEntradaCoor.refrescarcord(ejecutaeveto2);
                     lb[con].pasado2 += new ControlEntradaCoor.pasar2(ejecutaeveto);
                     lb[con].Tag = i;
