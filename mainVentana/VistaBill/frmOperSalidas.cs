@@ -12,6 +12,7 @@ using Negocios.NGBill;
 using ClosedXML.Excel;
 using System.Reflection;
 using System.Diagnostics;
+using Datos.ViewModels.Bill;
 
 namespace mainVentana.VistaBill
 {
@@ -22,12 +23,12 @@ namespace mainVentana.VistaBill
             InitializeComponent();
         }
 
-        private void gunaAdvenceButton1_Click(object sender, EventArgs e)
+       /* private void gunaAdvenceButton1_Click(object sender, EventArgs e)
         {
             string dia = dtpTiempo.Value.Date.ToString();
             BusquedaBill bd = new BusquedaBill();
            gunaDataGridView1.DataSource =  bd.SalidasOperacion(dia);
-        }
+        }*/
 
         private void frmOperSalidas_Load(object sender, EventArgs e)
         {
@@ -101,18 +102,70 @@ namespace mainVentana.VistaBill
         }
     
 
-        private void gunaAdvenceButton3_Click(object sender, EventArgs e)
+        List<VMSalidasBill> listaeti = new List<VMSalidasBill>();
+        private void txbEtiqueta_KeyDown(object sender, KeyEventArgs e)
         {
+            string fecha = dtpTiempo.Value.ToString("dd/MM/yyyy");
+
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true; 
+                e.SuppressKeyPress = true;
+
             
-                DataTable dt = new DataTable();
-                dt.Columns.AddRange(new DataColumn[3] { new DataColumn("Id", typeof(int)),
-            new DataColumn("Name", typeof(string)),
-            new DataColumn("Country",typeof(string)) });
-                dt.Rows.Add(1, "John Hammond", "United States");
-                dt.Rows.Add(2, "Mudassar Khan", "India");
-                dt.Rows.Add(3, "Suzanne Mathews", "France");
-                dt.Rows.Add(4, "Robert Schidner", "Russia");
-                this.gunaDataGridView1.DataSource = dt;
+                string eti = txbEtiqueta.Text.Replace("'", "-");
+                if (Verifica(eti)==1)
+                {
+                    return;
+                }
+                
+                BusquedaBill bd = new BusquedaBill();
+                var ss = bd.SalidasOperacion(eti, fecha);
+                if (ss.Count()>0)
+                {
+                    listaeti.Add(ss[0]);
+                }
+                else 
+                {
+                    labelAlert.Text = "No Se encontro";
+                    panelAlert.BackColor = Color.Red;
+                    txbEtiqueta.Text = "";
+                    return;
+                }
+                panelAlert.BackColor = Color.Green;
+                labelAlert.Text = "Agregada";
+                gunaDataGridView1.DataSource = null;
+                txbEtiqueta.Text = "";
+                gunaDataGridView1.DataSource = listaeti;
+                gunaDataGridView1.Rows[gunaDataGridView1.RowCount - 1].Selected = true;
+
+            }
+        }
+
+        private int Verifica(string dato)
+        {
+            int band = 0;
+            for (int i = 0; i < gunaDataGridView1.Rows.Count; i++)
+            {
+                if (dato.Trim().ToUpper() == gunaDataGridView1.Rows[i].Cells[6].Value.ToString().Trim().ToUpper())
+                {
+                    panelAlert.BackColor = Color.Red;
+                    labelAlert.Text = "Duplicada";
+                    txbEtiqueta.Text = "";
+                    band = 1;
+                }
+            }
+            return band;
+        }
+
+        private void txbEtiqueta_Leave(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Saliendo de scanear?","Cuidado",MessageBoxButtons.OKCancel) ==DialogResult.OK)
+            {
+                
+                txbEtiqueta.Focus();
+            }
             
         }
     }

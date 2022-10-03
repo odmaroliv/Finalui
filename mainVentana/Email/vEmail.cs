@@ -87,7 +87,7 @@ namespace mainVentana.Email
             smtp.Port = 587;
             smtp.EnableSsl = true;
             smtp.UseDefaultCredentials = false;
-            NetworkCredential nc = new NetworkCredential("smtpdniell@gmail.com", "uukcdonkhscscxwt");
+            NetworkCredential nc = new NetworkCredential("smtpdniell@gmail.com", "ewxkirdrnjxsfxbm");
             smtp.Credentials = nc;
             smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
 
