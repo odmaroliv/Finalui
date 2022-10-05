@@ -23,7 +23,7 @@ namespace Negocios.NGBill
                     var lista = from d in modelo.KDMENT
                                 join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
                                 join a in modelo.KDUD on k.C10 equals a.C2
-                                where d.C10 == "CSL" && d.C23 == "T" && d.C9 == dato
+                                where /*d.C10 == "CSL" && d.C23 == "T" &&*/ d.C9 == dato
                                 select new VMSalidasBill
                                 {
                                     entrada = d.C1.Trim()+"-"+d.C6,
