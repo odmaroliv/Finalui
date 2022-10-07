@@ -37,10 +37,10 @@ namespace Negocios.NGBill
                                     horamin = "08:00",
                                     horamax = "17:00",
                                     capacidad = "1",
-                                    servicetime = "10",
+                                    servicetime = "20",
                                    
                                     idcontacto = d.C24,
-                                    nomcotacto = "Cliente",
+                                    nomcotacto = k.C112,
                                     EMAIL = a.C11,
 
                                     Telefono = d.C29,
