@@ -185,6 +185,9 @@
     <Compile Include="ViewModels\Reportes\vmInfoControlCors.cs" />
     <Compile Include="ViewModels\Reportes\vmSd1Reporte.cs" />
     <Compile Include="ViewModels\Salidas\vmCargaOrdenesDeCarga.cs" />
+    <Compile Include="ViewModels\Salidas\vmCargaOrdenesDeSalida.cs" />
+    <Compile Include="ViewModels\Salidas\vmEntByCarga.cs" />
+    <Compile Include="ViewModels\Salidas\vmGeneralesSalidas.cs" />
     <Compile Include="ViewModels\Servicios\FechaActual.cs" />
     <Compile Include="ViewModels\Servicios\Paridad.cs" />
     <Compile Include="ViewModels\Login\vmLogin.cs" />

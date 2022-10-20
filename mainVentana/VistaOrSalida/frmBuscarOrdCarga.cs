@@ -16,8 +16,17 @@ namespace mainVentana.VistaOrSalida
 
 
         public string sorigen;
+        public string sucsdest;
         public string documento;
         public int numerosuc;
+
+
+        public delegate void pasar(string dato1);
+        public event pasar pasado;
+
+        public delegate void cerrar();
+        public event cerrar cerrado;
+
         public frmBuscarOrdCarga()
         {
             InitializeComponent();
@@ -30,8 +39,28 @@ namespace mainVentana.VistaOrSalida
 
         private async void frmBuscarOrdCarga_Load(object sender, EventArgs e)
         {
-          AccesoSalidas sv = new AccesoSalidas();
-           gunaDataGridView1.DataSource =  await sv.LlenaDGV(sorigen,documento,numerosuc);
+           gunaDataGridView1.DataSource = null;
+         AccesoSalidas sv = new AccesoSalidas();
+           gunaDataGridView1.DataSource =  await sv.LlenaDGV(sorigen,sucsdest,documento, numerosuc);
+        }
+
+        private void gunaDataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (gunaDataGridView1.Rows.Count > 0)
+            {
+           
+                string carga = gunaDataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString().Trim();
+                pasado(carga);
+            }
+            else
+            {
+                MessageBox.Show("No hay datos para buscar.");
+            }
+        }
+
+        private void frmBuscarOrdCarga_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            cerrado();
         }
     }
 }

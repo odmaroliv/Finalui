@@ -13,6 +13,7 @@ using Datos.Datosenti;
 using Datos.ViewModels;
 using Datos.ViewModels.Entradas;
 using Datos.ViewModels.Reportes;
+using Datos.ViewModels.Salidas;
 using mainVentana.vmLogin;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Page;
 
@@ -561,6 +562,7 @@ namespace Negocios
             catch (Exception)
             {
 
+                MessageBox.Show("Acceso No Autorizado");
                 throw;
             }
         }
@@ -866,6 +868,38 @@ namespace Negocios
             }
         }
 
+
+        public async Task<List<vmEntByCarga>> CargaEntByCarga(string id)
+        {
+            try
+            {
+                var lst2 = new List<vmEntByCarga>();
+                await Task.Run(() =>
+                {
+                    using (modelo2Entities modelo = new modelo2Entities())
+
+                    {
+                        var lista = from d in modelo.KDMENT
+                                    where d.C16.Equals(id)
+                                    select new vmEntByCarga
+                                    {
+                                       Etiqueta = d.C9,
+                                       Carga = d.C16
+
+                                    };
+                        lst2 = lista.ToList();
+
+                    }
+                });
+
+                return lst2;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
 
     }
 }

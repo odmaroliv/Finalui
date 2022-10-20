@@ -20,6 +20,7 @@ namespace mainVentana
 
         private void gunaGradientTileButton5_Click(object sender, EventArgs e)
         {
+
             try
             {
                 VistaOrSalida.frmOrdSalida salida = new VistaOrSalida.frmOrdSalida();

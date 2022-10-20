@@ -30,10 +30,10 @@
     <UpdateUrl>https://raw.githubusercontent.com/odmaroliv/Finalui/master/published/</UpdateUrl>
     <ProductName>ARSYS</ProductName>
     <PublisherName>Daniel Olivares H.</PublisherName>
-    <MinimumRequiredVersion>1.0.0.53</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.0.54</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>54</ApplicationRevision>
+    <ApplicationRevision>55</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -387,6 +387,12 @@
     <Compile Include="VistaOrSalida\frmBuscarOrdCarga.Designer.cs">
       <DependentUpon>frmBuscarOrdCarga.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaOrSalida\frmBuscarOrdSalida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaOrSalida\frmBuscarOrdSalida.Designer.cs">
+      <DependentUpon>frmBuscarOrdSalida.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaOrSalida\frmOrdSalida.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -490,6 +496,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VistaOrSalida\frmBuscarOrdCarga.resx">
       <DependentUpon>frmBuscarOrdCarga.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaOrSalida\frmBuscarOrdSalida.resx">
+      <DependentUpon>frmBuscarOrdSalida.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaOrSalida\frmOrdSalida.resx">
       <DependentUpon>frmOrdSalida.cs</DependentUpon>

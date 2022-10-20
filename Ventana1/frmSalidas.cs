@@ -29,8 +29,7 @@ namespace Ventana1
 {
     public partial class frmSalidas : Form
     {
-        string CSN = mbsecurity.CSN;
-        string SN = mbsecurity.SN;
+       
         string ulDato = "";
         string ulDatoSolo = "";
         string sOrigen = "";
@@ -341,7 +340,8 @@ namespace Ventana1
                 , DateTime.Now
                 , lblTransportista.Text.Length >= 100 ? lblTransportista.Text.Substring(0, 100) : lblTransportista.Text
                 , lblPlacas.Text.Length >= 50 ? lblPlacas.Text.Substring(0, 50) : lblPlacas.Text
-                , lblChofer.Text.Length >= 100 ? lblChofer.Text.Substring(0, 100) : lblChofer.Text);
+                , lblChofer.Text.Length >= 100 ? lblChofer.Text.Substring(0, 100) : lblChofer.Text
+                , sDestino);
 
 
             if (sDestino == "CSL" && sOrigen == "SD")

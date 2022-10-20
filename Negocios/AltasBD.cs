@@ -317,7 +317,7 @@ namespace Negocios
 
 
         public async void CSalidaEnKDM1(string c1, string c2, string c3, decimal c4, decimal c5, string c6, decimal c8, DateTime c9, string c11, decimal c16, DateTime c18, string c24
-            , string c31, string c43, string c63, string c67, DateTime c68, string c94, string c95, string c96)
+            , string c31, string c43, string c63, string c67, DateTime c68, string c94, string c95, string c96, string c103)
         {
 
 
@@ -348,7 +348,7 @@ namespace Negocios
                 d.C94 = c94;
                 d.C95 = c95;
                 d.C96 = c96;
-
+                d.C103 = c103;
 
                 modelo.KDM1.Add(d);
                 try
@@ -361,78 +361,109 @@ namespace Negocios
                 }
             }
         }
-        
-       /*public async Task<List<List<vmErroresScanSalidas>>> ModifiKDMENTtj(int nrows,string etiq, string salida, string c19, string c20, string c23, string c55, string, string c56, 
-           string c63, string c64, string c65, string c66, string c67, string c68, string c75)
+
+        public async Task ModificaStatusSalida(string numerosalida,string numerocarga)
         {
-            int nm = 0;
-            List<vmErroresScanSalidas> lserror = new List<vmErroresScanSalidas>();
-            List<vmErroresScanSalidas> lsexito = new List<vmErroresScanSalidas>();
-            List<List<vmErroresScanSalidas>> listfinal = new List<List<vmErroresScanSalidas>>();
+
+
             await Task.Run(() =>
             {
-
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
+                    List<KDM1> kd = new List<KDM1>();
 
-                    List<KDMENT> kd = new List<KDMENT>();
-                    foreach (var q in dgvInicial.Rows)
+                    var d = (from fd in modelo.KDM1
+                             where fd.C4 == 40 && fd.C6 == numerocarga
+                             select fd).First();
+
+
+
+                    d.C44 = numerosalida;
+                    kd.Add(d);
+
+                    try
                     {
-                        string msn = dgvInicial.Rows[nm].Cells[0].Value.ToString();
-
-
-
-                        string uld = (string)ulDato.Trim().Clone();
-                        nm = nm + 1;
-
-                        try
-                        {
-                            var d = (from fd in modelo.KDMENT
-                                     where fd.C9 == msn.Trim()// 
-                                     select fd).First();
-
-                            d.C19 = sOrigen;
-                            d.C20 = "PR";
-                            d.C23 = "";
-                            d.C55 = uld;
-                            d.C56 = "";
-
-                            d.C63 = uld;
-                            d.C64 = uld;
-                            d.C65 = "E";
-                            d.C66 = "";
-                            d.C67 = "";
-                            d.C68 = "";
-                            d.C75 = DateTime.Now.ToString("dd/MM/yyyy");
-                            kd.Add(d);
-
-
-
-                            //modelo.SaveChanges();
-                            lsexito.Add(new vmErroresScanSalidas { etiqueta = msn, error = "Actualizada con Exito" });
-
-                        }
-                        catch (Exception J)
-                        {
-
-                            lserror.Add(new vmErroresScanSalidas { etiqueta = msn, error = J.Message.ToString() });
-
-                            continue;
-
-                        }
-                        
-                       
+                        modelo.BulkUpdate(kd.ToList());
                     }
-                    modelo.BulkUpdate(kd.ToList());
+                    catch (Exception ex)
+                    {
+                        throw;
+                    }
                 }
             });
+        }
 
-            listfinal.Add(lsexito);
-            listfinal.Add(lserror);
-            return listfinal.ToList();
-        }*/
+        /*public async Task<List<List<vmErroresScanSalidas>>> ModifiKDMENTtj(int nrows,string etiq, string salida, string c19, string c20, string c23, string c55, string, string c56, 
+            string c63, string c64, string c65, string c66, string c67, string c68, string c75)
+         {
+             int nm = 0;
+             List<vmErroresScanSalidas> lserror = new List<vmErroresScanSalidas>();
+             List<vmErroresScanSalidas> lsexito = new List<vmErroresScanSalidas>();
+             List<List<vmErroresScanSalidas>> listfinal = new List<List<vmErroresScanSalidas>>();
+             await Task.Run(() =>
+             {
 
-        
+                 using (modelo2Entities modelo = new modelo2Entities())
+                 {
+
+                     List<KDMENT> kd = new List<KDMENT>();
+                     foreach (var q in dgvInicial.Rows)
+                     {
+                         string msn = dgvInicial.Rows[nm].Cells[0].Value.ToString();
+
+
+
+                         string uld = (string)ulDato.Trim().Clone();
+                         nm = nm + 1;
+
+                         try
+                         {
+                             var d = (from fd in modelo.KDMENT
+                                      where fd.C9 == msn.Trim()// 
+                                      select fd).First();
+
+                             d.C19 = sOrigen;
+                             d.C20 = "PR";
+                             d.C23 = "";
+                             d.C55 = uld;
+                             d.C56 = "";
+
+                             d.C63 = uld;
+                             d.C64 = uld;
+                             d.C65 = "E";
+                             d.C66 = "";
+                             d.C67 = "";
+                             d.C68 = "";
+                             d.C75 = DateTime.Now.ToString("dd/MM/yyyy");
+                             kd.Add(d);
+
+
+
+                             //modelo.SaveChanges();
+                             lsexito.Add(new vmErroresScanSalidas { etiqueta = msn, error = "Actualizada con Exito" });
+
+                         }
+                         catch (Exception J)
+                         {
+
+                             lserror.Add(new vmErroresScanSalidas { etiqueta = msn, error = J.Message.ToString() });
+
+                             continue;
+
+                         }
+
+
+                     }
+                     modelo.BulkUpdate(kd.ToList());
+                 }
+             });
+
+             listfinal.Add(lsexito);
+             listfinal.Add(lserror);
+             return listfinal.ToList();
+         }*/
+
+
     }
 
 
