@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
+
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Management;
@@ -24,6 +24,7 @@ using System.Media;
 using Negocios;
 using Datos.Datosenti;
 using KDMENT = Datos.Datosenti.KDMENT;
+using System.Drawing;
 
 namespace Ventana1
 {
@@ -336,7 +337,7 @@ namespace Ventana1
                 , "Ord"
                 , "A"
                 , "UD4501-"
-                , Negocios.Common.Cache.CacheLogin.idusuario.ToString()
+                , Negocios.Common.Cache.CacheLogin.username.ToString()
                 , DateTime.Now
                 , lblTransportista.Text.Length >= 100 ? lblTransportista.Text.Substring(0, 100) : lblTransportista.Text
                 , lblPlacas.Text.Length >= 50 ? lblPlacas.Text.Substring(0, 50) : lblPlacas.Text

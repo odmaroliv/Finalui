@@ -195,22 +195,27 @@ namespace mainVentana.VistaOrSalida
         List<vmEntByCarga> lista = new List<vmEntByCarga>();
         private async void BuscaentradasCarga()
         {
-
             Servicios datos = new Servicios();
-            dgvOrdenesEntrada.DataSource = null;
+            
+                dgvOrdenesEntrada.DataSource = null;
 
 
 
-            lista.Clear();
+                lista.Clear();
             foreach (DataGridViewRow i in dgvListaCargas.Rows)
             {
-                lista.AddRange(await datos.CargaEntByCarga(i.Cells[0].Value.ToString().Trim()));
+                lista.AddRange(await datos.CargaEntByCarga(i.Cells[0].Value.ToString().Trim(), sOrigen));
             }
+            //ValidatablaObserva();
             Validatabla();
-            dgvOrdenesEntrada.DataSource = lista;
-            datos = null;
+            ValidatablaObserva();
+                dgvOrdenesEntrada.DataSource = lista;
 
+                datos = null;
+            
+            
 
+            
 
 
         }
@@ -230,12 +235,69 @@ namespace mainVentana.VistaOrSalida
                         break;
                     }
                 }
+            }
+        }
+
+        private void ValidatablaObserva()
+        {
 
 
+            List<vmEntByCarga> lst2 = new List<vmEntByCarga>();
+            foreach (DataGridViewRow i in dgvListaCargas.Rows)
+            {
+                lst2.Add(new vmEntByCarga { Carga = i.Cells[0].Value.ToString().Trim() });
 
             }
+            List<vmEntByCarga> lst3 = new List<vmEntByCarga>();
+            foreach (DataGridViewRow i in dgvEscaneados.Rows)
+            {
+                lst3.Add(new vmEntByCarga { Carga = i.Cells[1].Value.ToString().Trim(), Etiqueta = i.Cells[0].Value.ToString().Trim() });
+            }
+
+            //var noExistewn = (from t in lst3 where lst2.Select(x=>x.Carga).Any(t.Carga.Trim()!=) select t).ToList();
+            var noExisten = lst3.Where(ds => !lst2.Any(db => db.Carga == ds.Carga)).ToList();
+
+
+            foreach (var i in noExisten)
+            {
+
+                int fila = -1;
+
+                int roww = 0;
+                string dato = i.Etiqueta;
+                foreach (DataGridViewRow e in dgvEscaneados.Rows)
+                {
+                    string etiquetaD = e.Cells[0].Value.ToString().Trim();
+                    if (etiquetaD == dato)
+                    {                      
+                        fila = e.Index;
+                        dgvEscaneados.Rows.RemoveAt(e.Index);
+                    
+                        DataGridViewRow row = new DataGridViewRow();
+                        row.CreateCells(dgvObser);
+
+                        row.Cells[0].Value = dato;
+                        row.Cells[1].Value = "No se encotro en ninguna Orden Cargada en este documento";
+
+                        dgvObser.Rows.Add(row);
+                        roww = roww + 1;
+                        break;
+                    }
+                    else
+                    {
+                      
+                    }
+
+
+                    
+
+
+                }
+            }
+
 
         }
+
 
         private void btnScanini_Click(object sender, EventArgs e)
         {
@@ -308,8 +370,8 @@ namespace mainVentana.VistaOrSalida
                 e.SuppressKeyPress = true;
 
                 //---------------------------------------------------------------------
-
-                string etiqueta = txbEscaneo.Text.Trim();
+              
+                string etiqueta = txbEscaneo.Text.Trim().ToUpper().Replace("'", "-");
                 int fila = -1;
 
 
@@ -347,6 +409,7 @@ namespace mainVentana.VistaOrSalida
                     row.Cells[0].Value = etiqueta;
 
 
+
                     dgvEscaneados.Rows.Add(row);
 
 
@@ -355,7 +418,15 @@ namespace mainVentana.VistaOrSalida
                 }
                 else
                 {
-                    lblMensaje.Text = "Esta etiqueta no se encotro en ninguna Orden Cargada en este documento";
+                    AltKDMENT();
+                    DataGridViewRow row = new DataGridViewRow();
+                    row.CreateCells(dgvObser);
+
+                    row.Cells[0].Value = etiqueta;
+                    row.Cells[1].Value = "Esta etiqueta no se encotro en ninguna Orden Cargada en este documento";
+
+                    dgvObser.Rows.Add(row);
+
                 }
 
 
@@ -386,7 +457,7 @@ namespace mainVentana.VistaOrSalida
                 , "Ord"
                 , "P"
                 , "UD4501-"
-                , Negocios.Common.Cache.CacheLogin.idusuario.ToString()
+                , Negocios.Common.Cache.CacheLogin.username.ToString()
                 , DateTime.Now
                 , txbTransportista.Text.Length >= 100 ? txbTransportista.Text.Substring(0, 100) : txbTransportista.Text
                 , txbPlacas.Text.Length >= 50 ? txbPlacas.Text.Substring(0, 50) : txbPlacas.Text
@@ -423,6 +494,37 @@ namespace mainVentana.VistaOrSalida
             bntSalidaPausa.Enabled = false;
 
         }
+
+        private async Task FinalizaSalidaKDM1()
+        {
+
+           int  error = ValidacionesGenerales();
+
+
+            if (error == 1)
+            {
+                return;
+            }
+
+            else
+            {
+                Negocios.AltasBD at = new AltasBD();
+
+
+
+                char[] ch = "-".ToCharArray();
+                string datosalida = ulSalidaPSolo == "" ? ulDatoSolo : ulSalidaPSolo.Split(ch)[2];
+                await at.TerminaSalida(ulDatoSolo,sOrigen);
+            }
+        }
+             
+
+           
+
+
+        
+
+
 
         private async void AltKDMENT()
         {
@@ -491,11 +593,19 @@ namespace mainVentana.VistaOrSalida
                     catch (Exception)
                     {
 
-                        throw;
+                       
 
                     }
+                    try
+                    {
+                        modelo.BulkUpdate(kd.ToList());
+                    }
+                    catch (Exception)
+                    {
 
-                    modelo.BulkUpdate(kd.ToList());
+                        
+                    }
+                    
 
                 }
             });
@@ -554,14 +664,23 @@ namespace mainVentana.VistaOrSalida
                         //modelo.SaveChanges();
 
                     }
-                    catch (Exception J)
+                    catch (Exception)
                     {
 
-                        throw;
+                       
+                        
+                    }
+                    try
+                    {
+                        modelo.BulkUpdate(kd.ToList());
+                    }
+                    catch (Exception)
+                    {
+
+                       
                     }
 
-
-                    modelo.BulkUpdate(kd.ToList());
+                   
                 }
             });
 
@@ -617,6 +736,8 @@ namespace mainVentana.VistaOrSalida
 
                 CreaSalidaEnKDM1();
                 btnIniciaSalida.Enabled = false;
+                btnImportarExcel.Enabled = false;
+                bntSalidaPausa.Enabled = false;
             }
 
 
@@ -640,7 +761,7 @@ namespace mainVentana.VistaOrSalida
             Negocios.Acceso_Salida.AccesoSalidas sls = new Negocios.Acceso_Salida.AccesoSalidas();
             
             ulSalidaPSolo = dato;
-            var lista1 = await sls.BuscEntradasEnSalida(dato);
+            var lista1 = await sls.BuscEntradasEnSalida(dato,sOrigen);
             dgvEscaneados.DataSource = null;
             dgvEscaneados.Rows.Clear();
             dgvEscaneados.Refresh();
@@ -653,8 +774,8 @@ namespace mainVentana.VistaOrSalida
                 DataGridViewRow row = new DataGridViewRow();
                 row.CreateCells(dgvEscaneados);
 
-                row.Cells[0].Value = i.Documento;
-
+                row.Cells[0].Value = i.Documento.Trim();
+                row.Cells[1].Value = string.IsNullOrEmpty(i.Referencia) ? "" : i.Referencia.Trim();
 
                 dgvEscaneados.Rows.Add(row);
             }
@@ -664,14 +785,25 @@ namespace mainVentana.VistaOrSalida
             var lss = await sls.LlenaDGVpausadas(ulDatoSolo);
             foreach (var q in lss)
             {
-                string datocarga = sOrigen + "-UD4001-" + q.Documento;
+                string datocarga = "";
+                if (sOrigen.Contains("TJ"))
+                {
+                    datocarga= "SD-UD5001-" + q.Documento;
+                }
+                else
+                {
+                    datocarga = sOrigen + "-UD4001-" + q.Documento;
+                }
+                
                 agrgaCargatabla(datocarga);
             }
             BuscaentradasCarga();
+            
             await CargaGenerales();
             btnIniciaSalida.Enabled = false;
             groupBox1.Enabled = false;
             groupBox2.Enabled = false;
+            btnImportarExcel.Enabled = false;
 
         }
         private async Task CargaGenerales()
@@ -720,7 +852,18 @@ namespace mainVentana.VistaOrSalida
 
         }
 
+        private void gunaGradientTileButton1_Click(object sender, EventArgs e)
+        {
 
+            if (MessageBox.Show("Estás a punto de cerrar la salida \nA partir de aquí ya no se podrá modificar \nContinuar?","Alerta",MessageBoxButtons.OKCancel)==DialogResult.OK)
+            {
+                FinalizaSalidaKDM1();
+                MessageBox.Show("Salida: "+ulDatoSolo+" con origen: "+ sOrigen +" finalizada");
+                this.Dispose();
+                this.Close();
+
+            } 
+        }
     }
 
 

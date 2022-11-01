@@ -157,4 +157,7 @@
   <data name="icoarn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icoarn.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Arnian2022" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Arnian2022.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
 </root>

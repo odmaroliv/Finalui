@@ -61,6 +61,21 @@ namespace Negocios.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a &lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+        ///&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; style=&quot;width:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;padding:0;Margin:0&quot;&gt;
+        /// &lt;head&gt;
+        ///  &lt;meta charset=&quot;UTF-8&quot;&gt;
+        ///  &lt;meta content=&quot;width=device-width, initial-scale=1&quot; name=&quot;viewport&quot;&gt;
+        ///  &lt;meta name=&quot;x-apple-disable-message-reformatting&quot;&gt;
+        ///  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content= [resto de la cadena truncado]&quot;;.
+        /// </summary>
+        internal static string Arnian2022 {
+            get {
+                return ResourceManager.GetString("Arnian2022", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a &lt;html&gt;
         ///&lt;body&gt;
         ///	&lt;center&gt;

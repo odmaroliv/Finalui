@@ -392,76 +392,36 @@ namespace Negocios
                 }
             });
         }
+        public async Task TerminaSalida(string numerosalida,string origen)
 
-        /*public async Task<List<List<vmErroresScanSalidas>>> ModifiKDMENTtj(int nrows,string etiq, string salida, string c19, string c20, string c23, string c55, string, string c56, 
-            string c63, string c64, string c65, string c66, string c67, string c68, string c75)
-         {
-             int nm = 0;
-             List<vmErroresScanSalidas> lserror = new List<vmErroresScanSalidas>();
-             List<vmErroresScanSalidas> lsexito = new List<vmErroresScanSalidas>();
-             List<List<vmErroresScanSalidas>> listfinal = new List<List<vmErroresScanSalidas>>();
-             await Task.Run(() =>
-             {
+        { 
+            await Task.Run(() =>
+            {
+                using (modelo2Entities modelo = new modelo2Entities())
+                {
+                    List<KDM1> kd = new List<KDM1>();
 
-                 using (modelo2Entities modelo = new modelo2Entities())
-                 {
-
-                     List<KDMENT> kd = new List<KDMENT>();
-                     foreach (var q in dgvInicial.Rows)
-                     {
-                         string msn = dgvInicial.Rows[nm].Cells[0].Value.ToString();
+                    var d = (from fd in modelo.KDM1
+                             where fd.C1.Contains(origen) && fd.C4 == 45 && fd.C6 == numerosalida
+                             select fd).First();
 
 
 
-                         string uld = (string)ulDato.Trim().Clone();
-                         nm = nm + 1;
+                    d.C43 = "A";
+                    kd.Add(d);
 
-                         try
-                         {
-                             var d = (from fd in modelo.KDMENT
-                                      where fd.C9 == msn.Trim()// 
-                                      select fd).First();
+                    try
+                    {
+                        modelo.BulkUpdate(kd.ToList());
+                    }
+                    catch (Exception ex)
+                    {
+                        throw;
+                    }
+                }
+            });
+        }
 
-                             d.C19 = sOrigen;
-                             d.C20 = "PR";
-                             d.C23 = "";
-                             d.C55 = uld;
-                             d.C56 = "";
-
-                             d.C63 = uld;
-                             d.C64 = uld;
-                             d.C65 = "E";
-                             d.C66 = "";
-                             d.C67 = "";
-                             d.C68 = "";
-                             d.C75 = DateTime.Now.ToString("dd/MM/yyyy");
-                             kd.Add(d);
-
-
-
-                             //modelo.SaveChanges();
-                             lsexito.Add(new vmErroresScanSalidas { etiqueta = msn, error = "Actualizada con Exito" });
-
-                         }
-                         catch (Exception J)
-                         {
-
-                             lserror.Add(new vmErroresScanSalidas { etiqueta = msn, error = J.Message.ToString() });
-
-                             continue;
-
-                         }
-
-
-                     }
-                     modelo.BulkUpdate(kd.ToList());
-                 }
-             });
-
-             listfinal.Add(lsexito);
-             listfinal.Add(lserror);
-             return listfinal.ToList();
-         }*/
 
 
     }

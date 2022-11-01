@@ -311,10 +311,8 @@ namespace mainVentana
             }
             catch (Exception)
             {
-
                 throw;
             }
-           
         }
 
         private void iconButton6_Click(object sender, EventArgs e)

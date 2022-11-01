@@ -563,7 +563,7 @@ namespace Negocios
             {
 
                 MessageBox.Show("Acceso No Autorizado");
-                throw;
+                return false;
             }
         }
 
@@ -869,37 +869,107 @@ namespace Negocios
         }
 
 
-        public async Task<List<vmEntByCarga>> CargaEntByCarga(string id)
+        public async Task<List<vmEntByCarga>> CargaEntByCarga(string id,string sorigen)
         {
-            try
+            if (sorigen.Contains("TJ"))
             {
-                var lst2 = new List<vmEntByCarga>();
-                await Task.Run(() =>
+                try
                 {
-                    using (modelo2Entities modelo = new modelo2Entities())
-
+                    var lst2 = new List<vmEntByCarga>();
+                    await Task.Run(() =>
                     {
-                        var lista = from d in modelo.KDMENT
-                                    where d.C16.Equals(id)
-                                    select new vmEntByCarga
-                                    {
-                                       Etiqueta = d.C9,
-                                       Carga = d.C16
+                        using (modelo2Entities modelo = new modelo2Entities())
 
-                                    };
-                        lst2 = lista.ToList();
+                        {
+                            var lista = from d in modelo.KDMENT
+                                        where d.C18.Equals(id) && String.IsNullOrEmpty(d.C64) && d.C19.Contains(sorigen)
+                                        select new vmEntByCarga
+                                        {
+                                            Etiqueta = d.C9.Trim(),
+                                            Carga = d.C18.Trim(),
 
-                    }
-                });
+                                        };
+                            lst2 = lista.ToList();
 
-                return lst2;
+                        }
+                    });
+
+                    return lst2;
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+
             }
-            catch (Exception)
+            else
             {
+                try
+                {
+                    var lst2 = new List<vmEntByCarga>();
+                    await Task.Run(() =>
+                    {
+                        using (modelo2Entities modelo = new modelo2Entities())
 
-                throw;
+                        {
+                            var lista = from d in modelo.KDMENT
+                                        where d.C16.Equals(id) && String.IsNullOrEmpty(d.C17) && String.IsNullOrEmpty(d.C18) && String.IsNullOrEmpty(d.C55)
+                                        select new vmEntByCarga
+                                        {
+                                            Etiqueta = d.C9,
+                                            Carga = d.C16
+
+                                        };
+                            lst2 = lista.ToList();
+
+                        }
+                    });
+
+                    return lst2;
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
             }
+           
         }
+        public async Task<List<vmEntByCarga>> CargaEntBySalidaT(string id, string sorigen, string sdestino)
+        {
+           
+                try
+                {
+                    var lst2 = new List<vmEntByCarga>();
+                    await Task.Run(() =>
+                    {
+                        using (modelo2Entities modelo = new modelo2Entities())
+
+                        {
+                            var lista = from d in modelo.KDMENT
+                                        where d.C18.Contains(id) //&& d.C19 != sdestino 
+                                        select new vmEntByCarga
+                                        {
+                                            Etiqueta = d.C9,
+                                            Carga = d.C18
+
+                                        };
+                            lst2 = lista.ToList();
+
+                        }
+                    });
+
+                    return lst2;
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+
+        }
+        
 
     }
 }

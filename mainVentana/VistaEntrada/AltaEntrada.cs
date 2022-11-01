@@ -461,11 +461,11 @@ namespace mainVentana.VistaEntrada
 
 
                     envEmail();
-                    //barcode();
-                    Crea_codigo_de_barras();
+                                                  //barcode();
+                    //Crea_codigo_de_barras(); desactivado por erri en drawin 
                     llamareporte();
-                    //CreaEriquetas();
-                    //envEmail();
+                                                //CreaEriquetas();
+                                                 //envEmail();
 
                     ReiniciaInfo(0);
                     LimpiaList();

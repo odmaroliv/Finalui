@@ -39,9 +39,9 @@ namespace mainVentana.VistaOrSalida
 
         private async void frmBuscarOrdCarga_Load(object sender, EventArgs e)
         {
-           gunaDataGridView1.DataSource = null;
+         gunaDataGridView1.DataSource = null;
          AccesoSalidas sv = new AccesoSalidas();
-           gunaDataGridView1.DataSource =  await sv.LlenaDGV(sorigen,sucsdest,documento, numerosuc);
+         gunaDataGridView1.DataSource =  await sv.LlenaDGV(sorigen,sucsdest,documento, numerosuc);
         }
 
         private void gunaDataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

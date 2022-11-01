@@ -45,7 +45,7 @@ namespace Negocios
                         bandera = 1;
                         
                     }
-                    string plantilla = Properties.Resources.correoskepler.ToString();
+                    string plantilla = Properties.Resources.Arnian2022.ToString();
                     plantilla = plantilla.Replace("@ENTRADA", Entrada);
                     plantilla = plantilla.Replace("@CLIENTE", Cliente);
                     plantilla = plantilla.Replace("@TRAKING", Notraking);
@@ -87,7 +87,7 @@ namespace Negocios
                     smtp.Port = 587;
                     smtp.EnableSsl = true;
                     smtp.UseDefaultCredentials = false;
-                    NetworkCredential nc = new NetworkCredential("smtpdniell@gmail.com", "uukcdonkhscscxwt");
+                    NetworkCredential nc = new NetworkCredential("smtpdniell@gmail.com", "njwwslqmoxivieqe");
                     smtp.Credentials = nc;
                     smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
 
