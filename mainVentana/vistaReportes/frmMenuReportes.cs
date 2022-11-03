@@ -363,7 +363,7 @@ namespace mainVentana.vistaReportes
         {
             ExportExcel();
         }
-
+        
         private void frmMenuReportes_Load(object sender, EventArgs e)
         {
             if (Negocios.Common.Cache.CacheLogin.rol.Trim() == "ADMIN" || Negocios.Common.Cache.CacheLogin.rol.Trim() == "JALMA")

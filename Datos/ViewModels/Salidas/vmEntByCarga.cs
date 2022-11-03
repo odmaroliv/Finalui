@@ -11,5 +11,6 @@ namespace Datos.ViewModels.Salidas
 
         public string Etiqueta { get; set; }
         public string Carga { get; set; }
+        //public string Correo { get; set; }
     }
 }

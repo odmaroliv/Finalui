@@ -882,11 +882,13 @@ namespace Negocios
 
                         {
                             var lista = from d in modelo.KDMENT
+                                       
                                         where d.C18.Equals(id) && String.IsNullOrEmpty(d.C64) && d.C19.Contains(sorigen)
                                         select new vmEntByCarga
                                         {
                                             Etiqueta = d.C9.Trim(),
-                                            Carga = d.C18.Trim(),
+                                            Carga = d.C18.Trim()
+                                           
 
                                         };
                             lst2 = lista.ToList();
@@ -914,11 +916,13 @@ namespace Negocios
 
                         {
                             var lista = from d in modelo.KDMENT
+                                        
                                         where d.C16.Equals(id) && String.IsNullOrEmpty(d.C17) && String.IsNullOrEmpty(d.C18) && String.IsNullOrEmpty(d.C55)
                                         select new vmEntByCarga
                                         {
                                             Etiqueta = d.C9,
                                             Carga = d.C16
+                                           
 
                                         };
                             lst2 = lista.ToList();

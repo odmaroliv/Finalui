@@ -233,7 +233,9 @@ namespace Negocios.Acceso_Salida
                         {
                             lst2.Clear();
                             var oDocument = (from q in modelo.KDMENT
-
+                                             join k in modelo.KDM1 on new { q.C1, q.C4, q.C6 } equals new { k.C1, k.C4, k.C6 }
+                                             join a in modelo.KDUV on k.C12 equals a.C2
+                                             join u in modelo.KDUSUARIOS on a.C22 equals u.C1
                                              where q.C64.Contains(salida)
 
                                              //group k by q.C55 into g
@@ -242,7 +244,8 @@ namespace Negocios.Acceso_Salida
                                              select new vmCargaOrdenesDeSalida
                                              {
                                                  Documento = q.C9,
-                                                 Referencia = q.C18
+                                                 Referencia = q.C18,
+                                                 correo = u.C9,
                                              }).ToList();
 
                             lst2 = oDocument;
@@ -267,7 +270,9 @@ namespace Negocios.Acceso_Salida
                         {
                             lst2.Clear();
                             var oDocument = (from q in modelo.KDMENT
-
+                                             join k in modelo.KDM1 on new { q.C1, q.C4, q.C6 } equals new { k.C1, k.C4, k.C6 }
+                                             join a in modelo.KDUV on k.C12 equals a.C2
+                                             join u in modelo.KDUSUARIOS on a.C22 equals u.C1
                                              where q.C55.Contains(salida)
 
                                              //group k by q.C55 into g
@@ -276,7 +281,8 @@ namespace Negocios.Acceso_Salida
                                              select new vmCargaOrdenesDeSalida
                                              {
                                                  Documento = q.C9,
-                                                 Referencia = q.C54
+                                                 Referencia = q.C54,
+                                                   correo = u.C9
                                              }).ToList();
 
                             lst2 = oDocument;
@@ -363,6 +369,74 @@ namespace Negocios.Acceso_Salida
                 throw;
             }
         }
-        
+
+        public vmAuxiliaresSalidas ObtieCorreo(string stiqueta)
+        {
+            char[] ch = "-".ToCharArray();
+            string sori = stiqueta.Split(ch)[0];
+            string ent = stiqueta.Split(ch)[1];
+            try
+            {
+                var lst = new vmAuxiliaresSalidas();
+                
+
+                    using (modelo2Entities modelo = new modelo2Entities())
+
+                    {
+                        var lista = (from d in modelo.KDMENT
+                                     join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
+                                     join a in modelo.KDUV on k.C12 equals a.C2
+                                     join u in modelo.KDUSUARIOS on a.C22 equals u.C1
+
+                                     where d.C1.Contains(sori) && d.C4 == 35 && d.C9.Contains(stiqueta)
+
+                                     select new vmAuxiliaresSalidas
+                                     {
+
+                                         Correo = u.C9,
+                                         orden = d.C16,
+                                         Etiqueta = d.C9
+                                         
+
+                                     }).Take(1).FirstOrDefault();
+                    lst = lista;
+
+                    }
+              
+                return lst;
+            }
+            catch (Exception)
+            {
+
+                return new vmAuxiliaresSalidas { Etiqueta = "No se encontro esta etiquita",Correo="",orden="" };
+            }
+        }
+
+
+        /* public List<string> ObtieneCorreos(List<string> nda)
+         {
+
+             List<string> lista1 = new List<string>();
+
+             using (modelo2Entities db = new modelo2Entities())
+             {
+
+                 var lista = from d in modelo.KDM1
+                             join d2 in modelo.KDM1COMEN on new { d.C1, d.C4, d.C6 } equals new { d2.C1, d2.C4, d2.C6 }
+                             where d.C1.Equals(sucursal) && d.C4.Equals(35) && d.C6.Equals(id)
+                             //orderby (d.C7)
+                             select new vmEntradaById
+                             {
+                                 C1 = d.C1,
+                                 C2 = d.C2,
+                             }
+
+
+             return lista1;
+             }
+
+         }
+        */
+
     }
 }

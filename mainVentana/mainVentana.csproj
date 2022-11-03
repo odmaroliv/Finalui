@@ -30,10 +30,10 @@
     <UpdateUrl>https://raw.githubusercontent.com/odmaroliv/Finalui/master/published/</UpdateUrl>
     <ProductName>ARSYS</ProductName>
     <PublisherName>Daniel Olivares H.</PublisherName>
-    <MinimumRequiredVersion>1.0.0.58</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.0.59</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>59</ApplicationRevision>
+    <ApplicationRevision>60</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -565,6 +565,7 @@
     <None Include="Resources\Arnian2022.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\salidacorreo.html" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
