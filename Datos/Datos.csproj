@@ -92,6 +92,9 @@
     <Compile Include="Datosenti\KDMS.cs">
       <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
+    <Compile Include="Datosenti\KDUK.cs">
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
+    </Compile>
     <Compile Include="Datosenti\KDXD.cs">
       <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>

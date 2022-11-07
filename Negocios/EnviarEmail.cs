@@ -12,7 +12,7 @@ namespace Negocios
     public class EnviarEmail
     {
 
-        public async Task<int> EnviaMail(string Entrada, string Cliente, string Notraking, string Alias, string OrdCompra, string Noflete, string Proveedor, string Desc, List<string> Fotos, List<string> Archivos, string correosClientes)
+        public async Task<int> EnviaMail(string Entrada, string Cliente, string Notraking, string Alias, string OrdCompra, string Noflete, string Proveedor, string Desc, List<string> Archivos, string correosClientes)
         {
             int bandera = default;
 
@@ -23,11 +23,11 @@ namespace Negocios
                     MailMessage msg = new MailMessage();
                     SmtpClient smtp = new SmtpClient();
                     msg.IsBodyHtml = true;
-                    msg.From = new MailAddress("smtpdniell@gmail.com");
+                    msg.From = new MailAddress("notificaciones@arnian.com");
                     msg.Subject = "Notificacion Arnian entrada: " + Entrada;
                     long pesoArch = 0;
 
-                    foreach (var item in Fotos) //Attachment
+                  /*  foreach (var item in Fotos) //Attachment
                     {
                         msg.Attachments.Add(new Attachment(item));
                         FileInfo fileinfo = new FileInfo(item);
@@ -39,7 +39,7 @@ namespace Negocios
                         FileInfo fileinfo = new FileInfo(item);
                         pesoArch = pesoArch + fileinfo.Length;
                     }
-
+                  */
                     if (pesoArch >= 25000000)
                     {
                         bandera = 1;
@@ -87,7 +87,7 @@ namespace Negocios
                     smtp.Port = 587;
                     smtp.EnableSsl = true;
                     smtp.UseDefaultCredentials = false;
-                    NetworkCredential nc = new NetworkCredential("smtpdniell@gmail.com", "njwwslqmoxivieqe");
+                    NetworkCredential nc = new NetworkCredential("notificaciones@arnian.com", "wkwjfnicjsltguyv");
                     smtp.Credentials = nc;
                     smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
 

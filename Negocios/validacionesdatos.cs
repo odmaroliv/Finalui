@@ -828,7 +828,8 @@ namespace Negocios
                 {
                     var lista = from d in modelo.KDM1
                                 join d2 in modelo.KDMENT on new { d.C1, d.C4, d.C6 } equals new { d2.C1, d2.C4, d2.C6 } 
-                                join t3 in modelo.DSBARCODE on new { d.C1,d.C6 } equals new {t3.C1,t3.C6}
+                                join t3 in modelo.KDUD on d.C10 equals t3.C2
+                                //join t4 in modelo.KDUK on d.C10 equals t3.C2
                                 where d.C1.Equals(sucursal) && d.C4.Equals(35) && d.C6.Equals(id)
                                 orderby (d.C5)
                                 select new vmEtiquetasReporte
@@ -840,9 +841,9 @@ namespace Negocios
                                     Entrada = d2.C6,
                                     Fecha = d.C9,
                                     Alias = d.C112,
-                                    barcode = t3.BARCODE
-                                    //Zona = d2.C6,
-                                    //ZonaNumero = d2.C6, 
+                                    //barcode = t3.BARCODE,
+                                    //Zona = 
+                                    //ZonaNumero =  
 
                                 };
                    lst2  = lista.ToList();

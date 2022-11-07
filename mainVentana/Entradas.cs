@@ -54,21 +54,6 @@ namespace mainVentana
             if (MessageBox.Show("Cuidado, se borrara todo lo que no hayas guardado en esta ventana, deseas continuar?", "Cuidado", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
 
-                entradas.pictureBox2.Image = null;
-                entradas.pictureBox3.Image = null;
-                entradas.pictureBox4.Image = null;
-                entradas.pictureBox5.Image = null;
-                entradas.pictureBox6.Image = null;
-                entradas.pictureBox7.Image = null;
-                entradas.pictureBox8.Image = null;
-                entradas.pictureBox9.Image = null;
-                entradas.pictureBox10.Image = null;
-                entradas.pictureBox11.Image = null;
-                entradas.pictureBox12.Image = null;
-                entradas.pictureBox13.Image = null;
-                entradas.pictureBox14.Image = null;
-                entradas.pictureBox15.Image = null;
-                cerrartabs(0);
             }
             else
             {

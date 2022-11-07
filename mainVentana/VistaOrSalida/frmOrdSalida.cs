@@ -216,6 +216,8 @@ namespace mainVentana.VistaOrSalida
             ValidatablaObserva();
             dgvOrdenesEntrada.DataSource = lista;
 
+            new Guna.UI.Lib.ScrollBar.DataGridViewScrollHelper(dgvOrdenesEntrada, gsbCargaEti, true);
+
             datos = null;
 
 
@@ -374,7 +376,7 @@ namespace mainVentana.VistaOrSalida
                 smtp.Port = 587;
                 smtp.EnableSsl = true;
                 smtp.UseDefaultCredentials = false;
-                NetworkCredential nc = new NetworkCredential("smtpdniell@gmail.com", "njwwslqmoxivieqe");
+                NetworkCredential nc = new NetworkCredential("notificaciones@arnian.com", "wkwjfnicjsltguyv");
                 smtp.Credentials = nc;
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
 

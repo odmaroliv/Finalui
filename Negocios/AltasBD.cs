@@ -48,7 +48,7 @@ namespace Negocios
                     d.C63 = "UD3501-";
                     d.C67 = Common.Cache.CacheLogin.username.ToString().Trim();//Ultimo en modificar la entrada
                     d.C68 = fecha;//fecha de la ultima modificacion
-                    d.C69 = fecha.Hour.ToString("HH:mm");//Hora de la ultima modificacion
+                    d.C69 = fecha.Hour.ToString();//Hora de la ultima modificacion
                     d.C80 = noTrakin; //elaboro
                     d.C81 = Common.Cache.CacheLogin.username.ToString().Trim(); //elaboro
                     d.C92 = provedor;

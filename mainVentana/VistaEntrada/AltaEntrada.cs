@@ -63,342 +63,20 @@ namespace mainVentana.VistaEntrada
 
         #region ALTA DE ENTRADA__________________________________________________________________________________________________________________________________
 
-        #region PASAR LAS FOTOS DEL FORMULARIO HIJO CAMARA AL FORMULARIO PADRE ALTENTRADA
-        public void ejecutarfoto(System.Drawing.Image img, string ruta)
-        {
-            using (img)
-            {
-                if (pictureBox2.Image == null)
-                {
-                    pictureBox2.Image = (System.Drawing.Image)img.Clone();
-                    pictureBox2.ImageLocation = ruta;
-                }
-                else if (pictureBox3.Image == null)
-                {
-                    pictureBox3.Image = (System.Drawing.Image)img.Clone();
-                    pictureBox3.ImageLocation = ruta;
-                }
-                else if (pictureBox4.Image == null)
-                {
-                    pictureBox4.Image = (System.Drawing.Image)img.Clone();
-                    pictureBox4.ImageLocation = ruta;
-                }
-                else if (pictureBox5.Image == null)
-                {
-                    pictureBox5.Image = (System.Drawing.Image)img.Clone();
-                    pictureBox5.ImageLocation = ruta;
-                }
-                else if (pictureBox6.Image == null)
-                {
-                    pictureBox6.Image = (System.Drawing.Image)img.Clone();
-                    pictureBox6.ImageLocation = ruta;
-                }
-                else if (pictureBox7.Image == null)
-                {
-                    pictureBox7.Image = (System.Drawing.Image)img.Clone();
-                    pictureBox7.ImageLocation = ruta;
-                }
-                else if (pictureBox8.Image == null)
-                {
-                    pictureBox8.Image = (System.Drawing.Image)img.Clone();
-                    pictureBox8.ImageLocation = ruta;
-                }
-                else if (pictureBox9.Image == null)
-                {
-                    pictureBox9.Image = (System.Drawing.Image)img.Clone();
-                    pictureBox9.ImageLocation = ruta;
-                }
-                else if (pictureBox10.Image == null)
-                {
-                    pictureBox10.Image = (System.Drawing.Image)img.Clone();
-                    pictureBox10.ImageLocation = ruta;
-                }
-                else if (pictureBox11.Image == null)
-                {
-                    pictureBox11.Image = (System.Drawing.Image)img.Clone();
-                    pictureBox11.ImageLocation = ruta;
-                }
-                else if (pictureBox12.Image == null)
-                {
-                    pictureBox12.Image = (System.Drawing.Image)img.Clone();
-                    pictureBox12.ImageLocation = ruta;
-                }
-                else if (pictureBox13.Image == null)
-                {
-                    pictureBox13.Image = (System.Drawing.Image)img.Clone();
-                    pictureBox13.ImageLocation = ruta;
-                }
-                else if (pictureBox14.Image == null)
-                {
-                    pictureBox14.Image = (System.Drawing.Image)img.Clone();
-                    pictureBox14.ImageLocation = ruta;
-                }
-                else if (pictureBox15.Image == null)
-                {
-                    pictureBox15.Image = (System.Drawing.Image)img.Clone();
-                    pictureBox15.ImageLocation = ruta;
-                }
-            }
-
-
-
-
-        }
+       
 
 
         private void iconButton2_Click(object sender, EventArgs e) //lo utiliazmos para pasar las imagenes del form camara al forma alta de entrada <Tiene que conectarse con CAM2>
         {
-            string[] imagen;
-
-
-
-            openFileDialog1.Multiselect = true;
-            openFileDialog1.InitialDirectory = "@C:\\";
-            openFileDialog1.Filter = "Solo imagenes (JPG,PNG,GIF)|*.JPG;*.PNG;*.GIF"; ;
-
-
-
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    imagen = openFileDialog1.FileNames;
-
-                    foreach (var i in imagen)
-                    {
-                        ejecutarfoto(System.Drawing.Image.FromFile(i), i.ToString());
-                        openFileDialog1.Dispose();
-                    }
-                }
-                catch (Exception)
-                {
-
-                    throw;
-                }
-
-            }
+           
         }
 
 
-        private void LimpiaList()
-        {
-            mnd.Clear(); // Localizacion de img correo 
-            larch.Clear(); // localizacion del archivo correo
-            lstFotos.Clear(); // archivos para base de datos 
-        }
+        
+        
 
-        List<string> mnd = new List<string>();
-        private void creaListadeFotos()
-        {
-            mnd.Clear();
-            if (pictureBox2.Image != null)
-            {
-                mnd.Add(pictureBox2.ImageLocation);
-            }
-
-            if (pictureBox3.Image != null)
-            {
-                mnd.Add(pictureBox3.ImageLocation);
-            }
-
-            if (pictureBox4.Image != null)
-            {
-                mnd.Add(pictureBox4.ImageLocation);
-            }
-
-            if (pictureBox5.Image != null)
-            {
-                mnd.Add(pictureBox5.ImageLocation);
-            }
-            if (pictureBox6.Image != null)
-            {
-                mnd.Add(pictureBox6.ImageLocation);
-            }
-            if (pictureBox7.Image != null)
-            {
-                mnd.Add(pictureBox7.ImageLocation);
-            }
-            if (pictureBox8.Image != null)
-            {
-                mnd.Add(pictureBox8.ImageLocation);
-            }
-            if (pictureBox9.Image != null)
-            {
-                mnd.Add(pictureBox9.ImageLocation);
-            }
-            if (pictureBox10.Image != null)
-            {
-                mnd.Add(pictureBox10.ImageLocation);
-            }
-            if (pictureBox11.Image != null)
-            {
-                mnd.Add(pictureBox11.ImageLocation);
-            }
-            if (pictureBox12.Image != null)
-            {
-                mnd.Add(pictureBox12.ImageLocation);
-            }
-            if (pictureBox13.Image != null)
-            {
-                mnd.Add(pictureBox13.ImageLocation);
-            }
-            if (pictureBox14.Image != null)
-            {
-                mnd.Add(pictureBox14.ImageLocation);
-            }
-            if (pictureBox15.Image != null)
-            {
-                mnd.Add(pictureBox15.ImageLocation);
-            }
-
-        }
-
-        List<vmListaFotos> lstFotos = new List<vmListaFotos>();
-        private void creaListadepARAMSFotos()
-        {
-            lstFotos.Clear();
-            if (pictureBox2.Image != null)
-            {
-                string filename = null;
-                filename = Path.GetFileName(pictureBox2.ImageLocation);
-
-
-
-                lstFotos.Add(new vmListaFotos { documento = pictureBox2.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-1", realnombre = filename, bytedocumto = RedimencionaIMG(pictureBox2.ImageLocation.ToString()), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
-            }
-
-            if (pictureBox3.Image != null)
-            {
-
-                string filename = null;
-                filename = Path.GetFileName(pictureBox3.ImageLocation);
-
-                lstFotos.Add(new vmListaFotos { documento = pictureBox3.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-2", realnombre = filename, bytedocumto = RedimencionaIMG(pictureBox3.ImageLocation.ToString()), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
-            }
-
-            if (pictureBox4.Image != null)
-            {
-
-
-                string filename = null;
-                filename = Path.GetFileName(pictureBox4.ImageLocation);
-
-                lstFotos.Add(new vmListaFotos { documento = pictureBox4.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-3", realnombre = filename, bytedocumto = RedimencionaIMG(pictureBox4.ImageLocation.ToString()), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
-            }
-
-            if (pictureBox5.Image != null)
-            {
-
-                string filename = null;
-                filename = Path.GetFileName(pictureBox5.ImageLocation);
-
-
-                lstFotos.Add(new vmListaFotos { documento = pictureBox5.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-4", realnombre = filename, bytedocumto = RedimencionaIMG(pictureBox5.ImageLocation.ToString()), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
-
-            }
-            if (pictureBox6.Image != null)
-            {
-                string filename = null;
-                filename = Path.GetFileName(pictureBox6.ImageLocation);
-
-                lstFotos.Add(new vmListaFotos { documento = pictureBox6.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-5", realnombre = filename, bytedocumto = RedimencionaIMG(pictureBox6.ImageLocation.ToString()), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
-
-            }
-            if (pictureBox7.Image != null)
-            {
-                string filename = null;
-                filename = Path.GetFileName(pictureBox7.ImageLocation);
-
-
-                lstFotos.Add(new vmListaFotos { documento = pictureBox7.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-6", realnombre = filename, bytedocumto = RedimencionaIMG(pictureBox7.ImageLocation.ToString()), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
-            }
-            if (pictureBox8.Image != null)
-            {
-                string filename = null;
-                filename = Path.GetFileName(pictureBox8.ImageLocation);
-
-                lstFotos.Add(new vmListaFotos { documento = pictureBox8.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-7", realnombre = filename, bytedocumto = RedimencionaIMG(pictureBox8.ImageLocation.ToString()), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
-            }
-            if (pictureBox9.Image != null)
-            {
-                string filename = null;
-                filename = Path.GetFileName(pictureBox9.ImageLocation);
-
-
-                lstFotos.Add(new vmListaFotos { documento = pictureBox9.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-8", realnombre = filename, bytedocumto = RedimencionaIMG(pictureBox9.ImageLocation.ToString()), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
-            }
-            if (pictureBox10.Image != null)
-            {
-                string filename = null;
-                filename = Path.GetFileName(pictureBox10.ImageLocation);
-
-
-                lstFotos.Add(new vmListaFotos { documento = pictureBox10.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-9", realnombre = filename, bytedocumto = RedimencionaIMG(pictureBox10.ImageLocation.ToString()), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
-            }
-            if (pictureBox11.Image != null)
-            {
-                string filename = null;
-                filename = Path.GetFileName(pictureBox11.ImageLocation);
-
-
-                lstFotos.Add(new vmListaFotos { documento = pictureBox11.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-10", realnombre = filename, bytedocumto = RedimencionaIMG(pictureBox11.ImageLocation.ToString()), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
-            }
-            if (pictureBox12.Image != null)
-            {
-                string filename = null;
-                filename = Path.GetFileName(pictureBox12.ImageLocation);
-
-
-                lstFotos.Add(new vmListaFotos { documento = pictureBox12.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-11", realnombre = filename, bytedocumto = RedimencionaIMG(pictureBox12.ImageLocation.ToString()), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
-            }
-            if (pictureBox13.Image != null)
-            {
-                string filename = null;
-                filename = Path.GetFileName(pictureBox13.ImageLocation);
-
-
-                lstFotos.Add(new vmListaFotos { documento = pictureBox13.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-12", realnombre = filename, bytedocumto = RedimencionaIMG(pictureBox13.ImageLocation.ToString()), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
-            }
-            if (pictureBox14.Image != null)
-            {
-                string filename = null;
-                filename = Path.GetFileName(pictureBox14.ImageLocation);
-
-
-                lstFotos.Add(new vmListaFotos { documento = pictureBox14.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-13", realnombre = filename, bytedocumto = RedimencionaIMG(pictureBox14.ImageLocation.ToString()), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
-            }
-            if (pictureBox15.Image != null)
-            {
-                string filename = null;
-                filename = Path.GetFileName(pictureBox15.ImageLocation);
-
-                lstFotos.Add(new vmListaFotos { documento = pictureBox15.ImageLocation, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-14", realnombre = filename, bytedocumto = RedimencionaIMG(pictureBox15.ImageLocation.ToString()), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Imagen" });
-            }
-
-        }
-        private void AgregaArchivoslist()
-        {
-
-
-            if (label27.Text != null && label27.Text != "")
-            {
-                string filename = null;
-                filename = Path.GetFileName(label27.Text);
-
-
-
-                lstFotos.Add(new vmListaFotos { documento = label27.Text, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-1", realnombre = filename, bytedocumto = docbyte(label27.Text), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Doc" });
-            }
-
-            if (label28.Text != null && label28.Text != "")
-            {
-
-                string filename = null;
-                filename = Path.GetFileName(label28.Text);
-
-                lstFotos.Add(new vmListaFotos { documento = label28.Text, entrada = datoEntrada, nombre = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada + "-2", realnombre = filename, bytedocumto = docbyte(label28.Text), sucursal = sucEntrada.SelectedValue.ToString(), tipo = "Doc" });
-            }
-        }
+       
+        
 
         #endregion
 
@@ -442,13 +120,11 @@ namespace mainVentana.VistaEntrada
             ValidacionEntradas validacion = new ValidacionEntradas();
             if (tipodeDocumento == 1)
             {
-                LimpiaList();
-                creaListadeFotos();
                 AgregaArchivos();
-                int ps = Calcula_peso_de_email();
+               
 
 
-                if (validacion.validacampo(sucEntrada.Text, sucDestino.Text, tipoOper.Text, cord.Text, cliente.Text, proveedor.Text, ordenCompra.Text, numFlete.Text, unidades.Text, peso.Text, bultos.Text, detalles.Text) == true && ps == 1)
+                if (validacion.validacampo(sucEntrada.Text, sucDestino.Text, tipoOper.Text, cord.Text, cliente.Text, proveedor.Text, ordenCompra.Text, numFlete.Text, unidades.Text, peso.Text, bultos.Text, detalles.Text) == true )
                 {
 
                     //creaListadeFotos();
@@ -467,8 +143,10 @@ namespace mainVentana.VistaEntrada
                                                 //CreaEriquetas();
                                                  //envEmail();
 
+
+
                     ReiniciaInfo(0);
-                    LimpiaList();
+                    
                     //cargaultent();
                 }
             }
@@ -580,7 +258,7 @@ namespace mainVentana.VistaEntrada
         private async void envEmail()
         {
             EnviarEmail servicio = new EnviarEmail();
-            var respuesta = await servicio.EnviaMail(lblEntrada.Text, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, mnd, larch, coreoClientes);
+            var respuesta = await servicio.EnviaMail(lblEntrada.Text, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, larch, coreoClientes);
             if (respuesta == 1)
             {
                 MessageBox.Show("El correo NO SE ENVIÓ PORQUE supera el límite máximo de 25 MB en cada correo, intenta borrar documentos y reenvía la notificación", "CUIDADO EL CORREO NO SE ENVIO");
@@ -592,33 +270,7 @@ namespace mainVentana.VistaEntrada
             }
 
         }
-        private int Calcula_peso_de_email()
-        {
-            long pesoArch = 0;
-
-            foreach (var item in mnd) //Attachment
-            {
-
-                FileInfo fileinfo = new FileInfo(item);
-                pesoArch = pesoArch + fileinfo.Length;
-            }
-            foreach (var item in larch) //Attachment
-            {
-
-                FileInfo fileinfo = new FileInfo(item);
-                pesoArch = pesoArch + fileinfo.Length;
-            }
-
-            if (pesoArch >= 25000000)
-            {
-                MessageBox.Show("La suma maxima de los archivos supera la catidad que permite Gmail, por favor borra archivos/fotos", "Limite alcanzado");
-                return 0;
-            }
-            else
-            {
-                return 1;
-            }
-        }
+      
 
         private void CreaEriquetas()
         {
@@ -654,7 +306,7 @@ namespace mainVentana.VistaEntrada
         private void impirmepdf()
         {
             SaveFileDialog savefile = new SaveFileDialog();
-            savefile.FileName = string.Format("{0}" + ".pdf", DateTime.Now.ToString("ddMMyyyyHHmmss"));
+            savefile.FileName = string.Format("{0}" + ".pdf", DateTime.Now.ToString("dd/MM/yyyy"));
             var pgSize = new iTextSharp.text.Rectangle(288, 432);
             Document pdfDoc = new Document(pgSize, 25, 25, 25, 25);
 
@@ -751,11 +403,6 @@ namespace mainVentana.VistaEntrada
 
         private void SubeFotos()
         {
-
-            AltasBD bd = new AltasBD();
-            creaListadepARAMSFotos();
-            AgregaArchivoslist();
-            bd.agregarFotos(lstFotos);
         }
         private byte[] imgbyte(string ruta, System.Drawing.Image picture)
         {
@@ -1238,89 +885,6 @@ namespace mainVentana.VistaEntrada
 
         public void limpiaImg()
         {
-            if (pictureBox2.Image != null)
-            {
-                //pictureBox2.Dispose();
-                pictureBox2.Image = null;
-                pictureBox2.ImageLocation = null;
-
-            }
-            if (pictureBox3.Image != null)
-            {
-
-                pictureBox3.Image = null;
-                pictureBox3.ImageLocation = null;
-
-            }
-            if (pictureBox4.Image != null)
-            {
-                pictureBox4.Image = null;
-                pictureBox4.ImageLocation = null;
-            }
-            if (pictureBox5.Image != null)
-            {
-                pictureBox5.Image = null;
-                pictureBox5.ImageLocation = null;
-            }
-            if (pictureBox6.Image != null)
-            {
-
-                pictureBox6.Image = null;
-                pictureBox6.ImageLocation = null;
-            }
-            if (pictureBox7.Image != null)
-            {
-
-                pictureBox7.Image = null;
-                pictureBox7.ImageLocation = null;
-            }
-            if (pictureBox8.Image != null)
-            {
-
-                pictureBox8.Image = null;
-                pictureBox8.ImageLocation = null;
-            }
-            if (pictureBox9.Image != null)
-            {
-
-                pictureBox9.Image = null;
-                pictureBox9.ImageLocation = null;
-            }
-            if (pictureBox10.Image != null)
-            {
-                pictureBox10.Image = null;
-                pictureBox10.ImageLocation = null;
-            }
-            if (pictureBox11.Image != null)
-            {
-                pictureBox11.Image = null;
-                pictureBox11.ImageLocation = null;
-            }
-            if (pictureBox12.Image != null)
-            {
-
-                pictureBox12.Image = null;
-                pictureBox12.ImageLocation = null;
-            }
-            if (pictureBox13.Image != null)
-            {
-                pictureBox13.Image = null;
-                pictureBox13.ImageLocation = null;
-            }
-            if (pictureBox14.Image != null)
-            {
-
-                pictureBox14.Image = null;
-                pictureBox14.ImageLocation = null;
-            }
-            if (pictureBox15.Image != null)
-            {
-
-                pictureBox15.Image = null;
-                pictureBox15.ImageLocation = null;
-            }
-
-
         }
 
         //
@@ -1473,11 +1037,8 @@ namespace mainVentana.VistaEntrada
 
         }
 
-        #endregion Fin del Alta de entrada__________________________________________________________________________________________________________________________________
-        /*
-        En esta region se trata de poner todo lo relacionado con el negocio en una modificacion de entrada, la ide es bloaquar los campos y solo permitir algunos.
-        
-        */
+       
+       
         #region INICIO DE MODIFICA ENTRAD__________________________________________________________________________________________________________________________________
 
         public void CambiaDocumento(int dato)
@@ -1489,7 +1050,7 @@ namespace mainVentana.VistaEntrada
                 txbBuscarEnt.Visible = false;
                 lblBuscarEnt.Visible = false;
                 btnAgregarBultos.Visible = false;
-                btnAgrepaFD.Visible = false;
+               
                 abreModifica(true);
                 ReiniciaInfo(1);
                 limpiaImg();
@@ -1509,7 +1070,7 @@ namespace mainVentana.VistaEntrada
             txbBuscarEnt.Visible = true;
             lblBuscarEnt.Visible = true;
             btnAgregarBultos.Visible = true;
-            btnAgrepaFD.Visible = true;
+            
             abreModifica(false);
             limpiaImg();
 
@@ -1904,150 +1465,6 @@ namespace mainVentana.VistaEntrada
         //--------------------------------------------------------------*
         private void Recarga_fotos(System.Drawing.Image img, string name)
         {
-            if (pictureBox2.Image == null)
-            {
-                using (Bitmap bmp = new Bitmap(img))
-                {
-                    img = new Bitmap(bmp);
-                    pictureBox2.Image = img;
-                    pictureBox2.Name = name;
-                }
-            }
-
-            else if (pictureBox3.Image == null)
-            {
-                using (Bitmap bmp = new Bitmap(img))
-                {
-                    img = new Bitmap(bmp);
-                    pictureBox3.Image = img;
-                    pictureBox3.Name = name;
-                }
-
-            }
-            else if (pictureBox4.Image == null)
-            {
-                using (Bitmap bmp = new Bitmap(img))
-                {
-                    img = new Bitmap(bmp);
-                    pictureBox4.Image = img;
-                    pictureBox4.Name = name;
-                }
-
-            }
-            else if (pictureBox5.Image == null)
-            {
-                using (Bitmap bmp = new Bitmap(img))
-                {
-                    img = new Bitmap(bmp);
-                    pictureBox5.Image = img;
-                    pictureBox5.Name = name;
-                }
-
-            }
-            else if (pictureBox6.Image == null)
-            {
-                using (Bitmap bmp = new Bitmap(img))
-                {
-                    img = new Bitmap(bmp);
-                    pictureBox6.Image = img;
-                    pictureBox6.Name = name;
-                }
-
-            }
-            else if (pictureBox7.Image == null)
-            {
-                using (Bitmap bmp = new Bitmap(img))
-                {
-                    img = new Bitmap(bmp);
-                    pictureBox7.Image = img;
-                    pictureBox7.Name = name;
-                }
-
-            }
-            else if (pictureBox8.Image == null)
-            {
-                using (Bitmap bmp = new Bitmap(img))
-                {
-                    img = new Bitmap(bmp);
-                    pictureBox8.Image = img;
-                    pictureBox8.Name = name;
-                }
-
-            }
-            else if (pictureBox9.Image == null)
-            {
-                using (Bitmap bmp = new Bitmap(img))
-                {
-                    img = new Bitmap(bmp);
-                    pictureBox9.Image = img;
-                    pictureBox9.Name = name;
-                }
-
-            }
-            else if (pictureBox10.Image == null)
-            {
-                using (Bitmap bmp = new Bitmap(img))
-                {
-                    img = new Bitmap(bmp);
-                    pictureBox10.Image = img;
-                    pictureBox10.Name = name;
-                }
-
-            }
-            else if (pictureBox11.Image == null)
-            {
-                using (Bitmap bmp = new Bitmap(img))
-                {
-                    img = new Bitmap(bmp);
-                    pictureBox11.Image = img;
-                    pictureBox11.Name = name;
-                }
-
-
-            }
-            else if (pictureBox12.Image == null)
-            {
-                using (Bitmap bmp = new Bitmap(img))
-                {
-                    img = new Bitmap(bmp);
-                    pictureBox12.Image = img;
-                    pictureBox12.Name = name;
-                }
-
-
-            }
-            else if (pictureBox13.Image == null)
-            {
-                using (Bitmap bmp = new Bitmap(img))
-                {
-                    img = new Bitmap(bmp);
-                    pictureBox13.Image = img;
-                    pictureBox13.Name = name;
-                }
-
-            }
-            else if (pictureBox14.Image == null)
-            {
-                using (Bitmap bmp = new Bitmap(img))
-                {
-                    img = new Bitmap(bmp);
-                    pictureBox14.Image = img;
-                    pictureBox14.Name = name;
-                }
-
-
-            }
-            else if (pictureBox15.Image == null)
-            {
-                using (Bitmap bmp = new Bitmap(img))
-                {
-                    img = new Bitmap(bmp);
-                    pictureBox15.Image = img;
-                    pictureBox15.Name = name;
-                }
-
-
-            }
 
         }
 
@@ -2116,89 +1533,6 @@ namespace mainVentana.VistaEntrada
         public void LimpiaIMG2()
         {
 
-            if (pictureBox2.Image != null)
-            {
-
-                pictureBox2.Image = null;
-                pictureBox2.ImageLocation = null;
-
-            }
-            if (pictureBox3.Image != null)
-            {
-
-                pictureBox3.Image = null;
-                pictureBox3.ImageLocation = null;
-
-            }
-            if (pictureBox4.Image != null)
-            {
-                pictureBox4.Image = null;
-                pictureBox4.ImageLocation = null;
-            }
-            if (pictureBox5.Image != null)
-            {
-
-                pictureBox5.Image = null;
-                pictureBox5.ImageLocation = null;
-            }
-            if (pictureBox6.Image != null)
-            {
-
-                pictureBox6.Image = null;
-                pictureBox6.ImageLocation = null;
-            }
-            if (pictureBox7.Image != null)
-            {
-
-                pictureBox7.Image = null;
-                pictureBox7.ImageLocation = null;
-            }
-            if (pictureBox8.Image != null)
-            {
-
-                pictureBox8.Image = null;
-                pictureBox8.ImageLocation = null;
-            }
-            if (pictureBox9.Image != null)
-            {
-
-                pictureBox9.Image = null;
-                pictureBox9.ImageLocation = null;
-            }
-            if (pictureBox10.Image != null)
-            {
-
-                pictureBox10.Image = null;
-                pictureBox10.ImageLocation = null;
-            }
-            if (pictureBox11.Image != null)
-            {
-
-                pictureBox11.Image = null;
-                pictureBox11.ImageLocation = null;
-            }
-            if (pictureBox12.Image != null)
-            {
-
-                pictureBox12.Image = null;
-                pictureBox12.ImageLocation = null;
-            }
-            if (pictureBox13.Image != null)
-            {
-                pictureBox13.Image = null;
-                pictureBox13.ImageLocation = null;
-            }
-            if (pictureBox14.Image != null)
-            {
-                pictureBox14.Image = null;
-                pictureBox14.ImageLocation = null;
-            }
-            if (pictureBox15.Image != null)
-            {
-
-                pictureBox15.Image = null;
-                pictureBox15.ImageLocation = null;
-            }
         }
 
         #endregion Fin de Modifica entrada__________________________________________________________________________________________________________________________________
@@ -2232,6 +1566,7 @@ namespace mainVentana.VistaEntrada
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
+            PdfZPLcrea();
             /*
             Reportes.TestReport rp = new Reportes.TestReport();
             //rp.Entrada = lblEntrada.Text;
@@ -2251,7 +1586,7 @@ namespace mainVentana.VistaEntrada
                 rp.repTFecha = q.Fecha.Value.Date.ToString();
                 rp.repTAlias = q.Alias;
                 rp.ShowDialog();
-            }*/
+            }
 
             //string s = "^XA^LH30,30\n^FO20,10^ADN,90,50^AD^FDHello World^FS\n^XZ";
             string s = "^XA^\nFO40,50^GFA,7372,7372,38,,:::::::::::::::::::::::::::::::::W01FF,V03JF,U01KFC,U0MF,T03MF8,T0NFE,S03OF,S0PF8,R03NF7F8,R07NF7FC,Q01OF7FE,Q03OF7FE,Q0PF7FF,P01OFE7FF,P03OFE7FF8,P0PFEIF8,O01PFCIFC,O03PFCIFC,O07PFCIFC,O0QF8IFC,N01QF8IFE,N03QF1IFE,N07QF1IFE,N0RF1IFE,M01QFE9IFE,M03QFEBIFE,M03QFC3IFE,M07QFD3JF,M0RF93JF,L01RF87JF,L01RF07JF,L03RF07JF,L07QFE0JFE,:L0RFC0JFE,L0RF81JFE,K01RF81JFE,K03RF01FFE,K03RF03FF03IF8M03F8K07FCO07IF8N0FF8,K07QFE03FC7KF801IF0LF03IF007FFE007KF801IF03IF,K07QFC07F1LFE01IF1LF07IFC07FFE01LFE01IF0JF8,K0RF807E7MF01FFE3LF1JFC07FFE07MF01FFE3JFC,K0RF807CNF81FFE7FFDIF3JFE07FFC0NF83FFE7JFC,J01RF18F9NF83LF9IF7JFE0IFC1NFC3FFEKFE,J01QFE10F3NFC3LF9OF0IFC3NFC3NFE,J03QFC21F3NFC3LF1OF0IFC3NFC3NFE,J03QFC21E7IF81IFC3KFE1OF0IFC7IF81IFC3NFE,J03QF843EIFE007FFC3KFE3OF0IFC7FFE007FFC3OF,J07QF083CIFC007FFC3KFC3OF0IF8IFC007FFC7NFE,J07PFE083C0FF9007FFC7IFE003IFE0JF1IF80FF8007FFC7IFC1IFE,J0QFC107F8002007FFC7IF8003IF807IF1IF8L07FFC7IF80IFE,J0QF8007IFC601IFC7IF8003IF003IF1IF8K01IFC7IF007FFE,J0QFI0KF81JFC7IFI03IF003IF1IF8J01JFC7FFE007FFE,J0PFEI0JF01KFC7FFEI07FFE003FFE1IFJ01KFC7FFE007FFE,I01PFC001IF03LFCIFEI07FFE003FFE1IFI03LFCIFC007FFE,I01PF8003FFC7MF8IFCI07FFE007FFE3IF007MF8IFC007FFC,I01PFI03FF1NF8IFCI07FFC007FFE3IF01NF8IFC00IFC,I01OFEI07FE7NF8IFCI07FFC007FFE3IF07NF8IFC00IFC,I03OFCI07FDKF9IF8IFCI0IFC007FFE3FFE1KF8IF8IF800IFC,I03OFJ0FFBJF81IF8IF8I0IFC007FFC3FFE1JF81IF9IF800IFC,I03NFEJ0FF3IFC01IF1IF8I0IFC00IFC7FFE3IFC01IF9IF800IFC,I03NFCI01FE7IF001IF1IF8I0IF800IFC7FFE7IF001IF1IF801IF8,I03NF80403FE7FFE003IF1IF8I0IF800IFC7FFE7FFE003IF1IF801IF8,I03MFE00403FEIFC003IF1IF8I0IF800IFC7FFEIFC003IF1IF801IF8,I03MFC00807FCIFC007IF1IFI01IF800IF87FFCIFC007IF1IF001IF8,I03MF00100FFCIFC00JF1IFI01IF800IF87FFCIFC00JF3IF001IF8,I03LFE00300FFCIFC01IFE3IFI01IF801IF8IFCIFC01JF3IF001IF,I03LFC00601FFCIFE07IFE3IFI01IF001IF8IFCIFE07IFE3IF003IF,I03LFI0C01FFCOFE3IFI01IF001IF8IFCOFE3IF003IF,I03KFC001803FFCOFE3FFEI01IF001IF8IFCOFE3FFE003IF,I03KF8003007FFEOFE3FFEI03IF001IF0IF8OFE3FFE003IF,I03JFEL0IFE7KFBFFE7FFEI03IF001IF0IF87KFBFFE7FFE003IF,I03JF8L0JF3JFE3FFE7FFEI03FFE003IF1IF83JFE3FFE7FFE003FFE,I03JFL01JF9JFC3FFE7FFEI03FFE003IF1IF81JFC3FFE7FFE007FFE,I01IFCL03JFCIFE01FFE7FFEI03FFE003IF1IF80IFE01IF7FFE007FFE,I01IFM03JFE0FEgP0FE,I01FFCM07JFE,I01FFN0KFE,J0FCM01KFC,J0FN01KF8,J04N03KF,S07JFEgP07FC03FFC01FF00F01E1FFC,S0KF8gO01FFE03FFE03FF80F01E1FFE,N018001KFgP03IF07FFE07FFC0E01C3IF,N07I01JFEgP07C0F0780F0F83E0E01C3C0F,N0EI03JFCgP078078700F1F01E1E03C3C0F,M038I07JFgQ0F0020700F1E00E1E03C380F,M07J0JFEgQ0EJ0F01F3C00E1E03C780F,L01EI01JF8gQ0EJ0F03E3C00E1C038781E,L038I03JFgQ01E0FE0IFC3C00E1C0387FFE,L0FJ07IFCgQ01E0FF0IF83800E3C0787FFC,L04J0JFgR01C0FF0F7E03801E3C0787FF,Q0IFCgR01C0FF1E1E03801E3C078F,P03IFgS01E00E1E0F03803C38070F,P07FF8gS01E00E1E0703C07C380F0F,P07F8gU0F01E1C0783E0F83C1F0E,hN0FDFE1C0781FBF03FFE0E,hN07FFC3C03C0FFE01FFC1E,hN03FF03C03C07FC00FF81E,hO03O0CI018,,:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::^FS\n";
@@ -2300,7 +1635,7 @@ namespace mainVentana.VistaEntrada
             {
                 PrintEtique.PrintEtiquetas1.SendStringToPrinter(pd.PrinterSettings.PrinterName, s);
             }
-
+            */
 
 
         }
@@ -2406,6 +1741,174 @@ namespace mainVentana.VistaEntrada
            ve.sucursalOrigen = sucEntrada.SelectedValue.ToString().Trim();
             ve.ShowDialog();
 
+
+        }
+
+        private void gunaTileButton4_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fd = new OpenFileDialog();
+            fd.InitialDirectory = "@C:\\";
+            fd.Filter = "Solo documentos (PDF,WORD,JPG,PNG)|*.PDF;*.DOCX*.PNG*.JPG";
+            fd.Multiselect = true;
+
+           
+
+            if (fd.ShowDialog() == DialogResult.OK)
+            {
+                foreach (String file in fd.FileNames)
+                {
+                    try
+                    {
+                        var onlyFileName = System.IO.Path.GetFileName(file);
+                        DataGridViewRow row = new DataGridViewRow();
+                        row.CreateCells(dgvDocs);
+
+                        row.Cells[0].Value = onlyFileName;
+                        row.Cells[1].Value = file;
+                        DataGridViewButtonColumn btng = new DataGridViewButtonColumn();
+
+                        btng.Text = "Borrar Archivo";
+                        btng.HeaderText = "Borrar Archivo";
+                        btng.Name = "btng";
+                        
+                        btng.UseColumnTextForButtonValue = true;
+
+
+                        row.Cells[2] = btng.CellTemplate;
+                        dgvDocs.Rows.Add(row);
+
+                    }
+                    catch (Exception)
+                    {
+
+                        MessageBox.Show("Ha ocurrido un error");
+                    }
+                }
+                    
+
+            }
+        }
+
+        private void dgvDocs_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void dgvDocs_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex==2)
+            {
+                if (MessageBox.Show("Seguro que quieres borrar el archivo: " + this.dgvDocs.Rows[e.RowIndex].Cells[0].Value.ToString(), "Cuidado!", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    if (this.dgvDocs.Rows.Count > 0)
+                    {
+                        dgvDocs.Rows.RemoveAt(this.dgvDocs.Rows[e.RowIndex].Index);
+                    }
+                }
+            }
+        }
+
+        private async Task PdfZPLcrea()
+        {
+
+            saveFileDialog1.InitialDirectory = "@C:\\";
+            saveFileDialog1.Filter = "Solo documentos (PDF)|*.PDF";
+
+            string ruta ="";
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK && saveFileDialog1.CheckPathExists)
+            {
+                try
+                {
+                    ruta = saveFileDialog1.FileName;
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+                Servicio datos = new Servicio();
+
+                Servicios sv = new Servicios();
+
+                var lst = new List<vmEtiquetasReporte>();
+                lst = sv.LlenaEtiquetas(lblEntrada.Text.Trim(), sucEntrada.SelectedValue.ToString().Trim());
+                int neti = 1;
+                string lstt = lst.Count.ToString();
+                string zplToDoc = "";
+                foreach (var q in lst)
+                {
+                    /*rp.repTOrigen = q.Origen;
+                    rp.repTdest = q.Destino;
+                    rp.repTCliente = q.Cliente;
+                    rp.repTEtiqueta = q.Etiqueta;
+                    rp.repTEntrada = q.Entrada;
+                    rp.repTFecha = q.Fecha.Value.Date.ToString();
+                    rp.repTAlias = q.Alias;
+                    rp.ShowDialog();*/
+                    try
+                    {
+                        string s = "^XA^\nFO40,50^GFA,7372,7372,38,,:::::::::::::::::::::::::::::::::W01FF,V03JF,U01KFC,U0MF,T03MF8,T0NFE,S03OF,S0PF8,R03NF7F8,R07NF7FC,Q01OF7FE,Q03OF7FE,Q0PF7FF,P01OFE7FF,P03OFE7FF8,P0PFEIF8,O01PFCIFC,O03PFCIFC,O07PFCIFC,O0QF8IFC,N01QF8IFE,N03QF1IFE,N07QF1IFE,N0RF1IFE,M01QFE9IFE,M03QFEBIFE,M03QFC3IFE,M07QFD3JF,M0RF93JF,L01RF87JF,L01RF07JF,L03RF07JF,L07QFE0JFE,:L0RFC0JFE,L0RF81JFE,K01RF81JFE,K03RF01FFE,K03RF03FF03IF8M03F8K07FCO07IF8N0FF8,K07QFE03FC7KF801IF0LF03IF007FFE007KF801IF03IF,K07QFC07F1LFE01IF1LF07IFC07FFE01LFE01IF0JF8,K0RF807E7MF01FFE3LF1JFC07FFE07MF01FFE3JFC,K0RF807CNF81FFE7FFDIF3JFE07FFC0NF83FFE7JFC,J01RF18F9NF83LF9IF7JFE0IFC1NFC3FFEKFE,J01QFE10F3NFC3LF9OF0IFC3NFC3NFE,J03QFC21F3NFC3LF1OF0IFC3NFC3NFE,J03QFC21E7IF81IFC3KFE1OF0IFC7IF81IFC3NFE,J03QF843EIFE007FFC3KFE3OF0IFC7FFE007FFC3OF,J07QF083CIFC007FFC3KFC3OF0IF8IFC007FFC7NFE,J07PFE083C0FF9007FFC7IFE003IFE0JF1IF80FF8007FFC7IFC1IFE,J0QFC107F8002007FFC7IF8003IF807IF1IF8L07FFC7IF80IFE,J0QF8007IFC601IFC7IF8003IF003IF1IF8K01IFC7IF007FFE,J0QFI0KF81JFC7IFI03IF003IF1IF8J01JFC7FFE007FFE,J0PFEI0JF01KFC7FFEI07FFE003FFE1IFJ01KFC7FFE007FFE,I01PFC001IF03LFCIFEI07FFE003FFE1IFI03LFCIFC007FFE,I01PF8003FFC7MF8IFCI07FFE007FFE3IF007MF8IFC007FFC,I01PFI03FF1NF8IFCI07FFC007FFE3IF01NF8IFC00IFC,I01OFEI07FE7NF8IFCI07FFC007FFE3IF07NF8IFC00IFC,I03OFCI07FDKF9IF8IFCI0IFC007FFE3FFE1KF8IF8IF800IFC,I03OFJ0FFBJF81IF8IF8I0IFC007FFC3FFE1JF81IF9IF800IFC,I03NFEJ0FF3IFC01IF1IF8I0IFC00IFC7FFE3IFC01IF9IF800IFC,I03NFCI01FE7IF001IF1IF8I0IF800IFC7FFE7IF001IF1IF801IF8,I03NF80403FE7FFE003IF1IF8I0IF800IFC7FFE7FFE003IF1IF801IF8,I03MFE00403FEIFC003IF1IF8I0IF800IFC7FFEIFC003IF1IF801IF8,I03MFC00807FCIFC007IF1IFI01IF800IF87FFCIFC007IF1IF001IF8,I03MF00100FFCIFC00JF1IFI01IF800IF87FFCIFC00JF3IF001IF8,I03LFE00300FFCIFC01IFE3IFI01IF801IF8IFCIFC01JF3IF001IF,I03LFC00601FFCIFE07IFE3IFI01IF001IF8IFCIFE07IFE3IF003IF,I03LFI0C01FFCOFE3IFI01IF001IF8IFCOFE3IF003IF,I03KFC001803FFCOFE3FFEI01IF001IF8IFCOFE3FFE003IF,I03KF8003007FFEOFE3FFEI03IF001IF0IF8OFE3FFE003IF,I03JFEL0IFE7KFBFFE7FFEI03IF001IF0IF87KFBFFE7FFE003IF,I03JF8L0JF3JFE3FFE7FFEI03FFE003IF1IF83JFE3FFE7FFE003FFE,I03JFL01JF9JFC3FFE7FFEI03FFE003IF1IF81JFC3FFE7FFE007FFE,I01IFCL03JFCIFE01FFE7FFEI03FFE003IF1IF80IFE01IF7FFE007FFE,I01IFM03JFE0FEgP0FE,I01FFCM07JFE,I01FFN0KFE,J0FCM01KFC,J0FN01KF8,J04N03KF,S07JFEgP07FC03FFC01FF00F01E1FFC,S0KF8gO01FFE03FFE03FF80F01E1FFE,N018001KFgP03IF07FFE07FFC0E01C3IF,N07I01JFEgP07C0F0780F0F83E0E01C3C0F,N0EI03JFCgP078078700F1F01E1E03C3C0F,M038I07JFgQ0F0020700F1E00E1E03C380F,M07J0JFEgQ0EJ0F01F3C00E1E03C780F,L01EI01JF8gQ0EJ0F03E3C00E1C038781E,L038I03JFgQ01E0FE0IFC3C00E1C0387FFE,L0FJ07IFCgQ01E0FF0IF83800E3C0787FFC,L04J0JFgR01C0FF0F7E03801E3C0787FF,Q0IFCgR01C0FF1E1E03801E3C078F,P03IFgS01E00E1E0F03803C38070F,P07FF8gS01E00E1E0703C07C380F0F,P07F8gU0F01E1C0783E0F83C1F0E,hN0FDFE1C0781FBF03FFE0E,hN07FFC3C03C0FFE01FFC1E,hN03FF03C03C07FC00FF81E,hO03O0CI018,,:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::^FS\n";
+                        s += "^FX Top section with logo, name and address.\n";
+                        s += "^CF0,60\n";
+                        s += "^FO350,50^FDArnian Group.^FS\n";
+                        s += "^CF0,30\n";
+                        s += "^FO350,115^FD9948 Via de la Amistad^FS\n";
+                        s += "^FO350,155^FDSan Diego, CA 92154^FS\n";
+                        s += "^FO350,195^FDUnited States(USA)^FS\n";
+                        s += "^FO50,250^GB700,3,3^FS\n";
+                        s += "\n";
+                        s += "^FX Second section with recipient address and permit information.\n";
+                        s += "^CF0,30";
+                        s += string.Format("^FO50,300^FDClient: {0}^FS\n", q.Cliente.Trim());
+                        s += string.Format("^FO50,340^FDOrigin: {0}^FS\n", q.Origen.Trim());
+                        s += string.Format("^FO50,380^FDDestination: {0}^FS\n", q.Destino.Trim());
+                        s += string.Format("^FO50,420^FDAlias: {0}^FS\n", q.Alias == null?"":q.Alias.Trim());
+                        s += "^CF0,40\n";
+                        s += "^FO550,300^GB200,150,3^FS\n";
+                        s += "^FO580,340^FDID^FS\n";
+                        s += string.Format("^FO580,380^FD{0}^FS\n", q.Entrada.Trim());
+                        s += "^FO50,500^GB700,3,3^FS\n";
+                        s += "\n";
+                        s += "^FX Third section with bar code.\n";
+                        s += "^BY3,2,260\n";
+                        s += string.Format("^FO120,550^BC^FD{0}^FS\n", q.Etiqueta.Trim());
+                        s += "\n";
+                        s += "^FX Fourth section(the two boxes on the bottom).\n";
+                        s += "^FO50,870^GB700,250,3^FS\n";
+                        s += "^FO400,870^GB3,250,3^FS\n";
+                        s += "^CF0,80";
+                        s += string.Format("^FO100,900^FD{0} de {1}^FS\n", neti.ToString(), lstt);
+                        s += "^CF0,40";
+                        s += "^FO100,1010^FDDate:^FS\n";
+                        s += string.Format("^FO100,1060^FD{0}^FS\n", q.Fecha.Value.Date.ToString("dd/MM/yyyy"));
+                        s += "^CF0,190\n";
+                        //s += string.Format("^FO470,930^FD{0}^FS\n", q.ZonaNumero.ToString().Trim());
+                        s += "\n";
+                        s += "^CF0,30";
+                      //  s += string.Format("^FO50,1155^FDZona: {0}^FS\n", q.Zona.Trim());
+                        s += "\n";
+                        s += "^XZ\n";
+                        s += "\n";
+                        zplToDoc += s;
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+                    
+                    
+                    neti = neti + 1;
+                }
+
+
+
+
+                byte[] zpl = Encoding.UTF8.GetBytes(zplToDoc);
+               
+                await datos.pdfZPL(zpl, ruta);
+
+            }
 
         }
     }

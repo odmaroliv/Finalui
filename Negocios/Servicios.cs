@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Negocios
 {
@@ -37,5 +38,45 @@ namespace Negocios
             StreamReader sr = new StreamReader(oResponse.GetResponseStream());
             return sr.ReadToEnd();
         }
+
+        public async Task pdfZPL(byte[] zpl,string pathlbl)
+        {
+            var request = (HttpWebRequest)WebRequest.Create("http://api.labelary.com/v1/printers/8dpmm/labels/4x6/");
+            request.Method = "POST";
+            request.Accept = "application/pdf"; // omit this line to get PNG images back
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentLength = zpl.Length;
+
+            var requestStream = request.GetRequestStream();
+            requestStream.Write(zpl, 0, zpl.Length);
+            requestStream.Close();
+
+            try
+            {
+                var response = (HttpWebResponse)request.GetResponse();
+                var responseStream = response.GetResponseStream();
+
+               
+                string fullFilePath = pathlbl;
+
+                if (File.Exists(fullFilePath))
+                    File.Delete(fullFilePath);
+
+                
+                var fileStream = File.Create(fullFilePath); // change file name for PNG images
+                responseStream.CopyTo(fileStream);
+                responseStream.Close();
+                fileStream.Close();
+
+                Clipboard.SetText(fullFilePath);
+            }
+            catch (WebException e)
+            {
+                Console.WriteLine("Error: {0}", e.Status);
+            }
+        }
+
+
+
     }
 }
