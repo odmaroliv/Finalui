@@ -1032,7 +1032,7 @@ namespace mainVentana.VistaOrSalida
         {
             Negocios.Acceso_Salida.AccesoSalidas sls = new Negocios.Acceso_Salida.AccesoSalidas();
 
-            var gn = await sls.LlenaGeneralesSalida(ulDatoSolo);
+            var gn = await sls.LlenaGeneralesSalida(ulDatoSolo,sOrigen);
 
             foreach (var i in gn)
             {

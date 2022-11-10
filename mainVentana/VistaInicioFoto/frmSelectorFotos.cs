@@ -48,11 +48,8 @@ namespace mainVentana.VistaInicioFoto
                                     List<FotoInicioVM> jds = JsonConvert.DeserializeObject<List<FotoInicioVM>>(contenido);
 
                                     gunaDataGridView1.DataSource = jds;
-
-
                                 }
                             }
-
                         }
                     }
                 }

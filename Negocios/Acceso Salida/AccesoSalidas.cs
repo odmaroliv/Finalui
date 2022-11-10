@@ -332,7 +332,7 @@ namespace Negocios.Acceso_Salida
                 throw;
             }
         }
-        public async Task<List<vmGeneralesSalidas>> LlenaGeneralesSalida(string salidapausada)
+        public async Task<List<vmGeneralesSalidas>> LlenaGeneralesSalida(string salidapausada, string sorigen)
         {
 
             try
@@ -345,7 +345,7 @@ namespace Negocios.Acceso_Salida
                         lst2.Clear();
                         var oDocument = (from q in modelo.KDM1
 
-                                         where q.C6.Contains(salidapausada) && q.C4 == 45
+                                         where q.C6.Contains(salidapausada) && q.C4 == 45 && q.C1.Contains(sorigen)
 
                                          //group q.C54 by q.C54 into g
                                          select new vmGeneralesSalidas
