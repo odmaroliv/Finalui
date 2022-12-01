@@ -13,21 +13,39 @@ namespace Negocios
     {
          public async Task<string> GetParidad()//obtiene la paridad diaria del diario oficial de la federacion 
         {
-            string urlDollar = "https://sidofqa.segob.gob.mx/dof/sidof/indicadores/";
-            WebRequest oRequest = WebRequest.Create(urlDollar);
-            WebResponse oResponse = oRequest.GetResponse();
-            StreamReader sr = new StreamReader(oResponse.GetResponseStream());
-            return await sr.ReadToEndAsync();
+            try
+            {
+                string urlDollar = "https://sidofqa.segob.gob.mx/dof/sidof/indicadores/";
+                WebRequest oRequest = WebRequest.Create(urlDollar);
+                WebResponse oResponse = oRequest.GetResponse();
+                StreamReader sr = new StreamReader(oResponse.GetResponseStream());
+                return await sr.ReadToEndAsync();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
         }
 
        
         public async Task<string> fechaLapaz()//obtiene la paridad diaria del diario oficial de la federacion 
         {
-            string urlFecha = "http://worldtimeapi.org/api/timezone/America/la_paz/";
-            WebRequest oRequest = WebRequest.Create(urlFecha);
-            WebResponse oResponse = oRequest.GetResponse();
-            StreamReader sr = new StreamReader(oResponse.GetResponseStream());
-            return await sr.ReadToEndAsync();
+            try
+            {
+                string urlFecha = "http://worldtimeapi.org/api/timezone/America/la_paz/";
+                WebRequest oRequest = WebRequest.Create(urlFecha);
+                WebResponse oResponse = oRequest.GetResponse();
+                StreamReader sr = new StreamReader(oResponse.GetResponseStream());
+                return await sr.ReadToEndAsync();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
         }
 
         public string retornafechaLapaz()//obtiene la paridad diaria del diario oficial de la federacion 

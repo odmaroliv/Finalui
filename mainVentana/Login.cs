@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using mainVentana.Loading;
 using Negocios;
 
 namespace mainVentana
@@ -39,27 +40,48 @@ namespace mainVentana
         }
         private void iconButton1_Click(object sender, EventArgs e)
         {
+          
+            Validaciones_P_Busqueda();
+           
+        }
+
+        private void loadinggg(int estado)
+        {
+          
+                LoadingPatoControl loadingPatoControl = new LoadingPatoControl();
+                if (estado == 1)
+                {
+                    loadingPatoControl.Dock = DockStyle.Fill;
+                    pnlImg.Controls.Add(loadingPatoControl);
+                }
+                if (estado == 0)
+                {
+                pnlImg.Controls.Clear();
+                }
             
-            Inicio();
+
 
         }
-        private void Inicio()
+        private async void Inicio()
         {
             //--------------------validamos si hay coneccion, de lo contrario no ejecuta el showD />
             Servicios vld = new Servicios();
 
-            
             //-------------------------Fin de la validacion />
+
+
             bool valida = vld.cargalogin(txbUsr.Text.Trim(), txbPass.Text.Trim());
             if (valida == true)
             {
                 Form1 frm1 = new Form1();
                 frm1.Show();
                 this.Hide();
+
             }
             else
             {
                 MessageBox.Show("Usuario o contraseña incorrectos");
+               
             }
         }
 
@@ -81,29 +103,43 @@ namespace mainVentana
         {
             if (e.KeyCode == Keys.Return)
             {
+
+                loadinggg(1); 
                 Validaciones_P_Busqueda();
+               
             }
         }
-        private void Validaciones_P_Busqueda()
+        private async void Validaciones_P_Busqueda()
         {
+            
             if (txbPass.Text     == "")
             {
                 MessageBox.Show("El campo de Contraseña esta vacio!");
+                loadinggg(0);
                 return;
+               
             }
             else if (txbUsr.Text == "")
             {
                 MessageBox.Show("El campo de Usuario esta vacio!");
-                return ;
+                loadinggg(0);
+                return;
+
             }
-            Inicio();
+           
+            Inicio(); 
+            loadinggg(0);
         }
 
         private void txbUsr_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Return)
             {
-                Validaciones_P_Busqueda();
+                loadinggg(1);
+
+                Validaciones_P_Busqueda(); 
+               
+               
             }
         }
     }

@@ -173,5 +173,7 @@ namespace mainVentana
         {
             gunaShadowPanel1.ShadowColor = Color.FromArgb(114, 91, 121);
         }
+
+       
     }
 }

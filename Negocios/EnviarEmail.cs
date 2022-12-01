@@ -27,19 +27,19 @@ namespace Negocios
                     msg.Subject = "Notificacion Arnian entrada: " + Entrada;
                     long pesoArch = 0;
 
-                  /*  foreach (var item in Fotos) //Attachment
+                   /* foreach (var item in Fotos) //Attachment
                     {
                         msg.Attachments.Add(new Attachment(item));
                         FileInfo fileinfo = new FileInfo(item);
                         pesoArch = pesoArch + fileinfo.Length;
-                    }
+                    }*/
                     foreach (var item in Archivos) //Attachment
                     {
                         msg.Attachments.Add(new Attachment(item));
                         FileInfo fileinfo = new FileInfo(item);
                         pesoArch = pesoArch + fileinfo.Length;
                     }
-                  */
+                  
                     if (pesoArch >= 25000000)
                     {
                         bandera = 1;

@@ -41,6 +41,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.gunaPictureBox1 = new Guna.UI.WinForms.GunaPictureBox();
+            this.pnlImg = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -95,6 +96,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.pnlImg);
             this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
@@ -210,6 +212,15 @@
             this.gunaPictureBox1.TabIndex = 0;
             this.gunaPictureBox1.TabStop = false;
             // 
+            // pnlImg
+            // 
+            this.pnlImg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlImg.Location = new System.Drawing.Point(34, 282);
+            this.pnlImg.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlImg.Name = "pnlImg";
+            this.pnlImg.Size = new System.Drawing.Size(279, 35);
+            this.pnlImg.TabIndex = 21;
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -255,5 +266,6 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.PictureBox pictureBox1;
         private Guna.UI.WinForms.GunaPictureBox gunaPictureBox1;
+        private System.Windows.Forms.Panel pnlImg;
     }
 }

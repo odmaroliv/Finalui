@@ -31,6 +31,8 @@ using ImageMagick;
 using System.Drawing.Imaging;
 using Datos.ViewModels.Reportes;
 using System.Drawing.Printing;
+using System.Net.Http;
+using Datos.ViewModels.InicioFotoVisor;
 
 namespace mainVentana.VistaEntrada
 {
@@ -100,6 +102,14 @@ namespace mainVentana.VistaEntrada
             unidades.Text = "";
             bultos.Text = "";
             peso.Text = "";
+
+            dgvFotosModifi.Visible = false;
+            dgvFotosModifi.Enabled = false;
+
+            dgvDocs.Enabled = true;
+            dgvDocs.Visible = true;
+
+
             //Desk.SpecialKeyButtons(false);
             llenaCampos();
             #region Autocompletar ref
@@ -121,7 +131,7 @@ namespace mainVentana.VistaEntrada
             if (tipodeDocumento == 1)
             {
                 AgregaArchivos();
-               
+                validapsoemail();
 
 
                 if (validacion.validacampo(sucEntrada.Text, sucDestino.Text, tipoOper.Text, cord.Text, cliente.Text, proveedor.Text, ordenCompra.Text, numFlete.Text, unidades.Text, peso.Text, bultos.Text, detalles.Text) == true )
@@ -129,6 +139,8 @@ namespace mainVentana.VistaEntrada
 
                     //creaListadeFotos();
                     //AgregaArchivos();
+
+
 
                     altaKDM1();
 
@@ -139,7 +151,7 @@ namespace mainVentana.VistaEntrada
                     envEmail();
                                                   //barcode();
                     //Crea_codigo_de_barras(); desactivado por erri en drawin 
-                    llamareporte();
+                    //llamareporte();
                                                 //CreaEriquetas();
                                                  //envEmail();
 
@@ -258,16 +270,30 @@ namespace mainVentana.VistaEntrada
         private async void envEmail()
         {
             EnviarEmail servicio = new EnviarEmail();
-            var respuesta = await servicio.EnviaMail(lblEntrada.Text, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, larch, coreoClientes);
-            if (respuesta == 1)
+
+            List<string> archivos = new List<string>();
+            if (dgvDocs.Rows.Count > 0)
             {
-                MessageBox.Show("El correo NO SE ENVIÓ PORQUE supera el límite máximo de 25 MB en cada correo, intenta borrar documentos y reenvía la notificación", "CUIDADO EL CORREO NO SE ENVIO");
-                NotificaEmail(0, lblEntrada.Text, cliente.Text);
+                foreach (DataGridViewRow row in dgvDocs.Rows)
+                {
+                    archivos.Add(row.Cells[1].Value.ToString());
+
+                }
+
+                var respuesta = await servicio.EnviaMail(lblEntrada.Text, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, archivos, coreoClientes);
+                if (respuesta == 1)
+                {
+                    MessageBox.Show("El correo NO SE ENVIÓ PORQUE supera el límite máximo de 25 MB en cada correo, intenta borrar documentos y reenvía la notificación", "CUIDADO EL CORREO NO SE ENVIO");
+                    NotificaEmail(0, lblEntrada.Text, cliente.Text);
+                }
+                else
+                {
+                    NotificaEmail(1, lblEntrada.Text, cliente.Text);
+                }
             }
-            else
-            {
-                NotificaEmail(1, lblEntrada.Text, cliente.Text);
-            }
+
+
+            
 
         }
       
@@ -403,40 +429,10 @@ namespace mainVentana.VistaEntrada
 
         private void SubeFotos()
         {
+            CargaPH();
         }
-        private byte[] imgbyte(string ruta, System.Drawing.Image picture)
-        {
-
-            byte[] file = null;
-            vmListaFotos lsf = new vmListaFotos();
-            //Stream fs = new FileStream(ruta, FileMode.Create);
-            var img = picture;
-            // img.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-            using (MemoryStream ms = new MemoryStream())
-            {
-                img.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-                file = ms.ToArray();
-            }
-            return file;
-            //picture.Dispose();
-        }
-
-        private byte[] docbyte(string ruta)
-        {
-            byte[] file = null;
-            vmListaFotos lsf = new vmListaFotos();
-            Stream fs = new FileStream(ruta, FileMode.Open);
-            //var img = ruta;
-            // img.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-            using (MemoryStream ms = new MemoryStream())
-            {
-                fs.CopyTo(ms);
-                file = ms.ToArray();
-                fs.Dispose();
-            }
-            return file;
-            //picture.Dispose();
-        }
+      
+       
         private byte[] RedimencionaIMG(string path)
         {
             byte[] pic;
@@ -885,6 +881,13 @@ namespace mainVentana.VistaEntrada
 
         public void limpiaImg()
         {
+
+            dgvDocs.Rows.Clear();
+            dgvDocs.Refresh();
+
+            dgvFotosModifi.Rows.Clear();
+            dgvFotosModifi.Refresh();
+
         }
 
         //
@@ -985,6 +988,8 @@ namespace mainVentana.VistaEntrada
                     lblUser.Text = CacheLogin.username;
 
 
+
+
                     limpiaImg();
                     GeneraRastreo();
                     Cargaparidad();
@@ -1050,7 +1055,13 @@ namespace mainVentana.VistaEntrada
                 txbBuscarEnt.Visible = false;
                 lblBuscarEnt.Visible = false;
                 btnAgregarBultos.Visible = false;
-               
+
+                dgvFotosModifi.Visible = false;
+                dgvFotosModifi.Enabled = false;
+
+                dgvDocs.Enabled = true;
+                dgvDocs.Visible = true;
+
                 abreModifica(true);
                 ReiniciaInfo(1);
                 limpiaImg();
@@ -1070,7 +1081,13 @@ namespace mainVentana.VistaEntrada
             txbBuscarEnt.Visible = true;
             lblBuscarEnt.Visible = true;
             btnAgregarBultos.Visible = true;
-            
+
+            dgvFotosModifi.Visible = true;
+            dgvFotosModifi.Enabled = true;
+
+            dgvDocs.Enabled = false;
+            dgvDocs.Visible = false;
+
             abreModifica(false);
             limpiaImg();
 
@@ -1192,9 +1209,10 @@ namespace mainVentana.VistaEntrada
                 {
                     return;
                 }
-
-                CargaFotos(txbBuscarEnt.Text.Trim(), sucEntrada.SelectedValue.ToString().Trim());
-                CargaDocPDF();
+                
+                SelectorFotos(sucEntrada.SelectedValue.ToString().Trim() + "-UD3501-" + txbBuscarEnt.Text.Trim());
+                //CargaFotos(txbBuscarEnt.Text.Trim(), sucEntrada.SelectedValue.ToString().Trim());
+                //CargaDocPDF();
                 label27.Text = "";
                 label28.Text = "";
             }
@@ -1532,8 +1550,178 @@ namespace mainVentana.VistaEntrada
         //--------------------------------------------------------------*
         public void LimpiaIMG2()
         {
+            dgvFotosModifi.DataSource = null;
+        }
+
+        //Carga el nombre de los archivos en la taba
+        private async void SelectorFotos(string entrada)
+        {
+            dgvFotosModifi.DataSource = null;
+
+            string nombreArchivo = entrada;
+            int tipoRespuesta = 2;
+            string mensajeRespuesta = "";
+            if (!string.IsNullOrWhiteSpace(nombreArchivo))
+            {
+
+                try
+                {
+                    using (HttpClient cliente = new HttpClient())
+                    {
+                        string url = "http://104.198.241.64:90/api/Archivo/getls/?nombreArchivo=" + nombreArchivo;
+                        using (HttpResponseMessage respuestaConsulta = await cliente.GetAsync(url))
+                        {
+                            using (HttpContent cn = respuestaConsulta.Content)
+                            {
+                                string contenido = await respuestaConsulta.Content.ReadAsStringAsync();
+                                if (respuestaConsulta.IsSuccessStatusCode)
+                                {
+                                    List<FotoInicioVM> jds = JsonConvert.DeserializeObject<List<FotoInicioVM>>(contenido);
+
+                                    dgvFotosModifi.DataSource = jds;
+                                }
+                            }
+                        }
+                    }
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        private void Abre()
+        {
 
         }
+
+        private async void DescargaDocs(string dato)
+        {
+            string nombreArchivo = dato.Trim();
+            int tipoRespuesta = 2;
+            string mensajeRespuesta = "";
+            if (!string.IsNullOrWhiteSpace(nombreArchivo))
+            {
+
+                try
+                {
+                    using (HttpClient cliente = new HttpClient())
+                    {
+                        string url = "http://104.198.241.64:90/api/Archivo/?nombreArchivo=" + nombreArchivo;
+                        using (HttpResponseMessage respuestaConsulta = await cliente.GetAsync(url))
+                        {
+                            if (respuestaConsulta.IsSuccessStatusCode)
+                            {
+                                byte[] arrContenido = await respuestaConsulta.Content.ReadAsAsync<byte[]>();
+
+
+                                string path = AppDomain.CurrentDomain.BaseDirectory;
+                                string folder = path + "\\temp\\";
+                                string fullFilePath = folder + dato;
+
+                                if (File.Exists(fullFilePath))
+                                    File.Delete(fullFilePath);
+
+                                if (!Directory.Exists(folder))
+                                    Directory.CreateDirectory(folder);
+
+                                File.WriteAllBytes(fullFilePath, arrContenido);
+
+                                tipoRespuesta = 1;
+                                // mensajeRespuesta = "Se descargó correctamente el archivo " + nombreArchivo;
+                                Process.Start(fullFilePath);
+                            }
+                            else
+                            {
+                                mensajeRespuesta = await respuestaConsulta.Content.ReadAsStringAsync();
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    tipoRespuesta = 3;
+                    mensajeRespuesta = ex.Message;
+                }
+
+            }
+
+
+
+
+            /* MessageBoxIcon iconoMensaje;
+             if (tipoRespuesta == 1)
+                 iconoMensaje = MessageBoxIcon.Information;
+             else if (tipoRespuesta == 2)
+                 iconoMensaje = MessageBoxIcon.Warning;
+             else
+                 iconoMensaje = MessageBoxIcon.Error;
+             MessageBox.Show(mensajeRespuesta, "Descarga de archivos", MessageBoxButtons.OK, iconoMensaje);*/
+        }
+
+        private async void CargaPH()
+        {
+            List<string> archivos = new List<string>();
+            if (dgvDocs.Rows.Count>0)
+            {
+                foreach (DataGridViewRow row in dgvDocs.Rows)
+                {
+                    archivos.Add(row.Cells[1].Value.ToString());
+
+                }
+
+                foreach (var q in archivos)
+                {
+                    string mensajeRespuesta = "";
+                    int tipoRespuesta = 2;
+                    string nombreCompletoArchivo = q;
+                    byte[] arrContenido = null;
+                    using (FileStream fs = new FileStream(nombreCompletoArchivo, FileMode.Open, FileAccess.Read, FileShare.Read))
+                    {
+                        arrContenido = new byte[fs.Length];
+                        await fs.ReadAsync(arrContenido, 0, arrContenido.Length);
+                    }
+                    if (arrContenido == null) mensajeRespuesta = "Ocurrió un inconveniente al obtener el contenido del archivo " + nombreCompletoArchivo;
+                    else
+                    {
+                        string url = "http://104.198.241.64:90/api/Archivo";
+                        using (HttpClient cliente = new HttpClient())
+                        {
+                            string nombreArchivo = sucEntrada.SelectedValue.ToString().Trim()+ "-UD3501-"+ lblEntrada.Text.Trim()+"_"+ Path.GetFileName(nombreCompletoArchivo);
+                            MultipartFormDataContent frm = new MultipartFormDataContent();
+                            frm.Add(new StringContent(nombreArchivo), "nombreArchivo");
+                            frm.Add(new StringContent("1"), "idEstado");
+                            frm.Add(new ByteArrayContent(arrContenido), "contenido", nombreArchivo);
+                            using (HttpResponseMessage resultadoConsulta = await cliente.PostAsync(url, frm))
+                            {
+                                mensajeRespuesta = await resultadoConsulta.Content.ReadAsStringAsync();
+                                if (resultadoConsulta.IsSuccessStatusCode)
+                                    tipoRespuesta = 1;
+                                else
+                                    tipoRespuesta = 2;
+                            }
+                        }
+                    }
+
+                   /* MessageBoxIcon iconoMensaje;
+                    if (tipoRespuesta == 1)
+                        iconoMensaje = MessageBoxIcon.Information;
+                    else if (tipoRespuesta == 2)
+                        iconoMensaje = MessageBoxIcon.Warning;
+                    else
+                        iconoMensaje = MessageBoxIcon.Error;
+                    MessageBox.Show(mensajeRespuesta, "Carga de archivos", MessageBoxButtons.OK, iconoMensaje);
+                   */
+                }
+
+                   
+                
+            }
+            
+        }
+
+
 
         #endregion Fin de Modifica entrada__________________________________________________________________________________________________________________________________
         private void abreBaja()
@@ -1566,7 +1754,9 @@ namespace mainVentana.VistaEntrada
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
-            PdfZPLcrea();
+            CargaPH();
+
+            //PdfZPLcrea();
             /*
             Reportes.TestReport rp = new Reportes.TestReport();
             //rp.Entrada = lblEntrada.Text;
@@ -1788,16 +1978,46 @@ namespace mainVentana.VistaEntrada
 
             }
         }
+        private void validapsoemail()
+        {
+            long pesoArch =0;
+            List<string> archivos = new List<string>();
+            if (dgvDocs.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow row in dgvDocs.Rows)
+                {
+                    archivos.Add(row.Cells[1].Value.ToString());
+
+                }
+
+                foreach (var item in archivos) //Attachment
+                {
+                    FileInfo fileinfo = new FileInfo(item);
+                    pesoArch = pesoArch + fileinfo.Length;
+                }
+
+                if (pesoArch >= 25000000)
+                {
+                    MessageBox.Show("Tus archivos superan el tamaño maximo permitido por Google, por favor elimina algun archivo.");
+                    return;
+                 }
+            }
+        }
 
         private void dgvDocs_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             
         }
 
-        private void dgvDocs_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvDocs_CellClick(object sender, DataGridViewCellEventArgs e) //Borra archivos sin cargar 
         {
             if (e.ColumnIndex==2)
             {
+                if (this.dgvDocs.Rows[e.RowIndex].Cells[0].Value == null)
+                {
+                    MessageBox.Show("Ningun archivo seleccionado");
+                    return;
+                }
                 if (MessageBox.Show("Seguro que quieres borrar el archivo: " + this.dgvDocs.Rows[e.RowIndex].Cells[0].Value.ToString(), "Cuidado!", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
                     if (this.dgvDocs.Rows.Count > 0)
@@ -1908,6 +2128,23 @@ namespace mainVentana.VistaEntrada
                
                 await datos.pdfZPL(zpl, ruta);
 
+            }
+
+        }
+
+        private void dgvFotosModifi_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+                if (dgvFotosModifi.Rows.Count > 0)
+            {
+                string id = dgvFotosModifi.Rows[e.RowIndex].Cells[0].Value.ToString();
+
+                DescargaDocs(id);
+
+            }
+            else
+            {
+                MessageBox.Show("No hay datos para buscar.");
             }
 
         }
