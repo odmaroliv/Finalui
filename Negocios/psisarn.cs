@@ -12,14 +12,14 @@ namespace Negocios
 
         public void CS(string SN, string CSN)
         {
-            //string conn = ConfigurationManager.ConnectionStrings["KDBEntities"].ConnectionString;
+            //string conn = ConfigurationManager.ConnectionStrings["modelo2Entities"].ConnectionString;
            
             string cadema = "metadata=res://*/Datosenti.modeloPrueba.csdl|res://*/Datosenti.modeloPrueba.ssdl|res://*/Datosenti.modeloPrueba.msl;provider=System.Data.SqlClient;provider connection string=';data source=104.198.241.64;initial catalog=KEPLER4;user id=" + SN + ";password=" + CSN + ";multipleactiveresultsets=True;application name=EntityFramework';";
 
 
             AddOrUpdateAppConnectionStrings("modelo2Entities", cadema);
 
-            //conn = ConfigurationManager.ConnectionStrings["KDBEntities"].ConnectionString;
+           // conn = ConfigurationManager.ConnectionStrings["modelo2Entities"].ConnectionString;
         }
         public void AddOrUpdateAppConnectionStrings(string key, string value)
         {

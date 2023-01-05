@@ -9,17 +9,23 @@ using System.Threading.Tasks;
 
 namespace Negocios
 {
-    public class EnviarEmail
+    public class EnviarEmail 
     {
 
-        public async Task<int> EnviaMail(string Entrada, string Cliente, string Notraking, string Alias, string OrdCompra, string Noflete, string Proveedor, string Desc, List<string> Archivos, string correosClientes)
+        public async Task<int> EnviaMail(string Entrada, string Cliente, string Notraking, string Alias, string OrdCompra, string Noflete, string Proveedor, string Desc, List<string> Archivos, string correosClientes, string idCord = "")
         {
             int bandera = default;
 
             try
             {
+                Negocios.Servicios ng = new Servicios();
+                string correoCord = await ng.obtieneCorreoCord(idCord);
+
                 await Task.Run(() =>
                 {
+
+
+
                     MailMessage msg = new MailMessage();
                     SmtpClient smtp = new SmtpClient();
                     msg.IsBodyHtml = true;
@@ -59,10 +65,9 @@ namespace Negocios
                         msg.Body = sr.ReadToEnd().ToString();
                     }
 
-
                    
 
-                    string[] toMail = Common.Cache.CacheLogin.email.Split(',')[0].Trim() == "" ? "sistemas@arnian.com".Split(','): Common.Cache.CacheLogin.email.Split(',');//textBox6.Text.Split(','); // llenar desde la bd con los datos del cliente 
+                    string[] toMail = correoCord == "" ? "sistemas@arnian.com".Split(','): correoCord.Split(',');//textBox6.Text.Split(','); // llenar desde la bd con los datos del cliente 
                     foreach (string ToEmailId in toMail)
                     {
                         msg.To.Add(new MailAddress(ToEmailId));
@@ -75,6 +80,9 @@ namespace Negocios
                             msg.CC.Add(new MailAddress(ToCCId));
                         }
                     }
+                    
+                   
+
                     /*if (textBox4.Text != "")
                     {
                         string[] toBCC = textBox4.Text.Split(',');
@@ -96,6 +104,9 @@ namespace Negocios
                     msg.Attachments.Clear();
                     msg.Attachments.Dispose();
                     msg.Dispose();
+                    msg = null;
+                    smtp.Dispose();
+                    smtp = null;
                     bandera = 2;
                 });
                 return bandera;
@@ -107,5 +118,8 @@ namespace Negocios
             }
         }
 
+
     }
+
+
 }

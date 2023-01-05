@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSalidas));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -99,7 +98,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.dgvDuplicados = new Guna.UI.WinForms.GunaDataGridView();
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon();
             this.dgvIni2 = new Guna.UI.WinForms.GunaDataGridView();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -128,7 +127,7 @@
             this.panel1.Controls.Add(this.lblChofer);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1145, 55);
             this.panel1.TabIndex = 0;
@@ -194,7 +193,7 @@
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton1.IconSize = 30;
             this.iconButton1.Location = new System.Drawing.Point(995, 0);
-            this.iconButton1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.iconButton1.Margin = new System.Windows.Forms.Padding(2);
             this.iconButton1.Name = "iconButton1";
             this.iconButton1.Size = new System.Drawing.Size(148, 55);
             this.iconButton1.TabIndex = 0;
@@ -266,7 +265,7 @@
             this.panel2.Controls.Add(this.textBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(995, 55);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(150, 559);
             this.panel2.TabIndex = 1;
@@ -275,7 +274,7 @@
             // 
             this.txbReferencia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txbReferencia.Location = new System.Drawing.Point(17, 137);
-            this.txbReferencia.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbReferencia.Margin = new System.Windows.Forms.Padding(2);
             this.txbReferencia.MaxLength = 19;
             this.txbReferencia.Name = "txbReferencia";
             this.txbReferencia.Size = new System.Drawing.Size(118, 20);
@@ -310,7 +309,7 @@
             this.txbNotas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txbNotas.Location = new System.Drawing.Point(17, 202);
-            this.txbNotas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbNotas.Margin = new System.Windows.Forms.Padding(2);
             this.txbNotas.MaxLength = 999;
             this.txbNotas.Multiline = true;
             this.txbNotas.Name = "txbNotas";
@@ -337,7 +336,7 @@
             this.btnSubir.ImageSize = new System.Drawing.Size(20, 20);
             this.btnSubir.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(58)))), ((int)(((byte)(170)))));
             this.btnSubir.Location = new System.Drawing.Point(17, 461);
-            this.btnSubir.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSubir.Margin = new System.Windows.Forms.Padding(2);
             this.btnSubir.Name = "btnSubir";
             this.btnSubir.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.btnSubir.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -382,7 +381,7 @@
             this.gunaAdvenceButton1.ImageSize = new System.Drawing.Size(20, 20);
             this.gunaAdvenceButton1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(58)))), ((int)(((byte)(170)))));
             this.gunaAdvenceButton1.Location = new System.Drawing.Point(17, 67);
-            this.gunaAdvenceButton1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gunaAdvenceButton1.Margin = new System.Windows.Forms.Padding(2);
             this.gunaAdvenceButton1.Name = "gunaAdvenceButton1";
             this.gunaAdvenceButton1.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.gunaAdvenceButton1.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -399,7 +398,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(17, 45);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(118, 20);
@@ -409,7 +408,7 @@
             // 
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, 603);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(995, 11);
             this.panel3.TabIndex = 2;
@@ -450,7 +449,7 @@
             this.dgvInicial.EnableHeadersVisualStyles = false;
             this.dgvInicial.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvInicial.Location = new System.Drawing.Point(262, 81);
-            this.dgvInicial.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvInicial.Margin = new System.Windows.Forms.Padding(2);
             this.dgvInicial.Name = "dgvInicial";
             this.dgvInicial.RowHeadersVisible = false;
             this.dgvInicial.RowHeadersWidth = 51;
@@ -513,7 +512,7 @@
             this.dgvError.EnableHeadersVisualStyles = false;
             this.dgvError.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvError.Location = new System.Drawing.Point(17, 396);
-            this.dgvError.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvError.Margin = new System.Windows.Forms.Padding(2);
             this.dgvError.Name = "dgvError";
             this.dgvError.RowHeadersVisible = false;
             this.dgvError.RowHeadersWidth = 51;
@@ -575,7 +574,7 @@
             this.dgvExito.EnableHeadersVisualStyles = false;
             this.dgvExito.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvExito.Location = new System.Drawing.Point(473, 396);
-            this.dgvExito.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvExito.Margin = new System.Windows.Forms.Padding(2);
             this.dgvExito.Name = "dgvExito";
             this.dgvExito.RowHeadersVisible = false;
             this.dgvExito.RowHeadersWidth = 51;
@@ -613,9 +612,9 @@
             this.groupBox1.Controls.Add(this.rbOTJ);
             this.groupBox1.Controls.Add(this.rbOSD);
             this.groupBox1.Location = new System.Drawing.Point(17, 4);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(220, 68);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
@@ -663,9 +662,9 @@
             this.groupBox2.Controls.Add(this.rbDTJ);
             this.groupBox2.Controls.Add(this.rbDSD);
             this.groupBox2.Location = new System.Drawing.Point(262, 4);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(220, 68);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
@@ -734,7 +733,7 @@
             this.panel4.Controls.Add(this.dgvInicial);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 55);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
             this.panel4.Padding = new System.Windows.Forms.Padding(15, 16, 15, 16);
             this.panel4.Size = new System.Drawing.Size(995, 548);
@@ -772,7 +771,7 @@
             this.dgvRaw.EnableHeadersVisualStyles = false;
             this.dgvRaw.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvRaw.Location = new System.Drawing.Point(20, 81);
-            this.dgvRaw.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvRaw.Margin = new System.Windows.Forms.Padding(2);
             this.dgvRaw.Name = "dgvRaw";
             this.dgvRaw.RowHeadersVisible = false;
             this.dgvRaw.RowHeadersWidth = 51;
@@ -808,7 +807,7 @@
             // 
             this.pnImg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pnImg.Location = new System.Drawing.Point(618, 14);
-            this.pnImg.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnImg.Margin = new System.Windows.Forms.Padding(2);
             this.pnImg.Name = "pnImg";
             this.pnImg.Size = new System.Drawing.Size(344, 58);
             this.pnImg.TabIndex = 20;
@@ -826,7 +825,7 @@
             this.txbtEtiduplicadas.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txbtEtiduplicadas.Font = new System.Drawing.Font("Segoe UI", 7F);
             this.txbtEtiduplicadas.Location = new System.Drawing.Point(839, 521);
-            this.txbtEtiduplicadas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbtEtiduplicadas.Margin = new System.Windows.Forms.Padding(2);
             this.txbtEtiduplicadas.Name = "txbtEtiduplicadas";
             this.txbtEtiduplicadas.PasswordChar = '\0';
             this.txbtEtiduplicadas.Radius = 5;
@@ -859,7 +858,7 @@
             this.txbtCorrecto.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txbtCorrecto.Font = new System.Drawing.Font("Segoe UI", 7F);
             this.txbtCorrecto.Location = new System.Drawing.Point(526, 521);
-            this.txbtCorrecto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbtCorrecto.Margin = new System.Windows.Forms.Padding(2);
             this.txbtCorrecto.Name = "txbtCorrecto";
             this.txbtCorrecto.PasswordChar = '\0';
             this.txbtCorrecto.Radius = 5;
@@ -892,7 +891,7 @@
             this.txbtError.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txbtError.Font = new System.Drawing.Font("Segoe UI", 7F);
             this.txbtError.Location = new System.Drawing.Point(73, 521);
-            this.txbtError.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbtError.Margin = new System.Windows.Forms.Padding(2);
             this.txbtError.Name = "txbtError";
             this.txbtError.PasswordChar = '\0';
             this.txbtError.Radius = 5;
@@ -925,7 +924,7 @@
             this.txbTotal.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txbTotal.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbTotal.Location = new System.Drawing.Point(915, 331);
-            this.txbTotal.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbTotal.Margin = new System.Windows.Forms.Padding(2);
             this.txbTotal.Name = "txbTotal";
             this.txbTotal.PasswordChar = '\0';
             this.txbTotal.Radius = 5;
@@ -946,7 +945,7 @@
             this.txbSubT.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txbSubT.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbSubT.Location = new System.Drawing.Point(201, 331);
-            this.txbSubT.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbSubT.Margin = new System.Windows.Forms.Padding(2);
             this.txbSubT.Name = "txbSubT";
             this.txbSubT.PasswordChar = '\0';
             this.txbSubT.Radius = 5;
@@ -984,7 +983,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gunaSeparator1.LineColor = System.Drawing.Color.Silver;
             this.gunaSeparator1.Location = new System.Drawing.Point(20, 359);
-            this.gunaSeparator1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gunaSeparator1.Margin = new System.Windows.Forms.Padding(2);
             this.gunaSeparator1.Name = "gunaSeparator1";
             this.gunaSeparator1.Size = new System.Drawing.Size(959, 8);
             this.gunaSeparator1.TabIndex = 9;
@@ -1056,7 +1055,7 @@
             this.dgvDuplicados.EnableHeadersVisualStyles = false;
             this.dgvDuplicados.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvDuplicados.Location = new System.Drawing.Point(785, 396);
-            this.dgvDuplicados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvDuplicados.Margin = new System.Windows.Forms.Padding(2);
             this.dgvDuplicados.Name = "dgvDuplicados";
             this.dgvDuplicados.RowHeadersVisible = false;
             this.dgvDuplicados.RowHeadersWidth = 51;
@@ -1165,7 +1164,7 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(1016, 653);
             this.Name = "frmSalidas";
             this.ShowIcon = false;

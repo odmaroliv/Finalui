@@ -11,44 +11,122 @@ namespace Negocios
 {
     public class BajaDB
     {
-        public void Elimina_FotoDoc(string nombre, string tDocto)
+        
+       public async Task<bool> BorraEtiquitas(List<string> lst)
+        {
+            bool b = true;
+            try
+            {
+                
+                await Task.Run(() =>
+                {
+                    using (modelo2Entities modelo = new modelo2Entities())
+
+                    {
+                        List<KDMENT> kd = new List<KDMENT>();
+
+                        foreach (var i in lst)
+                        {
+                            var d = (from q in modelo.KDMENT
+                                     where q.C9 == i && q.C4 == 35
+                                     select q).First();
+
+                            kd.Add(d);
+                            
+                        }
+                        try
+                        {
+                            modelo.KDMENT.BulkDelete(kd);
+                            b = true;
+                        }
+                        catch (Exception)
+                        {
+                            b= false;
+                        }
+                        kd.Clear();
+                      
+
+                    }
+                });
+
+             
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return b;
+        }
+
+        public async Task ActualizaBultos(string entrada, string sucursalIni, string bultos)
         {
             try
             {
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
-                    var ii = from d in modelo.DSIMAGE
-                             where d.NOMBRE == nombre && d.EXTRA2 == tDocto 
-                             select d;
+                    var d = (from q in modelo.KDM1
+                             where q.C1 == sucursalIni && q.C6 == entrada && q.C4 == 35
+                             select q).First();
 
-                    if (ii.Count() > 0)
-                    {
-                        var ft = ii.First();
-                        modelo.DSIMAGE.Remove(ft);
-                        modelo.SaveChanges();
-                    }
-                   
-                  
+                    d.C108 = bultos.Trim();
+                    await modelo.SaveChangesAsync();
 
                 }
             }
-            catch (DbEntityValidationException e)
+            catch (Exception)
             {
-                foreach (var eve in e.EntityValidationErrors)
+                System.Windows.Forms.MessageBox.Show("Ha ocurrido un error, no hemos podido actualizar el valor.");
+            }
+
+        }
+
+       /* public async void BorraTodalaEntrada(List<string> lst)
+        {
+
+            try
+            {
+
+                await Task.Run(() =>
                 {
-                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                    foreach (var ve in eve.ValidationErrors)
+                    using (modelo2Entities modelo = new modelo2Entities())
+
                     {
-                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                            ve.PropertyName, ve.ErrorMessage);
+                        List<KDMENT> kd = new List<KDMENT>();
+
+                        foreach (var i in lst)
+                        {
+                            var d = (from q in modelo.KDMENT
+                                     where q.C9 == i && q.C4 == 35
+                                     select q).First();
+
+                            kd.Add(d);
+
+                        }
+                        try
+                        {
+                            modelo.KDMENT.BulkDelete(kd);
+                        }
+                        catch (Exception)
+                        {
+
+                            throw;
+                        }
+                        kd.Clear();
+
+
                     }
-                }
+                });
+
+
+            }
+            catch (Exception)
+            {
 
                 throw;
             }
-        }
 
+        }*/
 
 
     }

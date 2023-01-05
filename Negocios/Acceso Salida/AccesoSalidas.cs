@@ -24,7 +24,7 @@ namespace Negocios.Acceso_Salida
         /// <returns></returns>
         public async Task<List<vmCargaOrdenesDeCarga>> LlenaDGV(string sucori, string sudest, string doc, int numerosuc)
         {
-            if (sucori.Trim().Contains("TJ"))//Para la sucursal de tijuana no se levantan ordenes de carga, por lo que mandamos las ordenes de Salida directamente
+            if (sucori.Trim().Contains("TJ"))//Para la sucursal de tijuana no se levantan ordenes de carga, por lo que mandamos las ordenes de recepcion directamente
             {
                 int cha = sucori.Trim().ToString().Length;
                 try

@@ -34,5 +34,11 @@ namespace mainVentana.VistaEntrada
                 gunaLineTextBox2.Focus();
             }
         }
+
+        private void Desbloqueo_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Dispose();
+            this.Close();
+        }
     }
 }

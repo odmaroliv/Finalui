@@ -26,7 +26,6 @@ using Newtonsoft.Json;
 using mainVentana.Email;
 using Negocios.Common.Cache;
 using System.Diagnostics;
-using mainVentana.Loading;
 using ImageMagick;
 using System.Drawing.Imaging;
 using Datos.ViewModels.Reportes;
@@ -41,9 +40,11 @@ namespace mainVentana.VistaEntrada
     {
         //KunLibertad_DesktopControl Desk = new KunLibertad_DesktopControl();
 
-
+        string entradaBusqueda;
         //int ventana;
         public int tipodeDocumento = 1;
+        public string sucursalGlobal = Negocios.Common.Cache.CacheLogin.sucGlobal == default ? "SD":Negocios.Common.Cache.CacheLogin.sucGlobal;
+
         public AltaEntrada()
         {
 
@@ -62,46 +63,16 @@ namespace mainVentana.VistaEntrada
 
         }
 
-
-        #region ALTA DE ENTRADA__________________________________________________________________________________________________________________________________
-
-       
-
-
-        private void iconButton2_Click(object sender, EventArgs e) //lo utiliazmos para pasar las imagenes del form camara al forma alta de entrada <Tiene que conectarse con CAM2>
-        {
-           
-        }
-
-
         
-        
-
-       
-        
-
-        #endregion
-
-        private void pictureBox2_DoubleClick(object sender, EventArgs e) // Alimina con doble clicl las fotos seleccionadas, configura el PictureBox a null, para volver a ser utilizado
-        {
-            if (tipodeDocumento == 1)
-            {
-                PictureBox pic = (PictureBox)sender;
-                pic.Image = null;
-            }
-            else if (tipodeDocumento == 2)
-            {
-                PictureBox pic = (PictureBox)sender;
-                Abre_Fotos_P_Defecto(pic.Image, pic.Name.ToString());
-            }
-
-        }
-
-        private void InicioEntrada()
+        private async void InicioEntrada()
         {
             unidades.Text = "";
             bultos.Text = "";
             peso.Text = "";
+
+            txbValFact.Text = "1";
+            txbValArn.Text = "1";
+
 
             dgvFotosModifi.Visible = false;
             dgvFotosModifi.Enabled = false;
@@ -116,7 +87,7 @@ namespace mainVentana.VistaEntrada
 
 
 
-            proveedor.AutoCompleteCustomSource = proveeList();
+            proveedor.AutoCompleteCustomSource = await proveeList();
 
             coloresSucursales();
 
@@ -136,7 +107,22 @@ namespace mainVentana.VistaEntrada
 
                 if (validacion.validacampo(sucEntrada.Text, sucDestino.Text, tipoOper.Text, cord.Text, cliente.Text, proveedor.Text, ordenCompra.Text, numFlete.Text, unidades.Text, peso.Text, bultos.Text, detalles.Text) == true )
                 {
+                    Guardar.Enabled = false;
 
+                    if (txbValFact.Text.Trim() == "" || txbValFact.Text.Trim() == "0")
+                    {
+                        MessageBox.Show("Valor Vacio\nSe asignara 1");
+                        txbValFact.Focus();
+                        txbValFact.Text = "1";
+                        return;
+                    }
+                    if (txbValArn.Text.Trim() == "" || txbValArn.Text.Trim() == "0")
+                    {
+                        MessageBox.Show("Valor Vacio\nSe asignara 1");
+                        txbValArn.Focus();
+                        txbValArn.Text = "1";
+                        return;
+                    }
                     //creaListadeFotos();
                     //AgregaArchivos();
 
@@ -158,7 +144,7 @@ namespace mainVentana.VistaEntrada
 
 
                     ReiniciaInfo(0);
-                    
+                    Guardar.Enabled = true;
                     //cargaultent();
                 }
             }
@@ -167,6 +153,21 @@ namespace mainVentana.VistaEntrada
             {
                 if (validacion.validacampo(sucEntrada.Text, sucDestino.Text, tipoOper.Text, cord.Text, cliente.Text, proveedor.Text, ordenCompra.Text, numFlete.Text, unidades.Text, peso.Text, bultos.Text, detalles.Text) == true)
                 {
+                    Guardar.Enabled = false;
+                    if (txbValFact.Text.Trim() == "" || txbValFact.Text.Trim() == "0")
+                    {
+                        MessageBox.Show("Valor Vacio\nSe asignara 1");
+                        txbValFact.Focus();
+                        txbValFact.Text = "1";
+                    }
+                    if (txbValArn.Text.Trim() == "" || txbValArn.Text.Trim() == "0")
+                    {
+                        MessageBox.Show("Valor Vacio\nSe asignara 1");
+                        txbValArn.Focus();
+                        txbValArn.Text = "1";
+                    }
+
+
                     if (lblEntrada.Text != "" || lblEntrada.Text != null)
                     {
                         string pagado = default;
@@ -179,10 +180,15 @@ namespace mainVentana.VistaEntrada
                             pagado = "NoPagado";
                         }
                         updateDatos(pagado);
-                        llamareporte();
+                        //llamareporte();
+
+
+                        //Agregar aqui la impresion de etiquetas
+
+
                         MessageBox.Show("Se ha modificado el docimento " + lblEntrada.Text);
                         InicioModifica();
-                        
+                        Guardar.Enabled = true;
 
                     }
                     else
@@ -227,39 +233,103 @@ namespace mainVentana.VistaEntrada
             string datoNota = txbNotas.Text;
             string datoReferencia = txbReferencia.Text;
 
-
-            bd.agregaKDM1(datoSucIni, datoEntrada, datoMoneda, datoFecha, datoNuCliente, datoNoCord, datoValArn, datoNomCliente, datoCalle, datoColonia, datoCiudadZip,
+            try
+            {
+                bd.agregaKDM1(datoSucIni, datoEntrada, datoMoneda, datoFecha, datoNuCliente, datoNoCord, datoValArn, datoNomCliente, datoCalle, datoColonia, datoCiudadZip,
             datoValFact, datoParidad, datoNoTrakin, datoProvedor, datoOrdCompra, datoNoFlete, datoNoUnidades, datoTipoUnidad, datoPeso, datoUnidadMedida, datoTipoOper,
             datoSucDestino, datoBultos, datosAlias, datoNota, datoReferencia);
 
-            actualizaKDMENT(datoSucIni, datoEntrada, datoBultos, datoSucDestino, datoFecha);
+                actualizaKDMENT(datoSucIni, datoEntrada, datoBultos, datoSucDestino, datoFecha);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
 
         }
 
-        private void altaKDM1coment()
+        private async void ModificaEtiquetas(string bultos)
+        {
+
+            AltasBD bd = new AltasBD();
+            string datoSucIni = sucEntrada.SelectedValue.ToString();
+            string dtEntrada = lblEntrada.Text.Trim();
+            string datoBultos = bultos.Trim();
+            string datoSucDestino = sucDestino.SelectedValue.ToString();
+            DateTime datoFecha = regresafecha();
+            
+            try
+            {
+                await Task.Run(() =>
+                {
+                    actualizaKDMENT(datoSucIni, dtEntrada, datoBultos, datoSucDestino, datoFecha);
+                 
+                });
+
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        private async void altaKDM1coment()
         {
             AltasBD bd = new AltasBD();
 
-            string datoSucIni = sucEntrada.SelectedValue.ToString();
-            string dtEntrada = datoEntrada;
+            string datoSucIni = sucEntrada.SelectedValue.ToString().Trim();
+            string dtEntrada = datoEntrada.Trim();
             string datoMoneda = cmbMoneda.GetItemText(cmbMoneda.SelectedItem).ToString();
             DateTime datoFecha = regresafecha();
             string datoNuCliente = lblCodCliente.Text;
             string datoDetalles = detalles.Text;
 
-            bd.agregaComentKDM1(datoSucIni, dtEntrada, datoMoneda, datoFecha, datoNuCliente, datoDetalles);
+            try
+            {
+                await Task.Run(() =>
+                {
+                    bd.agregaComentKDM1(datoSucIni, dtEntrada, datoMoneda, datoFecha, datoNuCliente, datoDetalles);
+                });
+                
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+          
 
 
         }
 
+
+       
         private void actualizaKDMENT(string datoSucIni, string datoEntrada, string datoBultos, string datoSucDestino, DateTime datoFecha)
         {
             string datoDetalles = detalles.Text;
             AltasBD bd = new AltasBD();
             for (int i = 1; i <= Convert.ToInt32(datoBultos); i++)
             {
-                bd.agregaKDMENT(datoSucIni, datoEntrada, i.ToString(), datoSucIni.Trim() + "-UD3501-" + datoEntrada.Trim(), datoSucIni.Trim() + "-" + datoEntrada.Trim() + "-" + i.ToString(), datoSucDestino, datoSucIni.Trim(),
-                datoDetalles.Length >= 100 ? datoDetalles.Substring(0, 100) : datoDetalles, datoFecha.ToString(), 0, 0, "OE");
+                try
+                {
+                    bd.agregaKDMENT(datoSucIni, datoEntrada, i.ToString(), datoSucIni.Trim() + "-UD3501-" + datoEntrada.Trim(), datoSucIni.Trim() + "-" + datoEntrada.Trim() + "-" + i.ToString(), datoSucDestino, datoSucIni.Trim(),
+              datoDetalles.Length >= 100 ? datoDetalles.Substring(0, 100) : datoDetalles, datoFecha.ToString(), 0, 0, "OE");
+
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+               
+
             }
 
 
@@ -269,6 +339,10 @@ namespace mainVentana.VistaEntrada
         }
         private async void envEmail()
         {
+
+            string cordCordinadorCMB = cord.SelectedValue.ToString().Trim();
+
+
             EnviarEmail servicio = new EnviarEmail();
 
             List<string> archivos = new List<string>();
@@ -279,153 +353,42 @@ namespace mainVentana.VistaEntrada
                     archivos.Add(row.Cells[1].Value.ToString());
 
                 }
+            }
+            try
+                {
+                    
+                    var respuesta = await servicio.EnviaMail(lblEntrada.Text, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, archivos, coreoClientes, cordCordinadorCMB);
+                    if (respuesta == 1)
+                    {
+                        MessageBox.Show("El correo NO SE ENVIÓ PORQUE supera el límite máximo de 25 MB en cada correo, intenta borrar documentos y reenvía la notificación", "CUIDADO EL CORREO NO SE ENVIO");
+                        NotificaEmail(0, lblEntrada.Text, cliente.Text);
+                    }
+                    else
+                    {
+                        NotificaEmail(1, lblEntrada.Text, cliente.Text);
+                    }
 
-                var respuesta = await servicio.EnviaMail(lblEntrada.Text, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, archivos, coreoClientes);
-                if (respuesta == 1)
-                {
-                    MessageBox.Show("El correo NO SE ENVIÓ PORQUE supera el límite máximo de 25 MB en cada correo, intenta borrar documentos y reenvía la notificación", "CUIDADO EL CORREO NO SE ENVIO");
-                    NotificaEmail(0, lblEntrada.Text, cliente.Text);
                 }
-                else
+                catch (Exception)
                 {
-                    NotificaEmail(1, lblEntrada.Text, cliente.Text);
+
+                    throw;
                 }
+            finally
+            {
+                // Libera los recursos aquí
+                
+                archivos.Clear();
             }
 
 
-            
+
+
+
 
         }
       
-
-        private void CreaEriquetas()
-        {
-            int bulto = Convert.ToInt32(bultos.Text);
-
-            impirmepdf();
-
-        }
-
-        private void barcode()
-        {
-            AltasBD bdalta = new AltasBD();
-
-            using (MemoryStream ms = new MemoryStream())
-            {
-                for (int i = 1; i < Convert.ToInt32(bultos.Text); i++)
-                {
-                    string eti = sucEntrada.SelectedValue.ToString().Trim() + datoEntrada.ToString().Trim() + i.ToString().Trim();
-                    byte[] code;
-                    BarcodeLib.Barcode b = new BarcodeLib.Barcode();
-                    System.Drawing.Image imge = b.Encode(BarcodeLib.TYPE.CODE128, eti.Trim(), Color.Black, Color.White, 250, 40);
-
-                    imge.Save(ms, ImageFormat.Png);
-                    code = ms.ToArray();
-                    bdalta.codeBar(sucEntrada.SelectedValue.ToString().Trim(), datoEntrada.Trim(), eti, code);
-                }
-
-
-
-            }
-        }
-
-        private void impirmepdf()
-        {
-            SaveFileDialog savefile = new SaveFileDialog();
-            savefile.FileName = string.Format("{0}" + ".pdf", DateTime.Now.ToString("dd/MM/yyyy"));
-            var pgSize = new iTextSharp.text.Rectangle(288, 432);
-            Document pdfDoc = new Document(pgSize, 25, 25, 25, 25);
-
-
-
-            //string PaginaHTML_Texto = "<table border=\"1\"><tr><td>HOLA MUNDO</td></tr></table>";
-
-
-
-            if (savefile.ShowDialog() == DialogResult.OK)
-            {
-                using (FileStream stream = new FileStream(savefile.FileName, FileMode.Create))
-                {
-                    //Creamos un nuevo documento y lo definimos como PDF
-
-
-                    PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
-                    pdfDoc.Open();
-
-                    try
-                    {
-                        int bulto = Convert.ToInt32(bultos.Text);
-                        for (int i = 1; i <= bulto; i++)
-                        {
-                            string PaginaHTML_Texto = Properties.Resources.Plantilla.ToString();
-                            pdfDoc.NewPage();
-                            pdfDoc.Add(new Phrase(""));
-                            string etiqueta = sucEntrada.SelectedValue.ToString().Trim() + "-" + lblEntrada.Text + "-" + i.ToString();
-                            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@ORIGEN", sucEntrada.GetItemText(sucEntrada.SelectedItem).ToString().Trim());
-                            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@DESTINO", sucDestino.GetItemText(sucDestino.SelectedItem).ToString().Trim());
-                            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FECHA", DateTime.Now.ToString("dd/MM/yyyy"));
-                            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@ENTRADA", lblEntrada.Text);
-                            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@OPERACION", tipoOper.GetItemText(tipoOper.SelectedItem).ToString());
-                            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@PROVEEDOR", proveedor.GetItemText(proveedor.SelectedItem).ToString());
-                            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@CLIENTE", cliente.Text.ToString());
-                            PaginaHTML_Texto = PaginaHTML_Texto.Replace("@ETIQUETA", etiqueta.ToString());
-
-                            BarcodeLib.Barcode b = new BarcodeLib.Barcode();
-                            System.Drawing.Image imge = b.Encode(BarcodeLib.TYPE.CODE128, etiqueta.ToString(), Color.Black, Color.White, 250, 40);
-                            iTextSharp.text.Image img2 = iTextSharp.text.Image.GetInstance(imge, System.Drawing.Imaging.ImageFormat.Png);
-                            img2.ScaleToFit(250, 40);
-                            img2.Alignment = iTextSharp.text.Image.ALIGN_CENTER;
-
-                            //img.SetAbsolutePosition(10,100);
-                            img2.SetAbsolutePosition(20, 20);
-                            pdfDoc.Add(img2);
-
-                            //string filas = string.Empty;
-                            //decimal total = 0;
-                            //foreach (DataGridViewRow row in dgvproductos.Rows)
-                            //{
-                            //    filas += "<tr>";
-                            //    filas += "<td>" + row.Cells["Cantidad"].Value.ToString() + "</td>";
-                            //    filas += "<td>" + row.Cells["Descripcion"].Value.ToString() + "</td>";
-                            //    filas += "<td>" + row.Cells["PrecioUnitario"].Value.ToString() + "</td>";
-                            //    filas += "<td>" + row.Cells["Importe"].Value.ToString() + "</td>";
-                            //    filas += "</tr>";
-                            //    total += decimal.Parse(row.Cells["Importe"].Value.ToString());
-                            //}
-                            //PaginaHTML_Texto = PaginaHTML_Texto.Replace("@FILAS", filas);
-                            //PaginaHTML_Texto = PaginaHTML_Texto.Replace("@TOTAL", total.ToString());
-
-                            //Agregamos la imagen del banner al documento
-                            iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(Properties.Resources.arniacolor, System.Drawing.Imaging.ImageFormat.Png);
-                            img.ScaleToFit(60, 60);
-                            img.Alignment = iTextSharp.text.Image.UNDERLYING;
-
-                            //img.SetAbsolutePosition(10,100);
-                            img.SetAbsolutePosition(pdfDoc.LeftMargin, pdfDoc.Top - 60);
-                            pdfDoc.Add(img);
-                            using (StringReader sr = new StringReader(PaginaHTML_Texto))
-                            {
-                                XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
-                            }
-
-                        }
-                    }
-                    catch (Exception)
-                    {
-
-                        throw;
-                    }
-
-
-                    //pdfDoc.Add(new Phrase("Hola Mundo"));
-
-
-                    pdfDoc.Close();
-                    stream.Close();
-                }
-
-            }
-        }
+      
 
         private void SubeFotos()
         {
@@ -463,6 +426,13 @@ namespace mainVentana.VistaEntrada
                 sucEntrada.DisplayMember = "C2";
                 sucEntrada.ValueMember = "C1";
                 sucEntrada.DataSource = lst2;
+                foreach (var i in from Sucursales i in sucEntrada.Items
+                                  where i.c1.Trim() == sucursalGlobal.Trim()
+                                  select i)
+                {
+                    sucEntrada.SelectedValue = i.c1;
+                    break;
+                }
 
                 cargaultent();
 
@@ -482,7 +452,7 @@ namespace mainVentana.VistaEntrada
                 sucDestino.ValueMember = "C1";
                 sucDestino.DataSource = lst3;
 
-                var lst4 = datos.llenaProveedores();
+                var lst4 = await datos.llenaProveedores();
 
                 proveedor.DisplayMember = "C3";
                 proveedor.ValueMember = "C2";
@@ -541,11 +511,11 @@ namespace mainVentana.VistaEntrada
 
 
         #region //funciones para autocompletar
-        private AutoCompleteStringCollection proveeList()
+        private async Task<AutoCompleteStringCollection> proveeList()
         {
             AutoCompleteStringCollection List = new AutoCompleteStringCollection();
             Servicios datos = new Servicios();
-            var lst = datos.llenaProveedores();
+            var lst = await datos.llenaProveedores();
 
             foreach (var p in lst)
             {
@@ -564,10 +534,15 @@ namespace mainVentana.VistaEntrada
 
         private void gunaTileButton1_Click(object sender, EventArgs e) //abre el formulario de busqueda con datos de cliente
         {
-            VistaEntrada.BusquedasEnt buscador = new BusquedasEnt();
-            buscador.label2.Text = "CLIENTE";
-            buscador.pasado += new BusquedasEnt.pasar(moverinfo);
-            buscador.ShowDialog();
+            using (VistaEntrada.BusquedasEnt buscador = new BusquedasEnt())
+            {
+                buscador.label2.Text = "CLIENTE";
+                buscador.pasado += new BusquedasEnt.pasar(moverinfo);
+                buscador.ShowDialog();
+                buscador.pasado -= new BusquedasEnt.pasar(moverinfo);
+            }
+            
+           
         }
         string coreoClientes;
         public void moverinfo(string dato, string dato2, string dato3, string dato4, string dato5, string dato6, string dato7, string correoCliente, int bandera) //cambia los datos de los textbox alias y clientes, la bandera dependera de la manera en la que se haya abierto el frm buscar, 0 clientes 1 alias, ADEMAS tambien sirve para cambiar el campo de cord
@@ -717,10 +692,25 @@ namespace mainVentana.VistaEntrada
 
                         };
 
-            foreach (var i in lista.ToList())
+            if (lista.Count() <= 0)
             {
-                lblParidad.Text = i.valor.ToString();
+                if (MessageBox.Show("No pudimos acceder a la paridad del Diario Oficial de la Federación \r(Si es fin de semana los servicios de DOF no funcionan )\rAl hacer click te redireccionare a la pagina oficial para establecerla manualmente", "No paridad automatica", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) == DialogResult.OK)
+                {
+                    Process.Start("https://dof.gob.mx/indicadores.php");
+                }
+                lblParidad.Enabled = true;
+                lblParidad.ReadOnly = false;
             }
+            else
+            {
+
+
+                foreach (var i in lista.ToList())
+                {
+                    lblParidad.Text = i.valor.ToString();
+                }
+            }
+
 
 
         }
@@ -734,7 +724,7 @@ namespace mainVentana.VistaEntrada
             //var lst = JsonConvert.DeserializeObject<List<FechaActual>>(fecha1);
             FechaActual lst = JsonConvert.DeserializeObject<FechaActual>(fecha1);
 
-            lblFecha.Text = lst.datetime.Date.ToString("dd-MM-yyyy");
+            lblFecha.Text = lst.datetime.Date.ToString("MM/dd/yyyy");
 
         }
 
@@ -747,7 +737,7 @@ namespace mainVentana.VistaEntrada
             FechaActual lst = JsonConvert.DeserializeObject<FechaActual>(fecha1);
 
             return lst.datetime;
-
+            
 
         }
 
@@ -759,7 +749,11 @@ namespace mainVentana.VistaEntrada
             }
             else if (Convert.ToInt32(cmbMoneda.SelectedValue) == 2)
             {
-                Cargaparidad();
+                if (String.IsNullOrWhiteSpace(lblParidad.Text))
+                {
+                    Cargaparidad();
+                }
+                
             }
         }
 
@@ -830,9 +824,14 @@ namespace mainVentana.VistaEntrada
 
         private void sucEntrada_SelectedIndexChanged(object sender, EventArgs e)
         {
+           
             if (tipodeDocumento == 1)
             {
                 cargaultent();
+            }
+            else
+            {
+                txbBuscarEnt.Text = "";
             }
 
         }
@@ -840,7 +839,7 @@ namespace mainVentana.VistaEntrada
         {
             Servicios datos = new Servicios();
 
-            foreach (var i in datos.NumeroEntrada(sucEntrada.SelectedValue.ToString()))
+            foreach (var i in datos.NumeroEntrada(sucEntrada.SelectedValue.ToString(),1.ToString()))
             {
                 int numero = Convert.ToInt32(i.entrada) + 1;
                 lblEntrada.Text = numero.ToString("D7");
@@ -850,7 +849,7 @@ namespace mainVentana.VistaEntrada
         {
             Servicios datos = new Servicios();
             string dato = default;
-            foreach (var i in datos.NumeroEntrada(sucEntrada.SelectedValue.ToString()))
+            foreach (var i in datos.NumeroEntrada(sucEntrada.SelectedValue.ToString(), 1.ToString()))
             {
                 int numero = Convert.ToInt32(i.entrada) + 1;
                 dato = numero.ToString("D7");
@@ -868,7 +867,7 @@ namespace mainVentana.VistaEntrada
             }
             else if (tipodeDocumento == 2)
             {
-                Abre_doc_por_defecto(pic.Text.Trim());
+
 
             }
         }
@@ -881,12 +880,19 @@ namespace mainVentana.VistaEntrada
 
         public void limpiaImg()
         {
+            if (dgvDocs.Rows.Count>0)
+            {
+                dgvDocs.Rows.Clear();
+                dgvDocs.Refresh();
+            }
 
-            dgvDocs.Rows.Clear();
-            dgvDocs.Refresh();
 
-            dgvFotosModifi.Rows.Clear();
-            dgvFotosModifi.Refresh();
+            if (dgvFotosModifi.Rows.Count>0)
+            {
+
+                dgvFotosModifi.DataSource = null;
+
+            }
 
         }
 
@@ -903,16 +909,17 @@ namespace mainVentana.VistaEntrada
 
             if (nttipo == 1)
             {
+                notifyIcon1.Icon = SystemIcons.Information;
                 notifyIcon1.Visible = true;
                 notifyIcon1.Text = ntentrada + " Enviado";
                 notifyIcon1.BalloonTipTitle = "EXITO: Email Correcto " + ntentrada;
                 notifyIcon1.BalloonTipText = "El email de la entrada " + ntentrada + " ha sido enviado correctamente\r\nCliente: " + ntcliente;
                 notifyIcon1.ShowBalloonTip(10000);
 
-
             }
             else if (nttipo == 2)
             {
+                notifyIcon1.Icon = SystemIcons.Warning;
                 notifyIcon1.Visible = true;
                 notifyIcon1.Text = ntentrada + " ERROR: El email NO se ha enviado";
                 notifyIcon1.BalloonTipTitle = "ERROR: Email Correcto " + ntentrada;
@@ -1051,6 +1058,7 @@ namespace mainVentana.VistaEntrada
             if (dato == 1)//Abre alta entrada
             {
                 tipodeDocumento = dato;
+                gunaTileButton5.Visible = false;
                 btnBuscarEnt.Visible = false;
                 txbBuscarEnt.Visible = false;
                 lblBuscarEnt.Visible = false;
@@ -1077,6 +1085,8 @@ namespace mainVentana.VistaEntrada
         }
         private void InicioModifica()
         {
+            gunaTileButton5.Visible = true;
+            txbBuscarEnt.Text = default;
             btnBuscarEnt.Visible = true;
             txbBuscarEnt.Visible = true;
             lblBuscarEnt.Visible = true;
@@ -1160,8 +1170,8 @@ namespace mainVentana.VistaEntrada
             {
                 txbNotas.Text = default;
                 txbReferencia.Text = default;
-                txbValFact.Text = default;
-                txbValArn.Text = default;
+                txbValFact.Text = "1";
+                txbValArn.Text = "1";
                 tipoOper.SelectedIndex = 0;
                 sucDestino.SelectedIndex = 0;
                 detalles.Text = default;
@@ -1193,7 +1203,7 @@ namespace mainVentana.VistaEntrada
         {
             if (e.KeyCode == Keys.Return)
             {
-
+            
                 Funciones_para_Busqueda();
 
 
@@ -1215,6 +1225,7 @@ namespace mainVentana.VistaEntrada
                 //CargaDocPDF();
                 label27.Text = "";
                 label28.Text = "";
+                detalles.Enabled = false;
             }
 
         }
@@ -1270,11 +1281,11 @@ namespace mainVentana.VistaEntrada
 
                 }
                 //-----------------------------------
-
+                entradaBusqueda= q.C6.Trim();
                 lblEntrada.Text = q.C6.Trim();
                 //cmbMoneda.Text = q.C7;
                 cmbMoneda.Text = q.C7.Trim();
-                lblFecha.Text = q.C9.Value.Date.ToString("dd-MM-yyyy");
+                lblFecha.Text = q.C9.Value.Date.ToString("MM/dd/yyyy");
                 lblCodCliente.Text = q.C10.Trim();
                 string vtxtref = q.C11 ?? "";
                 txbReferencia.Text = vtxtref.Trim();
@@ -1397,152 +1408,36 @@ namespace mainVentana.VistaEntrada
         //--------------------------------------------------------------*
         private void updateDatos(string pagado)
         {
+            string datoSucOrigen = sucEntrada.SelectedValue.ToString().Trim();
             string datoSucDestino = sucDestino.SelectedValue.ToString().Trim();
             string datoNoCord = cord.SelectedValue.ToString().Trim();
             string datoNota = txbNotas.Text.Trim();
             string datoReferencia = txbReferencia.Text.Trim();
             string datoTipoOper = tipoOper.SelectedValue.ToString().Trim();
             string datoValFact = txbValFact.Text.Trim();
-            string datoValArn = txbValArn.Text.Trim();
+            string datoValArn = txbValArn.Text.Trim() == ""? "1" : txbValArn.Text.Trim();
+            string datoEntrada = lblEntrada.Text.Trim() == "" ? "1" : lblEntrada.Text.Trim();
+            string datoDescripcion = detalles.Text.Trim();
             AltasBD bd = new AltasBD();
-            bd.UpdateKDM1(lblEntrada.Text.Trim(), datoSucDestino, datoNoCord, datoNota, datoReferencia, pagado, datoTipoOper, datoValFact, datoValArn);
-        }
-
-        //--------------------------------------------------------------*
-        // CargaDocPDF()
-        // carga el nimero de documento en un label, para se utilizado como id en un evento.
-        //--------------------------------------------------------------*
-        private async void CargaDocPDF()
-        {
-            Servicios datos = new Servicios();
-            // GifLoading(1);
-            var lst = await datos.ObtieneDOC(txbBuscarEnt.Text.Trim(), sucEntrada.SelectedValue.ToString().Trim());
-            int vl = 0;
-            foreach (var i in lst)
+            try
             {
-                if (vl == 0)
+                bd.UpdateKDM1(datoEntrada, datoSucDestino, datoNoCord, datoNota, datoReferencia, pagado, datoTipoOper, datoValFact, datoValArn, datoSucOrigen);
+                if (detalles.Enabled==true)
                 {
-                    label27.Text = i.nombre.Trim();
+                    bd.UpdateKDM1Coment(datoEntrada, datoSucOrigen, datoDescripcion);
                 }
-                else if (vl == 1)
-                {
-                    label28.Text = i.nombre.Trim();
-                }
-
-
-                vl++;
             }
-
-
-
-            // GifLoading(2);
-        }
-
-        //--------------------------------------------------------------*
-        // Abre_doc_por_defecto(string id)
-        // Mediante el evento de doble click crea una carpeta temporal para guardar el documento que trae de la base de datos y lo abre con el programa por defecto para la extencion
-        //--------------------------------------------------------------*
-        private async void Abre_doc_por_defecto(string id)
-        {
-            Servicios datos = new Servicios();
-            GifLoading(1);
-            var lst = await datos.ObtieneByteDOC(id.Trim(), sucEntrada.SelectedValue.ToString().Trim());
-            foreach (var i in lst)
+            catch (Exception)
             {
-                var ms = new MemoryStream(i.bytedocumento.ToArray());
-                Abre_Doc_P_Defecto(ms.ToArray(), i.realnombre);
 
-                ms.Dispose();
+                throw;
             }
-            GifLoading(2);
+            
+           
         }
 
-        //--------------------------------------------------------------*
-        // CargaFotos(string entrada, string sucursalOri)
-        // Obtiene las fotografias de la base de datos y las asigna a un memorystream para mandarlas a la funcion que las agrega a los picture box, se hace de manera asincrona.
-        //--------------------------------------------------------------*
-        private async void CargaFotos(string entrada, string sucursalOri)
-        {
-            Servicios datos = new Servicios();
-            GifLoading(1);
-            var lst = await datos.ObtieneIMG(entrada, sucursalOri);
-
-            foreach (var i in lst)
-            {
-                var ms = new MemoryStream(i.bytedocumento.ToArray());
-                System.Drawing.Image img = System.Drawing.Image.FromStream(ms);
-                Recarga_fotos(img, i.realnombre);
-                ms.Dispose();
-            }
-            GifLoading(2);
-        }
-
-        //--------------------------------------------------------------*
-        // Recarga_fotos(System.Drawing.Image img, string name)
-        //Carga las fotos en los picture box y les asigna un nombre para poder utilizarlo como sender en el evento de hacer doble click sobre ellos
-        //--------------------------------------------------------------*
-        private void Recarga_fotos(System.Drawing.Image img, string name)
-        {
-
-        }
-
-        //--------------------------------------------------------------*
-        // Abre_Fotos_P_Defecto(System.Drawing.Image imagen, string nombrereal)
-        // Crea una carpeta de archivos temporales y abre el archivo en el dispositivo con el programa por defecto para esa extencion
-        //--------------------------------------------------------------*
-        private void Abre_Fotos_P_Defecto(System.Drawing.Image imagen, string nombrereal)
-        {
-            using (var ms = new MemoryStream())
-            {
-                imagen.Save(ms, ImageFormat.Png);
-                byte[] imgbyte = ms.ToArray();
 
 
-                string path = AppDomain.CurrentDomain.BaseDirectory;
-                string folder = path + "\\temp\\";
-                string fullFilePath = folder + nombrereal;
-
-                if (File.Exists(fullFilePath))
-                    File.Delete(fullFilePath);
-
-                if (!Directory.Exists(folder))
-                    Directory.CreateDirectory(folder);
-
-
-
-                File.WriteAllBytes(fullFilePath, imgbyte);
-
-                Process.Start(fullFilePath);
-
-            }
-        }
-
-        private void Abre_Doc_P_Defecto(byte[] doc, string nombrereal)
-        {
-            using (var ms = new MemoryStream())
-            {
-                //imagen.Save(ms, ImageFormat.Png);
-                byte[] imgbyte = doc;
-
-
-                string path = AppDomain.CurrentDomain.BaseDirectory;
-                string folder = path + "\\temp\\";
-                string fullFilePath = folder + nombrereal;
-
-                if (File.Exists(fullFilePath))
-                    File.Delete(fullFilePath);
-
-                if (!Directory.Exists(folder))
-                    Directory.CreateDirectory(folder);
-
-
-
-                File.WriteAllBytes(fullFilePath, imgbyte);
-
-                Process.Start(fullFilePath);
-
-            }
-        }
 
         //--------------------------------------------------------------*
         // LimpiaIMG2()
@@ -1675,8 +1570,9 @@ namespace mainVentana.VistaEntrada
                 {
                     string mensajeRespuesta = "";
                     int tipoRespuesta = 2;
-                    string nombreCompletoArchivo = q;
+                    string nombreCompletoArchivo = q; 
                     byte[] arrContenido = null;
+                   
                     using (FileStream fs = new FileStream(nombreCompletoArchivo, FileMode.Open, FileAccess.Read, FileShare.Read))
                     {
                         arrContenido = new byte[fs.Length];
@@ -1735,22 +1631,7 @@ namespace mainVentana.VistaEntrada
         /************************************************************
          Aqui cargo las iamgenes de loading, asi como el agregado al contenerdor 
          ************************************************************/
-        public LoadingPatoControl usss { get; set; }
-        private void GifLoading(int estado)//1 abre el el gif 2 detiene el gif
-        {
-            LoadingPatoControl loadingPatoControl = new LoadingPatoControl();
-            if (estado == 1)
-            {
-                loadingPatoControl.Dock = DockStyle.Fill;
-                panelLoading.Controls.Add(loadingPatoControl);
-
-            }
-            if (estado == 2)
-            {
-                panelLoading.Controls.Clear();
-
-            }
-        }
+       
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
@@ -1878,61 +1759,6 @@ namespace mainVentana.VistaEntrada
         }
 
 
-
-        private void Crea_codigo_de_barras()
-        {
-            
-
-
-            for (int i = 1; i <= Convert.ToInt32(bultos.Text); i++)
-            {
-                string eti = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada.ToString().Trim() + "-" + i.ToString().Trim();
-               // byte[] code;
-                BarcodeLib.Barcode b = new BarcodeLib.Barcode();
-                System.Drawing.Image imge = b.Encode(BarcodeLib.TYPE.CODE128, eti.Trim(), Color.Black, Color.White, 250, 40);
-
-
-                Guarda_el_codigodebarras_en_img_local(imge, eti);
-            }
-
-        }
-        private void Guarda_el_codigodebarras_en_img_local(System.Drawing.Image bar, string etiqueta)
-        {
-            using (var ms = new MemoryStream())
-            {
-                bar.Save(ms, ImageFormat.Png);
-                byte[] imgbyte = ms.ToArray();
-
-
-                string path = AppDomain.CurrentDomain.BaseDirectory;
-                string folder = path + "\\barcode\\";
-                string fullFilePath = folder + etiqueta+".png";
-
-                if (File.Exists(fullFilePath))
-                    File.Delete(fullFilePath);
-
-                if (!Directory.Exists(folder))
-                    Directory.CreateDirectory(folder);
-
-
-
-               File.WriteAllBytes(fullFilePath, imgbyte);
-
-                //Process.Start(fullFilePath);
-
-            }
-        }
-
-        private void btnAgrepaFD_Click(object sender, EventArgs e)
-        {
-            AgregarDocs ve = new AgregarDocs();
-
-           ve.entrada = lblEntrada.Text.Trim();
-           ve.sucursalOrigen = sucEntrada.SelectedValue.ToString().Trim();
-            ve.ShowDialog();
-
-
-        }
 
         private void gunaTileButton4_Click(object sender, EventArgs e)
         {
@@ -2100,7 +1926,7 @@ namespace mainVentana.VistaEntrada
                         s += string.Format("^FO100,900^FD{0} de {1}^FS\n", neti.ToString(), lstt);
                         s += "^CF0,40";
                         s += "^FO100,1010^FDDate:^FS\n";
-                        s += string.Format("^FO100,1060^FD{0}^FS\n", q.Fecha.Value.Date.ToString("dd/MM/yyyy"));
+                        s += string.Format("^FO100,1060^FD{0}^FS\n", q.Fecha.Value.Date.ToString("MM/dd/yyyy"));
                         s += "^CF0,190\n";
                         //s += string.Format("^FO470,930^FD{0}^FS\n", q.ZonaNumero.ToString().Trim());
                         s += "\n";
@@ -2147,6 +1973,39 @@ namespace mainVentana.VistaEntrada
                 MessageBox.Show("No hay datos para buscar.");
             }
 
+        }
+
+        private void AltaEntrada_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Dispose();
+            this.Close();
+        }
+
+        private void gunaTileButton5_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseas modificar la descripcion? \nTen en cuenta que este texto se muestra en la notificacion al cliente; si la entrada ya tiene un proceso hacer esto puede generar problemas, es preferible que mejor se modifique la nota", "CUIDADO", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                detalles.Enabled = true;
+            }
+            
+        }
+
+        private void btnAgregarBultos_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseas modificar los bultos? \nTen en cuenta que este proceso alterara la entrada, y la cantidad de etiquetas\nademas no debe hacerse si la entrada ya tiene un proceso.", "CUIDADO", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+            {
+                using (vistaBajaAgregaEntrada vEnt = new vistaBajaAgregaEntrada())
+                {
+                    vEnt.suOrigen = sucEntrada.SelectedValue.ToString().Trim();
+                    vEnt.entrada = entradaBusqueda == "" || entradaBusqueda == default ? "00" : entradaBusqueda.Trim();
+                    vEnt.pasado += new vistaBajaAgregaEntrada.pasar(ModificaEtiquetas);
+                    vEnt.ShowDialog();
+                    vEnt.pasado -= new vistaBajaAgregaEntrada.pasar(ModificaEtiquetas);
+
+
+                   
+                }
+            }
         }
     }
 }

@@ -17,7 +17,7 @@ namespace mainVentana
         //KunLibertad_DesktopControl Desk = new KunLibertad_DesktopControl();
         AltaEntrada altaEntrada = new AltaEntrada();
         public delegate void pasa(int dato);
-        
+        public string sucursalGlobal = default;
         public Entradas()
         {
             InitializeComponent();
@@ -39,6 +39,7 @@ namespace mainVentana
             if (this.panelContenedorForm.Controls.Count > 0)
                 this.panelContenedorForm.Controls.RemoveAt(0);
             Form fh = formHijo as Form;
+           
             fh.TopLevel = false;
             fh.FormBorderStyle = FormBorderStyle.None;
             fh.Dock = DockStyle.Fill;
@@ -174,6 +175,10 @@ namespace mainVentana
             gunaShadowPanel1.ShadowColor = Color.FromArgb(114, 91, 121);
         }
 
-       
+        private void Entradas_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Dispose();
+            this.Close();
+        }
     }
 }

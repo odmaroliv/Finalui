@@ -329,6 +329,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Entradas";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Entradas_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Entradas_FormClosed);
             this.Load += new System.EventHandler(this.Entradas_Load);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);

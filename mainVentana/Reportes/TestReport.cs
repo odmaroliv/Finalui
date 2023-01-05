@@ -42,9 +42,7 @@ namespace mainVentana.Reportes
 
 
             this.reportViewer1.RefreshReport();
-            this.reportViewer1.RefreshReport();
-            this.reportViewer1.RefreshReport();
-            this.reportViewer1.RefreshReport();
+           
         }
 
         private void CargaParam()

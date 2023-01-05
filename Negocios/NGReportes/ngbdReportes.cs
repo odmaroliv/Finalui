@@ -107,33 +107,40 @@ namespace Negocios.NGReportes
         {
             DateTime Hoy = DateTime.Now;
             DateTime fc = fecharestada();
+
+
+
             try
             {
                 var lst = new List<vmInfoControlCors>();
-                await Task.Run(() => {
+                await Task.Run(() =>
+                {
 
                     using (modelo2Entities modelo = new modelo2Entities())
 
                     {
                         var lista = (from d in modelo.KDMENT
-                                    join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
-                                    //join a in modelo.KDUV on k.C12 equals a.C2
-                                    //join u in modelo.KDUSUARIOS on a.C22 equals u.C1
+                                     join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
+                                     //join a in modelo.KDUV on k.C12 equals a.C2
+                                     //join u in modelo.KDUSUARIOS on a.C22 equals u.C1
 
-                                    where k.C9 <= Hoy && k.C9 >=fc && d.C19 == "SD" && d.C10 == dato.Trim() && k.C12 == Common.Cache.CacheLogin.idusuario.ToString().Trim() && d.C34 ==""
-                                    orderby d.C6 descending
-                                   
-                                    select new vmInfoControlCors 
-                                    {
-                                        
-                                        entrada = d.C6.Trim(),
-                                        fechaentrada = d.C69.Trim(),
-                                        ordcarga = d.C54.Trim(),
-                                        cliente = k.C32.Trim(),
-                                        ordapli = d.C16.Trim(),
-                                        salida = d.C17.Trim()
+                                     where (k.C9 <= Hoy && k.C9 >= fc) && d.C1.Contains(dato) && d.C19.Contains(dato) && d.C34 == "" && k.C12.Contains(Common.Cache.CacheLogin.idusuario.ToString())
+                                     orderby d.C6 descending
 
-                                    });
+                                     select new vmInfoControlCors
+                                     {
+                                         entrada = d.C6.Trim(),
+                                         fechaentrada = d.C69.Trim(),
+                                         ordcarga = d.C54.Trim(),
+                                         cliente = k.C32.Trim(),
+                                         ordapli = d.C16.Trim(),
+                                         salida = d.C17.Trim(),
+                                         SucursalInicio = d.C1,
+                                         //etiqueta = d.C9,
+                                         valFact = k.C102,
+                                         valArn = k.C16.ToString(),
+
+                                     });
                         lst = lista.ToList();
                     }
                 });
@@ -145,9 +152,65 @@ namespace Negocios.NGReportes
                 throw;
             }
         }
+
+
+        /// <summary>
+        /// (SD TO CSL) Reporte Inicial a la hora de entrar al sistema, funciona por coordinador 
+        /// </summary>
+        public async Task<vmInfoControlCors> CargaControlid(string sOrigen, string entrada)
+        {
+            DateTime Hoy = DateTime.Now;
+            DateTime fc = fecharestada();
+
+
+
+            try
+            {
+                var lst = new vmInfoControlCors();
+                await Task.Run(() => {
+
+                    using (modelo2Entities modelo = new modelo2Entities())
+
+                    {
+                        var lista = (from d in modelo.KDMENT
+                                     join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
+                                     //join a in modelo.KDUV on k.C12 equals a.C2
+                                     //join u in modelo.KDUSUARIOS on a.C22 equals u.C1
+
+                                     where d.C1.Contains(sOrigen) && d.C6.Contains(entrada)
+                                     orderby d.C6 descending
+
+                                     select new vmInfoControlCors
+                                     {
+                                         entrada = d.C6.Trim(),
+                                         fechaentrada = d.C69.Trim(),
+                                         ordcarga = d.C54.Trim(),
+                                         cliente = k.C32.Trim(),
+                                         ordapli = d.C16.Trim(),
+                                         salida = d.C17.Trim(),
+                                         SucursalInicio = d.C1,
+                                         //etiqueta = d.C9,
+                                         valFact = k.C102,
+                                         valArn = k.C16.ToString(),
+
+                                     });
+                        lst = lista.FirstOrDefault();
+                    }
+                });
+                return lst;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+       
+
         private DateTime fecharestada()
         {
-            int NumeroDias = 62;
+            int NumeroDias = 800;
             DateTime Hoy = DateTime.Now;
             DateTime FechaRestada = Hoy.AddDays(-NumeroDias);
             return FechaRestada;

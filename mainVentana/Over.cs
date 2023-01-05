@@ -20,7 +20,7 @@ namespace mainVentana
     {
         Servicios vd = new Servicios(); // Indxa la clase de validcaiones 
 
-        
+        frmInicioCoordinadores frm = new frmInicioCoordinadores();
 
         public Over()
         {
@@ -38,7 +38,7 @@ namespace mainVentana
         {
             if (Negocios.Common.Cache.CacheLogin.rol.Trim() == "CSERVI")
             {
-                frmInicioCoordinadores frm = new frmInicioCoordinadores();
+               
                 frm.pasado += new frmInicioCoordinadores.pasar(refrescatabla);
                 AbrirFormEnPanel(frm);
             }
@@ -223,8 +223,12 @@ namespace mainVentana
         {
             try
             {
-                VistaOrSalida.frmOrdSalida salida = new VistaOrSalida.frmOrdSalida();
-                salida.ShowDialog();
+                using (VistaOrSalida.frmOrdSalida salida = new VistaOrSalida.frmOrdSalida())
+                {
+                    salida.ShowDialog();
+                }
+                
+             
             }
             catch (Exception)
             {
@@ -323,6 +327,19 @@ namespace mainVentana
             frmInicioCoordinadores frm = new frmInicioCoordinadores();
             frm.ShowDialog();
 
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Over_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            frm.Dispose();
+            frm.Close();
+            this.Dispose();
+            this.Close();
         }
 
 

@@ -12,15 +12,18 @@ using Negocios.Common.Cache;
 using System.Threading;
 using mainVentana.vistaReportes;
 using mainVentana.VistaRecepcion;
+using mainVentana.VistaOrdenCarga;
+using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace mainVentana
 {
     public partial class Form1 : Form
     {
-        Over frm = new Over(); // llama al formulario de Inicio
-
-        Entradas Entradas = new Entradas(); // se llama al formulario de entrada
-        Login Login = new Login();
+        Over frmOver = new Over(); // llama al formulario de Inicio
+        
+       
+    
 
 
         public Form1()
@@ -31,13 +34,14 @@ namespace mainVentana
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            AbrirFormEnPanel(frm);
+            tmFechaHora.Enabled = true;
+            AbrirFormEnPanel(frmOver);
 
 
 
             cargasatosUrs();
             validamenu();
-
+            sucursales();
 
         }
 
@@ -45,50 +49,85 @@ namespace mainVentana
         {
             if (CacheLogin.rol.Trim() == "ADMIN" || CacheLogin.rol.Trim() == "JALMA")
             {
-                btnSalida.Visible = true;
-                btnOrCarga.Visible = true;
-                btnEntrada.Visible = true;
-                btnRecep.Visible = true;
-                btnTraking.Visible = true;
-                btnReportes.Visible = true;
-                btnAjustes.Visible = true;
-                btnBill.Visible = true;
+               
             }
             else if (CacheLogin.rol.Trim() == "OENTRA")
             {
-                btnOrCarga.Visible = false;
-                btnRecep.Visible = false;
-                btnSalida.Visible = false;
+                //Enables
+                rbtnCargas.Enabled = false;
+                rbtnSalida.Enabled = false;
+                rbtnReportes.Enabled = false;
+                rbtnRecepcion.Enabled = false;
+                rbtnBill.Enabled = false;
+
+
+                //Visibles
+                rbtnCargas.Visible = false;
+                rbtnSalida.Visible = false;
+                rbtnReportes.Visible = false;
+                rbtnRecepcion.Visible = false;
+               
+
+
             }
             else if (CacheLogin.rol.Trim() == "CSERVI")
             {
-                btnSalida.Visible = false; 
-                btnOrCarga.Visible = false;
-                btnEntrada.Visible = false;
-                btnRecep.Visible = false; 
+                //Enables
+                rbtnEntrada.Enabled = false;
+                rbtnCargas.Enabled = false;
+                rbtnSalida.Enabled = false;
+                rbtnReportes.Enabled = false;
+                rbtnRecepcion.Enabled = false;
+
+
+                //Visibles
+                rbtnEntrada.Visible = false;
+                rbtnCargas.Visible = false;
+                rbtnSalida.Visible = false;
+                rbtnReportes.Visible = false;
+                rbtnRecepcion.Visible = false;
+              
+
             }
             else if (CacheLogin.rol.Trim() == "CONT" || CacheLogin.rol.Trim() == "REVISOR")
             {
-                btnSalida.Visible = false;
-                btnOrCarga.Visible = false;
-                btnEntrada.Visible = false;
-                btnRecep.Visible = false;
-                btnAjustes.Visible = false;
-                btnBill.Visible=false;
+                //Enables
+                rbtnEntrada.Enabled = false;
+                rbtnCargas.Enabled = false;
+                rbtnSalida.Enabled = false;
+                rbtnReportes.Enabled = false;
+                rbtnRecepcion.Enabled = false;
+                rbtnBill.Enabled = false;
 
+
+                //Visibles
+                rbtnEntrada.Visible = false;
+                rbtnCargas.Visible = false;
+                rbtnSalida.Visible = false;
+                rbtnReportes.Visible = false;
+                rbtnRecepcion.Visible = false;
+                rbtnBill.Visible = false;
             }
 
 
             else
             {
-                btnSalida.Visible = false;
-                btnOrCarga.Visible = false;
-                btnEntrada.Visible = false;
-                btnRecep.Visible = false;
-                btnTraking.Visible = false;
-                btnReportes.Visible = false;
-                btnAjustes.Visible = false;
-                btnBill.Visible = false;
+                //Enables
+                rbtnEntrada.Visible = false;
+                rbtnCargas.Enabled = false;
+                rbtnSalida.Enabled = false;
+                rbtnReportes.Enabled = false;
+                rbtnRecepcion.Enabled = false;
+                rbtnBill.Enabled = false;
+
+                //Visibles
+                rbtnEntrada.Visible = false;
+                rbtnCargas.Visible = false;
+                rbtnSalida.Visible = false;
+                rbtnReportes.Visible = false;
+                rbtnRecepcion.Visible = false;
+                rbtnBill.Visible = false;
+            
                 MessageBox.Show("El usuario con el que ingresaste pertenece a un rol que no es compatible con Arsys, te recomendamos contactar a Daniel para cambiar el rol de tu usuario");
             }
 
@@ -102,134 +141,6 @@ namespace mainVentana
             lblRol.Text = CacheLogin.email;
 
         }
-
-        #region Enter y Leave de Muse
-        //Inicio
-        private void iconButton1_MouseLeave(object sender, EventArgs e)
-        {
-
-            iconButton1.ForeColor = Color.FromArgb(193, 193, 193);
-            iconButton1.IconColor = Color.FromArgb(193, 193, 193);
-
-        }
-
-        private void iconButton1_MouseEnter(object sender, EventArgs e)
-        {
-            iconButton1.ForeColor = Color.FromArgb(255, 255, 255);
-            iconButton1.IconColor = Color.FromArgb(255, 255, 255);
-        }
-        //Entrada
-        private void iconButton2_MouseLeave(object sender, EventArgs e)
-        {
-
-            btnEntrada.ForeColor = Color.FromArgb(193, 193, 193);
-            btnEntrada.IconColor = Color.FromArgb(193, 193, 193);
-
-        }
-
-        private void iconButton2_MouseEnter(object sender, EventArgs e)
-        {
-            btnEntrada.ForeColor = Color.FromArgb(255, 255, 255);
-            btnEntrada.IconColor = Color.FromArgb(255, 255, 255);
-        }
-        //Carga
-        private void iconButton3_MouseLeave(object sender, EventArgs e)
-        {
-
-            btnOrCarga.ForeColor = Color.FromArgb(193, 193, 193);
-            btnOrCarga.IconColor = Color.FromArgb(193, 193, 193);
-
-        }
-
-        private void iconButton3_MouseEnter(object sender, EventArgs e)
-        {
-            btnOrCarga.ForeColor = Color.FromArgb(255, 255, 255);
-            btnOrCarga.IconColor = Color.FromArgb(255, 255, 255);
-        }
-        //Salida
-        private void iconButton4_MouseLeave(object sender, EventArgs e)
-        {
-
-            btnSalida.ForeColor = Color.FromArgb(193, 193, 193);
-            btnSalida.IconColor = Color.FromArgb(193, 193, 193);
-
-        }
-
-        private void iconButton4_MouseEnter(object sender, EventArgs e)
-        {
-            btnSalida.ForeColor = Color.FromArgb(255, 255, 255);
-            btnSalida.IconColor = Color.FromArgb(255, 255, 255);
-        }
-        //Recepcion
-        private void iconButton5_MouseLeave(object sender, EventArgs e)
-        {
-
-            btnRecep.ForeColor = Color.FromArgb(193, 193, 193);
-            btnRecep.IconColor = Color.FromArgb(193, 193, 193);
-
-        }
-
-        private void iconButton5_MouseEnter(object sender, EventArgs e)
-        {
-            btnRecep.ForeColor = Color.FromArgb(255, 255, 255);
-            btnRecep.IconColor = Color.FromArgb(255, 255, 255);
-        }
-        //Bill
-        private void iconButton6_MouseLeave(object sender, EventArgs e)
-        {
-
-            btnBill.ForeColor = Color.FromArgb(193, 193, 193);
-            btnBill.IconColor = Color.FromArgb(193, 193, 193);
-
-        }
-
-        private void iconButton6_MouseEnter(object sender, EventArgs e)
-        {
-            btnBill.ForeColor = Color.FromArgb(255, 255, 255);
-            btnBill.IconColor = Color.FromArgb(255, 255, 255);
-        }
-        //Traking
-        private void iconButton7_MouseLeave(object sender, EventArgs e)
-        {
-
-            btnTraking.ForeColor = Color.FromArgb(193, 193, 193);
-            btnTraking.IconColor = Color.FromArgb(193, 193, 193);
-
-        }
-
-        private void iconButton7_MouseEnter(object sender, EventArgs e)
-        {
-            btnTraking.ForeColor = Color.FromArgb(255, 255, 255);
-            btnTraking.IconColor = Color.FromArgb(255, 255, 255);
-        }
-
-        //Reportes
-        private void btnReportes_MouseLeave(object sender, EventArgs e)
-        {
-            btnReportes.ForeColor = Color.FromArgb(193, 193, 193);
-            btnReportes.IconColor = Color.FromArgb(193, 193, 193);
-        }
-        private void btnReportes_MouseEnter(object sender, EventArgs e)
-        {
-            btnReportes.ForeColor = Color.FromArgb(255, 255, 255);
-            btnReportes.IconColor = Color.FromArgb(255, 255, 255);
-
-        }
-
-        //Ajustes
-        private void btnAjustes_MouseLeave(object sender, EventArgs e)
-        {
-            btnAjustes.ForeColor = Color.FromArgb(193, 193, 193);
-            btnAjustes.IconColor = Color.FromArgb(193, 193, 193);
-        }
-        private void btnAjustes_MouseEnter(object sender, EventArgs e)
-        {
-            btnAjustes.ForeColor = Color.FromArgb(255, 255, 255);
-            btnAjustes.IconColor = Color.FromArgb(255, 255, 255);
-        }
-
-
-        #endregion
         
       
 
@@ -275,39 +186,109 @@ namespace mainVentana
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
-            AbrirFormEnPanel(frm);
+            AbrirFormEnPanel(frmOver);
         }
 
-        private void iconButton2_Click(object sender, EventArgs e)
+      
+
+        public delegate void Cierra();
+        //public delegate void pasar2(string dato,string cliente, int bandera);
+        public event Cierra Cerrado;
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            liberarR();
+        }
+        private void liberarR()
+        {
+            tmFechaHora.Enabled = false;
+            Cerrado();
+            frmOver.Dispose();
+            frmOver.Close();
+            this.Dispose();
+            this.Close();
+        }
+
+      
+
+     
+
+      
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            liberarR();
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void ribbonOrbRecentItem1_Click(object sender, EventArgs e)
+        {
+            liberarR();
+        }
+
+        private void ribbonButton1_Click(object sender, EventArgs e)
+        {
+            string val = rcmbSucAct.SelectedValue;
+            MessageBox.Show(val);
+        }
+
+        private void rbtnEntrada_Click(object sender, EventArgs e)
         {
             try
             {
-                Entradas ent = new Entradas();
-                ent.ShowDialog();
+                using (Entradas ent = new Entradas())
+                {
+                    if (rcmbSucAct.Value !="")
+                    {
+                        ent.sucursalGlobal = rcmbSucAct.Value;
+                    }
+                    ent.ShowDialog();
+                }
+
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        private void rbtnCargas_Click(object sender, EventArgs e)
         {
-            Form1 form1 = new Form1();
-            form1.Close();
-            form1.Dispose();
-            Login.Show();
+            if (Negocios.ConeccionRed.TestInternet() == 1)
+            {
+                MessageBox.Show("No tienes internet");
+                return;
+            }
+            try
+            {
+                using (frmOrdenDeCarga ocar = new frmOrdenDeCarga())
+                {
+                    ocar.ShowDialog();
+                }
 
+
+            }
+            catch (Exception)
+            {
+
+
+
+            }
         }
 
-        private void iconButton4_Click(object sender, EventArgs e)
+        private void rbtnSalida_Click(object sender, EventArgs e)
         {
             try
             {
-                VistaOrSalida.frmOrdSalida salida = new VistaOrSalida.frmOrdSalida();
-                salida.ShowDialog();
-                salida.Dispose();
+                using (VistaOrSalida.frmOrdSalida salida = new VistaOrSalida.frmOrdSalida())
+                {
+                    salida.ShowDialog();
+                }
+
             }
             catch (Exception)
             {
@@ -315,29 +296,63 @@ namespace mainVentana
             }
         }
 
-        private void iconButton6_Click(object sender, EventArgs e)
+        private void rbtnRecepcion_Click(object sender, EventArgs e)
         {
-            VistaBill.frmMBill frm = new VistaBill.frmMBill();
-            frm.ShowDialog();
-            frm.Dispose();
+            using (frmRecepcion frm = new frmRecepcion())
+            {
+                frm.ShowDialog();
+            }
         }
 
-        private void btnReportes_Click(object sender, EventArgs e)
+        private void rbtnBill_Click(object sender, EventArgs e)
         {
-            frmMenuReportes frm = new frmMenuReportes();
-            frm.ShowDialog();
-            frm.Dispose();
+            using (VistaBill.frmMBill frm = new VistaBill.frmMBill())
+            {
+                frm.ShowDialog();
+            }
         }
 
-        private void btnRecep_Click(object sender, EventArgs e)
+        private void rbtnReportes_Click(object sender, EventArgs e)
         {
-            frmRecepcion frm = new frmRecepcion();
-            frm.ShowDialog();
-            frm.Dispose();
+            using (frmMenuReportes frm = new frmMenuReportes())
+            {
+                frm.ShowDialog();
+
+            }
+
         }
 
+        private void ribbonLabel1_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://web.whatsapp.com/");
+        }
 
+        private void lblWebex_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://signin.webex.com/");
+        }
 
+        private void lblGmail_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://gmail.com/");
+        }
 
+        private void lblAmazon_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://www.amazon.com/");
+
+        }
+
+        private void sucursales()
+        {
+
+        
+        }
+
+        private void rcmbSucAct_DropDownItemClicked(object sender, RibbonItemEventArgs e)
+        {
+            Negocios.Common.Cache.CacheLogin.sucGlobal = rcmbSucAct.SelectedValue==default || rcmbSucAct.SelectedValue == "" ? "SD" : rcmbSucAct.SelectedValue;
+            rlblSucGlobal.Text = rcmbSucAct.SelectedItem+" "+ Negocios.Common.Cache.CacheLogin.sucGlobal;
+        }
     }
 }

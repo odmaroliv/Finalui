@@ -39,14 +39,8 @@ namespace Datos.Datosenti
         public virtual DbSet<KDUV> KDUV { get; set; }
         public virtual DbSet<KDXD> KDXD { get; set; }
         public virtual DbSet<KDIDO> KDIDO { get; set; }
-        public virtual DbSet<DSMODULO> DSMODULO { get; set; }
-        public virtual DbSet<DSOPERACION> DSOPERACION { get; set; }
-        public virtual DbSet<DSROL_OPER> DSROL_OPER { get; set; }
-        public virtual DbSet<DSROL2> DSROL2 { get; set; }
-        public virtual DbSet<DSUSER> DSUSER { get; set; }
-        public virtual DbSet<DSIMAGE> DSIMAGE { get; set; }
-        public virtual DbSet<DSBARCODE> DSBARCODE { get; set; }
         public virtual DbSet<KDUK> KDUK { get; set; }
+        public virtual DbSet<SqlIov> SqlIov { get; set; }
     
         public virtual ObjectResult<NO_RASTREO_Result> NO_RASTREO(Nullable<int> noRastCrear)
         {
@@ -55,15 +49,6 @@ namespace Datos.Datosenti
                 new ObjectParameter("NoRastCrear", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<NO_RASTREO_Result>("NO_RASTREO", noRastCrearParameter);
-        }
-    
-        public virtual ObjectResult<string> NumeroEntradaMAX(string dATO)
-        {
-            var dATOParameter = dATO != null ?
-                new ObjectParameter("DATO", dATO) :
-                new ObjectParameter("DATO", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("NumeroEntradaMAX", dATOParameter);
         }
     
         public virtual int AgregaKDMENT(string sUC, string gEN, string nAT, string gRU, string tIP, string fOL, string pARTIDA, string dOCUMENTO, string eTIQUETA, string sUCD, string sUCA, string dESC, string fECHA_HORA, string c11, string c12, string c13, string c16, string c17, string c18, string c20, Nullable<int> eSPECIAL, Nullable<int> mODO, string pROCESO, string pROCESO_DOCTO, string pROCESO_FECHA_HORA, string aGREGADO, string eSTATUS, string fECHA_ES, string iD_DIR, string dIRECCION, string cOLONIA, string pOBLACION, string cP, string tEL1, string tEL2, string sUC_GRID)
@@ -308,6 +293,32 @@ namespace Datos.Datosenti
                 new ObjectParameter("TIPO", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("NumeroMAX", dATOParameter, tIPOParameter);
+        }
+    
+        public virtual ObjectResult<string> NumeroEntradaMAX(string dATO, string modo)
+        {
+            var dATOParameter = dATO != null ?
+                new ObjectParameter("DATO", dATO) :
+                new ObjectParameter("DATO", typeof(string));
+    
+            var modoParameter = modo != null ?
+                new ObjectParameter("modo", modo) :
+                new ObjectParameter("modo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("NumeroEntradaMAX", dATOParameter, modoParameter);
+        }
+    
+        public virtual int aumentaSQLint(string dato, string modo)
+        {
+            var datoParameter = dato != null ?
+                new ObjectParameter("dato", dato) :
+                new ObjectParameter("dato", typeof(string));
+    
+            var modoParameter = modo != null ?
+                new ObjectParameter("modo", modo) :
+                new ObjectParameter("modo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aumentaSQLint", datoParameter, modoParameter);
         }
     }
 }

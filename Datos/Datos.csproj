@@ -43,16 +43,18 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="Z.EntityFramework.Extensions, Version=7.17.1.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
-      <HintPath>..\packages\Z.EntityFramework.Extensions.7.17.1\lib\net45\Z.EntityFramework.Extensions.dll</HintPath>
+    <Reference Include="Z.EntityFramework.Extensions, Version=7.18.1.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Z.EntityFramework.Extensions.7.18.1\lib\net45\Z.EntityFramework.Extensions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -60,27 +62,6 @@
       <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
     <Compile Include="Datosenti\Docto_Prv_Result1.cs">
-      <DependentUpon>modeloPrueba.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Datosenti\DSBARCODE.cs">
-      <DependentUpon>modeloPrueba.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Datosenti\DSIMAGE.cs">
-      <DependentUpon>modeloPrueba.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Datosenti\DSMODULO.cs">
-      <DependentUpon>modeloPrueba.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Datosenti\DSOPERACION.cs">
-      <DependentUpon>modeloPrueba.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Datosenti\DSROL2.cs">
-      <DependentUpon>modeloPrueba.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Datosenti\DSROL_OPER.cs">
-      <DependentUpon>modeloPrueba.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Datosenti\DSUSER.cs">
       <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
     <Compile Include="Datosenti\KDIDO.cs">
@@ -116,7 +97,14 @@
     <Compile Include="Datosenti\NO_RASTREO_Result.cs">
       <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
+    <Compile Include="Datosenti\SqlIov.cs">
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\Bill\VMSalidasBill.cs" />
+    <Compile Include="ViewModels\Carga\vmCargaConsultaGeneral.cs" />
+    <Compile Include="ViewModels\Carga\vmCargaCordinadores.cs" />
+    <Compile Include="ViewModels\Carga\vmEntradasEnCarga.cs" />
+    <Compile Include="ViewModels\Carga\vmNoOrCarga.cs" />
     <Compile Include="ViewModels\Cliente.cs" />
     <Compile Include="Datosenti\KDID.cs">
       <DependentUpon>modeloPrueba.tt</DependentUpon>
@@ -171,6 +159,7 @@
     <Compile Include="ViewModels\Entradas\vmAlmacenes.cs" />
     <Compile Include="ViewModels\Entradas\vmEntradaById.cs" />
     <Compile Include="ViewModels\Entradas\vmEntradaByIdComent.cs" />
+    <Compile Include="ViewModels\Entradas\vmEtiquetasInfo.cs" />
     <Compile Include="ViewModels\Entradas\vmFotosById.cs" />
     <Compile Include="ViewModels\Entradas\vmListaFotos.cs" />
     <Compile Include="ViewModels\Entradas\vmNumeroEntrada.cs" />
@@ -182,7 +171,11 @@
     <Compile Include="ViewModels\Entradas\vmRastreo.cs" />
     <Compile Include="ViewModels\Entradas\vmTOperacion.cs" />
     <Compile Include="ViewModels\InicioFotoVisor\FotoInicioVM.cs" />
+    <Compile Include="ViewModels\Recepciones\vmEntBySalida.cs" />
+    <Compile Include="ViewModels\Recepciones\vmNumeroDeRecepcion.cs" />
     <Compile Include="ViewModels\Recepciones\vmRecepcionesVistaSalida.cs" />
+    <Compile Include="ViewModels\Recepciones\vmSalidaDocumentoONLY.cs" />
+    <Compile Include="ViewModels\Reportes\OrdenCarga\vmReporteCargaSimple.cs" />
     <Compile Include="ViewModels\Reportes\vmCorreoInforma.cs" />
     <Compile Include="ViewModels\Reportes\vmEtiquetasReporte.cs" />
     <Compile Include="ViewModels\Reportes\vmInfoControlCors.cs" />
@@ -241,7 +234,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

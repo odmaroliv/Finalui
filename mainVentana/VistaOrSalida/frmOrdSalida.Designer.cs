@@ -42,6 +42,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.gsbCargaEti = new Guna.UI.WinForms.GunaVScrollBar();
             this.lblMensaje = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnScanini = new Guna.UI.WinForms.GunaGradientTileButton();
@@ -84,7 +85,6 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.gsbCargaEti = new Guna.UI.WinForms.GunaVScrollBar();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaCargas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrdenesEntrada)).BeginInit();
@@ -121,6 +121,21 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(885, 682);
             this.panel1.TabIndex = 0;
+            // 
+            // gsbCargaEti
+            // 
+            this.gsbCargaEti.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.gsbCargaEti.LargeChange = 10;
+            this.gsbCargaEti.Location = new System.Drawing.Point(354, 284);
+            this.gsbCargaEti.Maximum = 100;
+            this.gsbCargaEti.Name = "gsbCargaEti";
+            this.gsbCargaEti.ScrollIdleColor = System.Drawing.Color.Silver;
+            this.gsbCargaEti.Size = new System.Drawing.Size(11, 214);
+            this.gsbCargaEti.TabIndex = 32;
+            this.gsbCargaEti.ThumbColor = System.Drawing.Color.DimGray;
+            this.gsbCargaEti.ThumbHoverColor = System.Drawing.Color.Gray;
+            this.gsbCargaEti.ThumbPressedColor = System.Drawing.Color.DarkGray;
             // 
             // lblMensaje
             // 
@@ -954,21 +969,6 @@
             // 
             this.notifyIcon1.Text = "notifyIcon1";
             this.notifyIcon1.Visible = true;
-            // 
-            // gsbCargaEti
-            // 
-            this.gsbCargaEti.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.gsbCargaEti.LargeChange = 10;
-            this.gsbCargaEti.Location = new System.Drawing.Point(354, 284);
-            this.gsbCargaEti.Maximum = 100;
-            this.gsbCargaEti.Name = "gsbCargaEti";
-            this.gsbCargaEti.ScrollIdleColor = System.Drawing.Color.Silver;
-            this.gsbCargaEti.Size = new System.Drawing.Size(11, 214);
-            this.gsbCargaEti.TabIndex = 32;
-            this.gsbCargaEti.ThumbColor = System.Drawing.Color.DimGray;
-            this.gsbCargaEti.ThumbHoverColor = System.Drawing.Color.Gray;
-            this.gsbCargaEti.ThumbPressedColor = System.Drawing.Color.DarkGray;
             // 
             // frmOrdSalida
             // 

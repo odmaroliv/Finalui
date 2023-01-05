@@ -35,13 +35,18 @@ namespace mainVentana.VistaOrSalida
 
         private void btnAlta_Click(object sender, EventArgs e)
         {
+            using (frmBuscarOrdCarga oc = new frmBuscarOrdCarga())
+            {
+                oc.pasado += new frmBuscarOrdCarga.pasar(agrgaCargatabla);
+                oc.cerrado += new frmBuscarOrdCarga.cerrar(BuscaentradasCarga);
+                oc.sorigen = sOrigen;
+                oc.sucsdest = sDestino;
+                oc.ShowDialog();
+                oc.pasado -= new frmBuscarOrdCarga.pasar(agrgaCargatabla);
+                oc.cerrado -= new frmBuscarOrdCarga.cerrar(BuscaentradasCarga);
 
-            frmBuscarOrdCarga oc = new frmBuscarOrdCarga();
-            oc.pasado += new frmBuscarOrdCarga.pasar(agrgaCargatabla);
-            oc.cerrado += new frmBuscarOrdCarga.cerrar(BuscaentradasCarga);
-            oc.sorigen = sOrigen;
-            oc.sucsdest = sDestino;
-            oc.ShowDialog();
+            }
+
 
         }
         List<string> lst = new List<string>();
@@ -210,6 +215,11 @@ namespace mainVentana.VistaOrSalida
             foreach (DataGridViewRow i in dgvListaCargas.Rows)
             {
                 lista.AddRange(await datos.CargaEntByCarga(i.Cells[0].Value.ToString().Trim(), sOrigen));
+
+            }
+            for (int i = 0; i < dgvListaCargas.Rows.Count; i++)
+            {
+                
             }
             //ValidatablaObserva();
             Validatabla();
@@ -410,7 +420,7 @@ namespace mainVentana.VistaOrSalida
 
                 foreach (var e in lista)
                 {
-                    if (e.Etiqueta.Contains(i.Cells[0].Value.ToString().Trim()))
+                    if (e.Etiqueta.Trim() == (i.Cells[0].Value.ToString().Trim()))
                     {
                         int index = lista.FindIndex(a => a.Etiqueta.Trim().Contains(i.Cells[0].Value.ToString().Trim()));
                         lista.RemoveAt(index);
@@ -802,7 +812,7 @@ namespace mainVentana.VistaOrSalida
                         d.C66 = "";
                         d.C67 = "";
                         d.C68 = "";
-                        d.C75 = DateTime.Now.ToString("dd/MM/yyyy");
+                        d.C75 = DateTime.Now.ToString("MM/dd/yyyy");
                         kd.Add(d);
                     }
 
@@ -874,7 +884,7 @@ namespace mainVentana.VistaOrSalida
                         d.C66 = "";
                         d.C67 = "";
                         d.C68 = "";
-                        d.C73 = DateTime.Now.ToString("dd/MM/yyyy");
+                        d.C73 = DateTime.Now.ToString("MM/dd/yyyy");
                         d.C75 = "";
                         kd.Add(d);
                         //modelo.SaveChanges();
@@ -961,11 +971,15 @@ namespace mainVentana.VistaOrSalida
 
         private void gunaGradientTileButton2_Click_1(object sender, EventArgs e)
         {
-            frmBuscarOrdSalida oc = new frmBuscarOrdSalida();
-            oc.pasadoS += new frmBuscarOrdSalida.pasarS(CargaLisataSalidas);
-            oc.sorigen = sOrigen;
-            oc.sucsdest = sDestino;
-            oc.ShowDialog();
+            using (frmBuscarOrdSalida oc = new frmBuscarOrdSalida())
+            {
+                oc.pasadoS += new frmBuscarOrdSalida.pasarS(CargaLisataSalidas);
+                oc.sorigen = sOrigen;
+                oc.sucsdest = sDestino;
+                oc.ShowDialog();
+            }
+           
+         
         }
 
         private async void CargaLisataSalidas(string dato)

@@ -47,6 +47,8 @@
             this.gunaShadowPanel2 = new Guna.UI.WinForms.GunaShadowPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.gunaElipsePanel1 = new Guna.UI.WinForms.GunaElipsePanel();
+            this.gunaElipsePanel2 = new Guna.UI.WinForms.GunaElipsePanel();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -56,10 +58,14 @@
             this.gunaShadowPanel4.SuspendLayout();
             this.gunaShadowPanel3.SuspendLayout();
             this.gunaShadowPanel2.SuspendLayout();
+            this.gunaElipsePanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 4;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
@@ -69,25 +75,24 @@
             this.tableLayoutPanel1.Controls.Add(this.panel7, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel11, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel13, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 81);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(11, 95);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(8);
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 369);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(773, 333);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
             // panel6
             // 
             this.panel6.Controls.Add(this.btnRecep);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(402, 10);
+            this.panel6.Location = new System.Drawing.Point(388, 10);
             this.panel6.Margin = new System.Windows.Forms.Padding(2);
             this.panel6.Name = "panel6";
             this.panel6.Padding = new System.Windows.Forms.Padding(4);
-            this.panel6.Size = new System.Drawing.Size(192, 349);
+            this.panel6.Size = new System.Drawing.Size(185, 313);
             this.panel6.TabIndex = 35;
             // 
             // btnRecep
@@ -117,7 +122,7 @@
             this.btnRecep.OnHoverImage = null;
             this.btnRecep.OnPressedColor = System.Drawing.Color.Black;
             this.btnRecep.Radius = 5;
-            this.btnRecep.Size = new System.Drawing.Size(184, 341);
+            this.btnRecep.Size = new System.Drawing.Size(177, 305);
             this.btnRecep.TabIndex = 18;
             this.btnRecep.Text = "Recepciones";
             // 
@@ -125,11 +130,11 @@
             // 
             this.panel7.Controls.Add(this.btnCargas);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(598, 10);
+            this.panel7.Location = new System.Drawing.Point(577, 10);
             this.panel7.Margin = new System.Windows.Forms.Padding(2);
             this.panel7.Name = "panel7";
             this.panel7.Padding = new System.Windows.Forms.Padding(4);
-            this.panel7.Size = new System.Drawing.Size(192, 349);
+            this.panel7.Size = new System.Drawing.Size(186, 313);
             this.panel7.TabIndex = 34;
             // 
             // btnCargas
@@ -159,7 +164,7 @@
             this.btnCargas.OnHoverImage = null;
             this.btnCargas.OnPressedColor = System.Drawing.Color.Black;
             this.btnCargas.Radius = 5;
-            this.btnCargas.Size = new System.Drawing.Size(184, 341);
+            this.btnCargas.Size = new System.Drawing.Size(178, 305);
             this.btnCargas.TabIndex = 20;
             this.btnCargas.Text = "Cargas";
             // 
@@ -171,7 +176,7 @@
             this.panel11.Margin = new System.Windows.Forms.Padding(2);
             this.panel11.Name = "panel11";
             this.panel11.Padding = new System.Windows.Forms.Padding(4);
-            this.panel11.Size = new System.Drawing.Size(192, 349);
+            this.panel11.Size = new System.Drawing.Size(185, 313);
             this.panel11.TabIndex = 33;
             // 
             // btnEntrada
@@ -201,19 +206,20 @@
             this.btnEntrada.OnHoverImage = null;
             this.btnEntrada.OnPressedColor = System.Drawing.Color.Black;
             this.btnEntrada.Radius = 5;
-            this.btnEntrada.Size = new System.Drawing.Size(184, 341);
+            this.btnEntrada.Size = new System.Drawing.Size(177, 305);
             this.btnEntrada.TabIndex = 20;
             this.btnEntrada.Text = "Entrada";
             // 
             // panel13
             // 
             this.panel13.Controls.Add(this.btnSalida);
+            this.panel13.Controls.Add(this.gunaElipsePanel1);
             this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel13.Location = new System.Drawing.Point(206, 10);
+            this.panel13.Location = new System.Drawing.Point(199, 10);
             this.panel13.Margin = new System.Windows.Forms.Padding(2);
             this.panel13.Name = "panel13";
             this.panel13.Padding = new System.Windows.Forms.Padding(4);
-            this.panel13.Size = new System.Drawing.Size(192, 349);
+            this.panel13.Size = new System.Drawing.Size(185, 313);
             this.panel13.TabIndex = 32;
             // 
             // btnSalida
@@ -243,13 +249,15 @@
             this.btnSalida.OnHoverImage = null;
             this.btnSalida.OnPressedColor = System.Drawing.Color.Black;
             this.btnSalida.Radius = 5;
-            this.btnSalida.Size = new System.Drawing.Size(184, 341);
+            this.btnSalida.Size = new System.Drawing.Size(177, 305);
             this.btnSalida.TabIndex = 20;
             this.btnSalida.Text = "Salidas";
             this.btnSalida.Click += new System.EventHandler(this.gunaGradientTileButton5_Click);
             // 
             // tableLayoutPanel2
             // 
+            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
@@ -258,15 +266,14 @@
             this.tableLayoutPanel2.Controls.Add(this.gunaShadowPanel4, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.gunaShadowPanel3, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.gunaShadowPanel2, 0, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(11, 10);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.Padding = new System.Windows.Forms.Padding(8);
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(800, 81);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(773, 81);
             this.tableLayoutPanel2.TabIndex = 3;
             // 
             // gunaShadowPanel4
@@ -278,14 +285,14 @@
             this.gunaShadowPanel4.BaseColor = System.Drawing.Color.SpringGreen;
             this.gunaShadowPanel4.Controls.Add(this.label3);
             this.gunaShadowPanel4.Controls.Add(this.iconButton3);
-            this.gunaShadowPanel4.Location = new System.Drawing.Point(532, 10);
+            this.gunaShadowPanel4.Location = new System.Drawing.Point(514, 10);
             this.gunaShadowPanel4.Margin = new System.Windows.Forms.Padding(2);
             this.gunaShadowPanel4.Name = "gunaShadowPanel4";
             this.gunaShadowPanel4.Radius = 10;
             this.gunaShadowPanel4.ShadowColor = System.Drawing.Color.Black;
             this.gunaShadowPanel4.ShadowDepth = 20;
             this.gunaShadowPanel4.ShadowStyle = Guna.UI.WinForms.ShadowMode.ForwardDiagonal;
-            this.gunaShadowPanel4.Size = new System.Drawing.Size(258, 61);
+            this.gunaShadowPanel4.Size = new System.Drawing.Size(249, 61);
             this.gunaShadowPanel4.TabIndex = 3;
             // 
             // label3
@@ -293,7 +300,7 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(81, -1);
+            this.label3.Location = new System.Drawing.Point(76, -1);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(125, 58);
@@ -328,14 +335,14 @@
             this.gunaShadowPanel3.BaseColor = System.Drawing.Color.Tomato;
             this.gunaShadowPanel3.Controls.Add(this.label2);
             this.gunaShadowPanel3.Controls.Add(this.iconButton2);
-            this.gunaShadowPanel3.Location = new System.Drawing.Point(271, 10);
+            this.gunaShadowPanel3.Location = new System.Drawing.Point(262, 10);
             this.gunaShadowPanel3.Margin = new System.Windows.Forms.Padding(2);
             this.gunaShadowPanel3.Name = "gunaShadowPanel3";
             this.gunaShadowPanel3.Radius = 10;
             this.gunaShadowPanel3.ShadowColor = System.Drawing.Color.Black;
             this.gunaShadowPanel3.ShadowDepth = 20;
             this.gunaShadowPanel3.ShadowStyle = Guna.UI.WinForms.ShadowMode.ForwardDiagonal;
-            this.gunaShadowPanel3.Size = new System.Drawing.Size(257, 61);
+            this.gunaShadowPanel3.Size = new System.Drawing.Size(248, 61);
             this.gunaShadowPanel3.TabIndex = 2;
             // 
             // label2
@@ -343,7 +350,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(94, 0);
+            this.label2.Location = new System.Drawing.Point(90, 0);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 58);
@@ -385,7 +392,7 @@
             this.gunaShadowPanel2.ShadowColor = System.Drawing.Color.Black;
             this.gunaShadowPanel2.ShadowDepth = 20;
             this.gunaShadowPanel2.ShadowStyle = Guna.UI.WinForms.ShadowMode.ForwardDiagonal;
-            this.gunaShadowPanel2.Size = new System.Drawing.Size(257, 61);
+            this.gunaShadowPanel2.Size = new System.Drawing.Size(248, 61);
             this.gunaShadowPanel2.TabIndex = 1;
             // 
             // label1
@@ -393,7 +400,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(52, 0);
+            this.label1.Location = new System.Drawing.Point(48, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(143, 58);
@@ -419,13 +426,37 @@
             this.iconButton1.TabIndex = 0;
             this.iconButton1.UseVisualStyleBackColor = true;
             // 
+            // gunaElipsePanel1
+            // 
+            this.gunaElipsePanel1.BackColor = System.Drawing.Color.Transparent;
+            this.gunaElipsePanel1.BaseColor = System.Drawing.Color.White;
+            this.gunaElipsePanel1.Location = new System.Drawing.Point(-206, -91);
+            this.gunaElipsePanel1.Name = "gunaElipsePanel1";
+            this.gunaElipsePanel1.Size = new System.Drawing.Size(800, 450);
+            this.gunaElipsePanel1.TabIndex = 21;
+            // 
+            // gunaElipsePanel2
+            // 
+            this.gunaElipsePanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gunaElipsePanel2.BackColor = System.Drawing.Color.Transparent;
+            this.gunaElipsePanel2.BaseColor = System.Drawing.Color.White;
+            this.gunaElipsePanel2.Controls.Add(this.tableLayoutPanel1);
+            this.gunaElipsePanel2.Controls.Add(this.tableLayoutPanel2);
+            this.gunaElipsePanel2.Location = new System.Drawing.Point(0, 1);
+            this.gunaElipsePanel2.Name = "gunaElipsePanel2";
+            this.gunaElipsePanel2.Radius = 20;
+            this.gunaElipsePanel2.Size = new System.Drawing.Size(802, 445);
+            this.gunaElipsePanel2.TabIndex = 5;
+            // 
             // tstflirk
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.tableLayoutPanel2);
+            this.Controls.Add(this.gunaElipsePanel2);
             this.Name = "tstflirk";
             this.Text = "tstflirk";
             this.Load += new System.EventHandler(this.tstflirk_Load);
@@ -438,6 +469,7 @@
             this.gunaShadowPanel4.ResumeLayout(false);
             this.gunaShadowPanel3.ResumeLayout(false);
             this.gunaShadowPanel2.ResumeLayout(false);
+            this.gunaElipsePanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -463,5 +495,7 @@
         private Guna.UI.WinForms.GunaShadowPanel gunaShadowPanel2;
         private System.Windows.Forms.Label label1;
         private FontAwesome.Sharp.IconButton iconButton1;
+        private Guna.UI.WinForms.GunaElipsePanel gunaElipsePanel1;
+        private Guna.UI.WinForms.GunaElipsePanel gunaElipsePanel2;
     }
 }

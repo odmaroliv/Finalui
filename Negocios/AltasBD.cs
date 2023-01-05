@@ -190,57 +190,14 @@ namespace Negocios
             }
         }
 
-        public void agregarFotos(List<vmListaFotos> fotos)
-        {
-
-            try
-            {
-
-                using (modelo2Entities modelo = new modelo2Entities())
-                {
-                    var d = new DSIMAGE();
-                    foreach (var i in fotos)
-                    {
-                        d.ENTRADA = i.entrada;
-                        d.NOMBRE = i.nombre;
-                        d.REALNOMBRE = i.realnombre;
-                        d.BYTEDOCUMENTO = i.bytedocumto;
-                        d.EXTRA1 = i.sucursal.Trim();
-                        d.EXTRA2 = i.tipo.Trim();
-                        modelo.DSIMAGE.Add(d);
-                        modelo.SaveChanges();
-                    }
-
-                }
-
-            }
-
-            catch (DbEntityValidationException e)
-            {
-                foreach (var eve in e.EntityValidationErrors)
-                {
-                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                    foreach (var ve in eve.ValidationErrors)
-                    {
-                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                            ve.PropertyName, ve.ErrorMessage);
-                    }
-                }
-
-                throw;
-            }
-
-        }
-
-        public void UpdateKDM1(string id, string sucursaldestino, string cord, string notas, string referencia, string pagado, string tipooperacion, string valfact, string valarn)
+        public void UpdateKDM1(string id, string sucursaldestino, string cord, string notas, string referencia, string pagado, string tipooperacion, string valfact, string valarn, string sucursalOrigen)
         {
             try
             {
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
                     var d = (from q in modelo.KDM1
-                             where q.C6 == id
+                             where q.C6 == id && q.C4 == 35 && q.C1 == sucursalOrigen
                              select q).First();
                     d.C103 = sucursaldestino.Trim();
                     d.C12 = cord.Trim();
@@ -257,60 +214,32 @@ namespace Negocios
             }
             catch (DbEntityValidationException e)
             {
-                foreach (var eve in e.EntityValidationErrors)
-                {
-                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                    foreach (var ve in eve.ValidationErrors)
-                    {
-                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                            ve.PropertyName, ve.ErrorMessage);
-                    }
-                }
-
-                throw;
+                System.Windows.Forms.MessageBox.Show("Hubo un problema al actualizar, no se pudo actualizar este codigo");
             }
 
         }
-
-
-        public void codeBar(string origen, string entrada, string etiqueta, byte[] barcode)
+        public void UpdateKDM1Coment(string id, string sucursalOrigen, string descripcion)
         {
             try
             {
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
-                    var d = new DSBARCODE();
-
-                    d.C1 = origen.Trim();
-                    d.C6 = entrada.Trim();
-                    d.C9 = etiqueta.Trim();
-                    d.BARCODE = barcode;
-
-
-                    modelo.DSBARCODE.Add(d);
-
+                    var d = (from q in modelo.KDM1COMEN
+                                where q.C6 == id && q.C1 == sucursalOrigen
+                                select q).First();
+                    
+                    d.C11 = descripcion;
                     modelo.SaveChanges();
 
                 }
             }
             catch (DbEntityValidationException e)
             {
-                foreach (var eve in e.EntityValidationErrors)
-                {
-                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                    foreach (var ve in eve.ValidationErrors)
-                    {
-                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                            ve.PropertyName, ve.ErrorMessage);
-                    }
-                }
-
-                throw;
+                System.Windows.Forms.MessageBox.Show("Hubo un problema al actualizar, no se pudo actualizar este codigo");
             }
 
         }
+
 
 
         //----------------------------------------------Salidas--------------------------------------------------------------------------
@@ -422,7 +351,33 @@ namespace Negocios
             });
         }
 
+        //--------------------carga--------------------------------
 
+        public async Task ActualizaValores(string entrada, string sucursalIni, string valfact, string valarn)
+        {
+            try
+            {
+                using (modelo2Entities modelo = new modelo2Entities())
+                {
+                    var d = (from q in modelo.KDM1
+                             where q.C1==sucursalIni && q.C6 == entrada && q.C4 ==35
+                             select q).First();
+                   
+                    d.C102 = valfact.Trim();
+                    d.C16 = Convert.ToDecimal(valarn.Trim());
+                    d.C42 = Convert.ToDecimal(valarn.Trim());
+                    await modelo.SaveChangesAsync();
+
+                }
+            }
+            catch (Exception)
+            {
+                System.Windows.Forms.MessageBox.Show("Ha ocurrido un error, no hemos podido actualizar el valor.");
+            }
+
+        }
+
+       
 
     }
 

@@ -43,6 +43,13 @@
             this.gunaButton1 = new Guna.UI.WinForms.GunaButton();
             this.label8 = new System.Windows.Forms.Label();
             this.lblFilaNum = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.nudValArn = new System.Windows.Forms.NumericUpDown();
+            this.nudValFac = new System.Windows.Forms.NumericUpDown();
+            this.txbSuc = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.nudValArn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudValFac)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -64,7 +71,7 @@
             this.button1.OnHoverForeColor = System.Drawing.Color.White;
             this.button1.OnHoverImage = null;
             this.button1.OnPressedColor = System.Drawing.Color.Black;
-            this.button1.Size = new System.Drawing.Size(135, 74);
+            this.button1.Size = new System.Drawing.Size(135, 56);
             this.button1.TabIndex = 0;
             this.button1.Text = "0052547";
             this.button1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -242,11 +249,70 @@
             this.lblFilaNum.Text = "1";
             this.lblFilaNum.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(405, 13);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(40, 13);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "Arnian:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(529, 13);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(46, 13);
+            this.label10.TabIndex = 17;
+            this.label10.Text = "Factura:";
+            // 
+            // nudValArn
+            // 
+            this.nudValArn.DecimalPlaces = 2;
+            this.nudValArn.Location = new System.Drawing.Point(451, 11);
+            this.nudValArn.Maximum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            0});
+            this.nudValArn.Name = "nudValArn";
+            this.nudValArn.Size = new System.Drawing.Size(71, 20);
+            this.nudValArn.TabIndex = 20;
+            this.nudValArn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.nudValArn_KeyDown);
+            // 
+            // nudValFac
+            // 
+            this.nudValFac.DecimalPlaces = 2;
+            this.nudValFac.Location = new System.Drawing.Point(581, 11);
+            this.nudValFac.Maximum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            0});
+            this.nudValFac.Name = "nudValFac";
+            this.nudValFac.Size = new System.Drawing.Size(71, 20);
+            this.nudValFac.TabIndex = 21;
+            this.nudValFac.KeyDown += new System.Windows.Forms.KeyEventHandler(this.nudValArn_KeyDown);
+            // 
+            // txbSuc
+            // 
+            this.txbSuc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbSuc.Location = new System.Drawing.Point(0, 56);
+            this.txbSuc.Name = "txbSuc";
+            this.txbSuc.Size = new System.Drawing.Size(135, 20);
+            this.txbSuc.TabIndex = 22;
+            // 
             // ControlEntradaCoor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.GhostWhite;
+            this.Controls.Add(this.txbSuc);
+            this.Controls.Add(this.nudValFac);
+            this.Controls.Add(this.nudValArn);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.lblFilaNum);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.gunaButton1);
@@ -264,6 +330,9 @@
             this.Controls.Add(this.button1);
             this.Name = "ControlEntradaCoor";
             this.Size = new System.Drawing.Size(763, 80);
+            this.Load += new System.EventHandler(this.ControlEntradaCoor_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.nudValArn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudValFac)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -286,5 +355,10 @@
         public Guna.UI.WinForms.GunaButton gunaButton1;
         public System.Windows.Forms.Label label8;
         public System.Windows.Forms.Label lblFilaNum;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        public System.Windows.Forms.TextBox txbSuc;
+        public System.Windows.Forms.NumericUpDown nudValArn;
+        public System.Windows.Forms.NumericUpDown nudValFac;
     }
 }

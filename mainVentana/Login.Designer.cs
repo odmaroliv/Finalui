@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
-            this.txbPass = new Guna.UI.WinForms.GunaLineTextBox();
+            this.txbPass2 = new Guna.UI.WinForms.GunaLineTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txbUsr = new Guna.UI.WinForms.GunaLineTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlImg = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -41,7 +42,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.gunaPictureBox1 = new Guna.UI.WinForms.GunaPictureBox();
-            this.pnlImg = new System.Windows.Forms.Panel();
+            this.cbxPass = new Guna.UI.WinForms.GunaCheckBox();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -51,21 +52,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.gunaPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // txbPass
+            // txbPass2
             // 
-            this.txbPass.BackColor = System.Drawing.Color.White;
-            this.txbPass.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txbPass.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.txbPass.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txbPass.LineColor = System.Drawing.Color.Gainsboro;
-            this.txbPass.Location = new System.Drawing.Point(0, 100);
-            this.txbPass.Margin = new System.Windows.Forms.Padding(2);
-            this.txbPass.Name = "txbPass";
-            this.txbPass.PasswordChar = '●';
-            this.txbPass.Size = new System.Drawing.Size(275, 31);
-            this.txbPass.TabIndex = 1;
-            this.txbPass.UseSystemPasswordChar = true;
-            this.txbPass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbPass_KeyDown);
+            this.txbPass2.Animated = true;
+            this.txbPass2.BackColor = System.Drawing.Color.White;
+            this.txbPass2.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbPass2.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.txbPass2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txbPass2.LineColor = System.Drawing.Color.Gainsboro;
+            this.txbPass2.Location = new System.Drawing.Point(0, 104);
+            this.txbPass2.Margin = new System.Windows.Forms.Padding(2);
+            this.txbPass2.Name = "txbPass2";
+            this.txbPass2.PasswordChar = '\0';
+            this.txbPass2.Size = new System.Drawing.Size(275, 31);
+            this.txbPass2.TabIndex = 1;
+            this.txbPass2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbPass_KeyDown);
             // 
             // label1
             // 
@@ -96,6 +97,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.cbxPass);
             this.panel1.Controls.Add(this.pnlImg);
             this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.panel3);
@@ -106,11 +108,20 @@
             this.panel1.Size = new System.Drawing.Size(332, 346);
             this.panel1.TabIndex = 5;
             // 
+            // pnlImg
+            // 
+            this.pnlImg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlImg.Location = new System.Drawing.Point(34, 290);
+            this.pnlImg.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlImg.Name = "pnlImg";
+            this.pnlImg.Size = new System.Drawing.Size(279, 35);
+            this.pnlImg.TabIndex = 21;
+            // 
             // panel4
             // 
             this.panel4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel4.Controls.Add(this.iconButton1);
-            this.panel4.Location = new System.Drawing.Point(34, 229);
+            this.panel4.Location = new System.Drawing.Point(34, 239);
             this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(279, 38);
@@ -142,14 +153,14 @@
             // panel3
             // 
             this.panel3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel3.Controls.Add(this.txbPass);
+            this.panel3.Controls.Add(this.txbPass2);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.txbUsr);
-            this.panel3.Location = new System.Drawing.Point(34, 60);
+            this.panel3.Location = new System.Drawing.Point(34, 49);
             this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(279, 150);
+            this.panel3.Size = new System.Drawing.Size(279, 147);
             this.panel3.TabIndex = 4;
             // 
             // label2
@@ -212,14 +223,18 @@
             this.gunaPictureBox1.TabIndex = 0;
             this.gunaPictureBox1.TabStop = false;
             // 
-            // pnlImg
+            // cbxPass
             // 
-            this.pnlImg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlImg.Location = new System.Drawing.Point(34, 282);
-            this.pnlImg.Margin = new System.Windows.Forms.Padding(2);
-            this.pnlImg.Name = "pnlImg";
-            this.pnlImg.Size = new System.Drawing.Size(279, 35);
-            this.pnlImg.TabIndex = 21;
+            this.cbxPass.BaseColor = System.Drawing.Color.White;
+            this.cbxPass.CheckedOffColor = System.Drawing.Color.Gray;
+            this.cbxPass.CheckedOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.cbxPass.FillColor = System.Drawing.Color.White;
+            this.cbxPass.Location = new System.Drawing.Point(179, 201);
+            this.cbxPass.Name = "cbxPass";
+            this.cbxPass.Size = new System.Drawing.Size(130, 20);
+            this.cbxPass.TabIndex = 23;
+            this.cbxPass.Text = "Mostrar Contraseña";
+            this.cbxPass.CheckedChanged += new System.EventHandler(this.cbxPass_CheckedChanged);
             // 
             // Login
             // 
@@ -241,6 +256,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Login_FormClosed);
             this.Load += new System.EventHandler(this.Login_Load);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
@@ -254,7 +270,7 @@
 
         #endregion
 
-        private Guna.UI.WinForms.GunaLineTextBox txbPass;
+        private Guna.UI.WinForms.GunaLineTextBox txbPass2;
         private System.Windows.Forms.Label label1;
         private Guna.UI.WinForms.GunaLineTextBox txbUsr;
         private System.Windows.Forms.Panel panel1;
@@ -267,5 +283,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private Guna.UI.WinForms.GunaPictureBox gunaPictureBox1;
         private System.Windows.Forms.Panel pnlImg;
+        private Guna.UI.WinForms.GunaCheckBox cbxPass;
     }
 }

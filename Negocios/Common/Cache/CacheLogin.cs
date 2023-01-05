@@ -19,6 +19,7 @@ namespace Negocios.Common.Cache
         public static string rol { get; set; }
         public static string estatus { get; set; }
         public static string sucdefecto { get; set; }
+        public static string sucGlobal { get; set; }
 
     }
 }

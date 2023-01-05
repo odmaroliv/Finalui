@@ -54,32 +54,6 @@ namespace mainVentana
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel19 = new System.Windows.Forms.Panel();
-            this.btnAjustes = new FontAwesome.Sharp.IconButton();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.btnReportes = new FontAwesome.Sharp.IconButton();
-            this.panel18 = new System.Windows.Forms.Panel();
-            this.btnTraking = new FontAwesome.Sharp.IconButton();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.btnBill = new FontAwesome.Sharp.IconButton();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.btnRecep = new FontAwesome.Sharp.IconButton();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.btnSalida = new FontAwesome.Sharp.IconButton();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.btnOrCarga = new FontAwesome.Sharp.IconButton();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.btnEntrada = new FontAwesome.Sharp.IconButton();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.iconButton8 = new FontAwesome.Sharp.IconButton();
-            this.gunaSeparator1 = new Guna.UI.WinForms.GunaSeparator();
             this.panel11 = new System.Windows.Forms.Panel();
             this.panel13 = new System.Windows.Forms.Panel();
             this.lblRol = new System.Windows.Forms.Label();
@@ -91,13 +65,53 @@ namespace mainVentana
             this.lblNombreUsr = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.panelContenedorForm = new System.Windows.Forms.Panel();
             this.tmFechaHora = new System.Windows.Forms.Timer(this.components);
             this.panel17 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panel1.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.ribbon1 = new System.Windows.Forms.Ribbon();
+            this.ribbonOrbMenuItem1 = new System.Windows.Forms.RibbonOrbMenuItem();
+            this.ribbonOrbMenuItem2 = new System.Windows.Forms.RibbonOrbMenuItem();
+            this.ribbonOrbMenuItem3 = new System.Windows.Forms.RibbonOrbMenuItem();
+            this.ribbonSeparator1 = new System.Windows.Forms.RibbonSeparator();
+            this.ribbonOrbRecentItem1 = new System.Windows.Forms.RibbonOrbRecentItem();
+            this.ribbonTab1 = new System.Windows.Forms.RibbonTab();
+            this.ribbonPanel1 = new System.Windows.Forms.RibbonPanel();
+            this.ribbonButton1 = new System.Windows.Forms.RibbonButton();
+            this.ribbonSeparator2 = new System.Windows.Forms.RibbonSeparator();
+            this.ribbonButton2 = new System.Windows.Forms.RibbonButton();
+            this.ribbonDescriptionMenuItem1 = new System.Windows.Forms.RibbonDescriptionMenuItem();
+            this.rpnlInicio = new System.Windows.Forms.RibbonPanel();
+            this.rbtnEntrada = new System.Windows.Forms.RibbonButton();
+            this.ribbonSeparator4 = new System.Windows.Forms.RibbonSeparator();
+            this.rbtnCargas = new System.Windows.Forms.RibbonButton();
+            this.ribbonSeparator5 = new System.Windows.Forms.RibbonSeparator();
+            this.rbtnSalida = new System.Windows.Forms.RibbonButton();
+            this.ribbonSeparator6 = new System.Windows.Forms.RibbonSeparator();
+            this.rbtnRecepcion = new System.Windows.Forms.RibbonButton();
+            this.ribbonSeparator7 = new System.Windows.Forms.RibbonSeparator();
+            this.rbtnBill = new System.Windows.Forms.RibbonButton();
+            this.ribbonSeparator8 = new System.Windows.Forms.RibbonSeparator();
+            this.rbtnReportes = new System.Windows.Forms.RibbonButton();
+            this.ribbonSeparator9 = new System.Windows.Forms.RibbonSeparator();
+            this.rbtnAjustes = new System.Windows.Forms.RibbonButton();
+            this.rpnlAccesosWeb = new System.Windows.Forms.RibbonPanel();
+            this.ribbonItemGroup1 = new System.Windows.Forms.RibbonItemGroup();
+            this.lblWha = new System.Windows.Forms.RibbonLabel();
+            this.lblWebex = new System.Windows.Forms.RibbonLabel();
+            this.lblGmail = new System.Windows.Forms.RibbonLabel();
+            this.lblAmazon = new System.Windows.Forms.RibbonLabel();
+            this.rpnlSuc = new System.Windows.Forms.RibbonPanel();
+            this.rcmbSucAct = new System.Windows.Forms.RibbonComboBox();
+            this.cbxiSD = new System.Windows.Forms.RibbonButton();
+            this.cbxiTJ = new System.Windows.Forms.RibbonButton();
+            this.cbxiCSL = new System.Windows.Forms.RibbonButton();
+            this.ribbonPanel2 = new System.Windows.Forms.RibbonPanel();
+            this.rlblSucGlobal = new System.Windows.Forms.RibbonLabel();
+            this.ribbonTab3 = new System.Windows.Forms.RibbonTab();
+            this.rtabMy = new System.Windows.Forms.RibbonTab();
+            this.rpnlGeneralesUsuario = new System.Windows.Forms.RibbonPanel();
+            this.ribbonButton3 = new System.Windows.Forms.RibbonButton();
+            this.ribbonDescriptionMenuItem2 = new System.Windows.Forms.RibbonDescriptionMenuItem();
+            this.panelContenedorForm = new System.Windows.Forms.Panel();
             this.panel11.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -107,461 +121,14 @@ namespace mainVentana
             this.panel17.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(189, 781);
-            this.panel1.TabIndex = 0;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.panel19);
-            this.panel3.Controls.Add(this.btnAjustes);
-            this.panel3.Controls.Add(this.panel12);
-            this.panel3.Controls.Add(this.btnReportes);
-            this.panel3.Controls.Add(this.panel18);
-            this.panel3.Controls.Add(this.btnTraking);
-            this.panel3.Controls.Add(this.panel10);
-            this.panel3.Controls.Add(this.btnBill);
-            this.panel3.Controls.Add(this.panel9);
-            this.panel3.Controls.Add(this.btnRecep);
-            this.panel3.Controls.Add(this.panel8);
-            this.panel3.Controls.Add(this.btnSalida);
-            this.panel3.Controls.Add(this.panel7);
-            this.panel3.Controls.Add(this.btnOrCarga);
-            this.panel3.Controls.Add(this.panel6);
-            this.panel3.Controls.Add(this.btnEntrada);
-            this.panel3.Controls.Add(this.panel5);
-            this.panel3.Controls.Add(this.iconButton1);
-            this.panel3.Controls.Add(this.panel4);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 150);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2);
-            this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(8);
-            this.panel3.Size = new System.Drawing.Size(189, 631);
-            this.panel3.TabIndex = 1;
-            // 
-            // panel19
-            // 
-            this.panel19.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel19.Location = new System.Drawing.Point(8, 593);
-            this.panel19.Margin = new System.Windows.Forms.Padding(2);
-            this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(173, 8);
-            this.panel19.TabIndex = 22;
-            // 
-            // btnAjustes
-            // 
-            this.btnAjustes.AutoSize = true;
-            this.btnAjustes.BackColor = System.Drawing.Color.Transparent;
-            this.btnAjustes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnAjustes.FlatAppearance.BorderSize = 0;
-            this.btnAjustes.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnAjustes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
-            this.btnAjustes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAjustes.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAjustes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(193)))), ((int)(((byte)(193)))));
-            this.btnAjustes.IconChar = FontAwesome.Sharp.IconChar.PenRuler;
-            this.btnAjustes.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(193)))), ((int)(((byte)(193)))));
-            this.btnAjustes.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnAjustes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAjustes.Location = new System.Drawing.Point(8, 539);
-            this.btnAjustes.Margin = new System.Windows.Forms.Padding(2);
-            this.btnAjustes.Name = "btnAjustes";
-            this.btnAjustes.Size = new System.Drawing.Size(173, 54);
-            this.btnAjustes.TabIndex = 21;
-            this.btnAjustes.Text = "Ajustes";
-            this.btnAjustes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAjustes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAjustes.UseVisualStyleBackColor = false;
-            this.btnAjustes.MouseEnter += new System.EventHandler(this.btnAjustes_MouseEnter);
-            this.btnAjustes.MouseLeave += new System.EventHandler(this.btnAjustes_MouseLeave);
-            // 
-            // panel12
-            // 
-            this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel12.Location = new System.Drawing.Point(8, 531);
-            this.panel12.Margin = new System.Windows.Forms.Padding(2);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(173, 8);
-            this.panel12.TabIndex = 19;
-            // 
-            // btnReportes
-            // 
-            this.btnReportes.AutoSize = true;
-            this.btnReportes.BackColor = System.Drawing.Color.Transparent;
-            this.btnReportes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnReportes.FlatAppearance.BorderSize = 0;
-            this.btnReportes.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnReportes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
-            this.btnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReportes.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReportes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(193)))), ((int)(((byte)(193)))));
-            this.btnReportes.IconChar = FontAwesome.Sharp.IconChar.Readme;
-            this.btnReportes.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(193)))), ((int)(((byte)(193)))));
-            this.btnReportes.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnReportes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReportes.Location = new System.Drawing.Point(8, 477);
-            this.btnReportes.Margin = new System.Windows.Forms.Padding(2);
-            this.btnReportes.Name = "btnReportes";
-            this.btnReportes.Size = new System.Drawing.Size(173, 54);
-            this.btnReportes.TabIndex = 18;
-            this.btnReportes.Text = "Reportes";
-            this.btnReportes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReportes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnReportes.UseVisualStyleBackColor = false;
-            this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
-            this.btnReportes.MouseEnter += new System.EventHandler(this.btnReportes_MouseEnter);
-            this.btnReportes.MouseLeave += new System.EventHandler(this.btnReportes_MouseLeave);
-            // 
-            // panel18
-            // 
-            this.panel18.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel18.Location = new System.Drawing.Point(8, 469);
-            this.panel18.Margin = new System.Windows.Forms.Padding(2);
-            this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(173, 8);
-            this.panel18.TabIndex = 17;
-            // 
-            // btnTraking
-            // 
-            this.btnTraking.AutoSize = true;
-            this.btnTraking.BackColor = System.Drawing.Color.Transparent;
-            this.btnTraking.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnTraking.FlatAppearance.BorderSize = 0;
-            this.btnTraking.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnTraking.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
-            this.btnTraking.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTraking.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTraking.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(193)))), ((int)(((byte)(193)))));
-            this.btnTraking.IconChar = FontAwesome.Sharp.IconChar.Periscope;
-            this.btnTraking.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(193)))), ((int)(((byte)(193)))));
-            this.btnTraking.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnTraking.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTraking.Location = new System.Drawing.Point(8, 415);
-            this.btnTraking.Margin = new System.Windows.Forms.Padding(2);
-            this.btnTraking.Name = "btnTraking";
-            this.btnTraking.Size = new System.Drawing.Size(173, 54);
-            this.btnTraking.TabIndex = 16;
-            this.btnTraking.Text = "Traking";
-            this.btnTraking.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTraking.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnTraking.UseVisualStyleBackColor = false;
-            this.btnTraking.MouseEnter += new System.EventHandler(this.iconButton7_MouseEnter);
-            this.btnTraking.MouseLeave += new System.EventHandler(this.iconButton7_MouseLeave);
-            // 
-            // panel10
-            // 
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel10.Location = new System.Drawing.Point(8, 407);
-            this.panel10.Margin = new System.Windows.Forms.Padding(2);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(173, 8);
-            this.panel10.TabIndex = 15;
-            // 
-            // btnBill
-            // 
-            this.btnBill.AutoSize = true;
-            this.btnBill.BackColor = System.Drawing.Color.Transparent;
-            this.btnBill.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnBill.FlatAppearance.BorderSize = 0;
-            this.btnBill.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnBill.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
-            this.btnBill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBill.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBill.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(193)))), ((int)(((byte)(193)))));
-            this.btnBill.IconChar = FontAwesome.Sharp.IconChar.Route;
-            this.btnBill.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(193)))), ((int)(((byte)(193)))));
-            this.btnBill.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnBill.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBill.Location = new System.Drawing.Point(8, 353);
-            this.btnBill.Margin = new System.Windows.Forms.Padding(2);
-            this.btnBill.Name = "btnBill";
-            this.btnBill.Size = new System.Drawing.Size(173, 54);
-            this.btnBill.TabIndex = 14;
-            this.btnBill.Text = "Bill";
-            this.btnBill.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBill.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnBill.UseVisualStyleBackColor = false;
-            this.btnBill.Click += new System.EventHandler(this.iconButton6_Click);
-            this.btnBill.MouseEnter += new System.EventHandler(this.iconButton6_MouseEnter);
-            this.btnBill.MouseLeave += new System.EventHandler(this.iconButton6_MouseLeave);
-            // 
-            // panel9
-            // 
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel9.Location = new System.Drawing.Point(8, 345);
-            this.panel9.Margin = new System.Windows.Forms.Padding(2);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(173, 8);
-            this.panel9.TabIndex = 13;
-            // 
-            // btnRecep
-            // 
-            this.btnRecep.AutoSize = true;
-            this.btnRecep.BackColor = System.Drawing.Color.Transparent;
-            this.btnRecep.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnRecep.FlatAppearance.BorderSize = 0;
-            this.btnRecep.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnRecep.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
-            this.btnRecep.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRecep.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRecep.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(193)))), ((int)(((byte)(193)))));
-            this.btnRecep.IconChar = FontAwesome.Sharp.IconChar.PeopleCarry;
-            this.btnRecep.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(193)))), ((int)(((byte)(193)))));
-            this.btnRecep.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnRecep.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRecep.Location = new System.Drawing.Point(8, 291);
-            this.btnRecep.Margin = new System.Windows.Forms.Padding(2);
-            this.btnRecep.Name = "btnRecep";
-            this.btnRecep.Size = new System.Drawing.Size(173, 54);
-            this.btnRecep.TabIndex = 12;
-            this.btnRecep.Text = "Recepcion";
-            this.btnRecep.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRecep.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnRecep.UseVisualStyleBackColor = false;
-            this.btnRecep.Click += new System.EventHandler(this.btnRecep_Click);
-            this.btnRecep.MouseEnter += new System.EventHandler(this.iconButton5_MouseEnter);
-            this.btnRecep.MouseLeave += new System.EventHandler(this.iconButton5_MouseLeave);
-            // 
-            // panel8
-            // 
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel8.Location = new System.Drawing.Point(8, 283);
-            this.panel8.Margin = new System.Windows.Forms.Padding(2);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(173, 8);
-            this.panel8.TabIndex = 11;
-            // 
-            // btnSalida
-            // 
-            this.btnSalida.AutoSize = true;
-            this.btnSalida.BackColor = System.Drawing.Color.Transparent;
-            this.btnSalida.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnSalida.FlatAppearance.BorderSize = 0;
-            this.btnSalida.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnSalida.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
-            this.btnSalida.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSalida.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalida.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(193)))), ((int)(((byte)(193)))));
-            this.btnSalida.IconChar = FontAwesome.Sharp.IconChar.Pallet;
-            this.btnSalida.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(193)))), ((int)(((byte)(193)))));
-            this.btnSalida.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnSalida.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalida.Location = new System.Drawing.Point(8, 229);
-            this.btnSalida.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSalida.Name = "btnSalida";
-            this.btnSalida.Size = new System.Drawing.Size(173, 54);
-            this.btnSalida.TabIndex = 10;
-            this.btnSalida.Text = "Salida";
-            this.btnSalida.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalida.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSalida.UseVisualStyleBackColor = false;
-            this.btnSalida.Click += new System.EventHandler(this.iconButton4_Click);
-            this.btnSalida.MouseEnter += new System.EventHandler(this.iconButton4_MouseEnter);
-            this.btnSalida.MouseLeave += new System.EventHandler(this.iconButton4_MouseLeave);
-            // 
-            // panel7
-            // 
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(8, 221);
-            this.panel7.Margin = new System.Windows.Forms.Padding(2);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(173, 8);
-            this.panel7.TabIndex = 9;
-            // 
-            // btnOrCarga
-            // 
-            this.btnOrCarga.AutoSize = true;
-            this.btnOrCarga.BackColor = System.Drawing.Color.Transparent;
-            this.btnOrCarga.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnOrCarga.FlatAppearance.BorderSize = 0;
-            this.btnOrCarga.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnOrCarga.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
-            this.btnOrCarga.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOrCarga.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOrCarga.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(193)))), ((int)(((byte)(193)))));
-            this.btnOrCarga.IconChar = FontAwesome.Sharp.IconChar.ParachuteBox;
-            this.btnOrCarga.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(193)))), ((int)(((byte)(193)))));
-            this.btnOrCarga.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnOrCarga.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOrCarga.Location = new System.Drawing.Point(8, 167);
-            this.btnOrCarga.Margin = new System.Windows.Forms.Padding(2);
-            this.btnOrCarga.Name = "btnOrCarga";
-            this.btnOrCarga.Size = new System.Drawing.Size(173, 54);
-            this.btnOrCarga.TabIndex = 8;
-            this.btnOrCarga.Text = "Carga";
-            this.btnOrCarga.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOrCarga.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnOrCarga.UseVisualStyleBackColor = false;
-            this.btnOrCarga.MouseEnter += new System.EventHandler(this.iconButton3_MouseEnter);
-            this.btnOrCarga.MouseLeave += new System.EventHandler(this.iconButton3_MouseLeave);
-            // 
-            // panel6
-            // 
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel6.Location = new System.Drawing.Point(8, 159);
-            this.panel6.Margin = new System.Windows.Forms.Padding(2);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(173, 8);
-            this.panel6.TabIndex = 7;
-            // 
-            // btnEntrada
-            // 
-            this.btnEntrada.AutoSize = true;
-            this.btnEntrada.BackColor = System.Drawing.Color.Transparent;
-            this.btnEntrada.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnEntrada.Enabled = false;
-            this.btnEntrada.FlatAppearance.BorderSize = 0;
-            this.btnEntrada.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnEntrada.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
-            this.btnEntrada.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEntrada.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEntrada.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(193)))), ((int)(((byte)(193)))));
-            this.btnEntrada.IconChar = FontAwesome.Sharp.IconChar.Pager;
-            this.btnEntrada.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(193)))), ((int)(((byte)(193)))));
-            this.btnEntrada.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnEntrada.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEntrada.Location = new System.Drawing.Point(8, 105);
-            this.btnEntrada.Margin = new System.Windows.Forms.Padding(2);
-            this.btnEntrada.Name = "btnEntrada";
-            this.btnEntrada.Size = new System.Drawing.Size(173, 54);
-            this.btnEntrada.TabIndex = 6;
-            this.btnEntrada.Text = "Entrada";
-            this.btnEntrada.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEntrada.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnEntrada.UseVisualStyleBackColor = false;
-            this.btnEntrada.Click += new System.EventHandler(this.iconButton2_Click);
-            this.btnEntrada.MouseEnter += new System.EventHandler(this.iconButton2_MouseEnter);
-            this.btnEntrada.MouseLeave += new System.EventHandler(this.iconButton2_MouseLeave);
-            // 
-            // panel5
-            // 
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(8, 97);
-            this.panel5.Margin = new System.Windows.Forms.Padding(2);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(173, 8);
-            this.panel5.TabIndex = 5;
-            // 
-            // iconButton1
-            // 
-            this.iconButton1.AutoSize = true;
-            this.iconButton1.BackColor = System.Drawing.Color.Transparent;
-            this.iconButton1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.iconButton1.FlatAppearance.BorderSize = 0;
-            this.iconButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.iconButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(193)))), ((int)(((byte)(193)))));
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Outdent;
-            this.iconButton1.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(193)))), ((int)(((byte)(193)))));
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(8, 43);
-            this.iconButton1.Margin = new System.Windows.Forms.Padding(2);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(173, 54);
-            this.iconButton1.TabIndex = 4;
-            this.iconButton1.Text = "Inicio";
-            this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButton1.UseVisualStyleBackColor = false;
-            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
-            this.iconButton1.MouseEnter += new System.EventHandler(this.iconButton1_MouseEnter);
-            this.iconButton1.MouseLeave += new System.EventHandler(this.iconButton1_MouseLeave);
-            // 
-            // panel4
-            // 
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(8, 8);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(173, 35);
-            this.panel4.TabIndex = 3;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.iconButton8);
-            this.panel2.Controls.Add(this.gunaSeparator1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2);
-            this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(8);
-            this.panel2.Size = new System.Drawing.Size(189, 150);
-            this.panel2.TabIndex = 0;
-            // 
-            // label2
-            // 
-            this.label2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label2.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label2.Location = new System.Drawing.Point(8, 80);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(173, 29);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "D";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label1
-            // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(8, 59);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(173, 21);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "nm";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // iconButton8
-            // 
-            this.iconButton8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.iconButton8.FlatAppearance.BorderSize = 0;
-            this.iconButton8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton8.IconChar = FontAwesome.Sharp.IconChar.Rainbow;
-            this.iconButton8.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
-            this.iconButton8.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton8.IconSize = 60;
-            this.iconButton8.Location = new System.Drawing.Point(8, 8);
-            this.iconButton8.Margin = new System.Windows.Forms.Padding(2);
-            this.iconButton8.Name = "iconButton8";
-            this.iconButton8.Size = new System.Drawing.Size(173, 51);
-            this.iconButton8.TabIndex = 1;
-            this.iconButton8.UseVisualStyleBackColor = true;
-            // 
-            // gunaSeparator1
-            // 
-            this.gunaSeparator1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.gunaSeparator1.LineColor = System.Drawing.Color.Silver;
-            this.gunaSeparator1.Location = new System.Drawing.Point(8, 134);
-            this.gunaSeparator1.Margin = new System.Windows.Forms.Padding(2);
-            this.gunaSeparator1.Name = "gunaSeparator1";
-            this.gunaSeparator1.Size = new System.Drawing.Size(173, 8);
-            this.gunaSeparator1.TabIndex = 0;
-            // 
             // panel11
             // 
             this.panel11.Controls.Add(this.panel13);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel11.Location = new System.Drawing.Point(189, 707);
+            this.panel11.Location = new System.Drawing.Point(0, 707);
             this.panel11.Margin = new System.Windows.Forms.Padding(2);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(924, 74);
+            this.panel11.Size = new System.Drawing.Size(1113, 74);
             this.panel11.TabIndex = 1;
             // 
             // panel13
@@ -575,7 +142,7 @@ namespace mainVentana
             this.panel13.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel13.Location = new System.Drawing.Point(0, 2);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(924, 72);
+            this.panel13.Size = new System.Drawing.Size(1113, 72);
             this.panel13.TabIndex = 6;
             // 
             // lblRol
@@ -593,7 +160,7 @@ namespace mainVentana
             this.panel14.Controls.Add(this.panel16);
             this.panel14.Controls.Add(this.panel15);
             this.panel14.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel14.Location = new System.Drawing.Point(684, 0);
+            this.panel14.Location = new System.Drawing.Point(873, 0);
             this.panel14.Margin = new System.Windows.Forms.Padding(2);
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(240, 72);
@@ -676,42 +243,429 @@ namespace mainVentana
             this.pictureBox7.TabIndex = 3;
             this.pictureBox7.TabStop = false;
             // 
-            // panelContenedorForm
-            // 
-            this.panelContenedorForm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContenedorForm.Location = new System.Drawing.Point(189, 15);
-            this.panelContenedorForm.Margin = new System.Windows.Forms.Padding(2);
-            this.panelContenedorForm.Name = "panelContenedorForm";
-            this.panelContenedorForm.Size = new System.Drawing.Size(924, 692);
-            this.panelContenedorForm.TabIndex = 2;
-            // 
             // tmFechaHora
             // 
-            this.tmFechaHora.Enabled = true;
             this.tmFechaHora.Tick += new System.EventHandler(this.tmFechaHora_Tick);
             // 
             // panel17
             // 
             this.panel17.BackColor = System.Drawing.SystemColors.Control;
-            this.panel17.Controls.Add(this.label4);
+            this.panel17.Controls.Add(this.ribbon1);
             this.panel17.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel17.Location = new System.Drawing.Point(189, 0);
+            this.panel17.Location = new System.Drawing.Point(0, 0);
             this.panel17.Margin = new System.Windows.Forms.Padding(2);
             this.panel17.Name = "panel17";
-            this.panel17.Padding = new System.Windows.Forms.Padding(19, 20, 19, 20);
-            this.panel17.Size = new System.Drawing.Size(924, 15);
+            this.panel17.Size = new System.Drawing.Size(1113, 109);
             this.panel17.TabIndex = 3;
             // 
-            // label4
+            // ribbon1
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Trebuchet MS", 6F);
-            this.label4.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label4.Location = new System.Drawing.Point(26, 13);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(0, 13);
-            this.label4.TabIndex = 2;
+            this.ribbon1.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.ribbon1.BorderMode = System.Windows.Forms.RibbonWindowMode.InsideWindow;
+            this.ribbon1.ContextSpace = -25;
+            this.ribbon1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ribbon1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.ribbon1.ForeColor = System.Drawing.Color.White;
+            this.ribbon1.Location = new System.Drawing.Point(0, 0);
+            this.ribbon1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.ribbon1.Minimized = false;
+            this.ribbon1.Name = "ribbon1";
+            // 
+            // 
+            // 
+            this.ribbon1.OrbDropDown.BorderRoundness = 8;
+            this.ribbon1.OrbDropDown.Location = new System.Drawing.Point(0, 0);
+            this.ribbon1.OrbDropDown.MenuItems.Add(this.ribbonOrbMenuItem1);
+            this.ribbon1.OrbDropDown.MenuItems.Add(this.ribbonOrbMenuItem2);
+            this.ribbon1.OrbDropDown.MenuItems.Add(this.ribbonOrbMenuItem3);
+            this.ribbon1.OrbDropDown.MenuItems.Add(this.ribbonSeparator1);
+            this.ribbon1.OrbDropDown.Name = "";
+            this.ribbon1.OrbDropDown.RecentItems.Add(this.ribbonOrbRecentItem1);
+            this.ribbon1.OrbDropDown.Size = new System.Drawing.Size(527, 207);
+            this.ribbon1.OrbDropDown.TabIndex = 0;
+            this.ribbon1.OrbStyle = System.Windows.Forms.RibbonOrbStyle.Office_2013;
+            this.ribbon1.OrbVisible = false;
+            // 
+            // 
+            // 
+            this.ribbon1.QuickAccessToolbar.DropDownButtonVisible = false;
+            this.ribbon1.QuickAccessToolbar.Enabled = false;
+            this.ribbon1.QuickAccessToolbar.Visible = false;
+            this.ribbon1.RibbonTabFont = new System.Drawing.Font("Trebuchet MS", 9F);
+            this.ribbon1.Size = new System.Drawing.Size(1113, 107);
+            this.ribbon1.TabIndex = 0;
+            this.ribbon1.Tabs.Add(this.ribbonTab1);
+            this.ribbon1.Tabs.Add(this.ribbonTab3);
+            this.ribbon1.Tabs.Add(this.rtabMy);
+            this.ribbon1.TabSpacing = 4;
+            this.ribbon1.Text = "ribbon1";
+            // 
+            // ribbonOrbMenuItem1
+            // 
+            this.ribbonOrbMenuItem1.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.ribbonOrbMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("ribbonOrbMenuItem1.Image")));
+            this.ribbonOrbMenuItem1.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonOrbMenuItem1.LargeImage")));
+            this.ribbonOrbMenuItem1.Name = "ribbonOrbMenuItem1";
+            this.ribbonOrbMenuItem1.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonOrbMenuItem1.SmallImage")));
+            this.ribbonOrbMenuItem1.Text = "Sesion";
+            // 
+            // ribbonOrbMenuItem2
+            // 
+            this.ribbonOrbMenuItem2.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.ribbonOrbMenuItem2.Image = ((System.Drawing.Image)(resources.GetObject("ribbonOrbMenuItem2.Image")));
+            this.ribbonOrbMenuItem2.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonOrbMenuItem2.LargeImage")));
+            this.ribbonOrbMenuItem2.Name = "ribbonOrbMenuItem2";
+            this.ribbonOrbMenuItem2.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonOrbMenuItem2.SmallImage")));
+            this.ribbonOrbMenuItem2.Text = "Ayuda";
+            // 
+            // ribbonOrbMenuItem3
+            // 
+            this.ribbonOrbMenuItem3.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.ribbonOrbMenuItem3.Image = ((System.Drawing.Image)(resources.GetObject("ribbonOrbMenuItem3.Image")));
+            this.ribbonOrbMenuItem3.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonOrbMenuItem3.LargeImage")));
+            this.ribbonOrbMenuItem3.Name = "ribbonOrbMenuItem3";
+            this.ribbonOrbMenuItem3.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonOrbMenuItem3.SmallImage")));
+            this.ribbonOrbMenuItem3.Text = "ribbonOrbMenuItem3";
+            this.ribbonOrbMenuItem3.Visible = false;
+            // 
+            // ribbonSeparator1
+            // 
+            this.ribbonSeparator1.Name = "ribbonSeparator1";
+            // 
+            // ribbonOrbRecentItem1
+            // 
+            this.ribbonOrbRecentItem1.Image = ((System.Drawing.Image)(resources.GetObject("ribbonOrbRecentItem1.Image")));
+            this.ribbonOrbRecentItem1.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonOrbRecentItem1.LargeImage")));
+            this.ribbonOrbRecentItem1.Name = "ribbonOrbRecentItem1";
+            this.ribbonOrbRecentItem1.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonOrbRecentItem1.SmallImage")));
+            this.ribbonOrbRecentItem1.Text = "Salir";
+            this.ribbonOrbRecentItem1.Click += new System.EventHandler(this.ribbonOrbRecentItem1_Click);
+            // 
+            // ribbonTab1
+            // 
+            this.ribbonTab1.Name = "ribbonTab1";
+            this.ribbonTab1.Panels.Add(this.ribbonPanel1);
+            this.ribbonTab1.Panels.Add(this.rpnlInicio);
+            this.ribbonTab1.Panels.Add(this.rpnlAccesosWeb);
+            this.ribbonTab1.Panels.Add(this.rpnlSuc);
+            this.ribbonTab1.Panels.Add(this.ribbonPanel2);
+            this.ribbonTab1.Text = "Inicio";
+            this.ribbonTab1.ToolTipImage = global::mainVentana.Properties.Resources.work_from_home;
+            // 
+            // ribbonPanel1
+            // 
+            this.ribbonPanel1.ButtonMoreEnabled = false;
+            this.ribbonPanel1.ButtonMoreVisible = false;
+            this.ribbonPanel1.Items.Add(this.ribbonButton1);
+            this.ribbonPanel1.Items.Add(this.ribbonSeparator2);
+            this.ribbonPanel1.Items.Add(this.ribbonButton2);
+            this.ribbonPanel1.Name = "ribbonPanel1";
+            this.ribbonPanel1.Text = "General";
+            // 
+            // ribbonButton1
+            // 
+            this.ribbonButton1.Image = global::mainVentana.Properties.Resources.dupdo;
+            this.ribbonButton1.LargeImage = global::mainVentana.Properties.Resources.dupdo;
+            this.ribbonButton1.Name = "ribbonButton1";
+            this.ribbonButton1.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton1.SmallImage")));
+            this.ribbonButton1.Text = "Copiar";
+            this.ribbonButton1.Click += new System.EventHandler(this.ribbonButton1_Click);
+            // 
+            // ribbonSeparator2
+            // 
+            this.ribbonSeparator2.Name = "ribbonSeparator2";
+            // 
+            // ribbonButton2
+            // 
+            this.ribbonButton2.DropDownItems.Add(this.ribbonDescriptionMenuItem1);
+            this.ribbonButton2.Image = global::mainVentana.Properties.Resources.papel;
+            this.ribbonButton2.LargeImage = global::mainVentana.Properties.Resources.papel;
+            this.ribbonButton2.Name = "ribbonButton2";
+            this.ribbonButton2.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton2.SmallImage")));
+            this.ribbonButton2.Text = "Pegar";
+            // 
+            // ribbonDescriptionMenuItem1
+            // 
+            this.ribbonDescriptionMenuItem1.DescriptionBounds = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.ribbonDescriptionMenuItem1.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.ribbonDescriptionMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("ribbonDescriptionMenuItem1.Image")));
+            this.ribbonDescriptionMenuItem1.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonDescriptionMenuItem1.LargeImage")));
+            this.ribbonDescriptionMenuItem1.Name = "ribbonDescriptionMenuItem1";
+            this.ribbonDescriptionMenuItem1.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonDescriptionMenuItem1.SmallImage")));
+            this.ribbonDescriptionMenuItem1.Text = "ribbonDescriptionMenuItem1";
+            // 
+            // rpnlInicio
+            // 
+            this.rpnlInicio.ButtonMoreEnabled = false;
+            this.rpnlInicio.ButtonMoreVisible = false;
+            this.rpnlInicio.Items.Add(this.rbtnEntrada);
+            this.rpnlInicio.Items.Add(this.ribbonSeparator4);
+            this.rpnlInicio.Items.Add(this.rbtnCargas);
+            this.rpnlInicio.Items.Add(this.ribbonSeparator5);
+            this.rpnlInicio.Items.Add(this.rbtnSalida);
+            this.rpnlInicio.Items.Add(this.ribbonSeparator6);
+            this.rpnlInicio.Items.Add(this.rbtnRecepcion);
+            this.rpnlInicio.Items.Add(this.ribbonSeparator7);
+            this.rpnlInicio.Items.Add(this.rbtnBill);
+            this.rpnlInicio.Items.Add(this.ribbonSeparator8);
+            this.rpnlInicio.Items.Add(this.rbtnReportes);
+            this.rpnlInicio.Items.Add(this.ribbonSeparator9);
+            this.rpnlInicio.Items.Add(this.rbtnAjustes);
+            this.rpnlInicio.Name = "rpnlInicio";
+            this.rpnlInicio.Text = "Pantallas";
+            // 
+            // rbtnEntrada
+            // 
+            this.rbtnEntrada.Enabled = false;
+            this.rbtnEntrada.Image = global::mainVentana.Properties.Resources.log_in;
+            this.rbtnEntrada.LargeImage = global::mainVentana.Properties.Resources.log_in;
+            this.rbtnEntrada.Name = "rbtnEntrada";
+            this.rbtnEntrada.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbtnEntrada.SmallImage")));
+            this.rbtnEntrada.Text = "Entrada";
+            this.rbtnEntrada.Click += new System.EventHandler(this.rbtnEntrada_Click);
+            // 
+            // ribbonSeparator4
+            // 
+            this.ribbonSeparator4.Name = "ribbonSeparator4";
+            // 
+            // rbtnCargas
+            // 
+            this.rbtnCargas.Image = global::mainVentana.Properties.Resources.boxes;
+            this.rbtnCargas.LargeImage = global::mainVentana.Properties.Resources.boxes;
+            this.rbtnCargas.Name = "rbtnCargas";
+            this.rbtnCargas.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbtnCargas.SmallImage")));
+            this.rbtnCargas.Text = "Carga";
+            this.rbtnCargas.Click += new System.EventHandler(this.rbtnCargas_Click);
+            // 
+            // ribbonSeparator5
+            // 
+            this.ribbonSeparator5.Name = "ribbonSeparator5";
+            // 
+            // rbtnSalida
+            // 
+            this.rbtnSalida.Image = global::mainVentana.Properties.Resources.delivery_truck;
+            this.rbtnSalida.LargeImage = global::mainVentana.Properties.Resources.delivery_truck;
+            this.rbtnSalida.Name = "rbtnSalida";
+            this.rbtnSalida.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbtnSalida.SmallImage")));
+            this.rbtnSalida.Text = "Salida";
+            this.rbtnSalida.Click += new System.EventHandler(this.rbtnSalida_Click);
+            // 
+            // ribbonSeparator6
+            // 
+            this.ribbonSeparator6.Name = "ribbonSeparator6";
+            // 
+            // rbtnRecepcion
+            // 
+            this.rbtnRecepcion.Enabled = false;
+            this.rbtnRecepcion.Image = global::mainVentana.Properties.Resources.warehouse;
+            this.rbtnRecepcion.LargeImage = global::mainVentana.Properties.Resources.warehouse;
+            this.rbtnRecepcion.Name = "rbtnRecepcion";
+            this.rbtnRecepcion.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbtnRecepcion.SmallImage")));
+            this.rbtnRecepcion.Text = "Recepcion";
+            this.rbtnRecepcion.Click += new System.EventHandler(this.rbtnRecepcion_Click);
+            // 
+            // ribbonSeparator7
+            // 
+            this.ribbonSeparator7.Name = "ribbonSeparator7";
+            // 
+            // rbtnBill
+            // 
+            this.rbtnBill.Image = global::mainVentana.Properties.Resources.staff_picks;
+            this.rbtnBill.LargeImage = global::mainVentana.Properties.Resources.staff_picks;
+            this.rbtnBill.Name = "rbtnBill";
+            this.rbtnBill.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbtnBill.SmallImage")));
+            this.rbtnBill.Text = "BOL";
+            this.rbtnBill.Click += new System.EventHandler(this.rbtnBill_Click);
+            // 
+            // ribbonSeparator8
+            // 
+            this.ribbonSeparator8.Name = "ribbonSeparator8";
+            // 
+            // rbtnReportes
+            // 
+            this.rbtnReportes.Image = global::mainVentana.Properties.Resources.delivery;
+            this.rbtnReportes.LargeImage = global::mainVentana.Properties.Resources.delivery;
+            this.rbtnReportes.Name = "rbtnReportes";
+            this.rbtnReportes.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbtnReportes.SmallImage")));
+            this.rbtnReportes.Text = "Reportes";
+            this.rbtnReportes.Click += new System.EventHandler(this.rbtnReportes_Click);
+            // 
+            // ribbonSeparator9
+            // 
+            this.ribbonSeparator9.Name = "ribbonSeparator9";
+            // 
+            // rbtnAjustes
+            // 
+            this.rbtnAjustes.Image = global::mainVentana.Properties.Resources.settings;
+            this.rbtnAjustes.LargeImage = global::mainVentana.Properties.Resources.settings;
+            this.rbtnAjustes.Name = "rbtnAjustes";
+            this.rbtnAjustes.SmallImage = global::mainVentana.Properties.Resources.settings;
+            this.rbtnAjustes.Text = "Ajustes";
+            // 
+            // rpnlAccesosWeb
+            // 
+            this.rpnlAccesosWeb.ButtonMoreEnabled = false;
+            this.rpnlAccesosWeb.ButtonMoreVisible = false;
+            this.rpnlAccesosWeb.Items.Add(this.ribbonItemGroup1);
+            this.rpnlAccesosWeb.Name = "rpnlAccesosWeb";
+            this.rpnlAccesosWeb.Text = "Accesos Web";
+            // 
+            // ribbonItemGroup1
+            // 
+            this.ribbonItemGroup1.Items.Add(this.lblWha);
+            this.ribbonItemGroup1.Items.Add(this.lblWebex);
+            this.ribbonItemGroup1.Items.Add(this.lblGmail);
+            this.ribbonItemGroup1.Items.Add(this.lblAmazon);
+            this.ribbonItemGroup1.Name = "ribbonItemGroup1";
+            this.ribbonItemGroup1.Text = "W";
+            this.ribbonItemGroup1.Value = "";
+            // 
+            // lblWha
+            // 
+            this.lblWha.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Compact;
+            this.lblWha.Name = "lblWha";
+            this.lblWha.Text = "WhatsApp";
+            this.lblWha.ToolTip = "Utiliza este Boton para abrir WhatsApp directamente.";
+            this.lblWha.Click += new System.EventHandler(this.ribbonLabel1_Click);
+            // 
+            // lblWebex
+            // 
+            this.lblWebex.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Compact;
+            this.lblWebex.Name = "lblWebex";
+            this.lblWebex.Text = "Webex";
+            this.lblWebex.ToolTip = "Utiliza este Boton para abrir WEBEX directamente.";
+            this.lblWebex.Click += new System.EventHandler(this.lblWebex_Click);
+            // 
+            // lblGmail
+            // 
+            this.lblGmail.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Compact;
+            this.lblGmail.Name = "lblGmail";
+            this.lblGmail.Text = "Gmail";
+            this.lblGmail.ToolTip = "Utiliza este Boton para abrir Gmail directamente.";
+            this.lblGmail.Click += new System.EventHandler(this.lblGmail_Click);
+            // 
+            // lblAmazon
+            // 
+            this.lblAmazon.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Compact;
+            this.lblAmazon.Name = "lblAmazon";
+            this.lblAmazon.Text = "Amazon";
+            this.lblAmazon.ToolTip = "Utiliza este Boton para abrir Amazon directamente.";
+            this.lblAmazon.Click += new System.EventHandler(this.lblAmazon_Click);
+            // 
+            // rpnlSuc
+            // 
+            this.rpnlSuc.ButtonMoreEnabled = false;
+            this.rpnlSuc.ButtonMoreVisible = false;
+            this.rpnlSuc.Items.Add(this.rcmbSucAct);
+            this.rpnlSuc.Name = "rpnlSuc";
+            this.rpnlSuc.Text = "Sucursal Actual";
+            // 
+            // rcmbSucAct
+            // 
+            this.rcmbSucAct.AllowTextEdit = false;
+            this.rcmbSucAct.DropDownItems.Add(this.cbxiSD);
+            this.rcmbSucAct.DropDownItems.Add(this.cbxiTJ);
+            this.rcmbSucAct.DropDownItems.Add(this.cbxiCSL);
+            this.rcmbSucAct.Name = "rcmbSucAct";
+            this.rcmbSucAct.SelectedIndex = -1;
+            this.rcmbSucAct.Text = "Sucursal";
+            this.rcmbSucAct.TextBoxText = "";
+            this.rcmbSucAct.ToolTip = "Autiliza esta lista para seleccionar una sucursal por defecto a la hora de abrir " +
+    "la mayoria de ventanas.";
+            this.rcmbSucAct.ToolTipTitle = "Ayuda (:";
+            this.rcmbSucAct.Value = "";
+            this.rcmbSucAct.DropDownItemClicked += new System.Windows.Forms.RibbonComboBox.RibbonItemEventHandler(this.rcmbSucAct_DropDownItemClicked);
+            // 
+            // cbxiSD
+            // 
+            this.cbxiSD.Image = ((System.Drawing.Image)(resources.GetObject("cbxiSD.Image")));
+            this.cbxiSD.LargeImage = ((System.Drawing.Image)(resources.GetObject("cbxiSD.LargeImage")));
+            this.cbxiSD.Name = "cbxiSD";
+            this.cbxiSD.SmallImage = ((System.Drawing.Image)(resources.GetObject("cbxiSD.SmallImage")));
+            this.cbxiSD.Text = " San Diego";
+            this.cbxiSD.Value = "SD";
+            // 
+            // cbxiTJ
+            // 
+            this.cbxiTJ.Image = ((System.Drawing.Image)(resources.GetObject("cbxiTJ.Image")));
+            this.cbxiTJ.LargeImage = ((System.Drawing.Image)(resources.GetObject("cbxiTJ.LargeImage")));
+            this.cbxiTJ.Name = "cbxiTJ";
+            this.cbxiTJ.SmallImage = ((System.Drawing.Image)(resources.GetObject("cbxiTJ.SmallImage")));
+            this.cbxiTJ.Text = "Tijuana";
+            this.cbxiTJ.Value = "TJ";
+            // 
+            // cbxiCSL
+            // 
+            this.cbxiCSL.Image = ((System.Drawing.Image)(resources.GetObject("cbxiCSL.Image")));
+            this.cbxiCSL.LargeImage = ((System.Drawing.Image)(resources.GetObject("cbxiCSL.LargeImage")));
+            this.cbxiCSL.Name = "cbxiCSL";
+            this.cbxiCSL.SmallImage = ((System.Drawing.Image)(resources.GetObject("cbxiCSL.SmallImage")));
+            this.cbxiCSL.Text = "Cabo San Lucas";
+            this.cbxiCSL.Value = "CSL";
+            // 
+            // ribbonPanel2
+            // 
+            this.ribbonPanel2.ButtonMoreEnabled = false;
+            this.ribbonPanel2.ButtonMoreVisible = false;
+            this.ribbonPanel2.Items.Add(this.rlblSucGlobal);
+            this.ribbonPanel2.Name = "ribbonPanel2";
+            this.ribbonPanel2.Text = "";
+            // 
+            // rlblSucGlobal
+            // 
+            this.rlblSucGlobal.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Medium;
+            this.rlblSucGlobal.Name = "rlblSucGlobal";
+            this.rlblSucGlobal.Text = "Sucursal";
+            this.rlblSucGlobal.TextAlignment = System.Windows.Forms.RibbonItem.RibbonItemTextAlignment.Center;
+            this.rlblSucGlobal.ToolTip = "Esta es la Sucursal Global Seleccionada";
+            // 
+            // ribbonTab3
+            // 
+            this.ribbonTab3.Name = "ribbonTab3";
+            this.ribbonTab3.Text = "Ayuda";
+            // 
+            // rtabMy
+            // 
+            this.rtabMy.Name = "rtabMy";
+            this.rtabMy.Panels.Add(this.rpnlGeneralesUsuario);
+            this.rtabMy.Text = "MiUsuario";
+            // 
+            // rpnlGeneralesUsuario
+            // 
+            this.rpnlGeneralesUsuario.ButtonMoreEnabled = false;
+            this.rpnlGeneralesUsuario.ButtonMoreVisible = false;
+            this.rpnlGeneralesUsuario.Items.Add(this.ribbonButton3);
+            this.rpnlGeneralesUsuario.Name = "rpnlGeneralesUsuario";
+            this.rpnlGeneralesUsuario.Text = "Generales";
+            // 
+            // ribbonButton3
+            // 
+            this.ribbonButton3.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton3.Image")));
+            this.ribbonButton3.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton3.LargeImage")));
+            this.ribbonButton3.Name = "ribbonButton3";
+            this.ribbonButton3.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton3.SmallImage")));
+            this.ribbonButton3.Text = "ribbonButton3";
+            // 
+            // ribbonDescriptionMenuItem2
+            // 
+            this.ribbonDescriptionMenuItem2.DescriptionBounds = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.ribbonDescriptionMenuItem2.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.ribbonDescriptionMenuItem2.Image = ((System.Drawing.Image)(resources.GetObject("ribbonDescriptionMenuItem2.Image")));
+            this.ribbonDescriptionMenuItem2.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonDescriptionMenuItem2.LargeImage")));
+            this.ribbonDescriptionMenuItem2.Name = "ribbonDescriptionMenuItem2";
+            this.ribbonDescriptionMenuItem2.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonDescriptionMenuItem2.SmallImage")));
+            this.ribbonDescriptionMenuItem2.Text = "ribbonDescriptionMenuItem2";
+            // 
+            // panelContenedorForm
+            // 
+            this.panelContenedorForm.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelContenedorForm.Location = new System.Drawing.Point(0, 104);
+            this.panelContenedorForm.Margin = new System.Windows.Forms.Padding(2);
+            this.panelContenedorForm.Name = "panelContenedorForm";
+            this.panelContenedorForm.Size = new System.Drawing.Size(1113, 601);
+            this.panelContenedorForm.TabIndex = 2;
             // 
             // Form1
             // 
@@ -721,7 +675,6 @@ namespace mainVentana
             this.Controls.Add(this.panelContenedorForm);
             this.Controls.Add(this.panel17);
             this.Controls.Add(this.panel11);
-            this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
@@ -732,11 +685,8 @@ namespace mainVentana
             this.Text = "ARSYS - Sistema Arnian";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel2.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
@@ -745,32 +695,12 @@ namespace mainVentana
             this.panel15.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.panel17.ResumeLayout(false);
-            this.panel17.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel2;
-        private Guna.UI.WinForms.GunaSeparator gunaSeparator1;
-        private FontAwesome.Sharp.IconButton iconButton1;
-        private FontAwesome.Sharp.IconButton btnRecep;
-        private System.Windows.Forms.Panel panel8;
-        private FontAwesome.Sharp.IconButton btnSalida;
-        private System.Windows.Forms.Panel panel7;
-        private FontAwesome.Sharp.IconButton btnOrCarga;
-        private System.Windows.Forms.Panel panel6;
-        private FontAwesome.Sharp.IconButton btnEntrada;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Label label1;
-        private FontAwesome.Sharp.IconButton iconButton8;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.Panel panelContenedorForm;
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Label lbFecha;
         private System.Windows.Forms.PictureBox pictureBox7;
@@ -782,17 +712,52 @@ namespace mainVentana
         private System.Windows.Forms.Panel panel16;
         private System.Windows.Forms.Panel panel15;
         private System.Windows.Forms.Panel panel17;
-        private System.Windows.Forms.Label label4;
         private Label lblRol;
-        private Panel panel19;
-        private FontAwesome.Sharp.IconButton btnAjustes;
-        private Panel panel12;
-        private FontAwesome.Sharp.IconButton btnReportes;
-        private Panel panel18;
-        private FontAwesome.Sharp.IconButton btnTraking;
-        private Panel panel10;
-        private FontAwesome.Sharp.IconButton btnBill;
-        private Panel panel9;
+        private Ribbon ribbon1;
+        private RibbonOrbMenuItem ribbonOrbMenuItem1;
+        private RibbonOrbMenuItem ribbonOrbMenuItem2;
+        private RibbonOrbMenuItem ribbonOrbMenuItem3;
+        private RibbonSeparator ribbonSeparator1;
+        private RibbonOrbRecentItem ribbonOrbRecentItem1;
+        private RibbonTab ribbonTab1;
+        private RibbonTab ribbonTab3;
+        private RibbonPanel ribbonPanel1;
+        private RibbonButton ribbonButton1;
+        private RibbonSeparator ribbonSeparator2;
+        private RibbonButton ribbonButton2;
+        private RibbonPanel rpnlInicio;
+        private RibbonButton rbtnEntrada;
+        private RibbonSeparator ribbonSeparator4;
+        private RibbonButton rbtnCargas;
+        private RibbonSeparator ribbonSeparator5;
+        private RibbonButton rbtnSalida;
+        private RibbonSeparator ribbonSeparator6;
+        private RibbonButton rbtnRecepcion;
+        private RibbonSeparator ribbonSeparator7;
+        private RibbonButton rbtnBill;
+        private RibbonSeparator ribbonSeparator8;
+        private RibbonButton rbtnReportes;
+        private RibbonSeparator ribbonSeparator9;
+        private RibbonButton rbtnAjustes;
+        private RibbonDescriptionMenuItem ribbonDescriptionMenuItem1;
+        private RibbonDescriptionMenuItem ribbonDescriptionMenuItem2;
+        private RibbonPanel rpnlAccesosWeb;
+        private RibbonItemGroup ribbonItemGroup1;
+        private RibbonLabel lblWha;
+        private RibbonLabel lblWebex;
+        private RibbonLabel lblGmail;
+        private RibbonLabel lblAmazon;
+        private Panel panelContenedorForm;
+        private RibbonPanel rpnlSuc;
+        private RibbonComboBox rcmbSucAct;
+        private RibbonButton cbxiSD;
+        private RibbonButton cbxiTJ;
+        private RibbonButton cbxiCSL;
+        private RibbonTab rtabMy;
+        private RibbonPanel rpnlGeneralesUsuario;
+        private RibbonButton ribbonButton3;
+        private RibbonPanel ribbonPanel2;
+        private RibbonLabel rlblSucGlobal;
     }
 }
 

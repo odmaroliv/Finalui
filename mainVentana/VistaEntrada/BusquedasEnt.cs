@@ -25,9 +25,9 @@ namespace mainVentana.VistaEntrada
             InitializeComponent();
         }
 
-        private void BusquedasEnt_Load(object sender, EventArgs e)
+        private async void BusquedasEnt_Load(object sender, EventArgs e)
         {
-            comboBox1.AutoCompleteCustomSource = aliasList();
+            comboBox1.AutoCompleteCustomSource =await aliasList();
  
         }
 
@@ -39,14 +39,14 @@ namespace mainVentana.VistaEntrada
             { pasado(gunaTextBox2.Text, gunaTextBox3.Text, gunaTextBox1.Text,calle,colonia,ciudad,Codcliente, CorreosCliente, 1); }
         }
 
-        private AutoCompleteStringCollection aliasList()
+        private async Task<AutoCompleteStringCollection> aliasList()
         {
             AutoCompleteStringCollection List = new AutoCompleteStringCollection();
             Servicios datos = new Servicios();
             if (label2.Text == "ALIAS")
             {
                 
-                var lst = datos.llenaAlias();
+                var lst = await datos.llenaAlias();
                 foreach (var p in lst)
                 {
                     List.Add(p.c1);
@@ -56,7 +56,7 @@ namespace mainVentana.VistaEntrada
             }
             else if (label2.Text == "CLIENTE")
             {
-                var lst = datos.llenaClientes();
+                var lst =  await datos.llenaClientes();
                 foreach (var p in lst)
                 {
                     List.Add(p.c3);
@@ -99,12 +99,12 @@ namespace mainVentana.VistaEntrada
 
         }
 
-        private void Ejecuta()
+        private async void Ejecuta()
         {
             if (label2.Text == "ALIAS")
             {
                 Servicios datos = new Servicios();
-                var lst = datos.llenaAlias();
+                var lst = await datos.llenaAlias();
                 int bandera = 0;
                 foreach (var d in lst)
                 {
@@ -112,9 +112,9 @@ namespace mainVentana.VistaEntrada
                     {
                         bandera = 1;
                         gunaTextBox2.Text = d.c1.ToString().Trim();
-                        gunaTextBox3.Text = validCli(d.c3.ToString())[0].ToString();
+                        gunaTextBox3.Text =  validCli(d.c3.ToString())[0].ToString();
                         gunaTextBox1.Text = validCli(d.c3.ToString())[1].ToString();
-                        CorreosCliente = validCli(d.c3.ToString())[2].ToString();
+                        CorreosCliente =  validCli(d.c3.ToString())[2].ToString();
                         Codcliente = validCli(d.c3.ToString())[3].ToString();
                         calle = d.c4.ToString();
                         colonia = d.c5.ToString();
@@ -138,7 +138,7 @@ namespace mainVentana.VistaEntrada
             else if (label2.Text == "CLIENTE")
             {
                 Servicios datos = new Servicios();
-                var lst = datos.llenaClientes();
+                var lst = await datos.llenaClientes();
                 int bandera = 0;
                 foreach (var d in lst)
                 {
@@ -171,13 +171,10 @@ namespace mainVentana.VistaEntrada
         }
 
 
-        private List<string> validCli(string clave)//dado un alias busca un cliente para rellenarlo automaticamente
+        private  List<string> validCli(string clave)//dado un alias busca un cliente para rellenarlo automaticamente
         {
-          
-            
-           
             Servicios datos2 = new Servicios();
-            var lst2 = datos2.llenaClientes();
+            var lst2 = datos2.llenaClientesValida();
               string cliente = "";
              string cord = "";
             string codclient = "";
@@ -195,12 +192,7 @@ namespace mainVentana.VistaEntrada
 
                 }
 
-
-
-
-
-
-                
+   
             }
             return lista.ToList();
         }
@@ -211,6 +203,12 @@ namespace mainVentana.VistaEntrada
             {
                 Ejecuta();
             }
+        }
+
+        private void BusquedasEnt_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Dispose();
+            this.Close();
         }
     }
 }

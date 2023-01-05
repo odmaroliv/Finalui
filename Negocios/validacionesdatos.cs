@@ -147,6 +147,8 @@ namespace Negocios
             return result;
         }
 
+
+
         //-------------------------------------------Finaliza la validacion de Red ---/>
 
 
@@ -222,12 +224,15 @@ namespace Negocios
 
         }
 
-        public List<Proveedores> llenaProveedores()
+        public async Task<List<Proveedores>> llenaProveedores()
         {
 
             try
             {
-                using (modelo2Entities modelo = new modelo2Entities())
+                var lst2 = new List<Proveedores>();
+                await Task.Run(() =>
+                {
+                    using (modelo2Entities modelo = new modelo2Entities())
 
                 {
                     var lista = from d in modelo.KDXD
@@ -240,9 +245,11 @@ namespace Negocios
 
 
                                 };
-                    return lista.ToList();
+                        lst2 = lista.ToList();
+                    }
+                });
+                return lst2;
 
-                }
             }
             catch (Exception)
             {
@@ -252,10 +259,50 @@ namespace Negocios
 
         }
 
-        public List<Clientes> llenaClientes()
+        public async Task<List<Clientes>> llenaClientes()
         {
             try
             {
+                var lst2 = new List<Clientes>();
+                await Task.Run(() =>
+                {
+                    using (modelo2Entities modelo = new modelo2Entities())
+
+                {
+                    var lista = from d in modelo.KDUD
+
+                                select new Clientes
+                                {
+
+                                    c2 = d.C2,
+                                    c3 = d.C3.Trim(),
+                                    c4 = d.C4.Trim(),
+                                    c5 = d.C5.Trim(),
+                                    c6 = d.C6.Trim(),
+                                    c11 = d.C11.Trim(),
+                                    c12 = d.C12.Trim()
+
+
+                                };
+                        lst2 = lista.ToList();
+                    }
+                });
+                return lst2;
+
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public List<Clientes> llenaClientesValida()
+        {
+            try
+            {
+
                 using (modelo2Entities modelo = new modelo2Entities())
 
                 {
@@ -274,9 +321,10 @@ namespace Negocios
 
 
                                 };
-                    return lista.ToList();
 
+                    return lista.ToList();
                 }
+
 
             }
             catch (Exception)
@@ -286,31 +334,71 @@ namespace Negocios
             }
         }
 
-        public List<Alias> llenaAlias()
+        public async Task<string> obtieneCorreoCord(string idUser)
         {
             try
             {
-                using (modelo2Entities modelo = new modelo2Entities())
-
+                if (idUser=="")
                 {
-                    var lista = from d in modelo.KDUDA
-
-                                select new Alias
-                                {
-
-                                    c1 = d.C1.Trim(),
-                                    c3 = d.C3.Trim(),
-                                    c4 = d.C4.Trim(),
-                                    c5 = d.C5.Trim(),
-                                    c6 = d.C6.Trim(),
-                                    c7 = d.C7.Trim(),
-                                    c8 = d.C8.Trim()
-
-
-                                };
-                    return lista.ToList();
-
+                    return "";
                 }
+                string corre = default;
+               // var lst2 = new List<Alias>();
+                await Task.Run(() =>
+                {
+                    using (modelo2Entities modelo = new modelo2Entities())
+
+                    {
+
+                       var nd = from d in modelo.KDUSUARIOS
+                        join c in modelo.KDUV on d.C1 equals c.C22
+                        where c.C2.Equals(idUser)
+                        select d.C9;
+                        
+                        corre = nd.FirstOrDefault().ToString();
+                    }
+                });
+                return corre;
+
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public async Task<List<Alias>> llenaAlias()
+        {
+            try
+            {
+                var lst2 = new List<Alias>();
+                await Task.Run(() =>
+                {
+                    using (modelo2Entities modelo = new modelo2Entities())
+
+                    {
+                        var lista = from d in modelo.KDUDA
+
+                                    select new Alias
+                                    {
+
+                                        c1 = d.C1.Trim(),
+                                        c3 = d.C3.Trim(),
+                                        c4 = d.C4.Trim(),
+                                        c5 = d.C5.Trim(),
+                                        c6 = d.C6.Trim(),
+                                        c7 = d.C7.Trim(),
+                                        c8 = d.C8.Trim()
+
+
+                                    };
+                        
+                        lst2 = lista.ToList();
+                    }
+                });
+                return lst2;
 
             }
             catch (Exception)
@@ -479,7 +567,7 @@ namespace Negocios
             }
         }
 
-        public List<vmNumeroEntrada> NumeroEntrada(string dato)
+        public List<vmNumeroEntrada> NumeroEntrada(string dato, string modo)
         {
             try
             {
@@ -487,7 +575,7 @@ namespace Negocios
                 using (modelo2Entities modelo = new modelo2Entities())
 
                 {
-                    var lista = from d in modelo.NumeroEntradaMAX(dato)
+                    var lista = from d in modelo.NumeroEntradaMAX(dato,modo)
 
                                 select new vmNumeroEntrada
                                 {
@@ -559,10 +647,10 @@ namespace Negocios
 
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
-                MessageBox.Show("Acceso No Autorizado");
+                MessageBox.Show("Acceso No Autorizado" + e);
                 return false;
             }
         }
@@ -644,175 +732,7 @@ namespace Negocios
             }
         }
 
-        public async Task<List<vmFotosById>> ObtieneIMGreal(string id, string sucursal)
-        {
-            try
-            {
-                var lst2 = new List<vmFotosById>();
-
-                await Task.Run(() =>
-                {
-                    using (modelo2Entities db = new modelo2Entities())
-                    {
-                        lst2.Clear();
-                        var oDocument = (from q in modelo.DSIMAGE
-                                         where q.ENTRADA == id && q.EXTRA1 == sucursal
-                                         select new vmFotosById
-                                         {
-                                             nombre = q.NOMBRE,
-                                             realnombre = q.REALNOMBRE,
-                                             entrada = q.ENTRADA,
-                                             bytedocumento = q.BYTEDOCUMENTO,
-                                             sucursal = q.EXTRA1,
-                                             tipodedocto = q.EXTRA2
-                                         }).ToList();
-
-                        lst2 = oDocument;
-                    }
-                });
-                return lst2;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
-        public async  Task<List<vmFotosById>> ObtieneIMG(string id, string sucursal)
-        {
-            try
-            {
-                var lst2 = new List<vmFotosById>();
-                await Task.Run(() =>
-                {
-                    using (modelo2Entities db = new modelo2Entities())
-                    {
-                        lst2.Clear();
-                        var oDocument = (from q in modelo.DSIMAGE
-                                         where q.ENTRADA == id && q.EXTRA1 == sucursal && q.EXTRA2.Contains("Imagen")
-                                         select new vmFotosById
-                                         {
-                                             nombre = q.NOMBRE,
-                                             realnombre = q.REALNOMBRE,
-                                             entrada = q.ENTRADA,
-                                             bytedocumento = q.BYTEDOCUMENTO,
-                                             sucursal = q.EXTRA1,
-                                             tipodedocto = q.EXTRA2
-                                         }).ToList();
-
-                        lst2 = oDocument;
-                    }
-                });
-                return lst2;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
-        public async Task<List<vmFotosById>> ObtieneDOC(string id, string sucursal)
-        {
-            try
-            {
-                var lst2 = new List<vmFotosById>();
-                await Task.Run(() =>
-                {
-                    using (modelo2Entities db = new modelo2Entities())
-                    {
-                        lst2.Clear();
-                        var oDocument = (from q in modelo.DSIMAGE
-                                         where q.ENTRADA == id && q.EXTRA1 == sucursal && q.EXTRA2.Contains("Doc")
-                                         select new vmFotosById
-                                         {
-                                             nombre = q.NOMBRE,
-                                            // realnombre = q.REALNOMBRE,
-                                             //entrada = q.ENTRADA,
-                                             //bytedocumento = q.BYTEDOCUMENTO,
-                                             //sucursal = q.EXTRA1,
-                                             //tipodedocto = q.EXTRA2
-                                         }).ToList();
-
-                        lst2 = oDocument;
-                    }
-                });
-                return lst2;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-        public async Task<List<vmFotosById>> ObtieneByteDOC(string id, string sucursal)
-        {
-            try
-            {
-                var lst2 = new List<vmFotosById>();
-                await Task.Run(() =>
-                {
-                    using (modelo2Entities db = new modelo2Entities())
-                    {
-                        lst2.Clear();
-                        var oDocument = (from q in modelo.DSIMAGE
-                                         where q.NOMBRE == id && q.EXTRA1 == sucursal && q.EXTRA2.Contains("Doc")
-                                         select new vmFotosById
-                                         {
-                                             //nombre = q.NOMBRE,
-                                             realnombre = q.REALNOMBRE,
-                                             //entrada = q.ENTRADA,
-                                             bytedocumento = q.BYTEDOCUMENTO,
-                                             //sucursal = q.EXTRA1,
-                                             //tipodedocto = q.EXTRA2
-                                         }).ToList();
-
-                        lst2 = oDocument;
-                    }
-                });
-                return lst2;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
-        public async Task<List<vmFotosById>> ObtieneByteDOCUMENTOSALL(string id, string sucursal)
-        {
-            try
-            {
-                var lst2 = new List<vmFotosById>();
-                await Task.Run(() =>
-                {
-                    using (modelo2Entities db = new modelo2Entities())
-                    {
-                        lst2.Clear();
-                        var oDocument = (from q in modelo.DSIMAGE
-                                         where q.NOMBRE == id && q.EXTRA1 == sucursal
-                                         select new vmFotosById
-                                         {
-                                             //nombre = q.NOMBRE,
-                                             realnombre = q.REALNOMBRE,
-                                             //entrada = q.ENTRADA,
-                                             bytedocumento = q.BYTEDOCUMENTO,
-                                             //sucursal = q.EXTRA1,
-                                             //tipodedocto = q.EXTRA2
-                                         }).ToList();
-
-                        lst2 = oDocument;
-                    }
-                });
-                return lst2;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
+       
 
 
         public List<vmEtiquetasReporte> LlenaEtiquetas(string id, string sucursal)
@@ -941,6 +861,7 @@ namespace Negocios
             }
            
         }
+        
         public async Task<List<vmEntByCarga>> CargaEntBySalidaT(string id, string sorigen, string sdestino)
         {
            
@@ -974,7 +895,43 @@ namespace Negocios
                 }
 
         }
-        
+
+        public async Task<List<vmEtiquetasInfo>> CargaInfoEtiquetas(string id, string sorigen)
+        {
+
+            try
+            {
+                var lst2 = new List<vmEtiquetasInfo>();
+                await Task.Run(() =>
+                {
+                    using (modelo2Entities modelo = new modelo2Entities())
+
+                    {
+                        var lista = from d in modelo.KDMENT
+                                    where d.C6.Contains(id) && d.C4 == 35 && d.C1.Contains(sorigen) //&& d.C19 != sdestino
+                                    orderby d.C7 descending
+                                    select new vmEtiquetasInfo
+                                    {
+                                        nEtiqueta=d.C7,
+                                        Etiqueta = d.C9,
+                                        Carga = d.C16,
+
+                                    };
+                        lst2 = lista.ToList();
+
+                    }
+                });
+
+                return lst2;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
 
     }
 }

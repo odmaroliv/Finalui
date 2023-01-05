@@ -56,5 +56,20 @@ namespace mainVentana.VistaInicioCoordinadores
             frm.Dispose();
             refrescado();
         }
+
+        private void ControlEntradaCoor_Load(object sender, EventArgs e)
+        {
+            nudValArn.Controls[0].Visible = false;
+            nudValFac.Controls[0].Visible = false;
+        }
+
+        private void nudValArn_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                AltasBD bd = new AltasBD();
+                bd.ActualizaValores(button1.Text.Trim(), txbSuc.Text.Trim(), nudValFac.Value.ToString(), nudValArn.Value.ToString());
+            }
+        }
     }
 }

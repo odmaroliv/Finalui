@@ -60,6 +60,7 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.SystemColors.Control;
             this.panel2.Controls.Add(this.splitContainer1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
@@ -68,6 +69,7 @@
             this.panel2.Padding = new System.Windows.Forms.Padding(8);
             this.panel2.Size = new System.Drawing.Size(922, 609);
             this.panel2.TabIndex = 2;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // splitContainer1
             // 
@@ -93,7 +95,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(8);
+            this.panel1.Padding = new System.Windows.Forms.Padding(1);
             this.panel1.Size = new System.Drawing.Size(906, 296);
             this.panel1.TabIndex = 1;
             // 
@@ -360,6 +362,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Over";
             this.Text = "Over";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Over_FormClosed);
             this.Load += new System.EventHandler(this.Over_Load);
             this.panel2.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);

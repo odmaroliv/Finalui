@@ -37,7 +37,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AltaEntrada));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.gunaTileButton4 = new Guna.UI.WinForms.GunaTileButton();
             this.dgvDocs = new Guna.UI.WinForms.GunaDataGridView();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -80,7 +79,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.lblUser = new System.Windows.Forms.Label();
             this.lblEntrada = new System.Windows.Forms.Label();
             this.lblFecha = new System.Windows.Forms.Label();
@@ -103,7 +101,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.gunaTileButton5 = new Guna.UI.WinForms.GunaTileButton();
-            this.panelLoading = new System.Windows.Forms.Panel();
             this.label33 = new System.Windows.Forms.Label();
             this.txbReferencia = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
@@ -114,11 +111,11 @@
             this.label22 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.Especificos = new Guna.UI.WinForms.GunaGroupBox();
+            this.lblParidad = new System.Windows.Forms.TextBox();
             this.label37 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.gunaSeparator2 = new Guna.UI.WinForms.GunaSeparator();
             this.txbValArn = new System.Windows.Forms.TextBox();
-            this.lblParidad = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.txbValFact = new System.Windows.Forms.TextBox();
@@ -152,43 +149,16 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.gunaTileButton4);
             this.panel1.Controls.Add(this.dgvDocs);
             this.panel1.Controls.Add(this.Guardar);
             this.panel1.Controls.Add(this.iconButton2);
             this.panel1.Controls.Add(this.dgvFotosModifi);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(8, 593);
+            this.panel1.Location = new System.Drawing.Point(8, 592);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1222, 100);
+            this.panel1.Size = new System.Drawing.Size(1222, 101);
             this.panel1.TabIndex = 0;
-            // 
-            // gunaTileButton4
-            // 
-            this.gunaTileButton4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gunaTileButton4.AnimationHoverSpeed = 0.07F;
-            this.gunaTileButton4.AnimationSpeed = 0.03F;
-            this.gunaTileButton4.BaseColor = System.Drawing.Color.Blue;
-            this.gunaTileButton4.BorderColor = System.Drawing.Color.Black;
-            this.gunaTileButton4.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.gunaTileButton4.FocusedColor = System.Drawing.Color.Empty;
-            this.gunaTileButton4.Font = new System.Drawing.Font("Segoe UI Light", 15.75F, System.Drawing.FontStyle.Bold);
-            this.gunaTileButton4.ForeColor = System.Drawing.Color.White;
-            this.gunaTileButton4.Image = null;
-            this.gunaTileButton4.ImageSize = new System.Drawing.Size(52, 52);
-            this.gunaTileButton4.Location = new System.Drawing.Point(1025, 13);
-            this.gunaTileButton4.Name = "gunaTileButton4";
-            this.gunaTileButton4.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
-            this.gunaTileButton4.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.gunaTileButton4.OnHoverForeColor = System.Drawing.Color.White;
-            this.gunaTileButton4.OnHoverImage = null;
-            this.gunaTileButton4.OnPressedColor = System.Drawing.Color.Black;
-            this.gunaTileButton4.Size = new System.Drawing.Size(94, 82);
-            this.gunaTileButton4.TabIndex = 123;
-            this.gunaTileButton4.Text = "Buscar";
-            this.gunaTileButton4.Click += new System.EventHandler(this.gunaTileButton4_Click);
             // 
             // dgvDocs
             // 
@@ -235,7 +205,7 @@
             this.dgvDocs.RowHeadersWidth = 51;
             this.dgvDocs.RowTemplate.Height = 24;
             this.dgvDocs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvDocs.Size = new System.Drawing.Size(909, 82);
+            this.dgvDocs.Size = new System.Drawing.Size(980, 83);
             this.dgvDocs.TabIndex = 122;
             this.dgvDocs.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
             this.dgvDocs.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -304,7 +274,7 @@
             this.Guardar.Location = new System.Drawing.Point(1123, 0);
             this.Guardar.Margin = new System.Windows.Forms.Padding(2);
             this.Guardar.Name = "Guardar";
-            this.Guardar.Size = new System.Drawing.Size(99, 100);
+            this.Guardar.Size = new System.Drawing.Size(99, 101);
             this.Guardar.TabIndex = 121;
             this.Guardar.Text = "Guardar";
             this.Guardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -316,7 +286,6 @@
             this.iconButton2.AutoSize = true;
             this.iconButton2.BackColor = System.Drawing.Color.Transparent;
             this.iconButton2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.iconButton2.Enabled = false;
             this.iconButton2.FlatAppearance.BorderSize = 0;
             this.iconButton2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
             this.iconButton2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(133)))), ((int)(((byte)(185)))));
@@ -330,12 +299,12 @@
             this.iconButton2.Location = new System.Drawing.Point(0, 0);
             this.iconButton2.Margin = new System.Windows.Forms.Padding(2);
             this.iconButton2.Name = "iconButton2";
-            this.iconButton2.Size = new System.Drawing.Size(92, 100);
+            this.iconButton2.Size = new System.Drawing.Size(92, 101);
             this.iconButton2.TabIndex = 119;
-            this.iconButton2.Text = "Camara";
+            this.iconButton2.Text = "Archivos";
             this.iconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.iconButton2.UseVisualStyleBackColor = false;
-            this.iconButton2.Click += new System.EventHandler(this.iconButton2_Click);
+            this.iconButton2.Click += new System.EventHandler(this.gunaTileButton4_Click);
             // 
             // dgvFotosModifi
             // 
@@ -379,7 +348,7 @@
             this.dgvFotosModifi.RowHeadersWidth = 51;
             this.dgvFotosModifi.RowTemplate.Height = 24;
             this.dgvFotosModifi.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvFotosModifi.Size = new System.Drawing.Size(909, 82);
+            this.dgvFotosModifi.Size = new System.Drawing.Size(980, 83);
             this.dgvFotosModifi.TabIndex = 124;
             this.dgvFotosModifi.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
             this.dgvFotosModifi.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -845,7 +814,6 @@
             // groupBox4
             // 
             this.groupBox4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.groupBox4.Controls.Add(this.iconButton1);
             this.groupBox4.Controls.Add(this.lblUser);
             this.groupBox4.Controls.Add(this.lblEntrada);
             this.groupBox4.Controls.Add(this.lblFecha);
@@ -858,19 +826,6 @@
             this.groupBox4.TabIndex = 111;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Alta de Entrada";
-            // 
-            // iconButton1
-            // 
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton1.IconColor = System.Drawing.Color.Black;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.Location = new System.Drawing.Point(115, 91);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(75, 23);
-            this.iconButton1.TabIndex = 113;
-            this.iconButton1.Text = "iconButton1";
-            this.iconButton1.UseVisualStyleBackColor = true;
-            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
             // 
             // lblUser
             // 
@@ -974,6 +929,7 @@
             this.btnAgregarBultos.TabIndex = 122;
             this.btnAgregarBultos.Text = "Agregar / eliminar bultos";
             this.btnAgregarBultos.Visible = false;
+            this.btnAgregarBultos.Click += new System.EventHandler(this.btnAgregarBultos_Click);
             // 
             // bultos
             // 
@@ -1122,7 +1078,6 @@
             // 
             this.groupBox6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.groupBox6.Controls.Add(this.gunaTileButton5);
-            this.groupBox6.Controls.Add(this.panelLoading);
             this.groupBox6.Controls.Add(this.label33);
             this.groupBox6.Controls.Add(this.txbReferencia);
             this.groupBox6.Controls.Add(this.label28);
@@ -1160,15 +1115,8 @@
             this.gunaTileButton5.Size = new System.Drawing.Size(207, 77);
             this.gunaTileButton5.TabIndex = 124;
             this.gunaTileButton5.Text = "Modificar Desc.";
-            // 
-            // panelLoading
-            // 
-            this.panelLoading.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panelLoading.Location = new System.Drawing.Point(8, 35);
-            this.panelLoading.Margin = new System.Windows.Forms.Padding(2);
-            this.panelLoading.Name = "panelLoading";
-            this.panelLoading.Size = new System.Drawing.Size(68, 150);
-            this.panelLoading.TabIndex = 123;
+            this.gunaTileButton5.Visible = false;
+            this.gunaTileButton5.Click += new System.EventHandler(this.gunaTileButton5_Click);
             // 
             // label33
             // 
@@ -1224,6 +1172,7 @@
             // 
             this.detalles.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.detalles.Location = new System.Drawing.Point(82, 35);
+            this.detalles.MaxLength = 4999;
             this.detalles.Multiline = true;
             this.detalles.Name = "detalles";
             this.detalles.Size = new System.Drawing.Size(602, 77);
@@ -1259,11 +1208,11 @@
             this.Especificos.BackColor = System.Drawing.Color.Transparent;
             this.Especificos.BaseColor = System.Drawing.Color.White;
             this.Especificos.BorderColor = System.Drawing.Color.Gainsboro;
+            this.Especificos.Controls.Add(this.lblParidad);
             this.Especificos.Controls.Add(this.label37);
             this.Especificos.Controls.Add(this.label36);
             this.Especificos.Controls.Add(this.gunaSeparator2);
             this.Especificos.Controls.Add(this.txbValArn);
-            this.Especificos.Controls.Add(this.lblParidad);
             this.Especificos.Controls.Add(this.label34);
             this.Especificos.Controls.Add(this.label32);
             this.Especificos.Controls.Add(this.txbValFact);
@@ -1281,6 +1230,16 @@
             this.Especificos.TabIndex = 123;
             this.Especificos.Text = "Especificos";
             this.Especificos.TextLocation = new System.Drawing.Point(10, 8);
+            // 
+            // lblParidad
+            // 
+            this.lblParidad.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblParidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblParidad.Location = new System.Drawing.Point(129, 137);
+            this.lblParidad.Name = "lblParidad";
+            this.lblParidad.ReadOnly = true;
+            this.lblParidad.Size = new System.Drawing.Size(102, 26);
+            this.lblParidad.TabIndex = 129;
             // 
             // label37
             // 
@@ -1320,15 +1279,6 @@
             this.txbValArn.Name = "txbValArn";
             this.txbValArn.Size = new System.Drawing.Size(125, 26);
             this.txbValArn.TabIndex = 123;
-            // 
-            // lblParidad
-            // 
-            this.lblParidad.AutoSize = true;
-            this.lblParidad.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblParidad.Location = new System.Drawing.Point(136, 141);
-            this.lblParidad.Name = "lblParidad";
-            this.lblParidad.Size = new System.Drawing.Size(0, 13);
-            this.lblParidad.TabIndex = 125;
             // 
             // label34
             // 
@@ -1583,6 +1533,7 @@
             this.Name = "AltaEntrada";
             this.Padding = new System.Windows.Forms.Padding(8);
             this.Text = "AltaEntrada";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AltaEntrada_FormClosed);
             this.Load += new System.EventHandler(this.AltaEntrada_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AltaEntrada_KeyPress);
             this.panel1.ResumeLayout(false);
@@ -1672,7 +1623,6 @@
         private System.Windows.Forms.Label label30;
         private Guna.UI.WinForms.GunaSeparator gunaSeparator1;
         private System.Windows.Forms.TextBox txbValArn;
-        private System.Windows.Forms.Label lblParidad;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.TextBox txbValFact;
@@ -1700,10 +1650,7 @@
         private System.Windows.Forms.Label lblBuscarEnt;
         private Guna.UI.WinForms.GunaCircleButton btnBuscarEnt;
         private Guna.UI.WinForms.GunaGradientTileButton btnAgregarBultos;
-        private System.Windows.Forms.Panel panelLoading;
-        private FontAwesome.Sharp.IconButton iconButton1;
         private Guna.UI.WinForms.GunaDataGridView dgvDocs;
-        private Guna.UI.WinForms.GunaTileButton gunaTileButton4;
         private System.Windows.Forms.Label label18;
         private Guna.UI.WinForms.GunaTileButton gunaTileButton5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
@@ -1711,5 +1658,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn Column1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private Guna.UI.WinForms.GunaDataGridView dgvFotosModifi;
+        private System.Windows.Forms.TextBox lblParidad;
     }
 }

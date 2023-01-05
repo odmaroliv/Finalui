@@ -108,6 +108,7 @@
             this.Opacity = 0.98D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Desbloqueo";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Desbloqueo_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

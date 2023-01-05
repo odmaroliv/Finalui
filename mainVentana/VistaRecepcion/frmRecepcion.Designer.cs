@@ -28,75 +28,253 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.lblNumRecepción = new System.Windows.Forms.Label();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.txbReferencia = new System.Windows.Forms.TextBox();
+            this.txbChofer = new System.Windows.Forms.TextBox();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gbxDatosGenerales = new Guna.UI.WinForms.GunaGroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rbDCSL = new System.Windows.Forms.RadioButton();
+            this.rbDTJ = new System.Windows.Forms.RadioButton();
+            this.rbDSD = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rbOCSL = new System.Windows.Forms.RadioButton();
+            this.rbOTJ = new System.Windows.Forms.RadioButton();
+            this.rbOSD = new System.Windows.Forms.RadioButton();
+            this.label3 = new System.Windows.Forms.Label();
             this.btnImportarExcel = new Guna.UI.WinForms.GunaGradientTileButton();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lblSalida = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.dgvObser = new Guna.UI.WinForms.GunaDataGridView();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.notifyIcon2 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.gsbCargaEti = new Guna.UI.WinForms.GunaVScrollBar();
+            this.lblMensaje = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnScanini = new Guna.UI.WinForms.GunaGradientTileButton();
+            this.dgvListaCargas = new Guna.UI.WinForms.GunaDataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnIniciaSalida = new Guna.UI.WinForms.GunaGradientTileButton();
+            this.txbEscaneo = new Guna.UI.WinForms.GunaTextBox();
+            this.bntSalidaPausa = new Guna.UI.WinForms.GunaGradientTileButton();
             this.dgvOrdenesEntrada = new Guna.UI.WinForms.GunaDataGridView();
             this.gunaGradientTileButton1 = new Guna.UI.WinForms.GunaGradientTileButton();
-            this.btnSalida = new Guna.UI.WinForms.GunaGradientTileButton();
+            this.btnAlta = new Guna.UI.WinForms.GunaGradientTileButton();
             this.dgvEscaneados = new Guna.UI.WinForms.GunaDataGridView();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbxDetalles = new Guna.UI.WinForms.GunaGroupBox();
-            this.txbTValor = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txbTPeso = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txbTPieza = new System.Windows.Forms.TextBox();
+            this.txbPlacas = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txbTEnt = new System.Windows.Forms.TextBox();
+            this.txbTransportista = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.gbxDocumento = new Guna.UI.WinForms.GunaGroupBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.gbxDatosGenerales = new Guna.UI.WinForms.GunaGroupBox();
-            this.cmbSucRecibe = new System.Windows.Forms.ComboBox();
-            this.cmbSucEnvia = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.gbxDatosGenerales.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvObser)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListaCargas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrdenesEntrada)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEscaneados)).BeginInit();
             this.gbxDetalles.SuspendLayout();
-            this.gbxDocumento.SuspendLayout();
-            this.gbxDatosGenerales.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel2
+            // notifyIcon1
             // 
-            this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.Controls.Add(this.lblNumRecepción);
-            this.panel2.Controls.Add(this.btnImportarExcel);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(947, 50);
-            this.panel2.TabIndex = 3;
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
             // 
-            // lblNumRecepción
+            // txbReferencia
             // 
-            this.lblNumRecepción.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblNumRecepción.AutoSize = true;
-            this.lblNumRecepción.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumRecepción.Location = new System.Drawing.Point(736, 13);
-            this.lblNumRecepción.Name = "lblNumRecepción";
-            this.lblNumRecepción.Size = new System.Drawing.Size(142, 25);
-            this.lblNumRecepción.TabIndex = 28;
-            this.lblNumRecepción.Text = "numRecepción";
+            this.txbReferencia.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txbReferencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbReferencia.Location = new System.Drawing.Point(116, 131);
+            this.txbReferencia.MaxLength = 20;
+            this.txbReferencia.Name = "txbReferencia";
+            this.txbReferencia.Size = new System.Drawing.Size(184, 26);
+            this.txbReferencia.TabIndex = 125;
+            // 
+            // txbChofer
+            // 
+            this.txbChofer.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txbChofer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbChofer.Location = new System.Drawing.Point(116, 103);
+            this.txbChofer.MaxLength = 20;
+            this.txbChofer.Name = "txbChofer";
+            this.txbChofer.Size = new System.Drawing.Size(184, 26);
+            this.txbChofer.TabIndex = 123;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Correo";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Visible = false;
+            // 
+            // gbxDatosGenerales
+            // 
+            this.gbxDatosGenerales.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbxDatosGenerales.BackColor = System.Drawing.Color.Transparent;
+            this.gbxDatosGenerales.BaseColor = System.Drawing.Color.White;
+            this.gbxDatosGenerales.BorderColor = System.Drawing.Color.Blue;
+            this.gbxDatosGenerales.Controls.Add(this.groupBox2);
+            this.gbxDatosGenerales.Controls.Add(this.groupBox1);
+            this.gbxDatosGenerales.ForeColor = System.Drawing.Color.White;
+            this.gbxDatosGenerales.LineColor = System.Drawing.Color.Blue;
+            this.gbxDatosGenerales.Location = new System.Drawing.Point(215, 56);
+            this.gbxDatosGenerales.Margin = new System.Windows.Forms.Padding(2);
+            this.gbxDatosGenerales.Name = "gbxDatosGenerales";
+            this.gbxDatosGenerales.Radius = 10;
+            this.gbxDatosGenerales.Size = new System.Drawing.Size(332, 167);
+            this.gbxDatosGenerales.TabIndex = 0;
+            this.gbxDatosGenerales.Text = "Datos generales";
+            this.gbxDatosGenerales.TextLocation = new System.Drawing.Point(10, 8);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.rbDCSL);
+            this.groupBox2.Controls.Add(this.rbDTJ);
+            this.groupBox2.Controls.Add(this.rbDSD);
+            this.groupBox2.Location = new System.Drawing.Point(14, 103);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox2.Size = new System.Drawing.Size(307, 58);
+            this.groupBox2.TabIndex = 6;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Sucursal Destino";
+            // 
+            // rbDCSL
+            // 
+            this.rbDCSL.AutoSize = true;
+            this.rbDCSL.ForeColor = System.Drawing.Color.Black;
+            this.rbDCSL.Location = new System.Drawing.Point(213, 18);
+            this.rbDCSL.Name = "rbDCSL";
+            this.rbDCSL.Size = new System.Drawing.Size(66, 17);
+            this.rbDCSL.TabIndex = 6;
+            this.rbDCSL.TabStop = true;
+            this.rbDCSL.Text = "Cabo SL";
+            this.rbDCSL.UseVisualStyleBackColor = true;
+            this.rbDCSL.CheckedChanged += new System.EventHandler(this.ValidaDestino);
+            // 
+            // rbDTJ
+            // 
+            this.rbDTJ.AutoSize = true;
+            this.rbDTJ.ForeColor = System.Drawing.Color.Black;
+            this.rbDTJ.Location = new System.Drawing.Point(125, 18);
+            this.rbDTJ.Name = "rbDTJ";
+            this.rbDTJ.Size = new System.Drawing.Size(60, 17);
+            this.rbDTJ.TabIndex = 5;
+            this.rbDTJ.TabStop = true;
+            this.rbDTJ.Text = "Tijuana";
+            this.rbDTJ.UseVisualStyleBackColor = true;
+            this.rbDTJ.CheckedChanged += new System.EventHandler(this.ValidaDestino);
+            // 
+            // rbDSD
+            // 
+            this.rbDSD.AutoSize = true;
+            this.rbDSD.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.rbDSD.ForeColor = System.Drawing.Color.Black;
+            this.rbDSD.Location = new System.Drawing.Point(18, 18);
+            this.rbDSD.Name = "rbDSD";
+            this.rbDSD.Size = new System.Drawing.Size(75, 17);
+            this.rbDSD.TabIndex = 4;
+            this.rbDSD.TabStop = true;
+            this.rbDSD.Text = "San Diego";
+            this.rbDSD.UseVisualStyleBackColor = true;
+            this.rbDSD.CheckedChanged += new System.EventHandler(this.ValidaDestino);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.rbOCSL);
+            this.groupBox1.Controls.Add(this.rbOTJ);
+            this.groupBox1.Controls.Add(this.rbOSD);
+            this.groupBox1.Location = new System.Drawing.Point(14, 41);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Size = new System.Drawing.Size(307, 57);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Sucursal Origen";
+            // 
+            // rbOCSL
+            // 
+            this.rbOCSL.AutoSize = true;
+            this.rbOCSL.ForeColor = System.Drawing.Color.Black;
+            this.rbOCSL.Location = new System.Drawing.Point(213, 18);
+            this.rbOCSL.Name = "rbOCSL";
+            this.rbOCSL.Size = new System.Drawing.Size(66, 17);
+            this.rbOCSL.TabIndex = 6;
+            this.rbOCSL.TabStop = true;
+            this.rbOCSL.Text = "Cabo SL";
+            this.rbOCSL.UseVisualStyleBackColor = true;
+            this.rbOCSL.CheckedChanged += new System.EventHandler(this.ValidaOrigen);
+            // 
+            // rbOTJ
+            // 
+            this.rbOTJ.AutoSize = true;
+            this.rbOTJ.ForeColor = System.Drawing.Color.Black;
+            this.rbOTJ.Location = new System.Drawing.Point(125, 18);
+            this.rbOTJ.Name = "rbOTJ";
+            this.rbOTJ.Size = new System.Drawing.Size(60, 17);
+            this.rbOTJ.TabIndex = 5;
+            this.rbOTJ.TabStop = true;
+            this.rbOTJ.Text = "Tijuana";
+            this.rbOTJ.UseVisualStyleBackColor = true;
+            this.rbOTJ.CheckedChanged += new System.EventHandler(this.ValidaOrigen);
+            // 
+            // rbOSD
+            // 
+            this.rbOSD.AutoSize = true;
+            this.rbOSD.ForeColor = System.Drawing.Color.Black;
+            this.rbOSD.Location = new System.Drawing.Point(18, 18);
+            this.rbOSD.Name = "rbOSD";
+            this.rbOSD.Size = new System.Drawing.Size(75, 17);
+            this.rbOSD.TabIndex = 4;
+            this.rbOSD.TabStop = true;
+            this.rbOSD.Text = "San Diego";
+            this.rbOSD.UseVisualStyleBackColor = true;
+            this.rbOSD.CheckedChanged += new System.EventHandler(this.ValidaOrigen);
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(10, 131);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(129, 22);
+            this.label3.TabIndex = 126;
+            this.label3.Text = "Referencia:";
             // 
             // btnImportarExcel
             // 
+            this.btnImportarExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnImportarExcel.Animated = true;
             this.btnImportarExcel.AnimationHoverSpeed = 0.07F;
             this.btnImportarExcel.AnimationSpeed = 0.03F;
@@ -111,7 +289,7 @@
             this.btnImportarExcel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             this.btnImportarExcel.Image = null;
             this.btnImportarExcel.ImageSize = new System.Drawing.Size(100, 80);
-            this.btnImportarExcel.Location = new System.Drawing.Point(58, 5);
+            this.btnImportarExcel.Location = new System.Drawing.Point(579, 6);
             this.btnImportarExcel.Margin = new System.Windows.Forms.Padding(2);
             this.btnImportarExcel.Name = "btnImportarExcel";
             this.btnImportarExcel.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
@@ -121,66 +299,436 @@
             this.btnImportarExcel.OnHoverImage = null;
             this.btnImportarExcel.OnPressedColor = System.Drawing.Color.Black;
             this.btnImportarExcel.Radius = 5;
-            this.btnImportarExcel.Size = new System.Drawing.Size(346, 38);
+            this.btnImportarExcel.Size = new System.Drawing.Size(311, 38);
             this.btnImportarExcel.TabIndex = 26;
             this.btnImportarExcel.Text = "Importar De Excel";
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.lblSalida);
+            this.panel2.Controls.Add(this.label9);
+            this.panel2.Controls.Add(this.btnImportarExcel);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(947, 50);
+            this.panel2.TabIndex = 32;
+            // 
+            // lblSalida
+            // 
+            this.lblSalida.AutoSize = true;
+            this.lblSalida.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSalida.ForeColor = System.Drawing.Color.Blue;
+            this.lblSalida.Location = new System.Drawing.Point(105, 9);
+            this.lblSalida.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblSalida.Name = "lblSalida";
+            this.lblSalida.Size = new System.Drawing.Size(0, 29);
+            this.lblSalida.TabIndex = 28;
+            this.lblSalida.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(38, 18);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(86, 16);
+            this.label9.TabIndex = 27;
+            this.label9.Text = "Recepción:";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // dgvObser
+            // 
+            this.dgvObser.AllowUserToAddRows = false;
+            this.dgvObser.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
+            this.dgvObser.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            this.dgvObser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.dgvObser.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvObser.BackgroundColor = System.Drawing.Color.White;
+            this.dgvObser.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvObser.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvObser.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvObser.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            this.dgvObser.ColumnHeadersHeight = 20;
+            this.dgvObser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvObser.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column3,
+            this.Column4,
+            this.Column6});
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvObser.DefaultCellStyle = dataGridViewCellStyle15;
+            this.dgvObser.EnableHeadersVisualStyles = false;
+            this.dgvObser.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dgvObser.Location = new System.Drawing.Point(41, 587);
+            this.dgvObser.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvObser.Name = "dgvObser";
+            this.dgvObser.ReadOnly = true;
+            this.dgvObser.RowHeadersVisible = false;
+            this.dgvObser.RowHeadersWidth = 51;
+            this.dgvObser.RowTemplate.Height = 30;
+            this.dgvObser.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvObser.Size = new System.Drawing.Size(347, 91);
+            this.dgvObser.TabIndex = 33;
+            this.dgvObser.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
+            this.dgvObser.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
+            this.dgvObser.ThemeStyle.AlternatingRowsStyle.Font = null;
+            this.dgvObser.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.dgvObser.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.dgvObser.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.dgvObser.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.dgvObser.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dgvObser.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.dgvObser.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvObser.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.dgvObser.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.dgvObser.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvObser.ThemeStyle.HeaderStyle.Height = 20;
+            this.dgvObser.ThemeStyle.ReadOnly = true;
+            this.dgvObser.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
+            this.dgvObser.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvObser.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.dgvObser.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvObser.ThemeStyle.RowsStyle.Height = 30;
+            this.dgvObser.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dgvObser.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Etiqueta";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Observacion";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // notifyIcon2
+            // 
+            this.notifyIcon2.Text = "notifyIcon1";
+            this.notifyIcon2.Visible = true;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(10, 103);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(129, 22);
+            this.label2.TabIndex = 124;
+            this.label2.Text = "Chofer:";
             // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.gsbCargaEti);
+            this.panel1.Controls.Add(this.lblMensaje);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.btnScanini);
+            this.panel1.Controls.Add(this.dgvListaCargas);
+            this.panel1.Controls.Add(this.btnIniciaSalida);
+            this.panel1.Controls.Add(this.txbEscaneo);
+            this.panel1.Controls.Add(this.bntSalidaPausa);
             this.panel1.Controls.Add(this.dgvOrdenesEntrada);
             this.panel1.Controls.Add(this.gunaGradientTileButton1);
-            this.panel1.Controls.Add(this.btnSalida);
+            this.panel1.Controls.Add(this.btnAlta);
             this.panel1.Controls.Add(this.dgvEscaneados);
             this.panel1.Controls.Add(this.gbxDetalles);
-            this.panel1.Controls.Add(this.gbxDocumento);
             this.panel1.Controls.Add(this.gbxDatosGenerales);
-            this.panel1.Location = new System.Drawing.Point(40, 68);
+            this.panel1.Location = new System.Drawing.Point(23, 67);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(857, 477);
-            this.panel1.TabIndex = 2;
+            this.panel1.Size = new System.Drawing.Size(885, 682);
+            this.panel1.TabIndex = 31;
+            // 
+            // gsbCargaEti
+            // 
+            this.gsbCargaEti.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.gsbCargaEti.LargeChange = 10;
+            this.gsbCargaEti.Location = new System.Drawing.Point(354, 284);
+            this.gsbCargaEti.Maximum = 100;
+            this.gsbCargaEti.Name = "gsbCargaEti";
+            this.gsbCargaEti.ScrollIdleColor = System.Drawing.Color.Silver;
+            this.gsbCargaEti.Size = new System.Drawing.Size(11, 214);
+            this.gsbCargaEti.TabIndex = 32;
+            this.gsbCargaEti.ThumbColor = System.Drawing.Color.DimGray;
+            this.gsbCargaEti.ThumbHoverColor = System.Drawing.Color.Gray;
+            this.gsbCargaEti.ThumbPressedColor = System.Drawing.Color.DarkGray;
+            // 
+            // lblMensaje
+            // 
+            this.lblMensaje.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblMensaje.AutoSize = true;
+            this.lblMensaje.ForeColor = System.Drawing.Color.Red;
+            this.lblMensaje.Location = new System.Drawing.Point(23, 663);
+            this.lblMensaje.Name = "lblMensaje";
+            this.lblMensaje.Size = new System.Drawing.Size(0, 13);
+            this.lblMensaje.TabIndex = 31;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(18, 504);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(78, 13);
+            this.label4.TabIndex = 30;
+            this.label4.Text = "Observaciones";
+            // 
+            // btnScanini
+            // 
+            this.btnScanini.Animated = true;
+            this.btnScanini.AnimationHoverSpeed = 0.07F;
+            this.btnScanini.AnimationSpeed = 0.03F;
+            this.btnScanini.BackColor = System.Drawing.Color.Transparent;
+            this.btnScanini.BaseColor1 = System.Drawing.Color.Salmon;
+            this.btnScanini.BaseColor2 = System.Drawing.Color.LightCoral;
+            this.btnScanini.BorderColor = System.Drawing.Color.Black;
+            this.btnScanini.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnScanini.FocusedColor = System.Drawing.Color.Empty;
+            this.btnScanini.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnScanini.ForeColor = System.Drawing.Color.White;
+            this.btnScanini.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            this.btnScanini.Image = null;
+            this.btnScanini.ImageSize = new System.Drawing.Size(100, 80);
+            this.btnScanini.Location = new System.Drawing.Point(18, 230);
+            this.btnScanini.Margin = new System.Windows.Forms.Padding(2);
+            this.btnScanini.Name = "btnScanini";
+            this.btnScanini.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
+            this.btnScanini.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
+            this.btnScanini.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnScanini.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnScanini.OnHoverImage = null;
+            this.btnScanini.OnPressedColor = System.Drawing.Color.Black;
+            this.btnScanini.Radius = 5;
+            this.btnScanini.Size = new System.Drawing.Size(182, 46);
+            this.btnScanini.TabIndex = 29;
+            this.btnScanini.Text = "Abiri Escaneo";
+            // 
+            // dgvListaCargas
+            // 
+            this.dgvListaCargas.AllowUserToAddRows = false;
+            this.dgvListaCargas.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.White;
+            this.dgvListaCargas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            this.dgvListaCargas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvListaCargas.BackgroundColor = System.Drawing.Color.White;
+            this.dgvListaCargas.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvListaCargas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvListaCargas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListaCargas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            this.dgvListaCargas.ColumnHeadersHeight = 21;
+            this.dgvListaCargas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1});
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvListaCargas.DefaultCellStyle = dataGridViewCellStyle18;
+            this.dgvListaCargas.EnableHeadersVisualStyles = false;
+            this.dgvListaCargas.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dgvListaCargas.Location = new System.Drawing.Point(18, 111);
+            this.dgvListaCargas.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvListaCargas.Name = "dgvListaCargas";
+            this.dgvListaCargas.ReadOnly = true;
+            this.dgvListaCargas.RowHeadersVisible = false;
+            this.dgvListaCargas.RowHeadersWidth = 51;
+            this.dgvListaCargas.RowTemplate.Height = 24;
+            this.dgvListaCargas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvListaCargas.Size = new System.Drawing.Size(182, 112);
+            this.dgvListaCargas.TabIndex = 28;
+            this.dgvListaCargas.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
+            this.dgvListaCargas.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
+            this.dgvListaCargas.ThemeStyle.AlternatingRowsStyle.Font = null;
+            this.dgvListaCargas.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.dgvListaCargas.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.dgvListaCargas.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.dgvListaCargas.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.dgvListaCargas.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dgvListaCargas.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.dgvListaCargas.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvListaCargas.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.dgvListaCargas.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.dgvListaCargas.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.dgvListaCargas.ThemeStyle.HeaderStyle.Height = 21;
+            this.dgvListaCargas.ThemeStyle.ReadOnly = true;
+            this.dgvListaCargas.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
+            this.dgvListaCargas.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvListaCargas.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.dgvListaCargas.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvListaCargas.ThemeStyle.RowsStyle.Height = 24;
+            this.dgvListaCargas.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dgvListaCargas.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvListaCargas.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListaCargas_CellDoubleClick);
+            // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Column1.Frozen = true;
+            this.Column1.HeaderText = "Cargas";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // btnIniciaSalida
+            // 
+            this.btnIniciaSalida.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnIniciaSalida.Animated = true;
+            this.btnIniciaSalida.AnimationHoverSpeed = 0.07F;
+            this.btnIniciaSalida.AnimationSpeed = 0.03F;
+            this.btnIniciaSalida.BackColor = System.Drawing.Color.Transparent;
+            this.btnIniciaSalida.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnIniciaSalida.BaseColor2 = System.Drawing.Color.Indigo;
+            this.btnIniciaSalida.BorderColor = System.Drawing.Color.Black;
+            this.btnIniciaSalida.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnIniciaSalida.FocusedColor = System.Drawing.Color.Empty;
+            this.btnIniciaSalida.Font = new System.Drawing.Font("Trebuchet MS", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIniciaSalida.ForeColor = System.Drawing.Color.White;
+            this.btnIniciaSalida.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            this.btnIniciaSalida.Image = null;
+            this.btnIniciaSalida.ImageSize = new System.Drawing.Size(100, 80);
+            this.btnIniciaSalida.Location = new System.Drawing.Point(556, 9);
+            this.btnIniciaSalida.Margin = new System.Windows.Forms.Padding(2);
+            this.btnIniciaSalida.Name = "btnIniciaSalida";
+            this.btnIniciaSalida.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
+            this.btnIniciaSalida.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
+            this.btnIniciaSalida.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnIniciaSalida.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnIniciaSalida.OnHoverImage = null;
+            this.btnIniciaSalida.OnPressedColor = System.Drawing.Color.Black;
+            this.btnIniciaSalida.Radius = 5;
+            this.btnIniciaSalida.Size = new System.Drawing.Size(311, 39);
+            this.btnIniciaSalida.TabIndex = 27;
+            this.btnIniciaSalida.Text = "Iniciar Salida";
+            // 
+            // txbEscaneo
+            // 
+            this.txbEscaneo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbEscaneo.BackColor = System.Drawing.Color.Transparent;
+            this.txbEscaneo.BaseColor = System.Drawing.Color.White;
+            this.txbEscaneo.BorderColor = System.Drawing.Color.Silver;
+            this.txbEscaneo.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbEscaneo.Enabled = false;
+            this.txbEscaneo.FocusedBaseColor = System.Drawing.Color.White;
+            this.txbEscaneo.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.txbEscaneo.FocusedForeColor = System.Drawing.SystemColors.ControlText;
+            this.txbEscaneo.Font = new System.Drawing.Font("Segoe UI", 18F);
+            this.txbEscaneo.Location = new System.Drawing.Point(215, 230);
+            this.txbEscaneo.Name = "txbEscaneo";
+            this.txbEscaneo.PasswordChar = '\0';
+            this.txbEscaneo.Radius = 10;
+            this.txbEscaneo.Size = new System.Drawing.Size(655, 46);
+            this.txbEscaneo.TabIndex = 1;
+            this.txbEscaneo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbEscaneo_KeyDown);
+            this.txbEscaneo.Leave += new System.EventHandler(this.txbEscaneo_Leave);
+            // 
+            // bntSalidaPausa
+            // 
+            this.bntSalidaPausa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.bntSalidaPausa.Animated = true;
+            this.bntSalidaPausa.AnimationHoverSpeed = 0.07F;
+            this.bntSalidaPausa.AnimationSpeed = 0.03F;
+            this.bntSalidaPausa.BackColor = System.Drawing.Color.Transparent;
+            this.bntSalidaPausa.BaseColor1 = System.Drawing.Color.Red;
+            this.bntSalidaPausa.BaseColor2 = System.Drawing.Color.Purple;
+            this.bntSalidaPausa.BorderColor = System.Drawing.Color.Black;
+            this.bntSalidaPausa.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.bntSalidaPausa.FocusedColor = System.Drawing.Color.Empty;
+            this.bntSalidaPausa.Font = new System.Drawing.Font("Trebuchet MS", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bntSalidaPausa.ForeColor = System.Drawing.Color.White;
+            this.bntSalidaPausa.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            this.bntSalidaPausa.Image = null;
+            this.bntSalidaPausa.ImageSize = new System.Drawing.Size(100, 80);
+            this.bntSalidaPausa.Location = new System.Drawing.Point(18, 616);
+            this.bntSalidaPausa.Margin = new System.Windows.Forms.Padding(2);
+            this.bntSalidaPausa.Name = "bntSalidaPausa";
+            this.bntSalidaPausa.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
+            this.bntSalidaPausa.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
+            this.bntSalidaPausa.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.bntSalidaPausa.OnHoverForeColor = System.Drawing.Color.White;
+            this.bntSalidaPausa.OnHoverImage = null;
+            this.bntSalidaPausa.OnPressedColor = System.Drawing.Color.Black;
+            this.bntSalidaPausa.Radius = 5;
+            this.bntSalidaPausa.Size = new System.Drawing.Size(347, 42);
+            this.bntSalidaPausa.TabIndex = 26;
+            this.bntSalidaPausa.Text = "Abrir Salida Pausada";
             // 
             // dgvOrdenesEntrada
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dgvOrdenesEntrada.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvOrdenesEntrada.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvOrdenesEntrada.AllowUserToAddRows = false;
+            this.dgvOrdenesEntrada.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.White;
+            this.dgvOrdenesEntrada.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
+            this.dgvOrdenesEntrada.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.dgvOrdenesEntrada.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvOrdenesEntrada.BackgroundColor = System.Drawing.Color.White;
             this.dgvOrdenesEntrada.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvOrdenesEntrada.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvOrdenesEntrada.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvOrdenesEntrada.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvOrdenesEntrada.ColumnHeadersHeight = 4;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvOrdenesEntrada.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvOrdenesEntrada.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            this.dgvOrdenesEntrada.ColumnHeadersHeight = 20;
+            this.dgvOrdenesEntrada.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvOrdenesEntrada.DefaultCellStyle = dataGridViewCellStyle21;
+            this.dgvOrdenesEntrada.Enabled = false;
             this.dgvOrdenesEntrada.EnableHeadersVisualStyles = false;
             this.dgvOrdenesEntrada.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvOrdenesEntrada.Location = new System.Drawing.Point(18, 181);
+            this.dgvOrdenesEntrada.Location = new System.Drawing.Point(18, 284);
             this.dgvOrdenesEntrada.Margin = new System.Windows.Forms.Padding(2);
             this.dgvOrdenesEntrada.Name = "dgvOrdenesEntrada";
+            this.dgvOrdenesEntrada.ReadOnly = true;
             this.dgvOrdenesEntrada.RowHeadersVisible = false;
             this.dgvOrdenesEntrada.RowHeadersWidth = 51;
-            this.dgvOrdenesEntrada.RowTemplate.Height = 24;
+            this.dgvOrdenesEntrada.RowTemplate.Height = 30;
             this.dgvOrdenesEntrada.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvOrdenesEntrada.Size = new System.Drawing.Size(347, 84);
+            this.dgvOrdenesEntrada.Size = new System.Drawing.Size(331, 214);
             this.dgvOrdenesEntrada.TabIndex = 25;
             this.dgvOrdenesEntrada.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
             this.dgvOrdenesEntrada.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -194,20 +742,20 @@
             this.dgvOrdenesEntrada.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvOrdenesEntrada.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
             this.dgvOrdenesEntrada.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.dgvOrdenesEntrada.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.dgvOrdenesEntrada.ThemeStyle.HeaderStyle.Height = 4;
-            this.dgvOrdenesEntrada.ThemeStyle.ReadOnly = false;
+            this.dgvOrdenesEntrada.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvOrdenesEntrada.ThemeStyle.HeaderStyle.Height = 20;
+            this.dgvOrdenesEntrada.ThemeStyle.ReadOnly = true;
             this.dgvOrdenesEntrada.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvOrdenesEntrada.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvOrdenesEntrada.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
             this.dgvOrdenesEntrada.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            this.dgvOrdenesEntrada.ThemeStyle.RowsStyle.Height = 24;
+            this.dgvOrdenesEntrada.ThemeStyle.RowsStyle.Height = 30;
             this.dgvOrdenesEntrada.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvOrdenesEntrada.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             // 
             // gunaGradientTileButton1
             // 
-            this.gunaGradientTileButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.gunaGradientTileButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.gunaGradientTileButton1.Animated = true;
             this.gunaGradientTileButton1.AnimationHoverSpeed = 0.07F;
             this.gunaGradientTileButton1.AnimationSpeed = 0.03F;
@@ -222,7 +770,7 @@
             this.gunaGradientTileButton1.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             this.gunaGradientTileButton1.Image = null;
             this.gunaGradientTileButton1.ImageSize = new System.Drawing.Size(100, 80);
-            this.gunaGradientTileButton1.Location = new System.Drawing.Point(710, 181);
+            this.gunaGradientTileButton1.Location = new System.Drawing.Point(653, 621);
             this.gunaGradientTileButton1.Margin = new System.Windows.Forms.Padding(2);
             this.gunaGradientTileButton1.Name = "gunaGradientTileButton1";
             this.gunaGradientTileButton1.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
@@ -232,46 +780,47 @@
             this.gunaGradientTileButton1.OnHoverImage = null;
             this.gunaGradientTileButton1.OnPressedColor = System.Drawing.Color.Black;
             this.gunaGradientTileButton1.Radius = 5;
-            this.gunaGradientTileButton1.Size = new System.Drawing.Size(130, 84);
+            this.gunaGradientTileButton1.Size = new System.Drawing.Size(216, 37);
             this.gunaGradientTileButton1.TabIndex = 24;
-            this.gunaGradientTileButton1.Text = "Escanear";
+            this.gunaGradientTileButton1.Text = "Treminar Salida";
             // 
-            // btnSalida
+            // btnAlta
             // 
-            this.btnSalida.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSalida.Animated = true;
-            this.btnSalida.AnimationHoverSpeed = 0.07F;
-            this.btnSalida.AnimationSpeed = 0.03F;
-            this.btnSalida.BackColor = System.Drawing.Color.Transparent;
-            this.btnSalida.BaseColor1 = System.Drawing.Color.Turquoise;
-            this.btnSalida.BaseColor2 = System.Drawing.Color.MediumTurquoise;
-            this.btnSalida.BorderColor = System.Drawing.Color.Black;
-            this.btnSalida.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.btnSalida.FocusedColor = System.Drawing.Color.Empty;
-            this.btnSalida.Font = new System.Drawing.Font("Trebuchet MS", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalida.ForeColor = System.Drawing.Color.White;
-            this.btnSalida.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            this.btnSalida.Image = null;
-            this.btnSalida.ImageSize = new System.Drawing.Size(100, 80);
-            this.btnSalida.Location = new System.Drawing.Point(379, 181);
-            this.btnSalida.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSalida.Name = "btnSalida";
-            this.btnSalida.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
-            this.btnSalida.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
-            this.btnSalida.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.btnSalida.OnHoverForeColor = System.Drawing.Color.White;
-            this.btnSalida.OnHoverImage = null;
-            this.btnSalida.OnPressedColor = System.Drawing.Color.Black;
-            this.btnSalida.Radius = 5;
-            this.btnSalida.Size = new System.Drawing.Size(311, 84);
-            this.btnSalida.TabIndex = 23;
-            this.btnSalida.Text = "Ordenes de Salida";
-            this.btnSalida.Click += new System.EventHandler(this.btnSalida_Click);
+            this.btnAlta.Animated = true;
+            this.btnAlta.AnimationHoverSpeed = 0.07F;
+            this.btnAlta.AnimationSpeed = 0.03F;
+            this.btnAlta.BackColor = System.Drawing.Color.Transparent;
+            this.btnAlta.BaseColor1 = System.Drawing.Color.Turquoise;
+            this.btnAlta.BaseColor2 = System.Drawing.Color.MediumTurquoise;
+            this.btnAlta.BorderColor = System.Drawing.Color.Black;
+            this.btnAlta.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnAlta.FocusedColor = System.Drawing.Color.Empty;
+            this.btnAlta.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlta.ForeColor = System.Drawing.Color.White;
+            this.btnAlta.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            this.btnAlta.Image = null;
+            this.btnAlta.ImageSize = new System.Drawing.Size(100, 80);
+            this.btnAlta.Location = new System.Drawing.Point(18, 56);
+            this.btnAlta.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAlta.Name = "btnAlta";
+            this.btnAlta.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
+            this.btnAlta.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
+            this.btnAlta.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnAlta.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnAlta.OnHoverImage = null;
+            this.btnAlta.OnPressedColor = System.Drawing.Color.Black;
+            this.btnAlta.Radius = 5;
+            this.btnAlta.Size = new System.Drawing.Size(182, 46);
+            this.btnAlta.TabIndex = 23;
+            this.btnAlta.Text = "Ordenes de Salida";
+            this.btnAlta.Click += new System.EventHandler(this.btnAlta_Click);
             // 
             // dgvEscaneados
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.dgvEscaneados.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvEscaneados.AllowUserToAddRows = false;
+            this.dgvEscaneados.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.White;
+            this.dgvEscaneados.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle22;
             this.dgvEscaneados.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -280,33 +829,38 @@
             this.dgvEscaneados.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvEscaneados.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvEscaneados.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEscaneados.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvEscaneados.ColumnHeadersHeight = 4;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvEscaneados.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle23.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvEscaneados.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle23;
+            this.dgvEscaneados.ColumnHeadersHeight = 20;
+            this.dgvEscaneados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column2,
+            this.Column5,
+            this.Column7});
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle24.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvEscaneados.DefaultCellStyle = dataGridViewCellStyle24;
             this.dgvEscaneados.EnableHeadersVisualStyles = false;
             this.dgvEscaneados.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvEscaneados.Location = new System.Drawing.Point(19, 280);
+            this.dgvEscaneados.Location = new System.Drawing.Point(379, 284);
             this.dgvEscaneados.Margin = new System.Windows.Forms.Padding(2);
             this.dgvEscaneados.Name = "dgvEscaneados";
+            this.dgvEscaneados.ReadOnly = true;
             this.dgvEscaneados.RowHeadersVisible = false;
             this.dgvEscaneados.RowHeadersWidth = 51;
             this.dgvEscaneados.RowTemplate.Height = 24;
             this.dgvEscaneados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEscaneados.Size = new System.Drawing.Size(823, 181);
+            this.dgvEscaneados.Size = new System.Drawing.Size(491, 327);
             this.dgvEscaneados.TabIndex = 3;
             this.dgvEscaneados.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
             this.dgvEscaneados.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -321,8 +875,8 @@
             this.dgvEscaneados.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
             this.dgvEscaneados.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.dgvEscaneados.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.dgvEscaneados.ThemeStyle.HeaderStyle.Height = 4;
-            this.dgvEscaneados.ThemeStyle.ReadOnly = false;
+            this.dgvEscaneados.ThemeStyle.HeaderStyle.Height = 20;
+            this.dgvEscaneados.ThemeStyle.ReadOnly = true;
             this.dgvEscaneados.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvEscaneados.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvEscaneados.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
@@ -331,82 +885,59 @@
             this.dgvEscaneados.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvEscaneados.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Etiquetas";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Carga";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Correo";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            this.Column7.Visible = false;
+            // 
             // gbxDetalles
             // 
             this.gbxDetalles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.gbxDetalles.BackColor = System.Drawing.Color.Transparent;
             this.gbxDetalles.BaseColor = System.Drawing.Color.White;
             this.gbxDetalles.BorderColor = System.Drawing.Color.Gainsboro;
-            this.gbxDetalles.Controls.Add(this.txbTValor);
+            this.gbxDetalles.Controls.Add(this.txbReferencia);
             this.gbxDetalles.Controls.Add(this.label3);
-            this.gbxDetalles.Controls.Add(this.txbTPeso);
+            this.gbxDetalles.Controls.Add(this.txbChofer);
             this.gbxDetalles.Controls.Add(this.label2);
-            this.gbxDetalles.Controls.Add(this.txbTPieza);
+            this.gbxDetalles.Controls.Add(this.txbPlacas);
             this.gbxDetalles.Controls.Add(this.label1);
-            this.gbxDetalles.Controls.Add(this.txbTEnt);
+            this.gbxDetalles.Controls.Add(this.txbTransportista);
             this.gbxDetalles.Controls.Add(this.label13);
             this.gbxDetalles.ForeColor = System.Drawing.Color.White;
             this.gbxDetalles.LineColor = System.Drawing.Color.Blue;
-            this.gbxDetalles.Location = new System.Drawing.Point(379, 2);
+            this.gbxDetalles.Location = new System.Drawing.Point(556, 56);
             this.gbxDetalles.Margin = new System.Windows.Forms.Padding(2);
             this.gbxDetalles.Name = "gbxDetalles";
             this.gbxDetalles.Radius = 10;
             this.gbxDetalles.Size = new System.Drawing.Size(311, 167);
             this.gbxDetalles.TabIndex = 2;
-            this.gbxDetalles.Text = "Totales";
+            this.gbxDetalles.Text = "Detalles";
             this.gbxDetalles.TextLocation = new System.Drawing.Point(10, 8);
             // 
-            // txbTValor
+            // txbPlacas
             // 
-            this.txbTValor.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txbTValor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbTValor.Location = new System.Drawing.Point(116, 131);
-            this.txbTValor.MaxLength = 100;
-            this.txbTValor.Name = "txbTValor";
-            this.txbTValor.Size = new System.Drawing.Size(184, 26);
-            this.txbTValor.TabIndex = 125;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(10, 131);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(129, 22);
-            this.label3.TabIndex = 126;
-            this.label3.Text = "Valor";
-            // 
-            // txbTPeso
-            // 
-            this.txbTPeso.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txbTPeso.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbTPeso.Location = new System.Drawing.Point(116, 103);
-            this.txbTPeso.MaxLength = 100;
-            this.txbTPeso.Name = "txbTPeso";
-            this.txbTPeso.Size = new System.Drawing.Size(184, 26);
-            this.txbTPeso.TabIndex = 123;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(10, 103);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(129, 22);
-            this.label2.TabIndex = 124;
-            this.label2.Text = "Peso";
-            // 
-            // txbTPieza
-            // 
-            this.txbTPieza.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txbTPieza.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbTPieza.Location = new System.Drawing.Point(116, 72);
-            this.txbTPieza.MaxLength = 100;
-            this.txbTPieza.Name = "txbTPieza";
-            this.txbTPieza.Size = new System.Drawing.Size(184, 26);
-            this.txbTPieza.TabIndex = 121;
+            this.txbPlacas.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txbPlacas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbPlacas.Location = new System.Drawing.Point(116, 72);
+            this.txbPlacas.MaxLength = 10;
+            this.txbPlacas.Name = "txbPlacas";
+            this.txbPlacas.Size = new System.Drawing.Size(184, 26);
+            this.txbPlacas.TabIndex = 121;
             // 
             // label1
             // 
@@ -417,17 +948,17 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(129, 22);
             this.label1.TabIndex = 122;
-            this.label1.Text = "Piezas:";
+            this.label1.Text = "Placas:";
             // 
-            // txbTEnt
+            // txbTransportista
             // 
-            this.txbTEnt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txbTEnt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbTEnt.Location = new System.Drawing.Point(116, 41);
-            this.txbTEnt.MaxLength = 100;
-            this.txbTEnt.Name = "txbTEnt";
-            this.txbTEnt.Size = new System.Drawing.Size(184, 26);
-            this.txbTEnt.TabIndex = 119;
+            this.txbTransportista.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txbTransportista.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbTransportista.Location = new System.Drawing.Point(116, 41);
+            this.txbTransportista.MaxLength = 20;
+            this.txbTransportista.Name = "txbTransportista";
+            this.txbTransportista.Size = new System.Drawing.Size(184, 26);
+            this.txbTransportista.TabIndex = 119;
             // 
             // label13
             // 
@@ -438,237 +969,85 @@
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(129, 22);
             this.label13.TabIndex = 120;
-            this.label13.Text = "Entradas";
-            // 
-            // gbxDocumento
-            // 
-            this.gbxDocumento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbxDocumento.BackColor = System.Drawing.Color.Transparent;
-            this.gbxDocumento.BaseColor = System.Drawing.Color.White;
-            this.gbxDocumento.BorderColor = System.Drawing.Color.Gainsboro;
-            this.gbxDocumento.Controls.Add(this.label8);
-            this.gbxDocumento.Controls.Add(this.label7);
-            this.gbxDocumento.Controls.Add(this.label6);
-            this.gbxDocumento.Controls.Add(this.label5);
-            this.gbxDocumento.Controls.Add(this.label4);
-            this.gbxDocumento.ForeColor = System.Drawing.Color.White;
-            this.gbxDocumento.LineColor = System.Drawing.Color.Blue;
-            this.gbxDocumento.Location = new System.Drawing.Point(709, 2);
-            this.gbxDocumento.Margin = new System.Windows.Forms.Padding(2);
-            this.gbxDocumento.Name = "gbxDocumento";
-            this.gbxDocumento.Radius = 10;
-            this.gbxDocumento.Size = new System.Drawing.Size(132, 167);
-            this.gbxDocumento.TabIndex = 1;
-            this.gbxDocumento.Text = "Documento";
-            this.gbxDocumento.TextLocation = new System.Drawing.Point(10, 8);
-            // 
-            // label8
-            // 
-            this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(3, 136);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(126, 22);
-            this.label8.TabIndex = 131;
-            this.label8.Text = "xxx";
-            // 
-            // label7
-            // 
-            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(3, 115);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(126, 22);
-            this.label7.TabIndex = 130;
-            this.label7.Text = "Fecha";
-            // 
-            // label6
-            // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(3, 93);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(126, 22);
-            this.label6.TabIndex = 129;
-            this.label6.Text = "xxxx";
-            // 
-            // label5
-            // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(3, 71);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(126, 22);
-            this.label5.TabIndex = 128;
-            this.label5.Text = "No. Documento";
-            // 
-            // label4
-            // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(3, 49);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(126, 22);
-            this.label4.TabIndex = 127;
-            this.label4.Text = "Alta";
-            // 
-            // gbxDatosGenerales
-            // 
-            this.gbxDatosGenerales.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbxDatosGenerales.BackColor = System.Drawing.Color.Transparent;
-            this.gbxDatosGenerales.BaseColor = System.Drawing.Color.White;
-            this.gbxDatosGenerales.BorderColor = System.Drawing.Color.Blue;
-            this.gbxDatosGenerales.Controls.Add(this.cmbSucRecibe);
-            this.gbxDatosGenerales.Controls.Add(this.cmbSucEnvia);
-            this.gbxDatosGenerales.Controls.Add(this.label9);
-            this.gbxDatosGenerales.Controls.Add(this.label10);
-            this.gbxDatosGenerales.ForeColor = System.Drawing.Color.White;
-            this.gbxDatosGenerales.LineColor = System.Drawing.Color.Blue;
-            this.gbxDatosGenerales.Location = new System.Drawing.Point(18, 2);
-            this.gbxDatosGenerales.Margin = new System.Windows.Forms.Padding(2);
-            this.gbxDatosGenerales.Name = "gbxDatosGenerales";
-            this.gbxDatosGenerales.Radius = 10;
-            this.gbxDatosGenerales.Size = new System.Drawing.Size(346, 167);
-            this.gbxDatosGenerales.TabIndex = 0;
-            this.gbxDatosGenerales.Text = "Datos generales";
-            this.gbxDatosGenerales.TextLocation = new System.Drawing.Point(10, 8);
-            // 
-            // cmbSucRecibe
-            // 
-            this.cmbSucRecibe.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.cmbSucRecibe.AutoCompleteCustomSource.AddRange(new string[] {
-            "SD",
-            "TJ",
-            "CSL"});
-            this.cmbSucRecibe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSucRecibe.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbSucRecibe.FormattingEnabled = true;
-            this.cmbSucRecibe.Items.AddRange(new object[] {
-            "SD",
-            "TJ",
-            "CSL"});
-            this.cmbSucRecibe.Location = new System.Drawing.Point(6, 124);
-            this.cmbSucRecibe.Margin = new System.Windows.Forms.Padding(2);
-            this.cmbSucRecibe.Name = "cmbSucRecibe";
-            this.cmbSucRecibe.Size = new System.Drawing.Size(327, 28);
-            this.cmbSucRecibe.TabIndex = 106;
-            // 
-            // cmbSucEnvia
-            // 
-            this.cmbSucEnvia.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.cmbSucEnvia.AutoCompleteCustomSource.AddRange(new string[] {
-            "SD",
-            "TJ",
-            "CSL"});
-            this.cmbSucEnvia.DisplayMember = "SD";
-            this.cmbSucEnvia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSucEnvia.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbSucEnvia.FormattingEnabled = true;
-            this.cmbSucEnvia.Items.AddRange(new object[] {
-            "SD",
-            "TJ",
-            "CSL"});
-            this.cmbSucEnvia.Location = new System.Drawing.Point(6, 64);
-            this.cmbSucEnvia.Margin = new System.Windows.Forms.Padding(2);
-            this.cmbSucEnvia.Name = "cmbSucEnvia";
-            this.cmbSucEnvia.Size = new System.Drawing.Size(327, 28);
-            this.cmbSucEnvia.TabIndex = 105;
-            // 
-            // label9
-            // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(4, 41);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(160, 24);
-            this.label9.TabIndex = 104;
-            this.label9.Text = "Sucursal Que Envia:";
-            // 
-            // label10
-            // 
-            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(4, 96);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(253, 20);
-            this.label10.TabIndex = 107;
-            this.label10.Text = "Sucursal Que Recibe:";
-            // 
-            // label11
-            // 
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(53, 547);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(104, 25);
-            this.label11.TabIndex = 27;
-            this.label11.Text = "Recepción";
+            this.label13.Text = "Transportista:";
             // 
             // frmRecepcion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(947, 574);
-            this.Controls.Add(this.label11);
+            this.ClientSize = new System.Drawing.Size(947, 762);
             this.Controls.Add(this.panel2);
+            this.Controls.Add(this.dgvObser);
             this.Controls.Add(this.panel1);
             this.Name = "frmRecepcion";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Recepcion";
+            this.gbxDatosGenerales.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvObser)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListaCargas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrdenesEntrada)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEscaneados)).EndInit();
             this.gbxDetalles.ResumeLayout(false);
             this.gbxDetalles.PerformLayout();
-            this.gbxDocumento.ResumeLayout(false);
-            this.gbxDatosGenerales.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        public System.Windows.Forms.TextBox txbReferencia;
+        public System.Windows.Forms.TextBox txbChofer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private Guna.UI.WinForms.GunaGroupBox gbxDatosGenerales;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RadioButton rbDCSL;
+        private System.Windows.Forms.RadioButton rbDTJ;
+        private System.Windows.Forms.RadioButton rbDSD;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rbOCSL;
+        private System.Windows.Forms.RadioButton rbOTJ;
+        private System.Windows.Forms.RadioButton rbOSD;
+        private System.Windows.Forms.Label label3;
         private Guna.UI.WinForms.GunaGradientTileButton btnImportarExcel;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label lblSalida;
+        private System.Windows.Forms.Label label9;
+        private Guna.UI.WinForms.GunaDataGridView dgvObser;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.NotifyIcon notifyIcon2;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel1;
+        private Guna.UI.WinForms.GunaVScrollBar gsbCargaEti;
+        private System.Windows.Forms.Label lblMensaje;
+        private System.Windows.Forms.Label label4;
+        private Guna.UI.WinForms.GunaGradientTileButton btnScanini;
+        private Guna.UI.WinForms.GunaDataGridView dgvListaCargas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private Guna.UI.WinForms.GunaGradientTileButton btnIniciaSalida;
+        private Guna.UI.WinForms.GunaTextBox txbEscaneo;
+        private Guna.UI.WinForms.GunaGradientTileButton bntSalidaPausa;
         private Guna.UI.WinForms.GunaDataGridView dgvOrdenesEntrada;
         private Guna.UI.WinForms.GunaGradientTileButton gunaGradientTileButton1;
-        private Guna.UI.WinForms.GunaGradientTileButton btnSalida;
+        private Guna.UI.WinForms.GunaGradientTileButton btnAlta;
         private Guna.UI.WinForms.GunaDataGridView dgvEscaneados;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private Guna.UI.WinForms.GunaGroupBox gbxDetalles;
-        public System.Windows.Forms.TextBox txbTValor;
-        private System.Windows.Forms.Label label3;
-        public System.Windows.Forms.TextBox txbTPeso;
-        private System.Windows.Forms.Label label2;
-        public System.Windows.Forms.TextBox txbTPieza;
+        public System.Windows.Forms.TextBox txbPlacas;
         private System.Windows.Forms.Label label1;
-        public System.Windows.Forms.TextBox txbTEnt;
+        public System.Windows.Forms.TextBox txbTransportista;
         private System.Windows.Forms.Label label13;
-        private Guna.UI.WinForms.GunaGroupBox gbxDocumento;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private Guna.UI.WinForms.GunaGroupBox gbxDatosGenerales;
-        private System.Windows.Forms.ComboBox cmbSucRecibe;
-        private System.Windows.Forms.ComboBox cmbSucEnvia;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label lblNumRecepción;
     }
 }
