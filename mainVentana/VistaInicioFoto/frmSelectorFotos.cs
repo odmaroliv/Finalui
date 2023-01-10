@@ -1,4 +1,5 @@
 ﻿using Datos.ViewModels.InicioFotoVisor;
+using mainVentana.Properties;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,9 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,6 +21,9 @@ namespace mainVentana.VistaInicioFoto
 {
     public partial class frmSelectorFotos : Form
     {
+        string usernameapi = Settings.Default.apiFotosUs;
+        string passwordapi = Settings.Default.apiFotosPs;
+
         public frmSelectorFotos()
         {
             InitializeComponent();
@@ -33,26 +39,30 @@ namespace mainVentana.VistaInicioFoto
             if (!string.IsNullOrWhiteSpace(nombreArchivo))
             {
 
-                try
-                {
-                    using (HttpClient cliente = new HttpClient())
-                    {
-                        string url = "http://104.198.241.64:90/api/Archivo/getls/?nombreArchivo=" + nombreArchivo;
-                        using (HttpResponseMessage respuestaConsulta = await cliente.GetAsync(url))
-                        {
-                            using (HttpContent cn = respuestaConsulta.Content)
-                            {
-                                string contenido = await respuestaConsulta.Content.ReadAsStringAsync();
-                                if (respuestaConsulta.IsSuccessStatusCode)
-                                {
-                                    List<FotoInicioVM> jds = JsonConvert.DeserializeObject<List<FotoInicioVM>>(contenido);
+                var authValue = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{usernameapi}:{passwordapi}")));
+                using (var clientHandler = new HttpClientHandler { Credentials = new CredentialCache { { new Uri("http://104.198.241.64:90/"), "Basic", new NetworkCredential(usernameapi, passwordapi) } } })
 
-                                    gunaDataGridView1.DataSource = jds;
+                    try
+                {
+                        using (HttpClient cliente = new HttpClient(clientHandler))
+                        {
+                            string url = "http://104.198.241.64:90/api/Archivo/getls/?nombreArchivo=" + nombreArchivo;
+                            cliente.DefaultRequestHeaders.Authorization = authValue;
+                            using (HttpResponseMessage respuestaConsulta = await cliente.GetAsync(url))
+                            {
+                                using (HttpContent cn = respuestaConsulta.Content)
+                                {
+                                    string contenido = await respuestaConsulta.Content.ReadAsStringAsync();
+                                    if (respuestaConsulta.IsSuccessStatusCode)
+                                    {
+                                        List<FotoInicioVM> jds = JsonConvert.DeserializeObject<List<FotoInicioVM>>(contenido);
+
+                                        gunaDataGridView1.DataSource = jds;
+                                    }
                                 }
                             }
                         }
                     }
-                }
                 catch
                 {
 
@@ -73,41 +83,45 @@ namespace mainVentana.VistaInicioFoto
             if (!string.IsNullOrWhiteSpace(nombreArchivo))
             {
 
-                try
+
+                var authValue = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{usernameapi}:{passwordapi}")));
+                using (var clientHandler = new HttpClientHandler { Credentials = new CredentialCache { { new Uri("http://104.198.241.64:90/"), "Basic", new NetworkCredential(usernameapi, passwordapi) } } })
+
+                    try
                 {
-                    using (HttpClient cliente = new HttpClient())
-                    {
-                        string url = "http://104.198.241.64:90/api/Archivo/?nombreArchivo=" + nombreArchivo;
-                        using (HttpResponseMessage respuestaConsulta = await cliente.GetAsync(url))
+                        using (HttpClient cliente = new HttpClient(clientHandler))
                         {
-                            if (respuestaConsulta.IsSuccessStatusCode)
+                            cliente.DefaultRequestHeaders.Authorization = authValue;
+                            string url = "http://104.198.241.64:90/api/Archivo/?nombreArchivo=" + nombreArchivo;
+                            using (HttpResponseMessage respuestaConsulta = await cliente.GetAsync(url))
                             {
-                                byte[] arrContenido = await respuestaConsulta.Content.ReadAsAsync<byte[]>();
-                          
+                                if (respuestaConsulta.IsSuccessStatusCode)
+                                {
+                                    byte[] arrContenido = await respuestaConsulta.Content.ReadAsAsync<byte[]>();
 
-                                string path = AppDomain.CurrentDomain.BaseDirectory;
-                                string folder = path + "\\temp\\";
-                                string fullFilePath = folder + dato;
+                                    string path = AppDomain.CurrentDomain.BaseDirectory;
+                                    string folder = path + "\\temp\\";
+                                    string fullFilePath = folder + dato;
 
-                                if (File.Exists(fullFilePath))
-                                    File.Delete(fullFilePath);
+                                    if (File.Exists(fullFilePath))
+                                        File.Delete(fullFilePath);
 
-                                if (!Directory.Exists(folder))
-                                    Directory.CreateDirectory(folder);
+                                    if (!Directory.Exists(folder))
+                                        Directory.CreateDirectory(folder);
 
-                                File.WriteAllBytes(fullFilePath, arrContenido);
-                                
-                                tipoRespuesta = 1;
-                               // mensajeRespuesta = "Se descargó correctamente el archivo " + nombreArchivo;
-                                Process.Start(fullFilePath);
-                            }
-                            else
-                            {
-                                mensajeRespuesta = await respuestaConsulta.Content.ReadAsStringAsync();
+                                    File.WriteAllBytes(fullFilePath, arrContenido);
+
+                                    tipoRespuesta = 1;
+                                    // mensajeRespuesta = "Se descargó correctamente el archivo " + nombreArchivo;
+                                    Process.Start(fullFilePath);
+                                }
+                                else
+                                {
+                                    mensajeRespuesta = await respuestaConsulta.Content.ReadAsStringAsync();
+                                }
                             }
                         }
                     }
-                }
                 catch (Exception ex)
                 {
                     tipoRespuesta = 3;

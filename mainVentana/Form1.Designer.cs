@@ -112,6 +112,7 @@ namespace mainVentana
             this.ribbonButton3 = new System.Windows.Forms.RibbonButton();
             this.ribbonDescriptionMenuItem2 = new System.Windows.Forms.RibbonDescriptionMenuItem();
             this.panelContenedorForm = new System.Windows.Forms.Panel();
+            this.apiConfig = new System.Windows.Forms.RibbonButton();
             this.panel11.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -496,10 +497,12 @@ namespace mainVentana
             // 
             // rbtnAjustes
             // 
+            this.rbtnAjustes.DropDownItems.Add(this.apiConfig);
             this.rbtnAjustes.Image = global::mainVentana.Properties.Resources.settings;
             this.rbtnAjustes.LargeImage = global::mainVentana.Properties.Resources.settings;
             this.rbtnAjustes.Name = "rbtnAjustes";
             this.rbtnAjustes.SmallImage = global::mainVentana.Properties.Resources.settings;
+            this.rbtnAjustes.Style = System.Windows.Forms.RibbonButtonStyle.SplitDropDown;
             this.rbtnAjustes.Text = "Ajustes";
             // 
             // rpnlAccesosWeb
@@ -667,6 +670,16 @@ namespace mainVentana
             this.panelContenedorForm.Size = new System.Drawing.Size(1113, 601);
             this.panelContenedorForm.TabIndex = 2;
             // 
+            // apiConfig
+            // 
+            this.apiConfig.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.apiConfig.Image = ((System.Drawing.Image)(resources.GetObject("apiConfig.Image")));
+            this.apiConfig.LargeImage = ((System.Drawing.Image)(resources.GetObject("apiConfig.LargeImage")));
+            this.apiConfig.Name = "apiConfig";
+            this.apiConfig.SmallImage = ((System.Drawing.Image)(resources.GetObject("apiConfig.SmallImage")));
+            this.apiConfig.Text = "Api Config";
+            this.apiConfig.Click += new System.EventHandler(this.apiConfig_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -758,6 +771,7 @@ namespace mainVentana
         private RibbonButton ribbonButton3;
         private RibbonPanel ribbonPanel2;
         private RibbonLabel rlblSucGlobal;
+        private RibbonButton apiConfig;
     }
 }
 

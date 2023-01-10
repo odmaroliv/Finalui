@@ -30,10 +30,10 @@
     <UpdateUrl>https://raw.githubusercontent.com/odmaroliv/Finalui/master/published/</UpdateUrl>
     <ProductName>ARSYS</ProductName>
     <PublisherName>Daniel Olivares H.</PublisherName>
-    <MinimumRequiredVersion>1.0.0.65</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.0.66</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>66</ApplicationRevision>
+    <ApplicationRevision>67</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -339,6 +339,12 @@
     <Compile Include="VistaBill\frmOperSalidas.Designer.cs">
       <DependentUpon>frmOperSalidas.cs</DependentUpon>
     </Compile>
+    <Compile Include="vistaConfiguraciones\frmConfiguraraApi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vistaConfiguraciones\frmConfiguraraApi.Designer.cs">
+      <DependentUpon>frmConfiguraraApi.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaEntrada\AltaEntrada.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -506,6 +512,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VistaBill\frmOperSalidas.resx">
       <DependentUpon>frmOperSalidas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vistaConfiguraciones\frmConfiguraraApi.resx">
+      <DependentUpon>frmConfiguraraApi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaEntrada\AltaEntrada.resx">
       <DependentUpon>AltaEntrada.cs</DependentUpon>

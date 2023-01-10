@@ -34,5 +34,29 @@ namespace mainVentana.Properties {
                 this["usuarioRecurrente"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string apiFotosUs {
+            get {
+                return ((string)(this["apiFotosUs"]));
+            }
+            set {
+                this["apiFotosUs"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string apiFotosPs {
+            get {
+                return ((string)(this["apiFotosPs"]));
+            }
+            set {
+                this["apiFotosPs"] = value;
+            }
+        }
     }
 }
