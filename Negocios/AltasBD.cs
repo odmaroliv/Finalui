@@ -246,7 +246,7 @@ namespace Negocios
 
 
         public async void CSalidaEnKDM1(string c1, string c2, string c3, decimal c4, decimal c5, string c6, decimal c8, DateTime c9, string c11, decimal c16, DateTime c18, string c24
-            , string c31, string c43, string c63, string c67, DateTime c68, string c94, string c95, string c96, string c103)
+            , string c31, string c61, string c63, string c67, DateTime c68, string c94, string c95, string c96, string c103)
         {
 
 
@@ -270,7 +270,7 @@ namespace Negocios
                 d.C18 = c18;
                 d.C24 = c24;
                 d.C31 = c31;
-                d.C43 = c43;
+                d.C61 = c61;
                 d.C63 = c63;
                 d.C67 = c67;
                 d.C68 = c68;
@@ -291,7 +291,7 @@ namespace Negocios
             }
         }
 
-        public async Task ModificaStatusSalida(string numerosalida,string numerocarga)
+        public async Task ModificaStatusSalida(string sucursal, string numerosalida,string numerocarga)
         {
 
 
@@ -302,10 +302,8 @@ namespace Negocios
                     List<KDM1> kd = new List<KDM1>();
 
                     var d = (from fd in modelo.KDM1
-                             where fd.C4 == 40 && fd.C6 == numerocarga
+                             where fd.C1.Contains(sucursal) && fd.C4 == 40 && fd.C6 == numerocarga
                              select fd).First();
-
-
 
                     d.C44 = numerosalida;
                     kd.Add(d);
@@ -332,7 +330,7 @@ namespace Negocios
 
                     var d = (from fd in modelo.KDM1
                              where fd.C1.Contains(origen) && fd.C4 == 45 && fd.C6 == numerosalida
-                             select fd).First();
+                             select fd).FirstOrDefault();
 
 
 

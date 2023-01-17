@@ -790,9 +790,9 @@ namespace Negocios
         }
 
 
-        public async Task<List<vmEntByCarga>> CargaEntByCarga(string id,string sorigen)
+        public async Task<List<vmEntByCarga>> CargaEntByCarga(string id,string sOrigen)
         {
-            if (sorigen.Contains("TJ"))
+            if (sOrigen.Contains("TJ"))
             {
                 try
                 {
@@ -804,13 +804,12 @@ namespace Negocios
                         {
                             var lista = from d in modelo.KDMENT
                                        
-                                        where d.C18.Equals(id) && String.IsNullOrEmpty(d.C64) && d.C19.Contains(sorigen)
+                                        where d.C67.Equals(id) && String.IsNullOrEmpty(d.C64) && d.C19.Contains(sOrigen)
                                         select new vmEntByCarga
                                         {
                                             Etiqueta = d.C9.Trim(),
-                                            Carga = d.C18.Trim()
+                                            Carga = d.C67.Trim()
                                            
-
                                         };
                             lst2 = lista.ToList();
 
@@ -862,7 +861,7 @@ namespace Negocios
            
         }
         
-        public async Task<List<vmEntByCarga>> CargaEntBySalidaT(string id, string sorigen, string sdestino)
+        public async Task<List<vmEntByCarga>> CargaEntBySalidaT(string id, string sOrigen, string sdestino)
         {
            
                 try
@@ -896,7 +895,7 @@ namespace Negocios
 
         }
 
-        public async Task<List<vmEtiquetasInfo>> CargaInfoEtiquetas(string id, string sorigen)
+        public async Task<List<vmEtiquetasInfo>> CargaInfoEtiquetas(string id, string sOrigen)
         {
 
             try
@@ -908,7 +907,7 @@ namespace Negocios
 
                     {
                         var lista = from d in modelo.KDMENT
-                                    where d.C6.Contains(id) && d.C4 == 35 && d.C1.Contains(sorigen) //&& d.C19 != sdestino
+                                    where d.C6.Contains(id) && d.C4 == 35 && d.C1.Contains(sOrigen) //&& d.C19 != sdestino
                                     orderby d.C7 descending
                                     select new vmEtiquetasInfo
                                     {

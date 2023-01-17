@@ -441,6 +441,12 @@
     <Compile Include="VistaOrSalida\frmOrdSalida.Designer.cs">
       <DependentUpon>frmOrdSalida.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaRecepcion\frmBuscarRecepP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaRecepcion\frmBuscarRecepP.Designer.cs">
+      <DependentUpon>frmBuscarRecepP.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaRecepcion\frmListaSalidasRecep.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -459,6 +465,7 @@
     <Compile Include="VistaRecepcion\frmRecepcionExcel.Designer.cs">
       <DependentUpon>frmRecepcionExcel.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaRecepcion\vmNoRecepcion.cs" />
     <Compile Include="vistaReportes\frmMenuReportes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -561,6 +568,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VistaOrSalida\frmOrdSalida.resx">
       <DependentUpon>frmOrdSalida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaRecepcion\frmBuscarRecepP.resx">
+      <DependentUpon>frmBuscarRecepP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaRecepcion\frmListaSalidasRecep.resx">
       <DependentUpon>frmListaSalidasRecep.cs</DependentUpon>

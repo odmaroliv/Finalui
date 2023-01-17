@@ -27,7 +27,7 @@ namespace mainVentana.VistaOrSalida
         string ulDatoSolo = "";
         string sOrigen = "";
         string sDestino = "";
-
+        int iniciodesalida = 0;
         public frmOrdSalida()
         {
             InitializeComponent();
@@ -39,7 +39,7 @@ namespace mainVentana.VistaOrSalida
             {
                 oc.pasado += new frmBuscarOrdCarga.pasar(agrgaCargatabla);
                 oc.cerrado += new frmBuscarOrdCarga.cerrar(BuscaentradasCarga);
-                oc.sorigen = sOrigen;
+                oc.sOrigen = sOrigen;
                 oc.sucsdest = sDestino;
                 oc.ShowDialog();
                 oc.pasado -= new frmBuscarOrdCarga.pasar(agrgaCargatabla);
@@ -114,20 +114,25 @@ namespace mainVentana.VistaOrSalida
         {
             if (ulSalidaPSolo == "")
             {
+                if (iniciodesalida ==0)
+                {
+
                 //List<string> lista1 = new List<string>();
                 Negocios.Acceso_Salida.AccesoSalidas sls = new Negocios.Acceso_Salida.AccesoSalidas();
                 var lista1 = sls.BuscUltimaSalida(suc);
 
 
-                foreach (var i in lista1)
-                {
-                    int sl = Convert.ToInt32(i.ToString()) + 1;
-                    ulDato = sOrigen + "-UD4501-" + sl.ToString("D7");
-                    lblSalida.Text = ulDato;
-                    ulDatoSolo = sl.ToString("D7");
+                    foreach (var i in lista1)
+                    {
+                        int sl = Convert.ToInt32(i.ToString()) + 1;
+                        ulDato = sOrigen + "-UD4501-" + sl.ToString("D7");
+                        lblSalida.Text = ulDato;
+                        ulDatoSolo = sl.ToString("D7");
+                    }
+                    iniciodesalida = 1;// establece el numero de salida en el actual
                 }
             }
-            else
+                else
             {
                 char[] ch = "-".ToCharArray();
                 string sl = ulSalidaPSolo.Split(ch)[2];
@@ -161,6 +166,7 @@ namespace mainVentana.VistaOrSalida
                 lblSalida.ForeColor = Color.Red;
 
             }
+            iniciodesalida = 0;
             BuscaUltimaSalida(sOrigen);
 
         }
@@ -337,12 +343,13 @@ namespace mainVentana.VistaOrSalida
                     {
                         lscorreos.Add(q);
                     }
-                   
+
                     //bandera = bandera + 1;
                 }
 
             }
             String[] str = lscorreos.ToArray();
+            
 
             await llamasmtp(plantilla, str, fullPath, ulDato, bandera);
         }
@@ -389,8 +396,16 @@ namespace mainVentana.VistaOrSalida
                 NetworkCredential nc = new NetworkCredential("notificaciones@arnian.com", "wkwjfnicjsltguyv");
                 smtp.Credentials = nc;
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                try
+                {
+                    await smtp.SendMailAsync(msg);
+                }
+                catch (Exception)
+                {
 
-                await smtp.SendMailAsync(msg);
+                    MessageBox.Show("Existe un problema con los correos, es probable que tengan un formato incorrecto, no he podido enviar el correo, pero las entradas se han agregado a la orden, correctamente; te recomiendo verificarlo");
+                }
+              
 
             }
 
@@ -632,7 +647,7 @@ namespace mainVentana.VistaOrSalida
 
                         DataGridViewRow row = new DataGridViewRow();
                         row.CreateCells(dgvEscaneados);
-                        var cO = sls.ObtieCorreo(etiqueta);
+                        var cO = sls.ObtieCorreo(etiqueta,sOrigen.Trim());
                         row.Cells[0].Value = string.IsNullOrEmpty(cO.Etiqueta) ? "La etiqueta: " + etiqueta + " No se encontro el la Base de Datos" : cO.Etiqueta.Trim(); ;
 
 
@@ -646,7 +661,7 @@ namespace mainVentana.VistaOrSalida
                     else
                     {
                         AltKDMENT();
-                        var cO = sls.ObtieCorreo(etiqueta);
+                        var cO = sls.ObtieCorreo(etiqueta, sOrigen.Trim());
                         DataGridViewRow row = new DataGridViewRow();
                         row.CreateCells(dgvObser);
 
@@ -665,6 +680,20 @@ namespace mainVentana.VistaOrSalida
         private async void CreaSalidaEnKDM1()
         {
 
+            string estatuss = default;
+
+            if (sOrigen.Trim() == "TJ")
+            {
+                estatuss = "PSTJ";
+            }
+            if (sOrigen.Trim() == "SD")
+            {
+                estatuss = "PSSD";
+            }
+            if (sOrigen.Trim() == "CSL")
+            {
+                estatuss = "PSCSL";
+            }
 
             groupBox1.Enabled = false;
             groupBox2.Enabled = false;
@@ -683,7 +712,7 @@ namespace mainVentana.VistaOrSalida
                 , DateTime.Now
                 , "Notas"
                 , "Ord"
-                , "P"
+                , estatuss
                 , "UD4501-"
                 , Negocios.Common.Cache.CacheLogin.username.ToString()
                 , DateTime.Now
@@ -712,7 +741,7 @@ namespace mainVentana.VistaOrSalida
                 string datosalida = ulSalidaPSolo == "" ? ulDatoSolo : ulSalidaPSolo.Split(ch)[2];
                 string dato = q.Cells[0].Value.ToString().Trim();
                 string datolimpio = dato.Split(ch)[2];
-                await at.ModificaStatusSalida(datosalida, datolimpio);
+                await at.ModificaStatusSalida(sOrigen,datosalida, datolimpio);
 
 
             }
@@ -804,14 +833,14 @@ namespace mainVentana.VistaOrSalida
                         d.C20 = sc;
                         d.C23 = "";
                         d.C55 = uld;
-                        d.C56 = "";
+                        //d.C56 = "";
 
                         d.C63 = uld;
                         d.C64 = uld;
                         d.C65 = "E";
-                        d.C66 = "";
-                        d.C67 = "";
-                        d.C68 = "";
+                       // d.C66 = "";
+                       // d.C67 = "";
+                      //  d.C68 = "";
                         d.C75 = DateTime.Now.ToString("MM/dd/yyyy");
                         kd.Add(d);
                     }
@@ -974,7 +1003,7 @@ namespace mainVentana.VistaOrSalida
             using (frmBuscarOrdSalida oc = new frmBuscarOrdSalida())
             {
                 oc.pasadoS += new frmBuscarOrdSalida.pasarS(CargaLisataSalidas);
-                oc.sorigen = sOrigen;
+                oc.sOrigen = sOrigen;
                 oc.sucsdest = sDestino;
                 oc.ShowDialog();
             }
@@ -1024,7 +1053,7 @@ namespace mainVentana.VistaOrSalida
                 string datocarga = "";
                 if (sOrigen.Contains("TJ"))
                 {
-                    datocarga= "SD-UD5001-" + q.Documento;
+                    datocarga= sOrigen+"-UD5001-" + q.Documento;
                 }
                 else
                 {
@@ -1097,7 +1126,8 @@ namespace mainVentana.VistaOrSalida
                     if (MessageBox.Show("Estás a punto de cerrar la salida \nA partir de aquí ya no se podrá modificar \nContinuar?", "Alerta", MessageBoxButtons.OKCancel) == DialogResult.OK)
                     {
                         FinalizaSalidaKDM1();
-                       
+                        iniciodesalida = 0;
+
                         try
                         {
                             GeneraExcel();
@@ -1106,8 +1136,16 @@ namespace mainVentana.VistaOrSalida
                         {
                             MessageBox.Show("El documento de Excel no se pudo generar correctamente, pero la Salida se creó satisfactoriamente");
                         }
+                        try
+                        {
+                            MessageBox.Show("Salida: " + ulDatoSolo + " con origen: " + sOrigen + " finalizada");
+                        }
+                        catch (Exception)
+                        {
 
-                        MessageBox.Show("Salida: " + ulDatoSolo + " con origen: " + sOrigen + " finalizada");
+                            throw;
+                        }
+                       
                         this.Dispose();
                         this.Close();
 

@@ -32,6 +32,9 @@ using Datos.ViewModels.Reportes;
 using System.Drawing.Printing;
 using System.Net.Http;
 using Datos.ViewModels.InicioFotoVisor;
+using System.Net.Http.Headers;
+using System.Net;
+using mainVentana.Properties;
 
 namespace mainVentana.VistaEntrada
 {
@@ -1458,17 +1461,21 @@ namespace mainVentana.VistaEntrada
             string mensajeRespuesta = "";
             if (!string.IsNullOrWhiteSpace(nombreArchivo))
             {
+                var authValue = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{usernameapi}:{passwordapi}")));
+                using (var clientHandler = new HttpClientHandler { Credentials = new CredentialCache { { new Uri("http://104.198.241.64:90/"), "Basic", new NetworkCredential(usernameapi, passwordapi) } } })
 
-                try
-                {
+                    try
+                    {
                     using (HttpClient cliente = new HttpClient())
                     {
                         string url = "http://104.198.241.64:90/api/Archivo/getls/?nombreArchivo=" + nombreArchivo;
-                        using (HttpResponseMessage respuestaConsulta = await cliente.GetAsync(url))
+                            cliente.DefaultRequestHeaders.Authorization = authValue;
+                            using (HttpResponseMessage respuestaConsulta = await cliente.GetAsync(url))
                         {
                             using (HttpContent cn = respuestaConsulta.Content)
                             {
-                                string contenido = await respuestaConsulta.Content.ReadAsStringAsync();
+                                  
+                                    string contenido = await respuestaConsulta.Content.ReadAsStringAsync();
                                 if (respuestaConsulta.IsSuccessStatusCode)
                                 {
                                     List<FotoInicioVM> jds = JsonConvert.DeserializeObject<List<FotoInicioVM>>(contenido);
@@ -1490,7 +1497,8 @@ namespace mainVentana.VistaEntrada
         {
 
         }
-
+        string usernameapi = Settings.Default.apiFotosUs;
+        string passwordapi = Settings.Default.apiFotosPs;
         private async void DescargaDocs(string dato)
         {
             string nombreArchivo = dato.Trim();
@@ -1498,13 +1506,17 @@ namespace mainVentana.VistaEntrada
             string mensajeRespuesta = "";
             if (!string.IsNullOrWhiteSpace(nombreArchivo))
             {
+                var authValue = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{usernameapi}:{passwordapi}")));
+                using (var clientHandler = new HttpClientHandler { Credentials = new CredentialCache { { new Uri("http://104.198.241.64:90/"), "Basic", new NetworkCredential(usernameapi, passwordapi) } } })
 
-                try
-                {
+
+                    try
+                    {
                     using (HttpClient cliente = new HttpClient())
                     {
                         string url = "http://104.198.241.64:90/api/Archivo/?nombreArchivo=" + nombreArchivo;
-                        using (HttpResponseMessage respuestaConsulta = await cliente.GetAsync(url))
+                            cliente.DefaultRequestHeaders.Authorization = authValue;
+                            using (HttpResponseMessage respuestaConsulta = await cliente.GetAsync(url))
                         {
                             if (respuestaConsulta.IsSuccessStatusCode)
                             {
@@ -1554,7 +1566,7 @@ namespace mainVentana.VistaEntrada
                  iconoMensaje = MessageBoxIcon.Error;
              MessageBox.Show(mensajeRespuesta, "Descarga de archivos", MessageBoxButtons.OK, iconoMensaje);*/
         }
-
+       
         private async void CargaPH()
         {
             List<string> archivos = new List<string>();
@@ -1581,9 +1593,13 @@ namespace mainVentana.VistaEntrada
                     if (arrContenido == null) mensajeRespuesta = "Ocurrió un inconveniente al obtener el contenido del archivo " + nombreCompletoArchivo;
                     else
                     {
+                        var authValue = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{usernameapi}:{passwordapi}")));
+                        using (var clientHandler = new HttpClientHandler { Credentials = new CredentialCache { { new Uri("http://104.198.241.64:90/"), "Basic", new NetworkCredential(usernameapi, passwordapi) } } }) ;
+
                         string url = "http://104.198.241.64:90/api/Archivo";
                         using (HttpClient cliente = new HttpClient())
                         {
+                            cliente.DefaultRequestHeaders.Authorization = authValue;
                             string nombreArchivo = sucEntrada.SelectedValue.ToString().Trim()+ "-UD3501-"+ lblEntrada.Text.Trim()+"_"+ Path.GetFileName(nombreCompletoArchivo);
                             MultipartFormDataContent frm = new MultipartFormDataContent();
                             frm.Add(new StringContent(nombreArchivo), "nombreArchivo");

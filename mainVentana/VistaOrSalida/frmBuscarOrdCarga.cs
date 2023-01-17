@@ -15,7 +15,7 @@ namespace mainVentana.VistaOrSalida
     {
 
 
-        public string sorigen;
+        public string sOrigen;
         public string sucsdest;
         public string documento;
         public int numerosuc;
@@ -41,7 +41,7 @@ namespace mainVentana.VistaOrSalida
         {
          gunaDataGridView1.DataSource = null;
          AccesoSalidas sv = new AccesoSalidas();
-         gunaDataGridView1.DataSource =  await sv.LlenaDGV(sorigen,sucsdest,documento, numerosuc);
+         gunaDataGridView1.DataSource =  await sv.LlenaDGV(sOrigen,sucsdest,documento, numerosuc);
         }
 
         private void gunaDataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

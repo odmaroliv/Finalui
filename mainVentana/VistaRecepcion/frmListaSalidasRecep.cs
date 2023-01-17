@@ -20,8 +20,9 @@ namespace mainVentana.VistaRecepcion
         }
 
 
-        public string sorigen;
-        public string sucsdest;
+        public string sOrigen;
+        public string sEnvia;
+
         public string documento;
         public int numerosuc;
 
@@ -59,7 +60,7 @@ namespace mainVentana.VistaRecepcion
         {
             gunaDataGridView1.DataSource = null;
             ngAccesoRecepciones sv = new ngAccesoRecepciones();
-            gunaDataGridView1.DataSource = await sv.LlenaDGV(sorigen, sucsdest, documento, numerosuc);
+            gunaDataGridView1.DataSource = await sv.LlenaDGV(sOrigen, documento, numerosuc,sEnvia);
         }
     }
 }

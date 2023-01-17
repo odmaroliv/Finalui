@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Acceso Salida\AccesoSalidas.cs" />
+    <Compile Include="AccesoRecepciones\altasRecepciones.cs" />
     <Compile Include="AccesoRecepciones\ngAccesoRecepciones.cs" />
     <Compile Include="AltasBD.cs" />
     <Compile Include="BajaDB.cs" />

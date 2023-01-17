@@ -38,10 +38,18 @@ namespace mainVentana
         {
             if (Negocios.Common.Cache.CacheLogin.rol.Trim() == "CSERVI")
             {
-               
+
                 frm.pasado += new frmInicioCoordinadores.pasar(refrescatabla);
                 AbrirFormEnPanel(frm);
             }
+            if (Negocios.Common.Cache.CacheLogin.rol.Trim() == "ADMIN")
+            {
+                btnAdminAdmin.Enabled = true;
+                btnCordAdmin.Enabled = true;
+                btnAdminAdmin.Visible = true;
+                btnCordAdmin.Visible = true;
+            }
+
             else
             {
             tstflirk ts   = new tstflirk();
@@ -117,7 +125,7 @@ namespace mainVentana
                 DateTime fechaactual = DateTime.Now;
                 DateTime fechaent;
                 DateTime dt;
-                if (gunaDataGridView1.Rows[i].Cells[2].Value.ToString().Trim() == "")
+                if (gunaDataGridView1.Rows[i].Cells[2].Value==null || gunaDataGridView1.Rows[i].Cells[2].Value.ToString() == "")
                 {
                     fechaent = DateTime.Parse("7/6/2021 12:16:02 PM");
                 }
@@ -153,7 +161,7 @@ namespace mainVentana
 
 
 
-                if (tiempo > TimeSpan.Parse("15.00:00:0.0") && gunaDataGridView1.Rows[i].Cells[5].Value.ToString() == gunaDataGridView1.Rows[i].Cells[3].Value.ToString() && gunaDataGridView1.Rows[i].Cells[19].Value.ToString().Trim() == "")
+                if (tiempo > TimeSpan.Parse("15.00:00:0.0") && gunaDataGridView1.Rows[i].Cells[5].Value.ToString() == gunaDataGridView1.Rows[i].Cells[3].Value.ToString() && gunaDataGridView1.Rows[i].Cells[19].Value != null)
                 { //cuando un item tiene mas de 30 dias en el almacen y la sursal actual es igual a la sucursal origen
                     gunaDataGridView1.Rows[i].Cells[2].Style.BackColor = Color.FromArgb(156, 19, 18);
                     gunaDataGridView1.Rows[i].Cells[2].Style.ForeColor = Color.FromArgb(255, 255, 255);
@@ -161,7 +169,7 @@ namespace mainVentana
                     gunaDataGridView1.Rows[i].Cells[5].Style.ForeColor = Color.FromArgb(255, 255, 255);
                 }
 
-                if (tiempo < TimeSpan.Parse("15.00:00:0.0") && gunaDataGridView1.Rows[i].Cells[5].Value.ToString() == gunaDataGridView1.Rows[i].Cells[3].Value.ToString() && gunaDataGridView1.Rows[i].Cells[19].Value.ToString().Trim() == "")
+                if (tiempo < TimeSpan.Parse("15.00:00:0.0") && gunaDataGridView1.Rows[i].Cells[5].Value.ToString() == gunaDataGridView1.Rows[i].Cells[3].Value.ToString() && gunaDataGridView1.Rows[i].Cells[19].Value != null)
                 { //cuando la sucursal actual es la sucursal de origen y tiene menos de 15 dias
                     gunaDataGridView1.Rows[i].Cells[2].Style.BackColor = Color.FromArgb(19, 156, 18);
                     gunaDataGridView1.Rows[i].Cells[2].Style.ForeColor = Color.FromArgb(255, 255, 255);
@@ -340,6 +348,30 @@ namespace mainVentana
             frm.Close();
             this.Dispose();
             this.Close();
+        }
+
+        private void skyButton1_Click(object sender, EventArgs e)
+        {
+
+            if (Negocios.Common.Cache.CacheLogin.rol.Trim() == "ADMIN")
+            {
+               
+                frm.pasado += new frmInicioCoordinadores.pasar(refrescatabla);
+                AbrirFormEnPanel(frm);
+            }
+          
+
+        }
+
+        private void skyButton2_Click(object sender, EventArgs e)
+        {
+            if (Negocios.Common.Cache.CacheLogin.rol.Trim() == "ADMIN")
+            {
+             
+                tstflirk ts = new tstflirk();
+                AbrirFormEnPanel(ts);
+            }
+
         }
 
 

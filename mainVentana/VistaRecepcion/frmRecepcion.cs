@@ -1,6 +1,8 @@
 ﻿
 using Datos.Datosenti;
+using Datos.ViewModels;
 using Datos.ViewModels.Recepciones;
+using Negocios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,8 +24,8 @@ namespace mainVentana.VistaRecepcion
         string ulSalidaPSolo = "";
         string ulDato = "";
         string ulDatoSolo = "";
-        string sOrigen = "";
-        string sDestino = "";
+        string sRecepcion = "";
+        int iniciodesalida = 0;
 
 
 
@@ -34,8 +36,11 @@ namespace mainVentana.VistaRecepcion
             {
                 oc.pasado += new frmListaSalidasRecep.pasar(agrgaCargatabla);
                 oc.cerrado += new frmListaSalidasRecep.cerrar(BuscaentradasCarga);
-                oc.sorigen = sOrigen;
-                oc.sucsdest = sDestino;
+                oc.sOrigen = sRecepcion;
+
+                oc.sEnvia = cmbSucOrigen.SelectedValue.ToString().Trim();
+
+
                 oc.ShowDialog();
                 oc.pasado -= new frmListaSalidasRecep.pasar(agrgaCargatabla);
                 oc.cerrado -= new frmListaSalidasRecep.cerrar(BuscaentradasCarga);
@@ -67,7 +72,7 @@ namespace mainVentana.VistaRecepcion
 
                 if (bandera == 1)
                 {
-                    MessageBox.Show("Esa orden ya esta cargada");
+                    MessageBox.Show("Esa Recepcion ya esta cargada");
                 }
                 else
                 {
@@ -97,80 +102,69 @@ namespace mainVentana.VistaRecepcion
 
 
         }
-        
+
         //Valida el origen y el destino (otra)
         private void ValidaOrigen(object sender, EventArgs e)
         {
             RadioButton rb = (RadioButton)sender;
             if (rb.Name == "rbOTJ")
             {
-                sOrigen = "TJ";
+                sRecepcion = "TJ";
                 lblSalida.ForeColor = Color.Blue;
 
             }
             if (rb.Name == "rbOCSL")
             {
-                sOrigen = "CSL";
+                sRecepcion = "CSL";
                 lblSalida.ForeColor = Color.DarkViolet;
 
             }
             if (rb.Name == "rbOSD")
             {
-                sOrigen = "SD";
+                sRecepcion = "SD";
                 lblSalida.ForeColor = Color.Red;
 
             }
-            BuscaUltimaSalida(sOrigen);
+            iniciodesalida = 0;
+            BuscaUltimaSalida(sRecepcion);
 
         }
 
-        private void ValidaDestino(object sender, EventArgs e)
-        {
-            RadioButton rb = (RadioButton)sender;
-            if (rb.Name == "rbDTJ")
-            {
-                sDestino = "TJ";
 
-
-            }
-            if (rb.Name == "rbDCSL")
-            {
-                sDestino = "CSL";
-
-            }
-            if (rb.Name == "rbDSD")
-            {
-                sDestino = "SD";
-
-            }
-
-
-        }
         private void BuscaUltimaSalida(string suc)
         {
             if (ulSalidaPSolo == "")
             {
-                //List<string> lista1 = new List<string>();
-                Negocios.AccesoRecepciones.ngAccesoRecepciones sls = new Negocios.AccesoRecepciones.ngAccesoRecepciones();
-                var lista1 = sls.UltimaRecepcion(suc,45);
 
-
-                foreach (var i in lista1)
+                if (iniciodesalida == 0)
                 {
-                    int sl = Convert.ToInt32(i.Recepcion.ToString()) + 1;
-                    ulDato = sOrigen + "-UD5001-" + sl.ToString("D7");
-                    lblSalida.Text = ulDato;
-                    ulDatoSolo = sl.ToString("D7");
+
+                    //List<string> lista1 = new List<string>();
+                    Negocios.AccesoRecepciones.ngAccesoRecepciones sls = new Negocios.AccesoRecepciones.ngAccesoRecepciones();
+                    var lista1 = sls.ultimaRecepcionsql(sRecepcion, 50);
+
+
+                    foreach (var i in lista1)
+                    {
+                        int sl = Convert.ToInt32(i.recep.ToString());
+                        ulDato = sRecepcion + "-UD5001-" + sl.ToString("D7");
+                        lblSalida.Text = ulDato;
+                        ulDatoSolo = sl.ToString("D7");
+                    }
+                    iniciodesalida = 1;// establece el numero de salida en el actual
                 }
             }
             else
             {
                 char[] ch = "-".ToCharArray();
                 string sl = ulSalidaPSolo.Split(ch)[2];
-                ulDato = sOrigen + "-UD5001-" + sl;
+                ulDato = sRecepcion + "-UD5001-" + sl;
                 lblSalida.Text = ulDato;
                 ulDatoSolo = sl.ToString();
             }
+
+
+
 
 
 
@@ -188,13 +182,9 @@ namespace mainVentana.VistaRecepcion
             lista.Clear();
             foreach (DataGridViewRow i in dgvListaCargas.Rows)
             {
-                lista.AddRange(await datos.CargaEntBySalida(i.Cells[0].Value.ToString().Trim(), sOrigen));
-
+                lista.AddRange(await datos.CargaEntBySalida(i.Cells[0].Value.ToString().Trim(), sRecepcion));
             }
-            for (int i = 0; i < dgvListaCargas.Rows.Count; i++)
-            {
-
-            }
+           
             //ValidatablaObserva();
             Validatabla();
             ValidatablaObserva();
@@ -264,7 +254,7 @@ namespace mainVentana.VistaRecepcion
                         row.CreateCells(dgvObser);
 
                         row.Cells[0].Value = dato;
-                        row.Cells[1].Value = "No se encotro en ninguna Orden Cargada en este documento";
+                        row.Cells[1].Value = "No se encotro en ninguna Recepcion Cargada en este documento";
                         row.Cells[2].Value = e.Cells[2].Value.ToString().Trim();
                         dgvObser.Rows.Add(row);
                         roww = roww + 1;
@@ -313,7 +303,7 @@ namespace mainVentana.VistaRecepcion
 
             if (MessageBox.Show("Estas apunto de iniciar el Scaneo, revisa las Ordenes para evitar errores, da click en Cancelar para dar un segundo vistazo", "Atencion", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-               // ModificaKDM1();
+                ModificaKDM1();
                 txbEscaneo.Enabled = true;
                 txbEscaneo.Focus();
 
@@ -331,21 +321,12 @@ namespace mainVentana.VistaRecepcion
                 MessageBox.Show("No se han seleccionado Cargas");
                 error = 1;
             }
-            if (sOrigen == "")
+            if (sRecepcion == "")
             {
                 MessageBox.Show("Es necesario selccionar una sucursal de Origen");
                 error = 1;
             }
-            if (sDestino == "")
-            {
-                MessageBox.Show("Es necesario selccionar una sucursal de Destino");
-                error = 1;
-            }
-            if (sDestino == sOrigen)
-            {
-                MessageBox.Show("Las sucursales no pueden ser las mismas");
-                error = 1;
-            }
+
 
             return error;
         }
@@ -353,30 +334,22 @@ namespace mainVentana.VistaRecepcion
 
         private async void AltKDMENT()
         {
-            if (sDestino == "TJ" && sOrigen == "SD")
+            if (sRecepcion == "SD")
             {
                 await ModificaKDMENTsd();
             }
 
-            if (sDestino == "CSL" && sOrigen == "SD")
+            if (sRecepcion == "CSL")
             {
                 await ModificaKDMENTsd();
             }
 
 
-            if (sDestino == "SD" && sOrigen == "TJ")
+            if (sRecepcion == "TJ")
             {
                 await ModificaKDMENTtj();
             }
-            if (sDestino == "CSL" && sOrigen == "TJ")
-            {
 
-                await ModificaKDMENTtj();
-            }
-            if (sDestino == "TJ" || sDestino == "SD" && sOrigen == "CSL")
-            {
-                await ModificaKDMENTsd();
-            }
         }
 
         private void txbEscaneo_Leave(object sender, EventArgs e)
@@ -506,7 +479,7 @@ namespace mainVentana.VistaRecepcion
             }
         }
 
-        //Sucursal destino cabo sucursal origen tijuana
+        //Sucursal ORIGEN TIJUANA REPCEPCION
         private async Task<bool> ModificaKDMENTtj()
         {
 
@@ -526,18 +499,17 @@ namespace mainVentana.VistaRecepcion
                                  where fd.C9 == txbEscaneo.Text.ToString().ToUpper().Trim()// 
                                  select fd).First();
                         //d.C17 = uld;
-                        d.C19 = sOrigen;
-                        d.C20 = "F";
+                        d.C19 = sRecepcion;
+                        d.C20 = "R";
                         d.C23 = "";
-                        d.C55 = uld;
-                        d.C56 = "";
-                        d.C63 = uld;
-                        d.C64 = uld;
-                        d.C65 = "E";
-                        d.C66 = "";
-                        d.C67 = "";
-                        d.C68 = "";
-                        d.C75 = DateTime.Now.ToString("MM/dd/yyyy");
+
+                        d.C56 = uld;
+                        d.C66 = uld;
+                        d.C67 = uld;
+                        d.C68 = "E";
+                        d.C76 = DateTime.Now.ToString("MM/dd/yyyy");
+
+
                         kd.Add(d);
                     }
 
@@ -571,12 +543,12 @@ namespace mainVentana.VistaRecepcion
             return true;
 
         }
-
+        //sucursa recibe san diego o cabo
         private async Task<bool> ModificaKDMENTsd()
         {
 
 
-            string sc = sDestino == "CSL" ? "PR" : "OC";
+            // string sc = sDestino == "CSL" ? "PR" : "OC";
             await Task.Run(() =>
             {
                 using (modelo2Entities modelo = new modelo2Entities())
@@ -593,24 +565,18 @@ namespace mainVentana.VistaRecepcion
                                  where fd.C9 == txbEscaneo.Text.ToString().ToUpper().Trim()// 
                                  select fd).First();
 
-                        d.C12 = "E";
-                        d.C17 = uld;
-                        d.C18 = "";
-                        d.C19 = sOrigen;
-                        d.C20 = sc;
+                        d.C13 = "E";
+                        d.C18 = uld;
+                        //d.C18 = "";
+                        d.C19 = sRecepcion;
+                        d.C20 = "R";
 
                         d.C23 = "";
-                        d.C55 = uld;
-                        d.C56 = "";
+                        d.C56 = uld;
+                        // d.C56 = "";
 
-                        d.C63 = "";
-                        d.C64 = "";
-                        d.C65 = "";
-                        d.C66 = "";
-                        d.C67 = "";
-                        d.C68 = "";
-                        d.C73 = DateTime.Now.ToString("MM/dd/yyyy");
-                        d.C75 = "";
+                        d.C74 = DateTime.Now.ToString("MM/dd/yyyy");
+                        //d.C75 = "";
                         kd.Add(d);
                         //modelo.SaveChanges();
 
@@ -640,22 +606,308 @@ namespace mainVentana.VistaRecepcion
 
             return true;
         }
+        private void gunaGradientTileButton3_Click(object sender, EventArgs e)
+        {
+            int error = ValidacionesGenerales(); //1 error o 0 normal
 
+
+            if (error == 1)
+            {
+                return;
+            }
+
+            if (MessageBox.Show("Estas apunto de iniciar la salida; recuerda que este numero quedara reservado hasta que la finalices formalmente", "Atencion", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                CreaRecepcionEnKDM1();
+                btnIniciaSalida.Enabled = false;
+                btnImportarExcel.Enabled = false;
+                bntSalidaPausa.Enabled = false;
+            }
+        }
+
+        private async void CreaRecepcionEnKDM1()
+        {
+            groupBox1.Enabled = false;
+            cmbSucOrigen.Enabled = false;
+            string estatuss=default;
+
+            if (sRecepcion.Trim() == "TJ")
+            {
+                estatuss = "PRTJ";
+            }
+            if (sRecepcion.Trim() == "SD")
+            {
+                estatuss = "PRSD";
+            }
+            if (sRecepcion.Trim() == "CSL")
+            {
+                estatuss = "PRCSL";
+            }
+
+            BuscaUltimaSalida(sRecepcion);
+            Negocios.AccesoRecepciones.altasRecepciones at = new Negocios.AccesoRecepciones.altasRecepciones();
+            at.ActualizaSqlIov(sRecepcion.Trim(), 50, ulDatoSolo.Trim());
+            at.CRecepcionEnKDM1(sRecepcion.Trim()
+                , "U"
+                , "D"
+                , Convert.ToDecimal(50)
+                , Convert.ToDecimal(1)
+                , ulDatoSolo
+                , Convert.ToDecimal(1)
+                , DateTime.Now
+                , txbReferencia.Text
+                , 1
+                , DateTime.Now
+                , txbNotas.Text
+                , "Rec"
+                , estatuss //P es un nuevo estatus que significa pausado
+                , "UD5001-"
+                , Negocios.Common.Cache.CacheLogin.username.ToString()
+                , DateTime.Now
+                , cmbSucOrigen.SelectedValue.ToString().Trim());
+            btnIniciaSalida.Enabled = false;
+            bntSalidaPausa.Enabled = false;
+
+        }
+
+        private void gunaGradientTileButton2_Click_1(object sender, EventArgs e)
+        {
+            using (frmBuscarRecepP oc = new frmBuscarRecepP())
+            {
+                oc.pasadoS += new frmBuscarRecepP.pasarS(CargaLisataSalidas);
+                oc.sOrigen = sRecepcion;
+
+                oc.ShowDialog();
+            }
+
+
+        }
+
+        private async void CargaLisataSalidas(string dato)
+        {
+            if (dato.Trim().Contains(ulDato))
+            {
+                return;
+            }
+            Negocios.AccesoRecepciones.ngAccesoRecepciones sls = new Negocios.AccesoRecepciones.ngAccesoRecepciones();
+
+            ulSalidaPSolo = dato;
+            var lista1 = await sls.BuscEntradasEnRecepcion(dato, sRecepcion);
+            dgvEscaneados.DataSource = null;
+            dgvEscaneados.Rows.Clear();
+            dgvEscaneados.Refresh();
+
+            dgvListaCargas.Rows.Clear();
+            dgvListaCargas.Refresh();
+
+            dgvObser.Rows.Clear();
+            dgvObser.Refresh();
+
+
+            foreach (var i in lista1)
+            {
+                DataGridViewRow row = new DataGridViewRow();
+                row.CreateCells(dgvEscaneados);
+
+                row.Cells[0].Value = i.Documento.Trim();
+                row.Cells[1].Value = string.IsNullOrEmpty(i.Referencia) ? "" : i.Referencia.Trim();
+                //var cO = sls.ObtieCorreo(i.Documento.Trim());
+                row.Cells[2].Value = string.IsNullOrEmpty(i.correo) ? "" : i.correo.Trim();
+                dgvEscaneados.Rows.Add(row);
+
+            }
+            BuscaUltimaSalida(sRecepcion);
+
+
+            var lss = await sls.LlenaDGVpausadas(ulDatoSolo);
+            foreach (var q in lss)
+            {
+                string datoSalida = "";
+                if (sRecepcion.Contains("TJ"))
+                {
+                    datoSalida = cmbSucOrigen.SelectedValue.ToString().Trim() + "-UD4501-" + q.Documento;
+                }
+                else
+                {
+                    datoSalida = cmbSucOrigen.SelectedValue.ToString().Trim() + "-UD4501-" + q.Documento;
+                }
+
+                agrgaCargatabla(datoSalida);
+            }
+            BuscaentradasCarga();
+
+            await CargaGenerales();
+            btnIniciaSalida.Enabled = false;
+            groupBox1.Enabled = false;
+
+            btnImportarExcel.Enabled = false;
+            cmbSucOrigen.Enabled = false;
+
+        }
+        private async Task CargaGenerales()
+        {
+            Negocios.AccesoRecepciones.ngAccesoRecepciones sls = new Negocios.AccesoRecepciones.ngAccesoRecepciones();
+
+            var gn = await sls.LlenaGeneralesRecepcion(ulDatoSolo, sRecepcion);
+            try
+            {
+                foreach (var i in gn)
+                {
+
+
+                    if (i.sOrigen.Trim().Contains("TJ"))
+                    {
+                        rbOTJ.Checked = true;
+                    }
+                    if (i.sOrigen.Trim().Contains("CSL"))
+                    {
+                        rbOCSL.Checked = true;
+                    }
+                    if (i.sOrigen.Trim().Contains("SD"))
+                    {
+                        rbOSD.Checked = true;
+                    }
+
+                    foreach (Sucursales r in cmbSucOrigen.Items)
+                    {
+                        if (r.c1.Trim() == i.Placas.Trim())
+                        {
+                            cmbSucOrigen.SelectedValue = r.c1;
+                            break;
+
+                        }
+
+                    }
+
+
+                    txbReferencia.Text = i.Referencia.ToString();
+                    txbNotas.Text = i.Chofer.ToString();
+
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Hay un problema con las sucursales, se han cargado o guardado mal, por favor contacta al administrador del sistema");
+            }
+          
+
+        }
+        private async Task ModificaKDM1()
+        {
+
+
+
+            Negocios.AccesoRecepciones.altasRecepciones at = new Negocios.AccesoRecepciones.altasRecepciones();
+
+            foreach (DataGridViewRow q in dgvListaCargas.Rows)
+            {
+
+                char[] ch = "-".ToCharArray();
+                string datosalida = ulSalidaPSolo == "" ? ulDatoSolo : ulSalidaPSolo.Split(ch)[2];
+                string dato = q.Cells[0].Value.ToString().Trim();
+                string datolimpio = dato.Split(ch)[2];
+                await at.ModificaStatusRecepcionSDCSL(sRecepcion, datosalida, datolimpio);
+
+
+            }
+
+
+            btnIniciaSalida.Enabled = false;
+            bntSalidaPausa.Enabled = false;
+
+        }
+
+        private async Task FinalizaSalidaKDM1()
+        {
+
+            int error = ValidacionesGenerales();
+
+
+            if (error == 1)
+            {
+                Notifica(2, ulDatoSolo);
+                return;
+               
+            }
+
+            else
+            {
+                BuscaUltimaSalida(sRecepcion);
+                Negocios.AccesoRecepciones.altasRecepciones at = new Negocios.AccesoRecepciones.altasRecepciones();
+                char[] ch = "-".ToCharArray();
+                string datosalida = ulSalidaPSolo == "" ? ulDatoSolo : ulSalidaPSolo.Split(ch)[2];
+                await at.TerminaRecepcion(ulDatoSolo, sRecepcion);
+                Notifica(1, ulDatoSolo);
+            }
+        }
+
+        private void gunaGradientTileButton1_Click(object sender, EventArgs e)
+        {
+            if (ValidacionesGenerales() == 0)
+            {
+                if (dgvEscaneados.Rows.Count > 0)
+                {
+                    if (MessageBox.Show("Estás a punto de cerrar la salida \nA partir de aquí ya no se podrá modificar \nContinuar?", "Alerta", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    {
+                        FinalizaSalidaKDM1();
+                        iniciodesalida = 0;
+                        try
+                        {
+                            //    GeneraExcel();
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("El documento de Excel no se pudo generar correctamente, pero la Salida se creó satisfactoriamente");
+                        }
+
+                        MessageBox.Show("Salida: " + ulDatoSolo + " con origen: " + sRecepcion + " finalizada");
+                       
+                        this.Dispose();
+                        this.Close();
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No hay escaneos");
+                    return;
+                }
+
+            }
+
+        }
+
+        private void frmRecepcion_Load(object sender, EventArgs e)
+        {
+            Servicios datos = new Servicios();
+            var lst2 = datos.llenaSuc();
+            var lst2_2 = new List<Sucursales>(lst2);
+
+            cmbSucOrigen.DisplayMember = "C2";
+            cmbSucOrigen.ValueMember = "C1";
+            cmbSucOrigen.DataSource = lst2;
+            foreach (var i in from Sucursales i in cmbSucOrigen.Items
+
+                              select i)
+            {
+                cmbSucOrigen.SelectedValue = i.c1;
+                break;
+            }
+            datos = null;
+        }
+        /*
+    private void gunaGradientTileButton2_Click(object sender, EventArgs e)
+    {
+    Ventana1.frmSalidas d = new frmSalidas();
+    d.ShowDialog();
+    d.Dispose();
+            }
+
+
+            */
 
 
         /*
-        private void gunaGradientTileButton2_Click(object sender, EventArgs e)
-        {
-            Ventana1.frmSalidas d = new frmSalidas();
-            d.ShowDialog();
-            d.Dispose();
-        }
-
-        
-      
-     
-
-        
 
         private void GeneraExcel()
         {
@@ -731,7 +983,7 @@ namespace mainVentana.VistaRecepcion
             string path = AppDomain.CurrentDomain.BaseDirectory;
             string folder = path + "\\temp\\";
             string hoy = DateTime.Now.ToString("dd-MM-yyyy");
-            string fullPath = folder + hoy + "-Salida-" + ulDato + ".xlsx";
+            string fullPath = folder + hoy + "-Recepcion-" + ulDato + ".xlsx";
 
             if (!Directory.Exists(folder))
                 Directory.CreateDirectory(folder);
@@ -832,94 +1084,15 @@ namespace mainVentana.VistaRecepcion
             return exportado;
         }
 
-      
-
-        
-
-
-       
-
-        private async void CreaSalidaEnKDM1()
-        {
-
-
-            groupBox1.Enabled = false;
-            groupBox2.Enabled = false;
-            BuscaUltimaSalida(sOrigen);
-            Negocios.AltasBD at = new AltasBD();
-            at.CSalidaEnKDM1(sOrigen
-                , "U"
-                , "D"
-                , Convert.ToDecimal(45)
-                , Convert.ToDecimal(1)
-                , ulDatoSolo
-                , Convert.ToDecimal(1)
-                , DateTime.Now
-                , txbReferencia.Text
-                , 1
-                , DateTime.Now
-                , "Notas"
-                , "Ord"
-                , "P"
-                , "UD4501-"
-                , Negocios.Common.Cache.CacheLogin.username.ToString()
-                , DateTime.Now
-                , txbTransportista.Text.Length >= 100 ? txbTransportista.Text.Substring(0, 100) : txbTransportista.Text
-                , txbPlacas.Text.Length >= 50 ? txbPlacas.Text.Substring(0, 50) : txbPlacas.Text
-                , txbChofer.Text.Length >= 100 ? txbChofer.Text.Substring(0, 100) : txbChofer.Text
-                , sDestino);
-
-
-            btnIniciaSalida.Enabled = false;
-            bntSalidaPausa.Enabled = false;
-
-        }
-
-        private async Task ModificaKDM1()
-        {
 
 
 
-            Negocios.AltasBD at = new AltasBD();
-
-            foreach (DataGridViewRow q in dgvListaCargas.Rows)
-            {
-
-                char[] ch = "-".ToCharArray();
-                string datosalida = ulSalidaPSolo == "" ? ulDatoSolo : ulSalidaPSolo.Split(ch)[2];
-                string dato = q.Cells[0].Value.ToString().Trim();
-                string datolimpio = dato.Split(ch)[2];
-                await at.ModificaStatusSalida(datosalida, datolimpio);
 
 
-            }
 
 
-            btnIniciaSalida.Enabled = false;
-            bntSalidaPausa.Enabled = false;
 
-        }
-
-        private async Task FinalizaSalidaKDM1()
-        {
-
-            int error = ValidacionesGenerales();
-
-
-            if (error == 1)
-            {
-                return;
-            }
-
-            else
-            {
-                BuscaUltimaSalida(sOrigen);
-                Negocios.AltasBD at = new AltasBD();
-                char[] ch = "-".ToCharArray();
-                string datosalida = ulSalidaPSolo == "" ? ulDatoSolo : ulSalidaPSolo.Split(ch)[2];
-                await at.TerminaSalida(ulDatoSolo, sOrigen);
-            }
-        }
+        */
 
 
 
@@ -930,22 +1103,23 @@ namespace mainVentana.VistaRecepcion
 
 
 
-        
+
+
 
         private void Notifica(int nttipo, string nsalida)
         {
 
-          //   2 = ERROR
-           //  1 = EXITO
-            
+            //   2 = ERROR
+            //  1 = EXITO
+
 
 
             if (nttipo == 1)
             {
                 notifyIcon1.Visible = true;
                 notifyIcon1.Text = nsalida + " CARGADA";
-                notifyIcon1.BalloonTipTitle = "Sin Errores: Salida terminada " + nsalida;
-                notifyIcon1.BalloonTipText = "Se ha cargado la salida: " + nsalida + " sin eerores\r\n";
+                notifyIcon1.BalloonTipTitle = "Sin Errores: Recepcion terminada " + nsalida;
+                notifyIcon1.BalloonTipText = "Se ha cargado la recepcion: " + nsalida + " sin eerores\r\n";
                 notifyIcon1.ShowBalloonTip(10000);
 
 
@@ -953,191 +1127,19 @@ namespace mainVentana.VistaRecepcion
             else if (nttipo == 2)
             {
                 notifyIcon1.Visible = true;
-                notifyIcon1.Text = nsalida + " ERROR: la salida contiene errores";
+                notifyIcon1.Text = nsalida + " ERROR: la Recepcion contiene errores";
                 notifyIcon1.BalloonTipTitle = " ERROR: no se han cargado todas las etiquetas " + nsalida;
-                notifyIcon1.BalloonTipText = " algunas etiquetas no fueron cargadas en la salida: " + nsalida;
+                notifyIcon1.BalloonTipText = " algunas etiquetas no fueron cargadas en la recepcion: " + nsalida;
                 notifyIcon1.ShowBalloonTip(10000);
 
             }
 
         }
 
-        private void gunaGradientTileButton3_Click(object sender, EventArgs e)
-        {
-            int error = ValidacionesGenerales(); //1 error o 0 normal
 
 
-            if (error == 1)
-            {
-                return;
-            }
-
-            if (MessageBox.Show("Estas apunto de iniciar la salida; recuerda que este numero quedara reservado hasta que la finalices formalmente", "Atencion", MessageBoxButtons.OKCancel) == DialogResult.OK)
-            {
-
-                CreaSalidaEnKDM1();
-                btnIniciaSalida.Enabled = false;
-                btnImportarExcel.Enabled = false;
-                bntSalidaPausa.Enabled = false;
-            }
 
 
-        }
-
-        private void gunaGradientTileButton2_Click_1(object sender, EventArgs e)
-        {
-            using (frmBuscarOrdSalida oc = new frmBuscarOrdSalida())
-            {
-                oc.pasadoS += new frmBuscarOrdSalida.pasarS(CargaLisataSalidas);
-                oc.sorigen = sOrigen;
-                oc.sucsdest = sDestino;
-                oc.ShowDialog();
-            }
-
-
-        }
-
-        private async void CargaLisataSalidas(string dato)
-        {
-            if (dato.Trim().Contains(ulDato))
-            {
-                return;
-            }
-            Negocios.Acceso_Salida.AccesoSalidas sls = new Negocios.Acceso_Salida.AccesoSalidas();
-
-            ulSalidaPSolo = dato;
-            var lista1 = await sls.BuscEntradasEnSalida(dato, sOrigen);
-            dgvEscaneados.DataSource = null;
-            dgvEscaneados.Rows.Clear();
-            dgvEscaneados.Refresh();
-
-            dgvListaCargas.Rows.Clear();
-            dgvListaCargas.Refresh();
-
-            dgvObser.Rows.Clear();
-            dgvObser.Refresh();
-
-
-            foreach (var i in lista1)
-            {
-                DataGridViewRow row = new DataGridViewRow();
-                row.CreateCells(dgvEscaneados);
-
-                row.Cells[0].Value = i.Documento.Trim();
-                row.Cells[1].Value = string.IsNullOrEmpty(i.Referencia) ? "" : i.Referencia.Trim();
-                //var cO = sls.ObtieCorreo(i.Documento.Trim());
-                row.Cells[2].Value = string.IsNullOrEmpty(i.correo) ? "" : i.correo.Trim();
-                dgvEscaneados.Rows.Add(row);
-
-            }
-            BuscaUltimaSalida(sOrigen);
-
-
-            var lss = await sls.LlenaDGVpausadas(ulDatoSolo);
-            foreach (var q in lss)
-            {
-                string datocarga = "";
-                if (sOrigen.Contains("TJ"))
-                {
-                    datocarga = "SD-UD5001-" + q.Documento;
-                }
-                else
-                {
-                    datocarga = sOrigen + "-UD4001-" + q.Documento;
-                }
-
-                agrgaCargatabla(datocarga);
-            }
-            BuscaentradasCarga();
-
-            await CargaGenerales();
-            btnIniciaSalida.Enabled = false;
-            groupBox1.Enabled = false;
-            groupBox2.Enabled = false;
-            btnImportarExcel.Enabled = false;
-
-        }
-        private async Task CargaGenerales()
-        {
-            Negocios.Acceso_Salida.AccesoSalidas sls = new Negocios.Acceso_Salida.AccesoSalidas();
-
-            var gn = await sls.LlenaGeneralesSalida(ulDatoSolo, sOrigen);
-
-            foreach (var i in gn)
-            {
-
-                if (i.sDestino.Trim().Contains("TJ"))
-                {
-                    rbDTJ.Checked = true;
-                }
-                if (i.sDestino.Trim().Contains("CSL"))
-                {
-                    rbDCSL.Checked = true;
-                }
-                if (i.sDestino.Trim().Contains("SD"))
-                {
-                    rbDSD.Checked = true;
-                }
-
-
-                if (i.sOrigen.Trim().Contains("TJ"))
-                {
-                    rbOTJ.Checked = true;
-                }
-                if (i.sOrigen.Trim().Contains("CSL"))
-                {
-                    rbOCSL.Checked = true;
-                }
-                if (i.sOrigen.Trim().Contains("SD"))
-                {
-                    rbOSD.Checked = true;
-                }
-
-
-                txbTransportista.Text = i.Transportista.ToString();
-                txbReferencia.Text = i.Referencia.ToString();
-                txbPlacas.Text = i.Placas.ToString();
-                txbChofer.Text = i.Chofer.ToString();
-
-            }
-
-        }
-
-        private void gunaGradientTileButton1_Click(object sender, EventArgs e)
-        {
-            if (ValidacionesGenerales() == 0)
-            {
-                if (dgvEscaneados.Rows.Count > 0)
-                {
-                    if (MessageBox.Show("Estás a punto de cerrar la salida \nA partir de aquí ya no se podrá modificar \nContinuar?", "Alerta", MessageBoxButtons.OKCancel) == DialogResult.OK)
-                    {
-                        FinalizaSalidaKDM1();
-
-                        try
-                        {
-                            GeneraExcel();
-                        }
-                        catch (Exception)
-                        {
-                            MessageBox.Show("El documento de Excel no se pudo generar correctamente, pero la Salida se creó satisfactoriamente");
-                        }
-
-                        MessageBox.Show("Salida: " + ulDatoSolo + " con origen: " + sOrigen + " finalizada");
-                        this.Dispose();
-                        this.Close();
-
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("No hay escaneos");
-                    return;
-                }
-
-            }
-
-        }
-*/
 
     }
 }

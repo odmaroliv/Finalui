@@ -1,4 +1,5 @@
 ﻿using Datos.Datosenti;
+using Datos.ViewModels.Coord;
 using Datos.ViewModels.Reportes;
 using System;
 using System.Collections.Generic;
@@ -136,6 +137,56 @@ namespace Negocios.NGReportes
                                          ordapli = d.C16.Trim(),
                                          salida = d.C17.Trim(),
                                          SucursalInicio = d.C1,
+                                         //etiqueta = d.C9,
+                                         valFact = k.C102,
+                                         valArn = k.C16.ToString(),
+
+                                     });
+                        lst = lista.ToList();
+                    }
+                });
+                return lst;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public async Task<List<vmEntCordsCot>> CargaEntToCot(string dato,string nuCliente) //dato = sucursal de origen
+        {
+            DateTime Hoy = DateTime.Now;
+            DateTime fc = fecharestada();
+
+
+
+            try
+            {
+                var lst = new List<vmEntCordsCot>();
+                await Task.Run(() =>
+                {
+
+                    using (modelo2Entities modelo = new modelo2Entities())
+
+                    {
+                        var lista = (from d in modelo.KDMENT
+                                     join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
+                                     //join a in modelo.KDUV on k.C12 equals a.C2
+                                     //join u in modelo.KDUSUARIOS on a.C22 equals u.C1
+
+                                     where d.C1.Contains(dato) && d.C19.Contains(dato) && k.C10 ==nuCliente && d.C34 == "" && k.C12.Contains(Common.Cache.CacheLogin.idusuario.ToString())
+                                     orderby d.C6 descending
+
+                                     select new vmEntCordsCot
+                                     {
+                                         entrada = d.C6.Trim(),
+                                        // fechaentrada = d.C69.Trim(),
+                                         //ordcarga = d.C54.Trim(),
+                                         //cliente = k.C32.Trim(),
+                                         //ordapli = d.C16.Trim(),
+                                         //salida = d.C17.Trim(),
+                                         //SucursalInicio = d.C1,
                                          //etiqueta = d.C9,
                                          valFact = k.C102,
                                          valArn = k.C16.ToString(),

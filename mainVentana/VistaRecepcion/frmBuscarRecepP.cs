@@ -1,5 +1,4 @@
-﻿using Negocios.Acceso_Salida;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,12 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace mainVentana.VistaOrSalida
+namespace mainVentana.VistaRecepcion
 {
-    public partial class frmBuscarOrdSalida : Form
+    public partial class frmBuscarRecepP : Form
     {
+        public frmBuscarRecepP()
+        {
+            InitializeComponent();
+        }
         public string sOrigen;
-        public string sucsdest;
         public string documento;
         public int numerosuc;
 
@@ -22,17 +24,14 @@ namespace mainVentana.VistaOrSalida
         public delegate void pasarS(string dato1);
         public event pasarS pasadoS;
 
-        public frmBuscarOrdSalida()
-        {
-            InitializeComponent();
-        }
+        
 
         private async void frmBuscarOrdSalida_Load(object sender, EventArgs e)
         {
-            
+
             gunaDataGridView1.DataSource = null;
-            AccesoSalidas sv = new AccesoSalidas();
-            gunaDataGridView1.DataSource = await sv.LlenaDGVSalidas(sOrigen, documento, numerosuc);
+            Negocios.AccesoRecepciones.ngAccesoRecepciones sv = new Negocios.AccesoRecepciones.ngAccesoRecepciones();
+            gunaDataGridView1.DataSource = await sv.LlenaDGVRecepcion(sOrigen, documento, numerosuc);
         }
 
         private void gunaDataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

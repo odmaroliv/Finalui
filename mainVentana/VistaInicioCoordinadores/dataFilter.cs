@@ -1,4 +1,5 @@
 ﻿using Datos.ViewModels.Carga;
+using Datos.ViewModels.Coord;
 using Datos.ViewModels.Reportes;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace mainVentana.VistaInicioCoordinadores
         public static DataTable ConvierteADatatable(List<vmInfoControlCors> lista)
         {
             DataTable tb = lista.ToDataTable(); // get your list
-           return tb;
+            return tb;
         }
 
         public static DataTable ConvierteADatatable2(List<vmCargaCordinadores> lista)
@@ -23,6 +24,13 @@ namespace mainVentana.VistaInicioCoordinadores
             DataTable tb = lista.ToDataTable(); // get your list
             return tb;
         }
+
+        public static DataTable ConvierteADatatable3(List<vmEntCordsCot> lista)
+        {
+            DataTable tb = lista.ToDataTable(); // get your list
+            return tb;
+        }
+
 
     }
 }

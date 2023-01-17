@@ -39,9 +39,9 @@ namespace Negocios.Acceso_Salida
                                              //join k in modelo.KDM1 on q.C55 equals sucori.Trim() + "-UD4501-" + k.C6
                                              /*where string.IsNullOrEmpty(q.C18) && !string.IsNullOrEmpty(q.C16) && q.C54.Contains(sucori) && q.C19.Contains(sucori) && q.C20.Trim() != "F"*/
 
-                                             where q.C19.Contains("TJ") && q.C20=="E" && q.C18!="ESPECIAL" && !string.IsNullOrEmpty(q.C18) 
+                                             where q.C19.Contains("TJ") && q.C20=="R" && q.C18!="ESPECIAL" && !string.IsNullOrEmpty(q.C67) 
 
-                                             group q.C18 by q.C18 into g
+                                             group q.C67 by q.C67 into g
                                              select new vmCargaOrdenesDeCarga
                                              {
                                                  //Origen= q.C9
@@ -101,6 +101,22 @@ namespace Negocios.Acceso_Salida
 
         public async Task<List<vmCargaOrdenesDeSalida>> LlenaDGVSalidas(string sucori, string doc, int numerosuc)
         {
+
+            string estatuss = default;
+
+            if (sucori.Trim() == "TJ")
+            {
+                estatuss = "PSTJ";
+            }
+            if (sucori.Trim() == "SD")
+            {
+                estatuss = "PSSD";
+            }
+            if (sucori.Trim() == "CSL")
+            {
+                estatuss = "PSCSL";
+            }
+
             int cha = sucori.Trim().ToString().Length;
             int cade = "-UD4501-".Length;
             if (sucori.Contains("TJ"))
@@ -112,23 +128,16 @@ namespace Negocios.Acceso_Salida
                     {
                         using (modelo2Entities modelo = new modelo2Entities())
                         {
-                            lst2.Clear();
-                            var oDocument = (from q in modelo.KDMENT.AsQueryable()
-                                             join k in modelo.KDM1 on q.C55 equals sucori.Trim() + "-UD4501-" + k.C6
-                                             where /*q.C55.Contains(sucori)*/ q.C19.Contains(sucori) && k.C43.Contains("P")
+                            lst2.Clear(); lst2.Clear();
+                            string query = "WITH CTE AS (SELECT DISTINCT q.C55 as Documento, MAX(k.C11) as Referencia, MAX(k.C9) as Fecha " +
+                                  "FROM KDMENT q " +
+                                  "INNER JOIN KDM1 k ON q.C55 = CONCAT(TRIM({0}),'-UD4501-',k.C6) " +
+                                  "WHERE q.C19 LIKE '%' + {0} + '%' AND k.C61 = {1} AND k.C4 = {2} " +
+                                  "GROUP BY q.C55) " +
+                                  "SELECT Documento, Referencia, Fecha FROM CTE ORDER BY Documento DESC OFFSET 0 ROWS FETCH NEXT {3} ROWS ONLY";
 
-                                             group k by q.C55 into g
-
-
-                                             select new vmCargaOrdenesDeSalida
-                                             {
-                                                 Documento = g.Key,
-                                                 Referencia = g.Select(x => x.C11).FirstOrDefault(),
-                                                 Fecha = g.Select(x => x.C9).FirstOrDefault().Value
-
-                                             }).OrderByDescending(x => x.Documento).Take(30).ToList();
-
-                            lst2 = oDocument;
+                            var result = modelo.Database.SqlQuery<vmCargaOrdenesDeSalida>(query, sucori, estatuss, 45, 30).ToList();
+                            lst2 = result;
                         }
                     });
                     return lst2;
@@ -149,9 +158,9 @@ namespace Negocios.Acceso_Salida
                         using (modelo2Entities modelo = new modelo2Entities())
                         {
                             lst2.Clear();
-                            var oDocument = (from q in modelo.KDMENT.AsQueryable()
+                          /*  var oDocument = (from q in modelo.KDMENT.AsQueryable()
                                              join k in modelo.KDM1 on q.C55 equals sucori.Trim() + "-UD4501-" + k.C6
-                                             where string.IsNullOrEmpty(q.C18) && q.C55.Contains(sucori) && q.C19.Contains(sucori) && k.C43.Contains("P")
+                                             where string.IsNullOrEmpty(q.C18) && q.C55.Contains(sucori) && q.C19.Contains(sucori) && k.C43.Contains("P") && k.C4 == 45
 
                                              group k by q.C55 into g
 
@@ -162,9 +171,18 @@ namespace Negocios.Acceso_Salida
                                                  Referencia = g.Select(x => x.C11).FirstOrDefault(),
                                                  Fecha = g.Select(x => x.C9).FirstOrDefault().Value
 
-                                             }).OrderByDescending(x => x.Documento).Take(30).ToList();
+                                             }).OrderByDescending(x => x.Documento).Take(30).ToList();*/
 
-                            lst2 = oDocument;
+                            string query = "WITH CTE AS (SELECT DISTINCT q.C55 as Documento, MAX(k.C11) as Referencia, MAX(k.C9) as Fecha " +
+                                 "FROM KDMENT q " +
+                                 "INNER JOIN KDM1 k ON q.C55 = CONCAT(TRIM({0}),'-UD4501-',k.C6) " +
+                                 "WHERE q.C18 = '' AND q.C19 LIKE '%' + {0} + '%' AND k.C61 = {1} AND k.C4 = {2} " +
+                                 "GROUP BY q.C55) " +
+                                 "SELECT Documento, Referencia, Fecha FROM CTE ORDER BY Documento DESC OFFSET 0 ROWS FETCH NEXT {3} ROWS ONLY";
+
+                            var result = modelo.Database.SqlQuery<vmCargaOrdenesDeSalida>(query, sucori, estatuss, 45, 30).ToList();
+
+                            lst2 = result;
                         }
                     });
                     return lst2;
@@ -244,7 +262,7 @@ namespace Negocios.Acceso_Salida
                                              select new vmCargaOrdenesDeSalida
                                              {
                                                  Documento = q.C9,
-                                                 Referencia = q.C18,
+                                                 Referencia = q.C67,
                                                  correo = u.C9,
                                              }).ToList();
 
@@ -332,7 +350,7 @@ namespace Negocios.Acceso_Salida
                 throw;
             }
         }
-        public async Task<List<vmGeneralesSalidas>> LlenaGeneralesSalida(string salidapausada, string sorigen)
+        public async Task<List<vmGeneralesSalidas>> LlenaGeneralesSalida(string salidapausada, string sOrigen)
         {
 
             try
@@ -345,17 +363,17 @@ namespace Negocios.Acceso_Salida
                         lst2.Clear();
                         var oDocument = (from q in modelo.KDM1
 
-                                         where q.C6.Contains(salidapausada) && q.C4 == 45 && q.C1.Contains(sorigen)
+                                         where q.C6.Contains(salidapausada) && q.C4 == 45 && q.C1.Contains(sOrigen)
 
                                          //group q.C54 by q.C54 into g
                                          select new vmGeneralesSalidas
                                          {
                                              sDestino = q.C103,
                                              sOrigen = q.C1,
+                                             Transportista = q.C94,
                                              Chofer = q.C96,
-                                             Placas = q.C95,
-                                             Referencia = q.C11 ,
-                                             Transportista = q.C94 
+                                             Placas = q.C95, 
+                                             Referencia = q.C11,                                         
                                          }).ToList();
 
                         lst2 = oDocument;
@@ -370,15 +388,56 @@ namespace Negocios.Acceso_Salida
             }
         }
 
-        public vmAuxiliaresSalidas ObtieCorreo(string stiqueta)
+        public vmAuxiliaresSalidas ObtieCorreo(string stiqueta, string sorigen = null)
         {
             char[] ch = "-".ToCharArray();
             string sori = stiqueta.Split(ch)[0];
             string ent = stiqueta.Split(ch)[1];
-            try
+            if (sorigen=="TJ")
             {
-                var lst = new vmAuxiliaresSalidas();
-                
+                try
+                {
+                    var lst = new vmAuxiliaresSalidas();
+
+
+                    using (modelo2Entities modelo = new modelo2Entities())
+
+                    {
+                        var lista = (from d in modelo.KDMENT
+                                     join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
+                                     join a in modelo.KDUV on k.C12 equals a.C2
+                                     join u in modelo.KDUSUARIOS on a.C22 equals u.C1
+
+                                     where d.C1.Contains(sori) && d.C4 == 35 && d.C9.Contains(stiqueta)
+
+                                     select new vmAuxiliaresSalidas
+                                     {
+
+                                         Correo = u.C9,
+                                         orden = d.C67,
+                                         Etiqueta = d.C9
+
+
+                                     }).Take(1).FirstOrDefault();
+                        lst = lista;
+
+                    }
+
+                    return lst;
+                }
+                catch (Exception)
+                {
+
+                    return new vmAuxiliaresSalidas { Etiqueta = "No se encontro esta etiquita", Correo = "", orden = "" };
+                }
+
+            }
+            else
+            {
+                try
+                {
+                    var lst = new vmAuxiliaresSalidas();
+
 
                     using (modelo2Entities modelo = new modelo2Entities())
 
@@ -396,20 +455,22 @@ namespace Negocios.Acceso_Salida
                                          Correo = u.C9,
                                          orden = d.C16,
                                          Etiqueta = d.C9
-                                         
+
 
                                      }).Take(1).FirstOrDefault();
-                    lst = lista;
+                        lst = lista;
 
                     }
-              
-                return lst;
-            }
-            catch (Exception)
-            {
 
-                return new vmAuxiliaresSalidas { Etiqueta = "No se encontro esta etiquita",Correo="",orden="" };
+                    return lst;
+                }
+                catch (Exception)
+                {
+
+                    return new vmAuxiliaresSalidas { Etiqueta = "No se encontro esta etiquita", Correo = "", orden = "" };
+                }
             }
+           
         }
 
 

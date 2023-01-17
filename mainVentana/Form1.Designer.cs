@@ -93,6 +93,7 @@ namespace mainVentana
             this.rbtnReportes = new System.Windows.Forms.RibbonButton();
             this.ribbonSeparator9 = new System.Windows.Forms.RibbonSeparator();
             this.rbtnAjustes = new System.Windows.Forms.RibbonButton();
+            this.apiConfig = new System.Windows.Forms.RibbonButton();
             this.rpnlAccesosWeb = new System.Windows.Forms.RibbonPanel();
             this.ribbonItemGroup1 = new System.Windows.Forms.RibbonItemGroup();
             this.lblWha = new System.Windows.Forms.RibbonLabel();
@@ -112,7 +113,6 @@ namespace mainVentana
             this.ribbonButton3 = new System.Windows.Forms.RibbonButton();
             this.ribbonDescriptionMenuItem2 = new System.Windows.Forms.RibbonDescriptionMenuItem();
             this.panelContenedorForm = new System.Windows.Forms.Panel();
-            this.apiConfig = new System.Windows.Forms.RibbonButton();
             this.panel11.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -417,7 +417,6 @@ namespace mainVentana
             // 
             // rbtnEntrada
             // 
-            this.rbtnEntrada.Enabled = false;
             this.rbtnEntrada.Image = global::mainVentana.Properties.Resources.log_in;
             this.rbtnEntrada.LargeImage = global::mainVentana.Properties.Resources.log_in;
             this.rbtnEntrada.Name = "rbtnEntrada";
@@ -457,7 +456,6 @@ namespace mainVentana
             // 
             // rbtnRecepcion
             // 
-            this.rbtnRecepcion.Enabled = false;
             this.rbtnRecepcion.Image = global::mainVentana.Properties.Resources.warehouse;
             this.rbtnRecepcion.LargeImage = global::mainVentana.Properties.Resources.warehouse;
             this.rbtnRecepcion.Name = "rbtnRecepcion";
@@ -504,6 +502,16 @@ namespace mainVentana
             this.rbtnAjustes.SmallImage = global::mainVentana.Properties.Resources.settings;
             this.rbtnAjustes.Style = System.Windows.Forms.RibbonButtonStyle.SplitDropDown;
             this.rbtnAjustes.Text = "Ajustes";
+            // 
+            // apiConfig
+            // 
+            this.apiConfig.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.apiConfig.Image = ((System.Drawing.Image)(resources.GetObject("apiConfig.Image")));
+            this.apiConfig.LargeImage = ((System.Drawing.Image)(resources.GetObject("apiConfig.LargeImage")));
+            this.apiConfig.Name = "apiConfig";
+            this.apiConfig.SmallImage = ((System.Drawing.Image)(resources.GetObject("apiConfig.SmallImage")));
+            this.apiConfig.Text = "Api Config";
+            this.apiConfig.Click += new System.EventHandler(this.apiConfig_Click);
             // 
             // rpnlAccesosWeb
             // 
@@ -670,16 +678,6 @@ namespace mainVentana
             this.panelContenedorForm.Size = new System.Drawing.Size(1113, 601);
             this.panelContenedorForm.TabIndex = 2;
             // 
-            // apiConfig
-            // 
-            this.apiConfig.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
-            this.apiConfig.Image = ((System.Drawing.Image)(resources.GetObject("apiConfig.Image")));
-            this.apiConfig.LargeImage = ((System.Drawing.Image)(resources.GetObject("apiConfig.LargeImage")));
-            this.apiConfig.Name = "apiConfig";
-            this.apiConfig.SmallImage = ((System.Drawing.Image)(resources.GetObject("apiConfig.SmallImage")));
-            this.apiConfig.Text = "Api Config";
-            this.apiConfig.Click += new System.EventHandler(this.apiConfig_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -700,6 +698,7 @@ namespace mainVentana
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.panel11.ResumeLayout(false);
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
