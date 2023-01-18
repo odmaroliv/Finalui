@@ -64,10 +64,16 @@
     <Compile Include="Datosenti\Docto_Prv_Result1.cs">
       <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
+    <Compile Include="Datosenti\KDFEMTOCFD.cs">
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
+    </Compile>
     <Compile Include="Datosenti\KDIDO.cs">
       <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
     <Compile Include="Datosenti\KDIDP.cs">
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datosenti\KDM2.cs">
       <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
     <Compile Include="Datosenti\KDMS.cs">
@@ -150,7 +156,12 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BusquedaInicial.cs" />
+    <Compile Include="ViewModels\Coord\vmBusquedaCot.cs" />
     <Compile Include="ViewModels\Coord\vmEntCordsCot.cs" />
+    <Compile Include="ViewModels\Coord\vmEntCot.cs" />
+    <Compile Include="ViewModels\Coord\vmInfoTablaCot.cs" />
+    <Compile Include="ViewModels\Coord\vmNoCot.cs" />
+    <Compile Include="ViewModels\Coord\vmTablaCotizacion.cs" />
     <Compile Include="ViewModels\Email\vmEmail.cs" />
     <Compile Include="ViewModels\Entradas\Alias.cs" />
     <Compile Include="ViewModels\Entradas\Clientes.cs" />
@@ -182,6 +193,7 @@
     <Compile Include="ViewModels\Reportes\vmCorreoInforma.cs" />
     <Compile Include="ViewModels\Reportes\vmEtiquetasReporte.cs" />
     <Compile Include="ViewModels\Reportes\vmInfoControlCors.cs" />
+    <Compile Include="ViewModels\Reportes\vmInfoControlCorsAux.cs" />
     <Compile Include="ViewModels\Reportes\vmSd1Reporte.cs" />
     <Compile Include="ViewModels\Salidas\vmAuxiliaresSalidas.cs" />
     <Compile Include="ViewModels\Salidas\vmCargaOrdenesDeCarga.cs" />

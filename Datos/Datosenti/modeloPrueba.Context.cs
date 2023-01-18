@@ -41,6 +41,8 @@ namespace Datos.Datosenti
         public virtual DbSet<KDIDO> KDIDO { get; set; }
         public virtual DbSet<KDUK> KDUK { get; set; }
         public virtual DbSet<SqlIov> SqlIov { get; set; }
+        public virtual DbSet<KDFEMTOCFD> KDFEMTOCFD { get; set; }
+        public virtual DbSet<KDM2> KDM2 { get; set; }
     
         public virtual ObjectResult<NO_RASTREO_Result> NO_RASTREO(Nullable<int> noRastCrear)
         {

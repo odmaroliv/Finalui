@@ -17,8 +17,9 @@ namespace Datos.ViewModels.Coord
             public string valFact { get; set; }
             [DisplayName("Val.Arnian")]
             public string valArn { get; set; }
-            // public string etiqueta { get; set; }
+        // public string etiqueta { get; set; }
+            public string Origen { get; set; }
 
-        
+
     }
 }

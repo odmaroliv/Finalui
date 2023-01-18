@@ -117,11 +117,21 @@ namespace mainVentana.Properties {
         ///  &lt;meta charset=&quot;UTF-8&quot;&gt;
         ///  &lt;meta content=&quot;width=device-width, initial-scale=1&quot; name=&quot;viewport&quot;&gt;
         ///  &lt;meta name=&quot;x-apple-disable-message-reformatting&quot;&gt;
-        ///  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content= [resto de la cadena truncado]&quot;;.
+        ///  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; co [resto de la cadena truncado]&quot;;.
         /// </summary>
         internal static string Arnian2022 {
             get {
                 return ResourceManager.GetString("Arnian2022", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap b2c__2_ {
+            get {
+                object obj = ResourceManager.GetObject("b2c__2_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

@@ -129,5 +129,6 @@ namespace Datos.Datosenti
         public string C113 { get; set; }
         public string C114 { get; set; }
         public string C115 { get; set; }
+        public string C116 { get; set; }
     }
 }

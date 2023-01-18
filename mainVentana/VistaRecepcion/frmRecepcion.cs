@@ -163,12 +163,6 @@ namespace mainVentana.VistaRecepcion
                 ulDatoSolo = sl.ToString();
             }
 
-
-
-
-
-
-
         }
         List<vmEntBySalida> lista = new List<vmEntBySalida>();
         private async void BuscaentradasCarga()

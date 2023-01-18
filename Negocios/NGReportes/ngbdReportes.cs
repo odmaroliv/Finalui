@@ -134,6 +134,7 @@ namespace Negocios.NGReportes
                                          fechaentrada = d.C69.Trim(),
                                          ordcarga = d.C54.Trim(),
                                          cliente = k.C32.Trim(),
+                                         Cotizacion = k.C116,
                                          ordapli = d.C16.Trim(),
                                          salida = d.C17.Trim(),
                                          SucursalInicio = d.C1,
@@ -181,12 +182,12 @@ namespace Negocios.NGReportes
                                      select new vmEntCordsCot
                                      {
                                          entrada = d.C6.Trim(),
-                                        // fechaentrada = d.C69.Trim(),
+                                         // fechaentrada = d.C69.Trim(),
                                          //ordcarga = d.C54.Trim(),
                                          //cliente = k.C32.Trim(),
                                          //ordapli = d.C16.Trim(),
                                          //salida = d.C17.Trim(),
-                                         //SucursalInicio = d.C1,
+                                         Origen = d.C1,
                                          //etiqueta = d.C9,
                                          valFact = k.C102,
                                          valArn = k.C16.ToString(),

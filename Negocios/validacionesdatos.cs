@@ -27,7 +27,7 @@ namespace Negocios
 
 
 
-        
+
         public async Task<List<BusquedaInicial>> Cargabuscque(string id) //BUSQUEDA RAPIDA POR ENTRADA <Funciona en la pantalla principal Form1>
         {
 
@@ -41,12 +41,12 @@ namespace Negocios
 
                         var lst = from d in modelo.KDMENT
                                   join k in modelo.KDM1 on new { d.C1, d.C6, d.C4 } equals new { k.C1, k.C6, k.C4 }
-                                  join c in modelo.KDUV on k.C12 equals  c.C2
+                                  join c in modelo.KDUV on k.C12 equals c.C2
                                   where d.C6.Equals(id)
                                   orderby (d.C7)
                                   select new BusquedaInicial
                                   {
-                                      
+
                                       C6 = d.C6.Trim(), // entrada
                                       C9 = d.C9.Trim(), //etiqueta
                                       origen = d.C1.Trim(),
@@ -70,7 +70,7 @@ namespace Negocios
                                       billfecha = d.C77.Trim(),
                                       C42 = d.C42.Trim(), // descripcion corta
                                       elaborado = k.C81.Trim(),
-                                      coord=c.C3.Trim()
+                                      coord = c.C3.Trim()
 
                                   };
                         lst2 = lst.ToList();
@@ -234,17 +234,17 @@ namespace Negocios
                 {
                     using (modelo2Entities modelo = new modelo2Entities())
 
-                {
-                    var lista = from d in modelo.KDXD
+                    {
+                        var lista = from d in modelo.KDXD
 
-                                select new Proveedores
-                                {
+                                    select new Proveedores
+                                    {
 
-                                    c2 = d.C2.Trim(),//clave
-                                    c3 = d.C3.Trim()//nombre prov
+                                        c2 = d.C2.Trim(),//clave
+                                        c3 = d.C3.Trim()//nombre prov
 
 
-                                };
+                                    };
                         lst2 = lista.ToList();
                     }
                 });
@@ -268,22 +268,22 @@ namespace Negocios
                 {
                     using (modelo2Entities modelo = new modelo2Entities())
 
-                {
-                    var lista = from d in modelo.KDUD
+                    {
+                        var lista = from d in modelo.KDUD
 
-                                select new Clientes
-                                {
+                                    select new Clientes
+                                    {
 
-                                    c2 = d.C2,
-                                    c3 = d.C3.Trim(),
-                                    c4 = d.C4.Trim(),
-                                    c5 = d.C5.Trim(),
-                                    c6 = d.C6.Trim(),
-                                    c11 = d.C11.Trim(),
-                                    c12 = d.C12.Trim()
+                                        c2 = d.C2,
+                                        c3 = d.C3.Trim(),
+                                        c4 = d.C4.Trim(),
+                                        c5 = d.C5.Trim(),
+                                        c6 = d.C6.Trim(),
+                                        c11 = d.C11.Trim(),
+                                        c12 = d.C12.Trim()
 
 
-                                };
+                                    };
                         lst2 = lista.ToList();
                     }
                 });
@@ -338,23 +338,23 @@ namespace Negocios
         {
             try
             {
-                if (idUser=="")
+                if (idUser == "")
                 {
                     return "";
                 }
                 string corre = default;
-               // var lst2 = new List<Alias>();
+                // var lst2 = new List<Alias>();
                 await Task.Run(() =>
                 {
                     using (modelo2Entities modelo = new modelo2Entities())
 
                     {
 
-                       var nd = from d in modelo.KDUSUARIOS
-                        join c in modelo.KDUV on d.C1 equals c.C22
-                        where c.C2.Equals(idUser)
-                        select d.C9;
-                        
+                        var nd = from d in modelo.KDUSUARIOS
+                                 join c in modelo.KDUV on d.C1 equals c.C22
+                                 where c.C2.Equals(idUser)
+                                 select d.C9;
+
                         corre = nd.FirstOrDefault().ToString();
                     }
                 });
@@ -394,7 +394,7 @@ namespace Negocios
 
 
                                     };
-                        
+
                         lst2 = lista.ToList();
                     }
                 });
@@ -575,7 +575,7 @@ namespace Negocios
                 using (modelo2Entities modelo = new modelo2Entities())
 
                 {
-                    var lista = from d in modelo.NumeroEntradaMAX(dato,modo)
+                    var lista = from d in modelo.NumeroEntradaMAX(dato, modo)
 
                                 select new vmNumeroEntrada
                                 {
@@ -626,12 +626,12 @@ namespace Negocios
 
                         Common.Cache.CacheLogin.username = i.username.Trim();
                         Common.Cache.CacheLogin.nombre = i.nombre.Trim();
-                       // Common.Cache.CacheLogin.apellido = i.apellido;
+                        // Common.Cache.CacheLogin.apellido = i.apellido;
                         Common.Cache.CacheLogin.email = i.email.Trim();
                         Common.Cache.CacheLogin.rol = i.rol.Trim();
                         Common.Cache.CacheLogin.sucdefecto = i.sucdefecto.Trim();
                         Common.Cache.CacheLogin.numero = i.numero.Trim();
-                        Common.Cache.CacheLogin.idusuario = i.idusuario == null?"": i.idusuario.Trim();
+                        Common.Cache.CacheLogin.idusuario = i.idusuario == null ? "" : i.idusuario.Trim();
                     }
 
                     if (lista.ToList().Count() <= 0)
@@ -732,7 +732,7 @@ namespace Negocios
             }
         }
 
-       
+
 
 
         public List<vmEtiquetasReporte> LlenaEtiquetas(string id, string sucursal)
@@ -741,13 +741,13 @@ namespace Negocios
 
             try
             {
-                
+
                 var lst2 = new List<vmEtiquetasReporte>();
                 using (modelo2Entities modelo = new modelo2Entities())
 
                 {
                     var lista = from d in modelo.KDM1
-                                join d2 in modelo.KDMENT on new { d.C1, d.C4, d.C6 } equals new { d2.C1, d2.C4, d2.C6 } 
+                                join d2 in modelo.KDMENT on new { d.C1, d.C4, d.C6 } equals new { d2.C1, d2.C4, d2.C6 }
                                 join t3 in modelo.KDUD on d.C10 equals t3.C2
                                 //join t4 in modelo.KDUK on d.C10 equals t3.C2
                                 where d.C1.Equals(sucursal) && d.C4.Equals(35) && d.C6.Equals(id)
@@ -757,7 +757,7 @@ namespace Negocios
                                     Origen = d.C1,
                                     Destino = d.C103,
                                     Cliente = d.C32,
-                                    Etiqueta =d2.C9,
+                                    Etiqueta = d2.C9,
                                     Entrada = d2.C6,
                                     Fecha = d.C9,
                                     Alias = d.C112,
@@ -766,7 +766,7 @@ namespace Negocios
                                     //ZonaNumero =  
 
                                 };
-                   lst2  = lista.ToList();
+                    lst2 = lista.ToList();
 
                 }
                 return lst2;
@@ -790,7 +790,7 @@ namespace Negocios
         }
 
 
-        public async Task<List<vmEntByCarga>> CargaEntByCarga(string id,string sOrigen)
+        public async Task<List<vmEntByCarga>> CargaEntByCarga(string id, string sOrigen)
         {
             if (sOrigen.Contains("TJ"))
             {
@@ -803,13 +803,13 @@ namespace Negocios
 
                         {
                             var lista = from d in modelo.KDMENT
-                                       
+
                                         where d.C67.Equals(id) && String.IsNullOrEmpty(d.C64) && d.C19.Contains(sOrigen)
                                         select new vmEntByCarga
                                         {
                                             Etiqueta = d.C9.Trim(),
                                             Carga = d.C67.Trim()
-                                           
+
                                         };
                             lst2 = lista.ToList();
 
@@ -836,13 +836,13 @@ namespace Negocios
 
                         {
                             var lista = from d in modelo.KDMENT
-                                        
+
                                         where d.C16.Equals(id) && String.IsNullOrEmpty(d.C17) && String.IsNullOrEmpty(d.C18) && String.IsNullOrEmpty(d.C55)
                                         select new vmEntByCarga
                                         {
                                             Etiqueta = d.C9,
                                             Carga = d.C16
-                                           
+
 
                                         };
                             lst2 = lista.ToList();
@@ -858,40 +858,40 @@ namespace Negocios
                     throw;
                 }
             }
-           
+
         }
-        
+
         public async Task<List<vmEntByCarga>> CargaEntBySalidaT(string id, string sOrigen, string sdestino)
         {
-           
-                try
+
+            try
+            {
+                var lst2 = new List<vmEntByCarga>();
+                await Task.Run(() =>
                 {
-                    var lst2 = new List<vmEntByCarga>();
-                    await Task.Run(() =>
+                    using (modelo2Entities modelo = new modelo2Entities())
+
                     {
-                        using (modelo2Entities modelo = new modelo2Entities())
+                        var lista = from d in modelo.KDMENT
+                                    where d.C18.Contains(id) //&& d.C19 != sdestino 
+                                    select new vmEntByCarga
+                                    {
+                                        Etiqueta = d.C9,
+                                        Carga = d.C18
 
-                        {
-                            var lista = from d in modelo.KDMENT
-                                        where d.C18.Contains(id) //&& d.C19 != sdestino 
-                                        select new vmEntByCarga
-                                        {
-                                            Etiqueta = d.C9,
-                                            Carga = d.C18
+                                    };
+                        lst2 = lista.ToList();
 
-                                        };
-                            lst2 = lista.ToList();
+                    }
+                });
 
-                        }
-                    });
+                return lst2;
+            }
+            catch (Exception)
+            {
 
-                    return lst2;
-                }
-                catch (Exception)
-                {
-
-                    throw;
-                }
+                throw;
+            }
 
         }
 
@@ -911,7 +911,7 @@ namespace Negocios
                                     orderby d.C7 descending
                                     select new vmEtiquetasInfo
                                     {
-                                        nEtiqueta=d.C7,
+                                        nEtiqueta = d.C7,
                                         Etiqueta = d.C9,
                                         Carga = d.C16,
 
@@ -928,6 +928,39 @@ namespace Negocios
 
                 throw;
             }
+
+        }
+
+        public List<Sucursales> LlenaTipoDePago()
+        {
+
+            try
+            {
+
+                using (modelo2Entities modelo = new modelo2Entities())
+
+                {
+                    var lista = from d in modelo.KDFEMTOCFD
+                                select new Sucursales
+                                {
+
+                                    c1 = d.C1,
+                                    c2 = d.C2
+
+
+                                };
+                    return lista.ToList();
+                }
+            }
+
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+
 
         }
 

@@ -386,6 +386,12 @@
     </Compile>
     <Compile Include="VistaInicioCoordinadores\dataFilter.cs" />
     <Compile Include="VistaInicioCoordinadores\EnumerableExtensions.cs" />
+    <Compile Include="VistaInicioCoordinadores\frmBuscarCotizacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaInicioCoordinadores\frmBuscarCotizacion.Designer.cs">
+      <DependentUpon>frmBuscarCotizacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaInicioCoordinadores\frmCotizaciones.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -541,6 +547,9 @@
     <EmbeddedResource Include="VistaInicioCoordinadores\ControlEntradaCoor.resx">
       <DependentUpon>ControlEntradaCoor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VistaInicioCoordinadores\frmBuscarCotizacion.resx">
+      <DependentUpon>frmBuscarCotizacion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VistaInicioCoordinadores\frmCotizaciones.resx">
       <DependentUpon>frmCotizaciones.cs</DependentUpon>
     </EmbeddedResource>
@@ -647,6 +656,9 @@
     <None Include="Resources\boxes.png" />
     <None Include="Resources\delivery-truck.png" />
     <None Include="Resources\delivery.png" />
+    <None Include="Resources\b2c.png" />
+    <None Include="Resources\b2c %281%29.png" />
+    <None Include="Resources\b2c %282%29.png" />
     <Content Include="Resources\Iconos\hogar.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

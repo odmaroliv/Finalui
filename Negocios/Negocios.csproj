@@ -75,6 +75,8 @@
     <Compile Include="NGBill\BusquedaBill.cs" />
     <Compile Include="NGCarga\altasBDCarga.cs" />
     <Compile Include="NGCarga\GETcarga.cs" />
+    <Compile Include="NGCotizacion\accesoCotizaciones.cs" />
+    <Compile Include="NGCotizacion\AltasCotizacion.cs" />
     <Compile Include="NGRecepcion\ngbdRecepcion.cs" />
     <Compile Include="NGReportes\ngbdReportes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

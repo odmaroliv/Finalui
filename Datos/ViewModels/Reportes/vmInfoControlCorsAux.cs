@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Datos.ViewModels.Reportes
 {
-    public class vmInfoControlCors
+    public class vmInfoControlCorsAux
     {
         [DisplayName("Origen")]
         public string SucursalInicio { get; set; }
@@ -25,12 +25,9 @@ namespace Datos.ViewModels.Reportes
         public string ordapli { get; set; }
         [DisplayName("Salida")]
         public string salida { get; set; }
-      //  public string numeroent { get; set; }
         [DisplayName("Val.Factura")]
         public string valFact { get; set; }
         [DisplayName("Val.Arnian")]
         public string valArn { get; set; }
-       // public string etiqueta { get; set; }
-
     }
 }

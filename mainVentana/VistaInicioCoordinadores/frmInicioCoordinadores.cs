@@ -21,7 +21,7 @@ namespace mainVentana.VistaInicioCoordinadores
 {
     public partial class frmInicioCoordinadores : Form
     {
-
+        private string sActualCord;
 
 
         public frmInicioCoordinadores()
@@ -68,7 +68,7 @@ namespace mainVentana.VistaInicioCoordinadores
           
         }
 
-        string sucursal = "";
+        private string sucursal = "";
         DataTable DatosDataTable = null;
         List<vmInfoControlCors> dtgDatos = new List<vmInfoControlCors>();
         public async Task<bool> CargaControles()
@@ -110,6 +110,7 @@ namespace mainVentana.VistaInicioCoordinadores
                             entrada = w.entrada,
                             cliente = w.cliente,
                             fechaentrada = w.fechaentrada,
+                            Cotizacion = w.Cotizacion,
                             ordcarga = w.ordcarga,
                             ordapli = w.ordapli,
                             salida = w.salida,
@@ -329,18 +330,34 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private async void iconButton1_Click(object sender, EventArgs e)
         {
-            string tex = txbEntradaDetalle.Text;
+            //   string tex = txbEntradaDetalle.Text;
+            if (ValidaCotizacion()==false)
+            {
+                MessageBox.Show("Parece que esta entrada aun no ha sido asignada correctamente a una cotización","Alto",MessageBoxButtons.OK,MessageBoxIcon.Stop);
+                return;
+            }
             using (frmInfoEntradaCords frm = new frmInfoEntradaCords())
             {
                 frm.txbSucOrigenDetalle.Text = txbSucOrigenDetalle.Text;
                 frm.txbEntradaDetalle.Text = txbEntradaDetalle.Text;
                 frm.txbCargaActual.Text = gtxbOrdenCargaDetalle.Text;
                 frm.ShowDialog();
-                
+
             }
-           
-           
+
+
             await CargaControles();
+        }
+        private bool ValidaCotizacion()
+        {
+            Negocios.NGCotizacion.accesoCotizaciones dt = new Negocios.NGCotizacion.accesoCotizaciones();
+            var lst = dt.ValidaEntradaConCot(txbSucOrigenDetalle.Text, txbEntradaDetalle.Text);
+
+            if (!string.IsNullOrWhiteSpace(lst.noCot))
+            {
+                return true;
+            }
+            return false;
         }
 
         private void iconButton4_Click(object sender, EventArgs e)
@@ -362,8 +379,14 @@ namespace mainVentana.VistaInicioCoordinadores
         {
             using (frmCotizaciones cot = new frmCotizaciones())
             {
+                cot.sGlobal = Negocios.Common.Cache.CacheLogin.sucGlobal;
                 cot.ShowDialog();
             }
+        }
+
+        private async void rSd_CheckedChanged(object sender, EventArgs e)
+        {
+            bool ts = await CargaControles();
         }
     }
    

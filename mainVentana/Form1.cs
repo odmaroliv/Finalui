@@ -15,6 +15,7 @@ using mainVentana.VistaRecepcion;
 using mainVentana.VistaOrdenCarga;
 using System.Windows.Forms;
 using System.Diagnostics;
+using mainVentana.VistaInicioCoordinadores;
 
 namespace mainVentana
 {
@@ -59,6 +60,7 @@ namespace mainVentana
                 rbtnReportes.Enabled = false;
                 rbtnRecepcion.Enabled = false;
                 rbtnBill.Enabled = false;
+                rbtnCord.Enabled = false;
 
 
                 //Visibles
@@ -66,7 +68,8 @@ namespace mainVentana
                 rbtnSalida.Visible = false;
                 rbtnReportes.Visible = false;
                 rbtnRecepcion.Visible = false;
-               
+                rbtnCord.Visible = false;
+
 
 
             }
@@ -78,6 +81,7 @@ namespace mainVentana
                 rbtnSalida.Enabled = false;
                 rbtnReportes.Enabled = false;
                 rbtnRecepcion.Enabled = false;
+                
 
 
                 //Visibles
@@ -98,6 +102,7 @@ namespace mainVentana
                 rbtnReportes.Enabled = false;
                 rbtnRecepcion.Enabled = false;
                 rbtnBill.Enabled = false;
+                rbtnCord.Enabled = false;
 
 
                 //Visibles
@@ -107,6 +112,7 @@ namespace mainVentana
                 rbtnReportes.Visible = false;
                 rbtnRecepcion.Visible = false;
                 rbtnBill.Visible = false;
+                rbtnCord.Visible = false;
             }
 
 
@@ -119,6 +125,7 @@ namespace mainVentana
                 rbtnReportes.Enabled = false;
                 rbtnRecepcion.Enabled = false;
                 rbtnBill.Enabled = false;
+                rbtnCord.Enabled = false;
 
                 //Visibles
                 rbtnEntrada.Visible = false;
@@ -127,7 +134,8 @@ namespace mainVentana
                 rbtnReportes.Visible = false;
                 rbtnRecepcion.Visible = false;
                 rbtnBill.Visible = false;
-            
+                rbtnCord.Visible = false;
+
                 MessageBox.Show("El usuario con el que ingresaste pertenece a un rol que no es compatible con Arsys, te recomendamos contactar a Daniel para cambiar el rol de tu usuario");
             }
 
@@ -370,6 +378,24 @@ namespace mainVentana
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
 
+        }
+
+        private void vbtnCotizacion_Click(object sender, EventArgs e)
+        {
+            using (frmCotizaciones cot = new frmCotizaciones())
+            {
+                cot.sGlobal = Negocios.Common.Cache.CacheLogin.sucGlobal;
+                cot.ShowDialog();
+            }
+        }
+
+        private void rCordbtnBuscaCot_Click(object sender, EventArgs e)
+        {
+            using (frmBuscarCotizacion cot = new frmBuscarCotizacion())
+            {
+                //cot.sGlobal = Negocios.Common.Cache.CacheLogin.sucGlobal;
+                cot.ShowDialog();
+            }
         }
     }
 }
