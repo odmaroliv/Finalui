@@ -119,6 +119,7 @@
             this.iconButton7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.iconButton7.AutoSize = true;
             this.iconButton7.BackColor = System.Drawing.Color.Transparent;
+            this.iconButton7.Enabled = false;
             this.iconButton7.FlatAppearance.BorderSize = 0;
             this.iconButton7.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Navy;
             this.iconButton7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -136,6 +137,7 @@
             this.iconButton7.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.iconButton7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.iconButton7.UseVisualStyleBackColor = false;
+            this.iconButton7.Visible = false;
             this.iconButton7.Click += new System.EventHandler(this.iconButton7_Click);
             // 
             // groupBox1
@@ -201,14 +203,14 @@
             this.dtgEnts.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dtgEnts.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dtgEnts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.dtgEnts.ColumnHeadersHeight = 30;
+            this.dtgEnts.ColumnHeadersHeight = 50;
             this.dtgEnts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dtgEnts.DateWithTime = false;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;

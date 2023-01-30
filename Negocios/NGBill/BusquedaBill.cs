@@ -11,7 +11,7 @@ namespace Negocios.NGBill
     public class BusquedaBill
     {
 
-        public List<VMSalidasBill> SalidasOperacion(string dato, string fecha)
+        public List<VMSalidasBill> SalidasOperacion(string dato, string fecha, string vehiculo)
         {
 
             try
@@ -26,6 +26,7 @@ namespace Negocios.NGBill
                                 where /*d.C10 == "CSL" && d.C23 == "T" &&*/ d.C9 == dato
                                 select new VMSalidasBill
                                 {
+                                    ORIGEN = d.C10,
                                     entrada = d.C1.Trim()+"-"+d.C6,
                                     etiqueta = d.C9,
                                     //DireccionEntrega = d.C24,
@@ -34,17 +35,18 @@ namespace Negocios.NGBill
                                     CANTIDAD = "1",
                                     fechamin = fecha,
                                     fechamax = fecha,
-                                    horamin = "08:00",
-                                    horamax = "17:00",
-                                    capacidad = "1",
-                                    servicetime = "20",
+                                    //horamin = "08:00",
+                                  //  horamax = "17:00",
+                                  //  capacidad = "1",
+                                  //  servicetime = "20",
                                    
                                     idcontacto = d.C24,
                                     nomcotacto = k.C112,
                                     EMAIL = a.C11,
 
                                     Telefono = d.C29,
-                                    ORIGEN = d.C10
+                                    VEHICULO = vehiculo,
+                                    
 
                                 };
                     return lista.ToList();

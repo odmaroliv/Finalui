@@ -170,13 +170,13 @@ namespace mainVentana.VistaRecepcion
             Negocios.AccesoRecepciones.ngAccesoRecepciones datos = new Negocios.AccesoRecepciones.ngAccesoRecepciones();
 
             dgvOrdenesEntrada.DataSource = null;
-
+           string  sEnvia = cmbSucOrigen.SelectedValue.ToString().Trim();
 
 
             lista.Clear();
             foreach (DataGridViewRow i in dgvListaCargas.Rows)
             {
-                lista.AddRange(await datos.CargaEntBySalida(i.Cells[0].Value.ToString().Trim(), sRecepcion));
+                lista.AddRange(await datos.CargaEntBySalida(i.Cells[0].Value.ToString().Trim(), sRecepcion, sEnvia));
             }
            
             //ValidatablaObserva();
@@ -320,6 +320,11 @@ namespace mainVentana.VistaRecepcion
                 MessageBox.Show("Es necesario selccionar una sucursal de Origen");
                 error = 1;
             }
+            if (txbReferencia.Text.Trim() == "" || txbReferencia.Text.Length<2)
+            {
+                MessageBox.Show("Es necesario agregar una referencia");
+                error = 1;
+            }
 
 
             return error;
@@ -330,18 +335,18 @@ namespace mainVentana.VistaRecepcion
         {
             if (sRecepcion == "SD")
             {
-                await ModificaKDMENTsd();
+                await ModificaKDMENTsd(sRecepcion);
             }
 
             if (sRecepcion == "CSL")
             {
-                await ModificaKDMENTsd();
+                await ModificaKDMENTsd(sRecepcion);
             }
 
 
             if (sRecepcion == "TJ")
             {
-                await ModificaKDMENTtj();
+                await ModificaKDMENTtj(sRecepcion);
             }
 
         }
@@ -474,13 +479,14 @@ namespace mainVentana.VistaRecepcion
         }
 
         //Sucursal ORIGEN TIJUANA REPCEPCION
-        private async Task<bool> ModificaKDMENTtj()
+        private async Task<bool> ModificaKDMENTtj(string sucOrigen)
         {
 
             string uld = (string)ulDato.Trim().Clone();
             //string sc = sDestino == "CSL" ? "PR" : "OC";
 
-
+            string eti = String.IsNullOrWhiteSpace(txbEscaneo.Text) ? "000000" : txbEscaneo.Text.ToString().ToUpper().Trim();
+            string statusRecep =  VerificaEntrada(eti, sucOrigen);
             await Task.Run(() =>
             {
                 using (modelo2Entities modelo = new modelo2Entities())
@@ -490,11 +496,11 @@ namespace mainVentana.VistaRecepcion
                     try
                     {
                         var d = (from fd in modelo.KDMENT
-                                 where fd.C9 == txbEscaneo.Text.ToString().ToUpper().Trim()// 
+                                 where fd.C9 == eti// 
                                  select fd).First();
                         //d.C17 = uld;
                         d.C19 = sRecepcion;
-                        d.C20 = "R";
+                        d.C20 = statusRecep;
                         d.C23 = "";
 
                         d.C56 = uld;
@@ -527,7 +533,7 @@ namespace mainVentana.VistaRecepcion
                 }
             });
 
-
+            
 
 
             //----------------------------------------
@@ -537,11 +543,49 @@ namespace mainVentana.VistaRecepcion
             return true;
 
         }
+
+
+
+
+        /// <summary>
+        /// 1 = verifica si la sucursal ya es la sucursal final
+        /// </summary>
+        /// <param name="etiqueta">Etiqueta de la entrada a verificar</param>
+        /// <param name="verificador">Indice del caso verificador</param>
+        /// <returns>FALSE si no se cumple la condicion o TRUE si se resuelve correctamente</returns>
+        private  string VerificaEntrada(string etiqueta,string sucActual, int verificador = default)
+        {
+           
+
+            Negocios.AccesoRecepciones.ngAccesoRecepciones dt = new Negocios.AccesoRecepciones.ngAccesoRecepciones();
+            var fila = dt.VerificaEntrada(etiqueta);
+
+            string valor = default;
+            if (fila.C10 != null)
+            {
+                if (fila.C10.Trim().Contains(sucActual.Trim()))
+                {
+                    valor = "F";
+                }
+                else
+                {
+                    valor = "R";
+                }
+            }
+            else
+            {
+               // valor = "R";
+            }
+            
+            return valor;
+        }
+
         //sucursa recibe san diego o cabo
-        private async Task<bool> ModificaKDMENTsd()
+        private async Task<bool> ModificaKDMENTsd(string sucOrigen)
         {
 
-
+            string eti = String.IsNullOrWhiteSpace(txbEscaneo.Text) ? "000000" : txbEscaneo.Text.ToString().ToUpper().Trim();
+            string statusRecep =  VerificaEntrada(eti, sucOrigen);
             // string sc = sDestino == "CSL" ? "PR" : "OC";
             await Task.Run(() =>
             {
@@ -556,14 +600,14 @@ namespace mainVentana.VistaRecepcion
                     {
 
                         var d = (from fd in modelo.KDMENT
-                                 where fd.C9 == txbEscaneo.Text.ToString().ToUpper().Trim()// 
+                                 where fd.C9 == eti
                                  select fd).First();
 
                         d.C13 = "E";
                         d.C18 = uld;
                         //d.C18 = "";
                         d.C19 = sRecepcion;
-                        d.C20 = "R";
+                        d.C20 = statusRecep;
 
                         d.C23 = "";
                         d.C56 = uld;
@@ -609,8 +653,8 @@ namespace mainVentana.VistaRecepcion
             {
                 return;
             }
-
-            if (MessageBox.Show("Estas apunto de iniciar la salida; recuerda que este numero quedara reservado hasta que la finalices formalmente", "Atencion", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            string senvi = cmbSucOrigen.SelectedValue.ToString();
+            if (MessageBox.Show("Estas apunto de iniciar la Recepcion,\renvía: "+senvi+"\rRecibe: "+sRecepcion+ "\rrecuerda que este numero quedara reservado hasta que la finalices formalmente", "Atencion", MessageBoxButtons.OKCancel,MessageBoxIcon.Warning) == DialogResult.OK)
             {
                 CreaRecepcionEnKDM1();
                 btnIniciaSalida.Enabled = false;
@@ -684,9 +728,9 @@ namespace mainVentana.VistaRecepcion
                 return;
             }
             Negocios.AccesoRecepciones.ngAccesoRecepciones sls = new Negocios.AccesoRecepciones.ngAccesoRecepciones();
-
+            string sEnvia = cmbSucOrigen.SelectedValue.ToString().Trim();
             ulSalidaPSolo = dato;
-            var lista1 = await sls.BuscEntradasEnRecepcion(dato, sRecepcion);
+            var lista1 = await sls.BuscEntradasEnRecepcion(dato, sRecepcion, sEnvia);
             dgvEscaneados.DataSource = null;
             dgvEscaneados.Rows.Clear();
             dgvEscaneados.Refresh();
@@ -841,7 +885,7 @@ namespace mainVentana.VistaRecepcion
             {
                 if (dgvEscaneados.Rows.Count > 0)
                 {
-                    if (MessageBox.Show("Estás a punto de cerrar la salida \nA partir de aquí ya no se podrá modificar \nContinuar?", "Alerta", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    if (MessageBox.Show("Estás a punto de cerrar la Recepción \nA partir de aquí ya no se podrá modificar \nContinuar?", "Alerta", MessageBoxButtons.OKCancel) == DialogResult.OK)
                     {
                         FinalizaSalidaKDM1();
                         iniciodesalida = 0;

@@ -39,7 +39,7 @@ namespace Negocios.Acceso_Salida
                                              //join k in modelo.KDM1 on q.C55 equals sucori.Trim() + "-UD4501-" + k.C6
                                              /*where string.IsNullOrEmpty(q.C18) && !string.IsNullOrEmpty(q.C16) && q.C54.Contains(sucori) && q.C19.Contains(sucori) && q.C20.Trim() != "F"*/
 
-                                             where q.C19.Contains("TJ") && q.C20=="R" && q.C18!="ESPECIAL" && !string.IsNullOrEmpty(q.C67) 
+                                             where q.C19.Contains("TJ") && q.C20=="R"  && q.C18!="ESPECIAL" && !string.IsNullOrEmpty(q.C67) 
 
                                              group q.C67 by q.C67 into g
                                              select new vmCargaOrdenesDeCarga

@@ -170,40 +170,50 @@ namespace mainVentana.VistaInicioCoordinadores
 
             if (e.ColumnIndex == 0)
             {
-                string ent = this.dtgEnts.Rows[e.RowIndex].Cells[1].Value.ToString();
-                string valF = this.dtgEnts.Rows[e.RowIndex].Cells[2].Value.ToString();
-                string valA = this.dtgEnts.Rows[e.RowIndex].Cells[3].Value.ToString();
-                string valO = this.dtgEnts.Rows[e.RowIndex].Cells[4].Value.ToString();
-                if (this.dtgEnts.Rows[e.RowIndex].Cells[1].Value == null)
+                try
                 {
-                    MessageBox.Show("Ningun archivo seleccionado");
-                    return;
-                }
-                if (MessageBox.Show("Seguro que quieres agregar la entrada: " + this.dtgEnts.Rows[e.RowIndex].Cells[1].Value.ToString(), "Cuidado!", MessageBoxButtons.OKCancel) == DialogResult.OK)
-                {
-                    if (this.dtgEnts.Rows.Count > 0)
+                    string ent = this.dtgEnts.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    string valF = this.dtgEnts.Rows[e.RowIndex].Cells[2].Value.ToString();
+                    string valA = this.dtgEnts.Rows[e.RowIndex].Cells[3].Value.ToString();
+                    string valO = this.dtgEnts.Rows[e.RowIndex].Cells[4].Value.ToString();
+                    if (this.dtgEnts.Rows[e.RowIndex].Cells[1].Value == null)
                     {
-                        if (!listaEntsEnCotizacion.Any(x => x.entrada.Trim() == ent.Trim()))
+                        MessageBox.Show("Ningun archivo seleccionado");
+                        return;
+                    }
+                    if (MessageBox.Show("Seguro que quieres agregar la entrada: " + this.dtgEnts.Rows[e.RowIndex].Cells[1].Value.ToString(), "Cuidado!", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    {
+                        if (this.dtgEnts.Rows.Count > 0)
                         {
-                            listaEntsEnCotizacion.Add(new vmEntCordsCot { entrada = ent, valFact = valF, valArn = valA, Origen = valO });
-                            if (String.IsNullOrEmpty(txbEntradaACot.Text))
+                            if (!listaEntsEnCotizacion.Any(x => x.entrada.Trim() == ent.Trim()))
                             {
-                                txbEntradaACot.Text = ent;
+                                listaEntsEnCotizacion.Add(new vmEntCordsCot { entrada = ent, valFact = valF, valArn = valA, Origen = valO });
+                                if (String.IsNullOrEmpty(txbEntradaACot.Text))
+                                {
+                                    txbEntradaACot.Text = ent;
+                                }
+                                else
+                                {
+                                    txbEntradaACot.Text += ", " + ent;
+                                }
+
                             }
                             else
                             {
-                                txbEntradaACot.Text += ", " + ent;
+                                MessageBox.Show("La entrada ya existe en la lista");
                             }
-
+                            suma(listaEntsEnCotizacion);
+                            operacion();
                         }
-                        else
-                        {
-                            MessageBox.Show("La entrada ya existe en la lista");
-                        }
-                        suma(listaEntsEnCotizacion);
-                        operacion();
                     }
+
                 }
+                catch (Exception)
+                {
+
+                   
+                }
+              
                 
 
             }
@@ -282,7 +292,7 @@ namespace mainVentana.VistaInicioCoordinadores
 
                 foreach (var i in lista.ToList())
                 {
-                    txbParidad.Text = i.valor.ToString();
+                    txbParidad.Text = Math.Round(Convert.ToDecimal(i.valor), 2).ToString();
                 }
             }
 
@@ -406,7 +416,7 @@ namespace mainVentana.VistaInicioCoordinadores
                     DataGridViewRow currentRow = dgvEntradasACotizar.Rows[e.RowIndex];
                     try
                     {
-                        decimal valorColumna1 = decimal.Parse(String.IsNullOrWhiteSpace(currentRow.Cells[1].Value.ToString()) ? "0" : currentRow.Cells[1].Value.ToString());
+                        decimal valorColumna1 = decimal.Parse(currentRow.Cells[1].Value==null ? "0" : currentRow.Cells[1].Value.ToString());
                         decimal vMercanciaUSD = decimal.Parse(String.IsNullOrWhiteSpace(txbGoodUsd.Text) ? "0" : txbGoodUsd.Text);
                         decimal vParidad = decimal.Parse(String.IsNullOrWhiteSpace(txbParidad.Text) ? "0" : txbParidad.Text.ToString().Trim());
 
@@ -623,9 +633,9 @@ namespace mainVentana.VistaInicioCoordinadores
                 CargaUltCot();
                  AltasCotizacion alta = new AltasCotizacion();
                 alta.ActualizaSqlIov(sGlobal, 34, nCotizacionG);
-                 alta.CreaCotizacionKDM1(sGlobal, nCotizacionG, DateTime.Now, lblCodCliente.Text.Trim(),
-                     0, decimal.Parse(txbIva.Text), decimal.Parse(txbTotalArn.Text), DateTime.Now, cmbTipoPago.GetItemText(cmbTipoPago.SelectedItem).ToString(), cliente.Text.Trim(), "", "", "", float.Parse(txbParidad.Text.Trim()),
-                     decimal.Parse(txbSubTo.Text), "N", Negocios.Common.Cache.CacheLogin.username, DateTime.Now, txbGoodUsd.Text,txbGoodMnx.Text, txbReferencia.Text, txbTotalArn.Text, txbSerFee.Text, txbSubTomxn.Text, TaxAFees);
+                alta.CreaCotizacionKDM1(sGlobal, nCotizacionG, DateTime.Now, lblCodCliente.Text.Trim(),
+                    0, decimal.Parse(txbIva.Text), decimal.Parse(txbTotalArn.Text), DateTime.Now, cmbTipoPago.GetItemText(cmbTipoPago.SelectedItem).ToString(), cliente.Text.Trim(), "", "", "", float.Parse(txbParidad.Text.Trim()),
+                    decimal.Parse(txbSubTo.Text), "N", Negocios.Common.Cache.CacheLogin.username, DateTime.Now, txbGoodUsd.Text, txbGoodMnx.Text, txbReferencia.Text, txbTotalArn.Text, txbSerFee.Text, txbSubTomxn.Text, TaxAFees, txbComent.Text);
                 AltaKDMENT();
                 AltaKDM2();
                 Clipboard.SetText(nCotizacionG);
@@ -649,7 +659,7 @@ namespace mainVentana.VistaInicioCoordinadores
             var rows = RecuperaData();
             foreach (var i in rows)
             {
-                alta.CreaCotizacionKDM2(sGlobal, nCotizacionG, i.Fila, i.Descripción, decimal.Parse(i.usCharges), cmbIVA.SelectedItem.ToString(), lblCodCliente.Text.Trim(), DateTime.Now, i.Porcentaje);
+                alta.CreaCotizacionKDM2(sGlobal, nCotizacionG, i.Fila, i.Descripción, decimal.Parse(i.usCharges), cmbIVA.SelectedItem == null ? "0": cmbIVA.SelectedItem.ToString(), lblCodCliente.Text.Trim(), DateTime.Now, i.Porcentaje);
             }
 
         }
@@ -683,6 +693,21 @@ namespace mainVentana.VistaInicioCoordinadores
         private void cmbIVA_SelectedIndexChanged(object sender, EventArgs e)
         {
             operacion();
+        }
+
+        private void cliente_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

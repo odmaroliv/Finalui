@@ -16,6 +16,8 @@ using mainVentana.VistaOrdenCarga;
 using System.Windows.Forms;
 using System.Diagnostics;
 using mainVentana.VistaInicioCoordinadores;
+using mainVentana.VistaWMS;
+using mainVentana.Reportes.Cotizaciones.Antiguas;
 
 namespace mainVentana
 {
@@ -395,6 +397,30 @@ namespace mainVentana
             {
                 //cot.sGlobal = Negocios.Common.Cache.CacheLogin.sucGlobal;
                 cot.ShowDialog();
+            }
+        }
+
+        private void ribbonButton4_Click(object sender, EventArgs e)
+        {
+            using (frmMainWMS wms = new frmMainWMS())
+            {
+                wms.ShowDialog();
+            }
+        }
+
+        private void vbtnClientes_Click(object sender, EventArgs e)
+        {
+            using (frmClientesMain clts = new frmClientesMain())
+            {
+                clts.ShowDialog();
+            }
+        }
+
+        private void oldrpKepler_Click(object sender, EventArgs e)
+        {
+            using (frmOldCotPorCliente frm = new frmOldCotPorCliente())
+            {
+                frm.ShowDialog();
             }
         }
     }

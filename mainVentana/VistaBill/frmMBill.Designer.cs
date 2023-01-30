@@ -139,6 +139,7 @@
             this.gunaGradientTileButton2.Size = new System.Drawing.Size(130, 84);
             this.gunaGradientTileButton2.TabIndex = 26;
             this.gunaGradientTileButton2.Text = "Coord";
+            this.gunaGradientTileButton2.Click += new System.EventHandler(this.gunaGradientTileButton2_Click);
             // 
             // gunaGradientTileButton1
             // 

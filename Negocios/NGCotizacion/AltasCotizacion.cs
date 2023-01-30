@@ -13,7 +13,7 @@ namespace Negocios.NGCotizacion
 
         public async void CreaCotizacionKDM1(string c1, string c6, DateTime c9, string c10, decimal c13, decimal c14, decimal c16, DateTime c18, string c30
             , string c32, string c33, string c34, string c35, float c40, decimal c42, string c43,
-            string c67, DateTime c68, string c83, string c84, string c86, string c88, string c89, string c93, string c94)
+            string c67, DateTime c68, string c83, string c84, string c86, string c88, string c89, string c93, string c94, string c24)
         {
 
 
@@ -57,6 +57,9 @@ namespace Negocios.NGCotizacion
                 d.C89 = c89; //Valor arnian sin iva ni agregados
                 d.C93 = c93;//Total Pesos
                 d.C94 = c94;//Total Only taxes
+
+
+                d.C24 = c24; //Comentarios 
 
 
                 modelo.KDM1.Add(d);

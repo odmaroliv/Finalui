@@ -301,21 +301,49 @@ namespace Negocios
                 {
                     List<KDM1> kd = new List<KDM1>();
 
-                    var d = (from fd in modelo.KDM1
-                             where fd.C1.Contains(sucursal) && fd.C4 == 40 && fd.C6 == numerocarga
-                             select fd).First();
+                 //   int datoNumeroDocumento = sucursal == "TJ" ? 50 : 40 ;
 
-                    d.C44 = numerosalida;
-                    kd.Add(d);
 
-                    try
+                    if (sucursal=="TJ")
                     {
-                        modelo.BulkUpdate(kd.ToList());
+
+                        var d = (from fd in modelo.KDM1
+                                 where fd.C1.Contains(sucursal) && fd.C4 == 50 && fd.C6 == numerocarga
+                                 select fd).First();
+
+                        d.C44 = numerosalida;
+                        kd.Add(d);
+
+                        try
+                        {
+                            modelo.BulkUpdate(kd.ToList());
+                        }
+                        catch (Exception ex)
+                        {
+                            throw;
+                        }
                     }
-                    catch (Exception ex)
+                    else 
                     {
-                        throw;
+
+                        var d = (from fd in modelo.KDM1
+                                 where fd.C1.Contains(sucursal) && fd.C4 == 40 && fd.C6 == numerocarga
+                                 select fd).First();
+
+                        d.C44 = numerosalida;
+                        kd.Add(d);
+
+                        try
+                        {
+                            modelo.BulkUpdate(kd.ToList());
+                        }
+                        catch (Exception ex)
+                        {
+                            throw;
+                        }
                     }
+                    
+
                 }
             });
         }

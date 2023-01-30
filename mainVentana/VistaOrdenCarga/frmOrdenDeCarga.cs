@@ -277,7 +277,7 @@ namespace mainVentana.VistaOrdenCarga
                     datoFCorte,
                     datoHora);
                     bd.ActualizaSqlIov(datoSucIni.Trim(), 40, datoOrdCarga.Trim());
-                    MessageBox.Show("Documento " + datoOrdCarga + " creado con exito", "Terminado", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    MessageBox.Show("Documento " + datoOrdCarga + " creado con exito", "Terminado", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
                 catch (DbEntityValidationException o)
                 {
@@ -295,40 +295,51 @@ namespace mainVentana.VistaOrdenCarga
                     throw;
                 }
                 Notificacion(1,"El documento: "+ datoOrdCarga +"\rDe: "+datoSucIni+" Con destino a: "+ datoSucDest + "\rSe creo correctamente.", "Exito "+ datoOrdCarga,datoOrdCarga);
-                txbCarga.Text = cargaultent();
+                //txbCarga.Text = cargaultent();
+                this.Dispose();
+                this.Close();
             }
-           
-            
+
+
 
         }
 
         private int ValidacionesGenerales()
         {
-            var fcha = DateTime.Compare(dtmFcierre.Value.Date, DateTime.Now.Date);
-            
-            //0 no hay error 1 error
             int error = 0;
-            if (cmbSucDest.SelectedValue == cmbSucOrigen.SelectedValue)
+            try
             {
-                MessageBox.Show("Las Sucursal de origen y destino no puede ser las misma");
-                cmbSucDest.Focus();
-                error = 1;
-            }
+                var fcha = DateTime.Compare(dtmFcierre.Value.Date, DateTime.Now.Date);
 
-            if (fcha == -1)
-            {
-                MessageBox.Show("La fecha de cierre no puede ser anterior a la fecha de hoy");
-                dtmFcierre.Focus();
-                error = 1;
-            }
-            if (fcha == 0)
-            {
-                if (dtmHora.Value.Hour <= DateTime.Now.Hour)
+                //0 no hay error 1 error
+              
+                if (cmbSucDest.SelectedValue == cmbSucOrigen.SelectedValue)
                 {
-                    MessageBox.Show("La Hora de cierre no puede ser anterior a la hora de hoy");
-                    dtmHora.Focus();
+                    MessageBox.Show("Las Sucursal de origen y destino no puede ser las misma");
+                    cmbSucDest.Focus();
                     error = 1;
                 }
+
+                if (fcha == -1)
+                {
+                    MessageBox.Show("La fecha de cierre no puede ser anterior a la fecha de hoy");
+                    dtmFcierre.Focus();
+                    error = 1;
+                }
+                if (fcha == 0)
+                {
+                    if (dtmHora.Value.Hour <= DateTime.Now.Hour)
+                    {
+                        MessageBox.Show("La Hora de cierre no puede ser anterior a la hora de hoy");
+                        dtmHora.Focus();
+                        error = 1;
+                    }
+                }
+              
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ha ocurrido un error en la validación");
             }
             return error;
         }

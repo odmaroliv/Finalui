@@ -61,37 +61,70 @@ namespace Negocios.AccesoRecepciones
             }
             else
             {
-                                            
-                int cha = sucori.Trim().ToString().Length;
-                try
+
+
+                if (envia=="SD" && sucori=="CSL")
                 {
-                    var val = new { dato = sucori.Trim() + "-UD4501-" };
-                    var lst2 = new List<vmSalidaDocumentoONLY>();
-                    await Task.Run(() =>
+                    int cha = sucori.Trim().ToString().Length;
+                    try
                     {
-                        using (modelo2Entities modelo = new modelo2Entities())
+                        var val = new { dato = sucori.Trim() + "-UD4501-" };
+                        var lst2 = new List<vmSalidaDocumentoONLY>();
+                        await Task.Run(() =>
                         {
-                            lst2.Clear();
-                            string sql = "SELECT salidaDoc = km.C64 FROM KDMENT km JOIN (SELECT kd.C103, kd.C4,kd.C6 FROM KDM1 kd WHERE kd.C1 = '" + envia + "' and kd.C103 = '" + sucori + "' and kd.C4 = 45) kd ON km.C55 like '%'+kd.C6+'%' and km.c20 !='F' AND (km.C34 IS NOT NULL OR km.C34 != '') AND (km.C18 IS NULL OR km.C18 = '') GROUP BY  km.C64";
+                            using (modelo2Entities modelo = new modelo2Entities())
+                            {
+                                lst2.Clear();
+                                string sql = "SELECT salidaDoc = km.C17 FROM KDMENT km JOIN (SELECT kd.C103, kd.C4,kd.C6 FROM KDM1 kd WHERE  kd.C1 = '" + envia + "' and kd.C103 = '" + sucori + "' and kd.C4 = 45) kd ON km.C55 like '%'+kd.C6+'%' and km.c20 ='PR' AND (km.C34 IS NOT NULL OR km.C34 != '') AND (km.C18 IS NOT NULL OR km.C18 != '') GROUP BY  km.C17";
 
-                            var result = modelo.Database.SqlQuery<vmSalidaDocumentoONLY>(sql).OrderByDescending(x => x.salidaDoc).Take(50).ToList();
-                            lst2 = result;
-                        }
-                    });
-                    return lst2;
+                                var result = modelo.Database.SqlQuery<vmSalidaDocumentoONLY>(sql).OrderByDescending(x => x.salidaDoc).Take(50).ToList();
+                                lst2 = result;
+                            }
+                        });
+                        return lst2;
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+
                 }
-                catch (Exception)
+                else
                 {
+                    int cha = sucori.Trim().ToString().Length;
+                    try
+                    {
+                        var val = new { dato = sucori.Trim() + "-UD4501-" };
+                        var lst2 = new List<vmSalidaDocumentoONLY>();
+                        await Task.Run(() =>
+                        {
+                            using (modelo2Entities modelo = new modelo2Entities())
+                            {
+                                lst2.Clear();
+                                string sql = "SELECT salidaDoc = km.C64 FROM KDMENT km JOIN (SELECT kd.C103, kd.C4,kd.C6 FROM KDM1 kd WHERE kd.C1 = '" + envia + "' and kd.C103 = '" + sucori + "' and kd.C4 = 45) kd ON km.C55 like '%'+kd.C6+'%' and km.c20 !='F' AND (km.C34 IS NOT NULL OR km.C34 != '') AND (km.C18 IS NULL OR km.C18 = '') GROUP BY  km.C64";
 
-                    throw;
+                                var result = modelo.Database.SqlQuery<vmSalidaDocumentoONLY>(sql).OrderByDescending(x => x.salidaDoc).Take(50).ToList();
+                                lst2 = result;
+                            }
+                        });
+                        return lst2;
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
                 }
+                                            
+               
             }
 
         }
 
 
 
-        public async Task<List<vmEntBySalida>> CargaEntBySalida(string id, string sOrigen)
+        public async Task<List<vmEntBySalida>> CargaEntBySalida(string id, string sOrigen, string sEnvia)
         {
             if (sOrigen.Contains("TJ"))
             {
@@ -127,36 +160,73 @@ namespace Negocios.AccesoRecepciones
             }
             else
             {
-                try
+
+                if (sEnvia=="SD" && sOrigen=="CSL")
                 {
-                    var lst2 = new List<vmEntBySalida>();
-                    await Task.Run(() =>
+                    try
                     {
-                        using (modelo2Entities modelo = new modelo2Entities())
-
+                        var lst2 = new List<vmEntBySalida>();
+                        await Task.Run(() =>
                         {
-                            var lista = from d in modelo.KDMENT
+                            using (modelo2Entities modelo = new modelo2Entities())
 
-                                        where d.C64.Equals(id) && String.IsNullOrEmpty(d.C34) && /*String.IsNullOrEmpty(d.C18) &&*/ d.C20 != "F"
-                                        select new vmEntBySalida
-                                        {
-                                            Etiqueta = d.C9,
-                                            Salida = d.C64
+                            {
+                                var lista = from d in modelo.KDMENT
 
+                                            where d.C17.Equals(id) && String.IsNullOrEmpty(d.C34) && String.IsNullOrEmpty(d.C67) && d.C20 == "PR"
+                                            select new vmEntBySalida
+                                            {
+                                                Etiqueta = d.C9.Trim(),
+                                                Salida = d.C17.Trim()
+                                            };
+                                lst2 = lista.ToList();
 
-                                        };
-                            lst2 = lista.ToList();
+                            }
+                        });
 
-                        }
-                    });
+                        return lst2;
+                    }
+                    catch (Exception)
+                    {
 
-                    return lst2;
+                        throw;
+                    }
                 }
-                catch (Exception)
+                else
                 {
+                    try
+                    {
+                        var lst2 = new List<vmEntBySalida>();
+                        await Task.Run(() =>
+                        {
+                            using (modelo2Entities modelo = new modelo2Entities())
 
-                    throw;
+                            {
+                                var lista = from d in modelo.KDMENT
+
+                                            where d.C64.Equals(id) && String.IsNullOrEmpty(d.C34) && /*String.IsNullOrEmpty(d.C18) &&*/ d.C20 != "F"
+                                            select new vmEntBySalida
+                                            {
+                                                Etiqueta = d.C9,
+                                                Salida = d.C64
+
+
+                                            };
+                                lst2 = lista.ToList();
+
+                            }
+                        });
+
+                        return lst2;
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
                 }
+
+                
             }
 
         }
@@ -260,7 +330,7 @@ namespace Negocios.AccesoRecepciones
                             lst2.Clear();
                             var oDocument = (from q in modelo.KDMENT.AsQueryable()
                                              join k in modelo.KDM1 on q.C56 equals sucori.Trim() + "-UD5001-" + k.C6
-                                             where !string.IsNullOrEmpty(q.C18) && q.C18.Contains(sucori) && q.C19.Contains(sucori) && k.C43.Contains(estatuss) && k.C4 == 50
+                                             where q.C18.Contains(sucori) && q.C19.Contains(sucori) && k.C1.Contains(sucori) && k.C61.Contains(estatuss) && k.C4 == 50
 
                                              group k by q.C56 into g
 
@@ -287,7 +357,7 @@ namespace Negocios.AccesoRecepciones
 
         }
 
-        public async Task<List<vmCargaOrdenesDeRecepcion>> BuscEntradasEnRecepcion(string recepcion, string origen)
+        public async Task<List<vmCargaOrdenesDeRecepcion>> BuscEntradasEnRecepcion(string recepcion, string origen,string sEnvia)
         {
             if (origen.Contains("TJ"))
             {
@@ -329,40 +399,81 @@ namespace Negocios.AccesoRecepciones
             }
             else
             {
-                try
+                if (sEnvia=="SD" && origen=="CSL")
                 {
-                    var lst2 = new List<vmCargaOrdenesDeRecepcion>();
-                    await Task.Run(() =>
+                    try
                     {
-                        using (modelo2Entities modelo = new modelo2Entities())
+                        var lst2 = new List<vmCargaOrdenesDeRecepcion>();
+                        await Task.Run(() =>
                         {
-                            lst2.Clear();
-                            var oDocument = (from q in modelo.KDMENT
-                                             join k in modelo.KDM1 on new { q.C1, q.C4, q.C6 } equals new { k.C1, k.C4, k.C6 }
-                                             join a in modelo.KDUV on k.C12 equals a.C2
-                                             join u in modelo.KDUSUARIOS on a.C22 equals u.C1
-                                             where q.C56.Contains(recepcion)
+                            using (modelo2Entities modelo = new modelo2Entities())
+                            {
+                                lst2.Clear();
+                                var oDocument = (from q in modelo.KDMENT
+                                                 join k in modelo.KDM1 on new { q.C1, q.C4, q.C6 } equals new { k.C1, k.C4, k.C6 }
+                                                 join a in modelo.KDUV on k.C12 equals a.C2
+                                                 join u in modelo.KDUSUARIOS on a.C22 equals u.C1
+                                                 where q.C56.Contains(recepcion)
 
-                                             //group k by q.C55 into g
+                                                 //group k by q.C55 into g
 
 
-                                             select new vmCargaOrdenesDeRecepcion
-                                             {
-                                                 Documento = q.C9,
-                                                 Referencia = q.C64,
-                                                 correo = u.C9
-                                             }).ToList();
+                                                 select new vmCargaOrdenesDeRecepcion
+                                                 {
+                                                     Documento = q.C9,
+                                                     Referencia = q.C17,
+                                                     correo = u.C9,
+                                                 }).ToList();
 
-                            lst2 = oDocument;
-                        }
-                    });
-                    return lst2;
+                                lst2 = oDocument;
+                            }
+                        });
+                        return lst2;
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
                 }
-                catch (Exception)
+                else
                 {
+                    try
+                    {
+                        var lst2 = new List<vmCargaOrdenesDeRecepcion>();
+                        await Task.Run(() =>
+                        {
+                            using (modelo2Entities modelo = new modelo2Entities())
+                            {
+                                lst2.Clear();
+                                var oDocument = (from q in modelo.KDMENT
+                                                 join k in modelo.KDM1 on new { q.C1, q.C4, q.C6 } equals new { k.C1, k.C4, k.C6 }
+                                                 join a in modelo.KDUV on k.C12 equals a.C2
+                                                 join u in modelo.KDUSUARIOS on a.C22 equals u.C1
+                                                 where q.C56.Contains(recepcion)
 
-                    throw;
+                                                 //group k by q.C55 into g
+
+
+                                                 select new vmCargaOrdenesDeRecepcion
+                                                 {
+                                                     Documento = q.C9,
+                                                     Referencia = q.C64,
+                                                     correo = u.C9
+                                                 }).ToList();
+
+                                lst2 = oDocument;
+                            }
+                        });
+                        return lst2;
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
                 }
+               
 
             }
 
@@ -467,6 +578,37 @@ namespace Negocios.AccesoRecepciones
                 throw;
             }
         }
+
+
+        public KDMENT VerificaEntrada(string recepausada)
+        {
+
+            try
+            {
+                var lst2 = new KDMENT();
+               
+                    using (modelo2Entities modelo = new modelo2Entities())
+                    {
+                       
+                        var oDocument = (from q in modelo.KDMENT
+
+                                         where q.C9.Contains(recepausada)
+
+                                         //group q.C54 by q.C54 into g
+                                         select q).FirstOrDefault();
+
+                        lst2 = oDocument;
+                    }
+                
+                return lst2;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
 
         /*
         public List<string> BuscUltimaSalida(string suc)

@@ -339,7 +339,7 @@ namespace mainVentana.VistaOrdenCarga
                     datoFCorte,
                     datoHora);
 
-                    MessageBox.Show("Documento " + datoOrdCarga + " Modificado con exito", "Terminado", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    MessageBox.Show("Documento " + datoOrdCarga + " Modificado con exito", "Terminado", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
                 catch
                 {
@@ -537,7 +537,7 @@ namespace mainVentana.VistaOrdenCarga
                     bd.CerrarCarga(datoSucIni,
                     datoOrdCarga);
 
-                    MessageBox.Show("Documento " + datoOrdCarga + " Cerrado con exito", "Terminado", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    MessageBox.Show("Documento " + datoOrdCarga + " Cerrado con exito", "Terminado", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
                 catch
                 {

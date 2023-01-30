@@ -30,10 +30,10 @@
     <UpdateUrl>https://raw.githubusercontent.com/odmaroliv/Finalui/master/published/</UpdateUrl>
     <ProductName>ARSYS</ProductName>
     <PublisherName>Daniel Olivares H.</PublisherName>
-    <MinimumRequiredVersion>1.0.0.66</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.0.67</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>67</ApplicationRevision>
+    <ApplicationRevision>68</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -86,6 +86,9 @@
     </Reference>
     <Reference Include="AForge.Video, Version=2.2.5.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
       <HintPath>..\packages\AForge.Video.2.2.5\lib\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="BarcodeStandard, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\BarcodeLib.2.4.0\lib\netstandard2.0\BarcodeStandard.dll</HintPath>
@@ -256,8 +259,8 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
-    <Reference Include="Z.EntityFramework.Extensions, Version=7.18.1.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
-      <HintPath>..\packages\Z.EntityFramework.Extensions.7.18.1\lib\net45\Z.EntityFramework.Extensions.dll</HintPath>
+    <Reference Include="Z.EntityFramework.Extensions, Version=7.18.3.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Z.EntityFramework.Extensions.7.18.3\lib\net45\Z.EntityFramework.Extensions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -307,11 +310,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reportes\Cotizaciones\Antiguas\frmOldCotPorCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Cotizaciones\Antiguas\frmOldCotPorCliente.Designer.cs">
+      <DependentUpon>frmOldCotPorCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\OrdenDeCarga\reporteSencilloCarga.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reportes\OrdenDeCarga\reporteSencilloCarga.Designer.cs">
       <DependentUpon>reporteSencilloCarga.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\rbill\frmBillVisorImp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\rbill\frmBillVisorImp.Designer.cs">
+      <DependentUpon>frmBillVisorImp.cs</DependentUpon>
     </Compile>
     <Compile Include="Reportes\TestReport.cs">
       <SubType>Form</SubType>
@@ -391,6 +406,12 @@
     </Compile>
     <Compile Include="VistaInicioCoordinadores\frmBuscarCotizacion.Designer.cs">
       <DependentUpon>frmBuscarCotizacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaInicioCoordinadores\frmClientesMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaInicioCoordinadores\frmClientesMain.Designer.cs">
+      <DependentUpon>frmClientesMain.cs</DependentUpon>
     </Compile>
     <Compile Include="VistaInicioCoordinadores\frmCotizaciones.cs">
       <SubType>Form</SubType>
@@ -478,6 +499,12 @@
     <Compile Include="vistaReportes\frmMenuReportes.Designer.cs">
       <DependentUpon>frmMenuReportes.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaWMS\frmMainWMS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaWMS\frmMainWMS.Designer.cs">
+      <DependentUpon>frmMainWMS.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Email\vEmail.resx">
       <DependentUpon>vEmail.cs</DependentUpon>
     </EmbeddedResource>
@@ -509,9 +536,16 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reportes\Cotizaciones\Antiguas\frmOldCotPorCliente.resx">
+      <DependentUpon>frmOldCotPorCliente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\OrdenDeCarga\reporteSencilloCarga.resx">
       <DependentUpon>reporteSencilloCarga.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rbill\frmBillVisorImp.resx">
+      <DependentUpon>frmBillVisorImp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rbill\rpBillRD.rdlc" />
     <EmbeddedResource Include="Reportes\Report1.rdlc" />
     <EmbeddedResource Include="Reportes\rp\f.rdlc" />
     <EmbeddedResource Include="Reportes\TestReport.resx">
@@ -549,6 +583,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VistaInicioCoordinadores\frmBuscarCotizacion.resx">
       <DependentUpon>frmBuscarCotizacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaInicioCoordinadores\frmClientesMain.resx">
+      <DependentUpon>frmClientesMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaInicioCoordinadores\frmCotizaciones.resx">
       <DependentUpon>frmCotizaciones.cs</DependentUpon>
@@ -593,9 +630,13 @@
     <EmbeddedResource Include="vistaReportes\frmMenuReportes.resx">
       <DependentUpon>frmMenuReportes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VistaWMS\frmMainWMS.resx">
+      <DependentUpon>frmMainWMS.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="mainVentana_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Datos.ViewModels.Carga.vmEntradasEnCarga.datasource" />
+    <None Include="Properties\DataSources\Datos.ViewModels.Reportes.Bill.vmBillOfTable.datasource" />
     <None Include="Properties\DataSources\Datos.ViewModels.Reportes.OrdenCarga.vmReporteCargaSimple.datasource" />
     <None Include="Properties\DataSources\Datos.ViewModels.Reportes.vmEtiquetasReporte.datasource" />
     <None Include="Properties\Settings.settings">

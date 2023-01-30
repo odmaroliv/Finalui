@@ -23,7 +23,7 @@ namespace Negocios
     {
 
 
-        modelo2Entities modelo = new modelo2Entities(); //REFERENCIA A LA CONECCION DE BD
+        //REFERENCIA A LA CONECCION DE BD
 
 
 
@@ -36,7 +36,7 @@ namespace Negocios
                 var lst2 = new List<BusquedaInicial>();
                 await Task.Run(() =>
                 {
-                    using (modelo)
+                    using (modelo2Entities modelo = new modelo2Entities())
                     {
 
                         var lst = from d in modelo.KDMENT
@@ -94,7 +94,7 @@ namespace Negocios
 
                 try
                 {
-                    using (modelo)
+                    using (modelo2Entities modelo = new modelo2Entities())
                     {
 
                         var lst = from d in modelo.KDUD
@@ -161,7 +161,7 @@ namespace Negocios
                 var lst2 = new List<vmCordinadores>();
                 await Task.Run(() =>
                 {
-                    using (modelo)
+                    using (modelo2Entities modelo = new modelo2Entities())
 
                     {
                         var lista = from d in modelo.KDUV
@@ -169,7 +169,7 @@ namespace Negocios
                                     {
 
 
-                                        c3 = d.C3,
+                                        c3 = d.C3.Trim(),
                                         c2 = d.C2
 
 
@@ -189,6 +189,44 @@ namespace Negocios
 
 
         }
+
+        public async Task<List<vmCordinadores>> llenaCordOLD()
+        {
+
+            try
+            {
+                var lst2 = new List<vmCordinadores>();
+                await Task.Run(() =>
+                {
+                    using (modelo2Entities modelo = new modelo2Entities())
+
+                    {
+                        var lista = from d in modelo.KDUV
+                                    select new vmCordinadores
+                                    {
+
+
+                                        c3 = d.C3.Trim(),
+                                        c2 = d.C22
+
+
+                                    };
+                        lst2 = lista.ToList();
+
+                    }
+                });
+
+                return lst2;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+        }
+
 
 
         public List<Sucursales> llenaSuc()

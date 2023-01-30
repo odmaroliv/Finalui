@@ -1,5 +1,6 @@
 ﻿using Datos.Datosenti;
 using Datos.ViewModels.Coord;
+using Datos.ViewModels.Coord.oldCot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -88,8 +89,145 @@ namespace Negocios.NGCotizacion
                                  
                                   
                                       C86 = d.C86 , 
+                                      C24= d.C24,
                                      
-                                     
+
+
+
+                                  };
+                        lst2 = lst.ToList();
+
+                    }
+
+                });
+                return lst2;
+
+            }
+            catch (Exception EX)
+            {
+                throw;
+            }
+        }
+
+
+        public async Task<List<vmOldBusquedaCot>> BuscarCitizacionPorClienteOld(string id, string origen) //BUSQUEDA RAPIDA POR ENTRADA <Funciona en la pantalla principal Form1>
+        {
+
+            try
+            {
+                var lst2 = new List<vmOldBusquedaCot>();
+                await Task.Run(() =>
+                {
+                    using (modelo2Entities modelo = new modelo2Entities())
+                    {
+
+                        var lst = from d in modelo.KDM1
+                                  where d.C10.Contains(id) && d.C4 == 34 && d.C1 == origen
+                                  orderby (d.C6)
+                                  select new vmOldBusquedaCot
+                                  {
+
+                                      C1 = d.C1,
+
+                                      C6 = d.C6,
+                                      C16 = d.C16,
+                                      C40 = d.C40,
+                                      C42 = d.C42,
+                                      C93 = d.C93,
+                                      C94 = d.C94,
+                                      C83 = d.C83,
+                                      C84 = d.C84,
+                                      C89 = d.C89,
+                                      C30 = d.C30,
+                                      C14 = d.C14,
+                                      C10 = d.C10,
+                                      C32 = d.C32,
+                                      C33 = d.C33,
+                                      C34 = d.C34,
+                                      C35 = d.C35,
+
+
+                                      C7 = d.C7,
+
+                                      C9 = d.C9,
+
+                                      C13 = d.C13,
+
+
+                                      C67 = d.C67,
+
+                                      C81 = d.C81,
+                                      C86 = d.C86,
+                                      C24 = d.C24,
+
+
+
+
+                                  };
+                        lst2 = lst.ToList();
+
+                    }
+
+                });
+                return lst2;
+
+            }
+            catch (Exception EX)
+            {
+                throw;
+            }
+        }
+
+        public async Task<List<vmOldBusquedaCot>> BuscarCitizacionPorCoordOld(string id, string origen) //BUSQUEDA RAPIDA POR ENTRADA <Funciona en la pantalla principal Form1>
+        {
+
+            try
+            {
+                var lst2 = new List<vmOldBusquedaCot>();
+                await Task.Run(() =>
+                {
+                    using (modelo2Entities modelo = new modelo2Entities())
+                    {
+
+                        var lst = from d in modelo.KDM1
+                                  where d.C67.Contains(id) && d.C4 == 34 && d.C1 == origen
+                                  orderby (d.C6)
+                                  select new vmOldBusquedaCot
+                                  {
+
+                                      C1 = d.C1,
+
+                                      C6 = d.C6,
+                                      C16 = d.C16,
+                                      C40 = d.C40,
+                                      C42 = d.C42,
+                                      C93 = d.C93,
+                                      C94 = d.C94,
+                                      C83 = d.C83,
+                                      C84 = d.C84,
+                                      C89 = d.C89,
+                                      C30 = d.C30,
+                                      C14 = d.C14,
+                                      C10 = d.C10,
+                                      C32 = d.C32,
+                                      C33 = d.C33,
+                                      C34 = d.C34,
+                                      C35 = d.C35,
+
+
+                                      C7 = d.C7,
+
+                                      C9 = d.C9,
+
+                                      C13 = d.C13,
+
+
+                                      C67 = d.C67,
+
+                                      C81 = d.C81,
+                                      C86 = d.C86,
+                                      C24 = d.C24,
+
 
 
 

@@ -43,7 +43,9 @@ namespace mainVentana.VistaInicioCoordinadores
         }
         public async Task refresh(string id)
         {
-            string sucursal = default;
+
+            txbComent.Text = "";
+           string sucursal = default;
 
             
 
@@ -62,16 +64,21 @@ namespace mainVentana.VistaInicioCoordinadores
 
             Negocios.NGCotizacion.accesoCotizaciones dt = new Negocios.NGCotizacion.accesoCotizaciones();
             gunaDataGridView1.DataSource = null;
-
-            gunaDataGridView1.DataSource = await dt.BuscarCitizacionPorId(id, sucursal);
+            var lls = await dt.BuscarCitizacionPorId(id, sucursal);
+            gunaDataGridView1.DataSource = lls;
             if (gunaDataGridView1.RowCount <= 0)
             {
                 MessageBox.Show("No se encontraron datos");
                 return;
             }
-            dtgDetalle.DataSource = await dt.BuscaInfoTablaCotizacionPorId(id, sucursal);
+            
+            dtgDetalle.DataSource = await dt.BuscaInfoTablaCotizacionPorId(id, sucursal); 
             dgvEntsCot.DataSource = await dt.BuscaEntsEnCot(_nCotD7);
-           
+            foreach (var item in lls)
+            {
+                txbComent.Text = String.IsNullOrWhiteSpace(item.C24)?"": item.C24.Trim();
+            }
+
             dt = null;
         }
         private void ValidabPrincipal()

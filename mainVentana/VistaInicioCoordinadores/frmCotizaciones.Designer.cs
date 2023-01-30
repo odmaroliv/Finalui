@@ -38,9 +38,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCotizaciones));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label39 = new System.Windows.Forms.Label();
+            this.txbComent = new Guna.UI.WinForms.GunaTextBox();
             this.label38 = new System.Windows.Forms.Label();
             this.txbReferencia = new System.Windows.Forms.TextBox();
-            this.txbComent = new ReaLTaiizor.Controls.DungeonRichTextBox();
             this.aloneButton1 = new ReaLTaiizor.Controls.AloneButton();
             this.gunaElipsePanel6 = new Guna.UI.WinForms.GunaElipsePanel();
             this.txbTotalArn = new ReaLTaiizor.Controls.DungeonTextBox();
@@ -48,8 +49,8 @@
             this.txbSubServAndFees = new ReaLTaiizor.Controls.DungeonTextBox();
             this.label36 = new System.Windows.Forms.Label();
             this.txbIva = new ReaLTaiizor.Controls.DungeonTextBox();
-            this.label27 = new System.Windows.Forms.Label();
             this.txbSubTomxn = new ReaLTaiizor.Controls.DungeonTextBox();
+            this.label27 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.txbSubTo = new ReaLTaiizor.Controls.DungeonTextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -155,9 +156,10 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.label39);
+            this.panel1.Controls.Add(this.txbComent);
             this.panel1.Controls.Add(this.label38);
             this.panel1.Controls.Add(this.txbReferencia);
-            this.panel1.Controls.Add(this.txbComent);
             this.panel1.Controls.Add(this.aloneButton1);
             this.panel1.Controls.Add(this.gunaElipsePanel6);
             this.panel1.Controls.Add(this.gunaElipsePanel5);
@@ -169,6 +171,36 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1094, 868);
             this.panel1.TabIndex = 0;
+            // 
+            // label39
+            // 
+            this.label39.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label39.AutoSize = true;
+            this.label39.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.label39.Location = new System.Drawing.Point(23, 773);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(60, 13);
+            this.label39.TabIndex = 184;
+            this.label39.Text = "Comentario";
+            // 
+            // txbComent
+            // 
+            this.txbComent.BackColor = System.Drawing.Color.Transparent;
+            this.txbComent.BaseColor = System.Drawing.Color.White;
+            this.txbComent.BorderColor = System.Drawing.Color.Silver;
+            this.txbComent.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbComent.FocusedBaseColor = System.Drawing.Color.White;
+            this.txbComent.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.txbComent.FocusedForeColor = System.Drawing.SystemColors.ControlText;
+            this.txbComent.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txbComent.Location = new System.Drawing.Point(21, 789);
+            this.txbComent.MaxLength = 999;
+            this.txbComent.MultiLine = true;
+            this.txbComent.Name = "txbComent";
+            this.txbComent.PasswordChar = '\0';
+            this.txbComent.Radius = 10;
+            this.txbComent.Size = new System.Drawing.Size(666, 66);
+            this.txbComent.TabIndex = 183;
             // 
             // label38
             // 
@@ -184,31 +216,11 @@
             // txbReferencia
             // 
             this.txbReferencia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbReferencia.Enabled = false;
             this.txbReferencia.Location = new System.Drawing.Point(725, 835);
             this.txbReferencia.MaxLength = 59;
             this.txbReferencia.Name = "txbReferencia";
             this.txbReferencia.Size = new System.Drawing.Size(161, 20);
             this.txbReferencia.TabIndex = 164;
-            // 
-            // txbComent
-            // 
-            this.txbComent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbComent.AutoWordSelection = false;
-            this.txbComent.BackColor = System.Drawing.Color.Transparent;
-            this.txbComent.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.txbComent.EdgeColor = System.Drawing.Color.White;
-            this.txbComent.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txbComent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(76)))));
-            this.txbComent.Location = new System.Drawing.Point(21, 789);
-            this.txbComent.Name = "txbComent";
-            this.txbComent.ReadOnly = false;
-            this.txbComent.Size = new System.Drawing.Size(666, 66);
-            this.txbComent.TabIndex = 163;
-            this.txbComent.Text = "Comentarios";
-            this.txbComent.TextBackColor = System.Drawing.Color.White;
-            this.txbComent.WordWrap = true;
             // 
             // aloneButton1
             // 
@@ -322,16 +334,6 @@
             this.txbIva.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
             this.txbIva.UseSystemPasswordChar = false;
             // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label27.Location = new System.Drawing.Point(189, 12);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(27, 13);
-            this.label27.TabIndex = 150;
-            this.label27.Text = "IVA:";
-            // 
             // txbSubTomxn
             // 
             this.txbSubTomxn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -349,6 +351,16 @@
             this.txbSubTomxn.TabIndex = 149;
             this.txbSubTomxn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
             this.txbSubTomxn.UseSystemPasswordChar = false;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.label27.Location = new System.Drawing.Point(189, 12);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(27, 13);
+            this.label27.TabIndex = 150;
+            this.label27.Text = "IVA:";
             // 
             // label20
             // 
@@ -421,6 +433,7 @@
             this.groupBox2.TabIndex = 106;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Cliente";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // cmbIVA
             // 
@@ -510,6 +523,7 @@
             this.cliente.ReadOnly = true;
             this.cliente.Size = new System.Drawing.Size(331, 20);
             this.cliente.TabIndex = 106;
+            this.cliente.TextChanged += new System.EventHandler(this.cliente_TextChanged);
             // 
             // gunaTileButton1
             // 
@@ -544,6 +558,7 @@
             this.label6.Size = new System.Drawing.Size(104, 22);
             this.label6.TabIndex = 106;
             this.label6.Text = "Cliente:";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // gunaElipsePanel4
             // 
@@ -1350,7 +1365,7 @@
             this.dgvEntradasACotizar.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvEntradasACotizar.BackgroundColor = System.Drawing.Color.White;
             this.dgvEntradasACotizar.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvEntradasACotizar.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvEntradasACotizar.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
             this.dgvEntradasACotizar.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
@@ -1385,7 +1400,7 @@
             this.dgvEntradasACotizar.RowTemplate.Height = 50;
             this.dgvEntradasACotizar.RowTemplate.ReadOnly = true;
             this.dgvEntradasACotizar.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEntradasACotizar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvEntradasACotizar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvEntradasACotizar.Size = new System.Drawing.Size(616, 333);
             this.dgvEntradasACotizar.TabIndex = 147;
             this.dgvEntradasACotizar.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
@@ -1404,7 +1419,7 @@
             this.dgvEntradasACotizar.ThemeStyle.HeaderStyle.Height = 30;
             this.dgvEntradasACotizar.ThemeStyle.ReadOnly = false;
             this.dgvEntradasACotizar.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
-            this.dgvEntradasACotizar.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvEntradasACotizar.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
             this.dgvEntradasACotizar.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
             this.dgvEntradasACotizar.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             this.dgvEntradasACotizar.ThemeStyle.RowsStyle.Height = 50;
@@ -1654,7 +1669,6 @@
         private System.Windows.Forms.Label label20;
         private Guna.UI.WinForms.GunaComboBox cmbTipoPago;
         private System.Windows.Forms.Label label21;
-        private ReaLTaiizor.Controls.DungeonRichTextBox txbComent;
         private ReaLTaiizor.Controls.BigLabel lblNoCot;
         private ReaLTaiizor.Controls.BigLabel lblSuc;
         private ReaLTaiizor.Controls.BigLabel lblFechaHoy;
@@ -1687,5 +1701,7 @@
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.TextBox txbReferencia;
+        private Guna.UI.WinForms.GunaTextBox txbComent;
+        private System.Windows.Forms.Label label39;
     }
 }

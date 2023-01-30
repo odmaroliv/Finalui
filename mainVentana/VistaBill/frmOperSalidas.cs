@@ -13,6 +13,8 @@ using ClosedXML.Excel;
 using System.Reflection;
 using System.Diagnostics;
 using Datos.ViewModels.Bill;
+using mainVentana.Reportes.rbill;
+using Datos.ViewModels.Reportes.Bill;
 
 namespace mainVentana.VistaBill
 {
@@ -38,27 +40,37 @@ namespace mainVentana.VistaBill
 
         private void gunaAdvenceButton2_Click(object sender, EventArgs e)
         {
+            if (cmbVehuculo.SelectedItem == null)
+            {
+                MessageBox.Show("Por favor selecciona un Vehiculo");
+                return;
+            }
             ExportExcel();
 
         }
 
         private void ExportExcel()
         {
+            string vehiculo = cmbVehuculo.SelectedItem.ToString();
 
             if (gunaDataGridView1.Rows.Count > 0)
             {
                 DataTable dt = new DataTable();
 
+              
 
                 foreach (DataGridViewColumn column in gunaDataGridView1.Columns)
                 {
                     dt.Columns.Add(column.HeaderText, column.ValueType);
                 }
 
+                //dt.Columns.Add("VEHICULO", typeof(string));
 
                 foreach (DataGridViewRow row in gunaDataGridView1.Rows)
                 {
                     dt.Rows.Add();
+                    // Asignar el valor de la variable "vehiculo" a la nueva columna en cada fila
+                   // dt.Rows[dt.Rows.Count - 1]["VEHICULO"] = vehiculo;
                     foreach (DataGridViewCell cell in row.Cells)
                     {
                         dt.Rows[dt.Rows.Count - 1][cell.ColumnIndex] = cell.Value == null ? "" : cell.Value.ToString();
@@ -105,8 +117,15 @@ namespace mainVentana.VistaBill
         List<VMSalidasBill> listaeti = new List<VMSalidasBill>();
         private void txbEtiqueta_KeyDown(object sender, KeyEventArgs e)
         {
-            string fecha = dtpTiempo.Value.ToString("dd/MM/yyyy");
+            if (cmbVehuculo.SelectedItem == null)
+            {
+                MessageBox.Show("Por favor selecciona un Vehiculo");
+                return;
+            }
 
+
+            string fecha = dtpTiempo.Value.ToString("dd/MM/yyyy");
+            string vehiculo = cmbVehuculo.SelectedItem.ToString();
 
             if (e.KeyCode == Keys.Enter)
             {
@@ -121,7 +140,7 @@ namespace mainVentana.VistaBill
                 }
 
                 BusquedaBill bd = new BusquedaBill();
-                var ss = bd.SalidasOperacion(eti, fecha);
+                var ss = bd.SalidasOperacion(eti, fecha, vehiculo);
                 if (ss.Count() > 0)
                 {
                     listaeti.Add(ss[0]);
@@ -174,14 +193,67 @@ namespace mainVentana.VistaBill
 
         private void gunaDataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (gunaDataGridView1.CurrentRow.Cells[6].Value.ToString().Trim().ToUpper() == null)
+          /*  if (gunaDataGridView1.CurrentRow.Cells[6].Value.ToString().Trim().ToUpper() == null)
                 return;
             
             listaeti.RemoveAll(c => c.etiqueta == gunaDataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString());
             gunaDataGridView1.DataSource = null;
             gunaDataGridView1.DataSource = listaeti;
-            //gunaDataGridView1.Rows[gunaDataGridView1.RowCount - 1].Selected = true;
+            //gunaDataGridView1.Rows[gunaDataGridView1.RowCount - 1].Selected = true;*/
 
+        }
+
+        private void gunaAdvenceButton1_Click(object sender, EventArgs e)
+        {
+            LlamaReporte();
+        }
+
+
+        private void LlamaReporte()
+        {
+            using (frmBillVisorImp bill = new frmBillVisorImp())
+            {
+                bill.from = "Cliente";
+                bill.fromCalle = "Hola";
+                bill.fromDir1 = "Call1";
+                bill.fromDir2 = "Call2";
+                bill.Coordinador = "Coordinador";
+                bill.Note = "Notas";
+                bill.Cellphone = "6656665644";
+                bill.to = "Para";
+                bill.toCalle = "Callw";
+                bill.toDir1 = "ToDir1";
+                bill.toDir2 = "Calle 2";
+                bill.ShipDate = "12-12-12";
+                bill.totalCases = "2";
+
+                var lst = new List<vmBillOfTable>();
+
+                for (int i = 0; i < 500; i++)
+                {
+                    lst.Add(new vmBillOfTable { Description = "Helloooo " + i.ToString(), id = i.ToString() }); ;
+                }
+
+                bill.lst = lst;
+                bill.ShowDialog();
+            }
+
+        }
+
+        private void gunaDataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Comprueba si la columna seleccionada es la columna 3
+            if (e.ColumnIndex == 4)
+            {
+                // Obtén el valor de la celda seleccionada
+                string value = gunaDataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+
+                // Busca el elemento en la lista y lo elimina
+                listaeti.Remove(listaeti.Where(x => x.etiqueta == value).First());
+                gunaDataGridView1.DataSource = null;
+                gunaDataGridView1.DataSource = listaeti;
+
+            }
         }
     }
 }

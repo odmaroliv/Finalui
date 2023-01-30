@@ -12,20 +12,42 @@ namespace Datos.ViewModels.Bill
         [DisplayName("N° DOCUMENTO")]
         public string entrada { get; set; }
 
-        public string LATITUD { get; set; }
-        public string LONGITUD { get; set; }
+        [DisplayName("VEHICULO")]
+        public string VEHICULO { get; set; }
+
+
+        [DisplayName("NOMBRE ITEM")]
+        public string NOMBREITEM { get; set; }
+
+
+        public string CANTIDAD { get; set; }
+
+
+        [DisplayName("CODIGO ITEM")]
+        public string etiqueta { get; set; }
+
+
+
+        [DisplayName("IDENTIFICADOR CONTACTO")]
+        public string idcontacto { get; set; }
+
+
+        [DisplayName("NOMBRE CONTACTO")]
+        public string nomcotacto { get; set; }
+
+        [DisplayName("TELEFONO")]
+        public string Telefono { get; set; }
+
+        [DisplayName("EMAIL CONTACTO")]
+        public string EMAIL { get; set; }
 
 
         [DisplayName("DIRECCION")]
         public string Direccion { get; set; }
 
-        [DisplayName("NOMBRE ITEM")]
-        public string NOMBREITEM { get; set; }
-
-        public string CANTIDAD { get; set; }
-
-        [DisplayName("CODIGO ITEM")]
-        public string etiqueta { get; set; }
+        public string LATITUD { get; set; }
+        public string LONGITUD { get; set; }
+       
 
         [DisplayName("FECHA MIN ENTREGA")]
         public string fechamin { get; set; }
@@ -34,7 +56,7 @@ namespace Datos.ViewModels.Bill
         public string fechamax { get; set; }
 
 
-        [DisplayName("MIN VENTANA HORARIA 1")]
+      /*  [DisplayName("MIN VENTANA HORARIA 1")]
         public string horamin { get; set; }
 
         [DisplayName("MAX VENTANA HORARIA 1")]
@@ -61,22 +83,10 @@ namespace Datos.ViewModels.Bill
         [DisplayName("IMPORTANCIA")]
         public string importancia { get; set; }
 
-        [DisplayName("IDENTIFICADOR CONTACTO")]
-        public string idcontacto { get; set; }
-
-
-        [DisplayName("NOMBRE CONTACTO")]
-        public string nomcotacto { get; set; }
-
-        [DisplayName("TELEFONO")]
-        public string Telefono { get; set; }
-
-        [DisplayName("EMAIL CONTACTO")]
-        public string EMAIL { get; set; }
 
 
 
-
+        */
 
         [DisplayName("CT ORIGEN")]
         public string ORIGEN { get; set; }

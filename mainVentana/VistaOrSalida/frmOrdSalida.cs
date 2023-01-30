@@ -349,9 +349,16 @@ namespace mainVentana.VistaOrSalida
 
             }
             String[] str = lscorreos.ToArray();
-            
 
-            await llamasmtp(plantilla, str, fullPath, ulDato, bandera);
+            try
+            {
+                await llamasmtp(plantilla, str, fullPath, ulDato, bandera);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se pudo enviar el correo con el Excel");
+            }
+          
         }
         private async Task llamasmtp(string body, string[] correo, string path, string salida, int bndra)
         {
@@ -554,6 +561,11 @@ namespace mainVentana.VistaOrSalida
             if (sDestino == sOrigen)
             {
                 MessageBox.Show("Las sucursales no pueden ser las mismas");
+                error = 1;
+            }
+            if (txbReferencia.Text.Trim() == "" || txbReferencia.Text.Length < 2)
+            {
+                MessageBox.Show("Es necesario agregar una referencia");
                 error = 1;
             }
 

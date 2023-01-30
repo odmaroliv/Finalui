@@ -8,6 +8,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
+using System.Reflection;
 
 namespace mainVentana.VistaInicioCoordinadores
 {
@@ -16,37 +18,38 @@ namespace mainVentana.VistaInicioCoordinadores
 
         public static DataTable ConvierteADatatable(List<vmInfoControlCors> lista)
         {
-            /*DataTable tb = lista.ToDataTable(); // get your list
-            return tb;*/
+            /* DataTable tb = lista.ToDataTable(); // get your list
+             return tb;*/
+
             DataTable tb = new DataTable();
-                List<vmInfoControlCorsAux> listAux = new List<vmInfoControlCorsAux>();
-                foreach (var item in lista)
-                {
-                    vmInfoControlCorsAux aux = new vmInfoControlCorsAux();
-                    aux.SucursalInicio = item.SucursalInicio;
-                    aux.entrada = item.entrada;
-                    aux.fechaentrada = item.fechaentrada;
-                    aux.cliente = item.cliente;
-                    aux.Cotizacion = item.Cotizacion;
-                    aux.ordcarga = item.ordcarga;
-                    aux.ordapli = item.ordapli;
-                    aux.salida = item.salida;
-                    aux.valFact = item.valFact;
-                    aux.valArn = item.valArn;
-                    listAux.Add(aux);
-                }
-                tb = listAux.ToDataTable();
-                var displayName = typeof(vmInfoControlCorsAux).GetProperties()
-                .Where(p => p.IsDefined(typeof(DisplayNameAttribute), false))
-                .Select(p => new {
-                    Name = p.Name,
-                DisplayName = ((DisplayNameAttribute)p.GetCustomAttributes(typeof(DisplayNameAttribute), false)[0]).DisplayName
-                     });
-            foreach (var item in displayName)
+            //Add columns
+            var properties = typeof(vmInfoControlCors).GetProperties();
+            foreach (var property in properties)
             {
-                tb.Columns[item.Name].Caption = item.DisplayName;
+                var display = property.GetCustomAttribute<DisplayNameAttribute>();
+                if (display != null)
+                    tb.Columns.Add(display.DisplayName);
+                else
+                    tb.Columns.Add(property.Name);
+            }
+            //Add rows
+            foreach (var item in lista)
+            {
+                var row = tb.NewRow();
+                foreach (var property in properties)
+                {
+                    var value = property.GetValue(item);
+                    var display = property.GetCustomAttribute<DisplayNameAttribute>();
+                    if (display != null)
+                        row[display.DisplayName] = value;
+                    else
+                        row[property.Name] = value;
+                }
+                tb.Rows.Add(row);
             }
             return tb;
+
+
         }
     
 

@@ -92,6 +92,8 @@ namespace mainVentana
             this.ribbonSeparator3 = new System.Windows.Forms.RibbonSeparator();
             this.rbtnCord = new System.Windows.Forms.RibbonButton();
             this.vbtnCotizacion = new System.Windows.Forms.RibbonButton();
+            this.rCordbtnBuscaCot = new System.Windows.Forms.RibbonButton();
+            this.vbtnClientes = new System.Windows.Forms.RibbonButton();
             this.ribbonSeparator8 = new System.Windows.Forms.RibbonSeparator();
             this.rbtnReportes = new System.Windows.Forms.RibbonButton();
             this.ribbonSeparator9 = new System.Windows.Forms.RibbonSeparator();
@@ -114,9 +116,12 @@ namespace mainVentana
             this.rtabMy = new System.Windows.Forms.RibbonTab();
             this.rpnlGeneralesUsuario = new System.Windows.Forms.RibbonPanel();
             this.ribbonButton3 = new System.Windows.Forms.RibbonButton();
+            this.rtabWMS = new System.Windows.Forms.RibbonTab();
+            this.ribbonPanel3 = new System.Windows.Forms.RibbonPanel();
+            this.ribbonButton4 = new System.Windows.Forms.RibbonButton();
             this.ribbonDescriptionMenuItem2 = new System.Windows.Forms.RibbonDescriptionMenuItem();
             this.panelContenedorForm = new System.Windows.Forms.Panel();
-            this.rCordbtnBuscaCot = new System.Windows.Forms.RibbonButton();
+            this.oldrpKepler = new System.Windows.Forms.RibbonButton();
             this.panel11.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -302,6 +307,7 @@ namespace mainVentana
             this.ribbon1.Tabs.Add(this.ribbonTab1);
             this.ribbon1.Tabs.Add(this.ribbonTab3);
             this.ribbon1.Tabs.Add(this.rtabMy);
+            this.ribbon1.Tabs.Add(this.rtabWMS);
             this.ribbon1.TabSpacing = 4;
             this.ribbon1.Text = "ribbon1";
             // 
@@ -490,6 +496,8 @@ namespace mainVentana
             // 
             this.rbtnCord.DropDownItems.Add(this.vbtnCotizacion);
             this.rbtnCord.DropDownItems.Add(this.rCordbtnBuscaCot);
+            this.rbtnCord.DropDownItems.Add(this.vbtnClientes);
+            this.rbtnCord.DropDownItems.Add(this.oldrpKepler);
             this.rbtnCord.Image = global::mainVentana.Properties.Resources.b2c__2_;
             this.rbtnCord.LargeImage = global::mainVentana.Properties.Resources.b2c__2_;
             this.rbtnCord.Name = "rbtnCord";
@@ -506,6 +514,26 @@ namespace mainVentana
             this.vbtnCotizacion.SmallImage = ((System.Drawing.Image)(resources.GetObject("vbtnCotizacion.SmallImage")));
             this.vbtnCotizacion.Text = "Nueva cotización";
             this.vbtnCotizacion.Click += new System.EventHandler(this.vbtnCotizacion_Click);
+            // 
+            // rCordbtnBuscaCot
+            // 
+            this.rCordbtnBuscaCot.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.rCordbtnBuscaCot.Image = ((System.Drawing.Image)(resources.GetObject("rCordbtnBuscaCot.Image")));
+            this.rCordbtnBuscaCot.LargeImage = ((System.Drawing.Image)(resources.GetObject("rCordbtnBuscaCot.LargeImage")));
+            this.rCordbtnBuscaCot.Name = "rCordbtnBuscaCot";
+            this.rCordbtnBuscaCot.SmallImage = ((System.Drawing.Image)(resources.GetObject("rCordbtnBuscaCot.SmallImage")));
+            this.rCordbtnBuscaCot.Text = "Buscar Cotización";
+            this.rCordbtnBuscaCot.Click += new System.EventHandler(this.rCordbtnBuscaCot_Click);
+            // 
+            // vbtnClientes
+            // 
+            this.vbtnClientes.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.vbtnClientes.Image = ((System.Drawing.Image)(resources.GetObject("vbtnClientes.Image")));
+            this.vbtnClientes.LargeImage = ((System.Drawing.Image)(resources.GetObject("vbtnClientes.LargeImage")));
+            this.vbtnClientes.Name = "vbtnClientes";
+            this.vbtnClientes.SmallImage = ((System.Drawing.Image)(resources.GetObject("vbtnClientes.SmallImage")));
+            this.vbtnClientes.Text = "Clientes";
+            this.vbtnClientes.Click += new System.EventHandler(this.vbtnClientes_Click);
             // 
             // ribbonSeparator8
             // 
@@ -688,6 +716,29 @@ namespace mainVentana
             this.ribbonButton3.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton3.SmallImage")));
             this.ribbonButton3.Text = "ribbonButton3";
             // 
+            // rtabWMS
+            // 
+            this.rtabWMS.Name = "rtabWMS";
+            this.rtabWMS.Panels.Add(this.ribbonPanel3);
+            this.rtabWMS.Text = "WMS";
+            // 
+            // ribbonPanel3
+            // 
+            this.ribbonPanel3.ButtonMoreEnabled = false;
+            this.ribbonPanel3.ButtonMoreVisible = false;
+            this.ribbonPanel3.Items.Add(this.ribbonButton4);
+            this.ribbonPanel3.Name = "ribbonPanel3";
+            this.ribbonPanel3.Text = "";
+            // 
+            // ribbonButton4
+            // 
+            this.ribbonButton4.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton4.Image")));
+            this.ribbonButton4.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton4.LargeImage")));
+            this.ribbonButton4.Name = "ribbonButton4";
+            this.ribbonButton4.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton4.SmallImage")));
+            this.ribbonButton4.Text = "Tijuana";
+            this.ribbonButton4.Click += new System.EventHandler(this.ribbonButton4_Click);
+            // 
             // ribbonDescriptionMenuItem2
             // 
             this.ribbonDescriptionMenuItem2.DescriptionBounds = new System.Drawing.Rectangle(0, 0, 0, 0);
@@ -709,15 +760,15 @@ namespace mainVentana
             this.panelContenedorForm.Size = new System.Drawing.Size(1113, 601);
             this.panelContenedorForm.TabIndex = 2;
             // 
-            // rCordbtnBuscaCot
+            // oldrpKepler
             // 
-            this.rCordbtnBuscaCot.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
-            this.rCordbtnBuscaCot.Image = ((System.Drawing.Image)(resources.GetObject("rCordbtnBuscaCot.Image")));
-            this.rCordbtnBuscaCot.LargeImage = ((System.Drawing.Image)(resources.GetObject("rCordbtnBuscaCot.LargeImage")));
-            this.rCordbtnBuscaCot.Name = "rCordbtnBuscaCot";
-            this.rCordbtnBuscaCot.SmallImage = ((System.Drawing.Image)(resources.GetObject("rCordbtnBuscaCot.SmallImage")));
-            this.rCordbtnBuscaCot.Text = "Buscar Cotización";
-            this.rCordbtnBuscaCot.Click += new System.EventHandler(this.rCordbtnBuscaCot_Click);
+            this.oldrpKepler.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.oldrpKepler.Image = ((System.Drawing.Image)(resources.GetObject("oldrpKepler.Image")));
+            this.oldrpKepler.LargeImage = ((System.Drawing.Image)(resources.GetObject("oldrpKepler.LargeImage")));
+            this.oldrpKepler.Name = "oldrpKepler";
+            this.oldrpKepler.SmallImage = ((System.Drawing.Image)(resources.GetObject("oldrpKepler.SmallImage")));
+            this.oldrpKepler.Text = "Reporte Cotizaciones Kepler";
+            this.oldrpKepler.Click += new System.EventHandler(this.oldrpKepler_Click);
             // 
             // Form1
             // 
@@ -816,6 +867,11 @@ namespace mainVentana
         private RibbonButton rbtnCord;
         private RibbonButton vbtnCotizacion;
         private RibbonButton rCordbtnBuscaCot;
+        private RibbonTab rtabWMS;
+        private RibbonPanel ribbonPanel3;
+        private RibbonButton ribbonButton4;
+        private RibbonButton vbtnClientes;
+        private RibbonButton oldrpKepler;
     }
 }
 
