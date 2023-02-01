@@ -165,5 +165,59 @@ namespace Negocios.NGCotizacion
                 }
             });
         }
+        public void CancelarCotizacion(string SucCoti,
+          string NoCotizacion)
+        {
+
+            using (modelo2Entities modelo = new modelo2Entities())
+            {
+                try
+                {
+                    var d = (from q in modelo.KDM1
+                             where q.C1.Contains(SucCoti) && q.C6.Contains(NoCotizacion) && q.C4 == 34
+                             select q).First();
+
+
+                    d.C43 = "C";
+
+                    modelo.SaveChanges();
+                }
+                catch (Exception e)
+                {
+
+                    throw;
+                }
+
+            }
+
+
+        }
+        public void PagoCotizacion(string SucCoti,
+         string NoCotizacion, string stado)
+        {
+
+            using (modelo2Entities modelo = new modelo2Entities())
+            {
+                try
+                {
+                    var d = (from q in modelo.KDM1
+                             where q.C1.Contains(SucCoti) && q.C6.Contains(NoCotizacion) && q.C4 == 34
+                             select q).First();
+
+
+                    d.C44 = stado;
+
+                    modelo.SaveChanges();
+                }
+                catch (Exception e)
+                {
+
+                    throw;
+                }
+
+            }
+
+
+        }
     }
 }

@@ -47,62 +47,75 @@ namespace mainVentana.VistaInicioCoordinadores
         }
         public async void NoMoverinfo(string dato7)
         {
-
-
-            Servicios datos = new Servicios();
-            AccesoClientes ac = new AccesoClientes();
-            var dt = ac.BuscaInfoCliente(dato7);
-            txbClave.Text = dt.C2;
-            txbNombre.Text = dt.C3;
-            txbDireccion.Text = dt.C4;
-            txbColonia.Text = dt.C5;
-            txbPoblacion.Text = dt.C6;
-            txbTel.Text = dt.C7;
-            txbRfc.Text = dt.C10;
-            txbEmail.Text = dt.C11;
-            //c12 ejecutivo
-            // c14 zona
-            txbZip.Text = dt.C27;
-
-
-
-            cmbCor.DataSource = null;
-            var lst1 = await datos.llenaCord();
-            cmbCor.ValueMember = "C2";
-            cmbCor.DisplayMember = "C3";
-            cmbCor.DataSource = lst1;
-
-            if (dt.C12 != null)
+            try
             {
-                foreach (vmCordinadores i in cmbCor.Items)
+                Servicios datos = new Servicios();
+                AccesoClientes ac = new AccesoClientes();
+                var dt = ac.BuscaInfoCliente(dato7);
+                if (dt == null)
                 {
-                    if (i.c2.Trim() == dt.C12.Trim())
-                    {
-                        cmbCor.SelectedValue = i.c2;
-                        break;
-                    }
+                    MessageBox.Show("Error, puede ser que el dato que tratas de buscar no exista, ya se ha retornado un valor vacio.", "Error");
+                    return;
                 }
-            }
+                txbClave.Text = dt.C2;
+                txbNombre.Text = dt.C3;
+                txbDireccion.Text = dt.C4;
+                txbColonia.Text = dt.C5;
+                txbPoblacion.Text = dt.C6;
+                txbTel.Text = dt.C7;
+                txbRfc.Text = dt.C10;
+                txbEmail.Text = dt.C11;
+                //c12 ejecutivo
+                // c14 zona
+                txbZip.Text = dt.C27;
 
 
-            cmbZona.DataSource = null;
-            if (dt.C14 != null && String.IsNullOrWhiteSpace(dt.C14))
-            {
-                var lst2 = await ac.LLenaZona();
-                cmbZona.ValueMember = "C2";
-                cmbZona.DisplayMember = "C1";
-                cmbZona.DataSource = lst2;
 
-                foreach (vmZonas i in cmbZona.Items)
+                cmbCor.DataSource = null;
+                var lst1 = await datos.llenaCord();
+                cmbCor.ValueMember = "C2";
+                cmbCor.DisplayMember = "C3";
+                cmbCor.DataSource = lst1;
+
+                if (dt.C12 != null)
                 {
-                    if (i.C2.Trim() == dt.C14.Trim())
+                    foreach (vmCordinadores i in cmbCor.Items)
                     {
-                        cmbZona.SelectedValue = i.C2;
-                        break;
+                        if (i.c2.Trim() == dt.C12.Trim())
+                        {
+                            cmbCor.SelectedValue = i.c2;
+                            break;
+                        }
                     }
                 }
 
+
+                cmbZona.DataSource = null;
+                if (dt.C14 != null && String.IsNullOrWhiteSpace(dt.C14))
+                {
+                    var lst2 = await ac.LLenaZona();
+                    cmbZona.ValueMember = "C2";
+                    cmbZona.DisplayMember = "C1";
+                    cmbZona.DataSource = lst2;
+
+                    foreach (vmZonas i in cmbZona.Items)
+                    {
+                        if (i.C2.Trim() == dt.C14.Trim())
+                        {
+                            cmbZona.SelectedValue = i.C2;
+                            break;
+                        }
+                    }
+
+                }
             }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            
         }
 
 
@@ -211,25 +224,38 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            var  bnd = Vld();
+            var bnd = Vld();
             if (bnd == 1)
             {
+                MessageBox.Show("Error, la validacion no ha sido satisfactoria", "Revisar datos");
                 return;
-            }    
+            }
+            try
+            {
+                AltaClientes ac = new AltaClientes();
+                ac.CreaCliente(txbClave.Text,
+                txbNombre.Text,
+                txbDireccion.Text,
+                txbColonia.Text,
+                txbPoblacion.Text,
+                 txbZip.Text,
+                txbTel.Text,
+                txbRfc.Text,
+                txbEmail.Text,
+               cmbCor.SelectedValue.ToString(),
+               cmbZona.SelectedValue.ToString()
+                );
 
-            AltaClientes ac = new AltaClientes();
-            ac.CreaCliente(txbClave.Text ,
-            txbNombre.Text,
-            txbDireccion.Text,
-            txbColonia.Text,
-            txbPoblacion.Text,
-             txbZip.Text,
-            txbTel.Text,
-            txbRfc.Text,
-            txbEmail.Text,
-           cmbCor.SelectedValue.ToString(),
-           cmbZona.SelectedValue.ToString()
-            );
+
+                MessageBox.Show("Alta correcta");
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
         }
 
         private int Vld()

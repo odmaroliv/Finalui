@@ -63,6 +63,10 @@ namespace Datos.ViewModels.Coord
 
         [DisplayName("Comentario")]
         public string C24 { get; set; }
+        [DisplayName("Estatus")]
+        public string C43 { get; set; }
+        [DisplayName("Estatus Pago")]
+        public string C44 { get; set; }
 
     }
 }

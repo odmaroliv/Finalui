@@ -90,7 +90,9 @@ namespace Negocios.NGCotizacion
                                   
                                       C86 = d.C86 , 
                                       C24= d.C24,
-                                     
+                                      C43 = d.C43,
+                                      C44 = d.C44,
+
 
 
 
