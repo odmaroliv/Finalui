@@ -33,6 +33,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txbUsr = new Guna.UI.WinForms.GunaLineTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnActivate = new ReaLTaiizor.Controls.FoxButton();
+            this.cbxPass = new Guna.UI.WinForms.GunaCheckBox();
             this.pnlImg = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
@@ -42,7 +44,6 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.gunaPictureBox1 = new Guna.UI.WinForms.GunaPictureBox();
-            this.cbxPass = new Guna.UI.WinForms.GunaCheckBox();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -97,6 +98,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.btnActivate);
             this.panel1.Controls.Add(this.cbxPass);
             this.panel1.Controls.Add(this.pnlImg);
             this.panel1.Controls.Add(this.panel4);
@@ -107,6 +109,41 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(332, 346);
             this.panel1.TabIndex = 5;
+            // 
+            // btnActivate
+            // 
+            this.btnActivate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnActivate.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
+            this.btnActivate.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(193)))), ((int)(((byte)(193)))));
+            this.btnActivate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnActivate.DisabledBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
+            this.btnActivate.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(209)))), ((int)(((byte)(209)))));
+            this.btnActivate.DisabledTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(178)))), ((int)(((byte)(190)))));
+            this.btnActivate.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.btnActivate.EnabledCalc = true;
+            this.btnActivate.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnActivate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(78)))), ((int)(((byte)(90)))));
+            this.btnActivate.Location = new System.Drawing.Point(193, 328);
+            this.btnActivate.Name = "btnActivate";
+            this.btnActivate.OverColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.btnActivate.Size = new System.Drawing.Size(120, 15);
+            this.btnActivate.TabIndex = 0;
+            this.btnActivate.Text = "Licencia";
+            this.btnActivate.Visible = false;
+            this.btnActivate.Click += new ReaLTaiizor.Util.FoxBase.ButtonFoxBase.ClickEventHandler(this.btnActivate_Click);
+            // 
+            // cbxPass
+            // 
+            this.cbxPass.BaseColor = System.Drawing.Color.White;
+            this.cbxPass.CheckedOffColor = System.Drawing.Color.Gray;
+            this.cbxPass.CheckedOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.cbxPass.FillColor = System.Drawing.Color.White;
+            this.cbxPass.Location = new System.Drawing.Point(179, 201);
+            this.cbxPass.Name = "cbxPass";
+            this.cbxPass.Size = new System.Drawing.Size(130, 20);
+            this.cbxPass.TabIndex = 23;
+            this.cbxPass.Text = "Mostrar Contraseña";
+            this.cbxPass.CheckedChanged += new System.EventHandler(this.cbxPass_CheckedChanged);
             // 
             // pnlImg
             // 
@@ -223,19 +260,6 @@
             this.gunaPictureBox1.TabIndex = 0;
             this.gunaPictureBox1.TabStop = false;
             // 
-            // cbxPass
-            // 
-            this.cbxPass.BaseColor = System.Drawing.Color.White;
-            this.cbxPass.CheckedOffColor = System.Drawing.Color.Gray;
-            this.cbxPass.CheckedOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.cbxPass.FillColor = System.Drawing.Color.White;
-            this.cbxPass.Location = new System.Drawing.Point(179, 201);
-            this.cbxPass.Name = "cbxPass";
-            this.cbxPass.Size = new System.Drawing.Size(130, 20);
-            this.cbxPass.TabIndex = 23;
-            this.cbxPass.Text = "Mostrar Contraseña";
-            this.cbxPass.CheckedChanged += new System.EventHandler(this.cbxPass_CheckedChanged);
-            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -284,5 +308,6 @@
         private Guna.UI.WinForms.GunaPictureBox gunaPictureBox1;
         private System.Windows.Forms.Panel pnlImg;
         private Guna.UI.WinForms.GunaCheckBox cbxPass;
+        private ReaLTaiizor.Controls.FoxButton btnActivate;
     }
 }

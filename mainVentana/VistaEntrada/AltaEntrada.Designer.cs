@@ -79,6 +79,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnReimp = new FontAwesome.Sharp.IconButton();
             this.lblUser = new System.Windows.Forms.Label();
             this.lblEntrada = new System.Windows.Forms.Label();
             this.lblFecha = new System.Windows.Forms.Label();
@@ -458,6 +459,7 @@
             this.alias.ReadOnly = true;
             this.alias.Size = new System.Drawing.Size(139, 20);
             this.alias.TabIndex = 107;
+            this.alias.TextChanged += new System.EventHandler(this.alias_TextChanged);
             // 
             // gunaTileButton2
             // 
@@ -560,6 +562,7 @@
             // 
             this.cmbAlmacen.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.cmbAlmacen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAlmacen.Enabled = false;
             this.cmbAlmacen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.cmbAlmacen.FormattingEnabled = true;
             this.cmbAlmacen.Items.AddRange(new object[] {
@@ -814,6 +817,7 @@
             // groupBox4
             // 
             this.groupBox4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox4.Controls.Add(this.btnReimp);
             this.groupBox4.Controls.Add(this.lblUser);
             this.groupBox4.Controls.Add(this.lblEntrada);
             this.groupBox4.Controls.Add(this.lblFecha);
@@ -826,6 +830,19 @@
             this.groupBox4.TabIndex = 111;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Alta de Entrada";
+            // 
+            // btnReimp
+            // 
+            this.btnReimp.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnReimp.IconColor = System.Drawing.Color.Black;
+            this.btnReimp.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnReimp.Location = new System.Drawing.Point(9, 91);
+            this.btnReimp.Name = "btnReimp";
+            this.btnReimp.Size = new System.Drawing.Size(212, 23);
+            this.btnReimp.TabIndex = 113;
+            this.btnReimp.Text = "Imprimir Etiquetas";
+            this.btnReimp.UseVisualStyleBackColor = true;
+            this.btnReimp.Click += new System.EventHandler(this.iconButton1_Click_1);
             // 
             // lblUser
             // 
@@ -1506,7 +1523,7 @@
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(197, 16);
             this.label18.TabIndex = 132;
-            this.label18.Text = "Para borrar dá doble click en la fila.";
+            this.label18.Text = "Para borrar dá click en el boton Borrar.";
             // 
             // AltaEntrada
             // 
@@ -1659,5 +1676,6 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private Guna.UI.WinForms.GunaDataGridView dgvFotosModifi;
         private System.Windows.Forms.TextBox lblParidad;
+        private FontAwesome.Sharp.IconButton btnReimp;
     }
 }

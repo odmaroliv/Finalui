@@ -366,7 +366,7 @@ namespace mainVentana.VistaOrSalida
             {
                 SmtpClient smtp = new SmtpClient();
                 msg.IsBodyHtml = true;
-                msg.From = new MailAddress("smtpdniell@gmail.com");
+                msg.From = new MailAddress(Negocios.Common.Cache.CacheLogin.smtpemail);
                 msg.Subject = "Salida: "+ salida;
 
                 msg.IsBodyHtml = true;
@@ -400,7 +400,7 @@ namespace mainVentana.VistaOrSalida
                 smtp.Port = 587;
                 smtp.EnableSsl = true;
                 smtp.UseDefaultCredentials = false;
-                NetworkCredential nc = new NetworkCredential("notificaciones@arnian.com", "wkwjfnicjsltguyv");
+                NetworkCredential nc = new NetworkCredential(Negocios.Common.Cache.CacheLogin.smtpemail, Negocios.Common.Cache.CacheLogin.smatppss);
                 smtp.Credentials = nc;
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                 try
@@ -621,6 +621,7 @@ namespace mainVentana.VistaOrSalida
                 if (banda == 1 || banda == 2)
                 {
                     lblMensaje.Text = "La etiqueta " + etiqueta + " ya fue escaneada";
+                    txbEscaneo.Text = "";
                     return;
                 }
                 else
@@ -647,7 +648,7 @@ namespace mainVentana.VistaOrSalida
 
                     if (bandera == 1)
                     {
-                        AltKDMENT();
+                        AltKDMENT(etiqueta);
 
 
 
@@ -672,7 +673,7 @@ namespace mainVentana.VistaOrSalida
                     }
                     else
                     {
-                        AltKDMENT();
+                        AltKDMENT(etiqueta);
                         var cO = sls.ObtieCorreo(etiqueta, sOrigen.Trim());
                         DataGridViewRow row = new DataGridViewRow();
                         row.CreateCells(dgvObser);
@@ -685,7 +686,7 @@ namespace mainVentana.VistaOrSalida
                     }
 
                 }
-
+                txbEscaneo.Text = "";
             }
         }
 
@@ -793,36 +794,36 @@ namespace mainVentana.VistaOrSalida
 
 
 
-        private async void AltKDMENT()
+        private async void AltKDMENT(string etiqueta)
         {
             if (sDestino == "TJ" && sOrigen == "SD")
             {
-                await ModificaKDMENTsd();
+                await ModificaKDMENTsd(etiqueta);
             }
 
             if (sDestino == "CSL" && sOrigen == "SD")
             {
-                await ModificaKDMENTsd();
+                await ModificaKDMENTsd(etiqueta);
             }
 
 
             if (sDestino == "SD" && sOrigen == "TJ")
             {
-                await ModificaKDMENTtj();
+                await ModificaKDMENTtj(etiqueta);
             }
             if (sDestino == "CSL" && sOrigen == "TJ")
             {
 
-                await ModificaKDMENTtj();
+                await ModificaKDMENTtj(etiqueta);
             }
             if (sDestino == "TJ" || sDestino == "SD" && sOrigen == "CSL")
             {
-                await ModificaKDMENTsd();
+                await ModificaKDMENTsd(etiqueta);
             }
         }
 
         //Sucursal destino cabo sucursal origen tijuana
-        private async Task<bool> ModificaKDMENTtj()
+        private async Task<bool> ModificaKDMENTtj(string etiqueta)
         {
            
             string uld = (string)ulDato.Trim().Clone();
@@ -838,7 +839,7 @@ namespace mainVentana.VistaOrSalida
                     try
                     {
                         var d = (from fd in modelo.KDMENT
-                                 where fd.C9 == txbEscaneo.Text.ToString().ToUpper().Trim()// 
+                                 where fd.C9 == etiqueta.ToUpper().Trim()// 
                                  select fd).First();
                         //d.C17 = uld;
                         d.C19 = sOrigen;
@@ -857,22 +858,26 @@ namespace mainVentana.VistaOrSalida
                         kd.Add(d);
                     }
 
-                    catch (Exception)
+                    catch (Exception x)
                     {
+                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Escaneo de Etiqueta" + etiqueta);
 
-                       
+                        MessageBox.Show("Ocurrio un Error, por favor no continue scaneando y contacte al administrador");
 
                     }
                     try
                     {
                         modelo.BulkUpdate(kd.ToList());
                     }
-                    catch (Exception)
+                    catch (Exception x)
                     {
 
-                        
+                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Escaneo de Etiqueta" + etiqueta);
+
+                        MessageBox.Show("Ocurrio un Error, por favor no continue scaneando y contacte al administrador");
+
                     }
-                    
+
 
                 }
             });
@@ -888,7 +893,7 @@ namespace mainVentana.VistaOrSalida
 
         }
 
-        private async Task<bool> ModificaKDMENTsd()
+        private async Task<bool> ModificaKDMENTsd(string etiqueta)
         {
 
 
@@ -906,7 +911,7 @@ namespace mainVentana.VistaOrSalida
                     {
 
                         var d = (from fd in modelo.KDMENT
-                                 where fd.C9 == txbEscaneo.Text.ToString().ToUpper().Trim()// 
+                                 where fd.C9 == etiqueta.ToUpper().Trim()// 
                                  select fd).First();
 
                         d.C12 = "E";
@@ -931,20 +936,23 @@ namespace mainVentana.VistaOrSalida
                         //modelo.SaveChanges();
 
                     }
-                    catch (Exception)
+                    catch (Exception x)
                     {
 
-                       
-                        
+                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Escaneo de Etiqueta" + etiqueta);
+
+                        MessageBox.Show("Ocurrio un Error, por favor no continue scaneando y contacte al administrador");
+
                     }
                     try
                     {
                         modelo.BulkUpdate(kd.ToList());
                     }
-                    catch (Exception)
+                    catch (Exception x)
                     {
+                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Escaneo de Etiqueta" + etiqueta);
 
-                       
+                        MessageBox.Show("Ocurrio un Error, por favor no continue scaneando y contacte al administrador");
                     }
 
                    

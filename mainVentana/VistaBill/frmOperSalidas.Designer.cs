@@ -32,6 +32,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cmbVehuculo = new Guna.UI.WinForms.GunaComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.txbEtiqueta = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dtpTiempo = new System.Windows.Forms.DateTimePicker();
@@ -41,8 +43,6 @@
             this.panelAlert = new System.Windows.Forms.Panel();
             this.labelAlert = new System.Windows.Forms.Label();
             this.gunaAdvenceButton1 = new Guna.UI.WinForms.GunaAdvenceButton();
-            this.cmbVehuculo = new Guna.UI.WinForms.GunaComboBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gunaDataGridView1)).BeginInit();
             this.panelAlert.SuspendLayout();
@@ -62,13 +62,50 @@
             this.panel1.Size = new System.Drawing.Size(1065, 124);
             this.panel1.TabIndex = 0;
             // 
+            // cmbVehuculo
+            // 
+            this.cmbVehuculo.BackColor = System.Drawing.Color.Transparent;
+            this.cmbVehuculo.BaseColor = System.Drawing.Color.White;
+            this.cmbVehuculo.BorderColor = System.Drawing.Color.Silver;
+            this.cmbVehuculo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbVehuculo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbVehuculo.FocusedColor = System.Drawing.Color.Empty;
+            this.cmbVehuculo.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbVehuculo.ForeColor = System.Drawing.Color.Black;
+            this.cmbVehuculo.FormattingEnabled = true;
+            this.cmbVehuculo.Items.AddRange(new object[] {
+            "",
+            "DUCATOCSL-08",
+            "ISUZUCSL-06",
+            "ISUZUCSL-11",
+            "NISSANCSL-07",
+            "RABONCSL-05"});
+            this.cmbVehuculo.Location = new System.Drawing.Point(760, 82);
+            this.cmbVehuculo.Name = "cmbVehuculo";
+            this.cmbVehuculo.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.cmbVehuculo.OnHoverItemForeColor = System.Drawing.Color.White;
+            this.cmbVehuculo.Size = new System.Drawing.Size(269, 26);
+            this.cmbVehuculo.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(757, 63);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(124, 16);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Sucursal que envía.";
+            this.label2.UseMnemonic = false;
+            // 
             // txbEtiqueta
             // 
             this.txbEtiqueta.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbEtiqueta.Location = new System.Drawing.Point(23, 43);
             this.txbEtiqueta.Name = "txbEtiqueta";
             this.txbEtiqueta.Size = new System.Drawing.Size(431, 31);
-            this.txbEtiqueta.TabIndex = 0;
+            this.txbEtiqueta.TabIndex = 15;
             this.txbEtiqueta.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbEtiqueta_KeyDown);
             this.txbEtiqueta.Leave += new System.EventHandler(this.txbEtiqueta_Leave);
             // 
@@ -244,43 +281,6 @@
             this.gunaAdvenceButton1.Text = "Imprimir Bill";
             this.gunaAdvenceButton1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.gunaAdvenceButton1.Click += new System.EventHandler(this.gunaAdvenceButton1_Click);
-            // 
-            // cmbVehuculo
-            // 
-            this.cmbVehuculo.BackColor = System.Drawing.Color.Transparent;
-            this.cmbVehuculo.BaseColor = System.Drawing.Color.White;
-            this.cmbVehuculo.BorderColor = System.Drawing.Color.Silver;
-            this.cmbVehuculo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbVehuculo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbVehuculo.FocusedColor = System.Drawing.Color.Empty;
-            this.cmbVehuculo.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cmbVehuculo.ForeColor = System.Drawing.Color.Black;
-            this.cmbVehuculo.FormattingEnabled = true;
-            this.cmbVehuculo.Items.AddRange(new object[] {
-            "",
-            "DUCATOCSL-08",
-            "ISUZUCSL-06",
-            "ISUZUCSL-11",
-            "NISSANCSL-07",
-            "RABONCSL-05"});
-            this.cmbVehuculo.Location = new System.Drawing.Point(760, 82);
-            this.cmbVehuculo.Name = "cmbVehuculo";
-            this.cmbVehuculo.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.cmbVehuculo.OnHoverItemForeColor = System.Drawing.Color.White;
-            this.cmbVehuculo.Size = new System.Drawing.Size(269, 26);
-            this.cmbVehuculo.TabIndex = 15;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(757, 63);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(124, 16);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "Sucursal que envía.";
-            this.label2.UseMnemonic = false;
             // 
             // frmOperSalidas
             // 

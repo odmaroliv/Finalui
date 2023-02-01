@@ -292,7 +292,7 @@ namespace mainVentana.vistaReportes
             {
                 SmtpClient smtp = new SmtpClient();
                 msg.IsBodyHtml = true;
-                msg.From = new MailAddress("smtpdniell@gmail.com");
+                msg.From = new MailAddress(Negocios.Common.Cache.CacheLogin.smtpemail);
                 msg.Subject = "Entradas con mas de 3 dias en almacen SD";
 
 
@@ -305,10 +305,10 @@ namespace mainVentana.vistaReportes
 
 
                 msg.To.Add(new MailAddress(correo));
-                msg.CC.Add(new MailAddress("meliza.garcia@arnian.com"));
+                //msg.CC.Add(new MailAddress("meliza.garcia@arnian.com"));
                 msg.CC.Add(new MailAddress("sistemas@arnian.com"));
                 msg.CC.Add(new MailAddress("operaciones@arnian.com"));
-                msg.CC.Add(new MailAddress("marcos.martinez@arnian.com "));
+               // msg.CC.Add(new MailAddress("marcos.martinez@arnian.com "));
 
                 long pesoArch = 0;
 
@@ -347,12 +347,20 @@ namespace mainVentana.vistaReportes
                 smtp.Port = 587;
                 smtp.EnableSsl = true;
                 smtp.UseDefaultCredentials = false;
-                NetworkCredential nc = new NetworkCredential("smtpdniell@gmail.com", "uukcdonkhscscxwt");
+                NetworkCredential nc = new NetworkCredential(Negocios.Common.Cache.CacheLogin.smtpemail, Negocios.Common.Cache.CacheLogin.smatppss);
                 smtp.Credentials = nc;
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                try
+                {
+                    await smtp.SendMailAsync(msg);
+                }
+                catch (Exception)
+                {
 
+                    throw;
+                }
 
-                await smtp.SendMailAsync(msg);
+                
 
             }
        

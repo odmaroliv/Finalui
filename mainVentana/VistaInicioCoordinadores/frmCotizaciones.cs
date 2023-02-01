@@ -600,7 +600,6 @@ namespace mainVentana.VistaInicioCoordinadores
                     {
                         AltaKDM1();
                     }
-
                 }
                 else
                 {
@@ -632,10 +631,11 @@ namespace mainVentana.VistaInicioCoordinadores
             {
                 CargaUltCot();
                  AltasCotizacion alta = new AltasCotizacion();
-                alta.ActualizaSqlIov(sGlobal, 34, nCotizacionG);
+               
                 alta.CreaCotizacionKDM1(sGlobal, nCotizacionG, DateTime.Now, lblCodCliente.Text.Trim(),
                     0, decimal.Parse(txbIva.Text), decimal.Parse(txbTotalArn.Text), DateTime.Now, cmbTipoPago.GetItemText(cmbTipoPago.SelectedItem).ToString(), cliente.Text.Trim(), "", "", "", float.Parse(txbParidad.Text.Trim()),
-                    decimal.Parse(txbSubTo.Text), "N", Negocios.Common.Cache.CacheLogin.username, DateTime.Now, txbGoodUsd.Text, txbGoodMnx.Text, txbReferencia.Text, txbTotalArn.Text, txbSerFee.Text, txbSubTomxn.Text, TaxAFees, txbComent.Text);
+                    decimal.Parse(txbSubTo.Text), "N", Negocios.Common.Cache.CacheLogin.username, DateTime.Now, txbGoodUsd.Text, txbGoodMnx.Text, txbReferencia.Text, txbTotalArn.Text, txbSerFee.Text, txbSubTomxn.Text, TaxAFees, txbComent.Text, txbPedimento.Text);
+                alta.ActualizaSqlIov(sGlobal, 34, nCotizacionG);
                 AltaKDMENT();
                 AltaKDM2();
                 Clipboard.SetText(nCotizacionG);

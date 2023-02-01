@@ -61,6 +61,8 @@
             this.foreverLabel13 = new ReaLTaiizor.Controls.ForeverLabel();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.btnGuardar = new ReaLTaiizor.Controls.DungeonButtonRight();
+            this.cbxMail = new ReaLTaiizor.Controls.SkyCheckBox();
+            this.lblEstatus = new ReaLTaiizor.Controls.BigLabel();
             this.parrotGroupBox1.SuspendLayout();
             this.parrotGroupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -125,6 +127,8 @@
             // 
             this.parrotGroupBox1.BorderColor = System.Drawing.Color.DodgerBlue;
             this.parrotGroupBox1.BorderWidth = 1;
+            this.parrotGroupBox1.Controls.Add(this.lblEstatus);
+            this.parrotGroupBox1.Controls.Add(this.cbxMail);
             this.parrotGroupBox1.Controls.Add(this.foreverLabel12);
             this.parrotGroupBox1.Controls.Add(this.txbComentarios);
             this.parrotGroupBox1.Controls.Add(this.foreverLabel11);
@@ -166,7 +170,7 @@
             this.foreverLabel12.BackColor = System.Drawing.Color.Transparent;
             this.foreverLabel12.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.foreverLabel12.ForeColor = System.Drawing.Color.LightGray;
-            this.foreverLabel12.Location = new System.Drawing.Point(11, 386);
+            this.foreverLabel12.Location = new System.Drawing.Point(11, 417);
             this.foreverLabel12.Name = "foreverLabel12";
             this.foreverLabel12.Size = new System.Drawing.Size(72, 13);
             this.foreverLabel12.TabIndex = 25;
@@ -178,12 +182,12 @@
             this.txbComentarios.EnabledCalc = true;
             this.txbComentarios.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbComentarios.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(133)))), ((int)(((byte)(142)))));
-            this.txbComentarios.Location = new System.Drawing.Point(14, 402);
-            this.txbComentarios.MaxLength = 32767;
+            this.txbComentarios.Location = new System.Drawing.Point(14, 433);
+            this.txbComentarios.MaxLength = 39;
             this.txbComentarios.MultiLine = true;
             this.txbComentarios.Name = "txbComentarios";
             this.txbComentarios.ReadOnly = false;
-            this.txbComentarios.Size = new System.Drawing.Size(621, 106);
+            this.txbComentarios.Size = new System.Drawing.Size(621, 75);
             this.txbComentarios.TabIndex = 24;
             this.txbComentarios.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txbComentarios.UseSystemPasswordChar = false;
@@ -566,13 +570,13 @@
             this.iconButton1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.iconButton1.UseVisualStyleBackColor = false;
+            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
             // 
             // btnGuardar
             // 
             this.btnGuardar.BackColor = System.Drawing.Color.Transparent;
             this.btnGuardar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(120)))), ((int)(((byte)(101)))));
             this.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGuardar.Enabled = false;
             this.btnGuardar.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.btnGuardar.Image = null;
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -589,6 +593,38 @@
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.TextAlignment = System.Drawing.StringAlignment.Center;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // cbxMail
+            // 
+            this.cbxMail.BackColor = System.Drawing.Color.Transparent;
+            this.cbxMail.BoxBGColorA = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.cbxMail.BoxBGColorB = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+            this.cbxMail.BoxBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
+            this.cbxMail.BoxBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
+            this.cbxMail.BoxBorderColorC = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(168)))), ((int)(((byte)(168)))));
+            this.cbxMail.Checked = false;
+            this.cbxMail.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(137)))));
+            this.cbxMail.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cbxMail.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Bold);
+            this.cbxMail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(137)))));
+            this.cbxMail.Location = new System.Drawing.Point(397, 386);
+            this.cbxMail.Name = "cbxMail";
+            this.cbxMail.Size = new System.Drawing.Size(90, 14);
+            this.cbxMail.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            this.cbxMail.TabIndex = 27;
+            this.cbxMail.Text = "MailBox";
+            // 
+            // lblEstatus
+            // 
+            this.lblEstatus.AutoSize = true;
+            this.lblEstatus.BackColor = System.Drawing.Color.Transparent;
+            this.lblEstatus.Font = new System.Drawing.Font("Segoe UI", 25F);
+            this.lblEstatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.lblEstatus.Location = new System.Drawing.Point(330, 15);
+            this.lblEstatus.Name = "lblEstatus";
+            this.lblEstatus.Size = new System.Drawing.Size(294, 46);
+            this.lblEstatus.TabIndex = 28;
+            this.lblEstatus.Text = "Consulta/Modifica";
             // 
             // frmClientesMain
             // 
@@ -649,5 +685,7 @@
         private ReaLTaiizor.Controls.ForeverLabel foreverLabel13;
         private FontAwesome.Sharp.IconButton iconButton1;
         private ReaLTaiizor.Controls.DungeonButtonRight btnGuardar;
+        private ReaLTaiizor.Controls.SkyCheckBox cbxMail;
+        private ReaLTaiizor.Controls.BigLabel lblEstatus;
     }
 }

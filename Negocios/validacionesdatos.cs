@@ -70,8 +70,8 @@ namespace Negocios
                                       billfecha = d.C77.Trim(),
                                       C42 = d.C42.Trim(), // descripcion corta
                                       elaborado = k.C81.Trim(),
-                                      coord = c.C3.Trim()
-
+                                      coord = c.C3.Trim(),
+                                      link = d.C46,
                                   };
                         lst2 = lst.ToList();
 
@@ -336,7 +336,7 @@ namespace Negocios
             }
         }
 
-        public List<Clientes> llenaClientesValida()
+        public List<Clientes> llenaClientesValida(string numero)
         {
             try
             {
@@ -345,7 +345,7 @@ namespace Negocios
 
                 {
                     var lista = from d in modelo.KDUD
-
+                                where d.C2 == numero
                                 select new Clientes
                                 {
 
@@ -605,31 +605,63 @@ namespace Negocios
             }
         }
 
-        public List<vmNumeroEntrada> NumeroEntrada(string dato, string modo)
+        public List<vmNumeroEntrada> NumeroEntrada(string datoSucIni, int modo)
         {
-            try
-            {
 
-                using (modelo2Entities modelo = new modelo2Entities())
-
+            
+                string br = "KFUD" + modo + "01." + datoSucIni;
+                try
                 {
-                    var lista = from d in modelo.NumeroEntradaMAX(dato, modo)
+                    var lst2 = new List<vmNumeroEntrada>();
 
-                                select new vmNumeroEntrada
-                                {
-                                    entrada = d
-                                };
-                    return lista.ToList();
+                    using (modelo2Entities modelo = new modelo2Entities())
 
+                    {
+                        var lista = from d in modelo.SqlIov
+                                    where d.C1.Contains(br) //&& d.C19 != sdestino 
+                                    select new vmNumeroEntrada
+                                    {
+                                        entrada = d.C4
+                                    };
+                        lst2 = lista.ToList();
+
+                    }
+
+                    return lst2;
+                }
+                catch (Exception)
+                {
+
+                    throw;
                 }
 
+            
 
-            }
-            catch (Exception)
-            {
 
-                throw;
-            }
+
+            /* try
+             {
+
+                 using (modelo2Entities modelo = new modelo2Entities())
+
+                 {
+                     var lista = from d in modelo.NumeroEntradaMAX(dato, modo)
+
+                                 select new vmNumeroEntrada
+                                 {
+                                     entrada = d
+                                 };
+                     return lista.ToList();
+
+                 }
+
+
+             }
+             catch (Exception)
+             {
+
+                 throw;
+             }*/
         }
 
 
@@ -693,6 +725,45 @@ namespace Negocios
             }
         }
 
+        public async Task<bool> ObtieneEmail()
+        {
+
+            var lst2 = new vmLogin();
+            try
+            {
+                await Task.Run(() =>
+                {
+                    using (modelo2Entities modelo = new modelo2Entities())
+
+                    {
+                        var lista = from d in modelo.SqlIov
+                                    where d.C1.Contains("EMAIL") //&& d.C19 != sdestino 
+                                    select new vmLogin
+                                    {
+                                        smtpemail = d.C4,
+                                        smatppss = d.C5,
+                                    };
+                        lst2 = lista.First();
+                    }
+
+                    if (lst2!=null)
+                    {
+                        Common.Cache.CacheLogin.smtpemail = lst2.smtpemail.Trim();
+                        Common.Cache.CacheLogin.smatppss = lst2.smatppss.Trim();
+                    }
+
+
+
+                });
+                return true;
+            }
+            catch (Exception x)
+            {
+                Negocios.LOGs.ArsLogs.LogEdit(x.Message, "No se han obtido resultados para el smtp en la venta de login");
+                return false;
+            }
+
+        }
 
         public List<vmEntradaById> LLenaEntradaByID(string id, string sucursal)
         {

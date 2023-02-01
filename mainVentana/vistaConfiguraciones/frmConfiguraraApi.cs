@@ -29,6 +29,7 @@ namespace mainVentana.vistaConfiguraciones
 
         private void foreverButton1_Click(object sender, EventArgs e)
         {
+
             Settings.Default.apiFotosUs = txbUs.Text.Trim();
             Settings.Default.apiFotosPs = txbPs.Text.Trim();
             try

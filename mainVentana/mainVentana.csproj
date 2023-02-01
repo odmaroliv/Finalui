@@ -30,10 +30,10 @@
     <UpdateUrl>https://raw.githubusercontent.com/odmaroliv/Finalui/master/published/</UpdateUrl>
     <ProductName>ARSYS</ProductName>
     <PublisherName>Daniel Olivares H.</PublisherName>
-    <MinimumRequiredVersion>1.0.0.67</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.0.69</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>68</ApplicationRevision>
+    <ApplicationRevision>70</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -218,8 +218,8 @@
       <HintPath>..\packages\System.Linq.Dynamic.Core.1.2.23\lib\net46\System.Linq.Dynamic.Core.dll</HintPath>
     </Reference>
     <Reference Include="System.Management" />
-    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Numerics" />
@@ -258,9 +258,39 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Vanara.Core, Version=3.4.13.0, Culture=neutral, PublicKeyToken=c37e4080322237fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vanara.Core.3.4.13\lib\net48\Vanara.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Vanara.PInvoke.Cryptography, Version=3.4.13.0, Culture=neutral, PublicKeyToken=c37e4080322237fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vanara.PInvoke.Cryptography.3.4.13\lib\net48\Vanara.PInvoke.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="Vanara.PInvoke.Gdi32, Version=3.4.13.0, Culture=neutral, PublicKeyToken=c37e4080322237fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vanara.PInvoke.Gdi32.3.4.13\lib\net48\Vanara.PInvoke.Gdi32.dll</HintPath>
+    </Reference>
+    <Reference Include="Vanara.PInvoke.Kernel32, Version=3.4.13.0, Culture=neutral, PublicKeyToken=c37e4080322237fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vanara.PInvoke.Kernel32.3.4.13\lib\net48\Vanara.PInvoke.Kernel32.dll</HintPath>
+    </Reference>
+    <Reference Include="Vanara.PInvoke.Ole, Version=3.4.13.0, Culture=neutral, PublicKeyToken=c37e4080322237fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vanara.PInvoke.Ole.3.4.13\lib\net48\Vanara.PInvoke.Ole.dll</HintPath>
+    </Reference>
+    <Reference Include="Vanara.PInvoke.Opc, Version=3.4.13.0, Culture=neutral, PublicKeyToken=c37e4080322237fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vanara.PInvoke.Opc.3.4.13\lib\net48\Vanara.PInvoke.Opc.dll</HintPath>
+    </Reference>
+    <Reference Include="Vanara.PInvoke.Rpc, Version=3.4.13.0, Culture=neutral, PublicKeyToken=c37e4080322237fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vanara.PInvoke.Rpc.3.4.13\lib\net48\Vanara.PInvoke.Rpc.dll</HintPath>
+    </Reference>
+    <Reference Include="Vanara.PInvoke.Security, Version=3.4.13.0, Culture=neutral, PublicKeyToken=c37e4080322237fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vanara.PInvoke.Security.3.4.13\lib\net48\Vanara.PInvoke.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Vanara.PInvoke.Shared, Version=3.4.13.0, Culture=neutral, PublicKeyToken=c37e4080322237fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vanara.PInvoke.Shared.3.4.13\lib\net48\Vanara.PInvoke.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="Vanara.PInvoke.UrlMon, Version=3.4.13.0, Culture=neutral, PublicKeyToken=c37e4080322237fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vanara.PInvoke.UrlMon.3.4.13\lib\net48\Vanara.PInvoke.UrlMon.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
-    <Reference Include="Z.EntityFramework.Extensions, Version=7.18.3.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
-      <HintPath>..\packages\Z.EntityFramework.Extensions.7.18.3\lib\net45\Z.EntityFramework.Extensions.dll</HintPath>
+    <Reference Include="Z.EntityFramework.Extensions, Version=7.18.5.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Z.EntityFramework.Extensions.7.18.5\lib\net45\Z.EntityFramework.Extensions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -316,6 +346,13 @@
     <Compile Include="Reportes\Cotizaciones\Antiguas\frmOldCotPorCliente.Designer.cs">
       <DependentUpon>frmOldCotPorCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\Cotizaciones\cotToPDF\frmToRepCot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Cotizaciones\cotToPDF\frmToRepCot.Designer.cs">
+      <DependentUpon>frmToRepCot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\DashBoardArturo\VMsucursalesValorArn.cs" />
     <Compile Include="Reportes\OrdenDeCarga\reporteSencilloCarga.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -360,6 +397,12 @@
     <Compile Include="vistaConfiguraciones\frmConfiguraraApi.Designer.cs">
       <DependentUpon>frmConfiguraraApi.cs</DependentUpon>
     </Compile>
+    <Compile Include="vistaConfiguraciones\LicenciaFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vistaConfiguraciones\LicenciaFRM.Designer.cs">
+      <DependentUpon>LicenciaFRM.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaEntrada\AltaEntrada.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -401,6 +444,12 @@
     </Compile>
     <Compile Include="VistaInicioCoordinadores\dataFilter.cs" />
     <Compile Include="VistaInicioCoordinadores\EnumerableExtensions.cs" />
+    <Compile Include="VistaInicioCoordinadores\frmAliasMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaInicioCoordinadores\frmAliasMain.Designer.cs">
+      <DependentUpon>frmAliasMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaInicioCoordinadores\frmBuscarCotizacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -499,6 +548,12 @@
     <Compile Include="vistaReportes\frmMenuReportes.Designer.cs">
       <DependentUpon>frmMenuReportes.cs</DependentUpon>
     </Compile>
+    <Compile Include="vistaReportes\frmVentaPequeña.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vistaReportes\frmVentaPequeña.Designer.cs">
+      <DependentUpon>frmVentaPequeña.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaWMS\frmMainWMS.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -539,6 +594,10 @@
     <EmbeddedResource Include="Reportes\Cotizaciones\Antiguas\frmOldCotPorCliente.resx">
       <DependentUpon>frmOldCotPorCliente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Cotizaciones\cotToPDF\frmToRepCot.resx">
+      <DependentUpon>frmToRepCot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Cotizaciones\cotToPDF\repToPdfCot.rdlc" />
     <EmbeddedResource Include="Reportes\OrdenDeCarga\reporteSencilloCarga.resx">
       <DependentUpon>reporteSencilloCarga.cs</DependentUpon>
     </EmbeddedResource>
@@ -563,6 +622,9 @@
     <EmbeddedResource Include="vistaConfiguraciones\frmConfiguraraApi.resx">
       <DependentUpon>frmConfiguraraApi.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="vistaConfiguraciones\LicenciaFRM.resx">
+      <DependentUpon>LicenciaFRM.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VistaEntrada\AltaEntrada.resx">
       <DependentUpon>AltaEntrada.cs</DependentUpon>
     </EmbeddedResource>
@@ -580,6 +642,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VistaInicioCoordinadores\ControlEntradaCoor.resx">
       <DependentUpon>ControlEntradaCoor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaInicioCoordinadores\frmAliasMain.resx">
+      <DependentUpon>frmAliasMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaInicioCoordinadores\frmBuscarCotizacion.resx">
       <DependentUpon>frmBuscarCotizacion.cs</DependentUpon>
@@ -630,12 +695,16 @@
     <EmbeddedResource Include="vistaReportes\frmMenuReportes.resx">
       <DependentUpon>frmMenuReportes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="vistaReportes\frmVentaPequeña.resx">
+      <DependentUpon>frmVentaPequeña.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VistaWMS\frmMainWMS.resx">
       <DependentUpon>frmMainWMS.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="mainVentana_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Datos.ViewModels.Carga.vmEntradasEnCarga.datasource" />
+    <None Include="Properties\DataSources\Datos.ViewModels.Coord.vmInfoTablaCot.datasource" />
     <None Include="Properties\DataSources\Datos.ViewModels.Reportes.Bill.vmBillOfTable.datasource" />
     <None Include="Properties\DataSources\Datos.ViewModels.Reportes.OrdenCarga.vmReporteCargaSimple.datasource" />
     <None Include="Properties\DataSources\Datos.ViewModels.Reportes.vmEtiquetasReporte.datasource" />

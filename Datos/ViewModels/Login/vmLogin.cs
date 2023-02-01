@@ -18,5 +18,7 @@ namespace mainVentana.vmLogin
         public string rol { get; set; }
         public string estatus { get; set; }
         public string sucdefecto { get; set; }
+        public string smtpemail { get; set; }
+        public string smatppss { get; set; }
     }
 }

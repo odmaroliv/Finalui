@@ -19,6 +19,8 @@ namespace Datos.ViewModels.Carga
         public string horaCierre { get; set; }
         [DisplayName("Tipo de Oper")]
         public string destino { get; set; }
+        [DisplayName("Referencia")]
+        public string referencia { get; set; }
 
     }
 }

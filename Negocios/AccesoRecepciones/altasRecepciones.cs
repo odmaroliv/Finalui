@@ -122,6 +122,7 @@ namespace Negocios.AccesoRecepciones
 
 
                     d.C43 = "A";
+                    d.C61 = "";
                     kd.Add(d);
 
                     try

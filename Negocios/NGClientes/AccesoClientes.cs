@@ -38,6 +38,8 @@ namespace Negocios.NGClientes
                                     C12 = d.C12,   
                                     C14 = d.C14,
                                     C27 = d.C27,
+                                    C24 = d.C24,
+                                    C32 = d.C32,
 
                                 };
                     lst2 = lista.FirstOrDefault();
@@ -53,6 +55,91 @@ namespace Negocios.NGClientes
             }
 
         }
+
+        public vmAliasInfo BuscaInfoAlias(string codigo)
+        {
+
+            try
+            {
+                var lst2 = new vmAliasInfo();
+
+                using (modelo2Entities modelo = new modelo2Entities())
+
+                {
+                    var lista = from d in modelo.KDUDA
+                                where d.C1.Contains(codigo) //&& d.C19 != sdestino 
+                                select new vmAliasInfo
+                                {
+                                    C1 = d.C1,
+                                    C2 = d.C2,
+                                    C3 = d.C3,
+                                    C4 = d.C4,
+                                    C5 = d.C5,
+                                    C6 = d.C6,
+                                    C7 = d.C7,
+                                    C8 = d.C8,
+                                    C9 = d.C9,
+                                    C10 = d.C10,
+                                    C11 = d.C11,
+
+
+                                };
+                    lst2 = lista.FirstOrDefault();
+
+                }
+
+                return lst2;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        public List<vmAliasInfo> BuscaAliasenCliente(string codigo)
+        {
+
+            try
+            {
+                var lst2 = new List<vmAliasInfo>();
+
+                using (modelo2Entities modelo = new modelo2Entities())
+
+                {
+                    var lista = from d in modelo.KDUDA
+                                where d.C3.Contains(codigo) //&& d.C19 != sdestino 
+                                select new vmAliasInfo
+                                {
+                                    C1 = d.C1,
+                                   // C2 = d.C2,
+                                    C3 = d.C3,
+                                   /* C4 = d.C4,
+                                    C5 = d.C5,
+                                    C6 = d.C6,
+                                    C7 = d.C7,
+                                    C8 = d.C8,
+                                    C9 = d.C9,
+                                    C10 = d.C10,
+                                    C11 = d.C11,*/
+
+
+                                };
+                    lst2 = lista.ToList();
+
+                }
+
+                return lst2;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
 
         public async Task<List<vmZonas>> LLenaZona()
         {

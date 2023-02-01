@@ -61,6 +61,7 @@ namespace Negocios.NGCotizacion
                                       C1  = d.C1  , 
                                      
                                       C6  = d.C6  ,
+                                      C82 = d.C82 ,     
                                       C16 = d.C16,
                                       C40 = d.C40,
                                       C42 = d.C42,
@@ -90,7 +91,9 @@ namespace Negocios.NGCotizacion
                                   
                                       C86 = d.C86 , 
                                       C24= d.C24,
-                                     
+                                      C43 = d.C43,
+                                      C44 = d.C44,
+
 
 
 

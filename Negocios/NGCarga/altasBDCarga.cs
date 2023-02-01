@@ -127,9 +127,9 @@ using System.Diagnostics;
                 }
 
             }
-
-
         }
+
+
 
         public void CerrarCarga(string datoSucIni,
            string datoOrdCarga)

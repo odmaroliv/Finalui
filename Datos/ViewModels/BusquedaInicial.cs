@@ -93,7 +93,9 @@ namespace Datos.ViewModels
 
         [DisplayName("Ultima modificacion")]
         public string ultimamodififecha { get; set; }
-
+        [DisplayName("Link")] //numero 26
+        public string link { get; set; }
+        
         //public string Estatus { get; set; }
 
 

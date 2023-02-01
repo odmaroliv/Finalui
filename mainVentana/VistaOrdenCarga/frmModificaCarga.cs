@@ -400,27 +400,36 @@ namespace mainVentana.VistaOrdenCarga
              2 = ERROR
              1 = EXITO
             */
+            try
+            {
+                if (estatus == 1)
+                {
+                    notifyIcon1.Icon = SystemIcons.Information;
+                    notifyIcon1.Visible = true;
+                    notifyIcon1.Text = cursor;
+                    notifyIcon1.BalloonTipTitle = titulo;
+                    notifyIcon1.BalloonTipText = Texto;
+                    notifyIcon1.ShowBalloonTip(10000);
 
-            if (estatus == 1)
+                }
+                else if (estatus == 2)
+                {
+                    notifyIcon1.Icon = SystemIcons.Warning;
+                    notifyIcon1.Visible = true;
+                    notifyIcon1.Text = "Error";
+                    notifyIcon1.BalloonTipTitle = titulo;
+                    notifyIcon1.BalloonTipText = Texto;
+                    notifyIcon1.ShowBalloonTip(10000);
+
+                }
+
+            }
+            catch (Exception)
             {
-                notifyIcon1.Icon = SystemIcons.Information;
-                notifyIcon1.Visible = true;
-                notifyIcon1.Text = cursor;
-                notifyIcon1.BalloonTipTitle = titulo;
-                notifyIcon1.BalloonTipText = Texto;
-                notifyIcon1.ShowBalloonTip(10000);
+
                 
             }
-            else if (estatus == 2)
-            {
-                notifyIcon1.Icon = SystemIcons.Warning;
-                notifyIcon1.Visible = true;
-                notifyIcon1.Text = "Error";
-                notifyIcon1.BalloonTipTitle = titulo;
-                notifyIcon1.BalloonTipText = Texto;
-                notifyIcon1.ShowBalloonTip(10000);
-                
-            }
+           
 
         }
 
@@ -470,13 +479,13 @@ namespace mainVentana.VistaOrdenCarga
         private async void btnCerrar_Click(object sender, EventArgs e)
         {
           
-            CerrarKdment();
+            await CerrarKdment();
             CerrarCarga();
             this.Dispose();
             this.Close();
 
         }
-        private async void CerrarKdment()
+        private async Task CerrarKdment()
         {
 
             int validacion = ValidacionesGenerales();

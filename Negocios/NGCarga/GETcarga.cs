@@ -156,6 +156,7 @@ namespace Negocios.NGCarga
                                     fechaCierre = d.C111,
                                     horaCierre = d.C112,
                                     destino = d.C103,
+                                    referencia = d.C11
 
                                 };
                     lst2 = lista.ToList();

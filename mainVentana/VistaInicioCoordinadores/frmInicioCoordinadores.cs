@@ -15,6 +15,8 @@ using Negocios;
 using mainVentana.VistaInicioCoordinadores;
 using Negocios.NGReportes;
 using mainVentana.VistaInicioFoto;
+using mainVentana.VistaEntrada;
+using Datos.ViewModels.Entradas;
 
 namespace mainVentana.VistaInicioCoordinadores
 
@@ -22,6 +24,13 @@ namespace mainVentana.VistaInicioCoordinadores
     public partial class frmInicioCoordinadores : Form
     {
         private string sActualCord;
+
+        private string calle;
+        private string colonia;
+        private string estado;
+        private string zipp;
+        private string numm;
+
 
 
         public frmInicioCoordinadores()
@@ -109,6 +118,7 @@ namespace mainVentana.VistaInicioCoordinadores
                         {
                             entrada = w.entrada,
                             cliente = w.cliente,
+                            noCli = w.noCli,
                             fechaentrada = w.fechaentrada,
                             Cotizacion = w.Cotizacion,
                             ordcarga = w.ordcarga,
@@ -117,6 +127,8 @@ namespace mainVentana.VistaInicioCoordinadores
                             SucursalInicio = w.SucursalInicio,
                             valArn=w.valArn,
                             valFact = w.valFact,
+                            desc = w.desc,
+                            aliss  =    w.aliss,
                         });
 
                         break;
@@ -172,8 +184,11 @@ namespace mainVentana.VistaInicioCoordinadores
                     int selectedrowindex = dtgEnts.SelectedCells[0].RowIndex;
                     DataGridViewRow selectedRow = dtgEnts.Rows[selectedrowindex];
                     string so = Convert.ToString(selectedRow.Cells[0].Value);
-                    string en = Convert.ToString(selectedRow.Cells[1].Value);
-                    await CargaLosValoresDeDetalle(so, en);
+                    string en = Convert.ToString(selectedRow.Cells[1].Value); 
+                    string edesc = Convert.ToString(selectedRow.Cells[11].Value);
+                    string noCliente = Convert.ToString(selectedRow.Cells[4].Value);
+                    string al = Convert.ToString(selectedRow.Cells[12].Value);
+                    await CargaLosValoresDeDetalle(so, en, edesc, noCliente, al);
                     ngbdReportes rep = new ngbdReportes();
                     await rep.CargaControlid(so.Trim(), en.Trim());
                 }
@@ -185,15 +200,19 @@ namespace mainVentana.VistaInicioCoordinadores
                
             }
         }
-        private async Task CargaLosValoresDeDetalle(string so, string en)
+        private async Task CargaLosValoresDeDetalle(string so, string en, string desc, string ncliente, string aliasDato)
         {
+            txbAliasAct.Text = "";
+            txbNoCliente.Text = "";
             ngbdReportes rep = new ngbdReportes();
             vmInfoControlCors dt = await rep.CargaControlid(so, en);
             txbEntradaDetalle.Text = dt.entrada.Trim();
             nudValArn.Value = String.IsNullOrEmpty(dt.valArn) ? default: Convert.ToDecimal(dt.valArn);
             nudValFac.Value = String.IsNullOrWhiteSpace(dt.valFact) ? default : Convert.ToDecimal(dt.valFact);
+            txbNoCliente.Text = ncliente;
             gtxbOrdenCargaDetalle.Text = dt.ordcarga;
-            gtxbOrdenSalidaDetalle.Text = dt.salida;
+            gtxbOrdenSalidaDetalle.Text = desc;//dt.salida;
+            txbAliasAct.Text = aliasDato;
             txbFecha.Text = dt.fechaentrada;
             txbSucOrigenDetalle.Text = dt.SucursalInicio.Trim();
 
@@ -209,17 +228,43 @@ namespace mainVentana.VistaInicioCoordinadores
             AltasBD bd = new AltasBD();
             try
             {
+                iconButton5.Enabled = false;
                 await bd.ActualizaValores(txbEntradaDetalle.Text, txbSucOrigenDetalle.Text, nudValFac.Value.ToString(), nudValArn.Value.ToString());
-                await  CargaControles();
+                if (String.IsNullOrWhiteSpace(calle))
+                {
+                    await CargaControles();
+                    SeleccionRow(txbEntradaDetalle.Text);
+                    Notificacion(1, txbEntradaDetalle.Text + " Los datos se han actualizado Correctamente", "Valores Actualizados", txbEntradaDetalle.Text + " Actualizada");
+                    MessageBox.Show("Se han modificado los valores, pero no la dirección de entrega.0");
+                    iconButton5.Enabled = true;
+                    LimpiVar();
+                    return;
+                }
+                if (String.IsNullOrWhiteSpace(txbAliasAct.Text))
+                {
+                    if (MessageBox.Show("La direccion que estas agregando esta en blanco, si esta enta entrada ya tenian una dirección asignada se borrara\nQuieres guardar la direccion en blanco?.", "Direccion en blanco", MessageBoxButtons.YesNo, MessageBoxIcon.Question)== DialogResult.No)
+                    {
+                        await CargaControles();
+                        SeleccionRow(txbEntradaDetalle.Text);
+                        Notificacion(1, txbEntradaDetalle.Text + " Los datos se han actualizado Correctamente", "Valores Actualizados", txbEntradaDetalle.Text + " Actualizada");
+                        MessageBox.Show("Se han modificado los valores, pero no la dirección de entrega.1");
+                        iconButton5.Enabled = true;
+                        LimpiVar();
+                        return;
+                    }
+                }
+                await bd.ActualizaValoresEntrega(txbEntradaDetalle.Text, txbSucOrigenDetalle.Text, calle, colonia, estado, txbAliasAct.Text, zipp, numm);
+                await CargaControles();
                 SeleccionRow(txbEntradaDetalle.Text);
+                iconButton5.Enabled = true;
                 Notificacion(1, txbEntradaDetalle.Text+" Los datos se han actualizado Correctamente", "Valores Actualizados", txbEntradaDetalle.Text +" Actualizada");
-
+                LimpiVar();
             }
             catch (Exception)
             {
 
                 Notificacion(2, txbEntradaDetalle.Text+" No se han Actualizado los valores", "Error","Error");
-
+                iconButton5.Enabled = true;
 
             }
         }
@@ -388,9 +433,44 @@ namespace mainVentana.VistaInicioCoordinadores
         {
             bool ts = await CargaControles();
         }
+
+        private void iconButton3_Click(object sender, EventArgs e)
+        {
+            VistaEntrada.BusquedasEnt buscador = new BusquedasEnt();
+            buscador.label2.Text = "ALIASDIREC";
+            buscador.pasado += new BusquedasEnt.pasar(moverinfo);
+            buscador.ShowDialog();
+        }
+        public void moverinfo(string dato, string dato2, string dato3, string dato4, string dato5, string dato6, string dato7, string correoCliente, int bandera) //cambia los datos de los textbox alias y clientes, la bandera dependera de la manera en la que se haya abierto el frm buscar, 0 clientes 1 alias, ADEMAS tambien sirve para cambiar el campo de cord
+        {
+            LimpiVar();
+            string nClien = txbNoCliente.Text.Trim();
+            string oClien = dato7 != null ? dato7.Trim() : string.Empty;
+            if (nClien != oClien)
+            {
+                MessageBox.Show("Este alias no pertenece a este cliente");
+                return;
+            }
+            if (bandera == 1)//alias
+            {
+                calle = dato4;
+                colonia = dato5;
+                estado = dato6;
+                zipp = dato3;
+                numm = correoCliente;
+                txbAliasAct.Text = dato;
+            }
+        }
+        private void LimpiVar()
+        {
+            calle = "";
+            colonia = "";
+            estado = "";
+            txbAliasAct.Text = "";
+            zipp = "";
+            numm = "";
+        }
+
     }
-   
-
-
 
 }

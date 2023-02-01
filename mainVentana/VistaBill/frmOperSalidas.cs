@@ -115,7 +115,7 @@ namespace mainVentana.VistaBill
 
 
         List<VMSalidasBill> listaeti = new List<VMSalidasBill>();
-        private void txbEtiqueta_KeyDown(object sender, KeyEventArgs e)
+        private async void txbEtiqueta_KeyDown(object sender, KeyEventArgs e)
         {
             if (cmbVehuculo.SelectedItem == null)
             {
@@ -140,27 +140,36 @@ namespace mainVentana.VistaBill
                 }
 
                 BusquedaBill bd = new BusquedaBill();
-                var ss = bd.SalidasOperacion(eti, fecha, vehiculo);
-                if (ss.Count() > 0)
+                try
                 {
-                    listaeti.Add(ss[0]);
-                }
-                else
-                {
-                    labelAlert.Text = "No Se encontro";
-                    panelAlert.BackColor = Color.Red;
-                    txbEtiqueta.Text = "";
-                    return;
-                }
-                panelAlert.BackColor = Color.Green;
-                labelAlert.Text = "Agregada";
-                gunaDataGridView1.DataSource = null;
-                txbEtiqueta.Text = "";
-                gunaDataGridView1.DataSource = listaeti;
-                gunaDataGridView1.Rows[gunaDataGridView1.RowCount - 1].Selected = true;
+                    var ss = bd.SalidasOperacion(eti, fecha, vehiculo);
 
+                    if (ss.Count() > 0)
+                    {
+                        listaeti.Add(ss[0]);
+                        await bd.ModificaKDMENTToBill(eti);
+                    }
+                    else
+                    {
+                        labelAlert.Text = "No Se encontro";
+                        panelAlert.BackColor = Color.Red;
+                        txbEtiqueta.Text = "";
+                        return;
+                    }
+                    panelAlert.BackColor = Color.Green;
+                    labelAlert.Text = "Agregada";
+                    gunaDataGridView1.DataSource = null;
+                    txbEtiqueta.Text = "";
+                    gunaDataGridView1.DataSource = listaeti;
+                    gunaDataGridView1.Rows[gunaDataGridView1.RowCount - 1].Selected = true;
+                }
+                catch (Exception x )
+                {
+                    Negocios.LOGs.ArsLogs.LogEdit(x.Message, "BILL sale de arsys a Beetrack" + eti);
+                }
             }
         }
+
 
         private int Verifica(string dato)
         {
@@ -240,19 +249,29 @@ namespace mainVentana.VistaBill
 
         }
 
-        private void gunaDataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private async void gunaDataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             // Comprueba si la columna seleccionada es la columna 3
             if (e.ColumnIndex == 4)
             {
-                // Obtén el valor de la celda seleccionada
-                string value = gunaDataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                try
+                {
+                    BusquedaBill bd = new BusquedaBill();
+                    // Obtén el valor de la celda seleccionada
+                    string value = gunaDataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
 
-                // Busca el elemento en la lista y lo elimina
-                listaeti.Remove(listaeti.Where(x => x.etiqueta == value).First());
-                gunaDataGridView1.DataSource = null;
-                gunaDataGridView1.DataSource = listaeti;
+                    // Busca el elemento en la lista y lo elimina
+                    listaeti.Remove(listaeti.Where(x => x.etiqueta == value).First());
+                    gunaDataGridView1.DataSource = null;
+                    gunaDataGridView1.DataSource = listaeti;
+                    await bd.ModificaKDMENTToBillBorra(value);
+                }
+                catch (Exception)
+                {
 
+                    throw;
+                }
+                
             }
         }
     }

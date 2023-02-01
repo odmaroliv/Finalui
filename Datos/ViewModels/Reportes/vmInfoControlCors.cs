@@ -17,6 +17,8 @@ namespace Datos.ViewModels.Reportes
         public string fechaentrada { get; set; }
         [DisplayName("Cliente")]
         public string cliente { get; set; }
+        [DisplayName("No Cli")]
+        public string noCli { get; set; }
         [DisplayName("No. Cotización")]
         public string Cotizacion { get; set; }
         [DisplayName("Ord.Carga")]
@@ -25,12 +27,17 @@ namespace Datos.ViewModels.Reportes
         public string ordapli { get; set; }
         [DisplayName("Salida")]
         public string salida { get; set; }
-      //  public string numeroent { get; set; }
+        //  public string numeroent { get; set; }
         [DisplayName("Val.Factura")]
         public string valFact { get; set; }
         [DisplayName("Val.Arnian")]
         public string valArn { get; set; }
-       // public string etiqueta { get; set; }
+
+        [DisplayName("Descripcion")]
+        public string desc { get; set; }
+        [DisplayName("Alias")]
+        public string aliss { get; set; }
+        // public string etiqueta { get; set; }
 
     }
 }

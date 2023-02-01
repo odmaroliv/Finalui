@@ -13,6 +13,7 @@ using Negocios;
 using System.Threading;
 using mainVentana.VistaInicioFoto;
 using mainVentana.VistaInicioCoordinadores;
+using mainVentana.vistaReportes;
 
 namespace mainVentana
 {
@@ -42,12 +43,14 @@ namespace mainVentana
                 frm.pasado += new frmInicioCoordinadores.pasar(refrescatabla);
                 AbrirFormEnPanel(frm);
             }
-            if (Negocios.Common.Cache.CacheLogin.rol.Trim() == "ADMIN")
+           else if (Negocios.Common.Cache.CacheLogin.rol.Trim() == "ADMIN")
             {
                 btnAdminAdmin.Enabled = true;
                 btnCordAdmin.Enabled = true;
+                btnArtu.Enabled = true;
                 btnAdminAdmin.Visible = true;
                 btnCordAdmin.Visible = true;
+                btnArtu.Visible = true;
             }
 
             else
@@ -122,6 +125,9 @@ namespace mainVentana
             int filas = gunaDataGridView1.Rows.Count;
             for (int i = 0; i < filas; i++)
             {
+
+
+
                 DateTime fechaactual = DateTime.Now;
                 DateTime fechaent;
                 DateTime dt;
@@ -305,12 +311,17 @@ namespace mainVentana
         {
             if (gunaDataGridView1.Rows.Count > 0)
             {
-                /*string nombrecolumna = gunaDataGridView1.Columns[e.ColumnIndex].HeaderText;
-                if (nombrecolumna.Trim() != "Entrada")
+                string nombrecolumna = gunaDataGridView1.Columns[e.ColumnIndex].HeaderText;
+
+                
+                if (nombrecolumna.Trim() == "Link" && gunaDataGridView1.Rows[e.RowIndex].Cells[26].Value.ToString().Contains("BTRACKSALIDA") )
                 {
-                    MessageBox.Show("Tienes que seleccionar la entrada.");
+                    string valorEnt = gunaDataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    string ValorSuc = gunaDataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+                    string url = string.Format("https://app.beetrack.com/search/{0}", ValorSuc.Trim() + "-" + valorEnt.Trim()) ;
+                    System.Diagnostics.Process.Start(url);
                     return;
-                }*/
+                }
                
                 string id = gunaDataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
                 string orig = gunaDataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
@@ -372,6 +383,16 @@ namespace mainVentana
                 AbrirFormEnPanel(ts);
             }
 
+        }
+
+        private void skyButton1_Click_1(object sender, EventArgs e)
+        {
+            if (Negocios.Common.Cache.CacheLogin.rol.Trim() == "ADMIN")
+            {
+
+                frmVentaPequeña ts = new frmVentaPequeña();
+                AbrirFormEnPanel(ts);
+            }
         }
 
 

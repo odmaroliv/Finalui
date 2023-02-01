@@ -65,23 +65,31 @@ namespace Negocios
                         msg.Body = sr.ReadToEnd().ToString();
                     }
 
-                   
-
-                    string[] toMail = correoCord == "" ? "sistemas@arnian.com".Split(','): correoCord.Split(',');//textBox6.Text.Split(','); // llenar desde la bd con los datos del cliente 
-                    foreach (string ToEmailId in toMail)
+                    try
                     {
-                        msg.To.Add(new MailAddress(ToEmailId));
-                    }
-                    if (correosClientes != "")
-                    {
-                        string[] toCC = correosClientes.Split(',')[0].Trim() == "" ? "sistemas@arnian.com".Split(',') : correosClientes.Split(',');
-                        foreach (string ToCCId in toCC)
+                        string[] toMail = correoCord == "" ? "sistemas@arnian.com".Split(',') : correoCord.Split(',');//textBox6.Text.Split(','); // llenar desde la bd con los datos del cliente 
+                        foreach (string ToEmailId in toMail)
                         {
-                            msg.CC.Add(new MailAddress(ToCCId));
+                            msg.To.Add(new MailAddress(ToEmailId));
+                        }
+                        if (correosClientes != "")
+                        {
+                            string[] toCC = correosClientes.Split(',')[0].Trim() == "" ? "sistemas@arnian.com".Split(',') : correosClientes.Split(',');
+                            foreach (string ToCCId in toCC)
+                            {
+                                msg.CC.Add(new MailAddress(ToCCId));
+                            }
                         }
                     }
+                    catch (Exception x)
+                    {
+                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Podria esta vacia la cadena de Correo");
+                        bandera = 2; 
+                    }
+
                     
-                   
+
+
 
                     /*if (textBox4.Text != "")
                     {
@@ -91,31 +99,43 @@ namespace Negocios
                             msg.Bcc.Add(new MailAddress(ToBCCId));
                         }
                     }*/
-                    smtp.Host = "smtp.gmail.com";//textBox8.Text;
+                    try
+                    {
+                        smtp.Host = "smtp.gmail.com";//textBox8.Text;
                     smtp.Port = 587;
                     smtp.EnableSsl = true;
                     smtp.UseDefaultCredentials = false;
-                    NetworkCredential nc = new NetworkCredential("notificaciones@arnian.com", "wkwjfnicjsltguyv");
+                    NetworkCredential nc = new NetworkCredential(Common.Cache.CacheLogin.smtpemail, Common.Cache.CacheLogin.smatppss);
                     smtp.Credentials = nc;
                     smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
 
+                   
+                        smtp.Send(msg);
+                        msg.Attachments.Clear();
+                        msg.Attachments.Dispose();
+                        msg.Dispose();
+                        msg = null;
+                        smtp.Dispose();
+                        smtp = null;
+                        bandera = 3;
+                    }
+                    catch (Exception x)
+                    {
 
-                    smtp.Send(msg);
-                    msg.Attachments.Clear();
-                    msg.Attachments.Dispose();
-                    msg.Dispose();
-                    msg = null;
-                    smtp.Dispose();
-                    smtp = null;
-                    bandera = 2;
+                        bandera = 2;
+                        Negocios.LOGs.ArsLogs.LogEdit(x.Message,"Correo, al hacer clic al boton de guardar o cualquier boton de que llame al corre, anteriormente este error se dio porque no se podia autenticar una cuenta, estaba bloqueada en el Administrador de dominio");
+                        throw;
+                    }
+
+
                 });
                 return bandera;
             }
-            catch (Exception)
+            catch (Exception x)
             {
-
-                throw;
+                Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Correo");
             }
+            return bandera;
         }
 
 

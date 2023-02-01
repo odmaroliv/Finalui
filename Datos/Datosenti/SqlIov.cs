@@ -18,5 +18,6 @@ namespace Datos.Datosenti
         public decimal C2 { get; set; }
         public decimal C3 { get; set; }
         public string C4 { get; set; }
+        public string C5 { get; set; }
     }
 }

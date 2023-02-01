@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using mainVentana.Loading;
 using mainVentana.Properties;
+using mainVentana.vistaConfiguraciones;
 using Negocios;
 
 namespace mainVentana
@@ -27,6 +28,8 @@ namespace mainVentana
         
         private async void Login_Load(object sender, EventArgs e)
         {
+            
+            await obtain();
             txbPass2.UseSystemPasswordChar = true;
             Negocios.psisarn psisarn = new Negocios.psisarn();
             psisarn.CS(Negocios.MB.mbsecurity.SN, Negocios.MB.mbsecurity.CSN);
@@ -45,6 +48,40 @@ namespace mainVentana
             }
             txbUsr.Text = Settings.Default.usuarioRecurrente;
         }
+
+        private async Task<int> obtain()
+        {
+            //int estatus = 1; // 1 identificado 0 Error
+            //Negocios.Properties.Settings.Default.apiUs = null;
+            //Negocios.Properties.Settings.Default.apiPs = null;
+            if (!String.IsNullOrWhiteSpace(Negocios.Common.Cache.AccesData.uso))
+            {
+                return 1;
+            }
+
+            Negocios.accesCommon.NgAccesData dt = new Negocios.accesCommon.NgAccesData();
+
+            await  dt.ObtenerCredenciales();
+
+            string Us = Negocios.Common.Cache.AccesData.uso;
+            
+
+
+            if (String.IsNullOrWhiteSpace(Us))
+            {
+                MessageBox.Show("No se ha activado este producto, requieres una Licencia de Arsys Arnian System WMS", "Producto no activado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                btnActivate.Visible = true;
+                return 0;
+            }
+        
+            return 1;
+            
+        }
+
+
+
+
+
         private void iconButton1_Click(object sender, EventArgs e)
         {
             if (Negocios.ConeccionRed.TestInternet() == 1)
@@ -79,7 +116,7 @@ namespace mainVentana
         }
         
 
-        private void Inicio()
+        private async void Inicio()
         {
             //--------------------validamos si hay coneccion, de lo contrario no ejecuta el showD />
             Servicios vld = new Servicios();
@@ -88,6 +125,7 @@ namespace mainVentana
 
 
             bool valida = vld.cargalogin(txbUsr.Text.Trim(), txbPass2.Text.Trim());
+            bool smtp = await vld.ObtieneEmail();
             if (valida == true)
             {
                 Form1 frm1 = new Form1();
@@ -206,6 +244,14 @@ namespace mainVentana
         private void iconButton2_Click(object sender, EventArgs e)
         {
             txbPass2.UseSystemPasswordChar = false;
+        }
+
+        private void btnActivate_Click(object sender, EventArgs e)
+        {
+            using (LicenciaFRM frm = new LicenciaFRM())
+            {
+                frm.ShowDialog();
+            }
         }
     }
 }

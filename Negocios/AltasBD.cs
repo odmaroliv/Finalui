@@ -85,6 +85,25 @@ namespace Negocios
             }
 
         }
+        public void ActualizaSqlIov(string datoSucIni, int modo, string dato= null)
+        {
+
+
+            string br = "KFUD" + modo + "01." + datoSucIni;
+            using (modelo2Entities modelo = new modelo2Entities())
+            {
+
+                try
+                {
+                    modelo.aumentaSQLint(br, modo.ToString().Trim());
+                }
+                catch (Exception)
+                {
+
+                    System.Windows.Forms.MessageBox.Show("Ha Ocurrido un error, datos faltantes o incorrectos.");
+                }
+            }
+        }
 
         public void agregaComentKDM1(string sucEntrada, string codEntrada, string moneda, DateTime fecha, string codCliente, string desc)
         {
@@ -363,6 +382,7 @@ namespace Negocios
 
 
                     d.C43 = "A";
+                    d.C61 = "";
                     kd.Add(d);
 
                     try
@@ -403,7 +423,36 @@ namespace Negocios
 
         }
 
-       
+        public async Task ActualizaValoresEntrega(string entrada, string sucursalIni, string calle, string colonia, string estado, string aliass, string zip, string num)
+        {
+            try
+            {
+                using (modelo2Entities modelo = new modelo2Entities())
+                {
+                    var filas = from q in modelo.KDMENT
+                                where q.C1 == sucursalIni && q.C6 == entrada && q.C4 == 35
+                                select q;
+
+                    foreach (var fila in filas)
+                    {
+                        fila.C24 = aliass;
+                        fila.C25 = calle;
+                        fila.C26 = colonia;
+                        fila.C27 = estado;
+                        fila.C28 = zip;
+                        fila.C29 = num;
+                    }
+
+                    await modelo.SaveChangesAsync();
+
+                }
+            }
+            catch (Exception)
+            {
+                System.Windows.Forms.MessageBox.Show("Ha ocurrido un error, no hemos podido actualizar el valor.");
+            }
+
+        }
 
     }
 

@@ -21,7 +21,8 @@ namespace Datos.ViewModels.Coord.Clientes
         public string C11 { get; set; } // Correos
         public string C12 { get; set; } // Ejecuto/Cord (Codigo)
         public string C14 { get; set; } // Zona
+        public string C24 { get; set; } // Comentarios
         public string C27 { get; set; } // ZIP
-
+        public string C32 { get; set; } // MailBox
     }
 }

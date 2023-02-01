@@ -37,6 +37,12 @@ namespace mainVentana.VistaEntrada
             { pasado(gunaTextBox2.Text,"",gunaTextBox1.Text,calle,colonia,ciudad, Codcliente, CorreosCliente, 0); }
             else if (label2.Text == "ALIAS")
             { pasado(gunaTextBox2.Text, gunaTextBox3.Text, gunaTextBox1.Text,calle,colonia,ciudad,Codcliente, CorreosCliente, 1); }
+
+            else if (label2.Text == "ALIASDIREC")
+            {
+                pasado(gunaTextBox2.Text, gunaTextBox3.Text, zip, calle, colonia, ciudad, Codcliente, num, 1);
+            }
+
         }
 
         private async Task<AutoCompleteStringCollection> aliasList()
@@ -64,6 +70,16 @@ namespace mainVentana.VistaEntrada
                 }
                
             }
+            else if (label2.Text == "ALIASDIREC")
+            {
+                var lst = await datos.llenaAlias();
+                foreach (var p in lst)
+                {
+                    List.Add(p.c1);
+
+                }
+
+            }
 
             return List;
 
@@ -90,6 +106,8 @@ namespace mainVentana.VistaEntrada
         string calle;
         string colonia;
         string ciudad;
+        string zip;
+        string num;
         string Codcliente;
         string CorreosCliente;
         private void gunaGradientTileButton4_Click(object sender, EventArgs e)
@@ -101,80 +119,173 @@ namespace mainVentana.VistaEntrada
 
         private async void Ejecuta()
         {
-            if (label2.Text == "ALIAS")
+            try
             {
-                Servicios datos = new Servicios();
-                var lst = await datos.llenaAlias();
-                int bandera = 0;
-                foreach (var d in lst)
+                if (label2.Text == "ALIAS")
                 {
-                    if (d.c1.ToString().Trim() == comboBox1.Text.Trim() && comboBox1.Text != " ")
+                    Servicios datos = new Servicios();
+                    var lst = await datos.llenaAlias();
+                    string comboBoxText = comboBox1.Text.Trim();
+                    int bandera = 0;
+
+                    foreach (var d in lst)
                     {
-                        bandera = 1;
-                        gunaTextBox2.Text = d.c1.ToString().Trim();
-                        gunaTextBox3.Text =  validCli(d.c3.ToString())[0].ToString();
-                        gunaTextBox1.Text = validCli(d.c3.ToString())[1].ToString();
-                        CorreosCliente =  validCli(d.c3.ToString())[2].ToString();
-                        Codcliente = validCli(d.c3.ToString())[3].ToString();
-                        calle = d.c4.ToString();
-                        colonia = d.c5.ToString();
-                        ciudad = d.c6.ToString();
-                        pasarinfo();
-                        this.Dispose();
-                        this.Close();
+                        if (comboBoxText != " " && d.c1.ToString().Trim() == comboBoxText)
+                        {
+                            bandera = 1;
+                            gunaTextBox2.Text = string.IsNullOrEmpty(d.c1.ToString()) ? "" : d.c1.ToString().Trim();
+                            gunaTextBox3.Text = validCli(d.c3.ToString())[0].ToString();
+                            gunaTextBox1.Text = validCli(d.c3.ToString())[1].ToString();
+                            CorreosCliente = validCli(d.c3.ToString())[2].ToString();
+                            Codcliente = validCli(d.c3.ToString())[3].ToString();
+                            calle = d.c4.ToString();
+                            colonia = d.c5.ToString();
+                            ciudad = d.c6.ToString();
+                            pasarinfo();
+                            this.Close();
+                            break;
+                        }
+                    }
+
+                    /*  Servicios datos = new Servicios();
+                      var lst = await datos.llenaAlias();
+                      int bandera = 0;
+                      foreach (var d in lst)
+                      {
+                          if (d.c1.ToString().Trim() == comboBox1.Text.Trim() && comboBox1.Text != " ")
+                          {
+                              bandera = 1;
+                              gunaTextBox2.Text = string.IsNullOrEmpty(d.c1.ToString()) ? "" : d.c1.ToString().Trim();
+                              gunaTextBox3.Text = validCli(d.c3.ToString())[0].ToString();
+                              gunaTextBox1.Text = validCli(d.c3.ToString())[1].ToString();
+                              CorreosCliente = validCli(d.c3.ToString())[2].ToString();
+                              Codcliente = validCli(d.c3.ToString())[3].ToString();
+                              calle = d.c4.ToString();
+                              colonia = d.c5.ToString();
+                              ciudad = d.c6.ToString();
+                              pasarinfo();
+                              this.Dispose();
+                              this.Close();
+
+                          }*/
+
+                
+
+                if (bandera == 0)
+                    {
+                        gunaTextBox2.Text = "";
+                        MessageBox.Show("Dato incorrecto, el alias: " + comboBox1.Text + ", NO se encuentra en la base de datos ");
 
                     }
 
                 }
-
-                if (bandera == 0)
+                else if (label2.Text == "ALIASDIREC")
                 {
-                    gunaTextBox2.Text = "";
-                    MessageBox.Show("Dato incorrecto, el alias: " + comboBox1.Text + ", NO se encuentra en la base de datos ");
+                    Servicios datos = new Servicios();
+                    var lst = await datos.llenaAlias();
+                    string comboBoxText = comboBox1.Text.Trim();
+                    int bandera = 0;
 
-                }
-
-            }
-            else if (label2.Text == "CLIENTE")
-            {
-                Servicios datos = new Servicios();
-                var lst = await datos.llenaClientes();
-                int bandera = 0;
-                foreach (var d in lst)
-                {
-                    if (d.c3.ToString().Trim() == comboBox1.Text.Trim() && comboBox1.Text != " ")
+                    foreach (var d in lst)
                     {
-                        bandera = 1;
-                        gunaTextBox2.Text = d.c3.ToString().Trim();
-                        gunaTextBox1.Text = d.c12.ToString().Trim();
-                        CorreosCliente = d.c11.Trim();
-                        calle = d.c4.ToString();
-                        colonia = d.c5.ToString();
-                        ciudad = d.c6.ToString();
-                        Codcliente = d.c2.Trim();
-                        //CorreosCliente = d.c11;
-                        pasarinfo();
-                        this.Dispose();
-                        this.Close();
+                        if (comboBoxText != " " && d.c1.ToString().Trim() == comboBoxText)
+                        {
+                            bandera = 1;
+                            gunaTextBox2.Text = string.IsNullOrEmpty(d.c1.ToString()) ? "" : d.c1.ToString().Trim();
+                            gunaTextBox3.Text = validCli(d.c3.ToString())[0].ToString();
+                            gunaTextBox1.Text = validCli(d.c3.ToString())[1].ToString();
+                            zip = d.c7;
+                            num = d.c8;
+                            Codcliente = validCli(d.c3.ToString())[3].ToString();
+                            calle = d.c4.ToString();
+                            colonia = d.c5.ToString();
+                            ciudad = d.c6.ToString();
+                            pasarinfo();
+                            this.Close();
+                            break;
+                        }
+                    }
+
+                    /*  Servicios datos = new Servicios();
+                      var lst = await datos.llenaAlias();
+                      int bandera = 0;
+                      foreach (var d in lst)
+                      {
+                          if (d.c1.ToString().Trim() == comboBox1.Text.Trim() && comboBox1.Text != " ")
+                          {
+                              bandera = 1;
+                              gunaTextBox2.Text = string.IsNullOrEmpty(d.c1.ToString()) ? "" : d.c1.ToString().Trim();
+                              gunaTextBox3.Text = validCli(d.c3.ToString())[0].ToString();
+                              gunaTextBox1.Text = validCli(d.c3.ToString())[1].ToString();
+                              CorreosCliente = validCli(d.c3.ToString())[2].ToString();
+                              Codcliente = validCli(d.c3.ToString())[3].ToString();
+                              calle = d.c4.ToString();
+                              colonia = d.c5.ToString();
+                              ciudad = d.c6.ToString();
+                              pasarinfo();
+                              this.Dispose();
+                              this.Close();
+
+                          }*/
+
+
+
+                    if (bandera == 0)
+                    {
+                        gunaTextBox2.Text = "";
+                        MessageBox.Show("Dato incorrecto, el alias: " + comboBox1.Text + ", NO se encuentra en la base de datos ");
 
                     }
 
                 }
-
-                if (bandera == 0)
+                else if (label2.Text == "CLIENTE")
                 {
-                    gunaTextBox2.Text = "";
-                    MessageBox.Show("Dato incorrecto, el cliente: " + comboBox1.Text + ", NO se encuentra en la base de datos ");
+                    Servicios datos = new Servicios();
+                    var lst = await datos.llenaClientes();
+                    int bandera = 0;
+                    foreach (var d in lst)
+                    {
+                        if (d.c3.ToString().Trim() == comboBox1.Text.Trim() && comboBox1.Text != " ")
+                        {
+                            bandera = 1;
+                            gunaTextBox2.Text = string.IsNullOrEmpty(d.c3.ToString()) ? "" : d.c3.ToString().Trim();
+                            gunaTextBox1.Text = string.IsNullOrEmpty(d.c12.ToString()) ? "" : d.c12.ToString().Trim();
+                            CorreosCliente = d.c11.Trim();
+                            calle = d.c4.ToString();
+                            colonia = d.c5.ToString();
+                            ciudad = d.c6.ToString();
+                            Codcliente = string.IsNullOrEmpty(d.c2) ? "" : d.c2.Trim();
+                            //CorreosCliente = d.c11;
+                            pasarinfo();
+                            this.Dispose();
+                            this.Close();
 
+                        }
+
+                    }
+
+                    if (bandera == 0)
+                    {
+                        gunaTextBox2.Text = "";
+                        MessageBox.Show("Dato incorrecto, el cliente: " + comboBox1.Text + ", NO se encuentra en la base de datos ");
+
+                    }
                 }
             }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Ocurrio un error, buscando un alias o un cliente, lo mas comun es que el cliente o alias que intentas buscar tenga algun error en su informacion, trata de revizar que no sea asi.");
+            }
+           
         }
+
 
 
         private  List<string> validCli(string clave)//dado un alias busca un cliente para rellenarlo automaticamente
         {
-            Servicios datos2 = new Servicios();
-            var lst2 = datos2.llenaClientesValida();
+           Servicios datos2 = new Servicios();
+            var lst2 = datos2.llenaClientesValida(clave);
               string cliente = "";
              string cord = "";
             string codclient = "";

@@ -399,6 +399,8 @@
           <Property Name="C7" Type="char" MaxLength="20" />
           <Property Name="C8" Type="char" MaxLength="40" />
           <Property Name="C9" Type="decimal" Precision="2" Scale="0" />
+          <Property Name="C10" Type="char" MaxLength="30" />
+          <Property Name="C11" Type="char" MaxLength="30" />
         </EntityType>
         <EntityType Name="KDUK">
           <Key>
@@ -512,6 +514,7 @@
           <Property Name="C2" Type="decimal" Precision="2" Scale="0" Nullable="false" />
           <Property Name="C3" Type="decimal" Precision="2" Scale="0" Nullable="false" />
           <Property Name="C4" Type="char" MaxLength="51" />
+          <Property Name="C5" Type="char" MaxLength="100" />
         </EntityType>
         <Function Name="AgregaKDMENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SUC" Type="varchar" Mode="In" />
@@ -923,6 +926,8 @@
           <Property Name="C7" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
           <Property Name="C8" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
           <Property Name="C9" Type="Decimal" Precision="2" Scale="0" />
+          <Property Name="C10" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="C11" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
         </EntityType>
         <EntityType Name="KDUSUARIOS">
           <Key>
@@ -1187,6 +1192,7 @@
           <Property Name="C2" Type="Decimal" Nullable="false" Precision="2" Scale="0" />
           <Property Name="C3" Type="Decimal" Nullable="false" Precision="2" Scale="0" />
           <Property Name="C4" Type="String" MaxLength="51" FixedLength="true" Unicode="false" />
+          <Property Name="C5" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
         </EntityType>
         <EntityType Name="KDFEMTOCFD">
           <Key>
@@ -1562,6 +1568,8 @@
           <EntitySetMapping Name="KDUDA">
             <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.KDUDA">
               <MappingFragment StoreEntitySet="KDUDA">
+                <ScalarProperty Name="C11" ColumnName="C11" />
+                <ScalarProperty Name="C10" ColumnName="C10" />
                 <ScalarProperty Name="C1" ColumnName="C1" />
                 <ScalarProperty Name="C2" ColumnName="C2" />
                 <ScalarProperty Name="C3" ColumnName="C3" />
@@ -1730,6 +1738,7 @@
           <EntitySetMapping Name="SqlIov">
             <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.SqlIov">
               <MappingFragment StoreEntitySet="SqlIov">
+                <ScalarProperty Name="C5" ColumnName="C5" />
                 <ScalarProperty Name="C4" ColumnName="C4" />
                 <ScalarProperty Name="C3" ColumnName="C3" />
                 <ScalarProperty Name="C2" ColumnName="C2" />

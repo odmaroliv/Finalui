@@ -20,6 +20,8 @@ namespace Negocios.Common.Cache
         public static string estatus { get; set; }
         public static string sucdefecto { get; set; }
         public static string sucGlobal { get; set; }
+        public static string smtpemail { get; set; }
+        public static string smatppss { get; set; }
 
     }
 }

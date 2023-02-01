@@ -1070,7 +1070,7 @@
             <Top>5.4675in</Top>
             <Left>0.28125in</Left>
             <Height>0.5in</Height>
-            <Width>5.89458in</Width>
+            <Width>5.89459in</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -1313,6 +1313,12 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="vArn">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -1383,6 +1389,11 @@
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>3</RowIndex>
           <ParameterName>Coordinador</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>3</RowIndex>
+          <ParameterName>vArn</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

@@ -1,4 +1,7 @@
 ﻿using Datos.ViewModels.Carga;
+using Datos.ViewModels.Servicios;
+using Negocios;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -49,7 +52,7 @@ namespace mainVentana.VistaInicioCoordinadores
         private void cargaDatos()
         {
             dtgCargasFilter.DataSource = null;
-            
+
             Negocios.NGCarga.GETcarga get = new Negocios.NGCarga.GETcarga();
             var operacionV = get.ObtieneInfoparaCargasActivas(txbSucOrigenDetalle.Text, txbEntradaDetalle.Text);
             var valoresG = get.valoresObtiene(txbSucOrigenDetalle.Text, txbEntradaDetalle.Text);
@@ -58,14 +61,28 @@ namespace mainVentana.VistaInicioCoordinadores
             txbArnian.Text = valoresG.valArn;
             datosGenerales = VistaInicioCoordinadores.dataFilter.ConvierteADatatable2(get.ObtieneCargasActivas(txbSucOrigenDetalle.Text, operacionV.c1));
             dtgCargasFilter.DataSource = datosGenerales;
-         
+
         }
+
+        private DateTime regresafecha()
+        {
+
+            Servicio datos = new Servicio();
+            string fecha1 = datos.retornafechaLapaz();
+
+            FechaActual lst = JsonConvert.DeserializeObject<FechaActual>(fecha1);
+
+            return lst.datetime;
+
+
+        }
+
         private int congelaEntradasCargas()
         {
             int bandera = 1;
-
-            string fechaHoy = DateTime.Now.ToString("MM/dd/yyyy");
-            TimeSpan horaNow = DateTime.Now.TimeOfDay;
+            DateTime datoFecha = regresafecha();
+            string fechaHoy = datoFecha==null?DateTime.Now.ToString("MM/dd/yyyy") :datoFecha.ToString("MM/dd/yyyy");
+            TimeSpan horaNow = datoFecha.TimeOfDay;
             var listaSinEcedenteHora = new vmCargaCordinadores();
 
             int selectedrowindex = dtgCargasFilter.SelectedCells[0].RowIndex;

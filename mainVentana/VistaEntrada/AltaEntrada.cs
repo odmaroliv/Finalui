@@ -14,7 +14,7 @@ using Negocios;
 using System.IO;
 using Datos.ViewModels.Entradas.mvlistas;
 using iTextSharp.text;
-
+using System.Drawing.Printing;
 using iTextSharp.text.pdf;
 using iTextSharp.tool.xml;
 using Document = iTextSharp.text.Document;
@@ -35,6 +35,7 @@ using Datos.ViewModels.InicioFotoVisor;
 using System.Net.Http.Headers;
 using System.Net;
 using mainVentana.Properties;
+using System.Runtime.InteropServices;
 
 namespace mainVentana.VistaEntrada
 {
@@ -47,7 +48,7 @@ namespace mainVentana.VistaEntrada
         //int ventana;
         public int tipodeDocumento = 1;
         public string sucursalGlobal = Negocios.Common.Cache.CacheLogin.sucGlobal == default ? "SD":Negocios.Common.Cache.CacheLogin.sucGlobal;
-
+        private string noEntGlobal = "";
         public AltaEntrada()
         {
 
@@ -61,14 +62,15 @@ namespace mainVentana.VistaEntrada
             if (tipodeDocumento == 1)
             {
                 InicioEntrada();
+
             }
-
-
+         
         }
 
         
         private async void InicioEntrada()
         {
+          //  btnReimp.Visible = false;
             unidades.Text = "";
             bultos.Text = "";
             peso.Text = "";
@@ -138,10 +140,11 @@ namespace mainVentana.VistaEntrada
 
 
                     envEmail();
-                                                  //barcode();
+                    SelectPrinter(); 
+                    //barcode();
                     //Crea_codigo_de_barras(); desactivado por erri en drawin 
                     //llamareporte();
-                                                //CreaEriquetas();
+                                               // CreaEriquetas();
                                                  //envEmail();
 
 
@@ -183,6 +186,8 @@ namespace mainVentana.VistaEntrada
                             pagado = "NoPagado";
                         }
                         updateDatos(pagado);
+                        SelectPrinter();
+
                         //llamareporte();
 
 
@@ -238,11 +243,14 @@ namespace mainVentana.VistaEntrada
 
             try
             {
+                bd.ActualizaSqlIov(datoSucIni.Trim(), 35);
                 bd.agregaKDM1(datoSucIni, datoEntrada, datoMoneda, datoFecha, datoNuCliente, datoNoCord, datoValArn, datoNomCliente, datoCalle, datoColonia, datoCiudadZip,
             datoValFact, datoParidad, datoNoTrakin, datoProvedor, datoOrdCompra, datoNoFlete, datoNoUnidades, datoTipoUnidad, datoPeso, datoUnidadMedida, datoTipoOper,
             datoSucDestino, datoBultos, datosAlias, datoNota, datoReferencia);
 
                 actualizaKDMENT(datoSucIni, datoEntrada, datoBultos, datoSucDestino, datoFecha);
+
+                
 
             }
             catch (Exception)
@@ -326,10 +334,11 @@ namespace mainVentana.VistaEntrada
               datoDetalles.Length >= 100 ? datoDetalles.Substring(0, 100) : datoDetalles, datoFecha.ToString(), 0, 0, "OE");
 
                 }
-                catch (Exception)
+                catch (Exception x)
                 {
-
-                    throw;
+                    Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Correo - lado de AltaEntrada");
+                    MessageBox.Show("Ocurrio un error y no se pudo actualizar");
+                   
                 }
                
 
@@ -345,7 +354,7 @@ namespace mainVentana.VistaEntrada
 
             string cordCordinadorCMB = cord.SelectedValue.ToString().Trim();
 
-
+            string doc = noEntGlobal;
             EnviarEmail servicio = new EnviarEmail();
 
             List<string> archivos = new List<string>();
@@ -360,22 +369,27 @@ namespace mainVentana.VistaEntrada
             try
                 {
                     
-                    var respuesta = await servicio.EnviaMail(lblEntrada.Text, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, archivos, coreoClientes, cordCordinadorCMB);
-                    if (respuesta == 1)
-                    {
-                        MessageBox.Show("El correo NO SE ENVIÓ PORQUE supera el límite máximo de 25 MB en cada correo, intenta borrar documentos y reenvía la notificación", "CUIDADO EL CORREO NO SE ENVIO");
-                        NotificaEmail(0, lblEntrada.Text, cliente.Text);
-                    }
-                    else
-                    {
-                        NotificaEmail(1, lblEntrada.Text, cliente.Text);
+                    var respuesta = await servicio.EnviaMail(doc, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, archivos, coreoClientes, cordCordinadorCMB);
+                if (respuesta == 1)
+                {
+                    MessageBox.Show("El correo NO SE ENVIÓ PORQUE supera el límite máximo de 25 MB en cada correo, intenta borrar documentos y reenvía la notificación", "CUIDADO EL CORREO NO SE ENVIO");
+                    NotificaEmail(0, doc, cliente.Text);
+                }
+                else if (respuesta == 2)
+                {
+                    MessageBox.Show("El correo NO SE ENVIÓ (msg), pero la entrada si se dio de Alta", "CUIDADO EL CORREO NO SE ENVIO");
+                    NotificaEmail(0, doc, cliente.Text);
+                }
+                else
+                {
+                        NotificaEmail(1, doc, cliente.Text);
                     }
 
                 }
-                catch (Exception)
+                catch (Exception x)
                 {
-
-                    throw;
+                Negocios.LOGs.ArsLogs.LogEdit(x.Message, doc + " Correo - lado de AltaEntrada");
+               
                 }
             finally
             {
@@ -842,21 +856,26 @@ namespace mainVentana.VistaEntrada
         {
             Servicios datos = new Servicios();
 
-            foreach (var i in datos.NumeroEntrada(sucEntrada.SelectedValue.ToString(),1.ToString()))
+            foreach (var i in datos.NumeroEntrada(sucEntrada.SelectedValue.ToString(), 35))
             {
                 int numero = Convert.ToInt32(i.entrada) + 1;
                 lblEntrada.Text = numero.ToString("D7");
+                noEntGlobal = numero.ToString("D7");
             }
+
+
         }
         private string recuperUltimaent()
         {
             Servicios datos = new Servicios();
             string dato = default;
-            foreach (var i in datos.NumeroEntrada(sucEntrada.SelectedValue.ToString(), 1.ToString()))
+            foreach (var i in datos.NumeroEntrada(sucEntrada.SelectedValue.ToString(), 35))
             {
                 int numero = Convert.ToInt32(i.entrada) + 1;
                 dato = numero.ToString("D7");
             }
+            noEntGlobal = dato;
+
             return dato;
         }
 
@@ -971,12 +990,12 @@ namespace mainVentana.VistaEntrada
                     cargafecha();
                     lblCodCliente.Text = default;
                     cord.SelectedIndex = 0;
-                    txbValArn.Text = default;
+                    txbValArn.Text = "1";
                     cliente.Text = default;
                     label23.Text = default;
                     label24.Text = default;
                     label25.Text = default;
-                    txbValFact.Text = default;
+                    txbValFact.Text = "1";
                     lblParidad.Text = default;
                     tbxRastreo.Text = default;
                     proveedor.SelectedIndex = 0;
@@ -1780,7 +1799,7 @@ namespace mainVentana.VistaEntrada
         {
             OpenFileDialog fd = new OpenFileDialog();
             fd.InitialDirectory = "@C:\\";
-            fd.Filter = "Solo documentos (PDF,WORD,JPG,PNG)|*.PDF;*.DOCX*.PNG*.JPG";
+            fd.Filter = "Solo documentos (PDF, WORD, JPG, PNG, JPEG)|*.PDF;*.DOCX;*.PNG;*.JPG;*.JPEG";
             fd.Multiselect = true;
 
            
@@ -1855,6 +1874,11 @@ namespace mainVentana.VistaEntrada
         {
             if (e.ColumnIndex==2)
             {
+                if (e.RowIndex == -1)
+                {
+                    return;
+                }
+
                 if (this.dgvDocs.Rows[e.RowIndex].Cells[0].Value == null)
                 {
                     MessageBox.Show("Ningun archivo seleccionado");
@@ -1869,9 +1893,127 @@ namespace mainVentana.VistaEntrada
                 }
             }
         }
+        private void SelectPrinter()
+        {
+            PrintDialog printDialog = new PrintDialog();
+            printDialog.PrinterSettings = new PrinterSettings();
+            if (printDialog.ShowDialog() == DialogResult.OK)
+            {
+              
 
+                string printerName = printDialog.PrinterSettings.PrinterName;
+
+                Servicio datos = new Servicio();
+
+                Servicios sv = new Servicios();
+
+                var lst = new List<vmEtiquetasReporte>();
+                lst = sv.LlenaEtiquetas(lblEntrada.Text.Trim(), sucEntrada.SelectedValue.ToString().Trim());
+                int neti = 1;
+                string lstt = lst.Count.ToString();
+                string zplToDoc = "";
+                foreach (var q in lst)
+                {
+
+                    try
+                    {
+                        string s = "^XA^\nFO40,50^GFA,7372,7372,38,,:::::::::::::::::::::::::::::::::W01FF,V03JF,U01KFC,U0MF,T03MF8,T0NFE,S03OF,S0PF8,R03NF7F8,R07NF7FC,Q01OF7FE,Q03OF7FE,Q0PF7FF,P01OFE7FF,P03OFE7FF8,P0PFEIF8,O01PFCIFC,O03PFCIFC,O07PFCIFC,O0QF8IFC,N01QF8IFE,N03QF1IFE,N07QF1IFE,N0RF1IFE,M01QFE9IFE,M03QFEBIFE,M03QFC3IFE,M07QFD3JF,M0RF93JF,L01RF87JF,L01RF07JF,L03RF07JF,L07QFE0JFE,:L0RFC0JFE,L0RF81JFE,K01RF81JFE,K03RF01FFE,K03RF03FF03IF8M03F8K07FCO07IF8N0FF8,K07QFE03FC7KF801IF0LF03IF007FFE007KF801IF03IF,K07QFC07F1LFE01IF1LF07IFC07FFE01LFE01IF0JF8,K0RF807E7MF01FFE3LF1JFC07FFE07MF01FFE3JFC,K0RF807CNF81FFE7FFDIF3JFE07FFC0NF83FFE7JFC,J01RF18F9NF83LF9IF7JFE0IFC1NFC3FFEKFE,J01QFE10F3NFC3LF9OF0IFC3NFC3NFE,J03QFC21F3NFC3LF1OF0IFC3NFC3NFE,J03QFC21E7IF81IFC3KFE1OF0IFC7IF81IFC3NFE,J03QF843EIFE007FFC3KFE3OF0IFC7FFE007FFC3OF,J07QF083CIFC007FFC3KFC3OF0IF8IFC007FFC7NFE,J07PFE083C0FF9007FFC7IFE003IFE0JF1IF80FF8007FFC7IFC1IFE,J0QFC107F8002007FFC7IF8003IF807IF1IF8L07FFC7IF80IFE,J0QF8007IFC601IFC7IF8003IF003IF1IF8K01IFC7IF007FFE,J0QFI0KF81JFC7IFI03IF003IF1IF8J01JFC7FFE007FFE,J0PFEI0JF01KFC7FFEI07FFE003FFE1IFJ01KFC7FFE007FFE,I01PFC001IF03LFCIFEI07FFE003FFE1IFI03LFCIFC007FFE,I01PF8003FFC7MF8IFCI07FFE007FFE3IF007MF8IFC007FFC,I01PFI03FF1NF8IFCI07FFC007FFE3IF01NF8IFC00IFC,I01OFEI07FE7NF8IFCI07FFC007FFE3IF07NF8IFC00IFC,I03OFCI07FDKF9IF8IFCI0IFC007FFE3FFE1KF8IF8IF800IFC,I03OFJ0FFBJF81IF8IF8I0IFC007FFC3FFE1JF81IF9IF800IFC,I03NFEJ0FF3IFC01IF1IF8I0IFC00IFC7FFE3IFC01IF9IF800IFC,I03NFCI01FE7IF001IF1IF8I0IF800IFC7FFE7IF001IF1IF801IF8,I03NF80403FE7FFE003IF1IF8I0IF800IFC7FFE7FFE003IF1IF801IF8,I03MFE00403FEIFC003IF1IF8I0IF800IFC7FFEIFC003IF1IF801IF8,I03MFC00807FCIFC007IF1IFI01IF800IF87FFCIFC007IF1IF001IF8,I03MF00100FFCIFC00JF1IFI01IF800IF87FFCIFC00JF3IF001IF8,I03LFE00300FFCIFC01IFE3IFI01IF801IF8IFCIFC01JF3IF001IF,I03LFC00601FFCIFE07IFE3IFI01IF001IF8IFCIFE07IFE3IF003IF,I03LFI0C01FFCOFE3IFI01IF001IF8IFCOFE3IF003IF,I03KFC001803FFCOFE3FFEI01IF001IF8IFCOFE3FFE003IF,I03KF8003007FFEOFE3FFEI03IF001IF0IF8OFE3FFE003IF,I03JFEL0IFE7KFBFFE7FFEI03IF001IF0IF87KFBFFE7FFE003IF,I03JF8L0JF3JFE3FFE7FFEI03FFE003IF1IF83JFE3FFE7FFE003FFE,I03JFL01JF9JFC3FFE7FFEI03FFE003IF1IF81JFC3FFE7FFE007FFE,I01IFCL03JFCIFE01FFE7FFEI03FFE003IF1IF80IFE01IF7FFE007FFE,I01IFM03JFE0FEgP0FE,I01FFCM07JFE,I01FFN0KFE,J0FCM01KFC,J0FN01KF8,J04N03KF,S07JFEgP07FC03FFC01FF00F01E1FFC,S0KF8gO01FFE03FFE03FF80F01E1FFE,N018001KFgP03IF07FFE07FFC0E01C3IF,N07I01JFEgP07C0F0780F0F83E0E01C3C0F,N0EI03JFCgP078078700F1F01E1E03C3C0F,M038I07JFgQ0F0020700F1E00E1E03C380F,M07J0JFEgQ0EJ0F01F3C00E1E03C780F,L01EI01JF8gQ0EJ0F03E3C00E1C038781E,L038I03JFgQ01E0FE0IFC3C00E1C0387FFE,L0FJ07IFCgQ01E0FF0IF83800E3C0787FFC,L04J0JFgR01C0FF0F7E03801E3C0787FF,Q0IFCgR01C0FF1E1E03801E3C078F,P03IFgS01E00E1E0F03803C38070F,P07FF8gS01E00E1E0703C07C380F0F,P07F8gU0F01E1C0783E0F83C1F0E,hN0FDFE1C0781FBF03FFE0E,hN07FFC3C03C0FFE01FFC1E,hN03FF03C03C07FC00FF81E,hO03O0CI018,,:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::^FS\n";
+                        s += "^FX Top section with logo, name and address.\n";
+                        s += "^CF0,60\n";
+                        s += "^FO350,50^FDArnian Group.^FS\n";
+                        s += "^CF0,30\n";
+                        s += "^FO350,115^FD9948 Via de la Amistad^FS\n";
+                        s += "^FO350,155^FDSan Diego, CA 92154^FS\n";
+                        s += "^FO350,195^FDUnited States(USA)^FS\n";
+                        s += "^FO50,250^GB700,3,3^FS\n";
+                        s += "\n";
+                        s += "^FX Second section with recipient address and permit information.\n";
+                        s += "^CF0,30";
+                        s += string.Format("^FO50,300^FDClient: {0}^FS\n", q.Cliente.Trim());
+                        s += string.Format("^FO50,340^FDOrigin: {0}^FS\n", q.Origen.Trim());
+                        s += string.Format("^FO50,380^FDDestination: {0}^FS\n", q.Destino.Trim());
+                        s += string.Format("^FO50,420^FDAlias: {0}^FS\n", q.Alias == null ? "" : q.Alias.Trim());
+                        s += "^CF0,40\n";
+                        s += "^FO550,300^GB200,150,3^FS\n";
+                        s += "^FO580,340^FDID^FS\n";
+                        s += string.Format("^FO580,380^FD{0}^FS\n", q.Entrada.Trim());
+                        s += "^FO50,500^GB700,3,3^FS\n";
+                        s += "\n";
+                        s += "^FX Third section with bar code.\n";
+                        s += "^BY3,2,260\n";
+                        s += string.Format("^FO120,550^BC^FD{0}^FS\n", q.Etiqueta.Trim());
+                        s += "\n";
+                        s += "^FX Fourth section(the two boxes on the bottom).\n";
+                        s += "^FO50,870^GB700,250,3^FS\n";
+                        s += "^FO400,870^GB3,250,3^FS\n";
+                        s += "^CF0,80";
+                        s += string.Format("^FO100,900^FD{0} de {1}^FS\n", neti.ToString(), lstt);
+                        s += "^CF0,40";
+                        s += "^FO100,1010^FDDate:^FS\n";
+                        s += string.Format("^FO100,1060^FD{0}^FS\n", q.Fecha.Value.Date.ToString("MM/dd/yyyy"));
+                        s += "^CF0,190\n";
+                        //s += string.Format("^FO470,930^FD{0}^FS\n", q.ZonaNumero.ToString().Trim());
+                        s += "\n";
+                        s += "^CF0,30";
+                        //  s += string.Format("^FO50,1155^FDZona: {0}^FS\n", q.Zona.Trim());
+                        s += "\n";
+                        s += "^XZ\n";
+                        s += "\n";
+                        zplToDoc += s;
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+
+
+                    neti = neti + 1;
+                }
+
+                try
+                {
+                    using (MemoryStream lmemStream = new MemoryStream())
+                    {
+                        using (StreamWriter lstreamWriter = new StreamWriter(lmemStream))
+                        {
+                            lstreamWriter.Write(zplToDoc);
+
+                            lstreamWriter.Flush();
+                            lmemStream.Position = 0;
+
+                            byte[] byteArray = lmemStream.ToArray();
+
+                            IntPtr cpUnmanagedBytes = new IntPtr(0);
+                            int cnLength = byteArray.Length;
+                            cpUnmanagedBytes = Marshal.AllocCoTaskMem(cnLength);
+                            Marshal.Copy(byteArray, 0, cpUnmanagedBytes, cnLength);
+
+                            Negocios.PrintZebra.RawPrinterHelper.SendBytesToPrinter(printerName, cpUnmanagedBytes, cnLength);
+                            Marshal.FreeCoTaskMem(cpUnmanagedBytes);
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+                
+
+            }
+        }
+
+        
         private async Task PdfZPLcrea()
         {
+
+            if (String.IsNullOrWhiteSpace(bultos.Text) && String.IsNullOrWhiteSpace(txbBuscarEnt.Text))
+            {
+                return;
+            }
+
+            MessageBox.Show("Solo se pueden imprimir menos de 50 etiquetas");
 
             saveFileDialog1.InitialDirectory = "@C:\\";
             saveFileDialog1.Filter = "Solo documentos (PDF)|*.PDF";
@@ -1899,14 +2041,7 @@ namespace mainVentana.VistaEntrada
                 string zplToDoc = "";
                 foreach (var q in lst)
                 {
-                    /*rp.repTOrigen = q.Origen;
-                    rp.repTdest = q.Destino;
-                    rp.repTCliente = q.Cliente;
-                    rp.repTEtiqueta = q.Etiqueta;
-                    rp.repTEntrada = q.Entrada;
-                    rp.repTFecha = q.Fecha.Value.Date.ToString();
-                    rp.repTAlias = q.Alias;
-                    rp.ShowDialog();*/
+                  
                     try
                     {
                         string s = "^XA^\nFO40,50^GFA,7372,7372,38,,:::::::::::::::::::::::::::::::::W01FF,V03JF,U01KFC,U0MF,T03MF8,T0NFE,S03OF,S0PF8,R03NF7F8,R07NF7FC,Q01OF7FE,Q03OF7FE,Q0PF7FF,P01OFE7FF,P03OFE7FF8,P0PFEIF8,O01PFCIFC,O03PFCIFC,O07PFCIFC,O0QF8IFC,N01QF8IFE,N03QF1IFE,N07QF1IFE,N0RF1IFE,M01QFE9IFE,M03QFEBIFE,M03QFC3IFE,M07QFD3JF,M0RF93JF,L01RF87JF,L01RF07JF,L03RF07JF,L07QFE0JFE,:L0RFC0JFE,L0RF81JFE,K01RF81JFE,K03RF01FFE,K03RF03FF03IF8M03F8K07FCO07IF8N0FF8,K07QFE03FC7KF801IF0LF03IF007FFE007KF801IF03IF,K07QFC07F1LFE01IF1LF07IFC07FFE01LFE01IF0JF8,K0RF807E7MF01FFE3LF1JFC07FFE07MF01FFE3JFC,K0RF807CNF81FFE7FFDIF3JFE07FFC0NF83FFE7JFC,J01RF18F9NF83LF9IF7JFE0IFC1NFC3FFEKFE,J01QFE10F3NFC3LF9OF0IFC3NFC3NFE,J03QFC21F3NFC3LF1OF0IFC3NFC3NFE,J03QFC21E7IF81IFC3KFE1OF0IFC7IF81IFC3NFE,J03QF843EIFE007FFC3KFE3OF0IFC7FFE007FFC3OF,J07QF083CIFC007FFC3KFC3OF0IF8IFC007FFC7NFE,J07PFE083C0FF9007FFC7IFE003IFE0JF1IF80FF8007FFC7IFC1IFE,J0QFC107F8002007FFC7IF8003IF807IF1IF8L07FFC7IF80IFE,J0QF8007IFC601IFC7IF8003IF003IF1IF8K01IFC7IF007FFE,J0QFI0KF81JFC7IFI03IF003IF1IF8J01JFC7FFE007FFE,J0PFEI0JF01KFC7FFEI07FFE003FFE1IFJ01KFC7FFE007FFE,I01PFC001IF03LFCIFEI07FFE003FFE1IFI03LFCIFC007FFE,I01PF8003FFC7MF8IFCI07FFE007FFE3IF007MF8IFC007FFC,I01PFI03FF1NF8IFCI07FFC007FFE3IF01NF8IFC00IFC,I01OFEI07FE7NF8IFCI07FFC007FFE3IF07NF8IFC00IFC,I03OFCI07FDKF9IF8IFCI0IFC007FFE3FFE1KF8IF8IF800IFC,I03OFJ0FFBJF81IF8IF8I0IFC007FFC3FFE1JF81IF9IF800IFC,I03NFEJ0FF3IFC01IF1IF8I0IFC00IFC7FFE3IFC01IF9IF800IFC,I03NFCI01FE7IF001IF1IF8I0IF800IFC7FFE7IF001IF1IF801IF8,I03NF80403FE7FFE003IF1IF8I0IF800IFC7FFE7FFE003IF1IF801IF8,I03MFE00403FEIFC003IF1IF8I0IF800IFC7FFEIFC003IF1IF801IF8,I03MFC00807FCIFC007IF1IFI01IF800IF87FFCIFC007IF1IF001IF8,I03MF00100FFCIFC00JF1IFI01IF800IF87FFCIFC00JF3IF001IF8,I03LFE00300FFCIFC01IFE3IFI01IF801IF8IFCIFC01JF3IF001IF,I03LFC00601FFCIFE07IFE3IFI01IF001IF8IFCIFE07IFE3IF003IF,I03LFI0C01FFCOFE3IFI01IF001IF8IFCOFE3IF003IF,I03KFC001803FFCOFE3FFEI01IF001IF8IFCOFE3FFE003IF,I03KF8003007FFEOFE3FFEI03IF001IF0IF8OFE3FFE003IF,I03JFEL0IFE7KFBFFE7FFEI03IF001IF0IF87KFBFFE7FFE003IF,I03JF8L0JF3JFE3FFE7FFEI03FFE003IF1IF83JFE3FFE7FFE003FFE,I03JFL01JF9JFC3FFE7FFEI03FFE003IF1IF81JFC3FFE7FFE007FFE,I01IFCL03JFCIFE01FFE7FFEI03FFE003IF1IF80IFE01IF7FFE007FFE,I01IFM03JFE0FEgP0FE,I01FFCM07JFE,I01FFN0KFE,J0FCM01KFC,J0FN01KF8,J04N03KF,S07JFEgP07FC03FFC01FF00F01E1FFC,S0KF8gO01FFE03FFE03FF80F01E1FFE,N018001KFgP03IF07FFE07FFC0E01C3IF,N07I01JFEgP07C0F0780F0F83E0E01C3C0F,N0EI03JFCgP078078700F1F01E1E03C3C0F,M038I07JFgQ0F0020700F1E00E1E03C380F,M07J0JFEgQ0EJ0F01F3C00E1E03C780F,L01EI01JF8gQ0EJ0F03E3C00E1C038781E,L038I03JFgQ01E0FE0IFC3C00E1C0387FFE,L0FJ07IFCgQ01E0FF0IF83800E3C0787FFC,L04J0JFgR01C0FF0F7E03801E3C0787FF,Q0IFCgR01C0FF1E1E03801E3C078F,P03IFgS01E00E1E0F03803C38070F,P07FF8gS01E00E1E0703C07C380F0F,P07F8gU0F01E1C0783E0F83C1F0E,hN0FDFE1C0781FBF03FFE0E,hN07FFC3C03C0FFE01FFC1E,hN03FF03C03C07FC00FF81E,hO03O0CI018,,:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::^FS\n";
@@ -2022,6 +2157,17 @@ namespace mainVentana.VistaEntrada
                    
                 }
             }
+        }
+
+        private void iconButton1_Click_1(object sender, EventArgs e)
+        {
+            PdfZPLcrea();
+            //SelectPrinter();
+        }
+
+        private void alias_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

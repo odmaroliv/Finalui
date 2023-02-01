@@ -34,7 +34,9 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.gunaShadowPanel1 = new Guna.UI.WinForms.GunaShadowPanel();
+            this.paneldeBus = new Guna.UI.WinForms.GunaShadowPanel();
+            this.btnAdminAdmin = new ReaLTaiizor.Controls.SkyButton();
+            this.btnCordAdmin = new ReaLTaiizor.Controls.SkyButton();
             this.iconButton10 = new FontAwesome.Sharp.IconButton();
             this.gunaTextBox2 = new Guna.UI.WinForms.GunaTextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -49,14 +51,13 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.gunaDataGridView1 = new Guna.UI.WinForms.GunaDataGridView();
-            this.btnCordAdmin = new ReaLTaiizor.Controls.SkyButton();
-            this.btnAdminAdmin = new ReaLTaiizor.Controls.SkyButton();
+            this.btnArtu = new ReaLTaiizor.Controls.SkyButton();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.gunaShadowPanel1.SuspendLayout();
+            this.paneldeBus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gunaDataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,7 +87,7 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.gunaShadowPanel1);
+            this.splitContainer1.Panel2.Controls.Add(this.paneldeBus);
             this.splitContainer1.Size = new System.Drawing.Size(906, 593);
             this.splitContainer1.SplitterDistance = 296;
             this.splitContainer1.TabIndex = 2;
@@ -101,35 +102,118 @@
             this.panel1.Size = new System.Drawing.Size(906, 296);
             this.panel1.TabIndex = 1;
             // 
-            // gunaShadowPanel1
+            // paneldeBus
             // 
-            this.gunaShadowPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.gunaShadowPanel1.BaseColor = System.Drawing.Color.White;
-            this.gunaShadowPanel1.Controls.Add(this.btnAdminAdmin);
-            this.gunaShadowPanel1.Controls.Add(this.btnCordAdmin);
-            this.gunaShadowPanel1.Controls.Add(this.iconButton10);
-            this.gunaShadowPanel1.Controls.Add(this.gunaTextBox2);
-            this.gunaShadowPanel1.Controls.Add(this.label8);
-            this.gunaShadowPanel1.Controls.Add(this.panel10);
-            this.gunaShadowPanel1.Controls.Add(this.label7);
-            this.gunaShadowPanel1.Controls.Add(this.panel9);
-            this.gunaShadowPanel1.Controls.Add(this.label6);
-            this.gunaShadowPanel1.Controls.Add(this.panel8);
-            this.gunaShadowPanel1.Controls.Add(this.label5);
-            this.gunaShadowPanel1.Controls.Add(this.panel5);
-            this.gunaShadowPanel1.Controls.Add(this.label4);
-            this.gunaShadowPanel1.Controls.Add(this.panel3);
-            this.gunaShadowPanel1.Controls.Add(this.panel4);
-            this.gunaShadowPanel1.Controls.Add(this.gunaDataGridView1);
-            this.gunaShadowPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gunaShadowPanel1.Location = new System.Drawing.Point(0, 0);
-            this.gunaShadowPanel1.Margin = new System.Windows.Forms.Padding(2);
-            this.gunaShadowPanel1.Name = "gunaShadowPanel1";
-            this.gunaShadowPanel1.Radius = 10;
-            this.gunaShadowPanel1.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
-            this.gunaShadowPanel1.ShadowDepth = 80;
-            this.gunaShadowPanel1.Size = new System.Drawing.Size(906, 293);
-            this.gunaShadowPanel1.TabIndex = 0;
+            this.paneldeBus.BackColor = System.Drawing.Color.Transparent;
+            this.paneldeBus.BaseColor = System.Drawing.Color.White;
+            this.paneldeBus.Controls.Add(this.btnArtu);
+            this.paneldeBus.Controls.Add(this.btnAdminAdmin);
+            this.paneldeBus.Controls.Add(this.btnCordAdmin);
+            this.paneldeBus.Controls.Add(this.iconButton10);
+            this.paneldeBus.Controls.Add(this.gunaTextBox2);
+            this.paneldeBus.Controls.Add(this.label8);
+            this.paneldeBus.Controls.Add(this.panel10);
+            this.paneldeBus.Controls.Add(this.label7);
+            this.paneldeBus.Controls.Add(this.panel9);
+            this.paneldeBus.Controls.Add(this.label6);
+            this.paneldeBus.Controls.Add(this.panel8);
+            this.paneldeBus.Controls.Add(this.label5);
+            this.paneldeBus.Controls.Add(this.panel5);
+            this.paneldeBus.Controls.Add(this.label4);
+            this.paneldeBus.Controls.Add(this.panel3);
+            this.paneldeBus.Controls.Add(this.panel4);
+            this.paneldeBus.Controls.Add(this.gunaDataGridView1);
+            this.paneldeBus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.paneldeBus.Location = new System.Drawing.Point(0, 0);
+            this.paneldeBus.Margin = new System.Windows.Forms.Padding(2);
+            this.paneldeBus.Name = "paneldeBus";
+            this.paneldeBus.Radius = 10;
+            this.paneldeBus.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
+            this.paneldeBus.ShadowDepth = 80;
+            this.paneldeBus.Size = new System.Drawing.Size(906, 293);
+            this.paneldeBus.TabIndex = 0;
+            // 
+            // btnAdminAdmin
+            // 
+            this.btnAdminAdmin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdminAdmin.BackColor = System.Drawing.Color.Transparent;
+            this.btnAdminAdmin.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAdminAdmin.DownBGColorA = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(153)))), ((int)(((byte)(205)))));
+            this.btnAdminAdmin.DownBGColorB = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(124)))), ((int)(((byte)(170)))));
+            this.btnAdminAdmin.DownBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(168)))), ((int)(((byte)(221)))));
+            this.btnAdminAdmin.DownBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(149)))), ((int)(((byte)(194)))));
+            this.btnAdminAdmin.DownBorderColorC = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(93)))), ((int)(((byte)(131)))));
+            this.btnAdminAdmin.DownBorderColorD = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(25)))), ((int)(((byte)(73)))), ((int)(((byte)(109)))));
+            this.btnAdminAdmin.DownForeColor = System.Drawing.Color.White;
+            this.btnAdminAdmin.DownShadowForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnAdminAdmin.Enabled = false;
+            this.btnAdminAdmin.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Bold);
+            this.btnAdminAdmin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(137)))));
+            this.btnAdminAdmin.HoverBGColorA = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(153)))), ((int)(((byte)(205)))));
+            this.btnAdminAdmin.HoverBGColorB = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(124)))), ((int)(((byte)(170)))));
+            this.btnAdminAdmin.HoverBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(168)))), ((int)(((byte)(221)))));
+            this.btnAdminAdmin.HoverBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(149)))), ((int)(((byte)(194)))));
+            this.btnAdminAdmin.HoverBorderColorC = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(93)))), ((int)(((byte)(131)))));
+            this.btnAdminAdmin.HoverBorderColorD = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(25)))), ((int)(((byte)(73)))), ((int)(((byte)(109)))));
+            this.btnAdminAdmin.HoverForeColor = System.Drawing.Color.White;
+            this.btnAdminAdmin.HoverShadowForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnAdminAdmin.Location = new System.Drawing.Point(840, 262);
+            this.btnAdminAdmin.Name = "btnAdminAdmin";
+            this.btnAdminAdmin.NormalBGColorA = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btnAdminAdmin.NormalBGColorB = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.btnAdminAdmin.NormalBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
+            this.btnAdminAdmin.NormalBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
+            this.btnAdminAdmin.NormalBorderColorC = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
+            this.btnAdminAdmin.NormalBorderColorD = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(168)))), ((int)(((byte)(168)))), ((int)(((byte)(168)))));
+            this.btnAdminAdmin.NormalForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(137)))));
+            this.btnAdminAdmin.NormalShadowForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnAdminAdmin.Size = new System.Drawing.Size(38, 17);
+            this.btnAdminAdmin.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            this.btnAdminAdmin.TabIndex = 14;
+            this.btnAdminAdmin.Text = "-";
+            this.btnAdminAdmin.Visible = false;
+            this.btnAdminAdmin.Click += new System.EventHandler(this.skyButton2_Click);
+            // 
+            // btnCordAdmin
+            // 
+            this.btnCordAdmin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCordAdmin.BackColor = System.Drawing.Color.Transparent;
+            this.btnCordAdmin.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCordAdmin.DownBGColorA = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(153)))), ((int)(((byte)(205)))));
+            this.btnCordAdmin.DownBGColorB = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(124)))), ((int)(((byte)(170)))));
+            this.btnCordAdmin.DownBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(168)))), ((int)(((byte)(221)))));
+            this.btnCordAdmin.DownBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(149)))), ((int)(((byte)(194)))));
+            this.btnCordAdmin.DownBorderColorC = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(93)))), ((int)(((byte)(131)))));
+            this.btnCordAdmin.DownBorderColorD = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(25)))), ((int)(((byte)(73)))), ((int)(((byte)(109)))));
+            this.btnCordAdmin.DownForeColor = System.Drawing.Color.White;
+            this.btnCordAdmin.DownShadowForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnCordAdmin.Enabled = false;
+            this.btnCordAdmin.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Bold);
+            this.btnCordAdmin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(137)))));
+            this.btnCordAdmin.HoverBGColorA = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(153)))), ((int)(((byte)(205)))));
+            this.btnCordAdmin.HoverBGColorB = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(124)))), ((int)(((byte)(170)))));
+            this.btnCordAdmin.HoverBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(168)))), ((int)(((byte)(221)))));
+            this.btnCordAdmin.HoverBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(149)))), ((int)(((byte)(194)))));
+            this.btnCordAdmin.HoverBorderColorC = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(93)))), ((int)(((byte)(131)))));
+            this.btnCordAdmin.HoverBorderColorD = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(25)))), ((int)(((byte)(73)))), ((int)(((byte)(109)))));
+            this.btnCordAdmin.HoverForeColor = System.Drawing.Color.White;
+            this.btnCordAdmin.HoverShadowForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnCordAdmin.Location = new System.Drawing.Point(798, 262);
+            this.btnCordAdmin.Name = "btnCordAdmin";
+            this.btnCordAdmin.NormalBGColorA = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btnCordAdmin.NormalBGColorB = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.btnCordAdmin.NormalBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
+            this.btnCordAdmin.NormalBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
+            this.btnCordAdmin.NormalBorderColorC = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
+            this.btnCordAdmin.NormalBorderColorD = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(168)))), ((int)(((byte)(168)))), ((int)(((byte)(168)))));
+            this.btnCordAdmin.NormalForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(137)))));
+            this.btnCordAdmin.NormalShadowForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnCordAdmin.Size = new System.Drawing.Size(38, 17);
+            this.btnCordAdmin.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            this.btnCordAdmin.TabIndex = 13;
+            this.btnCordAdmin.Text = "+";
+            this.btnCordAdmin.Visible = false;
+            this.btnCordAdmin.Click += new System.EventHandler(this.skyButton1_Click);
             // 
             // iconButton10
             // 
@@ -354,87 +438,46 @@
             this.gunaDataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gunaDataGridView1_CellDoubleClick);
             this.gunaDataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gunaDataGridView1_CellFormatting);
             // 
-            // btnCordAdmin
+            // btnArtu
             // 
-            this.btnCordAdmin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCordAdmin.BackColor = System.Drawing.Color.Transparent;
-            this.btnCordAdmin.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCordAdmin.DownBGColorA = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(153)))), ((int)(((byte)(205)))));
-            this.btnCordAdmin.DownBGColorB = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(124)))), ((int)(((byte)(170)))));
-            this.btnCordAdmin.DownBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(168)))), ((int)(((byte)(221)))));
-            this.btnCordAdmin.DownBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(149)))), ((int)(((byte)(194)))));
-            this.btnCordAdmin.DownBorderColorC = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(93)))), ((int)(((byte)(131)))));
-            this.btnCordAdmin.DownBorderColorD = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(25)))), ((int)(((byte)(73)))), ((int)(((byte)(109)))));
-            this.btnCordAdmin.DownForeColor = System.Drawing.Color.White;
-            this.btnCordAdmin.DownShadowForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnCordAdmin.Enabled = false;
-            this.btnCordAdmin.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Bold);
-            this.btnCordAdmin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(137)))));
-            this.btnCordAdmin.HoverBGColorA = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(153)))), ((int)(((byte)(205)))));
-            this.btnCordAdmin.HoverBGColorB = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(124)))), ((int)(((byte)(170)))));
-            this.btnCordAdmin.HoverBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(168)))), ((int)(((byte)(221)))));
-            this.btnCordAdmin.HoverBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(149)))), ((int)(((byte)(194)))));
-            this.btnCordAdmin.HoverBorderColorC = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(93)))), ((int)(((byte)(131)))));
-            this.btnCordAdmin.HoverBorderColorD = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(25)))), ((int)(((byte)(73)))), ((int)(((byte)(109)))));
-            this.btnCordAdmin.HoverForeColor = System.Drawing.Color.White;
-            this.btnCordAdmin.HoverShadowForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnCordAdmin.Location = new System.Drawing.Point(789, 262);
-            this.btnCordAdmin.Name = "btnCordAdmin";
-            this.btnCordAdmin.NormalBGColorA = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.btnCordAdmin.NormalBGColorB = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.btnCordAdmin.NormalBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            this.btnCordAdmin.NormalBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
-            this.btnCordAdmin.NormalBorderColorC = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
-            this.btnCordAdmin.NormalBorderColorD = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(168)))), ((int)(((byte)(168)))), ((int)(((byte)(168)))));
-            this.btnCordAdmin.NormalForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(137)))));
-            this.btnCordAdmin.NormalShadowForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnCordAdmin.Size = new System.Drawing.Size(38, 17);
-            this.btnCordAdmin.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            this.btnCordAdmin.TabIndex = 13;
-            this.btnCordAdmin.Text = "+";
-            this.btnCordAdmin.Visible = false;
-            this.btnCordAdmin.Click += new System.EventHandler(this.skyButton1_Click);
-            // 
-            // btnAdminAdmin
-            // 
-            this.btnAdminAdmin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdminAdmin.BackColor = System.Drawing.Color.Transparent;
-            this.btnAdminAdmin.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdminAdmin.DownBGColorA = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(153)))), ((int)(((byte)(205)))));
-            this.btnAdminAdmin.DownBGColorB = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(124)))), ((int)(((byte)(170)))));
-            this.btnAdminAdmin.DownBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(168)))), ((int)(((byte)(221)))));
-            this.btnAdminAdmin.DownBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(149)))), ((int)(((byte)(194)))));
-            this.btnAdminAdmin.DownBorderColorC = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(93)))), ((int)(((byte)(131)))));
-            this.btnAdminAdmin.DownBorderColorD = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(25)))), ((int)(((byte)(73)))), ((int)(((byte)(109)))));
-            this.btnAdminAdmin.DownForeColor = System.Drawing.Color.White;
-            this.btnAdminAdmin.DownShadowForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnAdminAdmin.Enabled = false;
-            this.btnAdminAdmin.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Bold);
-            this.btnAdminAdmin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(137)))));
-            this.btnAdminAdmin.HoverBGColorA = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(153)))), ((int)(((byte)(205)))));
-            this.btnAdminAdmin.HoverBGColorB = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(124)))), ((int)(((byte)(170)))));
-            this.btnAdminAdmin.HoverBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(168)))), ((int)(((byte)(221)))));
-            this.btnAdminAdmin.HoverBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(149)))), ((int)(((byte)(194)))));
-            this.btnAdminAdmin.HoverBorderColorC = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(93)))), ((int)(((byte)(131)))));
-            this.btnAdminAdmin.HoverBorderColorD = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(25)))), ((int)(((byte)(73)))), ((int)(((byte)(109)))));
-            this.btnAdminAdmin.HoverForeColor = System.Drawing.Color.White;
-            this.btnAdminAdmin.HoverShadowForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnAdminAdmin.Location = new System.Drawing.Point(840, 262);
-            this.btnAdminAdmin.Name = "btnAdminAdmin";
-            this.btnAdminAdmin.NormalBGColorA = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.btnAdminAdmin.NormalBGColorB = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.btnAdminAdmin.NormalBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            this.btnAdminAdmin.NormalBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
-            this.btnAdminAdmin.NormalBorderColorC = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
-            this.btnAdminAdmin.NormalBorderColorD = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(168)))), ((int)(((byte)(168)))), ((int)(((byte)(168)))));
-            this.btnAdminAdmin.NormalForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(137)))));
-            this.btnAdminAdmin.NormalShadowForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnAdminAdmin.Size = new System.Drawing.Size(38, 17);
-            this.btnAdminAdmin.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            this.btnAdminAdmin.TabIndex = 14;
-            this.btnAdminAdmin.Text = "-";
-            this.btnAdminAdmin.Visible = false;
-            this.btnAdminAdmin.Click += new System.EventHandler(this.skyButton2_Click);
+            this.btnArtu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnArtu.BackColor = System.Drawing.Color.Transparent;
+            this.btnArtu.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnArtu.DownBGColorA = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(153)))), ((int)(((byte)(205)))));
+            this.btnArtu.DownBGColorB = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(124)))), ((int)(((byte)(170)))));
+            this.btnArtu.DownBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(168)))), ((int)(((byte)(221)))));
+            this.btnArtu.DownBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(149)))), ((int)(((byte)(194)))));
+            this.btnArtu.DownBorderColorC = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(93)))), ((int)(((byte)(131)))));
+            this.btnArtu.DownBorderColorD = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(25)))), ((int)(((byte)(73)))), ((int)(((byte)(109)))));
+            this.btnArtu.DownForeColor = System.Drawing.Color.White;
+            this.btnArtu.DownShadowForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnArtu.Enabled = false;
+            this.btnArtu.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Bold);
+            this.btnArtu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(137)))));
+            this.btnArtu.HoverBGColorA = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(153)))), ((int)(((byte)(205)))));
+            this.btnArtu.HoverBGColorB = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(124)))), ((int)(((byte)(170)))));
+            this.btnArtu.HoverBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(168)))), ((int)(((byte)(221)))));
+            this.btnArtu.HoverBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(149)))), ((int)(((byte)(194)))));
+            this.btnArtu.HoverBorderColorC = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(93)))), ((int)(((byte)(131)))));
+            this.btnArtu.HoverBorderColorD = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(25)))), ((int)(((byte)(73)))), ((int)(((byte)(109)))));
+            this.btnArtu.HoverForeColor = System.Drawing.Color.White;
+            this.btnArtu.HoverShadowForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnArtu.Location = new System.Drawing.Point(755, 262);
+            this.btnArtu.Name = "btnArtu";
+            this.btnArtu.NormalBGColorA = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btnArtu.NormalBGColorB = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.btnArtu.NormalBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
+            this.btnArtu.NormalBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
+            this.btnArtu.NormalBorderColorC = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
+            this.btnArtu.NormalBorderColorD = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(168)))), ((int)(((byte)(168)))), ((int)(((byte)(168)))));
+            this.btnArtu.NormalForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(137)))));
+            this.btnArtu.NormalShadowForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnArtu.Size = new System.Drawing.Size(38, 17);
+            this.btnArtu.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            this.btnArtu.TabIndex = 15;
+            this.btnArtu.Text = "/";
+            this.btnArtu.Visible = false;
+            this.btnArtu.Click += new System.EventHandler(this.skyButton1_Click_1);
             // 
             // Over
             // 
@@ -454,8 +497,8 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.gunaShadowPanel1.ResumeLayout(false);
-            this.gunaShadowPanel1.PerformLayout();
+            this.paneldeBus.ResumeLayout(false);
+            this.paneldeBus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gunaDataGridView1)).EndInit();
             this.ResumeLayout(false);
 
@@ -463,7 +506,7 @@
 
         #endregion
         private System.Windows.Forms.Panel panel2;
-        private Guna.UI.WinForms.GunaShadowPanel gunaShadowPanel1;
+        private Guna.UI.WinForms.GunaShadowPanel paneldeBus;
         public Guna.UI.WinForms.GunaDataGridView gunaDataGridView1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label4;
@@ -483,5 +526,6 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private ReaLTaiizor.Controls.SkyButton btnCordAdmin;
         private ReaLTaiizor.Controls.SkyButton btnAdminAdmin;
+        private ReaLTaiizor.Controls.SkyButton btnArtu;
     }
 }

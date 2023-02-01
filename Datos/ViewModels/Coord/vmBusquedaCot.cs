@@ -15,6 +15,9 @@ namespace Datos.ViewModels.Coord
         [DisplayName("No. Cotizacion")]
         public string C6 { get; set; }
 
+        [DisplayName("Pedimento")]
+        public string C82 { get; set; }
+
 
         [DisplayName("Total A pagar Arnian")]
         public decimal? C16 { get; set; }
@@ -63,6 +66,10 @@ namespace Datos.ViewModels.Coord
 
         [DisplayName("Comentario")]
         public string C24 { get; set; }
+        [DisplayName("Estatus")]
+        public string C43 { get; set; }
+        [DisplayName("Estatus Pago")]
+        public string C44 { get; set; }
 
     }
 }
