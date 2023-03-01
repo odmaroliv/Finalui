@@ -14,8 +14,8 @@
     <framework targetVersion="4.8" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="Application Files\mainVentana_1_0_0_71\mainVentana.exe.manifest" size="89548">
-      <assemblyIdentity name="mainVentana.exe" version="1.0.0.71" publicKeyToken="6f06dc97a914b5c0" language="neutral" processorArchitecture="msil" type="win32" />
+    <dependentAssembly dependencyType="install" codebase="Application Files\mainVentana_1_0_0_69\mainVentana.exe.manifest" size="89548">
+      <assemblyIdentity name="mainVentana.exe" version="1.0.0.69" publicKeyToken="6f06dc97a914b5c0" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
