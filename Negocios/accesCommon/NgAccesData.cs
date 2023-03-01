@@ -16,14 +16,18 @@ namespace Negocios.accesCommon
         string usernameapi = Settings.Default.apiUs;
         string passwordapi = Settings.Default.apiPs;
 
+
         public async Task ObtenerCredenciales()
         {
+
             var authValue = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{usernameapi}:{passwordapi}")));
 
             try
             {
+
                 using (var client = new HttpClient())
                 {
+
                     client.DefaultRequestHeaders.Authorization = authValue;
                     var response = await client.GetAsync("http://104.198.241.64:90/api/arsauth/gc");
 

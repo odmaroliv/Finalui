@@ -22,9 +22,24 @@ namespace mainVentana.vistaConfiguraciones
         {
             mainVentana.Properties.Settings.Default.apiFotosUs = txbUs.Text.Trim();
             mainVentana.Properties.Settings.Default.apiFotosPs = txbPs.Text.Trim();
+
+
             try
             {
                 mainVentana.Properties.Settings.Default.Save();
+            }
+
+            catch (Exception)
+            {
+                MessageBox.Show("Ha ocurrido un error");
+            }
+
+            string usernameapi = Negocios.Properties.Settings.Default.apiUs;
+            string passwordapi = Negocios.Properties.Settings.Default.apiPs;
+
+            try
+            {
+                Negocios.Properties.Settings.Default.Save();
             }
             catch (Exception)
             {
