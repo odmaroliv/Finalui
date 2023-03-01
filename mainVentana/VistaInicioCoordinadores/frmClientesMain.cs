@@ -73,11 +73,11 @@ namespace mainVentana.VistaInicioCoordinadores
 
 
 
-            cmbCor.DataSource = null;
-            var lst1 = await datos.llenaCord();
-            cmbCor.ValueMember = "C2";
-            cmbCor.DisplayMember = "C3";
-            cmbCor.DataSource = lst1;
+                cmbCor.DataSource = null;
+                var lst1 = await datos.llenaCord();
+                cmbCor.ValueMember = "C2";
+                cmbCor.DisplayMember = "C3";
+                cmbCor.DataSource = lst1;
 
                 if (dt.C12 != null)
                 {
@@ -92,13 +92,13 @@ namespace mainVentana.VistaInicioCoordinadores
                 }
 
 
-            cmbZona.DataSource = null;
-            if (dt.C14 != null && String.IsNullOrWhiteSpace(dt.C14))
-            {
-                var lst2 = await ac.LLenaZona();
-                cmbZona.ValueMember = "C2";
-                cmbZona.DisplayMember = "C1";
-                cmbZona.DataSource = lst2;
+                cmbZona.DataSource = null;
+                if (dt.C14 != null && String.IsNullOrWhiteSpace(dt.C14))
+                {
+                    var lst2 = await ac.LLenaZona();
+                    cmbZona.ValueMember = "C2";
+                    cmbZona.DisplayMember = "C1";
+                    cmbZona.DataSource = lst2;
 
                     foreach (vmZonas i in cmbZona.Items)
                     {
@@ -116,7 +116,7 @@ namespace mainVentana.VistaInicioCoordinadores
 
                 throw;
             }
-
+        }
         public async void moverinfo(string dato, string dato2, string dato3, string dato4, string dato5, string dato6, string dato7, string correoCliente, int bandera) //cambia los datos de los textbox alias y clientes, la bandera dependera de la manera en la que se haya abierto el frm buscar, 0 clientes 1 alias, ADEMAS tambien sirve para cambiar el campo de cord
         {
             try
@@ -229,7 +229,7 @@ namespace mainVentana.VistaInicioCoordinadores
 
             var clv = ac.NumeroCliente();
             txbClave.Text = clv;
-            CargaIniciales();
+           // CargaIniciales();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -239,7 +239,15 @@ namespace mainVentana.VistaInicioCoordinadores
             {
                 MessageBox.Show("Error, la validacion no ha sido satisfactoria", "Revisar datos");
                 return;
-            }    
+            }
+
+            string mbbox = "";
+            if (cbxMail.Checked == true)
+            {
+                mbbox = "1";
+                
+            }
+
 
             AltaClientes ac = new AltaClientes();
             ac.CreaCliente(txbClave.Text ,
@@ -252,7 +260,8 @@ namespace mainVentana.VistaInicioCoordinadores
             txbRfc.Text,
             txbEmail.Text,
            cmbCor.SelectedValue.ToString(),
-           cmbZona.SelectedValue.ToString()
+           cmbZona.SelectedValue.ToString(),
+           mbbox
             );
         }
 

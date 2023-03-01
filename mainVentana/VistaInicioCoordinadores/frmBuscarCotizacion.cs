@@ -114,7 +114,7 @@ namespace mainVentana.VistaInicioCoordinadores
 
             try
             {
-                RDBpagar(rbt.Trim());
+                RDBPpagar(rbt.Trim());
             }
             catch (Exception)
             {
@@ -260,7 +260,7 @@ namespace mainVentana.VistaInicioCoordinadores
 
         }
 
-        private void btnActualizar_Click(object sender, EventArgs e)
+        private void BtnActualizar_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Seguro que quieres modificar esta cotización?", "Cuidado", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.OK)
             {
@@ -358,7 +358,7 @@ namespace mainVentana.VistaInicioCoordinadores
 
         }
 
-        private void RDBpagar(string dato)
+        private void RDBPpagar(string dato)
         {
             if (dato == "Pagado")
             {
