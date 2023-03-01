@@ -34,8 +34,8 @@ namespace mainVentana.vistaConfiguraciones
                 MessageBox.Show("Ha ocurrido un error");
             }
 
-            string usernameapi = Negocios.Properties.Settings.Default.apiUs;
-            string passwordapi = Negocios.Properties.Settings.Default.apiPs;
+           Negocios.Properties.Settings.Default.apiUs = txbUs.Text.Trim(); 
+           Negocios.Properties.Settings.Default.apiPs = txbPs.Text.Trim(); 
 
             try
             {

@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Net;
 using Negocios.Properties;
+using System.Windows.Forms;
 
 namespace Negocios.accesCommon
 {
@@ -44,9 +45,7 @@ namespace Negocios.accesCommon
             {
             }
         }
-
-
-
+       
 
 
     }
