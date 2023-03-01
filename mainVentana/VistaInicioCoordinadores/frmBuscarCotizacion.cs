@@ -355,6 +355,80 @@ namespace mainVentana.VistaInicioCoordinadores
                 frm.lst = listaInfoEnCot; 
                 frm.ShowDialog();
             }
+
+        }
+
+        private void RDBpagar(string dato)
+        {
+            if (dato == "Pagado")
+            {
+                rdbPagado.Checked = true;
+                rdbNoPagado.Checked = false;
+                rdbNoPagado.Enabled = false;
+                rdbPagado.Enabled = false;
+            }
+            else if (dato == "NoPagado" || dato == "")
+            {
+                rdbPagado.Checked = false;
+                rdbNoPagado.Checked = true;
+                rdbNoPagado.Enabled = false;
+                rdbPagado.Enabled = true;
+            }
+
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Seguro que quieres modificar esta cotización?", "Cuidado", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.OK)
+            {
+                try
+                {
+                    if (gunaDataGridView1.Rows.Count > 0)
+                    {
+                        string value1 = gunaDataGridView1.Rows[0].Cells[0].Value?.ToString().Trim() ?? string.Empty;
+                        string value2 = gunaDataGridView1.Rows[0].Cells[1].Value?.ToString().Trim() ?? string.Empty;
+
+                        if (!string.IsNullOrEmpty(value1) && !string.IsNullOrEmpty(value2))
+                        {
+
+                            try
+                            {
+                                AltasCotizacion alta = new AltasCotizacion();
+                               
+                               
+
+                                string pagado = default;
+                                if (rdbPagado.Checked == true)
+                                {
+                                    pagado = "Pagado";
+                                }
+                                else
+                                {
+                                    pagado = "NoPagado";
+                                }
+                                alta.PagoCotizacion(value1, value2,pagado);
+
+                                MessageBox.Show("Se actualizo el pago de: "+value1+value2);
+                            }
+                            catch (Exception)
+                            {
+                                MessageBox.Show("Ha ocurrido un error");
+                                throw;
+                            }
+
+                        }
+                    }
+
+
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+
+
+            }
+           
         }
     }
 }
