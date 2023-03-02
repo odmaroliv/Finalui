@@ -24,7 +24,7 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private void frmClientesMain_Load(object sender, EventArgs e)
         {
-           
+           // CargaIniciales();
         }
 
         private void dungeonButtonRight2_Click(object sender, EventArgs e)
@@ -187,7 +187,7 @@ namespace mainVentana.VistaInicioCoordinadores
 
                 throw;
             }
-            
+
         }
 
 
@@ -216,7 +216,7 @@ namespace mainVentana.VistaInicioCoordinadores
             txbRfc.Text = default;
             txbEmail.Text = default;
 
-            txbZip.Text = default ;
+            txbZip.Text = default;
 
 
 
@@ -229,7 +229,7 @@ namespace mainVentana.VistaInicioCoordinadores
 
             var clv = ac.NumeroCliente();
             txbClave.Text = clv;
-           // CargaIniciales();
+            CargaIniciales();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -245,24 +245,40 @@ namespace mainVentana.VistaInicioCoordinadores
             if (cbxMail.Checked == true)
             {
                 mbbox = "1";
-                
+
+            }
+            if (cmbCor.SelectedValue == null || cmbZona.SelectedValue == null)
+            {
+                MessageBox.Show("Hay un problema con el coordinador asignado o la Zona");
+                return;
+            }
+            btnGuardar.Enabled = false;
+            try
+            {
+                AltaClientes ac = new AltaClientes();
+                ac.CreaCliente(txbClave.Text,
+                txbNombre.Text,
+                txbDireccion.Text,
+                txbColonia.Text,
+                txbPoblacion.Text,
+                 txbZip.Text,
+                txbTel.Text,
+                txbRfc.Text,
+                txbEmail.Text,
+               cmbCor.SelectedValue.ToString(),
+               cmbZona.SelectedValue.ToString(),
+               mbbox
+                );
+                MessageBox.Show("Alta Correcta");
+                this.Close();
+            }
+            catch (Exception w)
+            {
+
+                MessageBox.Show("Ocurrio un error " + w);
+                btnGuardar.Enabled = true;
             }
 
-
-            AltaClientes ac = new AltaClientes();
-            ac.CreaCliente(txbClave.Text ,
-            txbNombre.Text,
-            txbDireccion.Text,
-            txbColonia.Text,
-            txbPoblacion.Text,
-             txbZip.Text,
-            txbTel.Text,
-            txbRfc.Text,
-            txbEmail.Text,
-           cmbCor.SelectedValue.ToString(),
-           cmbZona.SelectedValue.ToString(),
-           mbbox
-            );
         }
 
         private int Vld()
@@ -283,5 +299,33 @@ namespace mainVentana.VistaInicioCoordinadores
                 frm.ShowDialog();
             }
         }
+
+        private async Task CargaIniciales()
+        {
+            Servicios datos = new Servicios();
+            AccesoClientes ac = new AccesoClientes();
+           
+            cmbCor.DataSource = null;
+            var lst1 = await datos.llenaCord();
+            cmbCor.ValueMember = "C2";
+            cmbCor.DisplayMember = "C3";
+            cmbCor.DataSource = lst1;
+
+            
+
+
+            cmbZona.DataSource = null;
+           
+                var lst2 = await ac.LLenaZona();
+                cmbZona.ValueMember = "C2";
+                cmbZona.DisplayMember = "C1";
+                cmbZona.DataSource = lst2;
+
+
+            
+
+        }
+
+
     }
 }

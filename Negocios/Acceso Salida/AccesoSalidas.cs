@@ -88,8 +88,8 @@ namespace Negocios.Acceso_Salida
                             lst2.Clear();
                             string query = "SELECT DISTINCT q.C54 as Documento " +
                                             "FROM KDMENT q " +
-                                           // "INNER JOIN KDM1 k ON q.C54 = CONCAT(TRIM({0}),'-UD4001-',k.C6) " +
-                                            "WHERE (q.C17 != '') AND q.c46 !='BTRACKSALIDA' AND (q.C18 IS NULL or q.C18 = '') AND NOT q.C16 IS NULL AND q.C54 LIKE '%' + {0} + '%' AND q.C19 LIKE '%' + {0} + '%' AND q.C20 <> 'F'" +
+                                            // "INNER JOIN KDM1 k ON q.C54 = CONCAT(TRIM({0}),'-UD4001-',k.C6) " +
+                                            "WHERE q.c46 !='BTRACKSALIDA'  AND ( C16 IS NOT NULL AND C16 != '') AND (q.C17 IS NULL or q.C17 = '') AND (q.C18 IS NULL or q.C18 = '') AND q.C54 LIKE '%' + {0} + '%' AND q.C19 LIKE '%' + {0} + '%' AND (q.C20 <> 'F' or q.C20 IS NULL)" +
                                             "GROUP BY q.C54 " +
                                             "ORDER BY q.C54 DESC ";
 
@@ -157,7 +157,7 @@ namespace Negocios.Acceso_Salida
                             string query = "WITH CTE AS (SELECT DISTINCT q.C55 as Documento, MAX(k.C11) as Referencia, MAX(k.C9) as Fecha " +
                                   "FROM KDMENT q " +
                                   "INNER JOIN KDM1 k ON q.C55 = CONCAT(TRIM({0}),'-UD4501-',k.C6) " +
-                                  "WHERE q.C19 LIKE '%' + {0} + '%' AND k.C61 = {1} AND k.C4 = {2} " +
+                                  "WHERE q.C19 LIKE '%' + {0} + '%' AND k.C61 = {1} AND k.C4 = {2} AND q.c46 !='BTRACKSALIDA'" +
                                   "GROUP BY q.C55) " +
                                   "SELECT Documento, Referencia, Fecha FROM CTE ORDER BY Documento DESC OFFSET 0 ROWS FETCH NEXT {3} ROWS ONLY";
 
@@ -201,7 +201,7 @@ namespace Negocios.Acceso_Salida
                             string query = "WITH CTE AS (SELECT DISTINCT q.C55 as Documento, MAX(k.C11) as Referencia, MAX(k.C9) as Fecha " +
                                  "FROM KDMENT q " +
                                  "INNER JOIN KDM1 k ON q.C55 = CONCAT(TRIM({0}),'-UD4501-',k.C6) " +
-                                 "WHERE q.C18 = '' AND q.C19 LIKE '%' + {0} + '%' AND k.C61 = {1} AND k.C4 = {2} " +
+                                 "WHERE q.C18 = '' AND q.C19 LIKE '%' + {0} + '%' AND k.C61 = {1} AND k.C4 = {2} AND q.c46 !='BTRACKSALIDA' " +
                                  "GROUP BY q.C55) " +
                                  "SELECT Documento, Referencia, Fecha FROM CTE ORDER BY Documento DESC OFFSET 0 ROWS FETCH NEXT {3} ROWS ONLY";
 

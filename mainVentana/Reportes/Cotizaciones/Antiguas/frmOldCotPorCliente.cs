@@ -1,5 +1,7 @@
-﻿using mainVentana.VistaEntrada;
+﻿using Guna.UI.WinForms;
+using mainVentana.VistaEntrada;
 using Negocios;
+using ReaLTaiizor.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Ventana1.LoadControl;
 
 namespace mainVentana.Reportes.Cotizaciones.Antiguas
 {
@@ -17,7 +20,8 @@ namespace mainVentana.Reportes.Cotizaciones.Antiguas
 
         private int datparseado;
         private string _nCotD7 = "";
-        private string _oper = "Cliente"; 
+        private string _oper = "Cliente";
+        private string _iva= "";
 
         public frmOldCotPorCliente()
         {
@@ -126,7 +130,7 @@ namespace mainVentana.Reportes.Cotizaciones.Antiguas
 
         private async void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
-            RadioButton btn = (RadioButton)sender;
+            System.Windows.Forms.RadioButton btn = (System.Windows.Forms.RadioButton)sender;
             _oper = btn.Tag.ToString();
             Servicios datos = new Servicios();
             var lst1 = await datos.llenaCordOLD();
@@ -137,12 +141,20 @@ namespace mainVentana.Reportes.Cotizaciones.Antiguas
 
         private async void gunaTileButton2_Click(object sender, EventArgs e)
         {
+
+            if (String.IsNullOrWhiteSpace(_iva) || String.IsNullOrWhiteSpace(lblCodCliente.Text))
+            {
+                MessageBox.Show("Seleccion una opcion para IVA /o Cliente");
+                return;
+            }
+            loadControl1.Visible = true;
+            gunaTileButton2.Enabled = false;
+            bigLabel1.Visible = true;
             Negocios.NGCotizacion.accesoCotizaciones dt = new Negocios.NGCotizacion.accesoCotizaciones();
             gunaDataGridView1.DataSource = null;
             if (_oper =="Cliente")
             {
                 string sucursal = default;
-
 
 
                 if (rSd.Checked == true)
@@ -157,8 +169,15 @@ namespace mainVentana.Reportes.Cotizaciones.Antiguas
                 {
                     sucursal = "CSL";
                 }
-                var lls = await dt.BuscarCitizacionPorClienteOld(lblCodCliente.Text, sucursal);
+
+                //var ivanci = Convert.ToInt32(_iva).ToString("D7");
+              
+
+                var lls = await dt.BuscarCitizacionPorClienteOld(lblCodCliente.Text, sucursal, _iva);
                 gunaDataGridView1.DataSource = lls;
+                loadControl1.Visible = false;
+                gunaTileButton2.Enabled = true;
+                bigLabel1.Visible = false;
             }
             if (_oper == "Coor")
             {
@@ -185,11 +204,22 @@ namespace mainVentana.Reportes.Cotizaciones.Antiguas
                 var lls = await dt.BuscarCitizacionPorCoordOld( co, sucursal);
                 gunaDataGridView1.DataSource = lls;
             }
+            
+
+
+
         }
 
         private void groupBox2_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void rbIva0_CheckedChanged(object sender, EventArgs e)
+        {
+            System.Windows.Forms.RadioButton btnRd = (System.Windows.Forms.RadioButton)sender;
+            _iva = "";
+            _iva = btnRd.Tag.ToString();
         }
     }
 }
