@@ -142,7 +142,7 @@ namespace mainVentana.Reportes.Cotizaciones.Antiguas
         private async void gunaTileButton2_Click(object sender, EventArgs e)
         {
 
-            if (String.IsNullOrWhiteSpace(_iva) || String.IsNullOrWhiteSpace(lblCodCliente.Text))
+            if (String.IsNullOrWhiteSpace(_iva))
             {
                 MessageBox.Show("Seleccion una opcion para IVA /o Cliente");
                 return;
