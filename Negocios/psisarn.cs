@@ -16,7 +16,7 @@ namespace Negocios
            
             //string cadema = "metadata=res://*/Datosenti.modeloPrueba.csdl|res://*/Datosenti.modeloPrueba.ssdl|res://*/Datosenti.modeloPrueba.msl;provider=System.Data.SqlClient;provider connection string=';data source=104.198.241.64;initial catalog=KEPLER_PRUEBAS;user id=" + SN + ";password=" + CSN + ";multipleactiveresultsets=True;application name=EntityFramework';";
 
-            string cadema = "metadata=res://*/Datosenti.modeloPrueba.csdl|res://*/Datosenti.modeloPrueba.ssdl|res://*/Datosenti.modeloPrueba.msl;provider=System.Data.SqlClient;provider connection string=';data source=104.198.241.64;initial catalog=KEPLER_PRUEBAS;user id=" + Negocios.Common.Cache.AccesData.uso + ";password=" + Negocios.Common.Cache.AccesData.psd + ";multipleactiveresultsets=True;application name=EntityFramework';";
+            string cadema = "metadata=res://*/Datosenti.modeloPrueba.csdl|res://*/Datosenti.modeloPrueba.ssdl|res://*/Datosenti.modeloPrueba.msl;provider=System.Data.SqlClient;provider connection string=';data source=104.198.241.64;initial catalog=KEPLER4;user id=" + Negocios.Common.Cache.AccesData.uso + ";password=" + Negocios.Common.Cache.AccesData.psd + ";multipleactiveresultsets=True;application name=EntityFramework';";
 
 
             AddOrUpdateAppConnectionStrings("modelo2Entities", cadema);
