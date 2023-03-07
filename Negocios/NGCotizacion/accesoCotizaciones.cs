@@ -173,7 +173,8 @@ namespace Negocios.NGCotizacion
                             C81 = '',
                             d.C86, d.C24
                         FROM KDM1 d
-                        WHERE d.C10 LIKE @id AND d.C4 = 34 AND d.C1 = @origen
+                            
+                        WHERE d.C10 LIKE @id AND d.C4 = 34 AND d.C1 = @origen AND  d.C43 !='C'
                         ORDER BY d.C6
                                         ";
 
@@ -189,7 +190,9 @@ namespace Negocios.NGCotizacion
 
                         foreach (var item in results)
                         {
+
                             var all = $"{origen}-UD340{ivaPor}-{item.C6}"; // Set the value of @C115 for the current item
+                         
                             item.C81 = modelo.Database.SqlQuery<string>(@"
                       SELECT STUFF((SELECT ',' + s.C6
                       FROM KDM1 s
