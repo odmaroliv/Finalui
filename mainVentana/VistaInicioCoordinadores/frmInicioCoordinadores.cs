@@ -51,6 +51,9 @@ namespace mainVentana.VistaInicioCoordinadores
             }
         }
 
+
+
+
         public delegate Task pasar(string id = null);
         public event pasar pasado;
 

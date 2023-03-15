@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Runtime;
@@ -9,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Datos.Datosenti;
 using mainVentana.Loading;
 using mainVentana.Properties;
 using mainVentana.vistaConfiguraciones;
@@ -18,7 +20,7 @@ namespace mainVentana
 {
     public partial class Login : Form
     {
-
+        private bool _prueba;
         [DllImport("wininet.dll")]
         private extern static bool InternetGetConnectedState(out int Description, int ReservedValue);
         public Login()
@@ -32,12 +34,13 @@ namespace mainVentana
             await obtain();
             txbPass2.UseSystemPasswordChar = true;
             Negocios.psisarn psisarn = new Negocios.psisarn();
-            psisarn.CS(Negocios.MB.mbsecurity.SN, Negocios.MB.mbsecurity.CSN);
+            psisarn.CS(Negocios.MB.mbsecurity.SN, Negocios.MB.mbsecurity.CSN, Settings.Default.Catalogo);
 
             //Servicios vld = new Servicios();
-              //bool internet = await vld.Test();
+            //bool internet = await vld.Test();
             int desc;
-         
+            txbUsr.Text = Settings.Default.usuarioRecurrente;
+            ModoEjecuta();
             if (InternetGetConnectedState(out desc, 0) == true)
             {
             }
@@ -46,8 +49,23 @@ namespace mainVentana
                 MessageBox.Show("Nececitas una coneccion a internet para poder accesar", "Sin coneccion");
                 
             }
-            txbUsr.Text = Settings.Default.usuarioRecurrente;
+           
         }
+
+        private void ModoEjecuta()
+        {
+           // Negocios.psisarn psisarn = new Negocios.psisarn();
+           // string mod = psisarn.modo();
+
+            if (Settings.Default.Catalogo == "KEPLER_PRUEBAS")
+            {
+                lblModoPruebas.Visible = true;
+                _prueba = true;
+            }
+
+        }
+
+
 
         private async Task<int> obtain()
         {
@@ -79,7 +97,7 @@ namespace mainVentana
         }
 
 
-
+        
 
 
         private void iconButton1_Click(object sender, EventArgs e)
@@ -91,10 +109,19 @@ namespace mainVentana
             }
             else
             {
+                if (_prueba==true)
+                {
+                    if (MessageBox.Show("Estas igresando al entorno de PRUEBAS, ten cuidado.\nNada de lo que hagas aqui sera guardado para su uso real", "Estas seguro?", MessageBoxButtons.OKCancel, MessageBoxIcon.Stop) == DialogResult.Cancel)
+                    {
+                        return;
+                    }
+
+                }
                 Validaciones_P_Busqueda();
+                
             }
 
-           
+
         }
 
         private void loadinggg(int estado)
@@ -173,7 +200,17 @@ namespace mainVentana
                     MessageBox.Show("No tienes internet");
                     return;
                 }
-                loadinggg(1); 
+                loadinggg(1);
+
+                if (_prueba == true)
+                {
+                    if (MessageBox.Show("Estas igresando al entorno de PRUEBAS, ten cuidado.\nNada de lo que hagas aqui sera guardado para su uso real", "Estas seguro?", MessageBoxButtons.OKCancel, MessageBoxIcon.Stop) == DialogResult.Cancel)
+                    {
+                        return;
+                    }
+
+                }
+
                 Validaciones_P_Busqueda();
                
             }
@@ -219,9 +256,29 @@ namespace mainVentana
                     return;
                 }
                 loadinggg(1);
+                if (_prueba == true)
+                {
+                    if (MessageBox.Show("Estas igresando al entorno de PRUEBAS, ten cuidado.\nNada de lo que hagas aqui sera guardado para su uso real", "Estas seguro?", MessageBoxButtons.OKCancel, MessageBoxIcon.Stop) == DialogResult.Cancel)
+                    {
+                        return;
+                    }
 
-                Validaciones_P_Busqueda(); 
-               
+                }
+                Validaciones_P_Busqueda();
+
+
+            }
+
+            if (e.KeyCode == Keys.P && e.Shift)
+            {
+                if (cmbServerSelect.Visible == true)
+                {
+                    cmbServerSelect.Visible = false;
+                }
+                else
+                {
+                    cmbServerSelect.Visible = true;
+                }
                
             }
         }
@@ -252,6 +309,15 @@ namespace mainVentana
             {
                 frm.ShowDialog();
             }
+        }
+
+        private void cmbServerSelect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Negocios.psisarn psisarn = new Negocios.psisarn();
+            Settings.Default.Catalogo = cmbServerSelect.SelectedItem.ToString();
+            Settings.Default.Save();
+            psisarn.CS(Negocios.MB.mbsecurity.SN, Negocios.MB.mbsecurity.CSN, Settings.Default.Catalogo);
+           
         }
     }
 }

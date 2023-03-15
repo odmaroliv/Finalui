@@ -58,6 +58,36 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Datosenti\DatosCXC_Result.cs">
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datosenti\DatosCXC_Result1.cs">
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datosenti\DatosCXC_Result2.cs">
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datosenti\DatosCXC_Result3.cs">
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datosenti\DatosCXC_Result4.cs">
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datosenti\DatosCXC_Result5.cs">
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datosenti\DatosCXC_Result6.cs">
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datosenti\DatosCXC_Result7.cs">
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datosenti\DatosCXC_Result8.cs">
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datosenti\DatosCXC_Result9.cs">
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
+    </Compile>
     <Compile Include="Datosenti\Docto_Prv_Result.cs">
       <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
@@ -166,6 +196,8 @@
     <Compile Include="ViewModels\Coord\vmInfoTablaCot.cs" />
     <Compile Include="ViewModels\Coord\vmNoCot.cs" />
     <Compile Include="ViewModels\Coord\vmTablaCotizacion.cs" />
+    <Compile Include="ViewModels\CXC\vmInicioCXC.cs" />
+    <Compile Include="ViewModels\CXC\vmInicioCXCBd.cs" />
     <Compile Include="ViewModels\Email\vmEmail.cs" />
     <Compile Include="ViewModels\Entradas\Alias.cs" />
     <Compile Include="ViewModels\Entradas\Clientes.cs" />

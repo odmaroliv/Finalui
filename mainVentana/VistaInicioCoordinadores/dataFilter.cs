@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using System.Reflection;
+using Datos.ViewModels.CXC;
 
 namespace mainVentana.VistaInicioCoordinadores
 {
@@ -58,8 +59,13 @@ namespace mainVentana.VistaInicioCoordinadores
             DataTable tb = lista.ToDataTable(); // get your list
             return tb;
         }
-
+        
         public static DataTable ConvierteADatatable3(List<vmEntCordsCot> lista)
+        {
+            DataTable tb = lista.ToDataTable(); // get your list
+            return tb;
+        }
+        public static DataTable ConvierteADatatableCXC(List<vmInicioCXC> lista)
         {
             DataTable tb = lista.ToDataTable(); // get your list
             return tb;

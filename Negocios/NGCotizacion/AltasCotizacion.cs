@@ -149,7 +149,7 @@ namespace Negocios.NGCotizacion
                                  where fd.C1.Contains(i.Origen) && fd.C4 == 35 && fd.C6.Contains(i.entrada)
                                  select fd).First();
 
-                        d.C116 = nCot;
+                        d.C115 = nCot;
                         kd.Add(d);
 
                     }

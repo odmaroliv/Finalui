@@ -33,6 +33,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txbUsr = new Guna.UI.WinForms.GunaLineTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cmbServerSelect = new ReaLTaiizor.Controls.ComboBoxEdit();
             this.btnActivate = new ReaLTaiizor.Controls.FoxButton();
             this.cbxPass = new Guna.UI.WinForms.GunaCheckBox();
             this.pnlImg = new System.Windows.Forms.Panel();
@@ -44,6 +45,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.gunaPictureBox1 = new Guna.UI.WinForms.GunaPictureBox();
+            this.lblModoPruebas = new ReaLTaiizor.Controls.BigLabel();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -98,6 +100,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.lblModoPruebas);
+            this.panel1.Controls.Add(this.cmbServerSelect);
             this.panel1.Controls.Add(this.btnActivate);
             this.panel1.Controls.Add(this.cbxPass);
             this.panel1.Controls.Add(this.pnlImg);
@@ -109,6 +113,30 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(332, 346);
             this.panel1.TabIndex = 5;
+            // 
+            // cmbServerSelect
+            // 
+            this.cmbServerSelect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(246)))), ((int)(((byte)(246)))));
+            this.cmbServerSelect.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbServerSelect.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbServerSelect.DropDownHeight = 100;
+            this.cmbServerSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbServerSelect.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbServerSelect.ForeColor = System.Drawing.Color.Silver;
+            this.cmbServerSelect.FormattingEnabled = true;
+            this.cmbServerSelect.HoverSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(241)))), ((int)(((byte)(241)))));
+            this.cmbServerSelect.IntegralHeight = false;
+            this.cmbServerSelect.ItemHeight = 20;
+            this.cmbServerSelect.Items.AddRange(new object[] {
+            "KEPLER4",
+            "KEPLER_PRUEBAS"});
+            this.cmbServerSelect.Location = new System.Drawing.Point(178, 18);
+            this.cmbServerSelect.Name = "cmbServerSelect";
+            this.cmbServerSelect.Size = new System.Drawing.Size(135, 26);
+            this.cmbServerSelect.StartIndex = 0;
+            this.cmbServerSelect.TabIndex = 24;
+            this.cmbServerSelect.Visible = false;
+            this.cmbServerSelect.SelectedIndexChanged += new System.EventHandler(this.cmbServerSelect_SelectedIndexChanged);
             // 
             // btnActivate
             // 
@@ -260,6 +288,19 @@
             this.gunaPictureBox1.TabIndex = 0;
             this.gunaPictureBox1.TabStop = false;
             // 
+            // lblModoPruebas
+            // 
+            this.lblModoPruebas.AutoSize = true;
+            this.lblModoPruebas.BackColor = System.Drawing.Color.Transparent;
+            this.lblModoPruebas.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
+            this.lblModoPruebas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.lblModoPruebas.Location = new System.Drawing.Point(33, 12);
+            this.lblModoPruebas.Name = "lblModoPruebas";
+            this.lblModoPruebas.Size = new System.Drawing.Size(87, 28);
+            this.lblModoPruebas.TabIndex = 3;
+            this.lblModoPruebas.Text = "Pruebas";
+            this.lblModoPruebas.Visible = false;
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -309,5 +350,7 @@
         private System.Windows.Forms.Panel pnlImg;
         private Guna.UI.WinForms.GunaCheckBox cbxPass;
         private ReaLTaiizor.Controls.FoxButton btnActivate;
+        private ReaLTaiizor.Controls.ComboBoxEdit cmbServerSelect;
+        private ReaLTaiizor.Controls.BigLabel lblModoPruebas;
     }
 }

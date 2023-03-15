@@ -1,11 +1,21 @@
 ﻿using Datos.Datosenti;
+using Datos.ViewModels;
 using Datos.ViewModels.Coord;
+using Datos.ViewModels.CXC;
+using Datos.ViewModels.Entradas;
 using Datos.ViewModels.Reportes;
+using Datos.ViewModels.Salidas;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace Negocios.NGReportes
 {
@@ -14,38 +24,39 @@ namespace Negocios.NGReportes
         /// <summary>
         /// Busca en todo el almacen SD las entradas que aun no han salido y que se pueden indentificar con un coordinador, se interpreta como el inventario actual de SD
         /// </summary>
-        public async Task<List<vmSd1Reporte>> sd1(string dato=null)
+        public async Task<List<vmSd1Reporte>> sd1(string dato = null)
         {
 
             try
             {
                 var lst = new List<vmSd1Reporte>();
-               await Task.Run(() => {
-               
-                using (modelo2Entities modelo = new modelo2Entities())
-
+                await Task.Run(() =>
                 {
-                    var lista = from d in modelo.KDMENT
-                                join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
-                                join a in modelo.KDUV on k.C12 equals a.C2
-                                join u in modelo.KDUSUARIOS on a.C22 equals u.C1
 
-                                where d.C19 == "SD" && d.C23 != "T"
-                                orderby d.C6 descending
-                                select new vmSd1Reporte
-                                {
-                                    entrada = d.C6.Trim(),
-                                    etiqueta = d.C9.Trim(),
-                                    FechEntrada = d.C69,
-                                    ordCar = d.C16.Trim(),
-                                    cord = a.C3.Trim(),
-                                    correoCord = u.C9.Trim(),
-                                    des = d.C42.Trim()
-                                    
-                                };
-                       lst = lista.ToList();
+                    using (modelo2Entities modelo = new modelo2Entities())
 
-                }
+                    {
+                        var lista = from d in modelo.KDMENT
+                                    join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
+                                    join a in modelo.KDUV on k.C12 equals a.C2
+                                    join u in modelo.KDUSUARIOS on a.C22 equals u.C1
+
+                                    where d.C19 == "SD" && d.C23 != "T"
+                                    orderby d.C6 descending
+                                    select new vmSd1Reporte
+                                    {
+                                        entrada = d.C6.Trim(),
+                                        etiqueta = d.C9.Trim(),
+                                        FechEntrada = d.C69,
+                                        ordCar = d.C16.Trim(),
+                                        cord = a.C3.Trim(),
+                                        correoCord = u.C9.Trim(),
+                                        des = d.C42.Trim()
+
+                                    };
+                        lst = lista.ToList();
+
+                    }
                 });
                 return lst;
 
@@ -66,13 +77,14 @@ namespace Negocios.NGReportes
             try
             {
                 var lst = new List<vmSd1Reporte>();
-                await Task.Run(() => {
-                    
+                await Task.Run(() =>
+                {
+
                     using (modelo2Entities modelo = new modelo2Entities())
 
                     {
                         var lista = from d in modelo.KDMENT
-                                    
+
 
                                     where d.C19 == "SD" && d.C23 != "T"
                                     orderby d.C6 descending
@@ -82,7 +94,7 @@ namespace Negocios.NGReportes
                                         etiqueta = d.C9.Trim(),
                                         FechEntrada = d.C69,
                                         ordCar = d.C16.Trim(),
-                                        
+
                                         des = d.C42.Trim()
 
                                     };
@@ -130,7 +142,7 @@ namespace Negocios.NGReportes
                             ordcarga = dka.d.C54,
                             cliente = dka.k.C32,
                             noCli = dka.k.C10,
-                            Cotizacion = dka.k.C116,
+                            Cotizacion = dka.k.C115,
                             ordapli = dka.d.C16,
                             salida = dka.d.C17,
                             SucursalInicio = dka.d.C1,
@@ -186,7 +198,7 @@ namespace Negocios.NGReportes
             }
         }
 
-        public async Task<List<vmEntCordsCot>> CargaEntToCot(string dato,string nuCliente) //dato = sucursal de origen
+        public async Task<List<vmEntCordsCot>> CargaEntToCot(string dato, string nuCliente) //dato = sucursal de origen
         {
             DateTime Hoy = DateTime.Now;
             DateTime fc = fecharestada();
@@ -207,7 +219,7 @@ namespace Negocios.NGReportes
                                      //join a in modelo.KDUV on k.C12 equals a.C2
                                      //join u in modelo.KDUSUARIOS on a.C22 equals u.C1
 
-                                     where d.C1.Contains(dato) && d.C19.Contains(dato) && k.C10 ==nuCliente && d.C34 == "" && k.C12.Contains(Common.Cache.CacheLogin.idusuario.ToString())
+                                     where d.C1.Contains(dato) && d.C19.Contains(dato) && k.C10 == nuCliente && d.C34 == "" && k.C12.Contains(Common.Cache.CacheLogin.idusuario.ToString())
                                      orderby d.C6 descending
 
                                      select new vmEntCordsCot
@@ -250,7 +262,8 @@ namespace Negocios.NGReportes
             try
             {
                 var lst = new vmInfoControlCors();
-                await Task.Run(() => {
+                await Task.Run(() =>
+                {
 
                     using (modelo2Entities modelo = new modelo2Entities())
 
@@ -289,7 +302,7 @@ namespace Negocios.NGReportes
             }
         }
 
-       
+
 
         private DateTime fecharestada()
         {
@@ -300,7 +313,108 @@ namespace Negocios.NGReportes
         }
 
 
+        public async Task<List<vmInicioCXCBd>> CargaControlCXC(string Suc,DateTime f1, DateTime f2)
+        {
+
+           
+            try
+            {
+                var lst = new List<vmInicioCXCBd>();
+                await Task.Run(() =>
+                {
+                    using (modelo2Entities modelo = new modelo2Entities())
+                    {
+                        try
+                        {
+                            //var result = modelo.DatosCXC(f1, f2, Suc).ToList(); // Ejecutar la consulta y convertirla a una lista
+                            //var result = modelo.Database.SqlQuery<dynamic>("EXEC DatosCXC @FECHA1, @FECHA2, @SUC", new SqlParameter("@FECHA1", f1), new SqlParameter("@FECHA2", f2), new SqlParameter("@SUC", Suc)).ToList(); // Ejecutar la consulta SQL y convertirla a una lista de objetos dinámicos
 
 
-    }   
+                                var query = @"SELECT m.C6 AS Entrada,
+                                            MAX(m.C9) AS FechaEntrada,
+                                            MAX(m.C1) AS SucursalOrigen,
+                                            MAX(m.C115) AS Cotizacion,
+                                            MAX(m.C32) AS Cliente,
+                                            MAX(m.C112) AS Alias,
+                                            MAX(v.C3) AS Cordinador,
+                                            MAX(m.C102) AS ValorFactura,
+                                            MAX(m.C16) AS ValorArnian,
+                                            MAX(k.C34) AS BOL,
+                                            MAX(K.C16) AS Carga,
+                                            MAX(k.C17) AS Salida,
+                                            MAX(k.C46) AS Estatus,
+                                            MAX(m.C44) AS EstatusPago,
+                                            MAX(c.C13) AS Comentario
+                                        FROM KDM1 m
+                                        INNER JOIN KDMENT k ON m.C1 = k.C1 AND m.C6 = k.C6 AND m.C4 = k.C4
+                                        INNER JOIN KDM1COMEN c ON c.C1 = m.C1 AND c.C6 = m.C6 AND c.C4 = m.C4
+                                        INNER JOIN KDUV v ON m.C12 = v.C2
+                                        WHERE m.C1 = @SUC AND m.C9 >= @FECHA1 AND m.C9 <= @FECHA2
+                                        GROUP BY m.C6
+                                        ORDER BY m.C6 DESC";
+
+                            var result = modelo.Database.SqlQuery<vmInicioCXCBd>(
+                                                query,
+                                                new SqlParameter("@FECHA1", f1),
+                                                new SqlParameter("@FECHA2", f2),
+                                                new SqlParameter("@SUC", Suc)
+                                             
+                                            ).ToList();
+
+
+
+
+
+                            lst = result;
+                            /*
+
+                            if (true)
+                            {
+                                lst = result.Select(r => new vmInicioCXC
+                                {
+                                    Entrada = r.Entrada,
+                                    FechaEnrtada = (DateTime)r.FechaEntrada,
+                                    Sucursal = r.SucursalOrigen,
+                                    Cotizacion = r.Cotizacion,
+                                    Cliente = r.Cliente,
+                                    Alias = r.Alias,
+                                    Coordinador = r.Cordinador,
+                                    ValorFactura = r.ValorFactura.ToString(),
+                                    ValorArnia = r.ValorArnian.ToString(),
+                                    BOL = r.BOL,
+                                    Carga = r.Carga,
+                                    Salida = r.Salida,
+                                    EstatusAlmacen = r.Estatus,
+                                    EstatusPago = r.EstatusPago,
+                                    //Comentario = r.Comentario,
+                                    
+                                  
+                                }
+                                
+                                ).ToList(); // Seleccionar y crear una lista de objetos vmInicioCXC
+                        
+                            }
+                             */
+                        }
+                        catch (Exception)
+                        {
+                            System.Windows.Forms.MessageBox.Show("Ha Ocurrido un error, datos faltantes o incorrectos.");
+                        }
+                    }
+
+                });
+
+
+                return lst;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        
+
+    }
 }

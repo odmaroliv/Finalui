@@ -33,7 +33,7 @@
     <MinimumRequiredVersion>1.0.0.79</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>79</ApplicationRevision>
+    <ApplicationRevision>81</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -403,6 +403,12 @@
     <Compile Include="vistaConfiguraciones\LicenciaFRM.Designer.cs">
       <DependentUpon>LicenciaFRM.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaCreditoCobranza\VistaCXC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaCreditoCobranza\VistaCXC.Designer.cs">
+      <DependentUpon>VistaCXC.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaEntrada\AltaEntrada.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -624,6 +630,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="vistaConfiguraciones\LicenciaFRM.resx">
       <DependentUpon>LicenciaFRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaCreditoCobranza\VistaCXC.resx">
+      <DependentUpon>VistaCXC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaEntrada\AltaEntrada.resx">
       <DependentUpon>AltaEntrada.cs</DependentUpon>

@@ -14,6 +14,7 @@ using System.Threading;
 using mainVentana.VistaInicioFoto;
 using mainVentana.VistaInicioCoordinadores;
 using mainVentana.vistaReportes;
+using mainVentana.VistaCreditoCobranza;
 
 namespace mainVentana
 {
@@ -394,6 +395,17 @@ namespace mainVentana
                 AbrirFormEnPanel(ts);
             }
         }
+
+        private void skyButton1_Click_2(object sender, EventArgs e)
+        {
+            if (Negocios.Common.Cache.CacheLogin.rol.Trim() == "ADMIN")
+            {
+
+                VistaCXC ts = new VistaCXC();
+                AbrirFormEnPanel(ts);
+            }
+        }
+    
 
 
 

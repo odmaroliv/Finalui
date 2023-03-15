@@ -430,5 +430,10 @@ namespace mainVentana.VistaInicioCoordinadores
             }
            
         }
+
+        private void frmBuscarCotizacion_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

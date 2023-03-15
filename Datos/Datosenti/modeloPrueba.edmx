@@ -1252,6 +1252,177 @@
           <Property Name="C39" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="C40" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
         </EntityType>
+        <ComplexType Name="DatosCXC_Result">
+          <Property Type="String" Name="Entrada" Nullable="false" MaxLength="7" />
+          <Property Type="DateTime" Name="FechaEntrada" Nullable="true" Precision="23" />
+          <Property Type="String" Name="SucursalOrigen" Nullable="true" MaxLength="7" />
+          <Property Type="String" Name="Cotizacion" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Cliente" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Alias" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Cordinador" Nullable="true" MaxLength="30" />
+          <Property Type="Decimal" Name="ValorFactura" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="ValorArnian" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="String" Name="BOL" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Carga" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Salida" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Estatus" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EstatusPago" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="DatosCXC_Result1">
+          <Property Type="String" Name="Entrada" Nullable="false" MaxLength="7" />
+          <Property Type="DateTime" Name="FechaEntrada" Nullable="true" Precision="23" />
+          <Property Type="String" Name="SucursalOrigen" Nullable="true" MaxLength="7" />
+          <Property Type="String" Name="Cotizacion" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Cliente" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Alias" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Cordinador" Nullable="true" MaxLength="30" />
+          <Property Type="Decimal" Name="ValorFactura" Nullable="true" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="ValorArnian" Nullable="true" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="ValorArnian1" Nullable="true" Precision="15" Scale="2" />
+          <Property Type="String" Name="BOL" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Carga" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Salida" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Estatus" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EstatusPago" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Comentario" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="DatosCXC_Result2">
+          <Property Type="String" Name="Entrada" Nullable="false" MaxLength="7" />
+          <Property Type="DateTime" Name="FechaEntrada" Nullable="true" Precision="23" />
+          <Property Type="String" Name="SucursalOrigen" Nullable="true" MaxLength="7" />
+          <Property Type="String" Name="Cotizacion" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Cliente" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Alias" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Cordinador" Nullable="true" MaxLength="30" />
+          <Property Type="Decimal" Name="ValorFactura" Nullable="true" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="ValorArnian" Nullable="true" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="ValorArnian1" Nullable="true" Precision="15" Scale="2" />
+          <Property Type="String" Name="BOL" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Carga" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Salida" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Estatus" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EstatusPago" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Comentario" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="DatosCXC_Result3">
+          <Property Type="String" Name="Entrada" Nullable="false" MaxLength="7" />
+          <Property Type="DateTime" Name="FechaEntrada" Nullable="true" Precision="23" />
+          <Property Type="String" Name="SucursalOrigen" Nullable="true" MaxLength="7" />
+          <Property Type="String" Name="Cotizacion" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Cliente" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Alias" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Cordinador" Nullable="true" MaxLength="30" />
+          <Property Type="Decimal" Name="ValorFactura" Nullable="true" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="ValorArnian" Nullable="true" Precision="15" Scale="2" />
+          <Property Type="String" Name="BOL" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Carga" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Salida" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Estatus" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EstatusPago" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Comentario" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="DatosCXC_Result4">
+          <Property Type="String" Name="Entrada" Nullable="false" MaxLength="7" />
+          <Property Type="DateTime" Name="FechaEntrada" Nullable="true" Precision="23" />
+          <Property Type="String" Name="SucursalOrigen" Nullable="true" MaxLength="7" />
+          <Property Type="String" Name="Cotizacion" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Cliente" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Alias" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Cordinador" Nullable="true" MaxLength="30" />
+          <Property Type="Decimal" Name="ValorFactura" Nullable="true" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="ValorArnian" Nullable="true" Precision="15" Scale="2" />
+          <Property Type="String" Name="BOL" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Carga" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Salida" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Estatus" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EstatusPago" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Comentario" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="DatosCXC_Result5">
+          <Property Type="String" Name="Entrada" Nullable="false" MaxLength="7" />
+          <Property Type="DateTime" Name="FechaEntrada" Nullable="true" Precision="23" />
+          <Property Type="String" Name="SucursalOrigen" Nullable="true" MaxLength="7" />
+          <Property Type="String" Name="Cotizacion" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Cliente" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Alias" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Cordinador" Nullable="true" MaxLength="30" />
+          <Property Type="Decimal" Name="ValorFactura" Nullable="true" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="ValorArnian" Nullable="true" Precision="15" Scale="2" />
+          <Property Type="String" Name="BOL" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Carga" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Salida" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Estatus" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EstatusPago" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Comentario" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="DatosCXC_Result6">
+          <Property Type="String" Name="Entrada" Nullable="false" MaxLength="7" />
+          <Property Type="DateTime" Name="FechaEntrada" Nullable="true" Precision="23" />
+          <Property Type="String" Name="SucursalOrigen" Nullable="true" MaxLength="7" />
+          <Property Type="String" Name="Cotizacion" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Cliente" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Alias" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Cordinador" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ValorFactura" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="ValorArnian" Nullable="true" Precision="15" Scale="2" />
+          <Property Type="String" Name="BOL" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Carga" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Salida" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Estatus" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EstatusPago" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Comentario" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="DatosCXC_Result7">
+          <Property Type="Int64" Name="RowNumber" Nullable="true" />
+          <Property Type="String" Name="Entrada" Nullable="false" MaxLength="7" />
+          <Property Type="DateTime" Name="FechaEntrada" Nullable="true" Precision="23" />
+          <Property Type="String" Name="SucursalOrigen" Nullable="true" MaxLength="7" />
+          <Property Type="String" Name="Cotizacion" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Cliente" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Alias" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Cordinador" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ValorFactura" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="ValorArnian" Nullable="true" Precision="15" Scale="2" />
+          <Property Type="String" Name="BOL" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Carga" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Salida" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Estatus" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EstatusPago" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Comentario" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="DatosCXC_Result8">
+          <Property Type="String" Name="Entrada" Nullable="false" MaxLength="7" />
+          <Property Type="DateTime" Name="FechaEntrada" Nullable="true" Precision="23" />
+          <Property Type="String" Name="SucursalOrigen" Nullable="true" MaxLength="7" />
+          <Property Type="String" Name="Cotizacion" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Cliente" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Alias" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Cordinador" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ValorFactura" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="ValorArnian" Nullable="true" Precision="15" Scale="2" />
+          <Property Type="String" Name="BOL" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Carga" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Salida" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Estatus" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EstatusPago" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Comentario" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="DatosCXC_Result9">
+          <Property Type="String" Name="Entrada" Nullable="false" MaxLength="7" />
+          <Property Type="DateTime" Name="FechaEntrada" Nullable="true" Precision="23" />
+          <Property Type="String" Name="SucursalOrigen" Nullable="true" MaxLength="7" />
+          <Property Type="String" Name="Cotizacion" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Cliente" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Alias" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Cordinador" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ValorFactura" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="ValorArnian" Nullable="true" Precision="15" Scale="2" />
+          <Property Type="String" Name="BOL" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Carga" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Salida" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Estatus" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EstatusPago" Nullable="true" MaxLength="10" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

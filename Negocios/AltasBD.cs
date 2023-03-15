@@ -59,7 +59,7 @@ namespace Negocios
                     d.C99 = Convert.ToDecimal(peso);
                     d.C100 = unidadMedida;
                     d.C101 = tipOperacion;
-                    d.C102 = valFact;
+                    d.C102 = valFact == "" ? "0" : valArn; //este valor lo usamos en los reportes
                     d.C103 = sucDestino.Trim();
                     d.C108 = bultos;
                     d.C112 = Alias.Trim();
@@ -453,6 +453,61 @@ namespace Negocios
             }
 
         }
+
+
+
+        /*
+         Cuentas Por Cobrar CXC
+         
+         */
+        public async Task ActualizaPagoPorEntrada(string entrada, string sucursalIni, string pago, string comentario)
+        {
+
+            try
+            {
+                using (modelo2Entities modelo = new modelo2Entities())
+                {
+                    var d = (from q in modelo.KDM1
+                             where q.C1 == sucursalIni && q.C6 == entrada && q.C4 == 35
+                             select q).First();
+
+                    d.C44 = pago;
+
+                    await modelo.SaveChangesAsync();
+
+                }
+            }
+            catch (Exception)
+            {
+                System.Windows.Forms.MessageBox.Show("Ha ocurrido un error, no hemos podido actualizar el valor.");
+            }
+            if (!String.IsNullOrWhiteSpace(comentario))
+            {
+                //Actualiza comentarios
+                try
+                {
+                    using (modelo2Entities modelo = new modelo2Entities())
+                    {
+                        var d = (from q in modelo.KDM1COMEN
+                                 where q.C1 == sucursalIni && q.C6 == entrada && q.C4 == 35
+                                 select q).First();
+
+                        d.C13 = comentario;
+
+                        await modelo.SaveChangesAsync();
+
+                    }
+                }
+                catch (Exception)
+                {
+                    System.Windows.Forms.MessageBox.Show("Ha ocurrido un error, no hemos podido actualizar el valor.");
+                }
+
+            }
+            
+
+        }
+
 
     }
 
