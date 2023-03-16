@@ -1037,12 +1037,12 @@ namespace mainVentana.VistaEntrada
                 cargafecha();
                 lblCodCliente.Text = default;
                 cord.SelectedIndex = 0;
-                txbValArn.Text = default;
+                txbValArn.Text = "1";
                 cliente.Text = default;
                 label23.Text = default;
                 label24.Text = default;
                 label25.Text = default;
-                txbValFact.Text = default;
+                txbValFact.Text = "1";
                 lblParidad.Text = default;
                 tbxRastreo.Text = default;
                 proveedor.SelectedIndex = 0;

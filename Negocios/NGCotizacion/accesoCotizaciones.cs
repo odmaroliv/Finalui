@@ -371,7 +371,7 @@ namespace Negocios.NGCotizacion
                                 where d.C1.Contains(datoSucIni) && d.C6 == Ent
                                 select new vmNoCot
                                 {
-                                    noCot = d.C116
+                                    noCot = d.C115
                                 };
                     lst2 = (vmNoCot)lista.FirstOrDefault();
 

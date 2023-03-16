@@ -24,7 +24,7 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private void frmClientesMain_Load(object sender, EventArgs e)
         {
-           // CargaIniciales();
+            CargaIniciales();
         }
 
         private void dungeonButtonRight2_Click(object sender, EventArgs e)
@@ -255,6 +255,10 @@ namespace mainVentana.VistaInicioCoordinadores
             btnGuardar.Enabled = false;
             try
             {
+                AccesoClientes acf = new AccesoClientes();
+                var clv = acf.NumeroCliente();
+                txbClave.Text = clv;
+
                 AltaClientes ac = new AltaClientes();
                 ac.CreaCliente(txbClave.Text,
                 txbNombre.Text,
