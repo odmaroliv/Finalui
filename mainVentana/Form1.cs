@@ -18,6 +18,7 @@ using System.Diagnostics;
 using mainVentana.VistaInicioCoordinadores;
 using mainVentana.VistaWMS;
 using mainVentana.Reportes.Cotizaciones.Antiguas;
+using mainVentana.VistaEntrada.Proovedor;
 
 namespace mainVentana
 {
@@ -422,6 +423,25 @@ namespace mainVentana
             {
                 frm.ShowDialog();
             }
+        }
+
+        private void ribbonButton5_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (frmProovedorAdd ent = new frmProovedorAdd())
+                {
+                    
+                    ent.ShowDialog();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
     }
 }

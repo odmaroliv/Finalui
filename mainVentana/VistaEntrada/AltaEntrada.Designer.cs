@@ -1262,6 +1262,7 @@
             // 
             this.label37.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label37.AutoSize = true;
+            this.label37.Enabled = false;
             this.label37.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label37.Location = new System.Drawing.Point(12, 291);
             this.label37.Name = "label37";
@@ -1273,6 +1274,7 @@
             // 
             this.label36.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label36.AutoSize = true;
+            this.label36.Enabled = false;
             this.label36.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label36.Location = new System.Drawing.Point(12, 223);
             this.label36.Name = "label36";
@@ -1291,6 +1293,7 @@
             // txbValArn
             // 
             this.txbValArn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txbValArn.Enabled = false;
             this.txbValArn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbValArn.Location = new System.Drawing.Point(32, 285);
             this.txbValArn.Name = "txbValArn";
@@ -1300,6 +1303,7 @@
             // label34
             // 
             this.label34.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label34.Enabled = false;
             this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label34.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label34.Location = new System.Drawing.Point(8, 261);
@@ -1328,6 +1332,7 @@
             "Pequena Importacion"});
             this.txbValFact.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txbValFact.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txbValFact.Enabled = false;
             this.txbValFact.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbValFact.Location = new System.Drawing.Point(32, 216);
             this.txbValFact.Name = "txbValFact";
@@ -1349,6 +1354,7 @@
             // label35
             // 
             this.label35.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label35.Enabled = false;
             this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label35.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label35.Location = new System.Drawing.Point(8, 185);
@@ -1376,6 +1382,7 @@
             this.groupBox7.Controls.Add(this.label38);
             this.groupBox7.Controls.Add(this.rdbNoPagado);
             this.groupBox7.Controls.Add(this.rdbPagado);
+            this.groupBox7.Enabled = false;
             this.groupBox7.Location = new System.Drawing.Point(970, 376);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(242, 199);

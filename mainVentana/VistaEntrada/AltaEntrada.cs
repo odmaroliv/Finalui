@@ -671,7 +671,6 @@ namespace mainVentana.VistaEntrada
                 }
                 catch (Exception)
                 {
-
                     throw;
                 }
             }
@@ -693,7 +692,7 @@ namespace mainVentana.VistaEntrada
         }
 
         public async void Cargaparidad()
-        {
+        {/*
             Servicio datos = new Servicio();
             string paridad1 = await datos.GetParidad();
             var lst = JsonConvert.DeserializeObject<Root>(paridad1);
@@ -728,7 +727,7 @@ namespace mainVentana.VistaEntrada
                 }
             }
 
-
+            */
 
         }
 
@@ -1029,7 +1028,14 @@ namespace mainVentana.VistaEntrada
             }
             else if (msn == 0)
             {
-                sucEntrada.SelectedIndex = 0;
+               // sucEntrada.SelectedIndex = 0;
+                foreach (var i in from Sucursales i in sucEntrada.Items
+                                  where i.c1.Trim() == sucursalGlobal.Trim()
+                                  select i)
+                {
+                    sucEntrada.SelectedValue = i.c1;
+                    break;
+                }
                 //datoEntrada               = recuperUltimaent();
                 cargaultent();
                 cmbMoneda.SelectedIndex = 0;

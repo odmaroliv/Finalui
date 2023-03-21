@@ -599,6 +599,11 @@ namespace mainVentana.VistaInicioCoordinadores
                     if (!String.IsNullOrWhiteSpace(txbParidad.Text))
                     {
                         AltaKDM1();
+                        using (frmBuscarCotizacion cot = new frmBuscarCotizacion())
+                        {
+                            //cot.sGlobal = Negocios.Common.Cache.CacheLogin.sucGlobal;
+                            cot.ShowDialog();
+                        }
                     }
                 }
                 else

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Datos.ViewModels.Entradas;
 using Ventana1.vm;
+using System.Windows.Forms;
 
 namespace Negocios
 {
@@ -85,7 +86,7 @@ namespace Negocios
             }
 
         }
-        public void ActualizaSqlIov(string datoSucIni, int modo, string dato= null)
+        public void ActualizaSqlIov(string datoSucIni, int modo, string dato = null)
         {
 
 
@@ -244,9 +245,9 @@ namespace Negocios
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
                     var d = (from q in modelo.KDM1COMEN
-                                where q.C6 == id && q.C1 == sucursalOrigen
-                                select q).First();
-                    
+                             where q.C6 == id && q.C1 == sucursalOrigen
+                             select q).First();
+
                     d.C11 = descripcion;
                     modelo.SaveChanges();
 
@@ -310,7 +311,7 @@ namespace Negocios
             }
         }
 
-        public async Task ModificaStatusSalida(string sucursal, string numerosalida,string numerocarga)
+        public async Task ModificaStatusSalida(string sucursal, string numerosalida, string numerocarga)
         {
 
 
@@ -320,10 +321,10 @@ namespace Negocios
                 {
                     List<KDM1> kd = new List<KDM1>();
 
-                 //   int datoNumeroDocumento = sucursal == "TJ" ? 50 : 40 ;
+                    //   int datoNumeroDocumento = sucursal == "TJ" ? 50 : 40 ;
 
 
-                    if (sucursal=="TJ")
+                    if (sucursal == "TJ")
                     {
 
                         var d = (from fd in modelo.KDM1
@@ -342,7 +343,7 @@ namespace Negocios
                             throw;
                         }
                     }
-                    else 
+                    else
                     {
 
                         var d = (from fd in modelo.KDM1
@@ -361,14 +362,14 @@ namespace Negocios
                             throw;
                         }
                     }
-                    
+
 
                 }
             });
         }
-        public async Task TerminaSalida(string numerosalida,string origen)
+        public async Task TerminaSalida(string numerosalida, string origen)
 
-        { 
+        {
             await Task.Run(() =>
             {
                 using (modelo2Entities modelo = new modelo2Entities())
@@ -406,9 +407,9 @@ namespace Negocios
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
                     var d = (from q in modelo.KDM1
-                             where q.C1==sucursalIni && q.C6 == entrada && q.C4 ==35
+                             where q.C1 == sucursalIni && q.C6 == entrada && q.C4 == 35
                              select q).First();
-                   
+
                     d.C102 = valfact.Trim();
                     d.C16 = Convert.ToDecimal(valarn.Trim());
                     d.C42 = Convert.ToDecimal(valarn.Trim());
@@ -504,15 +505,54 @@ namespace Negocios
                 }
 
             }
-            
+
 
         }
 
 
-    }
+
+        public async Task AgregarProovedor(string clave, string nombre, string calle, string colonia, string poblacion, string rfc)
+        {
+
+            try
+            {
+                using (modelo2Entities modelo = new modelo2Entities())
+                {
+
+
+                    var d = new KDXD();
+                    d.C2 = clave;
+                    d.C3 = nombre;
+                    d.C4 = calle;
+                    d.C5 = colonia;
+                    d.C6 = poblacion;
+                    d.C10 = rfc;
+                   
+
+                    modelo.KDXD.Add(d);
+                    try
+                    {
+                        modelo.SaveChanges();
+                        MessageBox.Show("Agregado");
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                }
+            }
+
+
+            catch (Exception)
+            {
+                System.Windows.Forms.MessageBox.Show("Ha ocurrido un error, no hemos podido crear el valor (Proovedor) posiblemente por codigo repedito.");
+            }
+            
+        }
 
 
 
+        }
 
 
 }

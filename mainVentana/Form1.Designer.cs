@@ -94,6 +94,7 @@ namespace mainVentana
             this.vbtnCotizacion = new System.Windows.Forms.RibbonButton();
             this.rCordbtnBuscaCot = new System.Windows.Forms.RibbonButton();
             this.vbtnClientes = new System.Windows.Forms.RibbonButton();
+            this.oldrpKepler = new System.Windows.Forms.RibbonButton();
             this.ribbonSeparator8 = new System.Windows.Forms.RibbonSeparator();
             this.rbtnReportes = new System.Windows.Forms.RibbonButton();
             this.ribbonSeparator9 = new System.Windows.Forms.RibbonSeparator();
@@ -121,7 +122,8 @@ namespace mainVentana
             this.ribbonButton4 = new System.Windows.Forms.RibbonButton();
             this.ribbonDescriptionMenuItem2 = new System.Windows.Forms.RibbonDescriptionMenuItem();
             this.panelContenedorForm = new System.Windows.Forms.Panel();
-            this.oldrpKepler = new System.Windows.Forms.RibbonButton();
+            this.rbtnEntradaAlta = new System.Windows.Forms.RibbonButton();
+            this.ribbonButton5 = new System.Windows.Forms.RibbonButton();
             this.panel11.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -429,10 +431,13 @@ namespace mainVentana
             // 
             // rbtnEntrada
             // 
+            this.rbtnEntrada.DropDownItems.Add(this.rbtnEntradaAlta);
+            this.rbtnEntrada.DropDownItems.Add(this.ribbonButton5);
             this.rbtnEntrada.Image = global::mainVentana.Properties.Resources.log_in;
             this.rbtnEntrada.LargeImage = global::mainVentana.Properties.Resources.log_in;
             this.rbtnEntrada.Name = "rbtnEntrada";
             this.rbtnEntrada.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbtnEntrada.SmallImage")));
+            this.rbtnEntrada.Style = System.Windows.Forms.RibbonButtonStyle.SplitDropDown;
             this.rbtnEntrada.Text = "Entrada";
             this.rbtnEntrada.Click += new System.EventHandler(this.rbtnEntrada_Click);
             // 
@@ -534,6 +539,16 @@ namespace mainVentana
             this.vbtnClientes.SmallImage = ((System.Drawing.Image)(resources.GetObject("vbtnClientes.SmallImage")));
             this.vbtnClientes.Text = "Clientes";
             this.vbtnClientes.Click += new System.EventHandler(this.vbtnClientes_Click);
+            // 
+            // oldrpKepler
+            // 
+            this.oldrpKepler.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.oldrpKepler.Image = ((System.Drawing.Image)(resources.GetObject("oldrpKepler.Image")));
+            this.oldrpKepler.LargeImage = ((System.Drawing.Image)(resources.GetObject("oldrpKepler.LargeImage")));
+            this.oldrpKepler.Name = "oldrpKepler";
+            this.oldrpKepler.SmallImage = ((System.Drawing.Image)(resources.GetObject("oldrpKepler.SmallImage")));
+            this.oldrpKepler.Text = "Reporte Cotizaciones Kepler";
+            this.oldrpKepler.Click += new System.EventHandler(this.oldrpKepler_Click);
             // 
             // ribbonSeparator8
             // 
@@ -760,15 +775,25 @@ namespace mainVentana
             this.panelContenedorForm.Size = new System.Drawing.Size(1113, 601);
             this.panelContenedorForm.TabIndex = 2;
             // 
-            // oldrpKepler
+            // rbtnEntradaAlta
             // 
-            this.oldrpKepler.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
-            this.oldrpKepler.Image = ((System.Drawing.Image)(resources.GetObject("oldrpKepler.Image")));
-            this.oldrpKepler.LargeImage = ((System.Drawing.Image)(resources.GetObject("oldrpKepler.LargeImage")));
-            this.oldrpKepler.Name = "oldrpKepler";
-            this.oldrpKepler.SmallImage = ((System.Drawing.Image)(resources.GetObject("oldrpKepler.SmallImage")));
-            this.oldrpKepler.Text = "Reporte Cotizaciones Kepler";
-            this.oldrpKepler.Click += new System.EventHandler(this.oldrpKepler_Click);
+            this.rbtnEntradaAlta.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.rbtnEntradaAlta.Image = ((System.Drawing.Image)(resources.GetObject("rbtnEntradaAlta.Image")));
+            this.rbtnEntradaAlta.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbtnEntradaAlta.LargeImage")));
+            this.rbtnEntradaAlta.Name = "rbtnEntradaAlta";
+            this.rbtnEntradaAlta.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbtnEntradaAlta.SmallImage")));
+            this.rbtnEntradaAlta.Text = "Nueva Entrada";
+            this.rbtnEntradaAlta.Click += new System.EventHandler(this.rbtnEntrada_Click);
+            // 
+            // ribbonButton5
+            // 
+            this.ribbonButton5.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.ribbonButton5.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton5.Image")));
+            this.ribbonButton5.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton5.LargeImage")));
+            this.ribbonButton5.Name = "ribbonButton5";
+            this.ribbonButton5.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton5.SmallImage")));
+            this.ribbonButton5.Text = "Alta Proovedor";
+            this.ribbonButton5.Click += new System.EventHandler(this.ribbonButton5_Click);
             // 
             // Form1
             // 
@@ -872,6 +897,8 @@ namespace mainVentana
         private RibbonButton ribbonButton4;
         private RibbonButton vbtnClientes;
         private RibbonButton oldrpKepler;
+        private RibbonButton rbtnEntradaAlta;
+        private RibbonButton ribbonButton5;
     }
 }
 
