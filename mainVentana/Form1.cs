@@ -117,7 +117,27 @@ namespace mainVentana
                 rbtnBill.Visible = false;
                 rbtnCord.Visible = false;
             }
+              else if (CacheLogin.rol.Trim() == "CXC")
+            {
+                //Enables
+                rbtnEntrada.Enabled = false;
+                rbtnCargas.Enabled = false;
+                rbtnSalida.Enabled = false;
+                rbtnReportes.Enabled = false;
+                rbtnRecepcion.Enabled = false;
+                rbtnBill.Enabled = false;
+                rbtnCord.Enabled = true;
 
+
+                //Visibles
+                rbtnEntrada.Visible = false;
+                rbtnCargas.Visible = false;
+                rbtnSalida.Visible = false;
+                rbtnReportes.Visible = false;
+                rbtnRecepcion.Visible = false;
+                rbtnBill.Visible = false;
+                rbtnCord.Visible = true;
+            }
 
             else
             {
