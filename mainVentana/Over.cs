@@ -44,7 +44,12 @@ namespace mainVentana
                 frm.pasado += new frmInicioCoordinadores.pasar(refrescatabla);
                 AbrirFormEnPanel(frm);
             }
-           else if (Negocios.Common.Cache.CacheLogin.rol.Trim() == "ADMIN")
+            else if (Negocios.Common.Cache.CacheLogin.rol.Trim() == "CXC")
+            {
+                VistaCXC ts = new VistaCXC();
+                AbrirFormEnPanel(ts);
+            }
+            else if (Negocios.Common.Cache.CacheLogin.rol.Trim() == "ADMIN")
             {
                 btnAdminAdmin.Enabled = true;
                 btnCordAdmin.Enabled = true;
@@ -52,6 +57,7 @@ namespace mainVentana
                 btnAdminAdmin.Visible = true;
                 btnCordAdmin.Visible = true;
                 btnArtu.Visible = true;
+                btnCxcp.Visible = true;
             }
 
             else
