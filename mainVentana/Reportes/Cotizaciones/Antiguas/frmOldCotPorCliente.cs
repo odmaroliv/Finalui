@@ -173,7 +173,7 @@ namespace mainVentana.Reportes.Cotizaciones.Antiguas
                 //var ivanci = Convert.ToInt32(_iva).ToString("D7");
               
 
-                var lls = await dt.BuscarCitizacionPorClienteOld(lblCodCliente.Text, sucursal, _iva);
+                var lls = await dt.BuscarCitizacionPorClienteOld(lblCodCliente.Text, sucursal, _iva, dtFecha1.Value.Date, dtFecha2.Value.Date);
                 gunaDataGridView1.DataSource = lls;
                 loadControl1.Visible = false;
                 gunaTileButton2.Enabled = true;
@@ -220,6 +220,16 @@ namespace mainVentana.Reportes.Cotizaciones.Antiguas
             System.Windows.Forms.RadioButton btnRd = (System.Windows.Forms.RadioButton)sender;
             _iva = "";
             _iva = btnRd.Tag.ToString();
+        }
+
+        private void frmOldCotPorCliente_Load(object sender, EventArgs e)
+        {
+            dtFecha1.Value = DateTime.Now;
+            dtFecha2.Value = DateTime.Now;
+            dtFecha1.MinDate = DateTime.Now.AddDays(-366);
+            dtFecha1.MaxDate = DateTime.Now.AddDays(1);
+            dtFecha2.MinDate = DateTime.Now.AddDays(-366);
+            dtFecha2.MaxDate = DateTime.Now.AddDays(1);
         }
     }
 }

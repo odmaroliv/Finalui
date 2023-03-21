@@ -117,7 +117,7 @@ namespace Negocios.NGCotizacion
         }
 
 
-        public async Task<List<vmOldBusquedaCot>> BuscarCitizacionPorClienteOld(string id, string origen, string ivaPor) //BUSQUEDA RAPIDA POR ENTRADA <Funciona en la pantalla principal Form1>
+        public async Task<List<vmOldBusquedaCot>> BuscarCitizacionPorClienteOld(string id, string origen, string ivaPor, DateTime fh1, DateTime fh2) //BUSQUEDA RAPIDA POR ENTRADA <Funciona en la pantalla principal Form1>
         {
             // string cadenaCodigo = origen + "-UD340" + ivaPor + "-"+ id;
             try
@@ -174,7 +174,7 @@ namespace Negocios.NGCotizacion
                             d.C86, d.C24
                         FROM KDM1 d
                             
-                        WHERE d.C10 LIKE @id AND d.C4 = 34 AND d.C1 = @origen AND  d.C43 !='C'
+                        WHERE d.C10 LIKE @id AND d.C4 = 34 AND d.C1 = @origen AND  d.C43 !='C'  AND (d.C9 >= @FECHA1 AND d.C9 <= @FECHA2)
                         ORDER BY d.C6
                                         ";
 
@@ -182,7 +182,9 @@ namespace Negocios.NGCotizacion
                     {
                         new SqlParameter("@id", $"%{id}%"),
                         new SqlParameter("@origen", origen),
-                        new SqlParameter("@C115", $"{origen}-UD340{ivaPor}-" + "d.C6")
+                        new SqlParameter("@C115", $"{origen}-UD340{ivaPor}-" + "d.C6"),
+                         new SqlParameter("@FECHA1", fh1),
+                         new SqlParameter("@FECHA2", fh2)
                     };
                         var results = modelo.Database.SqlQuery<vmOldBusquedaCot>(sqlQuery, parameters.ToArray()).ToList();
                         lst2 = results;

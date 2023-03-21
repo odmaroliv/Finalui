@@ -69,9 +69,9 @@ namespace mainVentana.VistaCreditoCobranza
         {
             dtFecha1.Value = DateTime.Now;
             dtFecha2.Value = DateTime.Now;
-            dtFecha1.MinDate = DateTime.Now.AddDays(-31);
+            dtFecha1.MinDate = DateTime.Now.AddDays(-90);
             dtFecha1.MaxDate = DateTime.Now.AddDays(1);
-            dtFecha2.MinDate = DateTime.Now.AddDays(-31);
+            dtFecha2.MinDate = DateTime.Now.AddDays(-90);
             dtFecha2.MaxDate = DateTime.Now.AddDays(1);
            // await ejecutaeveto2();
 
