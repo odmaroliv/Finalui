@@ -129,22 +129,24 @@ namespace mainVentana.VistaCreditoCobranza
             {
                 dtgDatos.Add(new vmInicioCXC
                 {
-                    Salida = w.Salida,
-                    Alias = w.Alias,
-                    BOL = w.BOL,
-                    Carga = w.Carga,
-                    Cliente = w.Cliente,
-                    Coordinador = w.Cordinador,
-                    Cotizacion = w.Cotizacion,
-                    Entrada = w.Entrada,
-                    EstatusAlmacen = w.Estatus,
-                    EstatusPago = w.EstatusPago,
+                    Salida = w.Salida?.Trim(),
+                    Alias = w.Alias?.Trim(),
+                    BOL = w.BOL?.Trim(),
+                    Carga = w.Carga?.Trim(),
+                    Cliente = w.Cliente?.Trim(),
+                    Coordinador = w.Cordinador?.Trim(),
+                    Cotizacion = w.Cotizacion?.Trim(),
+                    Entrada = w.Entrada?.Trim(),
+                    EstatusAlmacen = w.Estatus?.Trim(),
+                    EstatusPago = w.EstatusPago?.Trim(),
                     FechaEnrtada = (DateTime)w.FechaEntrada,
-                    Sucursal = w.SucursalOrigen,
+                    Sucursal = w.SucursalOrigen?.Trim(),
                     ValorArnia = w.ValorArnian,
                     ValorFactura = w.ValorFactura,
-                    Comentario = w.Comentario,
+                    Comentario = w.Comentario?.Trim(),
+                    Operacion = w.Operacion?.Trim()
                 });
+
 
 
             }

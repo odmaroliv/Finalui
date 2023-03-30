@@ -344,11 +344,13 @@ namespace Negocios.NGReportes
                                             MAX(k.C17) AS Salida,
                                             MAX(k.C46) AS Estatus,
                                             MAX(m.C44) AS EstatusPago,
-                                            MAX(c.C13) AS Comentario
+                                            MAX(c.C13) AS Comentario,
+                                            MAX(d.C2) AS Operacion
                                         FROM KDM1 m
                                         INNER JOIN KDMENT k ON m.C1 = k.C1 AND m.C6 = k.C6 AND m.C4 = k.C4
                                         INNER JOIN KDM1COMEN c ON c.C1 = m.C1 AND c.C6 = m.C6 AND c.C4 = m.C4
                                         INNER JOIN KDUV v ON m.C12 = v.C2
+                                        INNER JOIN KDIDO d ON m.C101 = d.C1
                                         WHERE m.C1 = @SUC AND m.C9 >= @FECHA1 AND m.C9 <= @FECHA2
                                         GROUP BY m.C6
                                         ORDER BY m.C6 DESC";

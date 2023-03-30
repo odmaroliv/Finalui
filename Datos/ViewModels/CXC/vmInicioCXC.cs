@@ -26,6 +26,7 @@ namespace Datos.ViewModels.CXC
         public string EstatusAlmacen { get; set; }
         public string EstatusPago { get; set; }
         public string Comentario { get; set; }
+        public string Operacion { get; set; }
 
     }
 }
