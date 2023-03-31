@@ -36,6 +36,7 @@ using System.Net.Http.Headers;
 using System.Net;
 using mainVentana.Properties;
 using System.Runtime.InteropServices;
+using System.Windows.Controls;
 
 namespace mainVentana.VistaEntrada
 {
@@ -857,7 +858,7 @@ namespace mainVentana.VistaEntrada
 
             foreach (var i in datos.NumeroEntrada(sucEntrada.SelectedValue.ToString(), 35))
             {
-                int numero = Convert.ToInt32(i.entrada) + 1;
+                int numero = Convert.ToInt32(i.entrada) /*+ 1*/;
                 lblEntrada.Text = numero.ToString("D7");
                 noEntGlobal = numero.ToString("D7");
             }
@@ -881,7 +882,7 @@ namespace mainVentana.VistaEntrada
 
         private void label27_DoubleClick(object sender, EventArgs e) //borra doc
         {
-            Label pic = (Label)sender;
+            System.Windows.Forms.Label pic = (System.Windows.Forms.Label)sender;
             if (tipodeDocumento == 1)
             {
                 pic.Text = "";
@@ -1595,66 +1596,80 @@ namespace mainVentana.VistaEntrada
         private async void CargaPH()
         {
             List<string> archivos = new List<string>();
-            if (dgvDocs.Rows.Count>0)
+            try
             {
-                foreach (DataGridViewRow row in dgvDocs.Rows)
+               
+                if (dgvDocs.Rows.Count > 0)
                 {
-                    archivos.Add(row.Cells[1].Value.ToString());
-
-                }
-
-                foreach (var q in archivos)
-                {
-                    string mensajeRespuesta = "";
-                    int tipoRespuesta = 2;
-                    string nombreCompletoArchivo = q; 
-                    byte[] arrContenido = null;
-                   
-                    using (FileStream fs = new FileStream(nombreCompletoArchivo, FileMode.Open, FileAccess.Read, FileShare.Read))
+                    foreach (DataGridViewRow row in dgvDocs.Rows)
                     {
-                        arrContenido = new byte[fs.Length];
-                        await fs.ReadAsync(arrContenido, 0, arrContenido.Length);
+                        archivos.Add(row.Cells[1].Value.ToString());
+
                     }
-                    if (arrContenido == null) mensajeRespuesta = "Ocurrió un inconveniente al obtener el contenido del archivo " + nombreCompletoArchivo;
-                    else
-                    {
-                        var authValue = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{usernameapi}:{passwordapi}")));
-                        using (var clientHandler = new HttpClientHandler { Credentials = new CredentialCache { { new Uri("http://104.198.241.64:90/"), "Basic", new NetworkCredential(usernameapi, passwordapi) } } }) ;
 
-                        string url = "http://104.198.241.64:90/api/Archivo";
-                        using (HttpClient cliente = new HttpClient())
+                    foreach (var q in archivos)
+                    {
+                        string mensajeRespuesta = "";
+                        int tipoRespuesta = 2;
+                        string nombreCompletoArchivo = q;
+                        byte[] arrContenido = null;
+
+                        using (FileStream fs = new FileStream(nombreCompletoArchivo, FileMode.Open, FileAccess.Read, FileShare.Read))
                         {
-                            cliente.DefaultRequestHeaders.Authorization = authValue;
-                            string nombreArchivo = sucEntrada.SelectedValue.ToString().Trim()+ "-UD3501-"+ lblEntrada.Text.Trim()+"_"+ Path.GetFileName(nombreCompletoArchivo);
-                            MultipartFormDataContent frm = new MultipartFormDataContent();
-                            frm.Add(new StringContent(nombreArchivo), "nombreArchivo");
-                            frm.Add(new StringContent("1"), "idEstado");
-                            frm.Add(new ByteArrayContent(arrContenido), "contenido", nombreArchivo);
-                            using (HttpResponseMessage resultadoConsulta = await cliente.PostAsync(url, frm))
+                            arrContenido = new byte[fs.Length];
+                            await fs.ReadAsync(arrContenido, 0, arrContenido.Length);
+                        }
+                        if (arrContenido == null) mensajeRespuesta = "Ocurrió un inconveniente al obtener el contenido del archivo " + nombreCompletoArchivo;
+                        else
+                        {
+                            var authValue = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{usernameapi}:{passwordapi}")));
+                            using (var clientHandler = new HttpClientHandler { Credentials = new CredentialCache { { new Uri("http://104.198.241.64:90/"), "Basic", new NetworkCredential(usernameapi, passwordapi) } } }) ;
+
+                            string url = "http://104.198.241.64:90/api/Archivo";
+                            using (HttpClient cliente = new HttpClient())
                             {
-                                mensajeRespuesta = await resultadoConsulta.Content.ReadAsStringAsync();
-                                if (resultadoConsulta.IsSuccessStatusCode)
-                                    tipoRespuesta = 1;
-                                else
-                                    tipoRespuesta = 2;
+                                cliente.DefaultRequestHeaders.Authorization = authValue;
+                                string nombreArchivo = sucEntrada.SelectedValue.ToString().Trim() + "-UD3501-" + lblEntrada.Text.Trim() + "_" + Path.GetFileName(nombreCompletoArchivo);
+                                MultipartFormDataContent frm = new MultipartFormDataContent();
+                                frm.Add(new StringContent(nombreArchivo), "nombreArchivo");
+                                frm.Add(new StringContent("1"), "idEstado");
+                                frm.Add(new ByteArrayContent(arrContenido), "contenido", nombreArchivo);
+                                using (HttpResponseMessage resultadoConsulta = await cliente.PostAsync(url, frm))
+                                {
+                                    mensajeRespuesta = await resultadoConsulta.Content.ReadAsStringAsync();
+                                    if (resultadoConsulta.IsSuccessStatusCode)
+                                        tipoRespuesta = 1;
+                                    else
+                                        tipoRespuesta = 2;
+                                }
                             }
                         }
+
+                        /* MessageBoxIcon iconoMensaje;
+                         if (tipoRespuesta == 1)
+                             iconoMensaje = MessageBoxIcon.Information;
+                         else if (tipoRespuesta == 2)
+                             iconoMensaje = MessageBoxIcon.Warning;
+                         else
+                             iconoMensaje = MessageBoxIcon.Error;
+                         MessageBox.Show(mensajeRespuesta, "Carga de archivos", MessageBoxButtons.OK, iconoMensaje);
+                        */
                     }
 
-                   /* MessageBoxIcon iconoMensaje;
-                    if (tipoRespuesta == 1)
-                        iconoMensaje = MessageBoxIcon.Information;
-                    else if (tipoRespuesta == 2)
-                        iconoMensaje = MessageBoxIcon.Warning;
-                    else
-                        iconoMensaje = MessageBoxIcon.Error;
-                    MessageBox.Show(mensajeRespuesta, "Carga de archivos", MessageBoxButtons.OK, iconoMensaje);
-                   */
-                }
 
-                   
-                
+
+                }
             }
+            catch (Exception x)
+            {
+
+                Negocios.LOGs.ArsLogs.LogEdit(x.Message," No se han cargados las fotos " + DateTime.Now.ToString());
+            }
+            finally
+            {
+                archivos.Clear();
+            }
+           
             
         }
 
@@ -1901,7 +1916,7 @@ namespace mainVentana.VistaEntrada
         }
         private void SelectPrinter()
         {
-            PrintDialog printDialog = new PrintDialog();
+            System.Windows.Forms.PrintDialog printDialog = new System.Windows.Forms.PrintDialog();
             printDialog.PrinterSettings = new PrinterSettings();
             if (printDialog.ShowDialog() == DialogResult.OK)
             {

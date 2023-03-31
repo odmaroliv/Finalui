@@ -478,7 +478,10 @@ namespace mainVentana.VistaOrdenCarga
 
         private async void btnCerrar_Click(object sender, EventArgs e)
         {
-          
+            if (dgvEntEnCarga.Rows.Count==0)
+            {
+                return;
+            }
             await CerrarKdment();
             CerrarCarga();
             this.Dispose();
