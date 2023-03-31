@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.bunifuFlatButton3 = new Bunifu.Framework.UI.BunifuFlatButton();
             this.bunifuFlatButton2 = new Bunifu.Framework.UI.BunifuFlatButton();
             this.label15 = new System.Windows.Forms.Label();
             this.bunifuFlatButton1 = new Bunifu.Framework.UI.BunifuFlatButton();
@@ -61,7 +62,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtOperacion = new System.Windows.Forms.Label();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.bunifuFlatButton3 = new Bunifu.Framework.UI.BunifuFlatButton();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -98,9 +98,45 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 65F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(533, 68);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // bunifuFlatButton3
+            // 
+            this.bunifuFlatButton3.Activecolor = System.Drawing.Color.Blue;
+            this.bunifuFlatButton3.BackColor = System.Drawing.Color.DarkCyan;
+            this.bunifuFlatButton3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.bunifuFlatButton3.BorderRadius = 0;
+            this.bunifuFlatButton3.ButtonText = "Cerrar";
+            this.bunifuFlatButton3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bunifuFlatButton3.DisabledColor = System.Drawing.Color.Gray;
+            this.bunifuFlatButton3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bunifuFlatButton3.Iconcolor = System.Drawing.Color.Transparent;
+            this.bunifuFlatButton3.Iconimage = null;
+            this.bunifuFlatButton3.Iconimage_right = null;
+            this.bunifuFlatButton3.Iconimage_right_Selected = null;
+            this.bunifuFlatButton3.Iconimage_Selected = null;
+            this.bunifuFlatButton3.IconMarginLeft = 0;
+            this.bunifuFlatButton3.IconMarginRight = 0;
+            this.bunifuFlatButton3.IconRightVisible = true;
+            this.bunifuFlatButton3.IconRightZoom = 0D;
+            this.bunifuFlatButton3.IconVisible = true;
+            this.bunifuFlatButton3.IconZoom = 90D;
+            this.bunifuFlatButton3.IsTab = false;
+            this.bunifuFlatButton3.Location = new System.Drawing.Point(270, 6);
+            this.bunifuFlatButton3.Name = "bunifuFlatButton3";
+            this.bunifuFlatButton3.Normalcolor = System.Drawing.Color.DarkCyan;
+            this.bunifuFlatButton3.OnHovercolor = System.Drawing.Color.Crimson;
+            this.bunifuFlatButton3.OnHoverTextColor = System.Drawing.Color.White;
+            this.bunifuFlatButton3.selected = false;
+            this.bunifuFlatButton3.Size = new System.Drawing.Size(123, 56);
+            this.bunifuFlatButton3.TabIndex = 30;
+            this.bunifuFlatButton3.Text = "Cerrar";
+            this.bunifuFlatButton3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.bunifuFlatButton3.Textcolor = System.Drawing.Color.White;
+            this.bunifuFlatButton3.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bunifuFlatButton3.Click += new System.EventHandler(this.bunifuFlatButton3_Click);
             // 
             // bunifuFlatButton2
             // 
@@ -567,42 +603,6 @@
             this.notifyIcon1.Text = "notifyIcon1";
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
-            // 
-            // bunifuFlatButton3
-            // 
-            this.bunifuFlatButton3.Activecolor = System.Drawing.Color.Blue;
-            this.bunifuFlatButton3.BackColor = System.Drawing.Color.DarkCyan;
-            this.bunifuFlatButton3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.bunifuFlatButton3.BorderRadius = 0;
-            this.bunifuFlatButton3.ButtonText = "Cerrar";
-            this.bunifuFlatButton3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuFlatButton3.DisabledColor = System.Drawing.Color.Gray;
-            this.bunifuFlatButton3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bunifuFlatButton3.Iconcolor = System.Drawing.Color.Transparent;
-            this.bunifuFlatButton3.Iconimage = null;
-            this.bunifuFlatButton3.Iconimage_right = null;
-            this.bunifuFlatButton3.Iconimage_right_Selected = null;
-            this.bunifuFlatButton3.Iconimage_Selected = null;
-            this.bunifuFlatButton3.IconMarginLeft = 0;
-            this.bunifuFlatButton3.IconMarginRight = 0;
-            this.bunifuFlatButton3.IconRightVisible = true;
-            this.bunifuFlatButton3.IconRightZoom = 0D;
-            this.bunifuFlatButton3.IconVisible = true;
-            this.bunifuFlatButton3.IconZoom = 90D;
-            this.bunifuFlatButton3.IsTab = false;
-            this.bunifuFlatButton3.Location = new System.Drawing.Point(270, 6);
-            this.bunifuFlatButton3.Name = "bunifuFlatButton3";
-            this.bunifuFlatButton3.Normalcolor = System.Drawing.Color.DarkCyan;
-            this.bunifuFlatButton3.OnHovercolor = System.Drawing.Color.Crimson;
-            this.bunifuFlatButton3.OnHoverTextColor = System.Drawing.Color.White;
-            this.bunifuFlatButton3.selected = false;
-            this.bunifuFlatButton3.Size = new System.Drawing.Size(123, 56);
-            this.bunifuFlatButton3.TabIndex = 30;
-            this.bunifuFlatButton3.Text = "Cerrar";
-            this.bunifuFlatButton3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.bunifuFlatButton3.Textcolor = System.Drawing.Color.White;
-            this.bunifuFlatButton3.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuFlatButton3.Click += new System.EventHandler(this.bunifuFlatButton3_Click);
             // 
             // frmOrdenDeCarga
             // 

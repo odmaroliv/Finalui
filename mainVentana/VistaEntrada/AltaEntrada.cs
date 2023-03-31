@@ -105,6 +105,7 @@ namespace mainVentana.VistaEntrada
 
         private void Guardar_Click(object sender, EventArgs e) //Click al boton guardar
         {
+
             ValidacionEntradas validacion = new ValidacionEntradas();
             if (tipodeDocumento == 1)
             {
@@ -759,13 +760,17 @@ namespace mainVentana.VistaEntrada
         {
 
             Servicio datos = new Servicio();
-            string fecha1 = datos.retornafechaLapaz();
-
-            FechaActual lst = JsonConvert.DeserializeObject<FechaActual>(fecha1);
-
-            return lst.datetime;
-            
-
+            try
+            {
+                string fecha1 = datos.retornafechaLapaz();
+                FechaActual lst = JsonConvert.DeserializeObject<FechaActual>(fecha1);
+                return lst.datetime;
+            }
+            catch (Exception ex)
+            {
+                // Si hay una excepción, devuelve la fecha actual del equipo
+                return DateTime.Now;
+            }
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)

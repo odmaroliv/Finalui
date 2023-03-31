@@ -13,6 +13,8 @@ using Datos.ViewModels.Carga;
 using Datos.ViewModels.Entradas;
 using Negocios;
 using Negocios.NGCarga;
+using Ventana1.LoadControl;
+
 namespace mainVentana.VistaOrdenCarga
 {
     public partial class frmModificaCarga : Form
@@ -303,6 +305,8 @@ namespace mainVentana.VistaOrdenCarga
 
         private void gunaGradientTileButton1_Click(object sender, EventArgs e)
         {
+            gunaGradientTileButton1.Enabled = false;
+            loadControl1.Visible = true;
             int validacion = ValidacionesGenerales();
             if (validacion == 1)
             {
@@ -346,6 +350,9 @@ namespace mainVentana.VistaOrdenCarga
 
                     throw;
                 }
+
+                gunaGradientTileButton1.Enabled = true;
+                loadControl1.Visible = false;
                 Notificacion(1, "El documento: " + cargaAModificar + "\rDe: " + datoSucIni + " Con destino a: " + datoSucDest + "\rSe Modifico.", "Exito " + datoOrdCarga, datoOrdCarga);
                 //txbCarga.Text = cargaultent();
 
@@ -478,6 +485,8 @@ namespace mainVentana.VistaOrdenCarga
 
         private async void btnCerrar_Click(object sender, EventArgs e)
         {
+            
+
             if (dgvEntEnCarga.Rows.Count==0)
             {
                 return;
@@ -523,6 +532,8 @@ namespace mainVentana.VistaOrdenCarga
             
         private void CerrarCarga()
         {
+            btnCerrar.Enabled = false;
+            loadControl1.Visible = true;
             int validacion = ValidacionesGenerales();
             if (validacion == 1)
             {
@@ -556,6 +567,8 @@ namespace mainVentana.VistaOrdenCarga
 
                     throw;
                 }
+                btnCerrar.Enabled = true;
+                loadControl1.Visible = false;
                 Notificacion(1, "El documento: " + cargaAModificar + "\rDe: " + datoSucIni + " Con destino a: " + datoSucDest + "\rSe Cerro.", "Exito " + datoOrdCarga, datoOrdCarga);
                 //txbCarga.Text = cargaultent();
             }

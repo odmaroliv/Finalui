@@ -65,6 +65,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtOperacion = new System.Windows.Forms.Label();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.loadControl1 = new Ventana1.LoadControl.loadControl();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEntEnCarga)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
@@ -75,6 +76,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.loadControl1);
             this.panel2.Controls.Add(this.label11);
             this.panel2.Controls.Add(this.txbTotal);
             this.panel2.Controls.Add(this.dgvEntEnCarga);
@@ -601,6 +603,15 @@
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
             // 
+            // loadControl1
+            // 
+            this.loadControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.loadControl1.Location = new System.Drawing.Point(293, 528);
+            this.loadControl1.Margin = new System.Windows.Forms.Padding(2);
+            this.loadControl1.Name = "loadControl1";
+            this.loadControl1.Size = new System.Drawing.Size(81, 79);
+            this.loadControl1.TabIndex = 35;
+            // 
             // frmModificaCarga
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -662,5 +673,6 @@
         private Guna.UI.WinForms.GunaDataGridView dgvEntEnCarga;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txbTotal;
+        private Ventana1.LoadControl.loadControl loadControl1;
     }
 }

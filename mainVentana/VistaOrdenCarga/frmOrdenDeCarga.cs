@@ -242,6 +242,7 @@ namespace mainVentana.VistaOrdenCarga
         //Boton de Dar de Alta la Orden de Carga.
         private void gunaGradientTileButton1_Click(object sender, EventArgs e)
         {
+            
             int validacion = ValidacionesGenerales();
             if (validacion==1)
             {
@@ -296,6 +297,7 @@ namespace mainVentana.VistaOrdenCarga
                 }
                 Notificacion(1,"El documento: "+ datoOrdCarga +"\rDe: "+datoSucIni+" Con destino a: "+ datoSucDest + "\rSe creo correctamente.", "Exito "+ datoOrdCarga,datoOrdCarga);
                 //txbCarga.Text = cargaultent();
+
                 this.Dispose();
                 this.Close();
             }
