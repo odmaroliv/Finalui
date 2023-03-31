@@ -436,7 +436,7 @@ namespace mainVentana.VistaOrSalida
 
         private void Validatabla()
         {
-
+            /*
             foreach (DataGridViewRow i in dgvEscaneados.Rows)
             {
 
@@ -450,11 +450,21 @@ namespace mainVentana.VistaOrSalida
                     }
                 }
             }
+            */
+            foreach (DataGridViewRow i in dgvEscaneados.Rows)
+            {
+                var etiqueta = i.Cells[0].Value.ToString().Trim();
+                var index = lista.FindIndex(a => a.Etiqueta.Trim().Contains(etiqueta));
+                if (index != -1)
+                {
+                    lista.RemoveAt(index);
+                }
+            }
         }
 
         private void ValidatablaObserva()
         {
-
+            /*
             List<vmEntByCarga> lst2 = new List<vmEntByCarga>();
             foreach (DataGridViewRow i in dgvListaCargas.Rows)
             {
@@ -500,7 +510,26 @@ namespace mainVentana.VistaOrSalida
                     }
                 }
             }
+            */
+            var cargas = dgvListaCargas.Rows.Cast<DataGridViewRow>().Select(row => row.Cells[0].Value.ToString().Trim()).ToList();
+            var escaneados = dgvEscaneados.Rows.Cast<DataGridViewRow>().Select(row => new vmEntByCarga { Carga = row.Cells[1].Value == null ? "No se encontro" : row.Cells[1].Value.ToString().Trim(), Etiqueta = row.Cells[0].Value == null ? "" : row.Cells[0].Value.ToString().Trim() }).ToList();
+            var noExisten = escaneados.Where(vm => !cargas.Contains(vm.Carga)).ToList();
 
+            foreach (var noExistente in noExisten)
+            {
+                var row = dgvEscaneados.Rows.Cast<DataGridViewRow>().FirstOrDefault(ro => ro.Cells[0].Value.ToString().Trim() == noExistente.Etiqueta);
+                if (row == null) continue;
+
+                dgvEscaneados.Rows.RemoveAt(row.Index);
+
+                var newRow = new DataGridViewRow();
+                newRow.CreateCells(dgvObser);
+
+                newRow.Cells[0].Value = noExistente.Etiqueta;
+                newRow.Cells[1].Value = "No se encotro en ninguna Orden Cargada en este documento";
+                newRow.Cells[2].Value = row.Cells[2].Value.ToString().Trim();
+                dgvObser.Rows.Add(newRow);
+            }
 
         }
 
@@ -575,7 +604,7 @@ namespace mainVentana.VistaOrSalida
         private void txbEscaneo_KeyDown(object sender, KeyEventArgs e)
         {
 
-            if (e.KeyCode == Keys.Enter)
+            /*if (e.KeyCode == Keys.Enter)
             {
                 Negocios.Acceso_Salida.AccesoSalidas sls = new Negocios.Acceso_Salida.AccesoSalidas();
                 e.Handled = true;
@@ -687,7 +716,66 @@ namespace mainVentana.VistaOrSalida
 
                 }
                 txbEscaneo.Text = "";
+            
+            }*/
+
+            if (e.KeyCode != Keys.Enter)
+                return;
+
+            e.Handled = true;
+            e.SuppressKeyPress = true;
+
+            string etiqueta = txbEscaneo.Text.Trim().ToUpper().Replace("'", "-");
+
+            if (dgvEscaneados.Rows.Cast<DataGridViewRow>().Any(r => r.Cells[0].Value.ToString().Trim().Contains(etiqueta)))
+            {
+                lblMensaje.Text = "La etiqueta " + etiqueta + " ya está en la tabla principal";
+                txbEscaneo.Text = "";
+                return;
             }
+
+            if (dgvObser.Rows.Cast<DataGridViewRow>().Any(r => r.Cells[0].Value.ToString().Trim().Contains(etiqueta)))
+            {
+                lblMensaje.Text = "La etiqueta " + etiqueta + " ya está en la tabla de Obs";
+                txbEscaneo.Text = "";
+                return;
+            }
+
+            Negocios.Acceso_Salida.AccesoSalidas sls = new Negocios.Acceso_Salida.AccesoSalidas();
+            int fila = -1;
+
+            foreach (DataGridViewRow i in dgvOrdenesEntrada.Rows)
+            {
+                if (i.Cells[0].Value.ToString().Trim() == etiqueta)
+                {
+                    AltKDMENT(etiqueta);
+                    fila = i.Index;
+                    var cOr = sls.ObtieCorreo(etiqueta, sOrigen.Trim());
+                    lista.RemoveAt(lista.FindIndex(a => a.Etiqueta.Trim().Contains(etiqueta)));
+                    dgvOrdenesEntrada.DataSource = null;
+                    dgvOrdenesEntrada.DataSource = lista;
+                    DataGridViewRow row = new DataGridViewRow();
+                    row.CreateCells(dgvEscaneados);
+                    row.Cells[0].Value = string.IsNullOrEmpty(cOr.Etiqueta) ? "La etiqueta: " + etiqueta + " No se encontro el la Base de Datos" : cOr.Etiqueta.Trim(); ;
+                    row.Cells[1].Value = string.IsNullOrEmpty(cOr.orden) ? "" : cOr.orden.Trim();
+                    row.Cells[2].Value = string.IsNullOrEmpty(cOr.Correo) ? "" : cOr.Correo.Trim();
+                    dgvEscaneados.Rows.Add(row);
+                    lblMensaje.Text = "Etiqueta: " + etiqueta + " agregada correctamente";
+                    txbEscaneo.Text = "";
+                    return;
+                }
+            }
+
+            AltKDMENT(etiqueta);
+            var cO = sls.ObtieCorreo(etiqueta, sOrigen.Trim());
+            DataGridViewRow obsRow = new DataGridViewRow();
+            obsRow.CreateCells(dgvObser);
+            obsRow.Cells[0].Value = etiqueta;
+            obsRow.Cells[1].Value = "Esta etiqueta no se encontró en ninguna Orden Cargada en este documento";
+            obsRow.Cells[2].Value = cO;
+            dgvObser.Rows.Add(obsRow);
+            lblMensaje.Text = "Etiqueta: " + etiqueta + " no se encontró en las ordenes cargadas";
+            txbEscaneo.Text = "";
         }
 
         private async void CreaSalidaEnKDM1()
