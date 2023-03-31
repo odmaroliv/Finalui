@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Datos.ViewModels.Servicios;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -26,13 +28,13 @@ namespace Negocios
 
                 throw;
             }
-            
+
         }
 
-       
+
         public async Task<string> fechaLapaz()//obtiene la paridad diaria del diario oficial de la federacion 
         {
-            try
+            /*try
             {
                 string urlFecha = "https://worldtimeapi.org/api/timezone/America/la_paz/";
                 WebRequest oRequest = WebRequest.Create(urlFecha);
@@ -44,8 +46,24 @@ namespace Negocios
             {
 
                 throw;
+            }*/
+
+            try
+            {
+                string urlFecha = "https://worldtimeapi.org/api/timezone/America/la_paz/";
+                WebRequest oRequest = WebRequest.Create(urlFecha);
+                WebResponse oResponse = oRequest.GetResponse();
+                StreamReader sr = new StreamReader(oResponse.GetResponseStream());
+                string fecha = await sr.ReadToEndAsync();
+                return JsonConvert.DeserializeObject<FechaActual>(fecha).datetime.Date.ToString("MM/dd/yyyy");
             }
-            
+            catch (Exception)
+            {
+                // Si se produce una excepción, establecer la fecha en DateTime.Now
+                DateTime fechaActual = DateTime.Now;
+                return fechaActual.ToString("MM/dd/yyyy");
+            }
+
         }
 
         public string retornafechaLapaz()//obtiene la paridad diaria del diario oficial de la federacion 

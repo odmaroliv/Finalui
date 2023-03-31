@@ -37,6 +37,7 @@ using System.Net;
 using mainVentana.Properties;
 using System.Runtime.InteropServices;
 using System.Windows.Controls;
+using System.Globalization;
 
 namespace mainVentana.VistaEntrada
 {
@@ -735,13 +736,22 @@ namespace mainVentana.VistaEntrada
 
         private async void cargafecha()
         {
+            /* Servicio datos = new Servicio();
+             string fecha1 = await datos.fechaLapaz();
+             //List<FechaActual> lst = JsonConvert.DeserializeObject<List<FechaActual>>(paridad1);
+             //var lst = JsonConvert.DeserializeObject<List<FechaActual>>(fecha1);
+             FechaActual lst = JsonConvert.DeserializeObject<FechaActual>(fecha1);
+
+             lblFecha.Text = lst.datetime.Date.ToString("MM/dd/yyyy");
+            */
             Servicio datos = new Servicio();
             string fecha1 = await datos.fechaLapaz();
-            //List<FechaActual> lst = JsonConvert.DeserializeObject<List<FechaActual>>(paridad1);
-            //var lst = JsonConvert.DeserializeObject<List<FechaActual>>(fecha1);
-            FechaActual lst = JsonConvert.DeserializeObject<FechaActual>(fecha1);
-
-            lblFecha.Text = lst.datetime.Date.ToString("MM/dd/yyyy");
+            DateTime fecha;
+            if (!DateTime.TryParseExact(fecha1, "yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture, DateTimeStyles.None, out fecha))
+            {
+                fecha = DateTime.Now; // establecer la fecha del equipo en caso de que falle la conversión
+            }
+            lblFecha.Text = fecha.ToString("MM/dd/yyyy");
 
         }
 
