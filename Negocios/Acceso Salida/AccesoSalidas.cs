@@ -414,7 +414,7 @@ namespace Negocios.Acceso_Salida
         }
 
         public vmAuxiliaresSalidas ObtieCorreo(string stiqueta, string sorigen = null)
-        {
+        {/*
             char[] ch = "-".ToCharArray();
             string sori = stiqueta.Split(ch)[0];
             string ent = stiqueta.Split(ch)[1];
@@ -494,8 +494,38 @@ namespace Negocios.Acceso_Salida
 
                     return new vmAuxiliaresSalidas { Etiqueta = "No se encontro esta etiquita", Correo = "", orden = "" };
                 }
+            }*/
+
+
+            var ch = new[] { '-' };
+            var etiquetaSplit = stiqueta.Split(ch);
+            var sori = etiquetaSplit[0];
+            var ent = etiquetaSplit[1];
+
+            try
+            {
+                using (var modelo = new modelo2Entities())
+                {
+                    var lst = (from d in modelo.KDMENT
+                               join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
+                               join a in modelo.KDUV on k.C12 equals a.C2
+                               join u in modelo.KDUSUARIOS on a.C22 equals u.C1
+                               where d.C1.StartsWith(sori) && d.C4 == 35 && d.C9.StartsWith(stiqueta)
+                               select new vmAuxiliaresSalidas
+                               {
+                                   Correo = u.C9,
+                                   orden = sorigen == "TJ" ? d.C67 : d.C16,
+                                   Etiqueta = d.C9
+                               }).FirstOrDefault();
+
+                    return lst ?? new vmAuxiliaresSalidas { Etiqueta = "No se encontro esta etiquita", Correo = "", orden = "" };
+                }
             }
-           
+            catch (Exception)
+            {
+                return new vmAuxiliaresSalidas { Etiqueta = "No se encontro esta etiquita", Correo = "", orden = "" };
+            }
+
         }
 
 
