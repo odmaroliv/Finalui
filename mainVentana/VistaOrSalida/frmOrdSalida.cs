@@ -725,16 +725,22 @@ namespace mainVentana.VistaOrSalida
             e.Handled = true;
             e.SuppressKeyPress = true;
 
-            string etiqueta = txbEscaneo.Text.Trim().ToUpper().Replace("'", "-");
+            string etiqueta = txbEscaneo.Text?.Trim()?.ToUpper()?.Replace("'", "-");
+            if (string.IsNullOrEmpty(etiqueta))
+            {
+               
+                lblMensaje.Text = "Etiqueta no válida";
+                return;
+            }
 
-            if (dgvEscaneados.Rows.Cast<DataGridViewRow>().Any(r => r.Cells[0].Value.ToString().Trim().Contains(etiqueta)))
+            if (dgvEscaneados.Rows.Cast<DataGridViewRow>().Any(r => r.Cells[0].Value.ToString().Trim() == etiqueta))
             {
                 lblMensaje.Text = "La etiqueta " + etiqueta + " ya está en la tabla principal";
                 txbEscaneo.Text = "";
                 return;
             }
 
-            if (dgvObser.Rows.Cast<DataGridViewRow>().Any(r => r.Cells[0].Value.ToString().Trim().Contains(etiqueta)))
+            if (dgvObser.Rows.Cast<DataGridViewRow>().Any(r => r.Cells[0].Value.ToString().Trim() == etiqueta))
             {
                 lblMensaje.Text = "La etiqueta " + etiqueta + " ya está en la tabla de Obs";
                 txbEscaneo.Text = "";
