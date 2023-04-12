@@ -1975,7 +1975,7 @@ namespace mainVentana.VistaEntrada
                 foreach (var q in lst)
                 {
                     // Verificar si la etiqueta actual está dentro del rango especificado
-                    int labelNum = int.Parse(q.Etiqueta);
+                    int labelNum = int.Parse(q.NEtiqueta.ToString());
                     if (labelNum >= fromLabel && labelNum <= toLabel)
                     {
                         // Agregar el código ZPL para imprimir la etiqueta actual
@@ -2330,7 +2330,7 @@ namespace mainVentana.VistaEntrada
 
         private void btnExactaEtiqueta_Click(object sender, EventArgs e)
         {
-            if (txbBuscarEnt.Visible = true && String.IsNullOrWhiteSpace(lblEntrada.Text))
+            if (txbBuscarEnt.Visible == true && String.IsNullOrWhiteSpace(lblEntrada.Text))
             {
                 SelectPrinterWithRange();
             }
