@@ -2330,7 +2330,7 @@ namespace mainVentana.VistaEntrada
 
         private void btnExactaEtiqueta_Click(object sender, EventArgs e)
         {
-            if (txbBuscarEnt.Visible == true && String.IsNullOrWhiteSpace(lblEntrada.Text))
+            if (String.IsNullOrWhiteSpace(lblEntrada.Text))
             {
                 SelectPrinterWithRange();
             }
