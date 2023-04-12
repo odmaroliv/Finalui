@@ -101,6 +101,8 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.mdfImg = new FontAwesome.Sharp.IconButton();
+            this.cbxNotif = new ReaLTaiizor.Controls.CheckBox();
             this.gunaTileButton5 = new Guna.UI.WinForms.GunaTileButton();
             this.label33 = new System.Windows.Forms.Label();
             this.txbReferencia = new System.Windows.Forms.TextBox();
@@ -135,8 +137,9 @@
             this.btnBuscarEnt = new Guna.UI.WinForms.GunaCircleButton();
             this.label18 = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.mdfImg = new FontAwesome.Sharp.IconButton();
-            this.cbxNotif = new ReaLTaiizor.Controls.CheckBox();
+            this.btnExactaEtiqueta = new FontAwesome.Sharp.IconButton();
+            this.txbEn1 = new System.Windows.Forms.TextBox();
+            this.txbEn2 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDocs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFotosModifi)).BeginInit();
@@ -157,10 +160,10 @@
             this.panel1.Controls.Add(this.iconButton2);
             this.panel1.Controls.Add(this.dgvFotosModifi);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(8, 592);
+            this.panel1.Location = new System.Drawing.Point(8, 578);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1222, 101);
+            this.panel1.Size = new System.Drawing.Size(1222, 115);
             this.panel1.TabIndex = 0;
             // 
             // dgvDocs
@@ -208,7 +211,7 @@
             this.dgvDocs.RowHeadersWidth = 51;
             this.dgvDocs.RowTemplate.Height = 24;
             this.dgvDocs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvDocs.Size = new System.Drawing.Size(980, 83);
+            this.dgvDocs.Size = new System.Drawing.Size(980, 97);
             this.dgvDocs.TabIndex = 122;
             this.dgvDocs.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
             this.dgvDocs.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -277,7 +280,7 @@
             this.Guardar.Location = new System.Drawing.Point(1123, 0);
             this.Guardar.Margin = new System.Windows.Forms.Padding(2);
             this.Guardar.Name = "Guardar";
-            this.Guardar.Size = new System.Drawing.Size(99, 101);
+            this.Guardar.Size = new System.Drawing.Size(99, 115);
             this.Guardar.TabIndex = 121;
             this.Guardar.Text = "Guardar";
             this.Guardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -302,7 +305,7 @@
             this.iconButton2.Location = new System.Drawing.Point(0, 0);
             this.iconButton2.Margin = new System.Windows.Forms.Padding(2);
             this.iconButton2.Name = "iconButton2";
-            this.iconButton2.Size = new System.Drawing.Size(92, 101);
+            this.iconButton2.Size = new System.Drawing.Size(92, 115);
             this.iconButton2.TabIndex = 119;
             this.iconButton2.Text = "Archivos";
             this.iconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -351,7 +354,7 @@
             this.dgvFotosModifi.RowHeadersWidth = 51;
             this.dgvFotosModifi.RowTemplate.Height = 24;
             this.dgvFotosModifi.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvFotosModifi.Size = new System.Drawing.Size(980, 83);
+            this.dgvFotosModifi.Size = new System.Drawing.Size(980, 97);
             this.dgvFotosModifi.TabIndex = 124;
             this.dgvFotosModifi.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
             this.dgvFotosModifi.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -819,7 +822,9 @@
             // groupBox4
             // 
             this.groupBox4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.groupBox4.Controls.Add(this.btnReimp);
+            this.groupBox4.Controls.Add(this.txbEn2);
+            this.groupBox4.Controls.Add(this.txbEn1);
+            this.groupBox4.Controls.Add(this.btnExactaEtiqueta);
             this.groupBox4.Controls.Add(this.lblUser);
             this.groupBox4.Controls.Add(this.lblEntrada);
             this.groupBox4.Controls.Add(this.lblFecha);
@@ -838,9 +843,9 @@
             this.btnReimp.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnReimp.IconColor = System.Drawing.Color.Black;
             this.btnReimp.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnReimp.Location = new System.Drawing.Point(9, 91);
+            this.btnReimp.Location = new System.Drawing.Point(25, 553);
             this.btnReimp.Name = "btnReimp";
-            this.btnReimp.Size = new System.Drawing.Size(212, 23);
+            this.btnReimp.Size = new System.Drawing.Size(70, 23);
             this.btnReimp.TabIndex = 113;
             this.btnReimp.Text = "Imprimir Etiquetas";
             this.btnReimp.UseVisualStyleBackColor = true;
@@ -1109,10 +1114,43 @@
             this.groupBox6.Controls.Add(this.label22);
             this.groupBox6.Location = new System.Drawing.Point(25, 377);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(936, 199);
+            this.groupBox6.Size = new System.Drawing.Size(936, 175);
             this.groupBox6.TabIndex = 119;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Detalles";
+            // 
+            // mdfImg
+            // 
+            this.mdfImg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mdfImg.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.mdfImg.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.mdfImg.IconColor = System.Drawing.Color.Black;
+            this.mdfImg.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.mdfImg.Location = new System.Drawing.Point(812, 11);
+            this.mdfImg.Name = "mdfImg";
+            this.mdfImg.Size = new System.Drawing.Size(62, 18);
+            this.mdfImg.TabIndex = 130;
+            this.mdfImg.Text = "|";
+            this.mdfImg.UseVisualStyleBackColor = false;
+            this.mdfImg.Click += new System.EventHandler(this.mdfImg_Click);
+            // 
+            // cbxNotif
+            // 
+            this.cbxNotif.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxNotif.Checked = false;
+            this.cbxNotif.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(76)))), ((int)(((byte)(85)))));
+            this.cbxNotif.CheckedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(76)))), ((int)(((byte)(85)))));
+            this.cbxNotif.CheckedDisabledColor = System.Drawing.Color.Gray;
+            this.cbxNotif.CheckedEnabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
+            this.cbxNotif.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cbxNotif.Enable = true;
+            this.cbxNotif.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.cbxNotif.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(125)))), ((int)(((byte)(132)))));
+            this.cbxNotif.Location = new System.Drawing.Point(706, 13);
+            this.cbxNotif.Name = "cbxNotif";
+            this.cbxNotif.Size = new System.Drawing.Size(85, 16);
+            this.cbxNotif.TabIndex = 125;
+            this.cbxNotif.Text = "Notificar";
             // 
             // gunaTileButton5
             // 
@@ -1143,7 +1181,7 @@
             // 
             this.label33.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(700, 130);
+            this.label33.Location = new System.Drawing.Point(700, 113);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(104, 15);
             this.label33.TabIndex = 122;
@@ -1152,7 +1190,7 @@
             // txbReferencia
             // 
             this.txbReferencia.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txbReferencia.Location = new System.Drawing.Point(703, 148);
+            this.txbReferencia.Location = new System.Drawing.Point(703, 131);
             this.txbReferencia.MaxLength = 20;
             this.txbReferencia.Multiline = true;
             this.txbReferencia.Name = "txbReferencia";
@@ -1182,7 +1220,7 @@
             // txbNotas
             // 
             this.txbNotas.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txbNotas.Location = new System.Drawing.Point(82, 148);
+            this.txbNotas.Location = new System.Drawing.Point(78, 131);
             this.txbNotas.MaxLength = 1000;
             this.txbNotas.Multiline = true;
             this.txbNotas.Name = "txbNotas";
@@ -1192,7 +1230,7 @@
             // detalles
             // 
             this.detalles.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.detalles.Location = new System.Drawing.Point(82, 35);
+            this.detalles.Location = new System.Drawing.Point(78, 35);
             this.detalles.MaxLength = 4999;
             this.detalles.Multiline = true;
             this.detalles.Name = "detalles";
@@ -1203,7 +1241,7 @@
             // 
             this.label21.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(82, 130);
+            this.label21.Location = new System.Drawing.Point(78, 113);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(104, 25);
             this.label21.TabIndex = 117;
@@ -1213,7 +1251,7 @@
             // 
             this.label22.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(81, 15);
+            this.label22.Location = new System.Drawing.Point(77, 16);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(104, 22);
             this.label22.TabIndex = 116;
@@ -1389,7 +1427,7 @@
             this.groupBox7.Enabled = false;
             this.groupBox7.Location = new System.Drawing.Point(970, 376);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(242, 199);
+            this.groupBox7.Size = new System.Drawing.Size(242, 176);
             this.groupBox7.TabIndex = 124;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Estatus";
@@ -1407,7 +1445,7 @@
             this.gunaTileButton3.ForeColor = System.Drawing.Color.White;
             this.gunaTileButton3.Image = null;
             this.gunaTileButton3.ImageSize = new System.Drawing.Size(52, 52);
-            this.gunaTileButton3.Location = new System.Drawing.Point(39, 113);
+            this.gunaTileButton3.Location = new System.Drawing.Point(39, 91);
             this.gunaTileButton3.Name = "gunaTileButton3";
             this.gunaTileButton3.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.gunaTileButton3.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -1423,7 +1461,7 @@
             // 
             this.label39.AutoSize = true;
             this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label39.Location = new System.Drawing.Point(35, 76);
+            this.label39.Location = new System.Drawing.Point(35, 66);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(70, 13);
             this.label39.TabIndex = 3;
@@ -1433,7 +1471,7 @@
             // 
             this.label38.AutoSize = true;
             this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label38.Location = new System.Drawing.Point(35, 41);
+            this.label38.Location = new System.Drawing.Point(35, 31);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(50, 13);
             this.label38.TabIndex = 2;
@@ -1447,7 +1485,7 @@
             this.rdbNoPagado.CheckedOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.rdbNoPagado.Enabled = false;
             this.rdbNoPagado.FillColor = System.Drawing.Color.White;
-            this.rdbNoPagado.Location = new System.Drawing.Point(9, 73);
+            this.rdbNoPagado.Location = new System.Drawing.Point(9, 63);
             this.rdbNoPagado.Name = "rdbNoPagado";
             this.rdbNoPagado.Size = new System.Drawing.Size(20, 20);
             this.rdbNoPagado.TabIndex = 1;
@@ -1459,7 +1497,7 @@
             this.rdbPagado.CheckedOffColor = System.Drawing.Color.Gray;
             this.rdbPagado.CheckedOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.rdbPagado.FillColor = System.Drawing.Color.White;
-            this.rdbPagado.Location = new System.Drawing.Point(9, 37);
+            this.rdbPagado.Location = new System.Drawing.Point(9, 27);
             this.rdbPagado.Name = "rdbPagado";
             this.rdbPagado.Size = new System.Drawing.Size(20, 20);
             this.rdbPagado.TabIndex = 0;
@@ -1530,44 +1568,56 @@
             // 
             this.label18.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.label18.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label18.Location = new System.Drawing.Point(101, 574);
+            this.label18.Location = new System.Drawing.Point(101, 560);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(197, 16);
             this.label18.TabIndex = 132;
             this.label18.Text = "Para borrar dá click en el boton Borrar.";
             // 
-            // mdfImg
+            // btnExactaEtiqueta
             // 
-            this.mdfImg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mdfImg.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.mdfImg.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.mdfImg.IconColor = System.Drawing.Color.Black;
-            this.mdfImg.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.mdfImg.Location = new System.Drawing.Point(812, 11);
-            this.mdfImg.Name = "mdfImg";
-            this.mdfImg.Size = new System.Drawing.Size(62, 18);
-            this.mdfImg.TabIndex = 130;
-            this.mdfImg.Text = "|";
-            this.mdfImg.UseVisualStyleBackColor = false;
-            this.mdfImg.Click += new System.EventHandler(this.mdfImg_Click);
+            this.btnExactaEtiqueta.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnExactaEtiqueta.IconColor = System.Drawing.Color.Black;
+            this.btnExactaEtiqueta.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnExactaEtiqueta.Location = new System.Drawing.Point(116, 91);
+            this.btnExactaEtiqueta.Name = "btnExactaEtiqueta";
+            this.btnExactaEtiqueta.Size = new System.Drawing.Size(103, 23);
+            this.btnExactaEtiqueta.TabIndex = 114;
+            this.btnExactaEtiqueta.Text = "Entre Etiquetas";
+            this.btnExactaEtiqueta.UseVisualStyleBackColor = true;
+            this.btnExactaEtiqueta.Click += new System.EventHandler(this.btnExactaEtiqueta_Click);
             // 
-            // cbxNotif
+            // txbEn1
             // 
-            this.cbxNotif.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbxNotif.Checked = false;
-            this.cbxNotif.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(76)))), ((int)(((byte)(85)))));
-            this.cbxNotif.CheckedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(76)))), ((int)(((byte)(85)))));
-            this.cbxNotif.CheckedDisabledColor = System.Drawing.Color.Gray;
-            this.cbxNotif.CheckedEnabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.cbxNotif.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cbxNotif.Enable = true;
-            this.cbxNotif.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.cbxNotif.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(125)))), ((int)(((byte)(132)))));
-            this.cbxNotif.Location = new System.Drawing.Point(706, 13);
-            this.cbxNotif.Name = "cbxNotif";
-            this.cbxNotif.Size = new System.Drawing.Size(85, 16);
-            this.cbxNotif.TabIndex = 125;
-            this.cbxNotif.Text = "Notificar";
+            this.txbEn1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txbEn1.AutoCompleteCustomSource.AddRange(new string[] {
+            "Importacion Definitva",
+            "Autodeclaracion",
+            "Pequena Importacion"});
+            this.txbEn1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txbEn1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txbEn1.Enabled = false;
+            this.txbEn1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbEn1.Location = new System.Drawing.Point(9, 88);
+            this.txbEn1.Name = "txbEn1";
+            this.txbEn1.Size = new System.Drawing.Size(40, 26);
+            this.txbEn1.TabIndex = 130;
+            // 
+            // txbEn2
+            // 
+            this.txbEn2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txbEn2.AutoCompleteCustomSource.AddRange(new string[] {
+            "Importacion Definitva",
+            "Autodeclaracion",
+            "Pequena Importacion"});
+            this.txbEn2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txbEn2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txbEn2.Enabled = false;
+            this.txbEn2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbEn2.Location = new System.Drawing.Point(55, 88);
+            this.txbEn2.Name = "txbEn2";
+            this.txbEn2.Size = new System.Drawing.Size(40, 26);
+            this.txbEn2.TabIndex = 131;
             // 
             // AltaEntrada
             // 
@@ -1576,6 +1626,7 @@
             this.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.ClientSize = new System.Drawing.Size(1238, 713);
             this.Controls.Add(this.label18);
+            this.Controls.Add(this.btnReimp);
             this.Controls.Add(this.btnBuscarEnt);
             this.Controls.Add(this.lblBuscarEnt);
             this.Controls.Add(this.txbBuscarEnt);
@@ -1723,5 +1774,8 @@
         private FontAwesome.Sharp.IconButton btnReimp;
         private FontAwesome.Sharp.IconButton mdfImg;
         private ReaLTaiizor.Controls.CheckBox cbxNotif;
+        private FontAwesome.Sharp.IconButton btnExactaEtiqueta;
+        private System.Windows.Forms.TextBox txbEn2;
+        private System.Windows.Forms.TextBox txbEn1;
     }
 }

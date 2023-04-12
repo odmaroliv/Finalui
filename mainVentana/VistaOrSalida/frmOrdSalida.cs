@@ -768,6 +768,8 @@ namespace mainVentana.VistaOrSalida
                     dgvEscaneados.Rows.Add(row);
                     lblMensaje.Text = "Etiqueta: " + etiqueta + " agregada correctamente";
                     txbEscaneo.Text = "";
+
+                    lblTotalFaltantes.Text = dgvOrdenesEntrada.Rows.Count.ToString();
                     return;
                 }
             }
@@ -782,6 +784,7 @@ namespace mainVentana.VistaOrSalida
             dgvObser.Rows.Add(obsRow);
             lblMensaje.Text = "Etiqueta: " + etiqueta + " no se encontró en las ordenes cargadas";
             txbEscaneo.Text = "";
+            lblTotalFaltantes.Text = dgvOrdenesEntrada.Rows.Count.ToString();
         }
 
         private async void CreaSalidaEnKDM1()
