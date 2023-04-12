@@ -42,7 +42,7 @@ namespace Negocios
                     d.C33 = calle;
                     d.C34 = colonia;
                     d.C35 = ciudadcodigozip;
-                    if (Moneda == "DLLS") { d.C40 = paridad == "" ? 20 : Convert.ToDouble(paridad); }
+                    if (Moneda == "DLLS") { d.C40 = paridad == "" ? 0 : Convert.ToDouble(paridad); }
                     d.C41 = fecha;
                     d.C42 = valArn == "" ? 1 : Convert.ToDecimal(valArn);
                     d.C43 = "N";

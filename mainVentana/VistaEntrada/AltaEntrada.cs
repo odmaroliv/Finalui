@@ -91,15 +91,13 @@ namespace mainVentana.VistaEntrada
         }
 
 
-        private void Guardar_Click(object sender, EventArgs e) //Click al boton guardar
+        private async void Guardar_Click(object sender, EventArgs e) //Click al boton guardar
         {
 
             ValidacionEntradas validacion = new ValidacionEntradas();
             if (tipodeDocumento == 1)
             {
-                AgregaArchivos();
-                validapsoemail();
-
+               
 
                 if (validacion.validacampo(sucEntrada.Text, sucDestino.Text, tipoOper.Text, cord.Text, cliente.Text, proveedor.Text, ordenCompra.Text, numFlete.Text, unidades.Text, peso.Text, bultos.Text, detalles.Text) == true )
                 {
@@ -127,7 +125,10 @@ namespace mainVentana.VistaEntrada
                     altaKDM1();
 
                     altaKDM1coment();
-                    SubeFotos();
+
+                    AgregaArchivos();
+                    await SubeFotos();
+                    validapsoemail();
 
 
                     envEmail();
@@ -412,9 +413,9 @@ namespace mainVentana.VistaEntrada
       
       
 
-        private void SubeFotos()
+        private async Task SubeFotos()
         {
-            CargaPH();
+          await CargaPH();
         }
       
        
@@ -892,7 +893,7 @@ namespace mainVentana.VistaEntrada
                 dato = numero.ToString("D7");
             }
             noEntGlobal = dato;
-
+            lblEntrada.Text = noEntGlobal;
             return dato;
         }
 
@@ -1617,7 +1618,7 @@ namespace mainVentana.VistaEntrada
              MessageBox.Show(mensajeRespuesta, "Descarga de archivos", MessageBoxButtons.OK, iconoMensaje);*/
         }
        
-        private async void CargaPH()
+        private async Task CargaPH()
         {
             List<string> archivos = new List<string>();
             try
