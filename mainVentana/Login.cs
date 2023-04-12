@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime;
 using System.Runtime.InteropServices;
@@ -176,9 +177,27 @@ namespace mainVentana
             this.txbPass2.Text = "";
             this.Show();
         }
-
+        private void BorrarCarpetaTemporal(string carpetaTemporal)
+        {
+            if (Directory.Exists(carpetaTemporal))
+            {
+                Directory.Delete(carpetaTemporal, true);
+            }
+        }
         private void Login_FormClosing(object sender, FormClosingEventArgs e)
         {
+            try
+            {
+                string carpetaTemporal = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "temp");
+                lblBorrarArch.Text = "Borrando Archivos Temporales, Espere...";
+                BorrarCarpetaTemporal(carpetaTemporal);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
 
             Application.Exit(); // cierra la aplicacion completamente
 

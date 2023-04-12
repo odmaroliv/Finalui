@@ -1,43 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Data.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Datos.ViewModels.Entradas;
 using Negocios;
 using System.IO;
-using Datos.ViewModels.Entradas.mvlistas;
-using iTextSharp.text;
 using System.Drawing.Printing;
-using iTextSharp.text.pdf;
-using iTextSharp.tool.xml;
-using Document = iTextSharp.text.Document;
-using System.Windows.Input;
-using Datos.Datosenti;
 using Datos.ViewModels;
 using Datos.ViewModels.Servicios;
 using Newtonsoft.Json;
-using mainVentana.Email;
 using Negocios.Common.Cache;
 using System.Diagnostics;
 using ImageMagick;
-using System.Drawing.Imaging;
 using Datos.ViewModels.Reportes;
-using System.Drawing.Printing;
 using System.Net.Http;
 using Datos.ViewModels.InicioFotoVisor;
 using System.Net.Http.Headers;
 using System.Net;
 using mainVentana.Properties;
 using System.Runtime.InteropServices;
-using System.Windows.Controls;
 using System.Globalization;
+using FontAwesome.Sharp;
 
 namespace mainVentana.VistaEntrada
 {
@@ -51,6 +38,7 @@ namespace mainVentana.VistaEntrada
         public int tipodeDocumento = 1;
         public string sucursalGlobal = Negocios.Common.Cache.CacheLogin.sucGlobal == default ? "SD":Negocios.Common.Cache.CacheLogin.sucGlobal;
         private string noEntGlobal = "";
+        private string sbeArchivos = "";
         public AltaEntrada()
         {
 
@@ -86,7 +74,7 @@ namespace mainVentana.VistaEntrada
 
             dgvDocs.Enabled = true;
             dgvDocs.Visible = true;
-
+            mdfImg.Visible = false;
 
             //Desk.SpecialKeyButtons(false);
             llenaCampos();
@@ -163,6 +151,9 @@ namespace mainVentana.VistaEntrada
                 if (validacion.validacampo(sucEntrada.Text, sucDestino.Text, tipoOper.Text, cord.Text, cliente.Text, proveedor.Text, ordenCompra.Text, numFlete.Text, unidades.Text, peso.Text, bultos.Text, detalles.Text) == true)
                 {
                     Guardar.Enabled = false;
+                   
+
+
                     if (txbValFact.Text.Trim() == "" || txbValFact.Text.Trim() == "0")
                     {
                         MessageBox.Show("Valor Vacio\nSe asignara 1");
@@ -187,6 +178,17 @@ namespace mainVentana.VistaEntrada
                         else
                         {
                             pagado = "NoPagado";
+                        }
+
+                        if (sbeArchivos == "SI")
+                        {
+                            AgregaArchivos();
+                            SubeFotos();
+                        }
+                        if (cbxNotif.Checked == true)
+                        {
+                            validapsoemail();
+                            envEmail();
                         }
                         updateDatos(pagado);
                         SelectPrinter();
@@ -621,7 +623,7 @@ namespace mainVentana.VistaEntrada
 
         private void cliente_TextChanged(object sender, EventArgs e)
         {
-            cord.Text = alias.Text;
+          //  cord.Text = alias.Text;
         }
 
         private void proveedor_Leave(object sender, EventArgs e)
@@ -997,6 +999,7 @@ namespace mainVentana.VistaEntrada
             {
                 if (MessageBox.Show("Estas seguro de que deseas reiniciar todo los datos?", "Cuidado!", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
+
                     sucEntrada.SelectedIndex = 0;
                     //datoEntrada               = recuperUltimaent();
                     cargaultent();
@@ -1030,8 +1033,8 @@ namespace mainVentana.VistaEntrada
                     label28.Text = default;
                     detalles.Text = default;
                     lblUser.Text = CacheLogin.username;
-
-
+                    mdfImg.Visible = false;
+                    iconButton2.Enabled = true;
 
 
                     limpiaImg();
@@ -1142,6 +1145,9 @@ namespace mainVentana.VistaEntrada
             dgvDocs.Enabled = false;
             dgvDocs.Visible = false;
 
+            iconButton2.Enabled = false;
+            sbeArchivos = "";
+            mdfImg.Visible = true   ;
             abreModifica(false);
             limpiaImg();
 
@@ -1253,7 +1259,7 @@ namespace mainVentana.VistaEntrada
 
             }
         }
-        private void Funciones_para_Busqueda()
+        private async void Funciones_para_Busqueda()
         {
             int valida = Validaciones_P_Busqueda();
             if (valida == 1)
@@ -1267,9 +1273,12 @@ namespace mainVentana.VistaEntrada
                 SelectorFotos(sucEntrada.SelectedValue.ToString().Trim() + "-UD3501-" + txbBuscarEnt.Text.Trim());
                 //CargaFotos(txbBuscarEnt.Text.Trim(), sucEntrada.SelectedValue.ToString().Trim());
                 //CargaDocPDF();
+                Servicios datos = new Servicios();
+                coreoClientes = await datos.BuscarC11(lblCodCliente.Text);
                 label27.Text = "";
                 label28.Text = "";
                 detalles.Enabled = false;
+                
             }
 
         }
@@ -2205,6 +2214,16 @@ namespace mainVentana.VistaEntrada
         private void alias_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void mdfImg_Click(object sender, EventArgs e)
+        {
+            dgvFotosModifi.Visible = false;
+            dgvDocs.Visible = true;
+            sbeArchivos = "SI";
+            mdfImg.BackColor = Color.Bisque;
+            iconButton2.Enabled = true;
+            //iconButton2.Visible = true;
         }
     }
 }

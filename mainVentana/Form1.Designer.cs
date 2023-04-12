@@ -81,6 +81,8 @@ namespace mainVentana
             this.ribbonDescriptionMenuItem1 = new System.Windows.Forms.RibbonDescriptionMenuItem();
             this.rpnlInicio = new System.Windows.Forms.RibbonPanel();
             this.rbtnEntrada = new System.Windows.Forms.RibbonButton();
+            this.rbtnEntradaAlta = new System.Windows.Forms.RibbonButton();
+            this.ribbonButton5 = new System.Windows.Forms.RibbonButton();
             this.ribbonSeparator4 = new System.Windows.Forms.RibbonSeparator();
             this.rbtnCargas = new System.Windows.Forms.RibbonButton();
             this.ribbonSeparator5 = new System.Windows.Forms.RibbonSeparator();
@@ -111,8 +113,6 @@ namespace mainVentana
             this.cbxiSD = new System.Windows.Forms.RibbonButton();
             this.cbxiTJ = new System.Windows.Forms.RibbonButton();
             this.cbxiCSL = new System.Windows.Forms.RibbonButton();
-            this.ribbonPanel2 = new System.Windows.Forms.RibbonPanel();
-            this.rlblSucGlobal = new System.Windows.Forms.RibbonLabel();
             this.ribbonTab3 = new System.Windows.Forms.RibbonTab();
             this.rtabMy = new System.Windows.Forms.RibbonTab();
             this.rpnlGeneralesUsuario = new System.Windows.Forms.RibbonPanel();
@@ -122,8 +122,6 @@ namespace mainVentana
             this.ribbonButton4 = new System.Windows.Forms.RibbonButton();
             this.ribbonDescriptionMenuItem2 = new System.Windows.Forms.RibbonDescriptionMenuItem();
             this.panelContenedorForm = new System.Windows.Forms.Panel();
-            this.rbtnEntradaAlta = new System.Windows.Forms.RibbonButton();
-            this.ribbonButton5 = new System.Windows.Forms.RibbonButton();
             this.panel11.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -361,7 +359,6 @@ namespace mainVentana
             this.ribbonTab1.Panels.Add(this.rpnlInicio);
             this.ribbonTab1.Panels.Add(this.rpnlAccesosWeb);
             this.ribbonTab1.Panels.Add(this.rpnlSuc);
-            this.ribbonTab1.Panels.Add(this.ribbonPanel2);
             this.ribbonTab1.Text = "Inicio";
             this.ribbonTab1.ToolTipImage = global::mainVentana.Properties.Resources.work_from_home;
             // 
@@ -440,6 +437,26 @@ namespace mainVentana
             this.rbtnEntrada.Style = System.Windows.Forms.RibbonButtonStyle.SplitDropDown;
             this.rbtnEntrada.Text = "Entrada";
             this.rbtnEntrada.Click += new System.EventHandler(this.rbtnEntrada_Click);
+            // 
+            // rbtnEntradaAlta
+            // 
+            this.rbtnEntradaAlta.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.rbtnEntradaAlta.Image = ((System.Drawing.Image)(resources.GetObject("rbtnEntradaAlta.Image")));
+            this.rbtnEntradaAlta.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbtnEntradaAlta.LargeImage")));
+            this.rbtnEntradaAlta.Name = "rbtnEntradaAlta";
+            this.rbtnEntradaAlta.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbtnEntradaAlta.SmallImage")));
+            this.rbtnEntradaAlta.Text = "Nueva Entrada";
+            this.rbtnEntradaAlta.Click += new System.EventHandler(this.rbtnEntrada_Click);
+            // 
+            // ribbonButton5
+            // 
+            this.ribbonButton5.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.ribbonButton5.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton5.Image")));
+            this.ribbonButton5.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton5.LargeImage")));
+            this.ribbonButton5.Name = "ribbonButton5";
+            this.ribbonButton5.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton5.SmallImage")));
+            this.ribbonButton5.Text = "Alta Proovedor";
+            this.ribbonButton5.Click += new System.EventHandler(this.ribbonButton5_Click);
             // 
             // ribbonSeparator4
             // 
@@ -688,22 +705,6 @@ namespace mainVentana
             this.cbxiCSL.Text = "Cabo San Lucas";
             this.cbxiCSL.Value = "CSL";
             // 
-            // ribbonPanel2
-            // 
-            this.ribbonPanel2.ButtonMoreEnabled = false;
-            this.ribbonPanel2.ButtonMoreVisible = false;
-            this.ribbonPanel2.Items.Add(this.rlblSucGlobal);
-            this.ribbonPanel2.Name = "ribbonPanel2";
-            this.ribbonPanel2.Text = "";
-            // 
-            // rlblSucGlobal
-            // 
-            this.rlblSucGlobal.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Medium;
-            this.rlblSucGlobal.Name = "rlblSucGlobal";
-            this.rlblSucGlobal.Text = "Sucursal";
-            this.rlblSucGlobal.TextAlignment = System.Windows.Forms.RibbonItem.RibbonItemTextAlignment.Center;
-            this.rlblSucGlobal.ToolTip = "Esta es la Sucursal Global Seleccionada";
-            // 
             // ribbonTab3
             // 
             this.ribbonTab3.Name = "ribbonTab3";
@@ -729,7 +730,7 @@ namespace mainVentana
             this.ribbonButton3.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton3.LargeImage")));
             this.ribbonButton3.Name = "ribbonButton3";
             this.ribbonButton3.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton3.SmallImage")));
-            this.ribbonButton3.Text = "ribbonButton3";
+            this.ribbonButton3.Text = "Perfil";
             // 
             // rtabWMS
             // 
@@ -774,26 +775,6 @@ namespace mainVentana
             this.panelContenedorForm.Name = "panelContenedorForm";
             this.panelContenedorForm.Size = new System.Drawing.Size(1113, 601);
             this.panelContenedorForm.TabIndex = 2;
-            // 
-            // rbtnEntradaAlta
-            // 
-            this.rbtnEntradaAlta.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
-            this.rbtnEntradaAlta.Image = ((System.Drawing.Image)(resources.GetObject("rbtnEntradaAlta.Image")));
-            this.rbtnEntradaAlta.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbtnEntradaAlta.LargeImage")));
-            this.rbtnEntradaAlta.Name = "rbtnEntradaAlta";
-            this.rbtnEntradaAlta.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbtnEntradaAlta.SmallImage")));
-            this.rbtnEntradaAlta.Text = "Nueva Entrada";
-            this.rbtnEntradaAlta.Click += new System.EventHandler(this.rbtnEntrada_Click);
-            // 
-            // ribbonButton5
-            // 
-            this.ribbonButton5.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
-            this.ribbonButton5.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton5.Image")));
-            this.ribbonButton5.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton5.LargeImage")));
-            this.ribbonButton5.Name = "ribbonButton5";
-            this.ribbonButton5.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton5.SmallImage")));
-            this.ribbonButton5.Text = "Alta Proovedor";
-            this.ribbonButton5.Click += new System.EventHandler(this.ribbonButton5_Click);
             // 
             // Form1
             // 
@@ -885,8 +866,6 @@ namespace mainVentana
         private RibbonTab rtabMy;
         private RibbonPanel rpnlGeneralesUsuario;
         private RibbonButton ribbonButton3;
-        private RibbonPanel ribbonPanel2;
-        private RibbonLabel rlblSucGlobal;
         private RibbonButton apiConfig;
         private RibbonSeparator ribbonSeparator3;
         private RibbonButton rbtnCord;

@@ -383,7 +383,7 @@ namespace mainVentana
         private void rcmbSucAct_DropDownItemClicked(object sender, RibbonItemEventArgs e)
         {
             Negocios.Common.Cache.CacheLogin.sucGlobal = rcmbSucAct.SelectedValue==default || rcmbSucAct.SelectedValue == "" ? "SD" : rcmbSucAct.SelectedValue;
-            rlblSucGlobal.Text = rcmbSucAct.SelectedItem+" "+ Negocios.Common.Cache.CacheLogin.sucGlobal;
+            //rlblSucGlobal.Text = rcmbSucAct.SelectedItem+" "+ Negocios.Common.Cache.CacheLogin.sucGlobal;
         }
 
         private void apiConfig_Click(object sender, EventArgs e)

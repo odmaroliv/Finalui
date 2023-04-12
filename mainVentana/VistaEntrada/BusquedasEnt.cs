@@ -1,5 +1,7 @@
-﻿using Datos.ViewModels.Entradas.mvlistas;
+﻿using Datos.ViewModels.Entradas;
+using Datos.ViewModels.Entradas.mvlistas;
 using Negocios;
+using Negocios.NGClientes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,7 +30,10 @@ namespace mainVentana.VistaEntrada
         private async void BusquedasEnt_Load(object sender, EventArgs e)
         {
             comboBox1.AutoCompleteCustomSource =await aliasList();
- 
+            if (label2.Text == "CLIENTE")
+            {
+                txbClave.Visible = true;
+            }
         }
 
         private void pasarinfo()
@@ -320,6 +325,30 @@ namespace mainVentana.VistaEntrada
         {
             this.Dispose();
             this.Close();
+        }
+
+       
+
+        private void txbClave_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Servicios datos = new Servicios();
+                AccesoClientes ac = new AccesoClientes();
+                string _clave = "";
+                if (!String.IsNullOrWhiteSpace(txbClave.Text))
+                {
+                    _clave = txbClave.Text.Trim();
+                }
+                var dt = ac.BuscaInfoCliente(_clave);
+                if (dt == null)
+                {
+                    MessageBox.Show("Error, puede ser que el dato que tratas de buscar no exista, ya se ha retornado un valor vacio.", "Error");
+                    return;
+                }
+                comboBox1.Text = dt.C3.Trim();
+
+            }
         }
     }
 }

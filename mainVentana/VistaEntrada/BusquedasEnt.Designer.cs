@@ -32,6 +32,8 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.gunaShadowPanel1 = new Guna.UI.WinForms.GunaShadowPanel();
+            this.txbClave = new System.Windows.Forms.TextBox();
+            this.foreverLabel1 = new ReaLTaiizor.Controls.ForeverLabel();
             this.label2 = new System.Windows.Forms.Label();
             this.gunaGradientTileButton4 = new Guna.UI.WinForms.GunaGradientTileButton();
             this.gunaShadowPanel2 = new Guna.UI.WinForms.GunaShadowPanel();
@@ -88,17 +90,40 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gunaShadowPanel1.BackColor = System.Drawing.Color.Transparent;
             this.gunaShadowPanel1.BaseColor = System.Drawing.Color.White;
+            this.gunaShadowPanel1.Controls.Add(this.txbClave);
+            this.gunaShadowPanel1.Controls.Add(this.foreverLabel1);
             this.gunaShadowPanel1.Controls.Add(this.label2);
             this.gunaShadowPanel1.Controls.Add(this.comboBox1);
             this.gunaShadowPanel1.Controls.Add(this.label1);
             this.gunaShadowPanel1.Location = new System.Drawing.Point(9, 10);
-            this.gunaShadowPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gunaShadowPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.gunaShadowPanel1.Name = "gunaShadowPanel1";
             this.gunaShadowPanel1.Radius = 10;
             this.gunaShadowPanel1.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
             this.gunaShadowPanel1.ShadowDepth = 30;
             this.gunaShadowPanel1.Size = new System.Drawing.Size(352, 165);
             this.gunaShadowPanel1.TabIndex = 7;
+            // 
+            // txbClave
+            // 
+            this.txbClave.Location = new System.Drawing.Point(29, 108);
+            this.txbClave.Name = "txbClave";
+            this.txbClave.Size = new System.Drawing.Size(100, 20);
+            this.txbClave.TabIndex = 9;
+            this.txbClave.Visible = false;
+            this.txbClave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbClave_KeyDown_1);
+            // 
+            // foreverLabel1
+            // 
+            this.foreverLabel1.AutoSize = true;
+            this.foreverLabel1.BackColor = System.Drawing.Color.Transparent;
+            this.foreverLabel1.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.foreverLabel1.ForeColor = System.Drawing.Color.LightGray;
+            this.foreverLabel1.Location = new System.Drawing.Point(27, 91);
+            this.foreverLabel1.Name = "foreverLabel1";
+            this.foreverLabel1.Size = new System.Drawing.Size(34, 13);
+            this.foreverLabel1.TabIndex = 8;
+            this.foreverLabel1.Text = "Clave";
             // 
             // label2
             // 
@@ -126,7 +151,7 @@
             this.gunaGradientTileButton4.Image = null;
             this.gunaGradientTileButton4.ImageSize = new System.Drawing.Size(100, 80);
             this.gunaGradientTileButton4.Location = new System.Drawing.Point(29, 104);
-            this.gunaGradientTileButton4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gunaGradientTileButton4.Margin = new System.Windows.Forms.Padding(2);
             this.gunaGradientTileButton4.Name = "gunaGradientTileButton4";
             this.gunaGradientTileButton4.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
             this.gunaGradientTileButton4.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
@@ -152,7 +177,7 @@
             this.gunaShadowPanel2.Controls.Add(this.gunaGradientTileButton4);
             this.gunaShadowPanel2.Controls.Add(this.gunaTextBox2);
             this.gunaShadowPanel2.Location = new System.Drawing.Point(9, 180);
-            this.gunaShadowPanel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gunaShadowPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.gunaShadowPanel2.Name = "gunaShadowPanel2";
             this.gunaShadowPanel2.Radius = 10;
             this.gunaShadowPanel2.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
@@ -229,5 +254,7 @@
         public System.Windows.Forms.Label label2;
         private Guna.UI.WinForms.GunaTextBox gunaTextBox3;
         private Guna.UI.WinForms.GunaTextBox gunaTextBox1;
+        private ReaLTaiizor.Controls.ForeverLabel foreverLabel1;
+        private System.Windows.Forms.TextBox txbClave;
     }
 }

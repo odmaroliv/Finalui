@@ -18,6 +18,7 @@ namespace Negocios
 
             try
             {
+
                 Negocios.Servicios ng = new Servicios();
                 string correoCord = await ng.obtieneCorreoCord(idCord);
 

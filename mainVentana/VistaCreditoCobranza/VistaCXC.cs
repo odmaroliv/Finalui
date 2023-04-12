@@ -42,19 +42,26 @@ namespace mainVentana.VistaCreditoCobranza
 
         private void dtgEnts_MouseWheek(object sender, MouseEventArgs e)
         {
-
-            if (dtgEnts.Rows.Count >=1)
+            try
             {
-                if (e.Delta > 0 && dtgEnts.FirstDisplayedScrollingRowIndex > 0)
+                if (dtgEnts.Rows.Count >= 1)
                 {
-                    dtgEnts.FirstDisplayedScrollingRowIndex--;
+                    if (e.Delta > 0 && dtgEnts.FirstDisplayedScrollingRowIndex > 0)
+                    {
+                        dtgEnts.FirstDisplayedScrollingRowIndex--;
+                    }
+                    else if (e.Delta < 0)
+                    {
+                        dtgEnts.FirstDisplayedScrollingRowIndex++;
+                    }
+
                 }
-                else if (e.Delta < 0)
-                {
-                    dtgEnts.FirstDisplayedScrollingRowIndex++;
-                }
+            }
+            catch (Exception)
+            {
 
             }
+            
 
            
         }

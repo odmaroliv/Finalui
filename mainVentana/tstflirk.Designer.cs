@@ -37,6 +37,7 @@
             this.btnEntrada = new Guna.UI.WinForms.GunaGradientTileButton();
             this.panel13 = new System.Windows.Forms.Panel();
             this.btnSalida = new Guna.UI.WinForms.GunaGradientTileButton();
+            this.gunaElipsePanel1 = new Guna.UI.WinForms.GunaElipsePanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.gunaShadowPanel4 = new Guna.UI.WinForms.GunaShadowPanel();
             this.label3 = new System.Windows.Forms.Label();
@@ -47,7 +48,6 @@
             this.gunaShadowPanel2 = new Guna.UI.WinForms.GunaShadowPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
-            this.gunaElipsePanel1 = new Guna.UI.WinForms.GunaElipsePanel();
             this.gunaElipsePanel2 = new Guna.UI.WinForms.GunaElipsePanel();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -125,6 +125,7 @@
             this.btnRecep.Size = new System.Drawing.Size(177, 305);
             this.btnRecep.TabIndex = 18;
             this.btnRecep.Text = "Recepciones";
+            this.btnRecep.Click += new System.EventHandler(this.btnRecep_Click);
             // 
             // panel7
             // 
@@ -167,6 +168,7 @@
             this.btnCargas.Size = new System.Drawing.Size(178, 305);
             this.btnCargas.TabIndex = 20;
             this.btnCargas.Text = "Cargas";
+            this.btnCargas.Click += new System.EventHandler(this.btnCargas_Click);
             // 
             // panel11
             // 
@@ -209,6 +211,7 @@
             this.btnEntrada.Size = new System.Drawing.Size(177, 305);
             this.btnEntrada.TabIndex = 20;
             this.btnEntrada.Text = "Entrada";
+            this.btnEntrada.Click += new System.EventHandler(this.btnEntrada_Click);
             // 
             // panel13
             // 
@@ -253,6 +256,15 @@
             this.btnSalida.TabIndex = 20;
             this.btnSalida.Text = "Salidas";
             this.btnSalida.Click += new System.EventHandler(this.gunaGradientTileButton5_Click);
+            // 
+            // gunaElipsePanel1
+            // 
+            this.gunaElipsePanel1.BackColor = System.Drawing.Color.Transparent;
+            this.gunaElipsePanel1.BaseColor = System.Drawing.Color.White;
+            this.gunaElipsePanel1.Location = new System.Drawing.Point(-206, -91);
+            this.gunaElipsePanel1.Name = "gunaElipsePanel1";
+            this.gunaElipsePanel1.Size = new System.Drawing.Size(800, 450);
+            this.gunaElipsePanel1.TabIndex = 21;
             // 
             // tableLayoutPanel2
             // 
@@ -425,15 +437,6 @@
             this.iconButton1.Size = new System.Drawing.Size(56, 60);
             this.iconButton1.TabIndex = 0;
             this.iconButton1.UseVisualStyleBackColor = true;
-            // 
-            // gunaElipsePanel1
-            // 
-            this.gunaElipsePanel1.BackColor = System.Drawing.Color.Transparent;
-            this.gunaElipsePanel1.BaseColor = System.Drawing.Color.White;
-            this.gunaElipsePanel1.Location = new System.Drawing.Point(-206, -91);
-            this.gunaElipsePanel1.Name = "gunaElipsePanel1";
-            this.gunaElipsePanel1.Size = new System.Drawing.Size(800, 450);
-            this.gunaElipsePanel1.TabIndex = 21;
             // 
             // gunaElipsePanel2
             // 

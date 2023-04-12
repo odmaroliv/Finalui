@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.IO;
@@ -335,6 +336,34 @@ namespace Negocios
                 throw;
             }
         }
+
+
+        public async Task<string> BuscarC11(string valorC2)
+        {
+            if (string.IsNullOrEmpty(valorC2))
+            {
+              //  Negocios.LOGs.ArsLogs.LogEdit(new Exception x, valorC2);
+                return "";
+            }
+
+            try
+            {
+                using (modelo2Entities modelo = new modelo2Entities())
+                {
+                    var query = from d in modelo.KDUD
+                                where d.C2 == valorC2 && !string.IsNullOrEmpty(d.C11)
+                                select d.C11;
+
+                    return await query.FirstOrDefaultAsync() ?? "";
+                }
+            }
+            catch (Exception x)
+            {
+                Negocios.LOGs.ArsLogs.LogEdit(x.Message, valorC2);
+                return "";
+            }
+        }
+
 
         public List<Clientes> llenaClientesValida(string numero)
         {

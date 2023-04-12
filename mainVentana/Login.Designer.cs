@@ -33,6 +33,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txbUsr = new Guna.UI.WinForms.GunaLineTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblModoPruebas = new ReaLTaiizor.Controls.BigLabel();
             this.cmbServerSelect = new ReaLTaiizor.Controls.ComboBoxEdit();
             this.btnActivate = new ReaLTaiizor.Controls.FoxButton();
             this.cbxPass = new Guna.UI.WinForms.GunaCheckBox();
@@ -45,7 +46,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.gunaPictureBox1 = new Guna.UI.WinForms.GunaPictureBox();
-            this.lblModoPruebas = new ReaLTaiizor.Controls.BigLabel();
+            this.lblBorrarArch = new ReaLTaiizor.Controls.BigLabel();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -113,6 +114,19 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(332, 346);
             this.panel1.TabIndex = 5;
+            // 
+            // lblModoPruebas
+            // 
+            this.lblModoPruebas.AutoSize = true;
+            this.lblModoPruebas.BackColor = System.Drawing.Color.Transparent;
+            this.lblModoPruebas.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
+            this.lblModoPruebas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.lblModoPruebas.Location = new System.Drawing.Point(33, 12);
+            this.lblModoPruebas.Name = "lblModoPruebas";
+            this.lblModoPruebas.Size = new System.Drawing.Size(87, 28);
+            this.lblModoPruebas.TabIndex = 3;
+            this.lblModoPruebas.Text = "Pruebas";
+            this.lblModoPruebas.Visible = false;
             // 
             // cmbServerSelect
             // 
@@ -253,6 +267,7 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.lblBorrarArch);
             this.panel5.Controls.Add(this.pictureBox1);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(0, 0);
@@ -288,18 +303,17 @@
             this.gunaPictureBox1.TabIndex = 0;
             this.gunaPictureBox1.TabStop = false;
             // 
-            // lblModoPruebas
+            // lblBorrarArch
             // 
-            this.lblModoPruebas.AutoSize = true;
-            this.lblModoPruebas.BackColor = System.Drawing.Color.Transparent;
-            this.lblModoPruebas.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
-            this.lblModoPruebas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.lblModoPruebas.Location = new System.Drawing.Point(33, 12);
-            this.lblModoPruebas.Name = "lblModoPruebas";
-            this.lblModoPruebas.Size = new System.Drawing.Size(87, 28);
-            this.lblModoPruebas.TabIndex = 3;
-            this.lblModoPruebas.Text = "Pruebas";
-            this.lblModoPruebas.Visible = false;
+            this.lblBorrarArch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblBorrarArch.AutoSize = true;
+            this.lblBorrarArch.BackColor = System.Drawing.Color.Transparent;
+            this.lblBorrarArch.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.lblBorrarArch.ForeColor = System.Drawing.Color.White;
+            this.lblBorrarArch.Location = new System.Drawing.Point(23, 309);
+            this.lblBorrarArch.Name = "lblBorrarArch";
+            this.lblBorrarArch.Size = new System.Drawing.Size(0, 28);
+            this.lblBorrarArch.TabIndex = 3;
             // 
             // Login
             // 
@@ -327,6 +341,7 @@
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gunaPictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -352,5 +367,6 @@
         private ReaLTaiizor.Controls.FoxButton btnActivate;
         private ReaLTaiizor.Controls.ComboBoxEdit cmbServerSelect;
         private ReaLTaiizor.Controls.BigLabel lblModoPruebas;
+        private ReaLTaiizor.Controls.BigLabel lblBorrarArch;
     }
 }

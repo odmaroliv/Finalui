@@ -1,4 +1,6 @@
-﻿using Negocios.Common.Cache;
+﻿using mainVentana.VistaOrdenCarga;
+using mainVentana.VistaRecepcion;
+using Negocios.Common.Cache;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,12 +15,13 @@ namespace mainVentana
 {
     public partial class tstflirk : Form
     {
+        public string sucursalGlobal = Negocios.Common.Cache.CacheLogin.sucGlobal == default ? "SD" : Negocios.Common.Cache.CacheLogin.sucGlobal;
         public tstflirk()
         {
             InitializeComponent();
         }
 
-        private void gunaGradientTileButton5_Click(object sender, EventArgs e)
+        private async void gunaGradientTileButton5_Click(object sender, EventArgs e)
         {
 
             try
@@ -86,6 +89,61 @@ namespace mainVentana
         private void tstflirk_Load(object sender, EventArgs e)
         {
             validamenu();
+        }
+
+        private async void btnEntrada_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (Entradas ent = new Entradas())
+                {
+                    if (sucursalGlobal != "")
+                    {
+                        ent.sucursalGlobal = sucursalGlobal;
+                    }
+                    ent.ShowDialog();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private async void btnCargas_Click(object sender, EventArgs e)
+        {
+            if (Negocios.ConeccionRed.TestInternet() == 1)
+            {
+                MessageBox.Show("No tienes internet");
+                return;
+            }
+            try
+            {
+                using (frmOrdenDeCarga ocar = new frmOrdenDeCarga())
+                {
+                    ocar.sucursalGlobal = sucursalGlobal;
+                    ocar.ShowDialog();
+                }
+
+
+            }
+            catch (Exception)
+            {
+
+
+
+            }
+        }
+
+        private async void btnRecep_Click(object sender, EventArgs e)
+        {
+            using (frmRecepcion frm = new frmRecepcion())
+            {
+                
+                frm.ShowDialog();
+            }
         }
     }
 }
