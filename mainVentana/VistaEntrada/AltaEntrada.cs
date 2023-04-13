@@ -93,12 +93,14 @@ namespace mainVentana.VistaEntrada
 
         private async void Guardar_Click(object sender, EventArgs e) //Click al boton guardar
         {
-            if (MessageBox.Show("Entrada: "+ datoEntrada+ "\nDe: "+sucEntrada.Text + "\nPara: "+ sucDestino, "Verificación",MessageBoxButtons.OKCancel,MessageBoxIcon.Stop)==DialogResult.Cancel)
+            groupBox1.Enabled = false;
+            if (MessageBox.Show("De: "+sucEntrada.Text + "\nPara: "+ sucDestino.Text, "Verificación",MessageBoxButtons.OKCancel,MessageBoxIcon.Exclamation)==DialogResult.Cancel)
             {
+                groupBox1.Enabled = true;
                 return;
             }
 
-            groupBox1.Enabled = false;
+            
             try
             {
                 ValidacionEntradas validacion = new ValidacionEntradas();
@@ -2058,7 +2060,34 @@ namespace mainVentana.VistaEntrada
                     }
                 }
 
-                // ... código para enviar el documento de impresión a la impresora ...
+                try
+                {
+                    using (MemoryStream lmemStream = new MemoryStream())
+                    {
+                        using (StreamWriter lstreamWriter = new StreamWriter(lmemStream))
+                        {
+                            lstreamWriter.Write(zplToDoc);
+
+                            lstreamWriter.Flush();
+                            lmemStream.Position = 0;
+
+                            byte[] byteArray = lmemStream.ToArray();
+
+                            IntPtr cpUnmanagedBytes = new IntPtr(0);
+                            int cnLength = byteArray.Length;
+                            cpUnmanagedBytes = Marshal.AllocCoTaskMem(cnLength);
+                            Marshal.Copy(byteArray, 0, cpUnmanagedBytes, cnLength);
+
+                            Negocios.PrintZebra.RawPrinterHelper.SendBytesToPrinter(printerName, cpUnmanagedBytes, cnLength);
+                            Marshal.FreeCoTaskMem(cpUnmanagedBytes);
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
             }
         }
 
