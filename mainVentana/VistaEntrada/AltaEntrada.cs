@@ -25,6 +25,7 @@ using mainVentana.Properties;
 using System.Runtime.InteropServices;
 using System.Globalization;
 using FontAwesome.Sharp;
+using DocumentFormat.OpenXml.Office2010.Excel;
 
 namespace mainVentana.VistaEntrada
 {
@@ -1819,48 +1820,40 @@ namespace mainVentana.VistaEntrada
 
         private void llamareporte()
         {
+            using (Reportes.TestReport rp = new Reportes.TestReport())
+            {
+                Servicios datos = new Servicios();
+                var lst = datos.LLenaEntradaByID(txbBuscarEnt.Text.Trim(), sucEntrada.SelectedValue.ToString().Trim());
+
+
+                foreach (var q in lst)
+                {
+                    rp.repTOrigen = q.C1;
+                    rp.repTEntrada = q.C6.Trim();
+                    rp.repTCliente = q.C32.Trim();
+                    rp.repTFecha = q.C9.ToString();
+                    rp.repProveedor = q.C92.Trim();
+                    rp.repUnidades = q.C97.ToString();
+                    rp.repTipoUnidades = q.C98.Trim();
+                    rp.repNumFlete = q.C95.Trim();
+                    rp.repNumBultos = q.C108.Trim();
+                    rp.repContMercancia = q.descripcion.Trim();
+                    rp.repNotas = q.C24.Trim();
+
+                }
+                rp.ShowDialog();
+                
+
+            }  
             
-            Reportes.TestReport rp = new Reportes.TestReport();
-            string path = AppDomain.CurrentDomain.BaseDirectory;
-            Servicios sv = new Servicios();
 
             //var lst = new List<vmEtiquetasReporte>();
             //lst = sv.LlenaEtiquetas(lblEntrada.Text.Trim(), sucEntrada.SelectedValue.ToString().Trim());
-           // rp.lstrep = lst;
-            
-                
+            // rp.lstrep = lst;
 
-            for (int i = 1; i <=Convert.ToInt32(bultos.Text); i++)
-            {
-                string ett="";
-                if (tipodeDocumento == 2)
-                {
-                    ett = sucEntrada.SelectedValue.ToString().Trim() + "-" + lblEntrada.Text.ToString().Trim() + "-" + i.ToString().Trim();
-                }
-                if (tipodeDocumento == 1)
-                {
-                    ett = sucEntrada.SelectedValue.ToString().Trim() + "-" + datoEntrada.ToString().Trim() + "-" + i.ToString().Trim();
-                }
-                
-                
-                string folder = path + "\\barcode\\";
-                string fullFilePath = folder + ett.Trim()+ ".png";
+           
 
-               
-                rp.repTOrigen = sucEntrada.SelectedValue.ToString().Trim();
-                rp.repTdest = sucDestino.SelectedValue.ToString().Trim();
-                rp.repTCliente = cliente.Text.Trim();
-                rp.repTEtiqueta = ett;
-                rp.repTEntrada = lblEntrada.Text.ToString().Trim();
-                rp.repTFecha = lblFecha.Text.Trim();
-                rp.repTAlias = alias.Text;
-                rp.repTBar = fullFilePath;
-                rp.ShowDialog();
-
-            }
-
-              
-            
+           
 
         }
 
@@ -2037,7 +2030,7 @@ namespace mainVentana.VistaEntrada
                             s += "^FO50,870^GB700,250,3^FS\n";
                             s += "^FO400,870^GB3,250,3^FS\n";
                             s += "^CF0,80";
-                            s += string.Format("^FO100,900^FD{0} de {1}^FS\n", neti.ToString(), lstt);
+                            s += string.Format("^FO100,900^FD{0} de {1}^FS\n", labelNum.ToString(), lstt);
                             s += "^CF0,40";
                             s += "^FO100,1010^FDDate:^FS\n";
                             s += string.Format("^FO100,1060^FD{0}^FS\n", q.Fecha.Value.Date.ToString("MM/dd/yyyy"));
@@ -2375,7 +2368,7 @@ namespace mainVentana.VistaEntrada
             dgvFotosModifi.Visible = false;
             dgvDocs.Visible = true;
             sbeArchivos = "SI";
-            mdfImg.BackColor = Color.Bisque;
+            mdfImg.BackColor = System.Drawing.Color.Bisque;
             iconButton2.Enabled = true;
             //iconButton2.Visible = true;
         }
@@ -2391,6 +2384,20 @@ namespace mainVentana.VistaEntrada
                 MessageBox.Show("Primero consulta la entrada.");
             }
            
+        }
+
+        private void bntImpEntC_Click(object sender, EventArgs e)
+        {
+           
+            if (!String.IsNullOrWhiteSpace(lblEntrada.Text) && txbBuscarEnt.Visible == true)
+            {
+                llamareporte();
+            }
+            else
+            {
+                MessageBox.Show("Primero consulta la entrada.");
+            }
+
         }
     }
 }

@@ -19,15 +19,16 @@ namespace mainVentana.Reportes
     {
         public string repTEntrada;
         public string repTOrigen;
-        public string repTdest;
+        public string repProveedor;
         public string repTCliente;
-        public string repTEtiqueta;
+        public string repUnidades;
         public string repTFecha;
-        public string repTAlias;
-        public string repTZona;
-        public string repTZonaNum;
-        public string repTBar;
-        public List<vmEtiquetasReporte> lstrep = new List<vmEtiquetasReporte>();
+        public string repTipoUnidades;
+        public string repNumFlete;
+        public string repNumBultos;
+        public string repContMercancia;
+        public string repNotas;
+        // public List<vmEtiquetasReporte> lstrep = new List<vmEtiquetasReporte>();
 
         public TestReport()
         {
@@ -52,16 +53,19 @@ namespace mainVentana.Reportes
 
             ReportParameterCollection reportParameters = new ReportParameterCollection();
             reportParameters.Add(new ReportParameter("repOrigen", repTOrigen));
-            reportParameters.Add(new ReportParameter("repDestino", repTdest));
+            reportParameters.Add(new ReportParameter("repProveedor", repProveedor));
             reportParameters.Add(new ReportParameter("repCliente", repTCliente));
-            reportParameters.Add(new ReportParameter("repEtiqueta", repTEtiqueta));
+            reportParameters.Add(new ReportParameter("repUnidades", repUnidades));
             reportParameters.Add(new ReportParameter("repEntrada", repTEntrada));
             reportParameters.Add(new ReportParameter("repFecha", repTFecha));
             
-            reportParameters.Add(new ReportParameter("repAlias", repTAlias));
-            reportParameters.Add(new ReportParameter("repZona", repTZona));
+            reportParameters.Add(new ReportParameter("repTipoUnidades", repTipoUnidades));
+            reportParameters.Add(new ReportParameter("repNumBultos", repNumBultos));
+            reportParameters.Add(new ReportParameter("repContMercancia", repContMercancia));
+            reportParameters.Add(new ReportParameter("repNotas", repNotas));
+            
 
-            reportParameters.Add(new ReportParameter("repBarCode", new Uri(repTBar).AbsoluteUri));
+            // reportParameters.Add(new ReportParameter("repBarCode", new Uri(repTBar).AbsoluteUri));
 
             //cargaimg();
 
@@ -73,7 +77,7 @@ namespace mainVentana.Reportes
             this.reportViewer1.RefreshReport();
         }
 
-        private void cargaimg()
+       /* private void cargaimg()
         {
             FileInfo fi = new FileInfo(repTBar);
             //ReportParameter pName = new ReportParameter("pName", fi.Name);
@@ -81,7 +85,7 @@ namespace mainVentana.Reportes
             this.reportViewer1.LocalReport.EnableExternalImages = true;
             this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { repBarCode });
             //this.reportViewer1.RefreshReport();
-        }
+        }*/
 
 
 
