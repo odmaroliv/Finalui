@@ -485,14 +485,30 @@ namespace mainVentana.VistaOrdenCarga
 
         private async void btnCerrar_Click(object sender, EventArgs e)
         {
-            
 
-            if (dgvEntEnCarga.Rows.Count==0)
+
+
+            btnCerrar.Enabled = false;
+            loadControl1.Visible = true;
+            try
             {
-                return;
+                if (dgvEntEnCarga.Rows.Count == 0)
+                {
+
+                    return;
+                }
+                await CerrarKdment();
+                CerrarCarga();
             }
-            await CerrarKdment();
-            CerrarCarga();
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Ocurrio Un Error "+ex.ToString());
+            }
+            finally{
+                btnCerrar.Enabled = true;
+                loadControl1.Visible = false;
+            }
             this.Dispose();
             this.Close();
 
@@ -532,8 +548,7 @@ namespace mainVentana.VistaOrdenCarga
             
         private void CerrarCarga()
         {
-            btnCerrar.Enabled = false;
-            loadControl1.Visible = true;
+           
             int validacion = ValidacionesGenerales();
             if (validacion == 1)
             {
@@ -567,8 +582,7 @@ namespace mainVentana.VistaOrdenCarga
 
                     throw;
                 }
-                btnCerrar.Enabled = true;
-                loadControl1.Visible = false;
+                
                 Notificacion(1, "El documento: " + cargaAModificar + "\rDe: " + datoSucIni + " Con destino a: " + datoSucDest + "\rSe Cerro.", "Exito " + datoOrdCarga, datoOrdCarga);
                 //txbCarga.Text = cargaultent();
             }

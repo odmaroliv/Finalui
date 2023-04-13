@@ -409,6 +409,13 @@ namespace Negocios
                 {
                     return "";
                 }
+                if (idUser == "013") //clientes sin identificar
+                {
+                    return "arniansc@arnian.com";
+
+                }
+
+
                 string corre = default;
                 // var lst2 = new List<Alias>();
                 await Task.Run(() =>

@@ -93,125 +93,148 @@ namespace mainVentana.VistaEntrada
 
         private async void Guardar_Click(object sender, EventArgs e) //Click al boton guardar
         {
-
-            ValidacionEntradas validacion = new ValidacionEntradas();
-            if (tipodeDocumento == 1)
+            if (MessageBox.Show("Entrada: "+ datoEntrada+ "\nDe: "+sucEntrada.Text + "\nPara: "+ sucDestino, "Verificación",MessageBoxButtons.OKCancel,MessageBoxIcon.Stop)==DialogResult.Cancel)
             {
-               
-
-                if (validacion.validacampo(sucEntrada.Text, sucDestino.Text, tipoOper.Text, cord.Text, cliente.Text, proveedor.Text, ordenCompra.Text, numFlete.Text, unidades.Text, peso.Text, bultos.Text, detalles.Text) == true )
-                {
-                    Guardar.Enabled = false;
-
-                    if (txbValFact.Text.Trim() == "" || txbValFact.Text.Trim() == "0")
-                    {
-                        MessageBox.Show("Valor Vacio\nSe asignara 1");
-                        txbValFact.Focus();
-                        txbValFact.Text = "1";
-                        return;
-                    }
-                    if (txbValArn.Text.Trim() == "" || txbValArn.Text.Trim() == "0")
-                    {
-                        MessageBox.Show("Valor Vacio\nSe asignara 1");
-                        txbValArn.Focus();
-                        txbValArn.Text = "1";
-                        return;
-                    }
-                    //creaListadeFotos();
-                    //AgregaArchivos();
-
-
-
-                    altaKDM1();
-
-                    altaKDM1coment();
-
-                    AgregaArchivos();
-                    await SubeFotos();
-                    validapsoemail();
-
-
-                    envEmail();
-                    SelectPrinter(); 
-                    //barcode();
-                    //Crea_codigo_de_barras(); desactivado por erri en drawin 
-                    //llamareporte();
-                                               // CreaEriquetas();
-                                                 //envEmail();
-
-
-
-                    ReiniciaInfo(0);
-                    Guardar.Enabled = true;
-                    //cargaultent();
-                }
+                return;
             }
 
-            if (tipodeDocumento == 2)
+            groupBox1.Enabled = false;
+            try
             {
-                if (validacion.validacampo(sucEntrada.Text, sucDestino.Text, tipoOper.Text, cord.Text, cliente.Text, proveedor.Text, ordenCompra.Text, numFlete.Text, unidades.Text, peso.Text, bultos.Text, detalles.Text) == true)
+                ValidacionEntradas validacion = new ValidacionEntradas();
+                if (tipodeDocumento == 1)
                 {
-                    Guardar.Enabled = false;
-                   
 
 
-                    if (txbValFact.Text.Trim() == "" || txbValFact.Text.Trim() == "0")
+                    if (validacion.validacampo(sucEntrada.Text, sucDestino.Text, tipoOper.Text, cord.Text, cliente.Text, proveedor.Text, ordenCompra.Text, numFlete.Text, unidades.Text, peso.Text, bultos.Text, detalles.Text) == true)
                     {
-                        MessageBox.Show("Valor Vacio\nSe asignara 1");
-                        txbValFact.Focus();
-                        txbValFact.Text = "1";
-                    }
-                    if (txbValArn.Text.Trim() == "" || txbValArn.Text.Trim() == "0")
-                    {
-                        MessageBox.Show("Valor Vacio\nSe asignara 1");
-                        txbValArn.Focus();
-                        txbValArn.Text = "1";
-                    }
+                        Guardar.Enabled = false;
 
-
-                    if (lblEntrada.Text != "" || lblEntrada.Text != null)
-                    {
-                        string pagado = default;
-                        if (rdbPagado.Checked == true)
+                        if (txbValFact.Text.Trim() == "" || txbValFact.Text.Trim() == "0")
                         {
-                            pagado = "Pagado";
+                            MessageBox.Show("Valor Vacio\nSe asignara 1");
+                            txbValFact.Focus();
+                            txbValFact.Text = "1";
+                            return;
+                        }
+                        if (txbValArn.Text.Trim() == "" || txbValArn.Text.Trim() == "0")
+                        {
+                            MessageBox.Show("Valor Vacio\nSe asignara 1");
+                            txbValArn.Focus();
+                            txbValArn.Text = "1";
+                            return;
+                        }
+                        //creaListadeFotos();
+                        //AgregaArchivos();
+
+
+
+                        altaKDM1();
+
+                        altaKDM1coment();
+
+                        AgregaArchivos();
+                        await SubeFotos();
+                        validapsoemail();
+
+
+                        envEmail();
+                        SelectPrinter();
+                        //barcode();
+                        //Crea_codigo_de_barras(); desactivado por erri en drawin 
+                        //llamareporte();
+                        // CreaEriquetas();
+                        //envEmail();
+
+
+
+                        ReiniciaInfo(0);
+                        Guardar.Enabled = true;
+                        //cargaultent();
+                    }
+                }
+
+                if (tipodeDocumento == 2)
+                {
+                    if (validacion.validacampo(sucEntrada.Text, sucDestino.Text, tipoOper.Text, cord.Text, cliente.Text, proveedor.Text, ordenCompra.Text, numFlete.Text, unidades.Text, peso.Text, bultos.Text, detalles.Text) == true)
+                    {
+                        Guardar.Enabled = false;
+
+
+
+                        if (txbValFact.Text.Trim() == "" || txbValFact.Text.Trim() == "0")
+                        {
+                            MessageBox.Show("Valor Vacio\nSe asignara 1");
+                            txbValFact.Focus();
+                            txbValFact.Text = "1";
+                        }
+                        if (txbValArn.Text.Trim() == "" || txbValArn.Text.Trim() == "0")
+                        {
+                            MessageBox.Show("Valor Vacio\nSe asignara 1");
+                            txbValArn.Focus();
+                            txbValArn.Text = "1";
+                        }
+
+
+                        if (lblEntrada.Text != "" || lblEntrada.Text != null)
+                        {
+                            string pagado = default;
+                            if (rdbPagado.Checked == true)
+                            {
+                                pagado = "Pagado";
+                            }
+                            else
+                            {
+                                pagado = "NoPagado";
+                            }
+
+                            if (sbeArchivos == "SI")
+                            {
+                                AgregaArchivos();
+                                SubeFotos();
+                            }
+                            if (cbxNotif.Checked == true)
+                            {
+                                validapsoemail();
+                                envEmail();
+                            }
+                            updateDatos(pagado);
+                            SelectPrinter();
+
+                            //llamareporte();
+
+
+                            //Agregar aqui la impresion de etiquetas
+
+
+                            MessageBox.Show("Se ha modificado el docimento " + lblEntrada.Text);
+                            InicioModifica();
+                            Guardar.Enabled = true;
+
                         }
                         else
                         {
-                            pagado = "NoPagado";
+
+                            MessageBox.Show("No se ha ingresado ninguna entrada!");
                         }
-
-                        if (sbeArchivos == "SI")
-                        {
-                            AgregaArchivos();
-                            SubeFotos();
-                        }
-                        if (cbxNotif.Checked == true)
-                        {
-                            validapsoemail();
-                            envEmail();
-                        }
-                        updateDatos(pagado);
-                        SelectPrinter();
-
-                        //llamareporte();
-
-
-                        //Agregar aqui la impresion de etiquetas
-
-
-                        MessageBox.Show("Se ha modificado el docimento " + lblEntrada.Text);
-                        InicioModifica();
-                        Guardar.Enabled = true;
-
-                    }
-                    else
-                    {
-
-                        MessageBox.Show("No se ha ingresado ninguna entrada!");
                     }
                 }
+
             }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Ocurrio Un Error");
+            }
+            finally
+            {
+                groupBox1.Enabled = true;
+                Guardar.Enabled = true; 
+            }
+
+
+
+
 
         }
         string datoEntrada; //variable global de entrada cuando se click al boton de guardar ---------------------------------------
@@ -379,16 +402,16 @@ namespace mainVentana.VistaEntrada
                 if (respuesta == 1)
                 {
                     MessageBox.Show("El correo NO SE ENVIÓ PORQUE supera el límite máximo de 25 MB en cada correo, intenta borrar documentos y reenvía la notificación", "CUIDADO EL CORREO NO SE ENVIO");
-                    NotificaEmail(0, doc, cliente.Text);
+                    NotificaEmail(0, doc, cliente.Text +" / "+alias.Text);
                 }
                 else if (respuesta == 2)
                 {
                     MessageBox.Show("El correo NO SE ENVIÓ (msg), pero la entrada si se dio de Alta", "CUIDADO EL CORREO NO SE ENVIO");
-                    NotificaEmail(0, doc, cliente.Text);
+                    NotificaEmail(0, doc, cliente.Text + " / " + alias.Text);
                 }
                 else
                 {
-                        NotificaEmail(1, doc, cliente.Text);
+                        NotificaEmail(1, doc, cliente.Text + " / " + alias.Text);
                     }
 
                 }
@@ -876,7 +899,7 @@ namespace mainVentana.VistaEntrada
 
             foreach (var i in datos.NumeroEntrada(sucEntrada.SelectedValue.ToString(), 35))
             {
-                int numero = Convert.ToInt32(i.entrada) /*+ 1*/;
+                int numero = Convert.ToInt32(i.entrada)/* + 1*/;
                 lblEntrada.Text = numero.ToString("D7");
                 noEntGlobal = numero.ToString("D7");
             }
@@ -889,7 +912,7 @@ namespace mainVentana.VistaEntrada
             string dato = default;
             foreach (var i in datos.NumeroEntrada(sucEntrada.SelectedValue.ToString(), 35))
             {
-                int numero = Convert.ToInt32(i.entrada) + 1;
+                int numero = Convert.ToInt32(i.entrada)/* + 1*/;
                 dato = numero.ToString("D7");
             }
             noEntGlobal = dato;
@@ -1947,7 +1970,7 @@ namespace mainVentana.VistaEntrada
             try
             {
                 fromLabel = int.Parse(txbEn1.Text);
-                fromLabel = int.Parse(txbEn2.Text);
+                toLabel = int.Parse(txbEn2.Text);
                 
             }
             catch (FormatException)
