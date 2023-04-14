@@ -253,6 +253,40 @@ namespace mainVentana.VistaInicioCoordinadores
                 return;
             }
             btnGuardar.Enabled = false;
+            if (lblEstatus.Text != "Alta")
+            {
+               
+                    try
+                {
+                    AccesoClientes acf = new AccesoClientes();
+                   /* var clv = acf.NumeroCliente();
+                    txbClave.Text = clv;*/
+
+                    AltaClientes ac = new AltaClientes();
+                    ac.ModificaCliente(txbClave.Text,
+                    txbNombre.Text,
+                    txbDireccion.Text,
+                    txbColonia.Text,
+                    txbPoblacion.Text,
+                     txbZip.Text,
+                    txbTel.Text,
+                    txbRfc.Text,
+                    txbEmail.Text,
+                   cmbCor.SelectedValue.ToString(),
+                   cmbZona.SelectedValue.ToString(),
+                   mbbox
+                    );
+                    MessageBox.Show("Alta Correcta");
+                    this.Close();
+                    return;
+                }
+                catch (Exception w)
+                {
+
+                    MessageBox.Show("Ocurrio un error " + w);
+                    btnGuardar.Enabled = true;
+                }
+            }
             try
             {
                 AccesoClientes acf = new AccesoClientes();

@@ -210,7 +210,7 @@ namespace Negocios
             }
         }
 
-        public void UpdateKDM1(string id, string sucursaldestino, string cord, string notas, string referencia, string pagado, string tipooperacion, string valfact, string valarn, string sucursalOrigen)
+        public void UpdateKDM1(string id, string sucursaldestino, string cord, string notas, string referencia, string pagado, string tipooperacion, string valfact, string valarn, string sucursalOrigen,string noFlete, string datoOrConpra)
         {
             try
             {
@@ -228,6 +228,8 @@ namespace Negocios
                     d.C102 = valfact.Trim();
                     d.C16 = Convert.ToDecimal(valarn.Trim());
                     d.C42 = Convert.ToDecimal(valarn.Trim());
+                    d.C93 = datoOrConpra;
+                    d.C95 = noFlete;
                     modelo.SaveChanges();
 
                 }

@@ -94,6 +94,16 @@ namespace mainVentana.VistaEntrada
 
         private async void Guardar_Click(object sender, EventArgs e) //Click al boton guardar
         {
+            
+            if (validapsoemail() ==1)
+            {
+                return;
+            }
+            if (sucEntrada.SelectedValue == sucDestino.SelectedValue)
+            {
+                MessageBox.Show("La sucursal de entrada y destino no pueden ser iguales.");
+                return;
+            }
             groupBox1.Enabled = false;
             if (MessageBox.Show("De: "+sucEntrada.Text + "\nPara: "+ sucDestino.Text, "Verificación",MessageBoxButtons.OKCancel,MessageBoxIcon.Exclamation)==DialogResult.Cancel)
             {
@@ -138,10 +148,9 @@ namespace mainVentana.VistaEntrada
 
                         AgregaArchivos();
                         await SubeFotos();
-                        validapsoemail();
 
 
-                        envEmail();
+                        await envEmail();
                         SelectPrinter();
                         //barcode();
                         //Crea_codigo_de_barras(); desactivado por erri en drawin 
@@ -194,12 +203,12 @@ namespace mainVentana.VistaEntrada
                             if (sbeArchivos == "SI")
                             {
                                 AgregaArchivos();
-                                SubeFotos();
+                               await SubeFotos();
                             }
                             if (cbxNotif.Checked == true)
                             {
-                                validapsoemail();
-                                envEmail();
+                                //validapsoemail();
+                             await envEmail();
                             }
                             updateDatos(pagado);
                             SelectPrinter();
@@ -224,10 +233,10 @@ namespace mainVentana.VistaEntrada
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                MessageBox.Show("Ocurrio Un Error");
+                MessageBox.Show("Ocurrio el siguente error: (Tomar Foto) \n" + ex);
             }
             finally
             {
@@ -273,24 +282,40 @@ namespace mainVentana.VistaEntrada
             string datoNota = txbNotas.Text;
             string datoReferencia = txbReferencia.Text;
 
-            try
-            {
-                bd.ActualizaSqlIov(datoSucIni.Trim(), 35);
-                bd.agregaKDM1(datoSucIni, datoEntrada, datoMoneda, datoFecha, datoNuCliente, datoNoCord, datoValArn, datoNomCliente, datoCalle, datoColonia, datoCiudadZip,
-            datoValFact, datoParidad, datoNoTrakin, datoProvedor, datoOrdCompra, datoNoFlete, datoNoUnidades, datoTipoUnidad, datoPeso, datoUnidadMedida, datoTipoOper,
-            datoSucDestino, datoBultos, datosAlias, datoNota, datoReferencia);
+               try
+                {
+                    bd.ActualizaSqlIov(datoSucIni.Trim(), 35);
+                }
+                catch (Exception ex)
+                {
+                    Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "altaKDM1(), bd.ActualizaSqlIov(datoSucIni.Trim(), 35);");
+                    MessageBox.Show("Error:  altaKDM1(), bd.ActualizaSqlIov(datoSucIni.Trim(), 35);" + ex.Message);
+                    //throw;
+                }
+                try
+                {
+                    bd.agregaKDM1(datoSucIni, datoEntrada, datoMoneda, datoFecha, datoNuCliente, datoNoCord, datoValArn, datoNomCliente, datoCalle, datoColonia, datoCiudadZip,
+           datoValFact, datoParidad, datoNoTrakin, datoProvedor, datoOrdCompra, datoNoFlete, datoNoUnidades, datoTipoUnidad, datoPeso, datoUnidadMedida, datoTipoOper,
+           datoSucDestino, datoBultos, datosAlias, datoNota, datoReferencia);
+                }
+                catch (Exception ex)
+                {
+                    Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "altaKDM1(), bd.agregaKDM1()...");
+                    MessageBox.Show("Error:  altaKDM1(), bd.agregaKDM1()..." + ex.Message);
+                    //throw;
+                }
 
-                actualizaKDMENT(datoSucIni, datoEntrada, datoBultos, datoSucDestino, datoFecha);
+                try
+                {
+                    actualizaKDMENT(datoSucIni, datoEntrada, datoBultos, datoSucDestino, datoFecha);
+                }
+                catch (Exception ex)
+                {
+                    Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "altaKDM1(),  actualizaKDMENT()...");
+                    MessageBox.Show("Error: altaKDM1(), actualizaKDMENT()..." + ex.Message);
+                   // throw;
+                }
 
-                
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            
 
         }
 
@@ -314,10 +339,11 @@ namespace mainVentana.VistaEntrada
 
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                Negocios.LOGs.ArsLogs.LogEdit(ex.Message, " ModificaEtiquetas(string bultos)");
+                MessageBox.Show("Error:  ModificaEtiquetas(string bultos) " + ex.Message);
+                //throw;
             }
 
         }
@@ -342,10 +368,11 @@ namespace mainVentana.VistaEntrada
                 
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "altaKDM1coment()");
+                MessageBox.Show("Error:  altaKDM1coment() " + ex.Message);
+                //throw;
             }
           
 
@@ -381,12 +408,12 @@ namespace mainVentana.VistaEntrada
 
             //bd.agregaKDMENT();
         }
-        private async void envEmail()
+        private async Task envEmail()
         {
 
             string cordCordinadorCMB = cord.SelectedValue.ToString().Trim();
 
-            string doc = noEntGlobal;
+            string doc = tipodeDocumento == 2 ? lblEntrada.Text.Trim(): noEntGlobal;
             EnviarEmail servicio = new EnviarEmail();
 
             List<string> archivos = new List<string>();
@@ -400,8 +427,10 @@ namespace mainVentana.VistaEntrada
             }
             try
                 {
-                    
-                    var respuesta = await servicio.EnviaMail(doc, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, archivos, coreoClientes, cordCordinadorCMB);
+
+                var respuesta = await servicio.EnviaMail(doc, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, archivos, coreoClientes, cordCordinadorCMB);
+                //var respuesta = await servicio.EnviaMailAmazonSES(doc, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, archivos, coreoClientes, cordCordinadorCMB);
+
                 if (respuesta == 1)
                 {
                     MessageBox.Show("El correo NO SE ENVIÓ PORQUE supera el límite máximo de 25 MB en cada correo, intenta borrar documentos y reenvía la notificación", "CUIDADO EL CORREO NO SE ENVIO");
@@ -1211,10 +1240,10 @@ namespace mainVentana.VistaEntrada
             proveedor.Enabled = estatus;
 
             ordenCompra.Text = default;
-            ordenCompra.Enabled = estatus;
+            ordenCompra.Enabled = true;
 
             numFlete.Text = default;
-            numFlete.Enabled = estatus;
+            numFlete.Enabled = true;
 
             unidades.Text = default;
             unidades.Enabled = estatus;
@@ -1498,10 +1527,13 @@ namespace mainVentana.VistaEntrada
             string datoValArn = txbValArn.Text.Trim() == ""? "1" : txbValArn.Text.Trim();
             string datoEntrada = lblEntrada.Text.Trim() == "" ? "1" : lblEntrada.Text.Trim();
             string datoDescripcion = detalles.Text.Trim();
+            string datoNoFlete = numFlete.Text.Trim();
+            string datoOrConpra = ordenCompra.Text.Trim();
+
             AltasBD bd = new AltasBD();
             try
             {
-                bd.UpdateKDM1(datoEntrada, datoSucDestino, datoNoCord, datoNota, datoReferencia, pagado, datoTipoOper, datoValFact, datoValArn, datoSucOrigen);
+                bd.UpdateKDM1(datoEntrada, datoSucDestino, datoNoCord, datoNota, datoReferencia, pagado, datoTipoOper, datoValFact, datoValArn, datoSucOrigen, datoNoFlete, datoOrConpra);
                 if (detalles.Enabled==true)
                 {
                     bd.UpdateKDM1Coment(datoEntrada, datoSucOrigen, datoDescripcion);
@@ -1903,31 +1935,36 @@ namespace mainVentana.VistaEntrada
 
             }
         }
-        private void validapsoemail()
+        private int validapsoemail()
         {
-            long pesoArch =0;
+            var bandera = 0;
+            long pesoArch = 0;
             List<string> archivos = new List<string>();
             if (dgvDocs.Rows.Count > 0)
             {
                 foreach (DataGridViewRow row in dgvDocs.Rows)
                 {
                     archivos.Add(row.Cells[1].Value.ToString());
-
                 }
 
                 foreach (var item in archivos) //Attachment
                 {
-                    FileInfo fileinfo = new FileInfo(item);
-                    pesoArch = pesoArch + fileinfo.Length;
+                    var fileInfo = new FileInfo(item);
+                    pesoArch += fileInfo.Length;
                 }
 
-                if (pesoArch >= 25000000)
+                // Convertir a MB
+                var pesoArchMB = pesoArch / 1024 / 1024;
+
+                if (pesoArchMB >= 24)
                 {
                     MessageBox.Show("Tus archivos superan el tamaño maximo permitido por Google, por favor elimina algun archivo.");
-                    return;
-                 }
+                    bandera = 1;
+                }
             }
+            return bandera;
         }
+
 
         private void dgvDocs_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
