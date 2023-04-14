@@ -169,7 +169,7 @@ namespace Negocios
             {
                 var awsCredentials = new Amazon.Runtime.BasicAWSCredentials("", "");
                
-                using (var client = new AmazonSimpleEmailServiceClient(awsCredentials, Amazon.RegionEndpoint.USEast2)) // Cambie esto para usar su región preferida
+                using (var client = new AmazonSimpleEmailServiceClient(awsCredentials, Amazon.RegionEndpoint.USEast2))
                 {
                     var message = new StringBuilder();
                     message.AppendLine("From: " + senderAddress);
