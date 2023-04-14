@@ -167,7 +167,7 @@ namespace Negocios
             var messageId = 0;
             try
             {
-                var awsCredentials = new Amazon.Runtime.BasicAWSCredentials("AKIAQUCZWW6T3YNY3SWQ", "uR5UslG7iryBucNO4eAp97ozCv4HQTHbkSDS5M6e");
+                var awsCredentials = new Amazon.Runtime.BasicAWSCredentials("", "");
                
                 using (var client = new AmazonSimpleEmailServiceClient(awsCredentials, Amazon.RegionEndpoint.USEast2)) // Cambie esto para usar su región preferida
                 {
