@@ -56,7 +56,7 @@ namespace Negocios
                     d.C93 = orCompra;
                     d.C95 = noFlete;
                     d.C97 = Convert.ToDecimal(noUnidades);
-                    d.C98 = tipUnidad;
+                    d.C98 = tipUnidad.Substring(0, Math.Min(tipUnidad.Length, 5));
                     d.C99 = Convert.ToDecimal(peso);
                     d.C100 = unidadMedida;
                     d.C101 = tipOperacion;

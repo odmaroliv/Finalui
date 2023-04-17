@@ -142,7 +142,13 @@ namespace mainVentana.VistaEntrada
 
 
 
-                        altaKDM1();
+                        int rsp = await altaKDM1();
+
+                        if (rsp == 1 || rsp == 2 || rsp == 3)
+                        {
+                            MessageBox.Show("Se cancelo la operacion, esto puede ser  un problema, notifica al dep de Sistemas.");
+                            return;
+                        }
 
                         altaKDM1coment();
 
@@ -250,8 +256,9 @@ namespace mainVentana.VistaEntrada
 
         }
         string datoEntrada; //variable global de entrada cuando se click al boton de guardar ---------------------------------------
-        private void altaKDM1()
+        private Task<int> altaKDM1()
         {
+            int bndra = 0;
             AltasBD bd = new AltasBD();
 
             string datoSucIni = sucEntrada.SelectedValue.ToString();
@@ -272,7 +279,7 @@ namespace mainVentana.VistaEntrada
             string datoOrdCompra = ordenCompra.Text;
             string datoNoFlete = numFlete.Text;
             string datoNoUnidades = unidades.Text;
-            string datoTipoUnidad = cmbUnidades.GetItemText(cmbUnidades.SelectedItem).ToString();
+            string datoTipoUnidad = cmbUnidades.SelectedValue.ToString();
             string datoPeso = peso.Text;
             string datoUnidadMedida = cmbPeso.SelectedValue.ToString();
             string datoTipoOper = tipoOper.SelectedValue.ToString();
@@ -289,10 +296,13 @@ namespace mainVentana.VistaEntrada
                 catch (Exception ex)
                 {
                     Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "altaKDM1(), bd.ActualizaSqlIov(datoSucIni.Trim(), 35);");
-                    MessageBox.Show("Error:  altaKDM1(), bd.ActualizaSqlIov(datoSucIni.Trim(), 35);" + ex.Message);
-                    //throw;
-                }
-                try
+                MessageBox.Show("Error:  altaKDM1(), bd.ActualizaSqlIov(datoSucIni.Trim(), 35);" + ex.Message);
+                bndra = 1;
+                return Task.FromResult(bndra);
+
+                //throw;
+            }
+            try
                 {
                     bd.agregaKDM1(datoSucIni, datoEntrada, datoMoneda, datoFecha, datoNuCliente, datoNoCord, datoValArn, datoNomCliente, datoCalle, datoColonia, datoCiudadZip,
            datoValFact, datoParidad, datoNoTrakin, datoProvedor, datoOrdCompra, datoNoFlete, datoNoUnidades, datoTipoUnidad, datoPeso, datoUnidadMedida, datoTipoOper,
@@ -301,20 +311,25 @@ namespace mainVentana.VistaEntrada
                 catch (Exception ex)
                 {
                     Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "altaKDM1(), bd.agregaKDM1()...");
-                    MessageBox.Show("Error:  altaKDM1(), bd.agregaKDM1()..." + ex.Message);
-                    //throw;
-                }
+                MessageBox.Show("Error:  altaKDM1(), bd.agregaKDM1()..." + ex.Message);
+                bndra = 2;
+                return Task.FromResult(bndra);
+                //throw;
+            }
 
-                try
+            try
                 {
                     actualizaKDMENT(datoSucIni, datoEntrada, datoBultos, datoSucDestino, datoFecha);
                 }
                 catch (Exception ex)
                 {
                     Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "altaKDM1(),  actualizaKDMENT()...");
-                    MessageBox.Show("Error: altaKDM1(), actualizaKDMENT()..." + ex.Message);
-                   // throw;
-                }
+                MessageBox.Show("Error: altaKDM1(), actualizaKDMENT()..." + ex.Message);
+                bndra = 3;
+                return Task.FromResult(bndra);
+                // throw;
+            }
+            return Task.FromResult(bndra);
 
 
         }
