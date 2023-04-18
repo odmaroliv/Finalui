@@ -23,7 +23,7 @@ namespace mainVentana
         Servicios vd = new Servicios(); // Indxa la clase de validcaiones 
 
         frmInicioCoordinadores frm = new frmInicioCoordinadores();
-
+        private string _tipoBusqueda = "Ent";
         public Over()
         {
             InitializeComponent();
@@ -104,17 +104,14 @@ namespace mainVentana
 //        public delegate void pasado (string id) 
 
 
-        public async Task refresh(string id)
+        public async Task refresh(string id, string tipo)
         {
            
             Negocios.Servicios vld = new Negocios.Servicios();
             gunaDataGridView1.DataSource = null;
 
-            gunaDataGridView1.DataSource = await vld.Cargabuscque(id);
-            if (gunaDataGridView1.RowCount <= 0)
-            {
-                MessageBox.Show("No se encontraron datos");
-            }
+            gunaDataGridView1.DataSource = await vld.Cargabuscque(id,tipo);
+            
             vld = null;
         }
 
@@ -262,19 +259,66 @@ namespace mainVentana
         {
             if (e.KeyCode == Keys.Enter)
             {
-                ValidabPrincipal();
-                string id = gunaTextBox2.Text;
-                await refresh(id);
-                await Task.Run(() => { Thread.Sleep(1000); });
-                formatodeceldas();
-                e.SuppressKeyPress = true;
+                loadControl1.Visible = true;
+                bool esTecleado = false;
+                string id = "";
+                try
+                {
+                    switch (_tipoBusqueda)
+                    {
+                        case "Ent":
+                            if (esTecleado) return;
+                            esTecleado = true;
+                            ValidabPrincipal();
+                            id = gunaTextBox2.Text;
+                            await refresh(id, _tipoBusqueda);
+                            if (gunaDataGridView1.RowCount <= 0)
+                            {
+                                MessageBox.Show("No se encontraron datos");
+                                return;
+                            }
+                            await Task.Run(() => { Thread.Sleep(1000); });
+                            formatodeceldas();
+                            e.Handled = true;
+                            break;
+                        case "Flete":
+                            if (esTecleado) return;
+                            esTecleado = true;
+                            id = gunaTextBox2.Text;
+                            if (id == "" || id.Length <4)
+                            {
+                                MessageBox.Show("El campo de busqueda esta vacio!");
+                                return;
+                            }
+                            await refresh(id, _tipoBusqueda);
+                            if (gunaDataGridView1.RowCount <= 0)
+                            {
+                                MessageBox.Show("No se encontraron datos");
+                                return;
+                            }
+                            await Task.Run(() => { Thread.Sleep(1000); });
+                            formatodeceldas();
+                            e.Handled = true;
+                            break;
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                finally
+                {
+                    esTecleado = false;
+                    loadControl1.Visible = false;
+                }
             }
         }
+
 
         public async Task refrescatabla( string id)
         {
             gunaTextBox2.Text = id;
-            await refresh(id);
+            await refresh(id,_tipoBusqueda);
             await Task.Run(() => { Thread.Sleep(1000); });
             formatodeceldas();
             
@@ -411,7 +455,16 @@ namespace mainVentana
                 AbrirFormEnPanel(ts);
             }
         }
-    
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
+            RadioButton rd = (RadioButton)sender;
+
+
+            _tipoBusqueda = rd.Tag.ToString();
+        }
+
 
 
 

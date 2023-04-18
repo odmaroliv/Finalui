@@ -534,9 +534,16 @@ namespace mainVentana.VistaOrSalida
         }
 
 
-        private void btnScanini_Click(object sender, EventArgs e)
+        private async void btnScanini_Click(object sender, EventArgs e)
         {
-            
+            int result = await ConeccionRed.TestInternet();
+
+            if (result == 1)
+            {
+                MessageBox.Show("No tienes internet");
+                return;
+            }
+
             if (btnIniciaSalida.Enabled == true)
             {
                 MessageBox.Show("Primero tienes que Iniciar la salida");
@@ -600,135 +607,17 @@ namespace mainVentana.VistaOrSalida
 
             return error;
         }
-
         private void txbEscaneo_KeyDown(object sender, KeyEventArgs e)
         {
-
-            /*if (e.KeyCode == Keys.Enter)
-            {
-                Negocios.Acceso_Salida.AccesoSalidas sls = new Negocios.Acceso_Salida.AccesoSalidas();
-                e.Handled = true;
-                e.SuppressKeyPress = true;
-
-                //---------------------------------------------------------------------
-
-                string etiqueta = txbEscaneo.Text.Trim().ToUpper().Replace("'", "-");
-                int banda = 0;
-                if (dgvEscaneados.Rows.Count > 0)
-                {
-                    
-                    foreach (DataGridViewRow i in dgvEscaneados.Rows)
-                    {
-                        if (i.Cells[0].Value.ToString().Trim().Contains(etiqueta))
-                        {
-                            banda = 1;
-                            break;
-                        }
-                        else
-                        {
-                            banda = 0;
-
-                            lblMensaje.Text = "La etiqueta " + etiqueta + " Ya esta en la tabla principal";
-                        }
-                    }
-                    foreach (DataGridViewRow y in dgvObser.Rows)
-                    {
-                        if (y.Cells[0].Value.ToString().Trim().Contains(etiqueta))
-                        {
-                            banda = 2;
-                            break;
-                        }
-                        else
-                        {
-                            lblMensaje.Text = "La etiqueta " + etiqueta + " Ya esta en la tabla de Obs";
-
-                        }
-                    }
-                
-                }
-
-                if (banda == 1 || banda == 2)
-                {
-                    lblMensaje.Text = "La etiqueta " + etiqueta + " ya fue escaneada";
-                    txbEscaneo.Text = "";
-                    return;
-                }
-                else
-                {
-                    int fila = -1;
-
-
-                    int bandera = 0;
-
-                    foreach (DataGridViewRow i in dgvOrdenesEntrada.Rows)
-                    {
-                        if (i.Cells[0].Value.ToString().Trim() == etiqueta)
-                        {
-                            bandera = 1;
-                            fila = i.Index;
-                            break;
-                        }
-                        else
-                        {
-                            bandera = 0;
-
-                        }
-                    }
-
-                    if (bandera == 1)
-                    {
-                        AltKDMENT(etiqueta);
-
-
-
-                        int index = lista.FindIndex(a => a.Etiqueta.Trim().Contains(etiqueta));
-                        lista.RemoveAt(index);
-
-                        dgvOrdenesEntrada.DataSource = null;
-                        dgvOrdenesEntrada.DataSource = lista;
-
-                        DataGridViewRow row = new DataGridViewRow();
-                        row.CreateCells(dgvEscaneados);
-                        var cO = sls.ObtieCorreo(etiqueta,sOrigen.Trim());
-                        row.Cells[0].Value = string.IsNullOrEmpty(cO.Etiqueta) ? "La etiqueta: " + etiqueta + " No se encontro el la Base de Datos" : cO.Etiqueta.Trim(); ;
-
-
-                        row.Cells[1].Value = string.IsNullOrEmpty(cO.orden) ? "" : cO.orden.Trim();
-                        row.Cells[2].Value = string.IsNullOrEmpty(cO.Correo) ? "" : cO.Correo.Trim();
-
-                        dgvEscaneados.Rows.Add(row);
-                        lblMensaje.Text = "Etiqueta: " + etiqueta + " agregada correctamente";
-
-                    }
-                    else
-                    {
-                        AltKDMENT(etiqueta);
-                        var cO = sls.ObtieCorreo(etiqueta, sOrigen.Trim());
-                        DataGridViewRow row = new DataGridViewRow();
-                        row.CreateCells(dgvObser);
-
-                        row.Cells[0].Value = etiqueta;
-                        row.Cells[1].Value = "Esta etiqueta no se encotro en ninguna Orden Cargada en este documento";
-                        row.Cells[2].Value = cO;
-                        dgvObser.Rows.Add(row);
-                        lblMensaje.Text = "Etiqueta: " + etiqueta + " no se encontro en las ordenes cargadas";
-                    }
-
-                }
-                txbEscaneo.Text = "";
-            
-            }*/
-
             if (e.KeyCode != Keys.Enter)
                 return;
 
             e.Handled = true;
             e.SuppressKeyPress = true;
 
-            string etiqueta = txbEscaneo.Text?.Trim()?.ToUpper()?.Replace("'", "-");
+            var etiqueta = txbEscaneo.Text?.Trim()?.ToUpper()?.Replace("'", "-");
             if (string.IsNullOrEmpty(etiqueta))
             {
-               
                 lblMensaje.Text = "Etiqueta no válida";
                 return;
             }
@@ -736,56 +625,53 @@ namespace mainVentana.VistaOrSalida
             if (dgvEscaneados.Rows.Cast<DataGridViewRow>().Any(r => r.Cells[0].Value.ToString().Trim() == etiqueta))
             {
                 lblMensaje.Text = "La etiqueta " + etiqueta + " ya está en la tabla principal";
-                txbEscaneo.Text = "";
                 return;
             }
 
             if (dgvObser.Rows.Cast<DataGridViewRow>().Any(r => r.Cells[0].Value.ToString().Trim() == etiqueta))
             {
                 lblMensaje.Text = "La etiqueta " + etiqueta + " ya está en la tabla de Obs";
-                txbEscaneo.Text = "";
                 return;
             }
 
-            Negocios.Acceso_Salida.AccesoSalidas sls = new Negocios.Acceso_Salida.AccesoSalidas();
-            int fila = -1;
+            var sls = new Negocios.Acceso_Salida.AccesoSalidas();
+            var index = lista.FindIndex(a => a.Etiqueta.Trim().Contains(etiqueta));
 
-            foreach (DataGridViewRow i in dgvOrdenesEntrada.Rows)
+            if (index == -1)
             {
-                if (i.Cells[0].Value.ToString().Trim() == etiqueta)
-                {
-                    AltKDMENT(etiqueta);
-                    fila = i.Index;
-                    var cOr = sls.ObtieCorreo(etiqueta, sOrigen.Trim());
-                    lista.RemoveAt(lista.FindIndex(a => a.Etiqueta.Trim().Contains(etiqueta)));
-                    dgvOrdenesEntrada.DataSource = null;
-                    dgvOrdenesEntrada.DataSource = lista;
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.CreateCells(dgvEscaneados);
-                    row.Cells[0].Value = string.IsNullOrEmpty(cOr.Etiqueta) ? "La etiqueta: " + etiqueta + " No se encontro el la Base de Datos" : cOr.Etiqueta.Trim(); ;
-                    row.Cells[1].Value = string.IsNullOrEmpty(cOr.orden) ? "" : cOr.orden.Trim();
-                    row.Cells[2].Value = string.IsNullOrEmpty(cOr.Correo) ? "" : cOr.Correo.Trim();
-                    dgvEscaneados.Rows.Add(row);
-                    lblMensaje.Text = "Etiqueta: " + etiqueta + " agregada correctamente";
-                    txbEscaneo.Text = "";
+                AltKDMENT(etiqueta);
 
-                    lblTotalFaltantes.Text = dgvOrdenesEntrada.Rows.Count.ToString();
-                    return;
-                }
+                var cO = sls.ObtieCorreo(etiqueta, sOrigen.Trim());
+                var obsRow = new DataGridViewRow();
+                obsRow.CreateCells(dgvObser);
+                obsRow.Cells[0].Value = etiqueta;
+                obsRow.Cells[1].Value = "Esta etiqueta no se encontró en ninguna Orden Cargada en este documento";
+                obsRow.Cells[2].Value = cO;
+                dgvObser.Rows.Add(obsRow);
+                lblMensaje.Text = "Etiqueta: " + etiqueta + " no se encontró en las ordenes cargadas";
+            }
+            else
+            {
+                AltKDMENT(etiqueta);
+
+                var cOr = sls.ObtieCorreo(etiqueta, sOrigen.Trim());
+                lista.RemoveAt(index);
+                dgvOrdenesEntrada.DataSource = null;
+                dgvOrdenesEntrada.DataSource = lista;
+
+                var row = new DataGridViewRow();
+                row.CreateCells(dgvEscaneados);
+                row.Cells[0].Value = string.IsNullOrEmpty(cOr.Etiqueta) ? "La etiqueta: " + etiqueta + " No se encontró en la Base de Datos" : cOr.Etiqueta.Trim(); ;
+                row.Cells[1].Value = string.IsNullOrEmpty(cOr.orden) ? "" : cOr.orden.Trim();
+                row.Cells[2].Value = string.IsNullOrEmpty(cOr.Correo) ? "" : cOr.Correo.Trim();
+                dgvEscaneados.Rows.Add(row);
+                lblMensaje.Text = "Etiqueta: " + etiqueta + " agregada correctamente";
+                lblTotalFaltantes.Text = dgvOrdenesEntrada.Rows.Count.ToString();
             }
 
-            AltKDMENT(etiqueta);
-            var cO = sls.ObtieCorreo(etiqueta, sOrigen.Trim());
-            DataGridViewRow obsRow = new DataGridViewRow();
-            obsRow.CreateCells(dgvObser);
-            obsRow.Cells[0].Value = etiqueta;
-            obsRow.Cells[1].Value = "Esta etiqueta no se encontró en ninguna Orden Cargada en este documento";
-            obsRow.Cells[2].Value = cO;
-            dgvObser.Rows.Add(obsRow);
-            lblMensaje.Text = "Etiqueta: " + etiqueta + " no se encontró en las ordenes cargadas";
             txbEscaneo.Text = "";
-            lblTotalFaltantes.Text = dgvOrdenesEntrada.Rows.Count.ToString();
         }
+
 
         private async void CreaSalidaEnKDM1()
         {
@@ -1277,7 +1163,6 @@ namespace mainVentana.VistaOrSalida
             } 
             
         }
-
     }
 
 

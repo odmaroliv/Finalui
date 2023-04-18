@@ -414,89 +414,7 @@ namespace Negocios.Acceso_Salida
         }
 
         public vmAuxiliaresSalidas ObtieCorreo(string stiqueta, string sorigen = null)
-        {/*
-            char[] ch = "-".ToCharArray();
-            string sori = stiqueta.Split(ch)[0];
-            string ent = stiqueta.Split(ch)[1];
-            if (sorigen=="TJ")
-            {
-                try
-                {
-                    var lst = new vmAuxiliaresSalidas();
-
-
-                    using (modelo2Entities modelo = new modelo2Entities())
-
-                    {
-                        var lista = (from d in modelo.KDMENT
-                                     join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
-                                     join a in modelo.KDUV on k.C12 equals a.C2
-                                     join u in modelo.KDUSUARIOS on a.C22 equals u.C1
-
-                                     where d.C1.Contains(sori) && d.C4 == 35 && d.C9.Contains(stiqueta)
-
-                                     select new vmAuxiliaresSalidas
-                                     {
-
-                                         Correo = u.C9,
-                                         orden = d.C67,
-                                         Etiqueta = d.C9
-
-
-                                     }).Take(1).FirstOrDefault();
-                        lst = lista;
-
-                    }
-
-                    return lst;
-                }
-                catch (Exception)
-                {
-
-                    return new vmAuxiliaresSalidas { Etiqueta = "No se encontro esta etiquita", Correo = "", orden = "" };
-                }
-
-            }
-            else
-            {
-                try
-                {
-                    var lst = new vmAuxiliaresSalidas();
-
-
-                    using (modelo2Entities modelo = new modelo2Entities())
-
-                    {
-                        var lista = (from d in modelo.KDMENT
-                                     join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
-                                     join a in modelo.KDUV on k.C12 equals a.C2
-                                     join u in modelo.KDUSUARIOS on a.C22 equals u.C1
-
-                                     where d.C1.Contains(sori) && d.C4 == 35 && d.C9.Contains(stiqueta)
-
-                                     select new vmAuxiliaresSalidas
-                                     {
-
-                                         Correo = u.C9,
-                                         orden = d.C16,
-                                         Etiqueta = d.C9
-
-
-                                     }).Take(1).FirstOrDefault();
-                        lst = lista;
-
-                    }
-
-                    return lst;
-                }
-                catch (Exception)
-                {
-
-                    return new vmAuxiliaresSalidas { Etiqueta = "No se encontro esta etiquita", Correo = "", orden = "" };
-                }
-            }*/
-
-
+        {
             var ch = new[] { '-' };
             var etiquetaSplit = stiqueta.Split(ch);
             var sori = etiquetaSplit[0];
@@ -506,17 +424,20 @@ namespace Negocios.Acceso_Salida
             {
                 using (var modelo = new modelo2Entities())
                 {
-                    var lst = (from d in modelo.KDMENT
-                               join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
-                               join a in modelo.KDUV on k.C12 equals a.C2
-                               join u in modelo.KDUSUARIOS on a.C22 equals u.C1
-                               where d.C1.StartsWith(sori) && d.C4 == 35 && d.C9.StartsWith(stiqueta)
-                               select new vmAuxiliaresSalidas
-                               {
-                                   Correo = u.C9,
-                                   orden = sorigen == "TJ" ? d.C67 : d.C16,
-                                   Etiqueta = d.C9
-                               }).FirstOrDefault();
+                    // Usa el método AsNoTracking para mejorar el rendimiento
+                    var query = modelo.KDMENT.AsNoTracking()
+                        .Where(d => d.C1.StartsWith(sori) && d.C4 == 35 && d.C9.StartsWith(stiqueta))
+                        .Join(modelo.KDM1, d => new { d.C1, d.C4, d.C6 }, k => new { k.C1, k.C4, k.C6 }, (d, k) => new { d, k })
+                        .Join(modelo.KDUV, dk => dk.k.C12, a => a.C2, (dk, a) => new { dk, a })
+                        .Join(modelo.KDUSUARIOS, da => da.a.C22, u => u.C1, (da, u) => new vmAuxiliaresSalidas
+                        {
+                            Correo = u.C9,
+                            orden = sorigen == "TJ" ? da.dk.d.C67 : da.dk.d.C16,
+                            Etiqueta = da.dk.d.C9
+                        });
+
+                    // Usa FirstOrDefault en lugar de First para evitar excepciones si la secuencia está vacía
+                    var lst = query.FirstOrDefault();
 
                     return lst ?? new vmAuxiliaresSalidas { Etiqueta = "No se encontro esta etiquita", Correo = "", orden = "" };
                 }
@@ -525,7 +446,6 @@ namespace Negocios.Acceso_Salida
             {
                 return new vmAuxiliaresSalidas { Etiqueta = "No se encontro esta etiquita", Correo = "", orden = "" };
             }
-
         }
 
 

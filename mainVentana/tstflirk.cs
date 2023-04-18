@@ -1,5 +1,6 @@
 ﻿using mainVentana.VistaOrdenCarga;
 using mainVentana.VistaRecepcion;
+using Negocios;
 using Negocios.Common.Cache;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace mainVentana
     public partial class tstflirk : Form
     {
         public string sucursalGlobal = Negocios.Common.Cache.CacheLogin.sucGlobal == default ? "SD" : Negocios.Common.Cache.CacheLogin.sucGlobal;
+        private List<Form> openForms = new List<Form>();
         public tstflirk()
         {
             InitializeComponent();
@@ -27,8 +29,9 @@ namespace mainVentana
             try
             {
                 VistaOrSalida.frmOrdSalida salida = new VistaOrSalida.frmOrdSalida();
-                salida.ShowDialog();
-                salida.Dispose();
+                openForms.Add(salida);
+                salida.FormClosed += frm_FormClosed_Libera;
+                salida.Show();
             }
             catch (Exception)
             {
@@ -85,6 +88,15 @@ namespace mainVentana
 
 
         }
+        private void frm_FormClosed_Libera(object sender, FormClosedEventArgs e)
+        {
+            Form form = sender as Form;
+            if (form != null)
+            {
+                openForms.Remove(form);
+                form.Dispose();
+            }
+        }
 
         private void tstflirk_Load(object sender, EventArgs e)
         {
@@ -93,18 +105,18 @@ namespace mainVentana
 
         private async void btnEntrada_Click(object sender, EventArgs e)
         {
+            
             try
             {
-                using (Entradas ent = new Entradas())
+                Entradas ent = new Entradas(); // Crear una nueva instancia del formulario
+                if (sucursalGlobal != "")
                 {
-                    if (sucursalGlobal != "")
-                    {
-                        ent.sucursalGlobal = sucursalGlobal;
-                    }
-                    ent.ShowDialog();
+                    ent.sucursalGlobal = sucursalGlobal;
                 }
-
-
+                openForms.Add(ent);
+                ent.FormClosed += frm_FormClosed_Libera;
+                ent.Show();
+               
             }
             catch (Exception ex)
             {
@@ -114,36 +126,42 @@ namespace mainVentana
 
         private async void btnCargas_Click(object sender, EventArgs e)
         {
-            if (Negocios.ConeccionRed.TestInternet() == 1)
+            int result = await ConeccionRed.TestInternet();
+
+            if (result == 1)
             {
                 MessageBox.Show("No tienes internet");
                 return;
             }
             try
             {
-                using (frmOrdenDeCarga ocar = new frmOrdenDeCarga())
-                {
-                    ocar.sucursalGlobal = sucursalGlobal;
-                    ocar.ShowDialog();
-                }
-
+                frmOrdenDeCarga ocar = new frmOrdenDeCarga();
+                openForms.Add(ocar);
+                ocar.FormClosed += frm_FormClosed_Libera;
+                ocar.Show();
 
             }
             catch (Exception)
             {
-
-
 
             }
         }
 
         private async void btnRecep_Click(object sender, EventArgs e)
         {
-            using (frmRecepcion frm = new frmRecepcion())
+            try
             {
-                
-                frm.ShowDialog();
+                frmRecepcion frm = new frmRecepcion();
+                openForms.Add(frm);
+                frm.FormClosed += frm_FormClosed_Libera;
+                frm.Show();
             }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
         }
     }
 }

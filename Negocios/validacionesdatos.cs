@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Datos.Datosenti;
 using Datos.ViewModels;
+using Datos.ViewModels.Coord.Clientes;
 using Datos.ViewModels.Entradas;
 using Datos.ViewModels.Reportes;
 using Datos.ViewModels.Salidas;
@@ -29,66 +31,108 @@ namespace Negocios
 
 
 
-        public async Task<List<BusquedaInicial>> Cargabuscque(string id) //BUSQUEDA RAPIDA POR ENTRADA <Funciona en la pantalla principal Form1>
+       public async Task<List<BusquedaInicial>> Cargabuscque(string id, string tipo)
         {
-
-            try
+            List<BusquedaInicial> lst = new List<BusquedaInicial>();
+            lst.Clear();
+            if (tipo == "Ent")
             {
-                var lst2 = new List<BusquedaInicial>();
-                await Task.Run(() =>
+                try
                 {
-                    using (modelo2Entities modelo = new modelo2Entities())
+                    using (var modelo = new modelo2Entities())
                     {
-
-                        var lst = from d in modelo.KDMENT
-                                  join k in modelo.KDM1 on new { d.C1, d.C6, d.C4 } equals new { k.C1, k.C6, k.C4 }
-                                  join c in modelo.KDUV on k.C12 equals c.C2
-                                  where d.C6.Equals(id)
-                                  orderby (d.C7)
-                                  select new BusquedaInicial
-                                  {
-
-                                      C6 = d.C6.Trim(), // entrada
-                                      C9 = d.C9.Trim(), //etiqueta
-                                      origen = d.C1.Trim(),
-                                      C69 = d.C69.Trim(), //fecha entrada
-                                      C10 = d.C10.Trim(), //suc destino
-                                      C19 = d.C19.Trim(), //suc actual
-                                      cliente = k.C32.Trim(),
-                                      cargaasig = d.C54.Trim(),
-                                      cafecha = d.C71.Trim(),
-                                      cargaapl = d.C16.Trim(),
-                                      capfecha = d.C72.Trim(),
-                                      osalida = d.C17.Trim(),
-                                      osfecha = d.C73.Trim(),
-                                      receptran = d.C18.Trim(),
-                                      receptranfecha = d.C74.Trim(),
-                                      saltrans = d.C64.Trim(),
-                                      saltransfehcha = d.C75.Trim(),
-                                      repfinal = d.C67.Trim(),
-                                      repfinalfecha = d.C76.Trim(),
-                                      bill = d.C34.Trim(),
-                                      billfecha = d.C77.Trim(),
-                                      C42 = d.C42.Trim(), // descripcion corta
-                                      elaborado = k.C81.Trim(),
-                                      coord = c.C3.Trim(),
-                                      link = d.C46,
-                                  };
-                        lst2 = lst.ToList();
-
+                        lst = await (from d in modelo.KDMENT
+                                     join k in modelo.KDM1 on new { d.C1, d.C6, d.C4 } equals new { k.C1, k.C6, k.C4 }
+                                     join c in modelo.KDUV on k.C12 equals c.C2
+                                     where d.C6 == id
+                                     orderby d.C7
+                                     select new BusquedaInicial
+                                     {
+                                         C6 = d.C6.Trim(),
+                                         C9 = d.C9.Trim(),
+                                         origen = d.C1.Trim(),
+                                         C69 = d.C69.Trim(),
+                                         C10 = d.C10.Trim(),
+                                         C19 = d.C19.Trim(),
+                                         cliente = k.C32.Trim(),
+                                         cargaasig = d.C54.Trim(),
+                                         cafecha = d.C71.Trim(),
+                                         cargaapl = d.C16.Trim(),
+                                         capfecha = d.C72.Trim(),
+                                         osalida = d.C17.Trim(),
+                                         osfecha = d.C73.Trim(),
+                                         receptran = d.C18.Trim(),
+                                         receptranfecha = d.C74.Trim(),
+                                         saltrans = d.C64.Trim(),
+                                         saltransfehcha = d.C75.Trim(),
+                                         repfinal = d.C67.Trim(),
+                                         repfinalfecha = d.C76.Trim(),
+                                         bill = d.C34.Trim(),
+                                         billfecha = d.C77.Trim(),
+                                         C42 = d.C42.Trim(),
+                                         elaborado = k.C81.Trim(),
+                                         coord = c.C3.Trim(),
+                                         link = d.C46,
+                                     }).ToListAsync();
                     }
-
-                });
-                return lst2;
-
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error de conexión a la base de datos: " + ex.Message);
+                    throw;
+                }
             }
-            catch (Exception EX)
+            else if (tipo == "Flete")
             {
-                MessageBox.Show("Error de coneccion a la base de datos, por favor toma captura de este alert y mandalo a Daniel Lo Antes posible _______________________________" + EX);
-
-                throw;
+                try
+                {
+                    using (var modelo = new modelo2Entities())
+                    {
+                        lst = await (from d in modelo.KDMENT
+                                     join k in modelo.KDM1 on new { d.C1, d.C6, d.C4 } equals new { k.C1, k.C6, k.C4 }
+                                     join c in modelo.KDUV on k.C12 equals c.C2
+                                     where k.C95.Contains(id)
+                                     orderby d.C7
+                                     select new BusquedaInicial
+                                     {
+                                         C6 = d.C6.Trim(),
+                                         C9 = d.C9.Trim(),
+                                         origen = d.C1.Trim(),
+                                         C69 = d.C69.Trim(),
+                                         C10 = d.C10.Trim(),
+                                         C19 = d.C19.Trim(),
+                                         cliente = k.C32.Trim(),
+                                         cargaasig = d.C54.Trim(),
+                                         cafecha = d.C71.Trim(),
+                                         cargaapl = d.C16.Trim(),
+                                         capfecha = d.C72.Trim(),
+                                         osalida = d.C17.Trim(),
+                                         osfecha = d.C73.Trim(),
+                                         receptran = d.C18.Trim(),
+                                         receptranfecha = d.C74.Trim(),
+                                         saltrans = d.C64.Trim(),
+                                         saltransfehcha = d.C75.Trim(),
+                                         repfinal = d.C67.Trim(),
+                                         repfinalfecha = d.C76.Trim(),
+                                         bill = d.C34.Trim(),
+                                         billfecha = d.C77.Trim(),
+                                         C42 = d.C42.Trim(),
+                                         elaborado = k.C81.Trim(),
+                                         coord = c.C3.Trim(),
+                                         link = d.C46,
+                                     }).ToListAsync();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error de conexión a la base de datos: " + ex.Message);
+                    throw;
+                }
             }
+            return lst;
         }
+
+
         public List<Cliente> autocompletar() //Autocomleta el campo de clientes
         {
             {
@@ -336,6 +380,73 @@ namespace Negocios
                 throw;
             }
         }
+
+
+
+        public async Task<List<vmClienteDinamicoBusqueda>> LlenaClientesInteractivo(string busqueda, int tipo)
+        {
+            // tipo 1 clientes, tipo 2 Alias
+
+            var lss = new List<vmClienteDinamicoBusqueda>();
+            lss.Clear();
+            try
+            {
+                if (tipo == 1)
+                {
+                    using (modelo2Entities modelo = new modelo2Entities())
+                    {
+                        var lista = await Task.Run(() =>
+                        {
+                            return from d in modelo.KDUD
+                                   where d.C3.Contains(busqueda) || d.C2.Contains(busqueda)
+                                   select new vmClienteDinamicoBusqueda
+                                   {
+                                       C2 = d.C2,
+                                       C3 = d.C3.Trim(),
+                                       /*c4 = d.C4.Trim(),
+                                       c5 = d.C5.Trim(),
+                                       c6 = d.C6.Trim(),
+                                       c11 = d.C11.Trim(),
+                                       c12 = d.C12.Trim()*/
+                                   };
+                        });
+
+                        lss= lista.ToList();
+                    }
+                }
+                else if (tipo == 2)
+                {
+                    using (modelo2Entities modelo = new modelo2Entities())
+                    {
+                        var lista = await Task.Run(() =>
+                        {
+                            return from d in modelo.KDUDA
+                                   where d.C3.Contains(busqueda) || d.C1.Contains(busqueda)
+                                   select new vmClienteDinamicoBusqueda
+                                   {
+                                       C3 = d.C3.Trim(),
+                                       C2 = d.C1,
+                                    
+                                       /*c4 = d.C4.Trim(),
+                                       c5 = d.C5.Trim(),
+                                       c6 = d.C6.Trim(),
+                                       c11 = d.C11.Trim(),
+                                       c12 = d.C12.Trim()*/
+                                   };
+                        });
+                        lss = lista.ToList();
+
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return lss;
+        }
+
 
 
         public async Task<string> BuscarC11(string valorC2)
@@ -705,9 +816,7 @@ namespace Negocios
         {
             try
             {
-
                 using (modelo2Entities modelo = new modelo2Entities())
-
                 {
                     var lista = from d in modelo.KDUSUARIOS
                                 join v in modelo.KDUV on d.C1 equals v.C22 into fll
@@ -717,89 +826,67 @@ namespace Negocios
                                 {
                                     idusuario = fl.C2,
                                     username = d.C1.Trim(),
-                                    //password = d.Password,
                                     nombre = d.C2.Trim(),
-                                    //apellido = d.Apellido.Trim(),
                                     email = d.C9,
                                     numero = d.C13,
                                     rol = d.C4,
                                     sucdefecto = d.C10,
-                                    //estatus = d.Activo
-
                                 };
-                    foreach (var i in lista.ToList())
+                    var item = lista.FirstOrDefault();
+                    if (item != null)
                     {
-
-                        Common.Cache.CacheLogin.username = i.username.Trim();
-                        Common.Cache.CacheLogin.nombre = i.nombre.Trim();
-                        // Common.Cache.CacheLogin.apellido = i.apellido;
-                        Common.Cache.CacheLogin.email = i.email.Trim();
-                        Common.Cache.CacheLogin.rol = i.rol.Trim();
-                        Common.Cache.CacheLogin.sucdefecto = i.sucdefecto.Trim();
-                        Common.Cache.CacheLogin.numero = i.numero.Trim();
-                        Common.Cache.CacheLogin.idusuario = i.idusuario == null ? "" : i.idusuario.Trim();
-                    }
-
-                    if (lista.ToList().Count() <= 0)
-                    {
-                        return false; // Query results were empty
+                        Common.Cache.CacheLogin.username = item.username.Trim();
+                        Common.Cache.CacheLogin.nombre = item.nombre.Trim();
+                        Common.Cache.CacheLogin.email = item.email.Trim();
+                        Common.Cache.CacheLogin.rol = item.rol.Trim();
+                        Common.Cache.CacheLogin.sucdefecto = item.sucdefecto.Trim();
+                        Common.Cache.CacheLogin.numero = item.numero.Trim();
+                        Common.Cache.CacheLogin.idusuario = item.idusuario == null ? "" : item.idusuario.Trim();
+                        return true;
                     }
                     else
                     {
-                        return true;
+                        return false;
                     }
-
-
-
                 }
             }
             catch (Exception e)
             {
-
                 MessageBox.Show("Acceso No Autorizado" + e);
                 return false;
             }
         }
 
+
         public async Task<bool> ObtieneEmail()
         {
-
-            var lst2 = new vmLogin();
             try
             {
-                await Task.Run(() =>
+                using (modelo2Entities modelo = new modelo2Entities())
                 {
-                    using (modelo2Entities modelo = new modelo2Entities())
-
-                    {
-                        var lista = from d in modelo.SqlIov
-                                    where d.C1.Contains("EMAIL") //&& d.C19 != sdestino 
-                                    select new vmLogin
-                                    {
-                                        smtpemail = d.C4,
-                                        smatppss = d.C5,
-                                    };
-                        lst2 = lista.First();
-                    }
-
-                    if (lst2!=null)
+                    var lista = from d in modelo.SqlIov
+                                where d.C1.Contains("EMAIL")
+                                select new vmLogin
+                                {
+                                    smtpemail = d.C4,
+                                    smatppss = d.C5,
+                                };
+                    var lst2 = lista.FirstOrDefault();
+                    if (lst2 != null)
                     {
                         Common.Cache.CacheLogin.smtpemail = lst2.smtpemail.Trim();
                         Common.Cache.CacheLogin.smatppss = lst2.smatppss.Trim();
                     }
-
-
-
-                });
+                }
                 return true;
             }
-            catch (Exception x)
+            catch (Exception ex)
             {
-                Negocios.LOGs.ArsLogs.LogEdit(x.Message, "No se han obtido resultados para el smtp en la venta de login");
+                Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "No se han obtenido resultados para el smtp en la venta de login");
                 return false;
             }
-
         }
+
 
         public List<vmEntradaById> LLenaEntradaByID(string id, string sucursal)
         {

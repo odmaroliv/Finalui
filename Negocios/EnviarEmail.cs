@@ -84,8 +84,9 @@ namespace Negocios
                             {
                                 msg.CC.Add(new MailAddress(ToCCId));
                             }
-                            msg.CC.Add(new MailAddress("sistemas@arnian.com"));
+                            //msg.CC.Add(new MailAddress("sistemas@arnian.com"));
                         }
+                        msg.CC.Add(new MailAddress("sistemas@arnian.com"));
                     }
                     catch (Exception x)
                     {
@@ -139,7 +140,7 @@ namespace Negocios
             }
             catch (Exception x)
             {
-                Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Correo");
+                Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Correo SMTP NORMAL "+Entrada);
             }
             return bandera;
         }
@@ -241,6 +242,7 @@ namespace Negocios
             catch (Exception ex)
             {
                 Console.WriteLine("SendEmailAsync failed with exception: " + ex.Message);
+                Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "Correo AMAZON ");
                 messageId = 2;
 
                 

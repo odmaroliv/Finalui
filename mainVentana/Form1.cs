@@ -19,15 +19,16 @@ using mainVentana.VistaInicioCoordinadores;
 using mainVentana.VistaWMS;
 using mainVentana.Reportes.Cotizaciones.Antiguas;
 using mainVentana.VistaEntrada.Proovedor;
+using Vanara.PInvoke;
 
 namespace mainVentana
 {
     public partial class Form1 : Form
     {
         Over frmOver = new Over(); // llama al formulario de Inicio
-        
-       
-    
+
+        private List<Form> openForms = new List<Form>();
+
 
 
         public Form1()
@@ -260,26 +261,25 @@ namespace mainVentana
             liberarR();
         }
 
-        private void ribbonButton1_Click(object sender, EventArgs e)
+        private async void ribbonButton1_Click(object sender, EventArgs e)
         {
             string val = rcmbSucAct.SelectedValue;
             MessageBox.Show(val);
         }
 
-        private void rbtnEntrada_Click(object sender, EventArgs e)
+        private async void rbtnEntrada_Click(object sender, EventArgs e)
         {
             try
             {
-                using (Entradas ent = new Entradas())
+                Entradas ent = new Entradas(); // Crear una nueva instancia del formulario
+                if (rcmbSucAct.Value != "")
                 {
-                    if (rcmbSucAct.Value !="")
-                    {
-                        ent.sucursalGlobal = rcmbSucAct.Value;
-                    }
-                    ent.ShowDialog();
+                    ent.sucursalGlobal = rcmbSucAct.Value;
                 }
-
-
+                
+                openForms.Add(ent);
+                ent.FormClosed += frm_FormClosed_Libera;
+                ent.Show();
             }
             catch (Exception ex)
             {
@@ -287,69 +287,95 @@ namespace mainVentana
             }
         }
 
-        private void rbtnCargas_Click(object sender, EventArgs e)
+
+        private async void rbtnCargas_Click(object sender, EventArgs e)
         {
-            if (Negocios.ConeccionRed.TestInternet() == 1)
+            int result = await ConeccionRed.TestInternet();
+
+            if (result == 1)
             {
                 MessageBox.Show("No tienes internet");
                 return;
             }
             try
             {
-                using (frmOrdenDeCarga ocar = new frmOrdenDeCarga())
-                {
-                    ocar.ShowDialog();
-                }
-
+                frmOrdenDeCarga ocar = new frmOrdenDeCarga();
+                openForms.Add(ocar);
+                ocar.FormClosed += frm_FormClosed_Libera;
+                ocar.Show();
 
             }
             catch (Exception)
             {
-
-
-
             }
         }
 
-        private void rbtnSalida_Click(object sender, EventArgs e)
+        private async void rbtnSalida_Click(object sender, EventArgs e)
         {
+            int result = await ConeccionRed.TestInternet();
+
+            if (result == 1)
+            {
+                MessageBox.Show("No tienes internet");
+                return;
+            }
             try
             {
-                using (VistaOrSalida.frmOrdSalida salida = new VistaOrSalida.frmOrdSalida())
-                {
-                    salida.ShowDialog();
-                }
-
+                VistaOrSalida.frmOrdSalida salida = new VistaOrSalida.frmOrdSalida();
+                openForms.Add(salida);
+                salida.FormClosed += frm_FormClosed_Libera;
+                salida.Show();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                
             }
         }
 
-        private void rbtnRecepcion_Click(object sender, EventArgs e)
+
+        private async void rbtnRecepcion_Click(object sender, EventArgs e)
         {
-            using (frmRecepcion frm = new frmRecepcion())
+            int result = await ConeccionRed.TestInternet();
+
+            if (result == 1)
             {
-                frm.ShowDialog();
+                MessageBox.Show("No tienes internet");
+                return;
             }
+            frmRecepcion frm = new frmRecepcion();
+            openForms.Add(frm);
+            frm.FormClosed += frm_FormClosed_Libera;
+            frm.Show();
         }
 
-        private void rbtnBill_Click(object sender, EventArgs e)
+        private async void rbtnBill_Click(object sender, EventArgs e)
         {
-            using (VistaBill.frmMBill frm = new VistaBill.frmMBill())
+            int result = await ConeccionRed.TestInternet();
+
+            if (result == 1)
             {
-                frm.ShowDialog();
+                MessageBox.Show("No tienes internet");
+                return;
             }
+            VistaBill.frmMBill frm = new VistaBill.frmMBill();
+            openForms.Add(frm);
+            frm.FormClosed += frm_FormClosed_Libera;
+            frm.Show();
         }
 
-        private void rbtnReportes_Click(object sender, EventArgs e)
+        private async void rbtnReportes_Click(object sender, EventArgs e)
         {
-            using (frmMenuReportes frm = new frmMenuReportes())
-            {
-                frm.ShowDialog();
+            int result = await ConeccionRed.TestInternet();
 
+            if (result == 1)
+            {
+                MessageBox.Show("No tienes internet");
+                return;
             }
+            frmMenuReportes frm = new frmMenuReportes();
+            openForms.Add(frm);
+            frm.FormClosed += frm_FormClosed_Libera;
+            frm.Show();
 
         }
 
@@ -377,7 +403,6 @@ namespace mainVentana
         private void sucursales()
         {
 
-        
         }
 
         private void rcmbSucAct_DropDownItemClicked(object sender, RibbonItemEventArgs e)
@@ -389,8 +414,6 @@ namespace mainVentana
         private void apiConfig_Click(object sender, EventArgs e)
         {
             
-          
-
             using (mainVentana.vistaConfiguraciones.frmConfiguraraApi apiconfi = new vistaConfiguraciones.frmConfiguraraApi())
             {
                 apiconfi.ShowDialog();
@@ -405,19 +428,31 @@ namespace mainVentana
 
         private void vbtnCotizacion_Click(object sender, EventArgs e)
         {
-            using (frmCotizaciones cot = new frmCotizaciones())
-            {
-                cot.sGlobal = Negocios.Common.Cache.CacheLogin.sucGlobal;
-                cot.ShowDialog();
-            }
+
+            frmCotizaciones cot = new frmCotizaciones();
+            openForms.Add(cot);
+            cot.FormClosed += frm_FormClosed_Libera;
+            cot.sGlobal = Negocios.Common.Cache.CacheLogin.sucGlobal;
+            cot.Show();
         }
+
+       
 
         private void rCordbtnBuscaCot_Click(object sender, EventArgs e)
         {
-            using (frmBuscarCotizacion cot = new frmBuscarCotizacion())
+            frmBuscarCotizacion cot = new frmBuscarCotizacion();
+            openForms.Add(cot);
+            cot.FormClosed += frm_FormClosed_Libera;
+            cot.Show();
+        }
+
+        private void frm_FormClosed_Libera(object sender, FormClosedEventArgs e)
+        {
+            Form form = sender as Form;
+            if (form != null)
             {
-                //cot.sGlobal = Negocios.Common.Cache.CacheLogin.sucGlobal;
-                cot.ShowDialog();
+                openForms.Remove(form);
+                form.Dispose();
             }
         }
 

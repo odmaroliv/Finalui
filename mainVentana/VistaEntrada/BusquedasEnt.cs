@@ -1,4 +1,5 @@
-﻿using Datos.ViewModels.Entradas;
+﻿using Datos.ViewModels.Coord.Clientes;
+using Datos.ViewModels.Entradas;
 using Datos.ViewModels.Entradas.mvlistas;
 using Negocios;
 using Negocios.NGClientes;
@@ -327,13 +328,13 @@ namespace mainVentana.VistaEntrada
             this.Close();
         }
 
-       
+
 
         private void txbClave_KeyDown_1(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                Servicios datos = new Servicios();
+                // Servicios datos = new Servicios();
                 AccesoClientes ac = new AccesoClientes();
                 string _clave = "";
                 if (!String.IsNullOrWhiteSpace(txbClave.Text))
@@ -348,6 +349,105 @@ namespace mainVentana.VistaEntrada
                 }
                 comboBox1.Text = dt.C3.Trim();
 
+            }
+
+
+        }
+
+
+
+        private async void txbOBusqueda_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                var listaClientes = new List<vmClienteDinamicoBusqueda>();
+                Servicios datos = new Servicios();
+                try
+                {
+                   
+                    
+
+                    if (label2.Text == "CLIENTE")
+                    {
+                        listaClientes = await datos.LlenaClientesInteractivo(txbOBusqueda.Text,1);
+                        dgvBusqueda.DataSource = listaClientes;
+                    }
+                    else if (label2.Text == "ALIAS")
+                    {
+                        listaClientes = await datos.LlenaClientesInteractivo(txbOBusqueda.Text, 2);
+                        dgvBusqueda.DataSource = listaClientes;
+
+                    }
+
+                    else if (label2.Text == "ALIASDIREC")
+                    {
+                        listaClientes = await datos.LlenaClientesInteractivo(txbOBusqueda.Text, 2);
+                        dgvBusqueda.DataSource = listaClientes;
+                    }
+
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ocurrió un error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    datos = null;
+                   // listaClientes.Clear();
+                }
+
+
+               
+
+            }
+        }
+
+        private void dgvBusqueda_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (label2.Text == "ALIAS")
+                {
+
+                    if (e.RowIndex >= 0 && e.RowIndex < dgvBusqueda.Rows.Count)
+                    {
+                        var valorCelda = dgvBusqueda.Rows[e.RowIndex].Cells[0].Value?.ToString()?.Trim();
+                        if (!string.IsNullOrEmpty(valorCelda))
+                        {
+                            comboBox1.Text = valorCelda;
+                        }
+                    }
+
+                }
+                else if (label2.Text == "CLIENTE")
+                {
+                    if (e.RowIndex >= 0 && e.RowIndex < dgvBusqueda.Rows.Count)
+                    {
+                        var valorCelda = dgvBusqueda.Rows[e.RowIndex].Cells[1].Value?.ToString()?.Trim();
+                        if (!string.IsNullOrEmpty(valorCelda))
+                        {
+                            comboBox1.Text = valorCelda;
+                        }
+                    }
+
+                }
+                else if (label2.Text == "ALIASDIREC")
+                {
+                    if (e.RowIndex >= 0 && e.RowIndex < dgvBusqueda.Rows.Count)
+                    {
+                        var valorCelda = dgvBusqueda.Rows[e.RowIndex].Cells[0].Value?.ToString()?.Trim();
+                        if (!string.IsNullOrEmpty(valorCelda))
+                        {
+                            comboBox1.Text = valorCelda;
+                        }
+                    }
+                }
+               
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocurrió un error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

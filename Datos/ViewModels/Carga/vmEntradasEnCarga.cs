@@ -14,8 +14,12 @@ namespace Datos.ViewModels.Carga
 
         [DisplayName("Etiqueta.")]
         public string Etiqueta { get; set; }
+        [DisplayName("Unidad.")]
+        public string Unidad { get; set; }
+        [DisplayName("Cliente.")]
+        public string Cliente { get; set; }
 
-        
+
 
     }
 }

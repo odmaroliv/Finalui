@@ -101,9 +101,10 @@ namespace mainVentana
         
 
 
-        private void iconButton1_Click(object sender, EventArgs e)
+        private async void iconButton1_Click(object sender, EventArgs e)
         {
-            if (Negocios.ConeccionRed.TestInternet() == 1)
+            int result = await ConeccionRed.TestInternet();
+            if (result == 1)
             {
                 MessageBox.Show("No tienes internet");
                 return;
@@ -125,7 +126,7 @@ namespace mainVentana
 
         }
 
-        private void loadinggg(int estado)
+        private async void loadinggg(int estado)
         {
             
             LoadingPatoControl loadingPatoControl = new LoadingPatoControl();
@@ -139,38 +140,40 @@ namespace mainVentana
                 pnlImg.Controls.Clear();
                 }
             
-
-
         }
-        
 
-        private async void Inicio()
+
+        private async Task Inicio()
         {
-            //--------------------validamos si hay coneccion, de lo contrario no ejecuta el showD />
-            Servicios vld = new Servicios();
+            int result = await ConeccionRed.TestInternet();
 
-            //-------------------------Fin de la validacion />
-
-
-            bool valida = vld.cargalogin(txbUsr.Text.Trim(), txbPass2.Text.Trim());
-            bool smtp = await vld.ObtieneEmail();
-            if (valida == true)
+            // Verificar la conexión a internet
+            if (result != 0)
             {
-                Form1 frm1 = new Form1();
+                MessageBox.Show("No hay conexión a internet.");
+                return;
+            }
 
+            // Validar credenciales de inicio de sesión
+            Servicios vld = new Servicios();
+            if (!vld.cargalogin(txbUsr.Text.Trim(), txbPass2.Text.Trim()))
+            {
+                MessageBox.Show("Usuario o contraseña incorrectos.");
+                return;
+            }
+
+            // Obtener configuraciones de correo electrónico
+            bool smtp = await vld.ObtieneEmail();
+
+            // Mostrar formulario
+            using (Form1 frm1 = new Form1())
+            {
                 frm1.Cerrado += new Form1.Cierra(ActivaElForm);
                 this.Hide();
                 frm1.ShowDialog();
-                
-                frm1.Dispose();
-                //this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Usuario o contraseña incorrectos");
-               
             }
         }
+
 
         private void ActivaElForm()
         {
@@ -210,11 +213,12 @@ namespace mainVentana
             this.Close();
         }
 
-        private void txbPass_KeyDown(object sender, KeyEventArgs e)
+        private async void txbPass_KeyDown(object sender, KeyEventArgs e)
         {
+            int result = await ConeccionRed.TestInternet();
             if (e.KeyCode == Keys.Return)
             {
-                if (Negocios.ConeccionRed.TestInternet() == 1)
+                if (result == 1)
                 {
                     MessageBox.Show("No tienes internet");
                     return;
@@ -259,17 +263,21 @@ namespace mainVentana
             catch (Exception)
             {
 
-                
+
             }
-            Inicio(); 
+
+           await Inicio();
+
             loadinggg(0);
         }
 
-        private void txbUsr_KeyDown(object sender, KeyEventArgs e)
+        private async void txbUsr_KeyDown(object sender, KeyEventArgs e)
         {
+            int result = await ConeccionRed.TestInternet();
+
             if (e.KeyCode == Keys.Return)
             {
-                if (Negocios.ConeccionRed.TestInternet() == 1)
+                if (result == 1)
                 {
                     MessageBox.Show("No tienes internet");
                     return;

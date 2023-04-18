@@ -12,18 +12,23 @@ namespace Negocios
         //Test de internet
         [DllImport("wininet.dll")]
         private extern static bool InternetGetConnectedState(out int Description, int ReservedValue);
-        public static int TestInternet()
-        {
 
+        public static async Task<int> TestInternet()
+        {
             int error = 0; // 0 no error | 1 error 
             int desc;
-            if (InternetGetConnectedState(out desc, 0) == true)
+
+            await Task.Run(() =>
             {
-            }
-            else
-            {
-                error = 1;
-            }
+                if (InternetGetConnectedState(out desc, 0) == true)
+                {
+                }
+                else
+                {
+                    error = 1;
+                }
+            });
+
             return error;
         }
     }

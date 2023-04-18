@@ -54,7 +54,7 @@ namespace Negocios
                     d.C81 = Common.Cache.CacheLogin.username.ToString().Trim(); //elaboro
                     d.C92 = provedor;
                     d.C93 = orCompra;
-                    d.C95 = noFlete;
+                    d.C95 = noFlete?.Substring(0, Math.Min(noFlete.Length, 50));
                     d.C97 = Convert.ToDecimal(noUnidades);
                     d.C98 = tipUnidad.Substring(0, Math.Min(tipUnidad.Length, 5));
                     d.C99 = Convert.ToDecimal(peso);
@@ -71,17 +71,8 @@ namespace Negocios
             }
             catch (DbEntityValidationException e)
             {
-                foreach (var eve in e.EntityValidationErrors)
-                {
-                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                    foreach (var ve in eve.ValidationErrors)
-                    {
-                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                            ve.PropertyName, ve.ErrorMessage);
-                    }
-                }
 
+                Negocios.LOGs.ArsLogs.LogEdit(e.Message, " agregaKDM1() " + entrada);
                 throw;
             }
 
@@ -98,10 +89,11 @@ namespace Negocios
                 {
                     modelo.aumentaSQLint(br, modo.ToString().Trim());
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "AltasBD.ActualizaSqlIov() " + modo);
                     System.Windows.Forms.MessageBox.Show("Ha Ocurrido un error, datos faltantes o incorrectos.");
+                    throw;
                 }
             }
         }
@@ -134,17 +126,7 @@ namespace Negocios
             }
             catch (DbEntityValidationException e)
             {
-                foreach (var eve in e.EntityValidationErrors)
-                {
-                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                    foreach (var ve in eve.ValidationErrors)
-                    {
-                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                            ve.PropertyName, ve.ErrorMessage);
-                    }
-                }
-
+                Negocios.LOGs.ArsLogs.LogEdit(e.Message, "AltasBD.agregaComentKDM1() " + codEntrada);
                 throw;
             }
 
@@ -185,27 +167,13 @@ namespace Negocios
 
                         );
 
-
-
-
-
                     modelo.SaveChanges();
 
                 }
             }
             catch (DbEntityValidationException e)
             {
-                foreach (var eve in e.EntityValidationErrors)
-                {
-                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                    foreach (var ve in eve.ValidationErrors)
-                    {
-                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                            ve.PropertyName, ve.ErrorMessage);
-                    }
-                }
-
+                Negocios.LOGs.ArsLogs.LogEdit(e.Message, "AltasBD.agregaKDMENT() " + etiqueta);
                 throw;
             }
         }
@@ -236,6 +204,7 @@ namespace Negocios
             }
             catch (DbEntityValidationException e)
             {
+                Negocios.LOGs.ArsLogs.LogEdit(e.Message, "AltasBD.UpdateKDM1() " + id);
                 System.Windows.Forms.MessageBox.Show("Hubo un problema al actualizar, no se pudo actualizar este codigo");
             }
 
@@ -257,6 +226,7 @@ namespace Negocios
             }
             catch (DbEntityValidationException e)
             {
+                Negocios.LOGs.ArsLogs.LogEdit(e.Message, "AltasBD.UpdateKDM1Coment() " + id);
                 System.Windows.Forms.MessageBox.Show("Hubo un problema al actualizar, no se pudo actualizar este codigo");
             }
 
@@ -308,6 +278,7 @@ namespace Negocios
                 }
                 catch (Exception ex)
                 {
+                    Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "AltasBD.UCSalidaEnKDM1() " + c6);
                     throw;
                 }
             }
@@ -342,6 +313,7 @@ namespace Negocios
                         }
                         catch (Exception ex)
                         {
+                            Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "AltasBD.ModificaStatusSalida() " + numerosalida);
                             throw;
                         }
                     }
@@ -361,6 +333,7 @@ namespace Negocios
                         }
                         catch (Exception ex)
                         {
+                            Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "AltasBD.ModificaStatusSalida() " + numerosalida);
                             throw;
                         }
                     }
@@ -383,7 +356,6 @@ namespace Negocios
                              select fd).FirstOrDefault();
 
 
-
                     d.C43 = "A";
                     d.C61 = "";
                     kd.Add(d);
@@ -394,6 +366,8 @@ namespace Negocios
                     }
                     catch (Exception ex)
                     {
+                        Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "AltasBD.TerminaSalida() " + numerosalida);
+                        
                         throw;
                     }
                 }
@@ -419,8 +393,9 @@ namespace Negocios
 
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "AltasBD.TActualizaValores() " + entrada);
                 System.Windows.Forms.MessageBox.Show("Ha ocurrido un error, no hemos podido actualizar el valor.");
             }
 
@@ -450,8 +425,9 @@ namespace Negocios
 
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "AltasBD.ActualizaValoresEntrega() " + entrada);
                 System.Windows.Forms.MessageBox.Show("Ha ocurrido un error, no hemos podido actualizar el valor.");
             }
 
@@ -480,9 +456,10 @@ namespace Negocios
 
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 System.Windows.Forms.MessageBox.Show("Ha ocurrido un error, no hemos podido actualizar el valor.");
+                Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "AltasBD.ActualizaPagoPorEntrada() " + entrada);
             }
             if (!String.IsNullOrWhiteSpace(comentario))
             {
@@ -501,8 +478,9 @@ namespace Negocios
 
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "AltasBD.ActualizaPagoPorEntrada() " + entrada);
                     System.Windows.Forms.MessageBox.Show("Ha ocurrido un error, no hemos podido actualizar el valor.");
                 }
 
@@ -520,8 +498,6 @@ namespace Negocios
             {
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
-
-
                     var d = new KDXD();
                     d.C2 = clave;
                     d.C3 = nombre;
@@ -537,24 +513,22 @@ namespace Negocios
                         modelo.SaveChanges();
                         MessageBox.Show("Agregado");
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
+                        Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "AltasBD.AgregarProovedor() " + clave +" ; "+ nombre);
                         throw;
                     }
                 }
             }
 
 
-            catch (Exception)
+            catch (Exception ex)
             {
+                Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "AltasBD.AgregarProovedor() " + clave + " ; " + nombre);
                 System.Windows.Forms.MessageBox.Show("Ha ocurrido un error, no hemos podido crear el valor (Proovedor) posiblemente por codigo repedito.");
             }
             
         }
-
-
-
-        }
-
+    }
 
 }

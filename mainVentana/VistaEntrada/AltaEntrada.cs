@@ -277,7 +277,7 @@ namespace mainVentana.VistaEntrada
             string datoNoTrakin = tbxRastreo.Text;
             string datoProvedor = proveedor.SelectedValue.ToString();
             string datoOrdCompra = ordenCompra.Text;
-            string datoNoFlete = numFlete.Text;
+            string datoNoFlete = numFlete.Text; 
             string datoNoUnidades = unidades.Text;
             string datoTipoUnidad = cmbUnidades.SelectedValue.ToString();
             string datoPeso = peso.Text;
@@ -1071,8 +1071,24 @@ namespace mainVentana.VistaEntrada
                 if (MessageBox.Show("Estas seguro de que deseas reiniciar todo los datos?", "Cuidado!", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
 
-                    sucEntrada.SelectedIndex = 0;
+                    // sucEntrada.SelectedIndex = 0;
                     //datoEntrada               = recuperUltimaent();
+                    try
+                    {
+                        foreach (var i in from Sucursales i in sucEntrada.Items
+                                          where i.c1.Trim() == sucursalGlobal.Trim()
+                                          select i)
+                        {
+                            sucEntrada.SelectedValue = i.c1;
+                            break;
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+                        MessageBox.Show("No se pudo establecer la Suc Global");
+                    }
+
                     cargaultent();
                     cmbMoneda.SelectedIndex = 0;
                     //regresafecha();
@@ -1106,6 +1122,7 @@ namespace mainVentana.VistaEntrada
                     lblUser.Text = CacheLogin.username;
                     mdfImg.Visible = false;
                     iconButton2.Enabled = true;
+                  
 
 
                     limpiaImg();
@@ -1218,8 +1235,24 @@ namespace mainVentana.VistaEntrada
 
             iconButton2.Enabled = false;
             sbeArchivos = "";
-            mdfImg.Visible = true   ;
+            mdfImg.Visible = true;
             abreModifica(false);
+
+            try
+            {
+                foreach (var i in from Sucursales i in sucEntrada.Items
+                                  where i.c1.Trim() == sucursalGlobal.Trim()
+                                  select i)
+                {
+                    sucEntrada.SelectedValue = i.c1;
+                    break;
+                }
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("No se pudo establecer la Suc Global");
+            }
             limpiaImg();
 
         }
@@ -1235,7 +1268,7 @@ namespace mainVentana.VistaEntrada
 
 
 
-            sucEntrada.SelectedIndex = 0;
+            //sucEntrada.SelectedIndex = 0;
             //sucEntrada.Enabled      = estatus;
 
             //cmbMoneda.SelectedIndex = 1;
@@ -1477,7 +1510,16 @@ namespace mainVentana.VistaEntrada
 
                 }
 
-                tipoOper.Text = q.C101.Trim();
+                foreach (vmTOperacion i in tipoOper.Items)
+                {
+                    if (i.c1.Trim() == q.C101.Trim())
+                    {
+                        tipoOper.SelectedValue = i.c1;
+                        break;
+                    }
+                }
+                
+                tipoOper.Text = 
                 txbValFact.Text = q.C102.Trim();
 
                 //-------Sucursal destino---------------

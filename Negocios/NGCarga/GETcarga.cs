@@ -112,11 +112,14 @@ namespace Negocios.NGCarga
 
                 {
                     var lista = from d in modelo.KDMENT
+                                join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
                                 where d.C54.Contains(codigo) //&& d.C19 != sdestino 
                                 select new vmEntradasEnCarga
                                 {
                                     Entrada = d.C6,
                                     Etiqueta = d.C9,
+                                    Unidad = k.C98,
+                                    Cliente = k.C32,
                                 };
                     lst2 = lista.ToList();
                 }

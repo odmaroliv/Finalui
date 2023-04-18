@@ -42,6 +42,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblTotalFaltantes = new System.Windows.Forms.Label();
             this.gsbCargaEti = new Guna.UI.WinForms.GunaVScrollBar();
             this.lblMensaje = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -85,7 +86,6 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.lblTotalFaltantes = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaCargas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrdenesEntrada)).BeginInit();
@@ -123,6 +123,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(885, 682);
             this.panel1.TabIndex = 0;
+            // 
+            // lblTotalFaltantes
+            // 
+            this.lblTotalFaltantes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblTotalFaltantes.AutoSize = true;
+            this.lblTotalFaltantes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalFaltantes.Location = new System.Drawing.Point(286, 504);
+            this.lblTotalFaltantes.Name = "lblTotalFaltantes";
+            this.lblTotalFaltantes.Size = new System.Drawing.Size(63, 13);
+            this.lblTotalFaltantes.TabIndex = 33;
+            this.lblTotalFaltantes.Text = "Faltantes:";
             // 
             // gsbCargaEti
             // 
@@ -971,17 +982,6 @@
             // 
             this.notifyIcon1.Text = "notifyIcon1";
             this.notifyIcon1.Visible = true;
-            // 
-            // lblTotalFaltantes
-            // 
-            this.lblTotalFaltantes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblTotalFaltantes.AutoSize = true;
-            this.lblTotalFaltantes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalFaltantes.Location = new System.Drawing.Point(286, 504);
-            this.lblTotalFaltantes.Name = "lblTotalFaltantes";
-            this.lblTotalFaltantes.Size = new System.Drawing.Size(63, 13);
-            this.lblTotalFaltantes.TabIndex = 33;
-            this.lblTotalFaltantes.Text = "Faltantes:";
             // 
             // frmOrdSalida
             // 
