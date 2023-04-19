@@ -407,7 +407,7 @@
                 <Top>1.87723in</Top>
                 <Left>1.20423in</Left>
                 <Height>0.25in</Height>
-                <Width>2.92708in</Width>
+                <Width>1.39646in</Width>
                 <ZIndex>11</ZIndex>
                 <Style>
                   <Border>
@@ -671,6 +671,71 @@
                   </Border>
                 </Style>
               </Rectangle>
+              <Textbox Name="repOrdCompra">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Parameters!repOrdCompra.Value</Value>
+                        <Style>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>repOrdCompra</rd:DefaultName>
+                <Top>1.87723in</Top>
+                <Left>4.05979in</Left>
+                <Height>0.25in</Height>
+                <Width>1.32292in</Width>
+                <ZIndex>17</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox21">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>P.O.:</Value>
+                        <Style>
+                          <FontWeight>Bold</FontWeight>
+                          <TextDecoration>Underline</TextDecoration>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox2</rd:DefaultName>
+                <Top>1.86334in</Top>
+                <Left>3.47993in</Left>
+                <Height>0.25in</Height>
+                <Width>0.51042in</Width>
+                <ZIndex>18</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Top>0.08333in</Top>
@@ -977,6 +1042,12 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="repOrdCompra">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -1047,6 +1118,11 @@
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>3</RowIndex>
           <ParameterName>repNotas</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>3</RowIndex>
+          <ParameterName>repOrdCompra</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

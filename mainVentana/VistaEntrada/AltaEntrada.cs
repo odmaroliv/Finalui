@@ -26,6 +26,7 @@ using System.Runtime.InteropServices;
 using System.Globalization;
 using FontAwesome.Sharp;
 using DocumentFormat.OpenXml.Office2010.Excel;
+using mainVentana.VistaEntrada.Proovedor;
 
 namespace mainVentana.VistaEntrada
 {
@@ -265,17 +266,19 @@ namespace mainVentana.VistaEntrada
             datoEntrada = recuperUltimaent();
             string datoMoneda = cmbMoneda.GetItemText(cmbMoneda.SelectedItem).ToString();
             DateTime datoFecha = regresafecha();
-            string datoNuCliente = lblCodCliente.Text;
+            
             string datoNoCord = cord.SelectedValue.ToString();
             string datoValArn = txbValArn.Text;
+            string datoNuCliente = lblCodCliente.Text;
             string datoNomCliente = cliente.Text;
             string datoCalle = label23.Text;
             string datoColonia = label24.Text;
             string datoCiudadZip = label25.Text;
+            string datoProvedor = proveedor.SelectedValue.ToString();
             string datoValFact = txbValFact.Text;
             string datoParidad = lblParidad.Text;
             string datoNoTrakin = tbxRastreo.Text;
-            string datoProvedor = proveedor.SelectedValue.ToString();
+            
             string datoOrdCompra = ordenCompra.Text;
             string datoNoFlete = numFlete.Text; 
             string datoNoUnidades = unidades.Text;
@@ -1093,6 +1096,7 @@ namespace mainVentana.VistaEntrada
                     cmbMoneda.SelectedIndex = 0;
                     //regresafecha();
                     cargafecha();
+                    lblTotalArchivos.Text = "...";
                     lblCodCliente.Text = default;
                     cord.SelectedIndex = 0;
                     txbValArn.Text = "1";
@@ -1273,6 +1277,7 @@ namespace mainVentana.VistaEntrada
 
             //cmbMoneda.SelectedIndex = 1;
             //cmbMoneda.Enabled         = estatus;
+            lblTotalArchivos.Text = "...";
 
             lblCodCliente.Text = default;
             lblCodCliente.Enabled = estatus;
@@ -1587,10 +1592,18 @@ namespace mainVentana.VistaEntrada
             string datoNoFlete = numFlete.Text.Trim();
             string datoOrConpra = ordenCompra.Text.Trim();
 
+            string datoNuCliente = lblCodCliente.Text;
+            string datoNomCliente = cliente.Text;
+            string datoCalle = label23.Text;
+            string datoColonia = label24.Text;
+            string datoCiudadZip = label25.Text;
+            string datoProvedor = proveedor.SelectedValue.ToString();
+
             AltasBD bd = new AltasBD();
             try
             {
-                bd.UpdateKDM1(datoEntrada, datoSucDestino, datoNoCord, datoNota, datoReferencia, pagado, datoTipoOper, datoValFact, datoValArn, datoSucOrigen, datoNoFlete, datoOrConpra);
+                bd.UpdateKDM1(datoEntrada, datoSucDestino, datoNoCord, datoNota, datoReferencia, pagado, datoTipoOper, datoValFact, datoValArn, datoSucOrigen, datoNoFlete, datoOrConpra,
+                    datoNuCliente,datoNomCliente,datoCalle,datoColonia,datoCiudadZip,datoProvedor);
                 if (detalles.Enabled==true)
                 {
                     bd.UpdateKDM1Coment(datoEntrada, datoSucOrigen, datoDescripcion);
@@ -1925,24 +1938,25 @@ namespace mainVentana.VistaEntrada
                     rp.repUnidades = q.C97.ToString();
                     rp.repTipoUnidades = q.C98.Trim();
                     rp.repNumFlete = q.C95.Trim();
+                    rp.repOrdCompra = q.C93.Trim();
                     rp.repNumBultos = q.C108.Trim();
                     rp.repContMercancia = q.descripcion.Trim();
                     rp.repNotas = q.C24.Trim();
 
                 }
                 rp.ShowDialog();
-                
 
-            }  
-            
+
+            }
+
 
             //var lst = new List<vmEtiquetasReporte>();
             //lst = sv.LlenaEtiquetas(lblEntrada.Text.Trim(), sucEntrada.SelectedValue.ToString().Trim());
             // rp.lstrep = lst;
 
-           
 
-           
+
+
 
         }
 
@@ -1955,7 +1969,7 @@ namespace mainVentana.VistaEntrada
             fd.Filter = "Solo documentos (PDF, WORD, JPG, PNG, JPEG)|*.PDF;*.DOCX;*.PNG;*.JPG;*.JPEG";
             fd.Multiselect = true;
 
-           
+
 
             if (fd.ShowDialog() == DialogResult.OK)
             {
@@ -1974,7 +1988,7 @@ namespace mainVentana.VistaEntrada
                         btng.Text = "Borrar Archivo";
                         btng.HeaderText = "Borrar Archivo";
                         btng.Name = "btng";
-                        
+
                         btng.UseColumnTextForButtonValue = true;
 
 
@@ -1988,9 +2002,12 @@ namespace mainVentana.VistaEntrada
                         MessageBox.Show("Ha ocurrido un error");
                     }
                 }
-                    
+
 
             }
+
+            lblTotalArchivos.Text = dgvDocs.Rows.Count.ToString();
+
         }
         private int validapsoemail()
         {
@@ -2492,6 +2509,24 @@ namespace mainVentana.VistaEntrada
                 MessageBox.Show("Primero consulta la entrada.");
             }
 
+        }
+
+        private void btnAltaProvEnt_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (frmProovedorAdd ent = new frmProovedorAdd())
+                {
+
+                    ent.ShowDialog();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

@@ -133,7 +133,18 @@ namespace mainVentana.VistaOrdenCarga
 
 
             dtmFcierre.Value = lst.fechaCierre.Value;
-            dtmHora.Value = Convert.ToDateTime(lst.horaCierre);
+            DateTime parsedDateTime;
+            if (DateTime.TryParse(lst.horaCierre.Trim(), CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedDateTime))
+            {
+                dtmHora.Value = parsedDateTime;
+            }
+            else
+            {
+                MessageBox.Show("Hay un problema con la hora de Cierre");
+                // Console.WriteLine("La cadena no se puede reconocer como un valor DateTime válido.");
+            }
+
+
             lst = null;
         }
 
@@ -472,9 +483,14 @@ namespace mainVentana.VistaOrdenCarga
             rp.fechaDeAlta = txbFechaAlta.Text.Trim();
             rp.referencia = txbReferencia.Text;
             rp.horaCierre = txbTotal.Text;
-            rp.lst = entradasTo;
+            rp.lst = entradasTo.OrderBy(x =>
+               int.Parse(x.Etiqueta.Substring(x.Etiqueta.IndexOf('-') + 6, 2))
+             * 1000 + int.Parse(x.Etiqueta.Substring(x.Etiqueta.LastIndexOf('-') + 1)))
+           .ToList();
 
-          //  rp.horaCierre = dtmHora.Value.Date.ToString("HH:mm:ss tt");
+
+
+            //  rp.horaCierre = dtmHora.Value.Date.ToString("HH:mm:ss tt");
             rp.fechaCierre = dtmFcierre.Value.Date.ToString("MM/dd/yyyy");
             rp.fechaImprecion = DateTime.Now.ToString();
             rp.ShowDialog();

@@ -25,9 +25,11 @@ namespace mainVentana.Reportes
         public string repTFecha;
         public string repTipoUnidades;
         public string repNumFlete;
+        public string repOrdCompra;
         public string repNumBultos;
         public string repContMercancia;
         public string repNotas;
+        
         // public List<vmEtiquetasReporte> lstrep = new List<vmEtiquetasReporte>();
 
         public TestReport()
@@ -58,7 +60,8 @@ namespace mainVentana.Reportes
             reportParameters.Add(new ReportParameter("repUnidades", repUnidades));
             reportParameters.Add(new ReportParameter("repEntrada", repTEntrada));
             reportParameters.Add(new ReportParameter("repFecha", repTFecha));
-            
+            reportParameters.Add(new ReportParameter("repOrdCompra", repOrdCompra));
+            reportParameters.Add(new ReportParameter("repNumFlete", repNumFlete));
             reportParameters.Add(new ReportParameter("repTipoUnidades", repTipoUnidades));
             reportParameters.Add(new ReportParameter("repNumBultos", repNumBultos));
             reportParameters.Add(new ReportParameter("repContMercancia", repContMercancia));

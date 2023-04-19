@@ -178,7 +178,8 @@ namespace Negocios
             }
         }
 
-        public void UpdateKDM1(string id, string sucursaldestino, string cord, string notas, string referencia, string pagado, string tipooperacion, string valfact, string valarn, string sucursalOrigen,string noFlete, string datoOrConpra)
+        public void UpdateKDM1(string id, string sucursaldestino, string cord, string notas, string referencia, string pagado, string tipooperacion, string valfact, string valarn, string sucursalOrigen,string noFlete, string datoOrConpra,
+            string datoNuCliente,string datoNomCliente,string datoCalle,string datoColonia,string datoCiudadZip,string datoProvedor)
         {
             try
             {
@@ -187,20 +188,73 @@ namespace Negocios
                     var d = (from q in modelo.KDM1
                              where q.C6 == id && q.C4 == 35 && q.C1 == sucursalOrigen
                              select q).First();
-                    d.C103 = sucursaldestino.Trim();
-                    d.C12 = cord.Trim();
-                    d.C24 = notas.Trim();
-                    d.C11 = referencia.Trim();
-                    d.C44 = pagado.Trim();
-                    d.C101 = tipooperacion.Trim();
-                    d.C102 = valfact.Trim();
-                    d.C16 = Convert.ToDecimal(valarn.Trim());
-                    d.C42 = Convert.ToDecimal(valarn.Trim());
+
+                    if (!string.IsNullOrEmpty(sucursaldestino))
+                    {
+                        d.C103 = sucursaldestino.Trim();
+                    }
+
+                    if (!string.IsNullOrEmpty(cord))
+                    {
+                        d.C12 = cord.Trim();
+                    }
+
+                    if (!string.IsNullOrEmpty(notas))
+                    {
+                        d.C24 = notas.Trim();
+                    }
+
+                    if (!string.IsNullOrEmpty(referencia))
+                    {
+                        d.C11 = referencia.Trim();
+                    }
+
+                    if (!string.IsNullOrEmpty(pagado))
+                    {
+                        d.C44 = pagado.Trim();
+                    }
+
+                    if (!string.IsNullOrEmpty(tipooperacion))
+                    {
+                        d.C101 = tipooperacion.Trim();
+                    }
+
+                    if (!string.IsNullOrEmpty(valfact))
+                    {
+                        d.C102 = valfact.Trim();
+                    }
+
+                    if (!string.IsNullOrEmpty(valarn))
+                    {
+                        d.C16 = Convert.ToDecimal(valarn.Trim());
+                        d.C42 = Convert.ToDecimal(valarn.Trim());
+                    }
+
                     d.C93 = datoOrConpra;
                     d.C95 = noFlete;
-                    modelo.SaveChanges();
 
+                    if (!string.IsNullOrEmpty(datoNuCliente))
+                    {
+                        d.C10 = datoNuCliente.Trim();
+                    }
+
+                    d.C32 = datoNomCliente;
+                    d.C33 = datoCalle;
+                    d.C34 = datoColonia;
+                    d.C35 = datoCiudadZip;
+                    d.C92 = datoProvedor;
+
+                    try
+                    {
+                        modelo.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("ocurrio un error" + ex.Message.ToString());
+                        //throw;
+                    }
                 }
+
             }
             catch (DbEntityValidationException e)
             {
