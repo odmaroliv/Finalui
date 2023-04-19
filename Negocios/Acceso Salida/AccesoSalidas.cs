@@ -415,13 +415,15 @@ namespace Negocios.Acceso_Salida
 
         public vmAuxiliaresSalidas ObtieCorreo(string stiqueta, string sorigen = null)
         {
-            var ch = new[] { '-' };
-            var etiquetaSplit = stiqueta.Split(ch);
-            var sori = etiquetaSplit[0];
-            var ent = etiquetaSplit[1];
-
+          
             try
             {
+
+                var ch = new[] { '-' };
+                var etiquetaSplit = stiqueta.Split(ch);
+                var sori = etiquetaSplit[0];
+                var ent = etiquetaSplit[1];
+
                 using (var modelo = new modelo2Entities())
                 {
                     // Usa el método AsNoTracking para mejorar el rendimiento

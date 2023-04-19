@@ -619,18 +619,21 @@ namespace mainVentana.VistaOrSalida
             if (string.IsNullOrEmpty(etiqueta))
             {
                 lblMensaje.Text = "Etiqueta no válida";
+                txbEscaneo.Text = "";
                 return;
             }
 
             if (dgvEscaneados.Rows.Cast<DataGridViewRow>().Any(r => r.Cells[0].Value.ToString().Trim() == etiqueta))
             {
                 lblMensaje.Text = "La etiqueta " + etiqueta + " ya está en la tabla principal";
+                txbEscaneo.Text = "";
                 return;
             }
 
             if (dgvObser.Rows.Cast<DataGridViewRow>().Any(r => r.Cells[0].Value.ToString().Trim() == etiqueta))
             {
                 lblMensaje.Text = "La etiqueta " + etiqueta + " ya está en la tabla de Obs";
+                txbEscaneo.Text = "";
                 return;
             }
 
@@ -924,7 +927,7 @@ namespace mainVentana.VistaOrSalida
 
                         Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Escaneo de Etiqueta" + etiqueta);
 
-                        MessageBox.Show("Ocurrio un Error, por favor no continue scaneando y contacte al administrador");
+                       // MessageBox.Show("Ocurrio un Error, por favor no continue scaneando y contacte al administrador");
 
                     }
                     try
@@ -935,7 +938,7 @@ namespace mainVentana.VistaOrSalida
                     {
                         Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Escaneo de Etiqueta" + etiqueta);
 
-                        MessageBox.Show("Ocurrio un Error, por favor no continue scaneando y contacte al administrador");
+                       // MessageBox.Show("Ocurrio un Error, por favor no continue scaneando y contacte al administrador");
                     }
 
                    

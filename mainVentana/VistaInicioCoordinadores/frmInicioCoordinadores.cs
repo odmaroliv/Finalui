@@ -41,16 +41,18 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private void dtgEnts_MouseWheek(object sender, MouseEventArgs e)
         {
-            if (e.Delta > 0 && dtgEnts.FirstDisplayedScrollingRowIndex > 0)
+            int currentIndex = dtgEnts.FirstDisplayedScrollingRowIndex;
+            int maxIndex = dtgEnts.Rows.Count - dtgEnts.DisplayedRowCount(false);
+
+            if (e.Delta > 0 && currentIndex > 0)
             {
-                dtgEnts.FirstDisplayedScrollingRowIndex --;
+                dtgEnts.FirstDisplayedScrollingRowIndex--;
             }
-            else if (e.Delta < 0)
+            else if (e.Delta < 0 && currentIndex < maxIndex)
             {
                 dtgEnts.FirstDisplayedScrollingRowIndex++;
             }
         }
-
 
 
 

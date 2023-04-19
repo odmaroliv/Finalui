@@ -32,10 +32,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.gunaElipsePanel3 = new Guna.UI.WinForms.GunaElipsePanel();
             this.iconButton7 = new FontAwesome.Sharp.IconButton();
@@ -46,6 +46,9 @@
             this.dtgEnts = new ADGV.AdvancedDataGridView();
             this.iconButton6 = new FontAwesome.Sharp.IconButton();
             this.gunaElipsePanel2 = new Guna.UI.WinForms.GunaElipsePanel();
+            this.txbNoCliente = new Guna.UI.WinForms.GunaLineTextBox();
+            this.txbAliasAct = new Guna.UI.WinForms.GunaLineTextBox();
+            this.iconButton3 = new FontAwesome.Sharp.IconButton();
             this.gtxbOrdenSalidaDetalle = new ReaLTaiizor.Controls.MaterialRichTextBox();
             this.txbFecha = new Guna.UI.WinForms.GunaLineTextBox();
             this.txbSucOrigenDetalle = new Guna.UI.WinForms.GunaLineTextBox();
@@ -63,9 +66,6 @@
             this.txbEntradaDetalle = new Guna.UI.WinForms.GunaLineTextBox();
             this.iconButton2 = new FontAwesome.Sharp.IconButton();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.iconButton3 = new FontAwesome.Sharp.IconButton();
-            this.txbAliasAct = new Guna.UI.WinForms.GunaLineTextBox();
-            this.txbNoCliente = new Guna.UI.WinForms.GunaLineTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -193,9 +193,9 @@
             // 
             this.dtgEnts.AllowUserToAddRows = false;
             this.dtgEnts.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
-            this.dtgEnts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
+            this.dtgEnts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dtgEnts.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -204,25 +204,25 @@
             this.dtgEnts.BackgroundColor = System.Drawing.Color.White;
             this.dtgEnts.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dtgEnts.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgEnts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgEnts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dtgEnts.ColumnHeadersHeight = 50;
             this.dtgEnts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dtgEnts.DateWithTime = false;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgEnts.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgEnts.DefaultCellStyle = dataGridViewCellStyle3;
             this.dtgEnts.EnableHeadersVisualStyles = false;
             this.dtgEnts.GridColor = System.Drawing.Color.White;
             this.dtgEnts.Location = new System.Drawing.Point(21, 76);
@@ -230,18 +230,18 @@
             this.dtgEnts.Name = "dtgEnts";
             this.dtgEnts.ReadOnly = true;
             this.dtgEnts.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgEnts.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgEnts.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dtgEnts.RowHeadersVisible = false;
             this.dtgEnts.RowTemplate.DividerHeight = 1;
             this.dtgEnts.RowTemplate.Height = 50;
-            this.dtgEnts.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.dtgEnts.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.dtgEnts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgEnts.Size = new System.Drawing.Size(655, 320);
             this.dtgEnts.TabIndex = 138;
@@ -305,6 +305,68 @@
             this.gunaElipsePanel2.Radius = 20;
             this.gunaElipsePanel2.Size = new System.Drawing.Size(356, 416);
             this.gunaElipsePanel2.TabIndex = 1;
+            // 
+            // txbNoCliente
+            // 
+            this.txbNoCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbNoCliente.Animated = true;
+            this.txbNoCliente.BackColor = System.Drawing.Color.White;
+            this.txbNoCliente.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbNoCliente.Enabled = false;
+            this.txbNoCliente.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.txbNoCliente.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbNoCliente.LineColor = System.Drawing.Color.Gainsboro;
+            this.txbNoCliente.Location = new System.Drawing.Point(43, 380);
+            this.txbNoCliente.Margin = new System.Windows.Forms.Padding(2);
+            this.txbNoCliente.Name = "txbNoCliente";
+            this.txbNoCliente.PasswordChar = '\0';
+            this.txbNoCliente.ReadOnly = true;
+            this.txbNoCliente.Size = new System.Drawing.Size(44, 29);
+            this.txbNoCliente.TabIndex = 163;
+            this.txbNoCliente.Visible = false;
+            // 
+            // txbAliasAct
+            // 
+            this.txbAliasAct.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbAliasAct.Animated = true;
+            this.txbAliasAct.BackColor = System.Drawing.Color.White;
+            this.txbAliasAct.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbAliasAct.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.txbAliasAct.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbAliasAct.LineColor = System.Drawing.Color.Gainsboro;
+            this.txbAliasAct.Location = new System.Drawing.Point(27, 280);
+            this.txbAliasAct.Margin = new System.Windows.Forms.Padding(2);
+            this.txbAliasAct.Name = "txbAliasAct";
+            this.txbAliasAct.PasswordChar = '\0';
+            this.txbAliasAct.ReadOnly = true;
+            this.txbAliasAct.Size = new System.Drawing.Size(261, 29);
+            this.txbAliasAct.TabIndex = 162;
+            // 
+            // iconButton3
+            // 
+            this.iconButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.iconButton3.AutoSize = true;
+            this.iconButton3.BackColor = System.Drawing.Color.Transparent;
+            this.iconButton3.FlatAppearance.BorderSize = 0;
+            this.iconButton3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Navy;
+            this.iconButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton3.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconButton3.ForeColor = System.Drawing.Color.Transparent;
+            this.iconButton3.IconChar = FontAwesome.Sharp.IconChar.ArrowUp91;
+            this.iconButton3.IconColor = System.Drawing.Color.Blue;
+            this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton3.IconSize = 30;
+            this.iconButton3.Location = new System.Drawing.Point(303, 273);
+            this.iconButton3.Margin = new System.Windows.Forms.Padding(2);
+            this.iconButton3.Name = "iconButton3";
+            this.iconButton3.Size = new System.Drawing.Size(36, 36);
+            this.iconButton3.TabIndex = 158;
+            this.iconButton3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.iconButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.iconButton3.UseVisualStyleBackColor = false;
+            this.iconButton3.Click += new System.EventHandler(this.iconButton3_Click);
             // 
             // gtxbOrdenSalidaDetalle
             // 
@@ -573,68 +635,6 @@
             this.notifyIcon1.Text = " notifyIcon1";
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
-            // 
-            // iconButton3
-            // 
-            this.iconButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconButton3.AutoSize = true;
-            this.iconButton3.BackColor = System.Drawing.Color.Transparent;
-            this.iconButton3.FlatAppearance.BorderSize = 0;
-            this.iconButton3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Navy;
-            this.iconButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton3.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconButton3.ForeColor = System.Drawing.Color.Transparent;
-            this.iconButton3.IconChar = FontAwesome.Sharp.IconChar.ArrowUp91;
-            this.iconButton3.IconColor = System.Drawing.Color.Blue;
-            this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton3.IconSize = 30;
-            this.iconButton3.Location = new System.Drawing.Point(303, 273);
-            this.iconButton3.Margin = new System.Windows.Forms.Padding(2);
-            this.iconButton3.Name = "iconButton3";
-            this.iconButton3.Size = new System.Drawing.Size(36, 36);
-            this.iconButton3.TabIndex = 158;
-            this.iconButton3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.iconButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.iconButton3.UseVisualStyleBackColor = false;
-            this.iconButton3.Click += new System.EventHandler(this.iconButton3_Click);
-            // 
-            // txbAliasAct
-            // 
-            this.txbAliasAct.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbAliasAct.Animated = true;
-            this.txbAliasAct.BackColor = System.Drawing.Color.White;
-            this.txbAliasAct.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txbAliasAct.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.txbAliasAct.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbAliasAct.LineColor = System.Drawing.Color.Gainsboro;
-            this.txbAliasAct.Location = new System.Drawing.Point(27, 280);
-            this.txbAliasAct.Margin = new System.Windows.Forms.Padding(2);
-            this.txbAliasAct.Name = "txbAliasAct";
-            this.txbAliasAct.PasswordChar = '\0';
-            this.txbAliasAct.ReadOnly = true;
-            this.txbAliasAct.Size = new System.Drawing.Size(261, 29);
-            this.txbAliasAct.TabIndex = 162;
-            // 
-            // txbNoCliente
-            // 
-            this.txbNoCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbNoCliente.Animated = true;
-            this.txbNoCliente.BackColor = System.Drawing.Color.White;
-            this.txbNoCliente.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txbNoCliente.Enabled = false;
-            this.txbNoCliente.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.txbNoCliente.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbNoCliente.LineColor = System.Drawing.Color.Gainsboro;
-            this.txbNoCliente.Location = new System.Drawing.Point(43, 380);
-            this.txbNoCliente.Margin = new System.Windows.Forms.Padding(2);
-            this.txbNoCliente.Name = "txbNoCliente";
-            this.txbNoCliente.PasswordChar = '\0';
-            this.txbNoCliente.ReadOnly = true;
-            this.txbNoCliente.Size = new System.Drawing.Size(44, 29);
-            this.txbNoCliente.TabIndex = 163;
-            this.txbNoCliente.Visible = false;
             // 
             // frmInicioCoordinadores
             // 
