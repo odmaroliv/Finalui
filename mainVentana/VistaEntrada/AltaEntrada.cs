@@ -1318,8 +1318,8 @@ namespace mainVentana.VistaEntrada
             alias.Text = default;
             alias.Enabled = estatus;
 
-            gunaTileButton1.Enabled = estatus;
-            gunaTileButton2.Enabled = estatus;
+            gunaTileButton1.Enabled = true;
+            gunaTileButton2.Enabled = true;
 
             detalles.Enabled = estatus;
 
@@ -1598,12 +1598,13 @@ namespace mainVentana.VistaEntrada
             string datoColonia = label24.Text;
             string datoCiudadZip = label25.Text;
             string datoProvedor = proveedor.SelectedValue.ToString();
+            string datosAlias = alias.Text;
 
             AltasBD bd = new AltasBD();
             try
             {
                 bd.UpdateKDM1(datoEntrada, datoSucDestino, datoNoCord, datoNota, datoReferencia, pagado, datoTipoOper, datoValFact, datoValArn, datoSucOrigen, datoNoFlete, datoOrConpra,
-                    datoNuCliente,datoNomCliente,datoCalle,datoColonia,datoCiudadZip,datoProvedor);
+                    datoNuCliente,datoNomCliente,datoCalle,datoColonia,datoCiudadZip,datoProvedor, datosAlias);
                 if (detalles.Enabled==true)
                 {
                     bd.UpdateKDM1Coment(datoEntrada, datoSucOrigen, datoDescripcion);
@@ -2511,7 +2512,7 @@ namespace mainVentana.VistaEntrada
 
         }
 
-        private void btnAltaProvEnt_Click(object sender, EventArgs e)
+        private async void btnAltaProvEnt_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2527,6 +2528,9 @@ namespace mainVentana.VistaEntrada
             {
                 MessageBox.Show(ex.Message);
             }
+           
+            proveedor.AutoCompleteCustomSource = await proveeList();
+           
         }
     }
 }

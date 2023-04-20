@@ -179,7 +179,7 @@ namespace Negocios
         }
 
         public void UpdateKDM1(string id, string sucursaldestino, string cord, string notas, string referencia, string pagado, string tipooperacion, string valfact, string valarn, string sucursalOrigen,string noFlete, string datoOrConpra,
-            string datoNuCliente,string datoNomCliente,string datoCalle,string datoColonia,string datoCiudadZip,string datoProvedor)
+            string datoNuCliente,string datoNomCliente,string datoCalle,string datoColonia,string datoCiudadZip,string datoProvedor, string datoAlias)
         {
             try
             {
@@ -243,6 +243,7 @@ namespace Negocios
                     d.C34 = datoColonia;
                     d.C35 = datoCiudadZip;
                     d.C92 = datoProvedor;
+                    d.C112 = datoAlias;
 
                     try
                     {
