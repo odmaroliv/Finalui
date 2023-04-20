@@ -686,8 +686,6 @@ namespace Negocios
 
                 throw;
             }
-
-
         }
         public async Task<List<vmRastreo>> generaRastreo()
         {

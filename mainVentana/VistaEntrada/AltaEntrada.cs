@@ -2099,6 +2099,7 @@ namespace mainVentana.VistaEntrada
 
                 var lst = new List<vmEtiquetasReporte>();
                 lst = sv.LlenaEtiquetas(lblEntrada.Text.Trim(), sucEntrada.SelectedValue.ToString().Trim());
+                lst = lst.OrderBy(q => q.NEtiqueta).ToList();
                 int neti = 1;
                 string lstt = lst.Count.ToString();
                 string zplToDoc = "";
@@ -2213,6 +2214,7 @@ namespace mainVentana.VistaEntrada
 
                 var lst = new List<vmEtiquetasReporte>();
                 lst = sv.LlenaEtiquetas(lblEntrada.Text.Trim(), sucEntrada.SelectedValue.ToString().Trim());
+                lst = lst.OrderBy(q => q.NEtiqueta).ToList();
                 int neti = 1;
                 string lstt = lst.Count.ToString();
                 string zplToDoc = "";
@@ -2252,7 +2254,7 @@ namespace mainVentana.VistaEntrada
                         s += "^FO50,870^GB700,250,3^FS\n";
                         s += "^FO400,870^GB3,250,3^FS\n";
                         s += "^CF0,80";
-                        s += string.Format("^FO100,900^FD{0} de {1}^FS\n", neti.ToString(), lstt);
+                        s += string.Format("^FO100,900^FD{0} de {1}^FS\n",q.NEtiqueta.ToString(), lstt);
                         s += "^CF0,40";
                         s += "^FO100,1010^FDDate:^FS\n";
                         s += string.Format("^FO100,1060^FD{0}^FS\n", q.Fecha.Value.Date.ToString("MM/dd/yyyy"));
