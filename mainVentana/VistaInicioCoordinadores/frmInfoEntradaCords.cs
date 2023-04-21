@@ -1,5 +1,6 @@
 ﻿using Datos.ViewModels.Carga;
 using Datos.ViewModels.Servicios;
+using DocumentFormat.OpenXml.Bibliography;
 using Negocios;
 using Newtonsoft.Json;
 using System;
@@ -16,6 +17,8 @@ namespace mainVentana.VistaInicioCoordinadores
 {
     public partial class frmInfoEntradaCords : Form
     {
+
+        private bool _isBusy = false; 
         public frmInfoEntradaCords()
         {
             InitializeComponent();
@@ -25,21 +28,45 @@ namespace mainVentana.VistaInicioCoordinadores
         
 
 
-        private void btnEntrada_Click(object sender, EventArgs e)
+        private async void btnEntrada_Click(object sender, EventArgs e)
         {
 
-            //string entsp = txbEtiqueta.Text;
-            //string sucsp = txbEtiqueta.Text;
-
-
-
-            /* if (MessageBox.Show("Estas apunto de dar de baja na entrada " + entsp + " \nde: " + sucsp,"Alerta",MessageBoxButtons.OKCancel,MessageBoxIcon.Stop) ==DialogResult.OK)
+            string dtSucInicio = txbSucOrigenDetalle.Text;
+            string dtEntrada = txbEntradaDetalle.Text;
+            string dtCaragaAsignada = txbCargaActual.Text;
+           
+            if ( MessageBox.Show("Estas apunto de dar de baja la entrada " + dtEntrada + " \nde: " + dtCaragaAsignada, "Alerta",MessageBoxButtons.OKCancel,MessageBoxIcon.Stop) ==DialogResult.OK)
              {
-                 if (MessageBox.Show("De nuevo, esta entrada se eliminara de las tablas, quedado unicamente disponible para su consulta \nEntrada: " + entsp + " \nDe: " + sucsp, "Ultima Alerta", MessageBoxButtons.OKCancel, MessageBoxIcon.Stop) == DialogResult.OK)
-                 {
+                try
+                {
+                    tableLayoutPanel1.Enabled = false;
+                    _isBusy =true;
+                    Negocios.NGCarga.altasBDCarga get = new Negocios.NGCarga.altasBDCarga();
+                    bool finalizada = await get.LiberaEntradaDeCarga(dtSucInicio, dtEntrada, dtCaragaAsignada);
+                    if (finalizada == false)
+                    {
+                        MessageBox.Show("Ocurrio un Error / Revisa que esta entrada ya este asiganda");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Se dio de baja la entrada " + dtEntrada + " del la orden de carga, cierra y abre esta ventana para surtir efecto");
+                    }
 
-                 }
-             }*/
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+                finally
+                {
+                    tableLayoutPanel1.Enabled = true;
+                    _isBusy = false;
+                }
+
+
+
+            }
 
         }
         DataTable datosGenerales = new DataTable();
@@ -153,6 +180,7 @@ namespace mainVentana.VistaInicioCoordinadores
             }
             try
             {
+                _isBusy = true;
                 DataGridViewRow selectedRow = dtgCargasFilter.Rows[dtgCargasFilter.SelectedCells[0].RowIndex];
                 string c_so = Convert.ToString(selectedRow.Cells[0].Value).Trim();
                 string c_car = Convert.ToString(selectedRow.Cells[1].Value).Trim();
@@ -162,19 +190,25 @@ namespace mainVentana.VistaInicioCoordinadores
                 string e_so = txbSucOrigenDetalle.Text.Trim();
                 Negocios.NGCarga.altasBDCarga get = new Negocios.NGCarga.altasBDCarga();
                 await get.AsignaCargaAEntrada(e_so, e_en, c_cargacompleta);
-                MessageBox.Show("La entrada: "+e_en+" fue asignada con exito a la carga "+c_cargacompleta,"Carga asignada",MessageBoxButtons.OK);
+                MessageBox.Show("La entrada: " + e_en + " fue asignada con exito a la carga " + c_cargacompleta, "Carga asignada", MessageBoxButtons.OK);
             }
             catch (Exception)
             {
 
                 throw;
             }
-            timer1.Enabled = false;
-            this.Dispose();
-            this.Close();
-            
-          
-           
+            finally
+            {
+                _isBusy = false;
+                timer1.Enabled = false;
+                this.Dispose();
+                this.Close();
+            }
+
+
+
+
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -185,6 +219,10 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private void frmInfoEntradaCords_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (_isBusy == true)
+            {
+                return;
+            }
             timer1.Enabled = false;
         }
         private void AgregaEntradaOrden()

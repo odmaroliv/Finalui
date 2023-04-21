@@ -22,15 +22,11 @@ namespace Negocios
 
             try
             {
-
                 Negocios.Servicios ng = new Servicios();
                 string correoCord = await ng.obtieneCorreoCord(idCord);
 
                 await Task.Run(() =>
                 {
-
-
-
                     MailMessage msg = new MailMessage();
                     SmtpClient smtp = new SmtpClient();
                     msg.IsBodyHtml = true;
@@ -38,12 +34,6 @@ namespace Negocios
                     msg.Subject = "Notificacion Arnian entrada: " + Entrada;
                     long pesoArch = 0;
 
-                    /* foreach (var item in Fotos) //Attachment
-                     {
-                         msg.Attachments.Add(new Attachment(item));
-                         FileInfo fileinfo = new FileInfo(item);
-                         pesoArch = pesoArch + fileinfo.Length;
-                     }*/
                     foreach (var item in Archivos) //Attachment
                     {
                         msg.Attachments.Add(new Attachment(item));
@@ -54,8 +44,8 @@ namespace Negocios
                     if (pesoArch >= 25000000)
                     {
                         bandera = 1;
-
                     }
+
                     string plantilla = Properties.Resources.Arnian2022.ToString();
                     plantilla = plantilla.Replace("@ENTRADA", Entrada);
                     plantilla = plantilla.Replace("@CLIENTE", Cliente);
@@ -72,20 +62,21 @@ namespace Negocios
 
                     try
                     {
-                        string[] toMail = correoCord == "" ? "sistemas@arnian.com".Split(',') : correoCord.Split(',');//textBox6.Text.Split(','); // llenar desde la bd con los datos del cliente 
+                        string[] toMail = correoCord == "" ? "sistemas@arnian.com".Split(',') : correoCord.Split(',');
                         foreach (string ToEmailId in toMail)
                         {
                             msg.To.Add(new MailAddress(ToEmailId));
                         }
-                        if (correosClientes != "")
+
+                        if (!string.IsNullOrWhiteSpace(correosClientes))
                         {
-                            string[] toCC = correosClientes.Split(',')[0].Trim() == "" ? "sistemas@arnian.com".Split(',') : correosClientes.Split(',');
+                            string[] toCC = correosClientes.Split(',');
                             foreach (string ToCCId in toCC)
                             {
                                 msg.CC.Add(new MailAddress(ToCCId));
                             }
-                            //msg.CC.Add(new MailAddress("sistemas@arnian.com"));
                         }
+
                         msg.CC.Add(new MailAddress("sistemas@arnian.com"));
                     }
                     catch (Exception x)
@@ -94,29 +85,15 @@ namespace Negocios
                         bandera = 2;
                     }
 
-
-
-
-
-                    /*if (textBox4.Text != "")
-                    {
-                        string[] toBCC = textBox4.Text.Split(',');
-                        foreach (string ToBCCId in toBCC)
-                        {
-                            msg.Bcc.Add(new MailAddress(ToBCCId));
-                        }
-                    }*/
                     try
                     {
-                        smtp.Host = "smtp.gmail.com";//textBox8.Text;
+                        smtp.Host = "smtp.gmail.com";
                         smtp.Port = 587;
                         smtp.EnableSsl = true;
                         smtp.UseDefaultCredentials = false;
                         NetworkCredential nc = new NetworkCredential(Common.Cache.CacheLogin.smtpemail, Common.Cache.CacheLogin.smatppss);
                         smtp.Credentials = nc;
                         smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-
-
                         smtp.Send(msg);
                         msg.Attachments.Clear();
                         msg.Attachments.Dispose();
@@ -128,26 +105,25 @@ namespace Negocios
                     }
                     catch (Exception x)
                     {
-
                         bandera = 2;
                         Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Correo, al hacer clic al boton de guardar o cualquier boton de que llame al corre, anteriormente este error se dio porque no se podia autenticar una cuenta, estaba bloqueada en el Administrador de dominio");
                         throw;
                     }
-
 
                 });
                 return bandera;
             }
             catch (Exception x)
             {
-                Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Correo SMTP NORMAL "+Entrada);
+                Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Correo SMTP NORMAL " + Entrada);
             }
             return bandera;
         }
 
 
 
-        public async Task<int> EnviaMailAmazonSES(string Entrada, string Cliente, string Notraking, string Alias, string OrdCompra, string Noflete, string Proveedor, string Desc, List<string> attachmentPaths, string correosClientes, string idCord = "")
+
+            public async Task<int> EnviaMailAmazonSES(string Entrada, string Cliente, string Notraking, string Alias, string OrdCompra, string Noflete, string Proveedor, string Desc, List<string> attachmentPaths, string correosClientes, string idCord = "")
         {
             string subject = "Notificacion Arnian entrada: " + Entrada;
             string bodyHtml = ConstruirCuerpoDelCorreo(Entrada, Cliente, Notraking, Alias, OrdCompra, Noflete, Proveedor, Desc);

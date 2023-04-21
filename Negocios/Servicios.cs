@@ -36,7 +36,7 @@ namespace Negocios
         {
             /*try
             {
-                string urlFecha = "https://worldtimeapi.org/api/timezone/America/la_paz/";
+                string urlFecha = "https://worldtimeapi.org/api/timezone/America/Mazatlan";
                 WebRequest oRequest = WebRequest.Create(urlFecha);
                 WebResponse oResponse = oRequest.GetResponse();
                 StreamReader sr = new StreamReader(oResponse.GetResponseStream());
@@ -50,7 +50,7 @@ namespace Negocios
 
             try
             {
-                string urlFecha = "https://worldtimeapi.org/api/timezone/America/la_paz/";
+                string urlFecha = "https://worldtimeapi.org/api/timezone/America/Mazatlan";
                 WebRequest oRequest = WebRequest.Create(urlFecha);
                 WebResponse oResponse = oRequest.GetResponse();
                 StreamReader sr = new StreamReader(oResponse.GetResponseStream());
@@ -68,7 +68,7 @@ namespace Negocios
 
         public string retornafechaLapaz()//obtiene la paridad diaria del diario oficial de la federacion 
         {
-            string urlFecha = "https://worldtimeapi.org/api/timezone/America/la_paz/";
+            string urlFecha = "https://worldtimeapi.org/api/timezone/America/Mazatlan";
             WebRequest oRequest = WebRequest.Create(urlFecha);
             WebResponse oResponse = oRequest.GetResponse();
             StreamReader sr = new StreamReader(oResponse.GetResponseStream());

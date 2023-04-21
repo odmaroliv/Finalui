@@ -59,7 +59,7 @@
             this.panelContenedorForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContenedorForm.Location = new System.Drawing.Point(3, 3);
             this.panelContenedorForm.Name = "panelContenedorForm";
-            this.panelContenedorForm.Size = new System.Drawing.Size(1317, 698);
+            this.panelContenedorForm.Size = new System.Drawing.Size(1290, 698);
             this.panelContenedorForm.TabIndex = 1;
             // 
             // panel1
@@ -73,17 +73,18 @@
             this.panel1.Controls.Add(this.gunaShadowPanel1);
             this.panel1.Location = new System.Drawing.Point(13, 6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1458, 831);
+            this.panel1.Size = new System.Drawing.Size(1392, 831);
             this.panel1.TabIndex = 116;
             // 
             // panel3
             // 
+            this.panel3.AutoScroll = true;
             this.panel3.Controls.Add(this.tabControl1);
             this.panel3.Controls.Add(this.panel4);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(68, 79);
+            this.panel3.Location = new System.Drawing.Point(42, 79);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1390, 752);
+            this.panel3.Size = new System.Drawing.Size(1350, 752);
             this.panel3.TabIndex = 28;
             // 
             // tabControl1
@@ -94,7 +95,7 @@
             this.tabControl1.Location = new System.Drawing.Point(13, 14);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1331, 730);
+            this.tabControl1.Size = new System.Drawing.Size(1304, 730);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPage1
@@ -103,7 +104,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1323, 704);
+            this.tabPage1.Size = new System.Drawing.Size(1296, 704);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Alta de entrada";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -131,7 +132,7 @@
             // panel4
             // 
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(1363, 0);
+            this.panel4.Location = new System.Drawing.Point(1323, 0);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(27, 752);
             this.panel4.TabIndex = 3;
@@ -142,7 +143,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 79);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(68, 752);
+            this.panel2.Size = new System.Drawing.Size(42, 752);
             this.panel2.TabIndex = 27;
             // 
             // gunaGradientTileButton3
@@ -170,7 +171,7 @@
             this.gunaGradientTileButton3.OnHoverImage = null;
             this.gunaGradientTileButton3.OnPressedColor = System.Drawing.Color.Black;
             this.gunaGradientTileButton3.Radius = 5;
-            this.gunaGradientTileButton3.Size = new System.Drawing.Size(68, 49);
+            this.gunaGradientTileButton3.Size = new System.Drawing.Size(42, 49);
             this.gunaGradientTileButton3.TabIndex = 21;
             this.gunaGradientTileButton3.Text = "----";
             this.gunaGradientTileButton3.Click += new System.EventHandler(this.gunaGradientTileButton3_Click_1);
@@ -191,7 +192,7 @@
             this.gunaShadowPanel1.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(95)))), ((int)(((byte)(73)))));
             this.gunaShadowPanel1.ShadowDepth = 50;
             this.gunaShadowPanel1.ShadowStyle = Guna.UI.WinForms.ShadowMode.Dropped;
-            this.gunaShadowPanel1.Size = new System.Drawing.Size(1458, 79);
+            this.gunaShadowPanel1.Size = new System.Drawing.Size(1392, 79);
             this.gunaShadowPanel1.TabIndex = 26;
             // 
             // btnAlta
@@ -210,7 +211,7 @@
             this.btnAlta.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             this.btnAlta.Image = null;
             this.btnAlta.ImageSize = new System.Drawing.Size(100, 80);
-            this.btnAlta.Location = new System.Drawing.Point(85, 16);
+            this.btnAlta.Location = new System.Drawing.Point(39, 16);
             this.btnAlta.Name = "btnAlta";
             this.btnAlta.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
             this.btnAlta.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
@@ -240,7 +241,7 @@
             this.btnConsulta.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             this.btnConsulta.Image = null;
             this.btnConsulta.ImageSize = new System.Drawing.Size(100, 80);
-            this.btnConsulta.Location = new System.Drawing.Point(1115, 16);
+            this.btnConsulta.Location = new System.Drawing.Point(1069, 16);
             this.btnConsulta.Name = "btnConsulta";
             this.btnConsulta.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
             this.btnConsulta.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
@@ -270,7 +271,7 @@
             this.btnModifica.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             this.btnModifica.Image = null;
             this.btnModifica.ImageSize = new System.Drawing.Size(100, 80);
-            this.btnModifica.Location = new System.Drawing.Point(430, 16);
+            this.btnModifica.Location = new System.Drawing.Point(384, 16);
             this.btnModifica.Name = "btnModifica";
             this.btnModifica.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
             this.btnModifica.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
@@ -300,7 +301,7 @@
             this.btnBaja.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             this.btnBaja.Image = null;
             this.btnBaja.ImageSize = new System.Drawing.Size(100, 80);
-            this.btnBaja.Location = new System.Drawing.Point(773, 16);
+            this.btnBaja.Location = new System.Drawing.Point(727, 16);
             this.btnBaja.Name = "btnBaja";
             this.btnBaja.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
             this.btnBaja.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
@@ -319,7 +320,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1482, 842);
+            this.ClientSize = new System.Drawing.Size(1416, 842);
             this.Controls.Add(this.panel1);
             this.MaximumSize = new System.Drawing.Size(1500, 889);
             this.MinimumSize = new System.Drawing.Size(1430, 600);

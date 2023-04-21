@@ -17,6 +17,7 @@ using Negocios.NGReportes;
 using mainVentana.VistaInicioFoto;
 using mainVentana.VistaEntrada;
 using Datos.ViewModels.Entradas;
+using FontAwesome.Sharp;
 
 namespace mainVentana.VistaInicioCoordinadores
 
@@ -31,7 +32,7 @@ namespace mainVentana.VistaInicioCoordinadores
         private string zipp;
         private string numm;
 
-
+        private bool _isBusy = false;
 
         public frmInicioCoordinadores()
         {
@@ -68,13 +69,34 @@ namespace mainVentana.VistaInicioCoordinadores
 
         public async Task ejecutaeveto2()
         {
-            dtgEnts.DataSource = null;
-           bool nada = await CargaControles();
+            try
+            {
+                iconButton6.Enabled = false;
+                dtgEnts.DataSource = null;
+                bool nada = await CargaControles();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                iconButton6.Enabled = true;
+            }
+          
            
         }
 
         private async void frmInicioCoordinadores_Load(object sender, EventArgs e)
         {
+
+            dtFecha1.Value = DateTime.Now.AddDays(-1);
+            dtFecha2.Value = DateTime.Now;
+            dtFecha1.MinDate = DateTime.Now.AddDays(-460);
+            dtFecha1.MaxDate = DateTime.Now.AddDays(1);
+            dtFecha2.MinDate = DateTime.Now.AddDays(-460);
+            dtFecha2.MaxDate = DateTime.Now.AddDays(1);
             nudValArn.Controls[0].Visible = false;
             nudValFac.Controls[0].Visible = false;
 
@@ -87,67 +109,30 @@ namespace mainVentana.VistaInicioCoordinadores
         List<vmInfoControlCors> dtgDatos = new List<vmInfoControlCors>();
         public async Task<bool> CargaControles()
         {
-           
-            if (rSd.Checked==true)
-            {
-                sucursal = "SD";
-            }
-            if (rTj.Checked == true)
-            {
-                sucursal = "TJ";
-            }
-            if (rCa.Checked == true)
-            {
-                sucursal = "CSL";
-            }
-            List<vmInfoControlCors> lss = new List<vmInfoControlCors>();
-            lss.Clear();
-            ngbdReportes rep = new ngbdReportes();
-           lss = await rep.CargaControl(sucursal);
+            // Utilizar un diccionario para mapear los RadioButton a sus valores correspondientes
+            var radioButtonMapping = new Dictionary<RadioButton, string>
+    {
+        { rSd, "SD" },
+        { rTj, "TJ" },
+        { rCa, "CSL" }
+    };
 
-            if (dtgDatos!=null)
+            // Encontrar el RadioButton seleccionado y obtener su valor correspondiente
+            sucursal = radioButtonMapping.FirstOrDefault(r => r.Key.Checked).Value;
+
+            ngbdReportes rep = new ngbdReportes();
+            var lss = await rep.CargaControl(sucursal, dtFecha1.Value, dtFecha2.Value);
+
+            if (dtgDatos != null)
             {
                 dtgDatos.Clear();
             }
-           
-         
 
-            var listanoduplies = new HashSet<string>(lss.Select(s => s.entrada)).ToList();
-            foreach (var q in listanoduplies)
-            {
-                foreach (var w in lss)
-                {
-                    if (w.entrada.Trim() == q.Trim())
-                    {
-                        dtgDatos.Add( new vmInfoControlCors
-                        {
-                            entrada = w.entrada,
-                            cliente = w.cliente,
-                            noCli = w.noCli,
-                            fechaentrada = w.fechaentrada,
-                            Cotizacion = w.Cotizacion,
-                            ordcarga = w.ordcarga,
-                            ordapli = w.ordapli,
-                            salida = w.salida,
-                            SucursalInicio = w.SucursalInicio,
-                            valArn=w.valArn,
-                            valFact = w.valFact,
-                            desc = w.desc,
-                            aliss  =    w.aliss,
-                        });
+            // Utilizar LINQ para eliminar duplicados basados en el atributo 'entrada'
+            var uniqueLss = lss.GroupBy(x => x.entrada.Trim()).Select(x => x.First()).ToList();
 
-                        break;
-                    }
-                    else
-                    {
-                       
-                    }
-
-                }
-
-            }
-          
-            
+            // Agregar elementos únicos a dtgDatos
+            dtgDatos.AddRange(uniqueLss);
 
             if (dtgDatos.Count > 0)
             {
@@ -155,8 +140,7 @@ namespace mainVentana.VistaInicioCoordinadores
 
                 DatosDataTable = tb;
                 dtgEnts.DataSource = DatosDataTable;
-               
-
+                lblCTotal.Text = dtgDatos.Count.ToString();
             }
             else
             {
@@ -164,11 +148,8 @@ namespace mainVentana.VistaInicioCoordinadores
             }
 
             return true;
-
-
-
-
         }
+
 
         private void pnlEntradasDetalle_Paint(object sender, PaintEventArgs e)
         {
@@ -225,7 +206,23 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private async void iconButton6_Click(object sender, EventArgs e)
         {
-           bool ts = await CargaControles();
+            iconButton6.Enabled = false;
+            _isBusy = true;
+            try
+            {
+
+                bool ts = await CargaControles();
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            finally
+            {
+                iconButton6.Enabled = true;
+                _isBusy = false;
+            }
+           
         }
 
         private async void iconButton5_Click(object sender, EventArgs e)
@@ -378,26 +375,35 @@ namespace mainVentana.VistaInicioCoordinadores
 
         }
 
+        private bool ValidaNumericUpDown()
+        {
+            if (nudValArn.Value == 0 || nudValArn.Value == 1 || nudValFac.Value == 0 || nudValFac.Value == 1)
+            {
+                return false;
+            }
+            return true;
+        }
+
         private async void iconButton1_Click(object sender, EventArgs e)
         {
-            //   string tex = txbEntradaDetalle.Text;
-            if (ValidaCotizacion()==false)
+            if (!ValidaNumericUpDown())
             {
-                MessageBox.Show("Parece que esta entrada aun no ha sido asignada correctamente a una cotización","Alto",MessageBoxButtons.OK,MessageBoxIcon.Stop);
+                MessageBox.Show("Los valores de ValArn y ValFac deben ser diferentes de 0 o 1.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            // Código original
             using (frmInfoEntradaCords frm = new frmInfoEntradaCords())
             {
                 frm.txbSucOrigenDetalle.Text = txbSucOrigenDetalle.Text;
                 frm.txbEntradaDetalle.Text = txbEntradaDetalle.Text;
                 frm.txbCargaActual.Text = gtxbOrdenCargaDetalle.Text;
                 frm.ShowDialog();
-
             }
-
 
             await CargaControles();
         }
+
         private bool ValidaCotizacion()
         {
             Negocios.NGCotizacion.accesoCotizaciones dt = new Negocios.NGCotizacion.accesoCotizaciones();

@@ -314,13 +314,16 @@ namespace mainVentana.VistaOrSalida
             
 
 
-            string path = AppDomain.CurrentDomain.BaseDirectory;
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             string folder = path + "\\temp\\";
             string hoy = DateTime.Now.ToString("dd-MM-yyyy");
             string fullPath = folder + hoy + "-Salida-" + ulDato + ".xlsx";
 
             if (!Directory.Exists(folder))
                 Directory.CreateDirectory(folder);
+
+
+            
 
             new frmOrdSalida().Export<vmEnviodeNotificacion>(dato, fullPath, "salida");
             //  await llamasmtp(mensaje, q, fullPath);
@@ -367,7 +370,7 @@ namespace mainVentana.VistaOrSalida
                 SmtpClient smtp = new SmtpClient();
                 msg.IsBodyHtml = true;
                 msg.From = new MailAddress(Negocios.Common.Cache.CacheLogin.smtpemail);
-                msg.Subject = "Salida: "+ salida;
+                msg.Subject = "Salida: " + salida;
 
                 msg.IsBodyHtml = true;
                 using (StringReader sr = new StringReader(body))
@@ -380,18 +383,28 @@ namespace mainVentana.VistaOrSalida
                 var corrr = string.Join(",", correo);
                 if (corrr != "")
                 {
-                    string[] toCC = corrr.Split(',')[0].Trim() == ""  ? "licencias@arnian.com".Split(',') : corrr.Split(',');
+                    string[] toCC = corrr.Split(',');
                     foreach (string ToCCId in toCC)
                     {
-                        msg.CC.Add(new MailAddress(ToCCId));
+                        try
+                        {
+                            MailAddress mailAddress = new MailAddress(ToCCId);
+                            msg.CC.Add(mailAddress);
+                        }
+                        catch (FormatException)
+                        {
+                            // La dirección de correo electrónico no es válida
+                            // Descarta la dirección
+                        }
                     }
                 }
 
-                if (bndra==0)
+                if (bndra == 0)
                 {
-                    msg.CC.Add(new MailAddress("susano.limon@arnian.com"));
+                    //msg.CC.Add(new MailAddress("susano.limon@arnian.com"));
                     //msg.CC.Add(new MailAddress("sistemas@arnian.com"));
                     msg.CC.Add(new MailAddress("operaciones@arnian.com"));
+                    //msg.CC.Add(new MailAddress("operaciones@arnian.com"));
                 }
 
                 msg.Attachments.Add(new Attachment(path));
@@ -1137,6 +1150,11 @@ namespace mainVentana.VistaOrSalida
                         try
                         {
                             GeneraExcel();
+                           // string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                            string carpetaTemporal = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "temp");
+                            if (Directory.Exists(carpetaTemporal))
+                                Process.Start(carpetaTemporal);
+
                         }
                         catch (Exception)
                         {

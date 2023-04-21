@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Datos.Datosenti;
+using mainVentana.Helpers;
 using mainVentana.Loading;
 using mainVentana.Properties;
 using mainVentana.vistaConfiguraciones;
@@ -48,9 +49,14 @@ namespace mainVentana
             else
             {
                 MessageBox.Show("Nececitas una coneccion a internet para poder accesar", "Sin coneccion");
-                
+
             }
-           
+            using (var modelo = new modelo2Entities())
+            {
+                await DbContextHelper.PreloadContextAsync(modelo);
+               // await DbContextHelper.OpenConnectionAsync(modelo);
+            }
+
         }
 
         private void ModoEjecuta()

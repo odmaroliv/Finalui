@@ -426,7 +426,7 @@ namespace Negocios.Acceso_Salida
 
                 using (var modelo = new modelo2Entities())
                 {
-                    // Usa el método AsNoTracking para mejorar el rendimiento
+                    // AsNoTracking para mejorar el rendimiento kshi k kshi k
                     var query = modelo.KDMENT.AsNoTracking()
                         .Where(d => d.C1.StartsWith(sori) && d.C4 == 35 && d.C9.StartsWith(stiqueta))
                         .Join(modelo.KDM1, d => new { d.C1, d.C4, d.C6 }, k => new { k.C1, k.C4, k.C6 }, (d, k) => new { d, k })
@@ -438,7 +438,7 @@ namespace Negocios.Acceso_Salida
                             Etiqueta = da.dk.d.C9
                         });
 
-                    // Usa FirstOrDefault en lugar de First para evitar excepciones si la secuencia está vacía
+                    
                     var lst = query.FirstOrDefault();
 
                     return lst ?? new vmAuxiliaresSalidas { Etiqueta = "No se encontro esta etiquita", Correo = "", orden = "" };

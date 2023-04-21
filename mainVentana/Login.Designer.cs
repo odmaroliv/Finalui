@@ -44,9 +44,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.lblBorrarArch = new ReaLTaiizor.Controls.BigLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.gunaPictureBox1 = new Guna.UI.WinForms.GunaPictureBox();
-            this.lblBorrarArch = new ReaLTaiizor.Controls.BigLabel();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -64,7 +64,7 @@
             this.txbPass2.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txbPass2.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbPass2.LineColor = System.Drawing.Color.Gainsboro;
-            this.txbPass2.Location = new System.Drawing.Point(0, 104);
+            this.txbPass2.Location = new System.Drawing.Point(0, 118);
             this.txbPass2.Margin = new System.Windows.Forms.Padding(2);
             this.txbPass2.Name = "txbPass2";
             this.txbPass2.PasswordChar = '\0';
@@ -112,7 +112,7 @@
             this.panel1.Location = new System.Drawing.Point(402, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(332, 346);
+            this.panel1.Size = new System.Drawing.Size(332, 392);
             this.panel1.TabIndex = 5;
             // 
             // lblModoPruebas
@@ -165,7 +165,7 @@
             this.btnActivate.EnabledCalc = true;
             this.btnActivate.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnActivate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(78)))), ((int)(((byte)(90)))));
-            this.btnActivate.Location = new System.Drawing.Point(193, 328);
+            this.btnActivate.Location = new System.Drawing.Point(193, 374);
             this.btnActivate.Name = "btnActivate";
             this.btnActivate.OverColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.btnActivate.Size = new System.Drawing.Size(120, 15);
@@ -180,7 +180,7 @@
             this.cbxPass.CheckedOffColor = System.Drawing.Color.Gray;
             this.cbxPass.CheckedOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.cbxPass.FillColor = System.Drawing.Color.White;
-            this.cbxPass.Location = new System.Drawing.Point(179, 201);
+            this.cbxPass.Location = new System.Drawing.Point(183, 228);
             this.cbxPass.Name = "cbxPass";
             this.cbxPass.Size = new System.Drawing.Size(130, 20);
             this.cbxPass.TabIndex = 23;
@@ -190,17 +190,17 @@
             // pnlImg
             // 
             this.pnlImg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlImg.Location = new System.Drawing.Point(34, 290);
+            this.pnlImg.Location = new System.Drawing.Point(34, 312);
             this.pnlImg.Margin = new System.Windows.Forms.Padding(2);
             this.pnlImg.Name = "pnlImg";
-            this.pnlImg.Size = new System.Drawing.Size(279, 35);
+            this.pnlImg.Size = new System.Drawing.Size(279, 39);
             this.pnlImg.TabIndex = 21;
             // 
             // panel4
             // 
             this.panel4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel4.Controls.Add(this.iconButton1);
-            this.panel4.Location = new System.Drawing.Point(34, 239);
+            this.panel4.Location = new System.Drawing.Point(34, 262);
             this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(279, 38);
@@ -239,14 +239,14 @@
             this.panel3.Location = new System.Drawing.Point(34, 49);
             this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(279, 147);
+            this.panel3.Size = new System.Drawing.Size(279, 170);
             this.panel3.TabIndex = 4;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft JhengHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(0, 78);
+            this.label2.Location = new System.Drawing.Point(0, 92);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(97, 20);
@@ -262,7 +262,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(402, 346);
+            this.panel2.Size = new System.Drawing.Size(402, 392);
             this.panel2.TabIndex = 6;
             // 
             // panel5
@@ -273,8 +273,20 @@
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(402, 346);
+            this.panel5.Size = new System.Drawing.Size(402, 392);
             this.panel5.TabIndex = 1;
+            // 
+            // lblBorrarArch
+            // 
+            this.lblBorrarArch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblBorrarArch.AutoSize = true;
+            this.lblBorrarArch.BackColor = System.Drawing.Color.Transparent;
+            this.lblBorrarArch.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.lblBorrarArch.ForeColor = System.Drawing.Color.White;
+            this.lblBorrarArch.Location = new System.Drawing.Point(23, 355);
+            this.lblBorrarArch.Name = "lblBorrarArch";
+            this.lblBorrarArch.Size = new System.Drawing.Size(0, 28);
+            this.lblBorrarArch.TabIndex = 3;
             // 
             // pictureBox1
             // 
@@ -284,7 +296,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(402, 346);
+            this.pictureBox1.Size = new System.Drawing.Size(402, 392);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
@@ -298,35 +310,23 @@
             this.gunaPictureBox1.Location = new System.Drawing.Point(0, 0);
             this.gunaPictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.gunaPictureBox1.Name = "gunaPictureBox1";
-            this.gunaPictureBox1.Size = new System.Drawing.Size(402, 346);
+            this.gunaPictureBox1.Size = new System.Drawing.Size(402, 392);
             this.gunaPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.gunaPictureBox1.TabIndex = 0;
             this.gunaPictureBox1.TabStop = false;
-            // 
-            // lblBorrarArch
-            // 
-            this.lblBorrarArch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblBorrarArch.AutoSize = true;
-            this.lblBorrarArch.BackColor = System.Drawing.Color.Transparent;
-            this.lblBorrarArch.Font = new System.Drawing.Font("Segoe UI", 15F);
-            this.lblBorrarArch.ForeColor = System.Drawing.Color.White;
-            this.lblBorrarArch.Location = new System.Drawing.Point(23, 309);
-            this.lblBorrarArch.Name = "lblBorrarArch";
-            this.lblBorrarArch.Size = new System.Drawing.Size(0, 28);
-            this.lblBorrarArch.TabIndex = 3;
             // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 346);
+            this.ClientSize = new System.Drawing.Size(734, 392);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(754, 385);
+            this.MaximumSize = new System.Drawing.Size(754, 500);
             this.MinimumSize = new System.Drawing.Size(750, 385);
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -29,16 +29,18 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.gunaGradientTileButton1 = new Guna.UI.WinForms.GunaGradientTileButton();
             this.btnEntrada = new Guna.UI.WinForms.GunaGradientTileButton();
             this.txbSucOrigenDetalle = new Guna.UI.WinForms.GunaLineTextBox();
             this.txbEntradaDetalle = new Guna.UI.WinForms.GunaLineTextBox();
             this.gunaElipsePanel1 = new Guna.UI.WinForms.GunaElipsePanel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txbOperacionEnt = new Guna.UI.WinForms.GunaLineTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txbCargaActual = new Guna.UI.WinForms.GunaLineTextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -49,8 +51,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.gunaElipsePanel2 = new Guna.UI.WinForms.GunaElipsePanel();
             this.dtgCargasFilter = new ADGV.AdvancedDataGridView();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txbOperacionEnt = new Guna.UI.WinForms.GunaLineTextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.gunaElipsePanel1.SuspendLayout();
@@ -195,6 +195,34 @@
             this.gunaElipsePanel1.Size = new System.Drawing.Size(627, 114);
             this.gunaElipsePanel1.TabIndex = 156;
             // 
+            // label9
+            // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.label9.Location = new System.Drawing.Point(375, 10);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(56, 13);
+            this.label9.TabIndex = 165;
+            this.label9.Text = "Operacion";
+            // 
+            // txbOperacionEnt
+            // 
+            this.txbOperacionEnt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txbOperacionEnt.Animated = true;
+            this.txbOperacionEnt.BackColor = System.Drawing.Color.White;
+            this.txbOperacionEnt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbOperacionEnt.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.txbOperacionEnt.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbOperacionEnt.LineColor = System.Drawing.Color.Gainsboro;
+            this.txbOperacionEnt.Location = new System.Drawing.Point(378, 25);
+            this.txbOperacionEnt.Margin = new System.Windows.Forms.Padding(2);
+            this.txbOperacionEnt.Name = "txbOperacionEnt";
+            this.txbOperacionEnt.PasswordChar = '\0';
+            this.txbOperacionEnt.ReadOnly = true;
+            this.txbOperacionEnt.Size = new System.Drawing.Size(172, 29);
+            this.txbOperacionEnt.TabIndex = 164;
+            // 
             // label5
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -319,9 +347,9 @@
             // 
             this.dtgCargasFilter.AllowUserToAddRows = false;
             this.dtgCargasFilter.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
-            this.dtgCargasFilter.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
+            this.dtgCargasFilter.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dtgCargasFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -330,25 +358,25 @@
             this.dtgCargasFilter.BackgroundColor = System.Drawing.Color.White;
             this.dtgCargasFilter.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dtgCargasFilter.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgCargasFilter.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgCargasFilter.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dtgCargasFilter.ColumnHeadersHeight = 30;
             this.dtgCargasFilter.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dtgCargasFilter.DateWithTime = false;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgCargasFilter.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgCargasFilter.DefaultCellStyle = dataGridViewCellStyle3;
             this.dtgCargasFilter.EnableHeadersVisualStyles = false;
             this.dtgCargasFilter.GridColor = System.Drawing.Color.White;
             this.dtgCargasFilter.Location = new System.Drawing.Point(22, 12);
@@ -356,14 +384,14 @@
             this.dtgCargasFilter.Name = "dtgCargasFilter";
             this.dtgCargasFilter.ReadOnly = true;
             this.dtgCargasFilter.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgCargasFilter.RowHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgCargasFilter.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dtgCargasFilter.RowHeadersVisible = false;
             this.dtgCargasFilter.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dtgCargasFilter.RowTemplate.DividerHeight = 1;
@@ -375,34 +403,6 @@
             this.dtgCargasFilter.SortStringChanged += new System.EventHandler(this.dtgCargasFilter_SortStringChanged);
             this.dtgCargasFilter.FilterStringChanged += new System.EventHandler(this.dtgCargasFilter_FilterStringChanged);
             this.dtgCargasFilter.SelectionChanged += new System.EventHandler(this.dtgCargasFilter_SelectionChanged);
-            // 
-            // label9
-            // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label9.AutoSize = true;
-            this.label9.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label9.Location = new System.Drawing.Point(375, 10);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(56, 13);
-            this.label9.TabIndex = 165;
-            this.label9.Text = "Operacion";
-            // 
-            // txbOperacionEnt
-            // 
-            this.txbOperacionEnt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txbOperacionEnt.Animated = true;
-            this.txbOperacionEnt.BackColor = System.Drawing.Color.White;
-            this.txbOperacionEnt.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txbOperacionEnt.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.txbOperacionEnt.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbOperacionEnt.LineColor = System.Drawing.Color.Gainsboro;
-            this.txbOperacionEnt.Location = new System.Drawing.Point(378, 25);
-            this.txbOperacionEnt.Margin = new System.Windows.Forms.Padding(2);
-            this.txbOperacionEnt.Name = "txbOperacionEnt";
-            this.txbOperacionEnt.PasswordChar = '\0';
-            this.txbOperacionEnt.ReadOnly = true;
-            this.txbOperacionEnt.Size = new System.Drawing.Size(172, 29);
-            this.txbOperacionEnt.TabIndex = 164;
             // 
             // timer1
             // 

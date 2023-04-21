@@ -6,8 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
-    
-    namespace Negocios.NGCarga
+using System.Windows.Forms;
+
+namespace Negocios.NGCarga
 {
     public class altasBDCarga
     {
@@ -27,30 +28,30 @@ using System.Diagnostics;
             {
                 try
                 {
-                var d = new KDM1();
-                d.C1 = datoSucIni;
-                d.C2 = "U";
-                d.C3 = "D";
-                d.C4 = 40;
-                d.C5 = 1;
-                d.C6 = datoOrdCarga;
-                d.C7 = datoMoneda;
-                d.C8 = 1;
-                d.C9 = datoFechaAlta;
-                d.C11 = datoRefe;
-                d.C18 = datoFechaAlta;
-                d.C30 = "Ord";
-                d.C40 = datoParidad;
-                d.C43 = "N";
-                d.C63 = "PD-";
-                d.C67 = Common.Cache.CacheLogin.username.ToString().Trim();
-                d.C68 = datoFechaAlta;
-                d.C101 = datoOperacion;
-                d.C103 = datoSucDest;
-                d.C111 = datoFCorte;
-                d.C112 = datoHora;
-                modelo.KDM1.Add(d);
-                modelo.SaveChanges();
+                    var d = new KDM1();
+                    d.C1 = datoSucIni;
+                    d.C2 = "U";
+                    d.C3 = "D";
+                    d.C4 = 40;
+                    d.C5 = 1;
+                    d.C6 = datoOrdCarga;
+                    d.C7 = datoMoneda;
+                    d.C8 = 1;
+                    d.C9 = datoFechaAlta;
+                    d.C11 = datoRefe;
+                    d.C18 = datoFechaAlta;
+                    d.C30 = "Ord";
+                    d.C40 = datoParidad;
+                    d.C43 = "N";
+                    d.C63 = "PD-";
+                    d.C67 = Common.Cache.CacheLogin.username.ToString().Trim();
+                    d.C68 = datoFechaAlta;
+                    d.C101 = datoOperacion;
+                    d.C103 = datoSucDest;
+                    d.C111 = datoFCorte;
+                    d.C112 = datoHora;
+                    modelo.KDM1.Add(d);
+                    modelo.SaveChanges();
                 }
                 catch (DbEntityValidationException e)
                 {
@@ -95,15 +96,15 @@ using System.Diagnostics;
 
 
                     d.C7 = datoMoneda;
-                 
-                  
+
+
                     d.C11 = datoRefe;
-                   
-                  
+
+
                     d.C40 = datoParidad;
-                  
+
                     d.C67 = Common.Cache.CacheLogin.username.ToString().Trim();
-                   
+
                     d.C101 = datoOperacion;
                     d.C103 = datoSucDest;
                     d.C111 = datoFCorte;
@@ -168,7 +169,7 @@ using System.Diagnostics;
 
 
         }
-       
+
         public async Task CerrarCargaKdment(string etiqueta, string carga)
         {
 
@@ -176,7 +177,7 @@ using System.Diagnostics;
             {
                 try
                 {
-                   
+
 
                     var d = (from q in modelo.KDMENT
                              where q.C9.Contains(etiqueta) && q.C4 == 35
@@ -186,7 +187,7 @@ using System.Diagnostics;
                     {
                         item.C16 = carga;
                     }
-                   
+
 
                     await modelo.SaveChangesAsync();
                 }
@@ -202,11 +203,11 @@ using System.Diagnostics;
 
         public void ActualizaSqlIov(string datoSucIni, int modo, string dato)
         {
-           
 
-                string br = "KFUD" + modo + "01." + datoSucIni;
-                using (modelo2Entities modelo = new modelo2Entities())
-                {
+
+            string br = "KFUD" + modo + "01." + datoSucIni;
+            using (modelo2Entities modelo = new modelo2Entities())
+            {
 
                 try
                 {
@@ -216,11 +217,11 @@ using System.Diagnostics;
                 {
 
                     System.Windows.Forms.MessageBox.Show("Ha Ocurrido un error, datos faltantes o incorrectos.");
-                } 
                 }
+            }
         }
 
-        public async Task AsignaCargaAEntrada(string datoSucIni, string datoEntrada,string carga)
+        public async Task AsignaCargaAEntrada(string datoSucIni, string datoEntrada, string carga)
         {
 
             using (modelo2Entities modelo = new modelo2Entities())
@@ -235,9 +236,9 @@ using System.Diagnostics;
                     {
                         item.C54 = carga;
                     }
-                   
 
-                   await modelo.SaveChangesAsync();
+
+                    await modelo.SaveChangesAsync();
                 }
                 catch (DbEntityValidationException e)
                 {
@@ -249,6 +250,41 @@ using System.Diagnostics;
 
         }
 
+        public async Task<bool> LiberaEntradaDeCarga(string dtSucInicio, string dtEntrada, string dtCargaAsignada)
+        {
+            bool terminado = true;
+
+            if (string.IsNullOrEmpty(dtSucInicio) || string.IsNullOrEmpty(dtEntrada) || string.IsNullOrEmpty(dtCargaAsignada))
+            {
+                terminado = false;
+                return terminado;
+            }
+
+            using (modelo2Entities modelo = new modelo2Entities())
+            {
+                try
+                {
+                    var entradas = modelo.KDMENT.Where(q => q.C1.Contains(dtSucInicio) && q.C6.Contains(dtEntrada) && q.C54 == dtCargaAsignada);
+
+                    if (entradas.Any())
+                    {
+                        foreach (var entrada in entradas)
+                        {
+                            entrada.C54 = null;
+                        }
+
+                        await modelo.SaveChangesAsync();
+                    }
+                }
+                catch (DbEntityValidationException e)
+                {
+                    terminado = false;
+                    throw;
+                }
+            }
+
+            return terminado;
+        }
 
 
 
