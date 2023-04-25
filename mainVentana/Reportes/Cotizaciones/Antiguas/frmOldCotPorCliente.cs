@@ -1,4 +1,5 @@
-﻿using Guna.UI.WinForms;
+﻿using Datos.ViewModels.Coord.oldCot;
+using Guna.UI.WinForms;
 using mainVentana.VistaEntrada;
 using Negocios;
 using ReaLTaiizor.Controls;
@@ -152,6 +153,9 @@ namespace mainVentana.Reportes.Cotizaciones.Antiguas
             bigLabel1.Visible = true;
             Negocios.NGCotizacion.accesoCotizaciones dt = new Negocios.NGCotizacion.accesoCotizaciones();
             gunaDataGridView1.DataSource = null;
+
+            var lls = new List<vmOldBusquedaCot>();
+
             if (_oper =="Cliente")
             {
                 string sucursal = default;
@@ -173,8 +177,8 @@ namespace mainVentana.Reportes.Cotizaciones.Antiguas
                 //var ivanci = Convert.ToInt32(_iva).ToString("D7");
               
 
-                var lls = await dt.BuscarCitizacionPorClienteOld(lblCodCliente.Text, sucursal, _iva, dtFecha1.Value.Date, dtFecha2.Value.Date);
-                gunaDataGridView1.DataSource = lls;
+                lls = await dt.BuscarCitizacionPorClienteOld(lblCodCliente.Text, sucursal, _iva, dtFecha1.Value.Date, dtFecha2.Value.Date);
+                
                 loadControl1.Visible = false;
                 gunaTileButton2.Enabled = true;
                 bigLabel1.Visible = false;
@@ -201,11 +205,31 @@ namespace mainVentana.Reportes.Cotizaciones.Antiguas
                 {
                     sucursal = "CSL";
                 }
-                var lls = await dt.BuscarCitizacionPorCoordOld( co, sucursal);
-                gunaDataGridView1.DataSource = lls;
+                lls = await dt.BuscarCitizacionPorCoordOld( co, sucursal);
+              
             }
-            
 
+            foreach (var item in lls)
+            {
+                try
+                {
+                    if (item.C16.HasValue && item.C40.HasValue)
+                    {
+                        // Multiply C16 and C40 and store the result in a new property
+                        item.C93 = (item.C16.Value * (decimal)item.C40.Value).ToString();
+                    }
+                    else
+                    {
+                        // Handle null values for C16 or C40
+                        item.C93 = null;
+                    }
+                }
+                catch (Exception)
+                {
+                    item.C93 = null;
+                }
+            }
+            gunaDataGridView1.DataSource = lls;
 
 
         }

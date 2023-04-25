@@ -1,14 +1,21 @@
 ﻿
+using ClosedXML.Excel;
 using Datos.Datosenti;
 using Datos.ViewModels;
 using Datos.ViewModels.Recepciones;
+using Datos.ViewModels.Salidas;
+using mainVentana.VistaOrSalida;
 using Negocios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -364,81 +371,104 @@ namespace mainVentana.VistaRecepcion
 
         private void txbEscaneo_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode != Keys.Enter)
-            {
-                return;
-            }
-
-            var sls = new Negocios.Acceso_Salida.AccesoSalidas();
+            if (e.KeyCode != Keys.Enter) return;
 
             e.Handled = true;
             e.SuppressKeyPress = true;
 
-            string etiquet = txbEscaneo.Text.Trim().ToUpper().Replace("'", "-");
-
-            if (dgvEscaneados.Rows.Count > 0)
+            string etiqueta = ObtenerEtiquetaEscaneada();
+            if (EtiquetaYaEscaneada(etiqueta))
             {
-                if (CheckDataGridView(dgvEscaneados, etiquet))
-                {
-                    lblMensaje.Text = "La etiqueta " + etiquet + " ya fue escaneada";
-                    txbEscaneo.Text = "";
-                    return;
-                }
-
-                if (CheckDataGridView(dgvObser, etiquet))
-                {
-                    lblMensaje.Text = "La etiqueta " + etiquet + " Ya esta en la tabla de Obs";
-                    return;
-                }
+                txbEscaneo.Text = "";
+                return;
             }
-
-            int fila = -1;
-            foreach (DataGridViewRow rowOrdenes in dgvOrdenesEntrada.Rows)
-            {
-                if (rowOrdenes.Cells[0].Value.ToString().Trim() == etiquet)
-                {
-                    fila = rowOrdenes.Index;
-                    break;
-                }
-            }
-
+            int fila = BuscarFilaEtiqueta(etiqueta);
             if (fila != -1)
             {
-                AltKDMENT(etiquet);
-                var cO = sls.ObtieCorreo(etiquet);
-                lista.RemoveAt(lista.FindIndex(a => a.Etiqueta.Trim().Contains(etiquet)));
-                dgvOrdenesEntrada.DataSource = null;
-                dgvOrdenesEntrada.DataSource = lista;
-
-                DataGridViewRow rowEscaneados = new DataGridViewRow();
-                rowEscaneados.CreateCells(dgvEscaneados);
-                rowEscaneados.Cells[0].Value = string.IsNullOrEmpty(cO.Etiqueta) ? "La etiqueta: " + etiquet + " No se encontro el la Base de Datos" : cO.Etiqueta.Trim();
-                rowEscaneados.Cells[1].Value = string.IsNullOrEmpty(cO.orden) ? "" : cO.orden.Trim();
-                rowEscaneados.Cells[2].Value = string.IsNullOrEmpty(cO.Correo) ? "" : cO.Correo.Trim();
-                dgvEscaneados.Rows.Add(rowEscaneados);
-                lblMensaje.Text = "Etiqueta: " + etiquet + " agregada correctamente";
+                ProcesarEtiquetaEncontrada(etiqueta, fila);
             }
             else
             {
-                AltKDMENT(etiquet);
-                var cO = sls.ObtieCorreo(etiquet);
-                DataGridViewRow rowObser = new DataGridViewRow();
-                rowObser.CreateCells(dgvObser);
-                rowObser.Cells[0].Value = etiquet;
-                rowObser.Cells[1].Value = "Esta etiqueta no se encotro en ninguna Orden Cargada en este documento";
-                rowObser.Cells[2].Value = cO;
-                dgvObser.Rows.Add(rowObser);
-                lblMensaje.Text = "Etiqueta: " + etiquet + " no se encontro en las ordenes cargadas";
+                ProcesarEtiquetaNoEncontrada(etiqueta);
             }
 
             txbEscaneo.Text = "";
         }
 
+        private string ObtenerEtiquetaEscaneada()
+        {
+            return txbEscaneo.Text.Trim().ToUpper().Replace("'", "-");
+        }
+
+        private bool EtiquetaYaEscaneada(string etiqueta)
+        {
+            if (dgvEscaneados.Rows.Count == 0) return false;
+
+            if (CheckDataGridView(dgvEscaneados, etiqueta))
+            {
+                lblMensaje.Text = $"La etiqueta {etiqueta} ya fue escaneada";
+                txbEscaneo.Text = "";
+                return true;
+            }
+
+            if (CheckDataGridView(dgvObser, etiqueta))
+            {
+                lblMensaje.Text = $"La etiqueta {etiqueta} Ya esta en la tabla de Obs";
+                return true;
+            }
+
+            return false;
+        }
+
+        private int BuscarFilaEtiqueta(string etiqueta)
+        {
+            foreach (DataGridViewRow rowOrdenes in dgvOrdenesEntrada.Rows)
+            {
+                if (rowOrdenes.Cells[0].Value.ToString().Trim() == etiqueta)
+                {
+                    return rowOrdenes.Index;
+                }
+            }
+
+            return -1;
+        }
+
+        private void ProcesarEtiquetaEncontrada(string etiqueta, int fila)
+        {
+            AltKDMENT(etiqueta);
+            var correoOrden = new Negocios.Acceso_Salida.AccesoSalidas().ObtieCorreo(etiqueta);
+            lista.RemoveAt(lista.FindIndex(a => a.Etiqueta.Trim().Equals(etiqueta)));
+            dgvOrdenesEntrada.DataSource = null;
+            dgvOrdenesEntrada.DataSource = lista;
+
+            DataGridViewRow rowEscaneados = new DataGridViewRow();
+            rowEscaneados.CreateCells(dgvEscaneados);
+            rowEscaneados.Cells[0].Value = string.IsNullOrEmpty(correoOrden.Etiqueta) ? $"La etiqueta: {etiqueta} No se encontro el la Base de Datos" : correoOrden.Etiqueta.Trim();
+            rowEscaneados.Cells[1].Value = string.IsNullOrEmpty(correoOrden.orden) ? "" : correoOrden.orden.Trim();
+            rowEscaneados.Cells[2].Value = string.IsNullOrEmpty(correoOrden.Correo) ? "" : correoOrden.Correo.Trim();
+            dgvEscaneados.Rows.Add(rowEscaneados);
+            lblMensaje.Text = $"Etiqueta: {etiqueta} agregada correctamente";
+        }
+
+        private void ProcesarEtiquetaNoEncontrada(string etiqueta)
+        {
+            AltKDMENT(etiqueta);
+            var correoOrden = new Negocios.Acceso_Salida.AccesoSalidas().ObtieCorreo(etiqueta);
+            DataGridViewRow rowObser = new DataGridViewRow();
+            rowObser.CreateCells(dgvObser);
+            rowObser.Cells[0].Value = etiqueta;
+            rowObser.Cells[1].Value = "Esta etiqueta no se encotro en ninguna Orden Cargada en este documento";
+            rowObser.Cells[2].Value = correoOrden;
+            dgvObser.Rows.Add(rowObser);
+            lblMensaje.Text = $"Etiqueta: {etiqueta} no se encontro en las ordenes cargadas";
+        }
+
+
         private bool CheckDataGridView(DataGridView dgv, string etiquet)
         {
             foreach (DataGridViewRow row in dgv.Rows)
             {
-                if (row.Cells[0].Value.ToString().Trim().Contains(etiquet))
+                if (row.Cells[0].Value.ToString().Trim().Equals(etiquet))
                 {
                     lblMensaje.Text = "La etiqueta " + etiquet + " Ya esta en la tabla principal";
                     return true;
@@ -863,7 +893,11 @@ namespace mainVentana.VistaRecepcion
                         iniciodesalida = 0;
                         try
                         {
-                            //    GeneraExcel();
+                            GeneraExcel();
+                            // string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                            string carpetaTemporal = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "temp");
+                            if (Directory.Exists(carpetaTemporal))
+                                Process.Start(carpetaTemporal);
                         }
                         catch (Exception)
                         {
@@ -885,6 +919,206 @@ namespace mainVentana.VistaRecepcion
 
             }
 
+        }
+        private void GeneraExcel()
+        {
+            if (dgvEscaneados.Rows.Count <= 0)
+            {
+                MessageBox.Show("No hay datos para Enviar");
+                return;
+            }
+
+            List<vmEnviodeNotificacion> list = new List<vmEnviodeNotificacion>();
+            int filasE = dgvEscaneados.Rows.Count;
+            int filasA = dgvObser.Rows.Count;
+            int filasO = dgvOrdenesEntrada.Rows.Count;
+
+            list.Add(new vmEnviodeNotificacion { OrdenSalidaAplicada = ulDato });
+
+            for (int i = 0; i < filasE; i++)
+            {
+
+                list.Add(new vmEnviodeNotificacion
+                {
+
+                    Etiqueta = dgvEscaneados.Rows[i].Cells[0].Value == null ? "" : dgvEscaneados.Rows[i].Cells[0].Value.ToString().Trim(),
+                    Pertenece = dgvEscaneados.Rows[i].Cells[1].Value == null ? "" : dgvEscaneados.Rows[i].Cells[1].Value.ToString().Trim(),
+                    Correo = dgvEscaneados.Rows[i].Cells[2].Value == null ? "" : dgvEscaneados.Rows[i].Cells[2].Value.ToString().Trim(),
+
+                });
+            }
+            for (int i = 0; i < filasA; i++)
+            {
+                list.Add(new vmEnviodeNotificacion
+                {
+                    Etiqueta = dgvObser.Rows[i].Cells[0].Value == null ? "" : dgvObser.Rows[i].Cells[0].Value.ToString().Trim(),
+                    notas = "Esta entrada no se encontro en ninguna orden cargada en esta recepción (Pordria no existir)",
+                    Correo = dgvObser.Rows[i].Cells[2].Value == null ? "sistemas@arnian.com" : dgvObser.Rows[i].Cells[2].Value.ToString().Trim()
+
+                });
+
+            }
+            for (int i = 0; i < filasO; i++)
+            {
+                list.Add(new vmEnviodeNotificacion
+                {
+                    Etiqueta = dgvOrdenesEntrada.Rows[i].Cells[0].Value == null ? "" : dgvOrdenesEntrada.Rows[i].Cells[0].Value.ToString().Trim(),
+                    NoCargadas = "ESTA ETIQUETA NO FUE ESCANEADA EN ESTA RECEPCION A PESAR DE ESTAR EN LAS ÓRDENES DE CARGA."
+
+                    //Correo = string.IsNullOrEmpty(dgvObser.Rows[i].Cells[2].Value.ToString()) ? "" : dgvObser.Rows[i].Cells[2].Value.ToString().Trim(),
+
+                });
+
+
+            }
+
+
+
+            GeneraCorreo(list);
+
+        }
+        private async void GeneraCorreo(List<vmEnviodeNotificacion> dato)
+        {
+
+
+            var correos = new HashSet<string>(dato.Select(d => d.Correo).ToList()).ToList();
+
+
+            List<vmEnviodeNotificacion> lss = new List<vmEnviodeNotificacion>();
+
+
+
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string folder = path + "\\temp\\";
+            string hoy = DateTime.Now.ToString("dd-MM-yyyy");
+            string fullPath = folder + hoy + "-Recepcion-" + ulDato + ".xlsx";
+
+            if (!Directory.Exists(folder))
+                Directory.CreateDirectory(folder);
+
+
+
+
+            new frmRecepcion().Export<vmEnviodeNotificacion>(dato, fullPath, "Recepcion");
+           
+
+
+
+            string plantilla = Properties.Resources.salidacorreo.ToString();
+            plantilla = plantilla.Replace("@nSalida", ulDato);
+
+
+
+            int bandera = 0;
+            List<string> lscorreos = new List<string>();
+
+            foreach (var q in correos)
+            {
+                if (!string.IsNullOrEmpty(q))
+                {
+                    if (q != null)
+                    {
+                        lscorreos.Add(q);
+                    }
+
+                    //bandera = bandera + 1;
+                }
+
+            }
+            String[] str = lscorreos.ToArray();
+
+            try
+            {
+              //  await llamasmtp(plantilla, str, fullPath, ulDato, bandera);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se pudo enviar el correo con el Excel");
+            }
+
+        }
+        private async Task llamasmtp(string body, string[] correo, string path, string salida, int bndra)
+        {
+            using (MailMessage msg = new MailMessage())
+            {
+                SmtpClient smtp = new SmtpClient();
+                msg.IsBodyHtml = true;
+                msg.From = new MailAddress(Negocios.Common.Cache.CacheLogin.smtpemail);
+                msg.Subject = "Salida: " + salida;
+
+                msg.IsBodyHtml = true;
+                using (StringReader sr = new StringReader(body))
+                {
+                    msg.Body = sr.ReadToEnd().ToString();
+                }
+
+                msg.To.Add(new MailAddress("sistemas@arnian.com"));
+
+                var corrr = string.Join(",", correo);
+                if (corrr != "")
+                {
+                    string[] toCC = corrr.Split(',');
+                    foreach (string ToCCId in toCC)
+                    {
+                        try
+                        {
+                            MailAddress mailAddress = new MailAddress(ToCCId);
+                            msg.CC.Add(mailAddress);
+                        }
+                        catch (FormatException)
+                        {
+                            // La dirección de correo electrónico no es válida
+                            // Descarta la dirección
+                        }
+                    }
+                }
+
+                if (bndra == 0)
+                {
+                    //msg.CC.Add(new MailAddress("susano.limon@arnian.com"));
+                    //msg.CC.Add(new MailAddress("sistemas@arnian.com"));
+                    msg.CC.Add(new MailAddress("operaciones@arnian.com"));
+                    //msg.CC.Add(new MailAddress("operaciones@arnian.com"));
+                }
+
+                msg.Attachments.Add(new Attachment(path));
+
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+                smtp.UseDefaultCredentials = false;
+                NetworkCredential nc = new NetworkCredential(Negocios.Common.Cache.CacheLogin.smtpemail, Negocios.Common.Cache.CacheLogin.smatppss);
+                smtp.Credentials = nc;
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                try
+                {
+                    await smtp.SendMailAsync(msg);
+                }
+                catch (Exception)
+                {
+
+                    MessageBox.Show("Existe un problema con los correos, es probable que tengan un formato incorrecto, no he podido enviar el correo, pero las entradas se han agregado a la orden, correctamente; te recomiendo verificarlo");
+                }
+
+
+            }
+
+        }
+
+        public bool Export<T>(List<T> list, string file, string nombre)
+        {
+            bool exportado = false;
+            using (XLWorkbook xlfile = new XLWorkbook())
+            {
+                xlfile.AddWorksheet(nombre).FirstCell().InsertTable<T>(list, false);
+                //xlfile.Worksheets.Add("Reporte");
+                //xlfile.Table("Reporte").ShowAutoFilter = false;// Disable AutoFilter.
+                //xlfile.Table(nombre).Theme = XLTableTheme.TableStyleDark5;// Remove Theme.
+                xlfile.SaveAs(file);
+                exportado = true;
+
+            }
+            return exportado;
         }
 
         private void frmRecepcion_Load(object sender, EventArgs e)

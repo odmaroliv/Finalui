@@ -271,10 +271,10 @@ namespace Negocios.NGReportes
         }
 
 
-        public async Task<List<vmInicioCXCBd>> CargaControlCXC(string Suc,DateTime f1, DateTime f2)
+        public async Task<List<vmInicioCXCBd>> CargaControlCXC(string Suc, DateTime f1, DateTime f2)
         {
 
-           
+
             try
             {
                 var lst = new List<vmInicioCXCBd>();
@@ -284,11 +284,8 @@ namespace Negocios.NGReportes
                     {
                         try
                         {
-                            //var result = modelo.DatosCXC(f1, f2, Suc).ToList(); // Ejecutar la consulta y convertirla a una lista
-                            //var result = modelo.Database.SqlQuery<dynamic>("EXEC DatosCXC @FECHA1, @FECHA2, @SUC", new SqlParameter("@FECHA1", f1), new SqlParameter("@FECHA2", f2), new SqlParameter("@SUC", Suc)).ToList(); // Ejecutar la consulta SQL y convertirla a una lista de objetos dinámicos
 
-
-                                var query = @"SELECT m.C6 AS Entrada,
+                            var query = @"SELECT m.C6 AS Entrada,
                                             MAX(m.C9) AS FechaEntrada,
                                             MAX(m.C1) AS SucursalOrigen,
                                             MAX(m.C115) AS Cotizacion,
@@ -318,44 +315,12 @@ namespace Negocios.NGReportes
                                                 new SqlParameter("@FECHA1", f1),
                                                 new SqlParameter("@FECHA2", f2),
                                                 new SqlParameter("@SUC", Suc)
-                                             
+
                                             ).ToList();
 
-
-
-
-
                             lst = result;
-                            /*
-
-                            if (true)
-                            {
-                                lst = result.Select(r => new vmInicioCXC
-                                {
-                                    Entrada = r.Entrada,
-                                    FechaEnrtada = (DateTime)r.FechaEntrada,
-                                    Sucursal = r.SucursalOrigen,
-                                    Cotizacion = r.Cotizacion,
-                                    Cliente = r.Cliente,
-                                    Alias = r.Alias,
-                                    Coordinador = r.Cordinador,
-                                    ValorFactura = r.ValorFactura.ToString(),
-                                    ValorArnia = r.ValorArnian.ToString(),
-                                    BOL = r.BOL,
-                                    Carga = r.Carga,
-                                    Salida = r.Salida,
-                                    EstatusAlmacen = r.Estatus,
-                                    EstatusPago = r.EstatusPago,
-                                    //Comentario = r.Comentario,
-                                    
-                                  
-                                }
-                                
-                                ).ToList(); // Seleccionar y crear una lista de objetos vmInicioCXC
-                        
-                            }
-                             */
                         }
+
                         catch (Exception)
                         {
                             System.Windows.Forms.MessageBox.Show("Ha Ocurrido un error, datos faltantes o incorrectos.");
@@ -373,8 +338,31 @@ namespace Negocios.NGReportes
                 throw;
             }
         }
+        public async Task<object> CargaControlCXCSubconsulta(string sOrigen, decimal dato, string coti)
+        {
+            try
+            {
+                object lst = null;
+                await Task.Run(() =>
+                {
+                    using (modelo2Entities modelo = new modelo2Entities())
+                    {
+                        var lista = (from d in modelo.KDM1
+                                     where d.C1.Contains(sOrigen) && d.C4 == 34 && d.C5 == dato && d.C6.Contains(coti)
+                                     select d.C40).FirstOrDefault();
+                        lst = lista;
+                    }
+                });
+                return lst;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
-        
+
+
 
     }
 }

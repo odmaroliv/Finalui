@@ -191,6 +191,7 @@
     <Compile Include="ViewModels\Coord\Clientes\vmClientesInfo.cs" />
     <Compile Include="ViewModels\Coord\Clientes\vmZonas.cs" />
     <Compile Include="ViewModels\Coord\oldCot\vmOldBusquedaCot.cs" />
+    <Compile Include="ViewModels\Coord\oldCot\vmOldMXbusqueda.cs" />
     <Compile Include="ViewModels\Coord\vmBusquedaCot.cs" />
     <Compile Include="ViewModels\Coord\vmEntCordsCot.cs" />
     <Compile Include="ViewModels\Coord\vmEntCot.cs" />

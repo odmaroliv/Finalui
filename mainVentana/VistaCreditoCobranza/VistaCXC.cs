@@ -122,7 +122,31 @@ namespace mainVentana.VistaCreditoCobranza
            
             ngbdReportes rep = new ngbdReportes();
             lss = await rep.CargaControlCXC(sucursal, dtFecha1.Value.Date, dtFecha2.Value.Date);
-            
+
+           /* for (int i = 0; i < lss.Count; i++)
+            {
+                var c = lss[i];
+                if (!string.IsNullOrWhiteSpace(c.Cotizacion))
+                {
+                    try
+                    {
+                        var cSuc = c.Cotizacion.Split('-')[0];
+                        var cTi = c.Cotizacion.Split('-')[1];
+                        var cTipo = cTi.Substring(cTi.Length - 1);
+                        var cot = c.Cotizacion.Split('-')[2];
+                        var nuevoDato = await rep.CargaControlCXCSubconsulta(cSuc, Convert.ToDecimal(cTipo), cot);
+                        if (nuevoDato != null)
+                        {
+                            // Modify the existing element with the new data
+                            lss[i] = new vmInicioCXCBd { ParidadCot = nuevoDato.ToString() };
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                }
+            }*/
 
 
             if (dtgDatos != null)
@@ -151,7 +175,9 @@ namespace mainVentana.VistaCreditoCobranza
                     ValorArnia = w.ValorArnian,
                     ValorFactura = w.ValorFactura,
                     Comentario = w.Comentario?.Trim(),
-                    Operacion = w.Operacion?.Trim()
+                    Operacion = w.Operacion?.Trim(),
+                   
+                    
                 });
 
 

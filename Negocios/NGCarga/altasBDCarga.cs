@@ -221,7 +221,7 @@ namespace Negocios.NGCarga
             }
         }
 
-        public async Task AsignaCargaAEntrada(string datoSucIni, string datoEntrada, string carga)
+        public async Task AsignaCargaAEntrada(string datoSucIni, string datoEntrada, string carga,string fecha)
         {
 
             using (modelo2Entities modelo = new modelo2Entities())
@@ -235,6 +235,7 @@ namespace Negocios.NGCarga
                     foreach (var item in d)
                     {
                         item.C54 = carga;
+                        item.C71 = fecha;
                     }
 
 

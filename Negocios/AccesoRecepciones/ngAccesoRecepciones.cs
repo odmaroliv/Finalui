@@ -16,7 +16,7 @@ namespace Negocios.AccesoRecepciones
 
         /// <summary>
         /// Buscamos los las ordenes de carga disponibles
-        /// 2 tujuana, 3 cabo, 4 san diego
+        /// 2 tujuana (para tijuana busca recepciones en vez de ordenes de carga), 3 cabo, 4 san diego
         /// </summary>
         /// <param name="sucori"></param>
         /// <param name="doc"></param>
@@ -24,102 +24,36 @@ namespace Negocios.AccesoRecepciones
         /// <returns></returns>
         public async Task<List<vmSalidaDocumentoONLY>> LlenaDGV(string sucori, string doc, int numerosuc, string envia)
         {
-            if (sucori.Trim().Contains("TJ"))//Para la sucursal de tijuana no se levantan ordenes de carga, por lo que mandamos las ordenes de Salida directamente
+            var lst2 = new List<vmSalidaDocumentoONLY>();
+            int cha = sucori.Trim().ToString().Length;
+            string sql = string.Empty;
+
+            try
             {
-                int cha = sucori.Trim().ToString().Length;
-                try
+                await Task.Run(() =>
                 {
-                    var val = new { dato = sucori.Trim() + "-UD4501-" };
-                    var lst2 = new List<vmSalidaDocumentoONLY>();
-                    await Task.Run(() =>
+                    using (modelo2Entities modelo = new modelo2Entities())
                     {
-                        using (modelo2Entities modelo = new modelo2Entities())
+                        if (sucori.Trim().Contains("TJ") || (envia == "SD" && sucori == "CSL"))
                         {
-                            lst2.Clear();
-                            /*var oDocument = (from q in modelo.KDMENT
-                                             where q.C20 != "F" && String.IsNullOrEmpty(q.C34) //&& !String.IsNullOrEmpty(q.C17) && String.IsNullOrEmpty(q.C18)
-                                             && (from k in modelo.KDM1 where k.C103.Contains(sucori) && k.C4 == 45 & q.C56.Contains(k.C6) select k).Any()
-                                             select new vmSalidaDocumentoONLY
-                                             {
-                                                 salidaDoc = q.C17
-                                             }).OrderByDescending(x => x.salidaDoc).Take(50).ToList();*/
-
-                            string sql = "SELECT salidaDoc = km.C17 FROM KDMENT km JOIN (SELECT kd.C103, kd.C4,kd.C6 FROM KDM1 kd WHERE  kd.C1 = '" + envia + "' and kd.C103 = '" + sucori + "' and kd.C4 = 45) kd ON km.C55 like '%'+kd.C6+'%' and km.c20 !='F' AND (km.C34 IS NOT NULL OR km.C34 != '') AND (km.C18 IS NOT NULL OR km.C18 != '') GROUP BY  km.C17";
-
-                            var result = modelo.Database.SqlQuery<vmSalidaDocumentoONLY>(sql).OrderByDescending(x => x.salidaDoc).Take(50).ToList();
-                            lst2 = result;
+                            string c20Value = sucori.Trim().Contains("TJ") ? "F" : "PR";
+                            sql = $"SELECT salidaDoc = km.C17 FROM KDMENT km JOIN (SELECT kd.C103, kd.C4,kd.C6 FROM KDM1 kd WHERE kd.C1 = '{envia}' and kd.C103 = '{sucori}' and kd.C4 = 45) kd ON km.C55 like '%'+kd.C6+'%' and km.c20 {(sucori.Trim().Contains("TJ") ? "!=" : "=")} '{c20Value}' AND (km.C34 IS NOT NULL OR km.C34 != '') AND (km.C18 IS NOT NULL OR km.C18 != '') GROUP BY km.C17";
                         }
-                    });
-                    return lst2;
-                }
-                catch (Exception)
-                {
+                        else
+                        {
+                            sql = $"SELECT salidaDoc = km.C64 FROM KDMENT km JOIN (SELECT kd.C103, kd.C4,kd.C6 FROM KDM1 kd WHERE kd.C1 = '{envia}' and kd.C103 = '{sucori}' and kd.C4 = 45) kd ON km.C55 like '%'+kd.C6+'%' and km.c20 != 'F' AND (km.C34 IS NOT NULL OR km.C34 != '') AND (km.C18 IS NULL OR km.C18 = '') GROUP BY km.C64";
+                        }
 
-                    throw;
-                }
+                        lst2 = modelo.Database.SqlQuery<vmSalidaDocumentoONLY>(sql).OrderByDescending(x => x.salidaDoc).Take(50).ToList();
+                    }
+                });
 
+                return lst2;
             }
-            else
+            catch (Exception)
             {
-
-
-                if (envia=="SD" && sucori=="CSL")
-                {
-                    int cha = sucori.Trim().ToString().Length;
-                    try
-                    {
-                        var val = new { dato = sucori.Trim() + "-UD4501-" };
-                        var lst2 = new List<vmSalidaDocumentoONLY>();
-                        await Task.Run(() =>
-                        {
-                            using (modelo2Entities modelo = new modelo2Entities())
-                            {
-                                lst2.Clear();
-                                string sql = "SELECT salidaDoc = km.C17 FROM KDMENT km JOIN (SELECT kd.C103, kd.C4,kd.C6 FROM KDM1 kd WHERE  kd.C1 = '" + envia + "' and kd.C103 = '" + sucori + "' and kd.C4 = 45) kd ON km.C55 like '%'+kd.C6+'%' and km.c20 ='PR' AND (km.C34 IS NOT NULL OR km.C34 != '') AND (km.C18 IS NOT NULL OR km.C18 != '') GROUP BY  km.C17";
-
-                                var result = modelo.Database.SqlQuery<vmSalidaDocumentoONLY>(sql).OrderByDescending(x => x.salidaDoc).Take(50).ToList();
-                                lst2 = result;
-                            }
-                        });
-                        return lst2;
-                    }
-                    catch (Exception)
-                    {
-
-                        throw;
-                    }
-
-                }
-                else
-                {
-                    int cha = sucori.Trim().ToString().Length;
-                    try
-                    {
-                        var val = new { dato = sucori.Trim() + "-UD4501-" };
-                        var lst2 = new List<vmSalidaDocumentoONLY>();
-                        await Task.Run(() =>
-                        {
-                            using (modelo2Entities modelo = new modelo2Entities())
-                            {
-                                lst2.Clear();
-                                string sql = "SELECT salidaDoc = km.C64 FROM KDMENT km JOIN (SELECT kd.C103, kd.C4,kd.C6 FROM KDM1 kd WHERE kd.C1 = '" + envia + "' and kd.C103 = '" + sucori + "' and kd.C4 = 45) kd ON km.C55 like '%'+kd.C6+'%' and km.c20 !='F' AND (km.C34 IS NOT NULL OR km.C34 != '') AND (km.C18 IS NULL OR km.C18 = '') GROUP BY  km.C64";
-
-                                var result = modelo.Database.SqlQuery<vmSalidaDocumentoONLY>(sql).OrderByDescending(x => x.salidaDoc).Take(50).ToList();
-                                lst2 = result;
-                            }
-                        });
-                        return lst2;
-                    }
-                    catch (Exception)
-                    {
-
-                        throw;
-                    }
-                }
-                                            
-               
+                throw;
             }
-
         }
 
 

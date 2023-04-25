@@ -2066,6 +2066,7 @@ namespace mainVentana.VistaEntrada
                     if (this.dgvDocs.Rows.Count > 0)
                     {
                         dgvDocs.Rows.RemoveAt(this.dgvDocs.Rows[e.RowIndex].Index);
+                        lblTotalArchivos.Text = dgvDocs.Rows.Count.ToString();
                     }
                 }
             }

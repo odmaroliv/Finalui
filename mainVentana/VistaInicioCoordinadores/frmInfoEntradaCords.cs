@@ -181,6 +181,8 @@ namespace mainVentana.VistaInicioCoordinadores
             try
             {
                 _isBusy = true;
+                DateTime datoFecha = regresafecha();
+                string fechaHoy = datoFecha == null ? DateTime.Now.ToString("MM/dd/yyyy") : datoFecha.ToString("MM/dd/yyyy");
                 DataGridViewRow selectedRow = dtgCargasFilter.Rows[dtgCargasFilter.SelectedCells[0].RowIndex];
                 string c_so = Convert.ToString(selectedRow.Cells[0].Value).Trim();
                 string c_car = Convert.ToString(selectedRow.Cells[1].Value).Trim();
@@ -189,7 +191,7 @@ namespace mainVentana.VistaInicioCoordinadores
                 string e_en = txbEntradaDetalle.Text.Trim();
                 string e_so = txbSucOrigenDetalle.Text.Trim();
                 Negocios.NGCarga.altasBDCarga get = new Negocios.NGCarga.altasBDCarga();
-                await get.AsignaCargaAEntrada(e_so, e_en, c_cargacompleta);
+                await get.AsignaCargaAEntrada(e_so, e_en, c_cargacompleta, fechaHoy);
                 MessageBox.Show("La entrada: " + e_en + " fue asignada con exito a la carga " + c_cargacompleta, "Carga asignada", MessageBoxButtons.OK);
             }
             catch (Exception)
