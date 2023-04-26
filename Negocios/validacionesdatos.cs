@@ -880,7 +880,32 @@ namespace Negocios
             }
             catch (Exception ex)
             {
-                Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "No se han obtenido resultados para el smtp en la venta de login");
+                Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "No se han obtenido resultados para el smtp en la ventana de login");
+                return false;
+            }
+        }
+
+        public async Task<bool> RingCHook()
+        {
+            try
+            {
+                using (modelo2Entities modelo = new modelo2Entities())
+                {
+                    // Reemplaza la consulta LINQ con una consulta SQL raw
+                    string sql = @"SELECT C16 AS rhook FROM SqlIov WHERE C1 LIKE '%RINGCOR%'";
+                    var lista = modelo.Database.SqlQuery<vmLogin>(sql).ToList();
+
+                    var lst2 = lista.FirstOrDefault();
+                    if (lst2 != null)
+                    {
+                        Common.Cache.CacheLogin.rhook = lst2.rhook.Trim();
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "No se han obtenido resultados para el hook en la ventana de login");
                 return false;
             }
         }

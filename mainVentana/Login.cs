@@ -170,7 +170,7 @@ namespace mainVentana
 
             // Obtener configuraciones de correo electrónico
             bool smtp = await vld.ObtieneEmail();
-
+            bool hk = await vld.RingCHook();
             // Mostrar formulario
             using (Form1 frm1 = new Form1())
             {

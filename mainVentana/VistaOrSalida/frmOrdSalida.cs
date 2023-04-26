@@ -1,10 +1,13 @@
 ﻿using ClosedXML.Excel;
 using Datos.Datosenti;
+using Datos.ViewModels.hooks;
 using Datos.ViewModels.Salidas;
+using Datos.ViewModels.Servicios;
 using mainVentana.reportes.vmreportes;
 using Microsoft.Win32;
 using Negocios;
 using Negocios.Acceso_Salida;
+using Negocios.WebHooks;
 using SpreadsheetLight;
 using System;
 using System.Collections.Generic;
@@ -19,6 +22,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Vanara;
 using Ventana1;
 using Ventana1.vm;
 
@@ -1158,11 +1162,26 @@ namespace mainVentana.VistaOrSalida
 
                         try
                         {
+                            MandaHookRing();
+                        }
+                        catch (Exception)
+                        {
+
+                           
+                        }
+
+
+                        try
+                        {
+                          
+
                             GeneraExcel();
                            // string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                             string carpetaTemporal = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "temp");
                             if (Directory.Exists(carpetaTemporal))
                                 Process.Start(carpetaTemporal);
+
+                         
 
                         }
                         catch (Exception)
@@ -1193,7 +1212,29 @@ namespace mainVentana.VistaOrSalida
             }
 
         }
+        private async void MandaHookRing()
+        {
 
+            var client = new RingCentralClient();
+            string carg = GetDataGridValues(dgvListaCargas);
+            string noScaneadas = GetDataGridValues(dgvOrdenesEntrada);
+
+            await client.SendMessageAsync(ulDato, DateTime.Now.ToString(), Negocios.Common.Cache.CacheLogin.nombre + " " + Negocios.Common.Cache.CacheLogin.apellido, carg, noScaneadas, txbReferencia.Text);
+        }
+        private string GetDataGridValues(DataGridView dgv)
+        {
+            var values = new List<string>();
+
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                if (!row.IsNewRow)
+                {
+                    values.Add(row.Cells[0].Value.ToString());
+                }
+            }
+
+            return string.Join(",", values);
+        }
         private void gunaAdvenceButton1_Click(object sender, EventArgs e)
         {
             ObtieneDatosDeExcel();
@@ -1284,8 +1325,10 @@ namespace mainVentana.VistaOrSalida
             });
         }
 
-
-
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+           // MandaHookRing();
+        }
     }
 
 

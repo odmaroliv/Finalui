@@ -110,6 +110,7 @@
     <Compile Include="Servicios.cs" />
     <Compile Include="ValidacionEntradas.cs" />
     <Compile Include="validacionesdatos.cs" />
+    <Compile Include="WebHooks\RingCentralClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Datos\Datos.csproj">

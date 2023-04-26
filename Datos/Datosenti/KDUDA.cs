@@ -25,5 +25,6 @@ namespace Datos.Datosenti
         public Nullable<decimal> C9 { get; set; }
         public string C10 { get; set; }
         public string C11 { get; set; }
+        public string C16 { get; set; }
     }
 }

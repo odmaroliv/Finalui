@@ -401,6 +401,7 @@
           <Property Name="C9" Type="decimal" Precision="2" Scale="0" />
           <Property Name="C10" Type="char" MaxLength="30" />
           <Property Name="C11" Type="char" MaxLength="30" />
+          <Property Name="C16" Type="char" MaxLength="250" />
         </EntityType>
         <EntityType Name="KDUK">
           <Key>
@@ -515,6 +516,7 @@
           <Property Name="C3" Type="decimal" Precision="2" Scale="0" Nullable="false" />
           <Property Name="C4" Type="char" MaxLength="51" />
           <Property Name="C5" Type="char" MaxLength="100" />
+          <Property Name="C16" Type="char" MaxLength="250" />
         </EntityType>
         <Function Name="AgregaKDMENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SUC" Type="varchar" Mode="In" />
@@ -928,6 +930,7 @@
           <Property Name="C9" Type="Decimal" Precision="2" Scale="0" />
           <Property Name="C10" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
           <Property Name="C11" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="C16" Type="String" MaxLength="250" FixedLength="true" Unicode="false" />
         </EntityType>
         <EntityType Name="KDUSUARIOS">
           <Key>
@@ -1109,13 +1112,13 @@
             <Parameter Name="DATO" Mode="In" Type="String" />
             <Parameter Name="modo" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="SqlIov" EntityType="KEPLER_PRUEBASModel.SqlIov" />
           <FunctionImport Name="aumentaSQLint">
             <Parameter Name="dato" Mode="In" Type="String" />
             <Parameter Name="modo" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="KDFEMTOCFD" EntityType="KEPLER_PRUEBASModel.KDFEMTOCFD" />
           <EntitySet Name="KDM2" EntityType="KEPLER_PRUEBASModel.KDM2" />
+          <EntitySet Name="SqlIov" EntityType="KEPLER_PRUEBASModel.SqlIov" />
           </EntityContainer>
         <ComplexType Name="NO_RASTREO_Result">
           <Property Type="String" Name="rand_number" Nullable="false" MaxLength="13" />
@@ -1181,18 +1184,6 @@
           </Key>
           <Property Name="C1" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
           <Property Name="C2" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
-        </EntityType>
-        <EntityType Name="SqlIov">
-          <Key>
-            <PropertyRef Name="C1" />
-            <PropertyRef Name="C2" />
-            <PropertyRef Name="C3" />
-          </Key>
-          <Property Name="C1" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="false" />
-          <Property Name="C2" Type="Decimal" Nullable="false" Precision="2" Scale="0" />
-          <Property Name="C3" Type="Decimal" Nullable="false" Precision="2" Scale="0" />
-          <Property Name="C4" Type="String" MaxLength="51" FixedLength="true" Unicode="false" />
-          <Property Name="C5" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
         </EntityType>
         <EntityType Name="KDFEMTOCFD">
           <Key>
@@ -1423,6 +1414,19 @@
           <Property Type="String" Name="Estatus" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="EstatusPago" Nullable="true" MaxLength="10" />
         </ComplexType>
+        <EntityType Name="SqlIov">
+          <Key>
+            <PropertyRef Name="C1" />
+            <PropertyRef Name="C2" />
+            <PropertyRef Name="C3" />
+          </Key>
+          <Property Name="C1" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="C2" Type="Decimal" Nullable="false" Precision="2" Scale="0" />
+          <Property Name="C3" Type="Decimal" Nullable="false" Precision="2" Scale="0" />
+          <Property Name="C4" Type="String" MaxLength="51" FixedLength="true" Unicode="false" />
+          <Property Name="C5" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="C16" Type="String" MaxLength="250" FixedLength="true" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1739,6 +1743,7 @@
           <EntitySetMapping Name="KDUDA">
             <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.KDUDA">
               <MappingFragment StoreEntitySet="KDUDA">
+                <ScalarProperty Name="C16" ColumnName="C16" />
                 <ScalarProperty Name="C11" ColumnName="C11" />
                 <ScalarProperty Name="C10" ColumnName="C10" />
                 <ScalarProperty Name="C1" ColumnName="C1" />
@@ -1906,17 +1911,6 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="NumeroEntradaMAX" FunctionName="KEPLER_PRUEBASModel.Store.NumeroEntradaMAX" />
-          <EntitySetMapping Name="SqlIov">
-            <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.SqlIov">
-              <MappingFragment StoreEntitySet="SqlIov">
-                <ScalarProperty Name="C5" ColumnName="C5" />
-                <ScalarProperty Name="C4" ColumnName="C4" />
-                <ScalarProperty Name="C3" ColumnName="C3" />
-                <ScalarProperty Name="C2" ColumnName="C2" />
-                <ScalarProperty Name="C1" ColumnName="C1" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="aumentaSQLint" FunctionName="KEPLER_PRUEBASModel.Store.aumentaSQLint" />
           <EntitySetMapping Name="KDFEMTOCFD">
             <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.KDFEMTOCFD">
@@ -1964,6 +1958,18 @@
                 <ScalarProperty Name="C8" ColumnName="C8" />
                 <ScalarProperty Name="C7" ColumnName="C7" />
                 <ScalarProperty Name="C6" ColumnName="C6" />
+                <ScalarProperty Name="C5" ColumnName="C5" />
+                <ScalarProperty Name="C4" ColumnName="C4" />
+                <ScalarProperty Name="C3" ColumnName="C3" />
+                <ScalarProperty Name="C2" ColumnName="C2" />
+                <ScalarProperty Name="C1" ColumnName="C1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SqlIov">
+            <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.SqlIov">
+              <MappingFragment StoreEntitySet="SqlIov">
+                <ScalarProperty Name="C16" ColumnName="C16" />
                 <ScalarProperty Name="C5" ColumnName="C5" />
                 <ScalarProperty Name="C4" ColumnName="C4" />
                 <ScalarProperty Name="C3" ColumnName="C3" />

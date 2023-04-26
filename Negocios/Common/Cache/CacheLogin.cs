@@ -22,6 +22,8 @@ namespace Negocios.Common.Cache
         public static string sucGlobal { get; set; }
         public static string smtpemail { get; set; }
         public static string smatppss { get; set; }
+        public static string rhook { get; set; }
+        
 
     }
 }

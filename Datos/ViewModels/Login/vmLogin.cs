@@ -20,5 +20,6 @@ namespace mainVentana.vmLogin
         public string sucdefecto { get; set; }
         public string smtpemail { get; set; }
         public string smatppss { get; set; }
+        public string rhook { get; set; }
     }
 }

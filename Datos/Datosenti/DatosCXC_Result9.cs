@@ -27,7 +27,5 @@ namespace Datos.Datosenti
         public string Salida { get; set; }
         public string Estatus { get; set; }
         public string EstatusPago { get; set; }
-        public string Comentario { get; set; }
-       
     }
 }
