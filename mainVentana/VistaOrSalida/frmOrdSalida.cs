@@ -1237,6 +1237,19 @@ namespace mainVentana.VistaOrSalida
         }
         private void gunaAdvenceButton1_Click(object sender, EventArgs e)
         {
+            if (btnIniciaSalida.Enabled == true)
+            {
+                MessageBox.Show("Primero tienes que Iniciar la salida");
+                return;
+            }
+
+            int error = ValidacionesGenerales(); //1 error o 0 normal
+
+
+            if (error == 1)
+            {
+                return;
+            }
             ObtieneDatosDeExcel();
 
         }
