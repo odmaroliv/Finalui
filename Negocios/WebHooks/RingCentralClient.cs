@@ -21,7 +21,7 @@ namespace Negocios.WebHooks
             {
                 activity = "SALIDA ARNIAN: "+Salida,
                 iconUri = "https://arniangroup.com/wp-content/uploads/2023/03/Dor_To_Dor_Arnian-683x1024.webp",
-                title = "Referencia" +refe,
+                title = "Referencia: " +refe,
                 attachments = new[]
          {
             new
