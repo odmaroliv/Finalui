@@ -13,7 +13,6 @@ using System.Threading;
 using mainVentana.vistaReportes;
 using mainVentana.VistaRecepcion;
 using mainVentana.VistaOrdenCarga;
-using System.Windows.Forms;
 using System.Diagnostics;
 using mainVentana.VistaInicioCoordinadores;
 using mainVentana.VistaWMS;
