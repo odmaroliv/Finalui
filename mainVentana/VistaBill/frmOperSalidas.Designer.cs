@@ -43,6 +43,7 @@
             this.panelAlert = new System.Windows.Forms.Panel();
             this.labelAlert = new System.Windows.Forms.Label();
             this.gunaAdvenceButton1 = new Guna.UI.WinForms.GunaAdvenceButton();
+            this.lblQueueCount = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gunaDataGridView1)).BeginInit();
             this.panelAlert.SuspendLayout();
@@ -282,11 +283,24 @@
             this.gunaAdvenceButton1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.gunaAdvenceButton1.Click += new System.EventHandler(this.gunaAdvenceButton1_Click);
             // 
+            // lblQueueCount
+            // 
+            this.lblQueueCount.AutoSize = true;
+            this.lblQueueCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQueueCount.ForeColor = System.Drawing.Color.Black;
+            this.lblQueueCount.Location = new System.Drawing.Point(20, 551);
+            this.lblQueueCount.Name = "lblQueueCount";
+            this.lblQueueCount.Size = new System.Drawing.Size(124, 16);
+            this.lblQueueCount.TabIndex = 16;
+            this.lblQueueCount.Text = "Sucursal que envía.";
+            this.lblQueueCount.UseMnemonic = false;
+            // 
             // frmOperSalidas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1065, 652);
+            this.Controls.Add(this.lblQueueCount);
             this.Controls.Add(this.gunaAdvenceButton1);
             this.Controls.Add(this.panelAlert);
             this.Controls.Add(this.gunaDataGridView1);
@@ -303,6 +317,7 @@
             this.panelAlert.ResumeLayout(false);
             this.panelAlert.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -320,5 +335,6 @@
         private Guna.UI.WinForms.GunaAdvenceButton gunaAdvenceButton1;
         private Guna.UI.WinForms.GunaComboBox cmbVehuculo;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblQueueCount;
     }
 }

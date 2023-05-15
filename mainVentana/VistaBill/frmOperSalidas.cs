@@ -20,6 +20,10 @@ namespace mainVentana.VistaBill
 {
     public partial class frmOperSalidas : Form
     {
+
+        private Queue<string> taskQueue = new Queue<string>();
+
+
         public frmOperSalidas()
         {
             InitializeComponent();
@@ -131,42 +135,71 @@ namespace mainVentana.VistaBill
             e.Handled = true;
             e.SuppressKeyPress = true;
 
-            string fecha = dtpTiempo.Value.ToString("dd/MM/yyyy");
-            string vehiculo = cmbVehuculo.SelectedItem.ToString();
-
             string eti = txbEtiqueta.Text.Replace("'", "-");
             if (Verifica(eti) == 1)
                 return;
 
-            BusquedaBill bd = new BusquedaBill();
+            // Añade la tarea a la cola.
+            taskQueue.Enqueue(eti);
+            txbEtiqueta.Text = "";
+            // Actualiza lblQueueCount.
+            lblQueueCount.Text = $"Tareas en cola: {taskQueue.Count}";
 
-            try
+            // Si no hay otras tareas en proceso, comienza a procesar la cola.
+            if (taskQueue.Count == 1)
             {
-                var ss = await Task.Run(() => bd.SalidasOperacion(eti, fecha, vehiculo));
-
-                if (ss.Any())
-                {
-                    listaeti.Add(ss[0]);
-                    await bd.ModificaKDMENTToBill(eti);
-                }
-                else
-                {
-                    labelAlert.Text = "No Se encontro";
-                    panelAlert.BackColor = Color.Red;
-                    txbEtiqueta.Text = "";
-                    return;
-                }
-
-                panelAlert.BackColor = Color.Green;
-                labelAlert.Text = "Agregada";
-                gunaDataGridView1.DataSource = null;
-                txbEtiqueta.Text = "";
-                gunaDataGridView1.DataSource = listaeti;
-                gunaDataGridView1.Rows[gunaDataGridView1.RowCount - 1].Selected = true;
+                await ProcessQueue();
             }
-            catch (Exception x)
+        }
+
+        private async Task ProcessQueue()
+        {
+            if (taskQueue.Count > 0)
             {
-                Negocios.LOGs.ArsLogs.LogEdit(x.Message, "BILL sale de arsys a Beetrack" + eti);
+                string eti = taskQueue.Dequeue();
+
+                // Actualiza lblQueueCount.
+                lblQueueCount.Text = $"Tareas en cola: {taskQueue.Count}";
+
+                // Aquí va tu código de procesamiento de etiquetas.
+                string fecha = dtpTiempo.Value.ToString("dd/MM/yyyy");
+                string vehiculo = cmbVehuculo.SelectedItem.ToString();
+
+                BusquedaBill bd = new BusquedaBill();
+
+                try
+                {
+                    var ss = await Task.Run(() => bd.SalidasOperacion(eti, fecha, vehiculo));
+
+                    if (ss.Any())
+                    {
+                        listaeti.Add(ss[0]);
+                        await Task.Run(() => bd.ModificaKDMENTToBill(eti));  // Convertir en método asíncrono y usar await.
+                    }
+                    else
+                    {
+                        labelAlert.Text = "No Se encontro";
+                        panelAlert.BackColor = Color.Red;
+                        //txbEtiqueta.Text = "";
+                        return;
+                    }
+
+                    panelAlert.BackColor = Color.Green;
+                    labelAlert.Text = "Agregada";
+
+                    // Actualiza la interfaz de usuario solo una vez, en lugar de varias veces.
+                    //txbEtiqueta.Text = "";
+                    gunaDataGridView1.DataSource = null;
+                    gunaDataGridView1.DataSource = listaeti;
+                    gunaDataGridView1.Rows[gunaDataGridView1.RowCount - 1].Selected = true;
+                }
+                catch (Exception x)
+                {
+                    Negocios.LOGs.ArsLogs.LogEdit(x.Message, "BILL sale de arsys a Beetrack" + eti);
+                }
+
+                // Llama a ProcessQueue de nuevo para procesar la siguiente tarea.
+                await ProcessQueue();
             }
         }
 

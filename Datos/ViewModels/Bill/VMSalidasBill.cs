@@ -97,10 +97,17 @@ namespace Datos.ViewModels.Bill
         /// otros
         /// </summary>
 
-        [DisplayName("PAGO")]
+        [DisplayName("Comentario")]
         public string Pago { get; set; }
         [DisplayName("COTIZACION")]
         public string Quote { get; set; }
+        [DisplayName("Bill")]
+        public string Bill { get; set; }
+        [DisplayName("Tipo Servicio")]
+        public string TServicio { get; set; }
+        [DisplayName("Coordinador")]
+        public string Coordinador { get; set; }
+
         /*    [DisplayName("VEHICULO")]
             public string vehiculo { get; set; } 
 

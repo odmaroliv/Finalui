@@ -17,33 +17,42 @@ namespace Negocios.NGBill
             {
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
-                    var lista = from d in modelo.KDMENT
+                    var lista = from d in modelo.KDMENT.AsNoTracking()
                                 join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
-                                join a in modelo.KDUD on k.C10 equals a.C2 
+                                join a in modelo.KDUD on k.C10 equals a.C2
                                 join c in modelo.KDM1COMEN on k.C6 equals c.C6
-
-                                where /*d.C10 == "CSL" && d.C23 == "T" &&*/ d.C9 == dato
-                                select new VMSalidasBill
+                                join v in modelo.KDUV on k.C12 equals v.C2
+                                where d.C9 == dato
+                                select new
                                 {
-                                    ORIGEN = "",
-                                    entrada = d.C1.Trim() + "-" + d.C6,
-                                    etiqueta = d.C9,
-                                    Direccion = d.C25.Trim() + ", " + d.C26.Trim() + ", " + d.C27.Trim(),
-                                    NOMBREITEM = d.C42.Trim(),
-                                    CANTIDAD = "1",
-                                    fechamin = fecha,
-                                    fechamax = fecha,
-                                    idcontacto = d.C24,
-                                    nomcotacto = k.C112,
-                                    EMAIL = a.C11,
-                                    Telefono = d.C29,
-                                    VEHICULO = vehiculo,
-                                    Pago =c.C13,
-                                    Quote = k.C115
-
+                                    d,
+                                    k,
+                                    a,
+                                    c,
+                                    v
                                 };
 
-                    return lista.ToList();
+                    return lista.ToList().Select(x => new VMSalidasBill
+                    {
+                        ORIGEN = "",
+                        entrada = x.d.C1.Trim() + "-" + x.d.C6,
+                        etiqueta = x.d.C9,
+                        Direccion = x.d.C25.Trim() + ", " + x.d.C26.Trim() + ", " + x.d.C27.Trim(),
+                        NOMBREITEM = x.d.C42.Trim(),
+                        CANTIDAD = "1",
+                        fechamin = fecha,
+                        fechamax = fecha,
+                        idcontacto = x.d.C24,
+                        nomcotacto = x.k.C112,
+                        EMAIL = x.a.C11,
+                        Telefono = x.d.C29,
+                        VEHICULO = vehiculo,
+                        Pago = x.c.C13,
+                        Quote = x.k.C115,
+                        Bill = x.d.C34,
+                        Coordinador = x.v.C3,
+                        TServicio = x.k.C101,
+                    }).ToList();
                 }
             }
             catch (Exception)
@@ -52,13 +61,14 @@ namespace Negocios.NGBill
             }
         }
 
+
         public void RealizarConsultaSinSentido()
         {
             try
             {
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
-                    var registros = modelo.KDMENT.Take(10).ToList(); // Obtener los primeros 10 registros
+                    SalidasOperacion("SD-001235-1", "", "Test");
                 }
             }
             catch (Exception)
