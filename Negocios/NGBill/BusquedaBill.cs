@@ -13,109 +13,88 @@ namespace Negocios.NGBill
 
         public List<VMSalidasBill> SalidasOperacion(string dato, string fecha, string vehiculo)
         {
-
             try
             {
-                //DateTime time = Convert.ToDateTime(dato);
                 using (modelo2Entities modelo = new modelo2Entities())
-
                 {
                     var lista = from d in modelo.KDMENT
                                 join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
-                                join a in modelo.KDUD on k.C10 equals a.C2
+                                join a in modelo.KDUD on k.C10 equals a.C2 
+                                join c in modelo.KDM1COMEN on k.C6 equals c.C6
+
                                 where /*d.C10 == "CSL" && d.C23 == "T" &&*/ d.C9 == dato
                                 select new VMSalidasBill
                                 {
                                     ORIGEN = "",
-                                    entrada = d.C1.Trim()+"-"+d.C6,
+                                    entrada = d.C1.Trim() + "-" + d.C6,
                                     etiqueta = d.C9,
-                                    //DireccionEntrega = d.C24,
                                     Direccion = d.C25.Trim() + ", " + d.C26.Trim() + ", " + d.C27.Trim(),
                                     NOMBREITEM = d.C42.Trim(),
                                     CANTIDAD = "1",
                                     fechamin = fecha,
                                     fechamax = fecha,
-                                    //horamin = "08:00",
-                                    //  horamax = "17:00",
-                                    //  capacidad = "1",
-                                    //  servicetime = "20",
-                                   
                                     idcontacto = d.C24,
                                     nomcotacto = k.C112,
                                     EMAIL = a.C11,
-
                                     Telefono = d.C29,
                                     VEHICULO = vehiculo,
-                                    
+                                    Pago =c.C13,
+                                    Quote = k.C115
 
                                 };
+
                     return lista.ToList();
-
                 }
-
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
 
-        public async Task<bool> ModificaKDMENTToBill(string etiqueta)
+        public void RealizarConsultaSinSentido()
         {
-
-
-            //string sc = sDestino == "CSL" ? "PR" : "OC";
-            await Task.Run(() =>
+            try
             {
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
-                    List<Datos.Datosenti.KDMENT> kd = new List<Datos.Datosenti.KDMENT>();
+                    var registros = modelo.KDMENT.Take(10).ToList(); // Obtener los primeros 10 registros
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public async Task<bool> ModificaKDMENTToBill(string etiqueta)
+        {
+            using (modelo2Entities modelo = new modelo2Entities())
+            {
+                try
+                {
+                    var d = (from fd in modelo.KDMENT
+                             where fd.C9 == etiqueta.ToUpper().Trim()
+                             select fd).FirstOrDefault();
 
-
-                    //string uld = (string)ulDato.Trim().Clone();
-
-                    try
+                    if (d != null)
                     {
-
-                        var d = (from fd in modelo.KDMENT
-                                 where fd.C9 == etiqueta.ToUpper().Trim()// 
-                                 select fd).First();
-
                         d.C46 = "BTRACKSALIDA";
                         d.C77 = DateTime.Now.ToString("MM/dd/yyyy");
-                       
-                        kd.Add(d);
-                       
-
+                        await modelo.SaveChangesAsync();
+                        return true;
                     }
-                    catch (Exception x)
+                    else
                     {
-
-                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "BILL sale de arsys a Beetrack" + etiqueta);
-
-                     
-
+                        Negocios.LOGs.ArsLogs.LogEdit("No se encontró la etiqueta", "BILL sale de arsys a Beetrack" + etiqueta);
+                        return false;
                     }
-                    try
-                    {
-                        modelo.BulkUpdate(kd.ToList());
-                    }
-                    catch (Exception x)
-                    {
-                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "BILL sale de arsys a Beetrack" + etiqueta);
-
-                     
-                    }
-
-
                 }
-            });
-
-
-
-
-            return true;
+                catch (Exception x)
+                {
+                    Negocios.LOGs.ArsLogs.LogEdit(x.Message, "BILL sale de arsys a Beetrack" + etiqueta);
+                    return false;
+                }
+            }
         }
 
 

@@ -47,7 +47,7 @@ namespace Datos.ViewModels.Bill
 
         public string LATITUD { get; set; }
         public string LONGITUD { get; set; }
-       
+
 
         [DisplayName("FECHA MIN ENTREGA")]
         public string fechamin { get; set; }
@@ -56,37 +56,37 @@ namespace Datos.ViewModels.Bill
         public string fechamax { get; set; }
 
 
-      /*  [DisplayName("MIN VENTANA HORARIA 1")]
-        public string horamin { get; set; }
+        /*  [DisplayName("MIN VENTANA HORARIA 1")]
+          public string horamin { get; set; }
 
-        [DisplayName("MAX VENTANA HORARIA 1")]
-        public string horamax { get; set; }
+          [DisplayName("MAX VENTANA HORARIA 1")]
+          public string horamax { get; set; }
 
-        [DisplayName("MIN VENTANA HORARIA 2")]
-        public string horaminn { get; set; }
+          [DisplayName("MIN VENTANA HORARIA 2")]
+          public string horaminn { get; set; }
 
-        [DisplayName("MAX VENTANA HORARIA 2")]
-        public string horamaxx { get; set; }
+          [DisplayName("MAX VENTANA HORARIA 2")]
+          public string horamaxx { get; set; }
 
-        [DisplayName("COSTO ITEM")]
-        public string costoitem { get; set; }
+          [DisplayName("COSTO ITEM")]
+          public string costoitem { get; set; }
 
-        [DisplayName("CAPACIDAD UNO")]
-        public string capacidad { get; set; }
+          [DisplayName("CAPACIDAD UNO")]
+          public string capacidad { get; set; }
 
-        [DisplayName("CAPACIDAD DOS")]
-        public string capacidadd { get; set; }
+          [DisplayName("CAPACIDAD DOS")]
+          public string capacidadd { get; set; }
 
-        [DisplayName("SERVICE TIME")]
-        public string servicetime { get; set; }
+          [DisplayName("SERVICE TIME")]
+          public string servicetime { get; set; }
 
-        [DisplayName("IMPORTANCIA")]
-        public string importancia { get; set; }
-
-
+          [DisplayName("IMPORTANCIA")]
+          public string importancia { get; set; }
 
 
-        */
+
+
+          */
 
         [DisplayName("CT ORIGEN")]
         public string ORIGEN { get; set; }
@@ -96,54 +96,59 @@ namespace Datos.ViewModels.Bill
         /// <summary>
         /// otros
         /// </summary>
-    /*    [DisplayName("VEHICULO")]
-        public string vehiculo { get; set; } 
-       
-        
 
-        */
-
-        
-
-        
+        [DisplayName("PAGO")]
+        public string Pago { get; set; }
+        [DisplayName("COTIZACION")]
+        public string Quote { get; set; }
+        /*    [DisplayName("VEHICULO")]
+            public string vehiculo { get; set; } 
 
 
 
-
-/*
-        [DisplayName("MIN VENTANA HORARIA 1")]
-        public string ventamahora1 { get; set; }
-
-        [DisplayName("MAX VENTANA HORARIA 1")]
-        public string ventanahora2 { get; set; }
-
-        [DisplayName("MIN VENTANA HORARIA 2")]
-        public string ventanahorados1 { get; set; }
-
-        [DisplayName("MAX VENTANA HORARIA 2")]
-        public string ventanahorados2 { get; set; }
-
-        [DisplayName("COSTO ITEM")]
-        public string costitem { get; set; }
-
-        [DisplayName("CAPACIDAD UNO")]
-        public string capacidaduno { get; set; }
-
-        [DisplayName("CAPACIDAD DOS")]
-        public string capacidaddos { get; set; }
-
-        [DisplayName("SERVICE TIME")]
-        public string servtime { get; set; }
-
-        [DisplayName("IMPORTANCIA")]
-        public string importancia { get; set; }
-
-       
-        */
-        
+            */
 
 
-       
+
+
+
+
+
+
+        /*
+                [DisplayName("MIN VENTANA HORARIA 1")]
+                public string ventamahora1 { get; set; }
+
+                [DisplayName("MAX VENTANA HORARIA 1")]
+                public string ventanahora2 { get; set; }
+
+                [DisplayName("MIN VENTANA HORARIA 2")]
+                public string ventanahorados1 { get; set; }
+
+                [DisplayName("MAX VENTANA HORARIA 2")]
+                public string ventanahorados2 { get; set; }
+
+                [DisplayName("COSTO ITEM")]
+                public string costitem { get; set; }
+
+                [DisplayName("CAPACIDAD UNO")]
+                public string capacidaduno { get; set; }
+
+                [DisplayName("CAPACIDAD DOS")]
+                public string capacidaddos { get; set; }
+
+                [DisplayName("SERVICE TIME")]
+                public string servtime { get; set; }
+
+                [DisplayName("IMPORTANCIA")]
+                public string importancia { get; set; }
+
+
+                */
+
+
+
+
 
 
 

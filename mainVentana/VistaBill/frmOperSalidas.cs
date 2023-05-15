@@ -35,6 +35,8 @@ namespace mainVentana.VistaBill
         private void frmOperSalidas_Load(object sender, EventArgs e)
         {
             dtpTiempo.Value.ToLocalTime();
+            BusquedaBill bd = new BusquedaBill();
+            bd.RealizarConsultaSinSentido();
 
         }
 
@@ -123,52 +125,51 @@ namespace mainVentana.VistaBill
                 return;
             }
 
+            if (e.KeyCode != Keys.Enter)
+                return;
+
+            e.Handled = true;
+            e.SuppressKeyPress = true;
 
             string fecha = dtpTiempo.Value.ToString("dd/MM/yyyy");
             string vehiculo = cmbVehuculo.SelectedItem.ToString();
 
-            if (e.KeyCode == Keys.Enter)
+            string eti = txbEtiqueta.Text.Replace("'", "-");
+            if (Verifica(eti) == 1)
+                return;
+
+            BusquedaBill bd = new BusquedaBill();
+
+            try
             {
-                e.Handled = true;
-                e.SuppressKeyPress = true;
+                var ss = await Task.Run(() => bd.SalidasOperacion(eti, fecha, vehiculo));
 
-
-                string eti = txbEtiqueta.Text.Replace("'", "-");
-                if (Verifica(eti) == 1)
+                if (ss.Any())
                 {
+                    listaeti.Add(ss[0]);
+                    await bd.ModificaKDMENTToBill(eti);
+                }
+                else
+                {
+                    labelAlert.Text = "No Se encontro";
+                    panelAlert.BackColor = Color.Red;
+                    txbEtiqueta.Text = "";
                     return;
                 }
 
-                BusquedaBill bd = new BusquedaBill();
-                try
-                {
-                    var ss = bd.SalidasOperacion(eti, fecha, vehiculo);
-
-                    if (ss.Count() > 0)
-                    {
-                        listaeti.Add(ss[0]);
-                        await bd.ModificaKDMENTToBill(eti);
-                    }
-                    else
-                    {
-                        labelAlert.Text = "No Se encontro";
-                        panelAlert.BackColor = Color.Red;
-                        txbEtiqueta.Text = "";
-                        return;
-                    }
-                    panelAlert.BackColor = Color.Green;
-                    labelAlert.Text = "Agregada";
-                    gunaDataGridView1.DataSource = null;
-                    txbEtiqueta.Text = "";
-                    gunaDataGridView1.DataSource = listaeti;
-                    gunaDataGridView1.Rows[gunaDataGridView1.RowCount - 1].Selected = true;
-                }
-                catch (Exception x )
-                {
-                    Negocios.LOGs.ArsLogs.LogEdit(x.Message, "BILL sale de arsys a Beetrack" + eti);
-                }
+                panelAlert.BackColor = Color.Green;
+                labelAlert.Text = "Agregada";
+                gunaDataGridView1.DataSource = null;
+                txbEtiqueta.Text = "";
+                gunaDataGridView1.DataSource = listaeti;
+                gunaDataGridView1.Rows[gunaDataGridView1.RowCount - 1].Selected = true;
+            }
+            catch (Exception x)
+            {
+                Negocios.LOGs.ArsLogs.LogEdit(x.Message, "BILL sale de arsys a Beetrack" + eti);
             }
         }
+
 
 
         private int Verifica(string dato)
