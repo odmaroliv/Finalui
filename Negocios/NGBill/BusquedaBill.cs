@@ -32,27 +32,81 @@ namespace Negocios.NGBill
                                     v
                                 };
 
-                    return lista.ToList().Select(x => new VMSalidasBill
+                    var resultadoPrimeraConsulta = lista.FirstOrDefault();
+
+                    if (resultadoPrimeraConsulta != null)
                     {
-                        ORIGEN = "",
-                        entrada = x.d.C1.Trim() + "-" + x.d.C6,
-                        etiqueta = x.d.C9,
-                        Direccion = x.d.C25.Trim() + ", " + x.d.C26.Trim() + ", " + x.d.C27.Trim(),
-                        NOMBREITEM = x.d.C42.Trim(),
-                        CANTIDAD = "1",
-                        fechamin = fecha,
-                        fechamax = fecha,
-                        idcontacto = x.d.C24,
-                        nomcotacto = x.k.C112,
-                        EMAIL = x.a.C11,
-                        Telefono = x.d.C29,
-                        VEHICULO = vehiculo,
-                        Pago = x.c.C13,
-                        Quote = x.k.C115,
-                        Bill = x.d.C34,
-                        Coordinador = x.v.C3,
-                        TServicio = x.k.C101,
-                    }).ToList();
+
+
+                        string[] partes = resultadoPrimeraConsulta.k.C115.Split('-');
+                        string rCodigo = partes.Length > 1 ? partes[2] : string.Empty;
+                        string rSuc = partes.Length > 1 ? partes[0] : string.Empty;
+                        var resultadoSegundaQuery = (from k in modelo.KDM1
+                                                     where k.C4 == 34 && k.C6 == rCodigo && k.C1 == rSuc
+                                                     select new { k.C16, k.C30, k.C40 }).FirstOrDefault();
+
+                        if (resultadoSegundaQuery != null)
+                        {
+                            return lista.ToList().Select(x => new VMSalidasBill
+                            {
+                                ORIGEN = "",
+                                entrada = x.d.C1.Trim() + "-" + x.d.C6,
+                                etiqueta = x.d.C9,
+                                Direccion = x.d.C25.Trim() + ", " + x.d.C26.Trim() + ", " + x.d.C27.Trim(),
+                                NOMBREITEM = x.d.C42.Trim(),
+                                CANTIDAD = "1",
+                                fechamin = fecha,
+                                fechamax = fecha,
+                                idcontacto = x.d.C24,
+                                nomcotacto = x.k.C112,
+                                EMAIL = x.a.C11,
+                                Telefono = x.d.C29,
+                                VEHICULO = vehiculo,
+                                Pago = x.c.C13,
+                                Quote = x.k.C115,
+                                Bill = x.d.C34,
+                                Coordinador = x.v.C3,
+                                TServicio = x.k.C101,
+                                Tpago = string.IsNullOrWhiteSpace(resultadoSegundaQuery.C30) ? string.Empty : resultadoSegundaQuery.C30.ToString(),
+                                CantidaDlls = resultadoSegundaQuery.C16 != null ? resultadoSegundaQuery.C16 : 0,
+                                Paridad = resultadoSegundaQuery.C40 != null ? resultadoSegundaQuery.C40 : 0,
+                            }).ToList();
+
+                        }
+                        else
+                        {
+                            return lista.ToList().Select(x => new VMSalidasBill
+                            {
+                                ORIGEN = "",
+                                entrada = x.d.C1.Trim() + "-" + x.d.C6,
+                                etiqueta = x.d.C9,
+                                Direccion = x.d.C25.Trim() + ", " + x.d.C26.Trim() + ", " + x.d.C27.Trim(),
+                                NOMBREITEM = x.d.C42.Trim(),
+                                CANTIDAD = "1",
+                                fechamin = fecha,
+                                fechamax = fecha,
+                                idcontacto = x.d.C24,
+                                nomcotacto = x.k.C112,
+                                EMAIL = x.a.C11,
+                                Telefono = x.d.C29,
+                                VEHICULO = vehiculo,
+                                Pago = x.c.C13,
+                                Quote = x.k.C115,
+                                Bill = x.d.C34,
+                                Coordinador = x.v.C3,
+                                TServicio = x.k.C101,
+                                Tpago = "",
+                                CantidaDlls =  0,
+                                Paridad = 0,
+                            }).ToList();
+                        }
+                       
+                    }
+                    else
+                    {
+                        // Manejo de error si no se encuentra resultado en la primera consulta
+                        return new List<VMSalidasBill>();
+                    }
                 }
             }
             catch (Exception)

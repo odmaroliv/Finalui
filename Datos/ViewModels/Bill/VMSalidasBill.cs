@@ -107,6 +107,14 @@ namespace Datos.ViewModels.Bill
         public string TServicio { get; set; }
         [DisplayName("Coordinador")]
         public string Coordinador { get; set; }
+        [DisplayName("Tipo de pago")]
+        public string Tpago { get; set; }
+        [DisplayName("Cantidad DLLS")]
+        public decimal? CantidaDlls { get; set; }
+
+        [DisplayName("Parida")]
+        public double? Paridad { get; set; }
+
 
         /*    [DisplayName("VEHICULO")]
             public string vehiculo { get; set; } 
