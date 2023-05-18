@@ -110,10 +110,10 @@ namespace Datos.ViewModels.Bill
         [DisplayName("Tipo de pago")]
         public string Tpago { get; set; }
         [DisplayName("Cantidad DLLS")]
-        public decimal? CantidaDlls { get; set; }
+        public decimal CantidaDlls { get; set; }
 
         [DisplayName("Parida")]
-        public double? Paridad { get; set; }
+        public double Paridad { get; set; }
 
 
         /*    [DisplayName("VEHICULO")]

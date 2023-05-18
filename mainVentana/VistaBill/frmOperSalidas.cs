@@ -160,6 +160,7 @@ namespace mainVentana.VistaBill
             {
                 await ProcessQueue();
             }
+            lblQueueCount.Text = $"Tareas en cola: {taskQueue.Count}";
         }
 
         private async Task ProcessQueue()

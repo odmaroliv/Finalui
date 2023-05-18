@@ -73,8 +73,8 @@ namespace Negocios.NGBill
                                     Coordinador = x.v.C3,
                                     TServicio = x.k.C101,
                                     Tpago = string.IsNullOrWhiteSpace(resultadoSegundaQuery.C2) ? string.Empty : resultadoSegundaQuery.C2.ToString(),
-                                    CantidaDlls = resultadoSegundaQuery.C16 != null ? resultadoSegundaQuery.C16 : 0,
-                                    Paridad = resultadoSegundaQuery.C40 != null ? resultadoSegundaQuery.C40 : 0,
+                                    CantidaDlls = (decimal)(resultadoSegundaQuery.C16 != null ? resultadoSegundaQuery.C16 : 0),
+                                    Paridad = (double)(resultadoSegundaQuery.C40 != null ? resultadoSegundaQuery.C40 : 0),
                                 }).ToList();
 
                             }
