@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Datos.Datosenti;
 using Datos.ViewModels;
+using Datos.ViewModels.Carga;
 using Datos.ViewModels.Coord.Clientes;
 using Datos.ViewModels.Entradas;
 using Datos.ViewModels.Reportes;
@@ -304,6 +305,35 @@ namespace Negocios
 
 
 
+
+        }
+
+        public List<vmChoferes> llenaChofer()
+        {
+
+            try
+            {
+
+                using (modelo2Entities modelo = new modelo2Entities())
+
+                {
+                    var lista = from d in modelo.KDUDCHOF
+                                select new vmChoferes
+                                {
+
+                                    C1 = d.C1,
+                                    C2 = d.C3
+
+                                };
+                    return lista.ToList();
+                }
+            }
+
+            catch (Exception)
+            {
+
+                throw;
+            }
 
         }
 

@@ -424,6 +424,23 @@ namespace mainVentana.VistaOrdenCarga
                 MessageBox.Show(ex.Message);
             }
         }
+
+       
+
+        private void hopeSwitch1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (hopeSwitch1.Checked == true)
+            {
+                Servicios datos = new Servicios();
+
+                var lst2 = datos.llenaChofer();
+
+                cmbSucDest.DisplayMember = "C3";
+                cmbSucDest.ValueMember = "C1";
+                cmbSucDest.DataSource = lst2;
+                
+            }
+        }
     }
 }
 

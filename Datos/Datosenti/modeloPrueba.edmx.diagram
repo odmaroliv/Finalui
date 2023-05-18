@@ -21,6 +21,7 @@
         <EntityTypeShape EntityType="KEPLER_PRUEBASModel.KDFEMTOCFD" Width="1.5" PointX="13.375" PointY="6.75" />
         <EntityTypeShape EntityType="KEPLER_PRUEBASModel.KDM2" Width="1.5" PointX="7.375" PointY="13.75" />
         <EntityTypeShape EntityType="KEPLER_PRUEBASModel.SqlIov" Width="1.5" PointX="13.375" PointY="3.75" />
+        <EntityTypeShape EntityType="KEPLER_PRUEBASModel.KDUDCHOF" Width="1.5" PointX="13.375" PointY="9.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

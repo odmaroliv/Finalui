@@ -36,6 +36,8 @@
             this.label15 = new System.Windows.Forms.Label();
             this.bunifuFlatButton1 = new Bunifu.Framework.UI.BunifuFlatButton();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.hopeSwitch1 = new ReaLTaiizor.Controls.HopeSwitch();
+            this.label11 = new System.Windows.Forms.Label();
             this.dtmHora = new System.Windows.Forms.DateTimePicker();
             this.gunaGradientTileButton1 = new Guna.UI.WinForms.GunaGradientTileButton();
             this.gunaGroupBox3 = new Guna.UI.WinForms.GunaGroupBox();
@@ -224,6 +226,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.hopeSwitch1);
+            this.panel2.Controls.Add(this.label11);
             this.panel2.Controls.Add(this.dtmHora);
             this.panel2.Controls.Add(this.gunaGradientTileButton1);
             this.panel2.Controls.Add(this.gunaGroupBox3);
@@ -235,6 +239,33 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(800, 486);
             this.panel2.TabIndex = 1;
+            // 
+            // hopeSwitch1
+            // 
+            this.hopeSwitch1.AutoSize = true;
+            this.hopeSwitch1.BaseColor = System.Drawing.Color.White;
+            this.hopeSwitch1.BaseOffColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(223)))), ((int)(((byte)(230)))));
+            this.hopeSwitch1.BaseOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
+            this.hopeSwitch1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.hopeSwitch1.Location = new System.Drawing.Point(722, 32);
+            this.hopeSwitch1.Name = "hopeSwitch1";
+            this.hopeSwitch1.Size = new System.Drawing.Size(40, 20);
+            this.hopeSwitch1.TabIndex = 28;
+            this.hopeSwitch1.Text = "hopeSwitch1";
+            this.hopeSwitch1.UseVisualStyleBackColor = true;
+            this.hopeSwitch1.CheckedChanged += new System.EventHandler(this.hopeSwitch1_CheckedChanged);
+            // 
+            // label11
+            // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(635, 32);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(57, 16);
+            this.label11.TabIndex = 23;
+            this.label11.Text = "Entrega:";
+            this.label11.UseMnemonic = false;
             // 
             // dtmHora
             // 
@@ -553,9 +584,9 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(3, 99);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(111, 16);
+            this.label5.Size = new System.Drawing.Size(149, 16);
             this.label5.TabIndex = 13;
-            this.label5.Text = "Sucursal Destino.";
+            this.label5.Text = "Sucursal Destino / Ruta.";
             this.label5.UseMnemonic = false;
             // 
             // tipoOper
@@ -666,5 +697,7 @@
         private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton1;
         private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton2;
         private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton3;
+        private System.Windows.Forms.Label label11;
+        private ReaLTaiizor.Controls.HopeSwitch hopeSwitch1;
     }
 }

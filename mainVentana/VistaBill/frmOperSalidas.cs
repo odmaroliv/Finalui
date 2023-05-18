@@ -57,66 +57,76 @@ namespace mainVentana.VistaBill
 
         private void ExportExcel()
         {
-            string vehiculo = cmbVehuculo.SelectedItem.ToString();
-
-            if (gunaDataGridView1.Rows.Count > 0)
+            try
             {
-                DataTable dt = new DataTable();
+                string vehiculo = cmbVehuculo.SelectedItem.ToString();
 
-              
-
-                foreach (DataGridViewColumn column in gunaDataGridView1.Columns)
+                if (gunaDataGridView1.Rows.Count > 0)
                 {
-                    dt.Columns.Add(column.HeaderText, column.ValueType);
-                }
+                    DataTable dt = new DataTable();
 
-                //dt.Columns.Add("VEHICULO", typeof(string));
 
-                foreach (DataGridViewRow row in gunaDataGridView1.Rows)
-                {
-                    dt.Rows.Add();
-                    // Asignar el valor de la variable "vehiculo" a la nueva columna en cada fila
-                   // dt.Rows[dt.Rows.Count - 1]["VEHICULO"] = vehiculo;
-                    foreach (DataGridViewCell cell in row.Cells)
+
+                    foreach (DataGridViewColumn column in gunaDataGridView1.Columns)
                     {
-                        dt.Rows[dt.Rows.Count - 1][cell.ColumnIndex] = cell.Value == null ? "" : cell.Value.ToString();
+                        dt.Columns.Add(column.HeaderText, column.ValueType);
                     }
-                }
 
-                //Exporting to Excel
-                string path = null;
+                    //dt.Columns.Add("VEHICULO", typeof(string));
+
+                    foreach (DataGridViewRow row in gunaDataGridView1.Rows)
+                    {
+                        dt.Rows.Add();
+                        // Asignar el valor de la variable "vehiculo" a la nueva columna en cada fila
+                        // dt.Rows[dt.Rows.Count - 1]["VEHICULO"] = vehiculo;
+                        foreach (DataGridViewCell cell in row.Cells)
+                        {
+                            dt.Rows[dt.Rows.Count - 1][cell.ColumnIndex] = cell.Value == null ? "" : cell.Value.ToString();
+                        }
+                    }
+
+                    //Exporting to Excel
+                    string path = null;
 
 
-                saveFileDialog1.InitialDirectory = @"C\:";
-                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-                {
-                    path = saveFileDialog1.FileName;
+                    saveFileDialog1.InitialDirectory = @"C\:";
+                    if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                    {
+                        path = saveFileDialog1.FileName;
+                    }
+                    else
+                    {
+                        return;
+                    }
+
+                    /*if (!Directory.Exists(folderPath))
+                    {
+                        Directory.CreateDirectory(folderPath);
+                    }*/
+                    using (XLWorkbook xlfile = new XLWorkbook())
+                    {
+                        string hoy = DateTime.Now.ToString("dd-MM-yyyy");
+                        string fullPath = path + "_" + hoy + ".xlsx";
+                        xlfile.Worksheets.Add(dt, "ParaBEE");
+                        xlfile.Table("ParaBEE").ShowAutoFilter = false;// Disable AutoFilter.
+                        xlfile.Table("ParaBEE").Theme = XLTableTheme.None;// Remove Theme.
+                        xlfile.SaveAs(fullPath);
+                        Process.Start(fullPath);
+                    }
                 }
                 else
                 {
+                    MessageBox.Show("No hay datos para exportar");
                     return;
                 }
 
-                /*if (!Directory.Exists(folderPath))
-                {
-                    Directory.CreateDirectory(folderPath);
-                }*/
-                using (XLWorkbook xlfile = new XLWorkbook())
-                {
-                    string hoy = DateTime.Now.ToString("dd-MM-yyyy");
-                    string fullPath = path + "_" + hoy + ".xlsx";
-                    xlfile.Worksheets.Add(dt, "ParaBEE");
-                    xlfile.Table("ParaBEE").ShowAutoFilter = false;// Disable AutoFilter.
-                    xlfile.Table("ParaBEE").Theme = XLTableTheme.None;// Remove Theme.
-                    xlfile.SaveAs(fullPath);
-                    Process.Start(fullPath);
-                }
             }
-            else
+            catch (Exception)
             {
-                MessageBox.Show("No hay datos para exportar");
-                return;
+
+                throw;
             }
+           
         }
 
 
@@ -159,7 +169,7 @@ namespace mainVentana.VistaBill
                 string eti = taskQueue.Dequeue();
 
                 // Actualiza lblQueueCount.
-                lblQueueCount.Text = $"Tareas en cola: {taskQueue.Count}";
+               // lblQueueCount.Text = $"Tareas en cola: {taskQueue.Count}";
 
                 // Aquí va tu código de procesamiento de etiquetas.
                 string fecha = dtpTiempo.Value.ToString("dd/MM/yyyy");
@@ -173,7 +183,9 @@ namespace mainVentana.VistaBill
 
                     if (ss.Any())
                     {
-                        listaeti.Add(ss[0]);
+                       
+                        listaeti.Insert(0, ss[0]);
+                       // listaeti.Add(ss[0]);
                         await Task.Run(() => bd.ModificaKDMENTToBill(eti));  // Convertir en método asíncrono y usar await.
                     }
                     else
@@ -189,9 +201,18 @@ namespace mainVentana.VistaBill
 
                     // Actualiza la interfaz de usuario solo una vez, en lugar de varias veces.
                     //txbEtiqueta.Text = "";
-                    gunaDataGridView1.DataSource = null;
-                    gunaDataGridView1.DataSource = listaeti;
-                    gunaDataGridView1.Rows[gunaDataGridView1.RowCount - 1].Selected = true;
+                    try
+                    {
+                        gunaDataGridView1.DataSource = null;
+                        gunaDataGridView1.DataSource = listaeti;
+                        gunaDataGridView1.Rows[gunaDataGridView1.RowCount - 1].Selected = true;
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+                   
                 }
                 catch (Exception x)
                 {

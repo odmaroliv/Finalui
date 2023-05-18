@@ -497,5 +497,24 @@ namespace mainVentana
             }
 
         }
+
+        private void btnCargaTo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (frmAddToCarga ent = new frmAddToCarga())
+                {
+
+                    ent.ShowDialog();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
     }
 }

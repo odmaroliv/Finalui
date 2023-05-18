@@ -403,6 +403,14 @@
           <Property Name="C11" Type="char" MaxLength="30" />
           <Property Name="C16" Type="char" MaxLength="250" />
         </EntityType>
+        <EntityType Name="KDUDCHOF">
+          <Key>
+            <PropertyRef Name="C1" />
+          </Key>
+          <Property Name="C1" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="C2" Type="char" MaxLength="20" />
+          <Property Name="C3" Type="char" MaxLength="100" />
+        </EntityType>
         <EntityType Name="KDUK">
           <Key>
             <PropertyRef Name="C1" />
@@ -589,6 +597,7 @@
           <EntitySet Name="KDMS" EntityType="Self.KDMS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KDUD" EntityType="Self.KDUD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KDUDA" EntityType="Self.KDUDA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KDUDCHOF" EntityType="Self.KDUDCHOF" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KDUK" EntityType="Self.KDUK" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KDUSUARIOS" EntityType="Self.KDUSUARIOS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KDUV" EntityType="Self.KDUV" Schema="dbo" store:Type="Tables" />
@@ -1119,6 +1128,7 @@
           <EntitySet Name="KDFEMTOCFD" EntityType="KEPLER_PRUEBASModel.KDFEMTOCFD" />
           <EntitySet Name="KDM2" EntityType="KEPLER_PRUEBASModel.KDM2" />
           <EntitySet Name="SqlIov" EntityType="KEPLER_PRUEBASModel.SqlIov" />
+          <EntitySet Name="KDUDCHOF" EntityType="KEPLER_PRUEBASModel.KDUDCHOF" />
           </EntityContainer>
         <ComplexType Name="NO_RASTREO_Result">
           <Property Type="String" Name="rand_number" Nullable="false" MaxLength="13" />
@@ -1426,6 +1436,14 @@
           <Property Name="C4" Type="String" MaxLength="51" FixedLength="true" Unicode="false" />
           <Property Name="C5" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
           <Property Name="C16" Type="String" MaxLength="250" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="KDUDCHOF">
+          <Key>
+            <PropertyRef Name="C1" />
+          </Key>
+          <Property Name="C1" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="C2" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="C3" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1972,6 +1990,15 @@
                 <ScalarProperty Name="C16" ColumnName="C16" />
                 <ScalarProperty Name="C5" ColumnName="C5" />
                 <ScalarProperty Name="C4" ColumnName="C4" />
+                <ScalarProperty Name="C3" ColumnName="C3" />
+                <ScalarProperty Name="C2" ColumnName="C2" />
+                <ScalarProperty Name="C1" ColumnName="C1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KDUDCHOF">
+            <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.KDUDCHOF">
+              <MappingFragment StoreEntitySet="KDUDCHOF">
                 <ScalarProperty Name="C3" ColumnName="C3" />
                 <ScalarProperty Name="C2" ColumnName="C2" />
                 <ScalarProperty Name="C1" ColumnName="C1" />

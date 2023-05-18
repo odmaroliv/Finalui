@@ -122,6 +122,7 @@ namespace mainVentana
             this.ribbonButton4 = new System.Windows.Forms.RibbonButton();
             this.ribbonDescriptionMenuItem2 = new System.Windows.Forms.RibbonDescriptionMenuItem();
             this.panelContenedorForm = new System.Windows.Forms.Panel();
+            this.btnCargaTo = new System.Windows.Forms.RibbonButton();
             this.panel11.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -520,6 +521,7 @@ namespace mainVentana
             this.rbtnCord.DropDownItems.Add(this.rCordbtnBuscaCot);
             this.rbtnCord.DropDownItems.Add(this.vbtnClientes);
             this.rbtnCord.DropDownItems.Add(this.oldrpKepler);
+            this.rbtnCord.DropDownItems.Add(this.btnCargaTo);
             this.rbtnCord.Image = global::mainVentana.Properties.Resources.b2c__2_;
             this.rbtnCord.LargeImage = global::mainVentana.Properties.Resources.b2c__2_;
             this.rbtnCord.Name = "rbtnCord";
@@ -776,6 +778,16 @@ namespace mainVentana
             this.panelContenedorForm.Size = new System.Drawing.Size(1113, 601);
             this.panelContenedorForm.TabIndex = 2;
             // 
+            // btnCargaTo
+            // 
+            this.btnCargaTo.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.btnCargaTo.Image = ((System.Drawing.Image)(resources.GetObject("btnCargaTo.Image")));
+            this.btnCargaTo.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnCargaTo.LargeImage")));
+            this.btnCargaTo.Name = "btnCargaTo";
+            this.btnCargaTo.SmallImage = ((System.Drawing.Image)(resources.GetObject("btnCargaTo.SmallImage")));
+            this.btnCargaTo.Text = "Asignar Cargas";
+            this.btnCargaTo.Click += new System.EventHandler(this.btnCargaTo_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -878,6 +890,7 @@ namespace mainVentana
         private RibbonButton oldrpKepler;
         private RibbonButton rbtnEntradaAlta;
         private RibbonButton ribbonButton5;
+        private RibbonButton btnCargaTo;
     }
 }
 

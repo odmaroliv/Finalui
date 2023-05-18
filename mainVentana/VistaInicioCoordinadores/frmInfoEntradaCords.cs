@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -124,13 +125,38 @@ namespace mainVentana.VistaInicioCoordinadores
             }
             if (fecha == fechaHoy)
              {
-                    TimeSpan horaCierra = TimeSpan.Parse(Convert.ToDateTime(selectedRow.Cells[3].Value).ToString("HH:m:ss"));
-                    if (horaNow> horaCierra)
+                string horaCierraString = selectedRow.Cells[3].Value.ToString().Trim();
+                DateTime temp;
+                TimeSpan horaCierra;
+
+                // Intenta analizar con formato de 12 horas (AM/PM)
+                if (DateTime.TryParseExact(horaCierraString, "h:mm:ss tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out temp))
+                {
+                    horaCierra = temp.TimeOfDay;
+                    if (horaNow > horaCierra)
                     {
                         MessageBox.Show("Esta Orden cerro por Hora");
-                    bandera = 0;
-                   
+                        bandera = 0;
+
+                    }
                 }
+                // Si no funciona, intenta analizar con formato de 24 horas
+                else if (DateTime.TryParseExact(horaCierraString, "H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out temp))
+                {
+                    horaCierra = temp.TimeOfDay;
+                    if (horaNow > horaCierra)
+                    {
+                        MessageBox.Show("Esta Orden cerro por Hora");
+                        bandera = 0;
+
+                    }
+                }
+                else
+                {
+                    // Manejo de error en caso de que ambas conversiones fallen
+                }
+               
+               
              }
             return bandera;
         }

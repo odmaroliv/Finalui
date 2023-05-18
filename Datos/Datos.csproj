@@ -109,6 +109,9 @@
     <Compile Include="Datosenti\KDMS.cs">
       <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
+    <Compile Include="Datosenti\KDUDCHOF.cs">
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
+    </Compile>
     <Compile Include="Datosenti\KDUK.cs">
       <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
@@ -139,6 +142,7 @@
     <Compile Include="ViewModels\Bill\VMSalidasBill.cs" />
     <Compile Include="ViewModels\Carga\vmCargaConsultaGeneral.cs" />
     <Compile Include="ViewModels\Carga\vmCargaCordinadores.cs" />
+    <Compile Include="ViewModels\Carga\vmChoferes.cs" />
     <Compile Include="ViewModels\Carga\vmEntradasEnCarga.cs" />
     <Compile Include="ViewModels\Carga\vmNoOrCarga.cs" />
     <Compile Include="ViewModels\Cliente.cs" />
