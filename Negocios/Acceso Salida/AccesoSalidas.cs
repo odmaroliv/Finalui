@@ -37,24 +37,24 @@ namespace Negocios.Acceso_Salida
                         {
                             lst2.Clear();
 
-/*
-                            string query = "SELECT DISTINCT q.C67 as Documento, MAX(k.C11) as Referencia, MAX(k.C9) as Fecha " +
-                            "FROM KDMENT q " +
-                            //"INNER JOIN KDM1 k ON q.C55 = CONCAT(TRIM({0}),'-UD4501-',k.C6) " +
-                            "WHERE q.C19 LIKE '%' + {0} + '%' AND q.C20 = 'R' AND q.C18 <> 'ESPECIAL' AND q.C67 IS NOT NULL" +
-                            "GROUP BY q.C67 " +
-                            "ORDER BY q.C67 DESC";
+                            /*
+                                                        string query = "SELECT DISTINCT q.C67 as Documento, MAX(k.C11) as Referencia, MAX(k.C9) as Fecha " +
+                                                        "FROM KDMENT q " +
+                                                        //"INNER JOIN KDM1 k ON q.C55 = CONCAT(TRIM({0}),'-UD4501-',k.C6) " +
+                                                        "WHERE q.C19 LIKE '%' + {0} + '%' AND q.C20 = 'R' AND q.C18 <> 'ESPECIAL' AND q.C67 IS NOT NULL" +
+                                                        "GROUP BY q.C67 " +
+                                                        "ORDER BY q.C67 DESC";
 
-                            var result = modelo.Database.SqlQuery<vmCargaOrdenesDeCarga>(query, "TJ").ToList();
+                                                        var result = modelo.Database.SqlQuery<vmCargaOrdenesDeCarga>(query, "TJ").ToList();
 
-                            lst2 = result;*/
+                                                        lst2 = result;*/
 
 
                             var oDocument = (from q in modelo.KDMENT
-                                             //join k in modelo.KDM1 on q.C55 equals sucori.Trim() + "-UD4501-" + k.C6
-                                             //where string.IsNullOrEmpty(q.C18) && !string.IsNullOrEmpty(q.C16) && q.C54.Contains(sucori) && q.C19.Contains(sucori) && q.C20.Trim() != "F"
+                                                 //join k in modelo.KDM1 on q.C55 equals sucori.Trim() + "-UD4501-" + k.C6
+                                                 //where string.IsNullOrEmpty(q.C18) && !string.IsNullOrEmpty(q.C16) && q.C54.Contains(sucori) && q.C19.Contains(sucori) && q.C20.Trim() != "F"
 
-                                             where q.C19.Contains("TJ") && q.C20=="R" && q.C46 != "BTRACKSALIDA"  && q.C18!="ESPECIAL" && !string.IsNullOrEmpty(q.C67) 
+                                             where q.C19.Contains("TJ") && q.C20 == "R" && q.C46 != "BTRACKSALIDA" && q.C18 != "ESPECIAL" && !string.IsNullOrEmpty(q.C67)
 
                                              group q.C67 by q.C67 into g
                                              select new vmCargaOrdenesDeCarga
@@ -93,7 +93,7 @@ namespace Negocios.Acceso_Salida
                                             "GROUP BY q.C54 " +
                                             "ORDER BY q.C54 DESC ";
 
-                           
+
                             var result = modelo.Database.SqlQuery<vmCargaOrdenesDeCarga>(query, sucori).ToList();
                             lst2 = result;
                             /*var oDocument = (from q in modelo.KDMENT
@@ -121,7 +121,7 @@ namespace Negocios.Acceso_Salida
                     throw;
                 }
             }
-            
+
         }
 
         public async Task<List<vmCargaOrdenesDeSalida>> LlenaDGVSalidas(string sucori, string doc, int numerosuc)
@@ -153,7 +153,7 @@ namespace Negocios.Acceso_Salida
                     {
                         using (modelo2Entities modelo = new modelo2Entities())
                         {
-                            lst2.Clear(); 
+                            lst2.Clear();
                             string query = "WITH CTE AS (SELECT DISTINCT q.C55 as Documento, MAX(k.C11) as Referencia, MAX(k.C9) as Fecha " +
                                   "FROM KDMENT q " +
                                   "INNER JOIN KDM1 k ON q.C55 = CONCAT(TRIM({0}),'-UD4501-',k.C6) " +
@@ -183,20 +183,20 @@ namespace Negocios.Acceso_Salida
                         using (modelo2Entities modelo = new modelo2Entities())
                         {
                             lst2.Clear();
-                          /*  var oDocument = (from q in modelo.KDMENT.AsQueryable()
-                                             join k in modelo.KDM1 on q.C55 equals sucori.Trim() + "-UD4501-" + k.C6
-                                             where string.IsNullOrEmpty(q.C18) && q.C55.Contains(sucori) && q.C19.Contains(sucori) && k.C43.Contains("P") && k.C4 == 45
+                            /*  var oDocument = (from q in modelo.KDMENT.AsQueryable()
+                                               join k in modelo.KDM1 on q.C55 equals sucori.Trim() + "-UD4501-" + k.C6
+                                               where string.IsNullOrEmpty(q.C18) && q.C55.Contains(sucori) && q.C19.Contains(sucori) && k.C43.Contains("P") && k.C4 == 45
 
-                                             group k by q.C55 into g
+                                               group k by q.C55 into g
 
 
-                                             select new vmCargaOrdenesDeSalida
-                                             {
-                                                 Documento = g.Key,
-                                                 Referencia = g.Select(x => x.C11).FirstOrDefault(),
-                                                 Fecha = g.Select(x => x.C9).FirstOrDefault().Value
+                                               select new vmCargaOrdenesDeSalida
+                                               {
+                                                   Documento = g.Key,
+                                                   Referencia = g.Select(x => x.C11).FirstOrDefault(),
+                                                   Fecha = g.Select(x => x.C9).FirstOrDefault().Value
 
-                                             }).OrderByDescending(x => x.Documento).Take(30).ToList();*/
+                                               }).OrderByDescending(x => x.Documento).Take(30).ToList();*/
 
                             string query = "WITH CTE AS (SELECT DISTINCT q.C55 as Documento, MAX(k.C11) as Referencia, MAX(k.C9) as Fecha " +
                                  "FROM KDMENT q " +
@@ -218,7 +218,7 @@ namespace Negocios.Acceso_Salida
                     throw;
                 }
             }
-            
+
         }
 
         public List<string> BuscUltimaSalida(string suc)
@@ -245,15 +245,15 @@ namespace Negocios.Acceso_Salida
         {
             try
             {
-               
+
                 await Task.Run(() =>
                 {
                     using (modelo2Entities modelo = new modelo2Entities())
                     {
-                       
+
                     }
                 });
-               
+
             }
             catch (Exception)
             {
@@ -262,7 +262,7 @@ namespace Negocios.Acceso_Salida
             }
         }
 
-        public async Task<List<vmCargaOrdenesDeSalida>> BuscEntradasEnSalida(string salida,string origen)
+        public async Task<List<vmCargaOrdenesDeSalida>> BuscEntradasEnSalida(string salida, string origen)
         {
             if (origen.Contains("TJ"))
             {
@@ -325,7 +325,7 @@ namespace Negocios.Acceso_Salida
                                              {
                                                  Documento = q.C9,
                                                  Referencia = q.C54,
-                                                   correo = u.C9
+                                                 correo = u.C9
                                              }).ToList();
 
                             lst2 = oDocument;
@@ -344,7 +344,7 @@ namespace Negocios.Acceso_Salida
         }
         public async Task<List<vmCargaOrdenesDeCarga>> LlenaDGVpausadas(string salidapausada)
         {
-            
+
             try
             {
                 var lst2 = new List<vmCargaOrdenesDeCarga>();
@@ -397,8 +397,8 @@ namespace Negocios.Acceso_Salida
                                              sOrigen = q.C1,
                                              Transportista = q.C94,
                                              Chofer = q.C96,
-                                             Placas = q.C95, 
-                                             Referencia = q.C11,                                         
+                                             Placas = q.C95,
+                                             Referencia = q.C11,
                                          }).ToList();
 
                         lst2 = oDocument;
@@ -415,7 +415,7 @@ namespace Negocios.Acceso_Salida
 
         public vmAuxiliaresSalidas ObtieCorreo(string stiqueta, string sorigen = null)
         {
-          
+
             try
             {
 
@@ -438,7 +438,7 @@ namespace Negocios.Acceso_Salida
                             Etiqueta = da.dk.d.C9
                         });
 
-                    
+
                     var lst = query.FirstOrDefault();
 
                     return lst ?? new vmAuxiliaresSalidas { Etiqueta = "No se encontro esta etiquita", Correo = "", orden = "" };
@@ -475,6 +475,46 @@ namespace Negocios.Acceso_Salida
 
          }
         */
+
+        public async Task<List<vmCargaOrdenesDeCarga>> LlenaDGVEntrega(string sucori, string sudest, string doc, int numerosuc)
+        {
+                int cha = sucori.Trim().ToString().Length;
+                try
+                {
+                    var lst2 = new List<vmCargaOrdenesDeCarga>();
+                    await Task.Run(() =>
+                    {
+                        using (modelo2Entities modelo = new modelo2Entities())
+                        {
+                            lst2.Clear();
+
+                           
+
+                            var oDocument = (from q in modelo.KDMENT
+                                             join k in modelo.KDM1 on new { q.C1, q.C4, q.C6 } equals new { k.C1, k.C4, k.C6 }
+                                             where q.C19.Contains("CSL") && q.C20 == "F" && q.C46 != "BTRACKSALIDA" && q.C18 != "ESPECIAL" && !string.IsNullOrEmpty(k.C116)
+
+                                             group k.C116 by k.C116 into g
+                                             select new vmCargaOrdenesDeCarga
+                                             {
+                                                 //Origen= q.C9
+                                                 Documento = g.Key
+                                             }).OrderByDescending(x => x.Documento).ToList();
+
+                            lst2 = oDocument;
+                        }
+                    });
+                    return lst2;
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+
+
+        }
+
 
     }
 }

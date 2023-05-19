@@ -37,7 +37,7 @@ namespace Negocios.WebHooks
                     iconUri = "https://arniangroup.com/wp-content/uploads/2023/03/Paqueteria_Arnian-1024x1024.webp"
                 },
                 intro = fechaSalida,
-                title = "La salida No:\n" + Salida +"\nFue creada esxitosamente",
+                title = "La salida No:\n" + Salida +"\nFue creada exitosamente",
                 body = "Enviado desde Arsys. " + fechaSalida,
                 fields = new[]
                 {

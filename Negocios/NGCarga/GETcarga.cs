@@ -19,19 +19,19 @@ namespace Negocios.NGCarga
             try
             {
                 var lst2 = new List<vmNoOrCarga>();
-               
-                    using (modelo2Entities modelo = new modelo2Entities())
 
-                    {
-                        var lista = from d in modelo.SqlIov
-                                    where d.C1.Contains(br) //&& d.C19 != sdestino 
-                                    select new vmNoOrCarga
-                                    {
-                                        OrdenCarga=d.C4
-                                    };
-                        lst2 = lista.ToList();
+                using (modelo2Entities modelo = new modelo2Entities())
 
-                    }    
+                {
+                    var lista = from d in modelo.SqlIov
+                                where d.C1.Contains(br) //&& d.C19 != sdestino 
+                                select new vmNoOrCarga
+                                {
+                                    OrdenCarga = d.C4
+                                };
+                    lst2 = lista.ToList();
+
+                }
 
                 return lst2;
             }
@@ -56,10 +56,10 @@ namespace Negocios.NGCarga
             //var lst2 = new List<vmCargaConsultaGeneral>();
             string dSucursalInicio = !String.IsNullOrEmpty(datoSucIni.Trim()) ? datoSucIni : "";
             string dOrdenDeCarga = !String.IsNullOrEmpty(ordendecarga.Trim()) ? ordendecarga : "";
-            if (dSucursalInicio =="" || dOrdenDeCarga =="")
+            if (dSucursalInicio == "" || dOrdenDeCarga == "")
             {
                 return new vmCargaConsultaGeneral { errormsg = "ERROR" };
-               
+
             }
             else
             {
@@ -70,7 +70,7 @@ namespace Negocios.NGCarga
 
                     {
                         var lista = from d in modelo.KDM1
-                                    where d.C1.Contains(dSucursalInicio) && d.C6.Contains(dOrdenDeCarga) && d.C4==40//&& d.C19 != sdestino 
+                                    where d.C1.Contains(dSucursalInicio) && d.C6.Contains(dOrdenDeCarga) && d.C4 == 40//&& d.C19 != sdestino 
                                     select new vmCargaConsultaGeneral
                                     {
                                         sucursalOrigen = d.C1,
@@ -98,12 +98,12 @@ namespace Negocios.NGCarga
                     throw;
                 }
             }
-            
+
 
         }
         public List<vmEntradasEnCarga> EntradasEnCarga(string datoSucIni, int carga)
         {
-            string codigo = datoSucIni.Trim()+"-UD4001-"+carga.ToString("D7");
+            string codigo = datoSucIni.Trim() + "-UD4001-" + carga.ToString("D7");
             try
             {
                 var lst2 = new List<vmEntradasEnCarga>();
@@ -135,7 +135,7 @@ namespace Negocios.NGCarga
         }
 
 
-        public List<vmCargaCordinadores> ObtieneCargasActivas(string datoSucIni,string oper)
+        public List<vmCargaCordinadores> ObtieneCargasActivas(string datoSucIni, string oper)
         {
             //string codigo = datoSucIni.Trim() + "-UD4001-" + carga.ToString("D7");
             DateTime hoy = DateTime.Now;
@@ -149,7 +149,7 @@ namespace Negocios.NGCarga
 
                 {
                     var lista = from d in modelo.KDM1
-                               // join k in modelo.KDIDO on d.C101 equals k.C1
+                                    // join k in modelo.KDIDO on d.C101 equals k.C1
                                 where d.C1.Contains(datoSucIni) && d.C4 == 40 && d.C43 == "N" /*&& (d.C111 <= hoy)*/ && d.C101.Contains(oper) //&& d.C19 != sdestino 
                                 orderby (d.C6) descending
                                 select new vmCargaCordinadores
@@ -188,14 +188,14 @@ namespace Negocios.NGCarga
                 {
                     var lista = from d in modelo.KDM1
                                 join k in modelo.KDIDO on d.C101 equals k.C1
-                                where d.C1.Contains(datoSucIni) && d.C4 == 35 && d.C6 == entrada 
+                                where d.C1.Contains(datoSucIni) && d.C4 == 35 && d.C6 == entrada
                                 orderby (d.C6) descending
                                 select new vmTOperacion
                                 {
                                     c1 = k.C1,
                                     c2 = k.C2,
-                                   
-                                   
+
+
                                 };
                     lst2 = lista.FirstOrDefault();
                 }
@@ -222,28 +222,28 @@ namespace Negocios.NGCarga
             try
             {
                 var lst = new vmInfoControlCors();
-               
-                    using (modelo2Entities modelo = new modelo2Entities())
 
-                    {
-                        var lista = (from d in modelo.KDM1
-                                         //join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
-                                         //join a in modelo.KDUV on k.C12 equals a.C2
-                                         //join u in modelo.KDUSUARIOS on a.C22 equals u.C1
+                using (modelo2Entities modelo = new modelo2Entities())
 
-                                     where d.C1.Contains(origen) && d.C6.Contains(entrada)
+                {
+                    var lista = (from d in modelo.KDM1
+                                     //join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
+                                     //join a in modelo.KDUV on k.C12 equals a.C2
+                                     //join u in modelo.KDUSUARIOS on a.C22 equals u.C1
+
+                                 where d.C1.Contains(origen) && d.C6.Contains(entrada)
 
 
-                                     select new vmInfoControlCors
-                                     {
+                                 select new vmInfoControlCors
+                                 {
 
-                                         valFact = d.C102,
-                                         valArn = d.C16.ToString(),
+                                     valFact = d.C102,
+                                     valArn = d.C16.ToString(),
 
-                                     });
-                        lst = lista.FirstOrDefault();
-                    }
-               
+                                 });
+                    lst = lista.FirstOrDefault();
+                }
+
                 return lst;
             }
             catch (Exception)
@@ -264,6 +264,45 @@ namespace Negocios.NGCarga
             return FechaRestada;
         }
 
+        public List<vmCargaCordinadores> ObtieneCargasDeEntrega(string datoSucIni, string oper)
+        {
+            //string codigo = datoSucIni.Trim() + "-UD4001-" + carga.ToString("D7");
+            DateTime hoy = DateTime.Now;
+            int hora = DateTime.Now.Hour;
+
+            try
+            {
+                var lst2 = new List<vmCargaCordinadores>();
+
+                using (modelo2Entities modelo = new modelo2Entities())
+
+                {
+                    var lista = from d in modelo.KDM1
+                                   
+                                where d.C1.Contains(datoSucIni) && d.C4 == 40 && d.C43 == "N"  && d.C101.Contains(oper) 
+                                orderby (d.C6) descending
+                                select new vmCargaCordinadores
+                                {
+                                    numeroCarga = d.C6,
+                                    sucursalOrigen = d.C1,
+                                    fechaCierre = d.C111,
+                                    horaCierre = d.C112,
+                                    destino = d.C103,
+                                    referencia = d.C11
+
+                                };
+                    lst2 = lista.ToList();
+                }
+
+                return lst2;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
 
     }
 }

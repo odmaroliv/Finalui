@@ -115,6 +115,9 @@ namespace Datos.ViewModels.Bill
         [DisplayName("Parida")]
         public double Paridad { get; set; }
 
+        [DisplayName("Alias")]
+        public string Alias { get; set; }
+
 
         /*    [DisplayName("VEHICULO")]
             public string vehiculo { get; set; } 

@@ -45,7 +45,7 @@ namespace Negocios.NGBill
                             string rCodigo = (partes != null && partes.Length > 2) ? partes[2] : string.Empty;
                             string rSuc = (partes != null && partes.Length > 0) ? partes[0] : string.Empty;
 
-                            var resultadoSegundaQuery = (from k in modelo.KDM1
+                            var resultadoSegundaQuery = (from k in modelo.KDM1.AsNoTracking()
                                                          join a in modelo.KDFEMTOCFD on k.C110 equals a.C1
                                                          where k.C4 == 34 && k.C6 == rCodigo && k.C1 == rSuc
                                                          select new { k.C16, a.C2, k.C40 }).FirstOrDefault();
@@ -62,8 +62,8 @@ namespace Negocios.NGBill
                                     CANTIDAD = "1",
                                     fechamin = fecha,
                                     fechamax = fecha,
-                                    idcontacto = x.d.C24,
-                                    nomcotacto = x.k.C112,
+                                    idcontacto = x.k.C10,
+                                    nomcotacto = x.k.C32,
                                     EMAIL = x.a.C11,
                                     Telefono = x.d.C29,
                                     VEHICULO = vehiculo,
@@ -75,6 +75,8 @@ namespace Negocios.NGBill
                                     Tpago = string.IsNullOrWhiteSpace(resultadoSegundaQuery.C2) ? string.Empty : resultadoSegundaQuery.C2.ToString(),
                                     CantidaDlls = (decimal)(resultadoSegundaQuery.C16 != null ? resultadoSegundaQuery.C16 : 0),
                                     Paridad = (double)(resultadoSegundaQuery.C40 != null ? resultadoSegundaQuery.C40 : 0),
+                                    Alias = string.IsNullOrWhiteSpace(x.d.C24) ? x.k.C112 : x.d.C24,
+
                                 }).ToList();
 
                             }
@@ -90,8 +92,8 @@ namespace Negocios.NGBill
                                     CANTIDAD = "1",
                                     fechamin = fecha,
                                     fechamax = fecha,
-                                    idcontacto = x.d.C24,
-                                    nomcotacto = x.k.C112,
+                                    idcontacto = x.k.C10,
+                                    nomcotacto = x.k.C32,
                                     EMAIL = x.a.C11,
                                     Telefono = x.d.C29,
                                     VEHICULO = vehiculo,
@@ -103,6 +105,7 @@ namespace Negocios.NGBill
                                     Tpago = "",
                                     CantidaDlls = 0,
                                     Paridad = 0,
+                                    Alias = string.IsNullOrWhiteSpace(x.d.C24) ? x.k.C112 : x.d.C24,
                                 }).ToList();
                             }
 

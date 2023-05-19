@@ -21,7 +21,8 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private void btnAlta_Click(object sender, EventArgs e)
         {
-            
+            Negocios.NGCarga.GETcarga get = new Negocios.NGCarga.GETcarga();
+           dgvListaCargas.DataSource = get.ObtieneCargasDeEntrega("CSL","09");
         }
     }
 }
