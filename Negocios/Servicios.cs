@@ -26,7 +26,24 @@ namespace Negocios
             catch (Exception)
             {
 
-                throw;
+                return "ERROR";
+            }
+
+        }
+        public async Task<string> GetParidadOtro()//obtiene la paridad diaria del diario oficial de la federacion 
+        {
+            try
+            {
+                string urlDollar = "https://api.exchangerate.host/latest?base=USD&symbols=MXN";
+                WebRequest oRequest = WebRequest.Create(urlDollar);
+                WebResponse oResponse = oRequest.GetResponse();
+                StreamReader sr = new StreamReader(oResponse.GetResponseStream());
+                return await sr.ReadToEndAsync();
+            }
+            catch (Exception)
+            {
+
+                return "ERROR";
             }
 
         }

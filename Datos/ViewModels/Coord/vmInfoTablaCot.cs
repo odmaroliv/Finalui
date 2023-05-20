@@ -15,10 +15,13 @@ namespace Datos.ViewModels.Coord
         [DisplayName("Feed/Tax/Service/Etc")]
         public string C10  {get; set;}
         [DisplayName("Porcentaje")]
+       
         public string C39 { get; set; }
         [DisplayName("Charges USD")]
         public decimal? C13  {get; set;}
 
+        [DisplayName("Charges MXN")]
+        public decimal? C12 { get; set; }
         [DisplayName("IVA %")]
         public string C17  {get; set;}
         

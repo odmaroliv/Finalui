@@ -6,6 +6,7 @@ using Negocios;
 using Negocios.NGCotizacion;
 using Negocios.NGReportes;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +24,7 @@ namespace mainVentana.VistaInicioCoordinadores
     public partial class frmCotizaciones : Form
     {
 
+        private bool _tipoImpresion = false;
         public string sGlobal;
         private List<vmEntCordsCot> listaEntsEnCotizacion = new List<vmEntCordsCot>();
         private string nCotizacionG = default;
@@ -265,21 +267,22 @@ namespace mainVentana.VistaInicioCoordinadores
         {
             Servicio datos = new Servicio();
             string paridad1 = await datos.GetParidad();
-            var lst = JsonConvert.DeserializeObject<Root>(paridad1);
-
-            //var lst = JsonConvert.DeserializeObject<List<Paridad>>(paridad1);
-            //Paridad lst = JsonConvert.DeserializeObject<ListParidad>>(paridad1);
-
-            var lista = from d in lst.ListaIndicadores.Where(c => c.codTipoIndicador == 158)
-
-                        select new ListaIndicadore
-                        {
-                            valor = d.valor
-
-                        };
-
-            if (lista.Count() <= 0)
+            if (paridad1 == "ERROR")
             {
+                string paridad2 = await datos.GetParidadOtro();
+                var paridadJson = JsonConvert.DeserializeObject<JObject>(paridad2);
+
+                if (paridadJson.ContainsKey("rates") && paridadJson["rates"].Type == JTokenType.Object)
+                {
+                    var rates = paridadJson["rates"].ToObject<JObject>();
+                    if (rates.ContainsKey("MXN") && rates["MXN"].Type == JTokenType.Float)
+                    {
+                        double valorMXN = rates["MXN"].ToObject<double>();
+                        txbParidad.Text = Math.Round(Convert.ToDecimal(valorMXN), 2).ToString();
+                        return;
+                    }
+                }
+
                 if (MessageBox.Show("No pudimos acceder a la paridad del Diario Oficial de la Federación \r(Si es fin de semana los servicios de DOF no funcionan )\rAl hacer click te redireccionare a la pagina oficial para establecerla manualmente", "No paridad automatica", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) == DialogResult.OK)
                 {
                     Process.Start("https://dof.gob.mx/indicadores.php");
@@ -288,17 +291,46 @@ namespace mainVentana.VistaInicioCoordinadores
             }
             else
             {
+                var lst = JsonConvert.DeserializeObject<Root>(paridad1);
 
+                var lista = from d in lst.ListaIndicadores.Where(c => c.codTipoIndicador == 158)
+                            select new ListaIndicadore
+                            {
+                                valor = d.valor
+                            };
 
-                foreach (var i in lista.ToList())
+                if (lista.Count() <= 0)
                 {
-                    txbParidad.Text = Math.Round(Convert.ToDecimal(i.valor), 2).ToString();
+                    string paridad2 = await datos.GetParidadOtro();
+                    var paridadJson = JsonConvert.DeserializeObject<JObject>(paridad2);
+
+                    if (paridadJson.ContainsKey("rates") && paridadJson["rates"].Type == JTokenType.Object)
+                    {
+                        var rates = paridadJson["rates"].ToObject<JObject>();
+                        if (rates.ContainsKey("MXN") && rates["MXN"].Type == JTokenType.Float)
+                        {
+                            double valorMXN = rates["MXN"].ToObject<double>();
+                            txbParidad.Text = Math.Round(Convert.ToDecimal(valorMXN), 2).ToString();
+                            return;
+                        }
+                    }
+
+                    if (MessageBox.Show("No pudimos acceder a la paridad del Diario Oficial de la Federación \r(Si es fin de semana los servicios de DOF no funcionan )\rAl hacer click te redireccionare a la pagina oficial para establecerla manualmente", "No paridad automatica", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) == DialogResult.OK)
+                    {
+                        Process.Start("https://dof.gob.mx/indicadores.php");
+                    }
+                    txbParidad.Enabled = true;
+                }
+                else
+                {
+                    foreach (var i in lista.ToList())
+                    {
+                        txbParidad.Text = Math.Round(Convert.ToDecimal(i.valor), 2).ToString();
+                    }
                 }
             }
-
-
-
         }
+
         private void Moneda()
         {
             List<Moneda> mnd = new List<Moneda> {
@@ -351,6 +383,7 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private void frmCotizaciones_Load(object sender, EventArgs e)
         {
+            lblTipoImp.Text = "IMP";
             if (String.IsNullOrWhiteSpace(sGlobal))
             {
                 MessageBox.Show("No se establecio una Sucursal Global");
@@ -639,7 +672,7 @@ namespace mainVentana.VistaInicioCoordinadores
                
                 alta.CreaCotizacionKDM1(sGlobal, nCotizacionG, DateTime.Now, lblCodCliente.Text.Trim(),
                     0, decimal.Parse(txbIva.Text), decimal.Parse(txbTotalArn.Text), DateTime.Now, cmbTipoPago.GetItemText(cmbTipoPago.SelectedItem).ToString(), cliente.Text.Trim(), "", "", "", float.Parse(txbParidad.Text.Trim()),
-                    decimal.Parse(txbSubTo.Text), "N", Negocios.Common.Cache.CacheLogin.username, DateTime.Now, txbGoodUsd.Text, txbGoodMnx.Text, txbReferencia.Text, txbTotalArn.Text, txbSerFee.Text, txbSubTomxn.Text, TaxAFees, txbComent.Text, txbPedimento.Text);
+                    decimal.Parse(txbSubTo.Text), "N", Negocios.Common.Cache.CacheLogin.username, DateTime.Now, txbGoodUsd.Text, txbGoodMnx.Text, txbReferencia.Text, txbTotalArn.Text, txbSerFee.Text, txbSubTomxn.Text, TaxAFees, txbComent.Text, txbPedimento.Text, lblTipoImp.Text);
                 alta.ActualizaSqlIov(sGlobal, 34, nCotizacionG);
                 AltaKDMENT();
                 AltaKDM2();
@@ -657,14 +690,16 @@ namespace mainVentana.VistaInicioCoordinadores
         }
 
 
-        private void AltaKDM2()
+        private async void AltaKDM2()
         {
             AltasCotizacion alta = new AltasCotizacion();
 
             var rows = RecuperaData();
             foreach (var i in rows)
             {
-                alta.CreaCotizacionKDM2(sGlobal, nCotizacionG, i.Fila, i.Descripción, decimal.Parse(i.usCharges), cmbIVA.SelectedItem == null ? "0": cmbIVA.SelectedItem.ToString(), lblCodCliente.Text.Trim(), DateTime.Now, i.Porcentaje);
+                decimal mxn = !string.IsNullOrEmpty(i.MXN) ? decimal.Parse(i.MXN) : 0;
+                decimal usCharges = !string.IsNullOrEmpty(i.usCharges) ? decimal.Parse(i.usCharges) : 0;
+                await alta.CreaCotizacionKDM2(sGlobal, nCotizacionG, i.Fila, i.Descripción, mxn, usCharges, cmbIVA.SelectedItem == null ? "0": cmbIVA.SelectedItem.ToString(), lblCodCliente.Text.Trim(), DateTime.Now, i.Porcentaje);
             }
 
         }
@@ -700,19 +735,20 @@ namespace mainVentana.VistaInicioCoordinadores
             operacion();
         }
 
-        private void cliente_TextChanged(object sender, EventArgs e)
+      
+        private void SwitchAdd_CheckedChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-
+            if (SwitchAdd.Checked == false)
+            {
+                _tipoImpresion = false;
+                lblTipoImp.Text = "IMP";
+            }
+            else
+            {
+                _tipoImpresion = true;
+                lblTipoImp.Text = "AD";
+            }
         }
     }
 }

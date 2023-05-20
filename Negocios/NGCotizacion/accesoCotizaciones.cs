@@ -97,9 +97,7 @@ namespace Negocios.NGCotizacion
                                       C24 = d.C24,
                                       C43 = d.C43,
                                       C44 = d.C44,
-
-
-
+                                      C27 = d.C27,
 
                                   };
                         lst2 = lst.ToList();
@@ -307,7 +305,8 @@ namespace Negocios.NGCotizacion
                                       C10 = d.C10,
                                       C39 = d.C39,
                                       C13 = d.C13,
-                                      C17 = d.C17,
+                                      C12 = d.C12,
+                                      //C17 = d.C17,
                                       C36 = d.C36,
 
 
@@ -339,7 +338,7 @@ namespace Negocios.NGCotizacion
                     {
 
                         var lst = from d in modelo.KDM1
-                                  where d.C116.Equals(nCot) && d.C4 == 35
+                                  where d.C115.Equals(nCot) && d.C4 == 35
                                   orderby (d.C6)
                                   select new vmEntCot
                                   {

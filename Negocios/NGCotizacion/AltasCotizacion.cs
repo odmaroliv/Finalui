@@ -13,7 +13,7 @@ namespace Negocios.NGCotizacion
 
         public async void CreaCotizacionKDM1(string c1, string c6, DateTime c9, string c10, decimal c13, decimal c14, decimal c16, DateTime c18, string c30
             , string c32, string c33, string c34, string c35, float c40, decimal c42, string c43,
-            string c67, DateTime c68, string c83, string c84, string c86, string c88, string c89, string c93, string c94, string c24, string pedimento)
+            string c67, DateTime c68, string c83, string c84, string c86, string c88, string c89, string c93, string c94, string c24, string pedimento, string tImpresion)
         {
 
 
@@ -62,6 +62,8 @@ namespace Negocios.NGCotizacion
 
                 d.C24 = c24; //Comentarios 
 
+                d.C27 = tImpresion; //Tipo de documento a imprimir
+
 
                 modelo.KDM1.Add(d);
                 try
@@ -75,7 +77,7 @@ namespace Negocios.NGCotizacion
             }
         }
 
-        public async Task CreaCotizacionKDM2(string c1, string c6, decimal c7, string c10, decimal c13, string c17, string c25, DateTime c32, string c39)
+        public async Task CreaCotizacionKDM2(string c1, string c6, decimal c7, string c10, decimal c12, decimal c13, string c17, string c25, DateTime c32, string c39)
         {
 
 
@@ -94,14 +96,13 @@ namespace Negocios.NGCotizacion
                 d.C6  = c6;
                 d.C7  = c7; //Numero de fila
                 d.C10 = c10; //Nombre fila
+                d.C12 = c12; //Charges MXN 
                 d.C13 = c13; //Charges USD  
                 d.C17 = c17; //Iva Porcentaje  
                 d.C25 = c25; //Clave Cliente 
                 d.C32 = c32; //Fecha
                 d.C36 = "DLLS"; //Tipo Moneda
                 d.C39 = c39; //Porcentaje
-
-
 
                 modelo.KDM2.Add(d);
                 try

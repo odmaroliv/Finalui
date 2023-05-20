@@ -71,5 +71,9 @@ namespace Datos.ViewModels.Coord
         [DisplayName("Estatus Pago")]
         public string C44 { get; set; }
 
+        [DisplayName("Tipo Impresion")]
+        public string C27 { get; set; }
+
+
     }
 }

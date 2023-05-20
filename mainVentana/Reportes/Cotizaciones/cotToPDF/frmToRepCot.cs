@@ -31,7 +31,7 @@ namespace mainVentana.Reportes.Cotizaciones.cotToPDF
         public string toPayArn;
         public string sucursal;
         public List<vmInfoTablaCot> lst = new List<vmInfoTablaCot>();
-
+        public bool tImprecionRep;
 
 
         public frmToRepCot()
@@ -49,8 +49,46 @@ namespace mainVentana.Reportes.Cotizaciones.cotToPDF
         private void CargaParam()
         {
 
-            //vmEtiquetasReporteBindingSource.DataSource = lstrep;
+            /*
 
+             ReportParameterCollection reportParameters = new ReportParameterCollection();
+             reportParameters.Add(new ReportParameter("quote", quote));
+             reportParameters.Add(new ReportParameter("date", date));
+             reportParameters.Add(new ReportParameter("referencia", referencia));
+             reportParameters.Add(new ReportParameter("entradas", entradas));
+             reportParameters.Add(new ReportParameter("pedimento", pedimento));
+             reportParameters.Add(new ReportParameter("paridad", paridad));
+             reportParameters.Add(new ReportParameter("vGod", vGod));
+             reportParameters.Add(new ReportParameter("vArn", vArn));
+             reportParameters.Add(new ReportParameter("cliente", cliente));
+             reportParameters.Add(new ReportParameter("vOfGoods", vOfGoods));
+             reportParameters.Add(new ReportParameter("subTotal", subTotal));
+             reportParameters.Add(new ReportParameter("iva", iva));
+             reportParameters.Add(new ReportParameter("sumGoodsTaxesServices", sumGoodsTaxesServices));
+             reportParameters.Add(new ReportParameter("toPayArn", toPayArn));
+             reportParameters.Add(new ReportParameter("sucursal", sucursal));
+             reportParameters.Add(new ReportParameter("tImprecionRep", tImprecionRep));
+
+
+
+             ReportDataSource rs = new ReportDataSource();
+
+             //establecemos el origen de datos a la lista primero se creo el origen en el archibo rdlc
+             rs.Name = "tableinfotabla";
+             rs.Value = lst;
+             reportViewer1.LocalReport.DataSources.Add(rs);
+
+
+             this.reportViewer1.RefreshReport();
+
+
+
+
+             this.reportViewer1.LocalReport.SetParameters(reportParameters);
+
+
+
+             this.reportViewer1.RefreshReport();*/
 
             ReportParameterCollection reportParameters = new ReportParameterCollection();
             reportParameters.Add(new ReportParameter("quote", quote));
@@ -69,7 +107,13 @@ namespace mainVentana.Reportes.Cotizaciones.cotToPDF
             reportParameters.Add(new ReportParameter("toPayArn", toPayArn));
             reportParameters.Add(new ReportParameter("sucursal", sucursal));
 
+            // Establecer los parámetros en el informe
+            reportViewer1.LocalReport.SetParameters(reportParameters);
 
+            // Agregar el parámetro "tImprecionRep" después de configurar los demás parámetros
+            reportViewer1.LocalReport.SetParameters(new ReportParameter("tImprecionRep", tImprecionRep.ToString()));
+
+            // ...
 
             ReportDataSource rs = new ReportDataSource();
 
@@ -78,20 +122,10 @@ namespace mainVentana.Reportes.Cotizaciones.cotToPDF
             rs.Value = lst;
             reportViewer1.LocalReport.DataSources.Add(rs);
 
-
-            this.reportViewer1.RefreshReport();
-
-
-
-
-            this.reportViewer1.LocalReport.SetParameters(reportParameters);
-
-
-
             this.reportViewer1.RefreshReport();
         }
 
 
     }
-    
+
 }

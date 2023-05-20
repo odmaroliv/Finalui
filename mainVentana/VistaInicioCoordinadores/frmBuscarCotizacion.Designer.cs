@@ -107,7 +107,7 @@
             this.iconButton1.IconColor = System.Drawing.Color.Black;
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.iconButton1.Location = new System.Drawing.Point(573, 689);
+            this.iconButton1.Location = new System.Drawing.Point(602, 689);
             this.iconButton1.Name = "iconButton1";
             this.iconButton1.Size = new System.Drawing.Size(114, 60);
             this.iconButton1.TabIndex = 189;
@@ -274,7 +274,7 @@
             this.txbComent.Name = "txbComent";
             this.txbComent.PasswordChar = '\0';
             this.txbComent.Radius = 10;
-            this.txbComent.Size = new System.Drawing.Size(657, 66);
+            this.txbComent.Size = new System.Drawing.Size(686, 66);
             this.txbComent.TabIndex = 184;
             // 
             // bigLabel2
@@ -333,7 +333,7 @@
             this.dtgDetalle.RowTemplate.Height = 50;
             this.dtgDetalle.RowTemplate.ReadOnly = true;
             this.dtgDetalle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dtgDetalle.Size = new System.Drawing.Size(663, 314);
+            this.dtgDetalle.Size = new System.Drawing.Size(692, 314);
             this.dtgDetalle.TabIndex = 153;
             this.dtgDetalle.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
             this.dtgDetalle.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -530,12 +530,12 @@
             this.gunaTextBox2.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.gunaTextBox2.Font = new System.Drawing.Font("Trebuchet MS", 18F);
             this.gunaTextBox2.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.gunaTextBox2.Location = new System.Drawing.Point(692, 14);
+            this.gunaTextBox2.Location = new System.Drawing.Point(760, 14);
             this.gunaTextBox2.Margin = new System.Windows.Forms.Padding(2);
             this.gunaTextBox2.Name = "gunaTextBox2";
             this.gunaTextBox2.PasswordChar = '\0';
             this.gunaTextBox2.Radius = 10;
-            this.gunaTextBox2.Size = new System.Drawing.Size(430, 54);
+            this.gunaTextBox2.Size = new System.Drawing.Size(362, 54);
             this.gunaTextBox2.TabIndex = 11;
             this.gunaTextBox2.Text = "No.Cot :)";
             this.gunaTextBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gunaTextBox2_KeyDown);

@@ -316,45 +316,60 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
-            using (frmToRepCot frm = new frmToRepCot())
-            {
-                string sucursal = gunaDataGridView1.Rows[0].Cells[0].Value?.ToString().Trim() ?? string.Empty;
-                string noCot = gunaDataGridView1.Rows[0].Cells[1].Value?.ToString().Trim() ?? string.Empty;
-                string pedimento = gunaDataGridView1.Rows[0].Cells[2].Value?.ToString().Trim() ?? string.Empty;
+            string tipoImp = gunaDataGridView1.Rows[0].Cells[26].Value?.ToString().Trim() ?? string.Empty;
+            
+                using (frmToRepCot frm = new frmToRepCot())
+                {
+                    string sucursal = gunaDataGridView1.Rows[0].Cells[0].Value?.ToString().Trim() ?? string.Empty;
+                    string noCot = gunaDataGridView1.Rows[0].Cells[1].Value?.ToString().Trim() ?? string.Empty;
+                    string pedimento = gunaDataGridView1.Rows[0].Cells[2].Value?.ToString().Trim() ?? string.Empty;
 
-                string cliente = gunaDataGridView1.Rows[0].Cells[14].Value?.ToString().Trim() ?? string.Empty;
+                    string cliente = gunaDataGridView1.Rows[0].Cells[14].Value?.ToString().Trim() ?? string.Empty;
 
-                string fechaElabora = gunaDataGridView1.Rows[0].Cells[19].Value?.ToString().Trim() ?? string.Empty;
+                    string fechaElabora = gunaDataGridView1.Rows[0].Cells[19].Value?.ToString().Trim() ?? string.Empty;
 
-                string valoeMercaUsa = gunaDataGridView1.Rows[0].Cells[9].Value?.ToString().Trim() ?? string.Empty;
-                string valoeMercaMx = gunaDataGridView1.Rows[0].Cells[9].Value?.ToString().Trim() ?? string.Empty;
-                string subTotal = gunaDataGridView1.Rows[0].Cells[5].Value?.ToString().Trim() ?? string.Empty;
-                string iva = gunaDataGridView1.Rows[0].Cells[12].Value?.ToString().Trim() ?? string.Empty;
-                string payArn = gunaDataGridView1.Rows[0].Cells[3].Value?.ToString().Trim() ?? string.Empty;
-
-
-                string paridad =  Math.Round(float.Parse(gunaDataGridView1.Rows[0].Cells[4].Value.ToString()), 2).ToString() ?? string.Empty;
-
+                    string valoeMercaUsa = gunaDataGridView1.Rows[0].Cells[9].Value?.ToString().Trim() ?? string.Empty;
+                    string valoeMercaMx = gunaDataGridView1.Rows[0].Cells[9].Value?.ToString().Trim() ?? string.Empty;
+                    string subTotal = gunaDataGridView1.Rows[0].Cells[5].Value?.ToString().Trim() ?? string.Empty;
+                    string iva = gunaDataGridView1.Rows[0].Cells[12].Value?.ToString().Trim() ?? string.Empty;
+                    string payArn = gunaDataGridView1.Rows[0].Cells[3].Value?.ToString().Trim() ?? string.Empty;
 
 
+                    string paridad = Math.Round(float.Parse(gunaDataGridView1.Rows[0].Cells[4].Value.ToString()), 2).ToString() ?? string.Empty;
 
-                string entradas = string.Join(",", listaEntEnCot.Select(x => x.Entrada.ToString()));
 
-                frm.cliente = cliente;
-                frm.sucursal = sucursal;
-                frm.quote = noCot;
-                frm.pedimento = pedimento;
-                frm.date = fechaElabora;
-                frm.paridad = paridad;
-                frm.entradas = entradas;
-                frm.vGod = valoeMercaUsa;
-                frm.subTotal = subTotal;
-                frm.iva = iva;
-                frm.toPayArn = payArn;
 
-                frm.lst = listaInfoEnCot; 
-                frm.ShowDialog();
-            }
+
+                    string entradas = string.Join(",", listaEntEnCot.Select(x => x.Entrada.ToString()));
+
+                    frm.cliente = cliente;
+                    frm.sucursal = sucursal;
+                    frm.quote = noCot;
+                    frm.pedimento = pedimento;
+                    frm.date = fechaElabora;
+                    frm.paridad = paridad;
+                    frm.entradas = entradas;
+                    frm.vGod = valoeMercaUsa;
+                    frm.subTotal = subTotal;
+                    frm.iva = iva;
+                    frm.toPayArn = payArn;
+
+                frm.lst = listaInfoEnCot;
+                if (tipoImp == "IMP")
+                {
+                    frm.tImprecionRep = false;
+                }
+                else
+                {
+                    frm.tImprecionRep = true;
+                }
+
+
+                    frm.ShowDialog();
+                }
+
+            
+
 
         }
 
