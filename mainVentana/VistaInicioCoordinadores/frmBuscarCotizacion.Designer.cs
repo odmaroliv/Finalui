@@ -130,14 +130,14 @@
             this.btnActualizar.ForeColor = System.Drawing.Color.White;
             this.btnActualizar.Image = null;
             this.btnActualizar.ImageSize = new System.Drawing.Size(52, 52);
-            this.btnActualizar.Location = new System.Drawing.Point(970, 558);
+            this.btnActualizar.Location = new System.Drawing.Point(970, 617);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.btnActualizar.OnHoverBorderColor = System.Drawing.Color.Black;
             this.btnActualizar.OnHoverForeColor = System.Drawing.Color.White;
             this.btnActualizar.OnHoverImage = null;
             this.btnActualizar.OnPressedColor = System.Drawing.Color.Black;
-            this.btnActualizar.Size = new System.Drawing.Size(160, 187);
+            this.btnActualizar.Size = new System.Drawing.Size(160, 128);
             this.btnActualizar.TabIndex = 188;
             this.btnActualizar.Text = "Actualizar";
             this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
@@ -150,9 +150,9 @@
             this.groupBox7.Controls.Add(this.label38);
             this.groupBox7.Controls.Add(this.rdbNoPagado);
             this.groupBox7.Controls.Add(this.rdbPagado);
-            this.groupBox7.Location = new System.Drawing.Point(760, 558);
+            this.groupBox7.Location = new System.Drawing.Point(760, 617);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(204, 187);
+            this.groupBox7.Size = new System.Drawing.Size(204, 128);
             this.groupBox7.TabIndex = 187;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Estatus";
@@ -170,14 +170,14 @@
             this.gunaTileButton3.ForeColor = System.Drawing.Color.White;
             this.gunaTileButton3.Image = null;
             this.gunaTileButton3.ImageSize = new System.Drawing.Size(52, 52);
-            this.gunaTileButton3.Location = new System.Drawing.Point(20, 101);
+            this.gunaTileButton3.Location = new System.Drawing.Point(20, 92);
             this.gunaTileButton3.Name = "gunaTileButton3";
             this.gunaTileButton3.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.gunaTileButton3.OnHoverBorderColor = System.Drawing.Color.Black;
             this.gunaTileButton3.OnHoverForeColor = System.Drawing.Color.White;
             this.gunaTileButton3.OnHoverImage = null;
             this.gunaTileButton3.OnPressedColor = System.Drawing.Color.Black;
-            this.gunaTileButton3.Size = new System.Drawing.Size(160, 74);
+            this.gunaTileButton3.Size = new System.Drawing.Size(160, 36);
             this.gunaTileButton3.TabIndex = 4;
             this.gunaTileButton3.Text = "liberar";
             this.gunaTileButton3.Click += new System.EventHandler(this.gunaTileButton3_Click);
@@ -333,7 +333,7 @@
             this.dtgDetalle.RowTemplate.Height = 50;
             this.dtgDetalle.RowTemplate.ReadOnly = true;
             this.dtgDetalle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dtgDetalle.Size = new System.Drawing.Size(692, 314);
+            this.dtgDetalle.Size = new System.Drawing.Size(806, 314);
             this.dtgDetalle.TabIndex = 153;
             this.dtgDetalle.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
             this.dtgDetalle.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -364,11 +364,11 @@
             this.lblEnts.BackColor = System.Drawing.Color.Transparent;
             this.lblEnts.Font = new System.Drawing.Font("Segoe UI", 25F);
             this.lblEnts.ForeColor = System.Drawing.Color.Silver;
-            this.lblEnts.Location = new System.Drawing.Point(752, 248);
+            this.lblEnts.Location = new System.Drawing.Point(868, 248);
             this.lblEnts.Name = "lblEnts";
-            this.lblEnts.Size = new System.Drawing.Size(358, 46);
+            this.lblEnts.Size = new System.Drawing.Size(148, 46);
             this.lblEnts.TabIndex = 152;
-            this.lblEnts.Text = "Entradas En Cotización";
+            this.lblEnts.Text = "Entradas";
             // 
             // bigLabel1
             // 
@@ -415,7 +415,7 @@
             this.dgvEntsCot.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvEntsCot.EnableHeadersVisualStyles = false;
             this.dgvEntsCot.GridColor = System.Drawing.Color.Azure;
-            this.dgvEntsCot.Location = new System.Drawing.Point(760, 298);
+            this.dgvEntsCot.Location = new System.Drawing.Point(876, 298);
             this.dgvEntsCot.Margin = new System.Windows.Forms.Padding(2);
             this.dgvEntsCot.Name = "dgvEntsCot";
             this.dgvEntsCot.ReadOnly = true;
@@ -425,7 +425,7 @@
             this.dgvEntsCot.RowTemplate.Height = 50;
             this.dgvEntsCot.RowTemplate.ReadOnly = true;
             this.dgvEntsCot.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvEntsCot.Size = new System.Drawing.Size(340, 243);
+            this.dgvEntsCot.Size = new System.Drawing.Size(224, 243);
             this.dgvEntsCot.TabIndex = 150;
             this.dgvEntsCot.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
             this.dgvEntsCot.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -530,12 +530,12 @@
             this.gunaTextBox2.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.gunaTextBox2.Font = new System.Drawing.Font("Trebuchet MS", 18F);
             this.gunaTextBox2.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.gunaTextBox2.Location = new System.Drawing.Point(760, 14);
+            this.gunaTextBox2.Location = new System.Drawing.Point(865, 14);
             this.gunaTextBox2.Margin = new System.Windows.Forms.Padding(2);
             this.gunaTextBox2.Name = "gunaTextBox2";
             this.gunaTextBox2.PasswordChar = '\0';
             this.gunaTextBox2.Radius = 10;
-            this.gunaTextBox2.Size = new System.Drawing.Size(362, 54);
+            this.gunaTextBox2.Size = new System.Drawing.Size(257, 54);
             this.gunaTextBox2.TabIndex = 11;
             this.gunaTextBox2.Text = "No.Cot :)";
             this.gunaTextBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gunaTextBox2_KeyDown);

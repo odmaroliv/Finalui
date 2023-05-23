@@ -9,5 +9,6 @@ namespace Datos.ViewModels.Coord
     public class vmEntCot
     {
         public string Entrada { get; set; }
+        public string sucursal { get; set; }
     }
 }

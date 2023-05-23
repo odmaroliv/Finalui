@@ -81,10 +81,20 @@ namespace mainVentana.VistaInicioCoordinadores
             Negocios.NGCotizacion.accesoCotizaciones dt = new Negocios.NGCotizacion.accesoCotizaciones();
             gunaDataGridView1.DataSource = null;
             listaGeneralCot = await dt.BuscarCitizacionPorId(id, sucursal);
-            gunaDataGridView1.DataSource = listaGeneralCot;
+            try
+            {
+                gunaDataGridView1.DataSource = listaGeneralCot;
+            }
+            catch (Exception)
+            {
+
+            }
+           
             if (gunaDataGridView1.RowCount <= 0)
             {
                 MessageBox.Show("No se encontraron datos");
+                dtgDetalle.DataSource = null;
+                dgvEntsCot.DataSource = null;
                 return;
             }
             string ests = "";
@@ -92,7 +102,7 @@ namespace mainVentana.VistaInicioCoordinadores
 
             listaInfoEnCot = await dt.BuscaInfoTablaCotizacionPorId(id, sucursal);
             dtgDetalle.DataSource = listaInfoEnCot;
-            listaEntEnCot = await dt.BuscaEntsEnCot(_nCotD7);
+            listaEntEnCot = await dt.BuscaEntsEnCot(_nCotD7.Trim(), sucursal.Trim());
 
             dgvEntsCot.DataSource = listaEntEnCot;
             foreach (var item in listaGeneralCot)
@@ -149,6 +159,10 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
+            if (gunaDataGridView1.RowCount < 1)
+            {
+                return;
+            }
             if (MessageBox.Show("Seguro que quieres Cancelar esta cotización?","Cuidado",MessageBoxButtons.OKCancel,MessageBoxIcon.Question)==DialogResult.OK)
             {
                 try
@@ -164,6 +178,10 @@ namespace mainVentana.VistaInicioCoordinadores
                             try
                             {
                                 AltasCotizacion alta = new AltasCotizacion();
+
+                                string entradas = string.Join(",", listaEntEnCot.Select(x => x.Entrada.ToString().Trim()));
+                                string su = string.Join(",", listaEntEnCot.Select(x => x.sucursal.ToString().Trim()));
+                                alta.CancelaCotEnEntradas(listaEntEnCot);
                                 alta.CancelarCotizacion(value1, value2);
                                 MessageBox.Show("Listo");
                             }
@@ -316,6 +334,12 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
+
+            if (dgvEntsCot.RowCount < 1)
+            {
+                return;
+            }
+
             string tipoImp = gunaDataGridView1.Rows[0].Cells[26].Value?.ToString().Trim() ?? string.Empty;
             
                 using (frmToRepCot frm = new frmToRepCot())
@@ -333,9 +357,14 @@ namespace mainVentana.VistaInicioCoordinadores
                     string subTotal = gunaDataGridView1.Rows[0].Cells[5].Value?.ToString().Trim() ?? string.Empty;
                     string iva = gunaDataGridView1.Rows[0].Cells[12].Value?.ToString().Trim() ?? string.Empty;
                     string payArn = gunaDataGridView1.Rows[0].Cells[3].Value?.ToString().Trim() ?? string.Empty;
+                    string payArnMXN = gunaDataGridView1.Rows[0].Cells[6].Value?.ToString().Trim() ?? string.Empty;
+                    string referencia = gunaDataGridView1.Rows[0].Cells[22].Value?.ToString().Trim() ?? string.Empty;
+                    string User = gunaDataGridView1.Rows[0].Cells[21].Value?.ToString().Trim() ?? string.Empty;
+                    string formPayment = gunaDataGridView1.Rows[0].Cells[11].Value?.ToString().Trim() ?? string.Empty;
 
 
-                    string paridad = Math.Round(float.Parse(gunaDataGridView1.Rows[0].Cells[4].Value.ToString()), 2).ToString() ?? string.Empty;
+
+                string paridad = Math.Round(float.Parse(gunaDataGridView1.Rows[0].Cells[4].Value.ToString()), 2).ToString() ?? string.Empty;
 
 
 
@@ -353,6 +382,10 @@ namespace mainVentana.VistaInicioCoordinadores
                     frm.subTotal = subTotal;
                     frm.iva = iva;
                     frm.toPayArn = payArn;
+                    frm.totalPesos = payArnMXN;
+                    frm.referencia = referencia;
+                    frm.User = User;
+                    frm.payment = formPayment;
 
                 frm.lst = listaInfoEnCot;
                 if (tipoImp == "IMP")

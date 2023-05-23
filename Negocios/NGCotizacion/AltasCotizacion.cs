@@ -56,7 +56,7 @@ namespace Negocios.NGCotizacion
                 d.C86 = c86; //Referemcias
                 d.C88 = c88; //Valor factura usd mismo c83
                 d.C89 = c89; //Valor arnian sin iva ni agregados
-                d.C93 = c93;//Total Pesos
+                d.C93 = c93;//Total Pesos COMPLETO
                 d.C94 = c94;//Total Only taxes
 
 
@@ -173,6 +173,7 @@ namespace Negocios.NGCotizacion
 
             using (modelo2Entities modelo = new modelo2Entities())
             {
+
                 try
                 {
                     var d = (from q in modelo.KDM1
@@ -193,6 +194,38 @@ namespace Negocios.NGCotizacion
             }
 
 
+        }
+        public async Task CancelaCotEnEntradas(List<vmEntCot> lst)
+        {
+
+
+            await Task.Run(() =>
+            {
+                using (modelo2Entities modelo = new modelo2Entities())
+                {
+                    List<KDM1> kd = new List<KDM1>();
+                    foreach (var i in lst)
+                    {
+                        var d = (from fd in modelo.KDM1
+                                 where fd.C1.Contains(i.sucursal) && fd.C4 == 35 && fd.C6.Contains(i.Entrada)
+                                 select fd).First();
+
+                        d.C115 = "";
+                        kd.Add(d);
+
+                    }
+
+
+                    try
+                    {
+                        modelo.BulkUpdate(kd.ToList());
+                    }
+                    catch (Exception ex)
+                    {
+                        throw;
+                    }
+                }
+            });
         }
         public void PagoCotizacion(string SucCoti,
          string NoCotizacion, string stado)

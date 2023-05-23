@@ -156,9 +156,16 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private async void gunaTileButton2_Click(object sender, EventArgs e)
         {
+            string val = cmbIVA.SelectedItem?.ToString() ?? "";
+            if (val == "")
+            {
+                MessageBox.Show("Seleccione el IVA");
+                return;
+            }
             if (String.IsNullOrEmpty(lblCodCliente.Text))
             {
                 MessageBox.Show("Primero busca el cliente");
+                return;
             }
             else
             {
@@ -494,7 +501,7 @@ namespace mainVentana.VistaInicioCoordinadores
             }
 
         }
-
+        
         private void operacion()
         {
             try
@@ -512,7 +519,7 @@ namespace mainVentana.VistaInicioCoordinadores
                 txbSubTo.Text = Math.Round((sumatoria), 2).ToString(); 
 
                 txbSubTomxn.Text = Math.Round((sumatoria * vParidad), 2).ToString();
-                CalcIva(sumatoria + vMercanciaUSD);
+                
                 TaxesCalc();
                 GrandCalc();
             }
@@ -546,6 +553,8 @@ namespace mainVentana.VistaInicioCoordinadores
             
             decimal resultPayArnMX = Math.Round(((vIva + vSerTax) * vParidad), 2);
             totalPesos = resultPayArnMX.ToString();
+            txbTotalArnMXN.Text = totalPesos;
+            CalcIva(resultPayArn);
 
         }
         private void PayArn()
@@ -672,7 +681,7 @@ namespace mainVentana.VistaInicioCoordinadores
                
                 alta.CreaCotizacionKDM1(sGlobal, nCotizacionG, DateTime.Now, lblCodCliente.Text.Trim(),
                     0, decimal.Parse(txbIva.Text), decimal.Parse(txbTotalArn.Text), DateTime.Now, cmbTipoPago.GetItemText(cmbTipoPago.SelectedItem).ToString(), cliente.Text.Trim(), "", "", "", float.Parse(txbParidad.Text.Trim()),
-                    decimal.Parse(txbSubTo.Text), "N", Negocios.Common.Cache.CacheLogin.username, DateTime.Now, txbGoodUsd.Text, txbGoodMnx.Text, txbReferencia.Text, txbTotalArn.Text, txbSerFee.Text, txbSubTomxn.Text, TaxAFees, txbComent.Text, txbPedimento.Text, lblTipoImp.Text);
+                    decimal.Parse(txbSubTo.Text), "N", Negocios.Common.Cache.CacheLogin.username, DateTime.Now, txbGoodUsd.Text, txbGoodMnx.Text, txbReferencia.Text, txbTotalArn.Text, txbSerFee.Text, txbTotalArnMXN.Text, TaxAFees, txbComent.Text, txbPedimento.Text, lblTipoImp.Text);
                 alta.ActualizaSqlIov(sGlobal, 34, nCotizacionG);
                 AltaKDMENT();
                 AltaKDM2();
@@ -706,7 +715,8 @@ namespace mainVentana.VistaInicioCoordinadores
         private async Task AltaKDMENT()
         {
             AltasCotizacion alta = new AltasCotizacion();
-            await alta.ModificaKDM1Cotiza(listaEntsEnCotizacion, nCotizacionG);
+            string cotCompleta = lblSuc.Text.Trim() +"-"+ nCotizacionG;
+            await alta.ModificaKDM1Cotiza(listaEntsEnCotizacion, cotCompleta);
 
         }
 
@@ -732,6 +742,7 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private void cmbIVA_SelectedIndexChanged(object sender, EventArgs e)
         {
+            cmbIVA.Enabled = false;
             operacion();
         }
 
@@ -750,5 +761,7 @@ namespace mainVentana.VistaInicioCoordinadores
                 lblTipoImp.Text = "AD";
             }
         }
+
+       
     }
 }

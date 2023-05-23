@@ -29,7 +29,10 @@ namespace mainVentana.Reportes.Cotizaciones.cotToPDF
         public string iva;
         public string sumGoodsTaxesServices;
         public string toPayArn;
+        public string totalPesos;
         public string sucursal;
+        public string User;
+        public string payment;
         public List<vmInfoTablaCot> lst = new List<vmInfoTablaCot>();
         public bool tImprecionRep;
 
@@ -105,8 +108,11 @@ namespace mainVentana.Reportes.Cotizaciones.cotToPDF
             reportParameters.Add(new ReportParameter("iva", iva));
             reportParameters.Add(new ReportParameter("sumGoodsTaxesServices", sumGoodsTaxesServices));
             reportParameters.Add(new ReportParameter("toPayArn", toPayArn));
+            reportParameters.Add(new ReportParameter("totalPesos", totalPesos));
             reportParameters.Add(new ReportParameter("sucursal", sucursal));
-
+            reportParameters.Add(new ReportParameter("User", User));
+            reportParameters.Add(new ReportParameter("payment", payment));
+            
             // Establecer los parámetros en el informe
             reportViewer1.LocalReport.SetParameters(reportParameters);
 

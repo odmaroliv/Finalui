@@ -326,7 +326,7 @@ namespace Negocios.NGCotizacion
             }
         }
 
-        public async Task<List<vmEntCot>> BuscaEntsEnCot(string nCot) //BUSQUEDA RAPIDA POR ENTRADA <Funciona en la pantalla principal Form1>
+        public async Task<List<vmEntCot>> BuscaEntsEnCot(string nCot, string suc) //BUSQUEDA RAPIDA POR ENTRADA <Funciona en la pantalla principal Form1>
         {
 
             try
@@ -338,11 +338,12 @@ namespace Negocios.NGCotizacion
                     {
 
                         var lst = from d in modelo.KDM1
-                                  where d.C115.Equals(nCot) && d.C4 == 35
+                                  where d.C115.Equals(suc+"-"+nCot) && d.C4 == 35 
                                   orderby (d.C6)
                                   select new vmEntCot
                                   {
                                       Entrada = d.C6,
+                                      sucursal = d.C1,
                                   };
                         lst2 = lst.ToList();
 
