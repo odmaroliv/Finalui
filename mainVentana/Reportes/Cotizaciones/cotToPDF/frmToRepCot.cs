@@ -33,6 +33,8 @@ namespace mainVentana.Reportes.Cotizaciones.cotToPDF
         public string sucursal;
         public string User;
         public string payment;
+        public string pDescuento;
+        
         public List<vmInfoTablaCot> lst = new List<vmInfoTablaCot>();
         public bool tImprecionRep;
 
@@ -112,7 +114,9 @@ namespace mainVentana.Reportes.Cotizaciones.cotToPDF
             reportParameters.Add(new ReportParameter("sucursal", sucursal));
             reportParameters.Add(new ReportParameter("User", User));
             reportParameters.Add(new ReportParameter("payment", payment));
+            reportParameters.Add(new ReportParameter("pDescuento", pDescuento));
             
+
             // Establecer los parámetros en el informe
             reportViewer1.LocalReport.SetParameters(reportParameters);
 

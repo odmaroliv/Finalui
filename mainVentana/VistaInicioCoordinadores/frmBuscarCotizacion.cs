@@ -340,7 +340,7 @@ namespace mainVentana.VistaInicioCoordinadores
                 return;
             }
 
-            string tipoImp = gunaDataGridView1.Rows[0].Cells[26].Value?.ToString().Trim() ?? string.Empty;
+                string tipoImp = gunaDataGridView1.Rows[0].Cells[26].Value?.ToString().Trim() ?? string.Empty;
             
                 using (frmToRepCot frm = new frmToRepCot())
                 {
@@ -361,6 +361,8 @@ namespace mainVentana.VistaInicioCoordinadores
                     string referencia = gunaDataGridView1.Rows[0].Cells[22].Value?.ToString().Trim() ?? string.Empty;
                     string User = gunaDataGridView1.Rows[0].Cells[21].Value?.ToString().Trim() ?? string.Empty;
                     string formPayment = gunaDataGridView1.Rows[0].Cells[11].Value?.ToString().Trim() ?? string.Empty;
+
+                    string dDescuento = gunaDataGridView1.Rows[0].Cells[27].Value?.ToString().Trim() ?? string.Empty;
 
 
 
@@ -386,6 +388,7 @@ namespace mainVentana.VistaInicioCoordinadores
                     frm.referencia = referencia;
                     frm.User = User;
                     frm.payment = formPayment;
+                    frm.pDescuento = dDescuento;
 
                 frm.lst = listaInfoEnCot;
                 if (tipoImp == "IMP")

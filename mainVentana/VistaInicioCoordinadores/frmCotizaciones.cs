@@ -29,11 +29,13 @@ namespace mainVentana.VistaInicioCoordinadores
         private List<vmEntCordsCot> listaEntsEnCotizacion = new List<vmEntCordsCot>();
         private string nCotizacionG = default;
         private string TaxAFees = default;
-        private string totalPesos=default;
+        private string totalPesos = default;
+        private bool _valAgregarEntradas = false;
         public frmCotizaciones()
         {
             InitializeComponent();
-        }
+            _valAgregarEntradas = true;
+    }
 
         private void gunaTileButton1_Click(object sender, EventArgs e)
         {
@@ -176,7 +178,11 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private void dtgEnts_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            if (_valAgregarEntradas == false)
+            {
+                MessageBox.Show("Ya has comenzado a cotizar\nYa no puedes agregar");
+                return;
+            }
             if (e.ColumnIndex == 0)
             {
                 try
@@ -204,14 +210,18 @@ namespace mainVentana.VistaInicioCoordinadores
                                 else
                                 {
                                     txbEntradaACot.Text += ", " + ent;
-                                }
+                                }                             
 
                             }
                             else
                             {
-                                MessageBox.Show("La entrada ya existe en la lista");
+                                MessageBox.Show("La entrada ya existe en la lista. Se eliminará.");
+                                var entryToRemove = listaEntsEnCotizacion.FirstOrDefault(x => x.entrada.Trim() == ent.Trim());
+                                listaEntsEnCotizacion.Remove(entryToRemove);
+                                txbEntradaACot.Text = string.Join(", ", listaEntsEnCotizacion.Select(x => x.entrada));
                             }
                             suma(listaEntsEnCotizacion);
+                            operacion();
                             operacion();
                         }
                     }
@@ -245,7 +255,8 @@ namespace mainVentana.VistaInicioCoordinadores
             decimal vParidad = decimal.Parse(String.IsNullOrWhiteSpace(txbParidad.Text) ? "0" : txbParidad.Text.ToString().Trim());
 
             decimal res = vMercanciaUSD * vParidad;
-            txbGoodMnx.Text = Math.Round(res,2).ToString(); 
+            txbGoodMnx.Text = res.ToString("F2");
+
 
         }
 
@@ -285,7 +296,7 @@ namespace mainVentana.VistaInicioCoordinadores
                     if (rates.ContainsKey("MXN") && rates["MXN"].Type == JTokenType.Float)
                     {
                         double valorMXN = rates["MXN"].ToObject<double>();
-                        txbParidad.Text = Math.Round(Convert.ToDecimal(valorMXN), 2).ToString();
+                        txbParidad.Text = Convert.ToDecimal(valorMXN).ToString("F2");
                         return;
                     }
                 }
@@ -317,7 +328,7 @@ namespace mainVentana.VistaInicioCoordinadores
                         if (rates.ContainsKey("MXN") && rates["MXN"].Type == JTokenType.Float)
                         {
                             double valorMXN = rates["MXN"].ToObject<double>();
-                            txbParidad.Text = Math.Round(Convert.ToDecimal(valorMXN), 2).ToString();
+                            txbParidad.Text = Convert.ToDecimal(valorMXN).ToString("F2");
                             return;
                         }
                     }
@@ -332,7 +343,8 @@ namespace mainVentana.VistaInicioCoordinadores
                 {
                     foreach (var i in lista.ToList())
                     {
-                        txbParidad.Text = Math.Round(Convert.ToDecimal(i.valor), 2).ToString();
+                        txbParidad.Text = Convert.ToDecimal(i.valor).ToString("F2");
+
                     }
                 }
             }
@@ -445,81 +457,68 @@ namespace mainVentana.VistaInicioCoordinadores
                 }
             }
             operacion();
+            operacion();
         }
+
+        private decimal vMercanciaUSD;
+        private decimal vParidad;
 
         private void dgvEntradasACotizar_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (!String.IsNullOrWhiteSpace(txbGoodUsd.Text))
+            try
             {
-                if (e.ColumnIndex == 1)
-                {
-                    DataGridViewRow currentRow = dgvEntradasACotizar.Rows[e.RowIndex];
-                    try
-                    {
-                        decimal valorColumna1 = decimal.Parse(currentRow.Cells[1].Value==null ? "0" : currentRow.Cells[1].Value.ToString());
-                        decimal vMercanciaUSD = decimal.Parse(String.IsNullOrWhiteSpace(txbGoodUsd.Text) ? "0" : txbGoodUsd.Text);
-                        decimal vParidad = decimal.Parse(String.IsNullOrWhiteSpace(txbParidad.Text) ? "0" : txbParidad.Text.ToString().Trim());
+                vMercanciaUSD = String.IsNullOrWhiteSpace(txbGoodUsd.Text) ? 0 : decimal.Parse(txbGoodUsd.Text);
+                vParidad = String.IsNullOrWhiteSpace(txbParidad.Text) ? 0 : decimal.Parse(txbParidad.Text.Trim());
 
-                        //agrega el valor del porcentaje a la columna de dollar [2] y peso [3]
+                if (_valAgregarEntradas == true)
+                {
+                    if (MessageBox.Show("Comenzaremos a cotizar\nYa no agregaras mas entradas?", "Validar", MessageBoxButtons.YesNo) == DialogResult.No)
+                    {
+                        _valAgregarEntradas = false;
+                    }
+                }
+                if (!String.IsNullOrWhiteSpace(txbGoodUsd.Text))
+                {
+                    if (e.ColumnIndex == 1)
+                    {
+                        DataGridViewRow currentRow = dgvEntradasACotizar.Rows[e.RowIndex];
+                        decimal valorColumna1 = decimal.Parse(currentRow.Cells[1].Value == null ? "0" : currentRow.Cells[1].Value.ToString());
+
                         decimal porcentaje = (valorColumna1 * vMercanciaUSD) / 100;
-                        currentRow.Cells[2].Value = Math.Round((porcentaje), 2).ToString();
-                        currentRow.Cells[3].Value = Math.Round((porcentaje * vParidad), 2).ToString();
+                        currentRow.Cells[2].Value = porcentaje.ToString("F2");
+                        currentRow.Cells[3].Value = (porcentaje * vParidad).ToString("F2");
 
-
-                        //sumatoria de la columna de dolla, para calcular el total
                         operacion();
-
-                    }
-                    catch (Exception)
-                    {
-
-                        MessageBox.Show("Algo salio mal, verifica los datos ingresados");
-                    }
-
-
-                }
-                if (e.ColumnIndex == 2)
-                {
-                    DataGridViewRow currentRow = dgvEntradasACotizar.Rows[e.RowIndex];
-                    try
-                    {
-                        //currentRow.Cells[2].Value = "";
                         operacion();
-                        
                     }
-                    catch (Exception)
+                    if (e.ColumnIndex == 2)
                     {
-
-                        MessageBox.Show("Algo salio mal, verifica los datos ingresados");
-
+                        DataGridViewRow currentRow = dgvEntradasACotizar.Rows[e.RowIndex];
+                        operacion();
+                        operacion();
                     }
-
-
                 }
-                //Hacer la sumatoria de la columna 3 y establecer el valor en txbSubTo.Text
-
             }
-
+            catch (Exception)
+            {
+                MessageBox.Show("Algo salio mal, verifica los datos ingresados");
+            }
         }
-        
+
         private void operacion()
         {
             try
             {
-                decimal vMercanciaUSD = decimal.Parse(String.IsNullOrWhiteSpace(txbGoodUsd.Text) ? "0" : txbGoodUsd.Text);
-                decimal vParidad = decimal.Parse(String.IsNullOrWhiteSpace(txbParidad.Text) ? "0" : txbParidad.Text.ToString().Trim());
                 decimal sumatoria = 0;
                 for (int i = 0; i < dgvEntradasACotizar.Rows.Count; i++)
                 {
                     sumatoria += decimal.Parse(dgvEntradasACotizar.Rows[i].Cells[2].Value == null ? "0" : dgvEntradasACotizar.Rows[i].Cells[2].Value.ToString());
                 }
+               
+                decimal submenosdesc = sumatoria - descuentoGlobal;
+                txbSubTo.Text = submenosdesc.ToString("F2");
+                txbSubTomxn.Text = (submenosdesc * vParidad).ToString("F2");
 
-
-
-                txbSubTo.Text = Math.Round((sumatoria), 2).ToString(); 
-
-                txbSubTomxn.Text = Math.Round((sumatoria * vParidad), 2).ToString();
-                
                 TaxesCalc();
                 GrandCalc();
             }
@@ -529,87 +528,93 @@ namespace mainVentana.VistaInicioCoordinadores
                 txbParidad.Enabled = true;
                 txbParidad.Focus();
             }
+        }
 
+        private void GrandCalc()
+        {
+            try
+            {
+                decimal vIva = (decimal.Parse(String.IsNullOrWhiteSpace(txbIva.Text) ? "0" : txbIva.Text.ToString()));
+                decimal vSerTax = (decimal.Parse(String.IsNullOrWhiteSpace(txbSubTo.Text) ? "0" : txbSubTo.Text.ToString()));
+               // decimal vDescuento = decimal.Parse(String.IsNullOrWhiteSpace(txbDescuento.Text) ? "0" : txbDescuento.Text.ToString().Trim());
+               
+                decimal resultPayArn = (vIva + vSerTax);
+                txbTotalArn.Text = resultPayArn.ToString();
+                decimal resul = vMercanciaUSD + vIva + vSerTax;
+                txbSubServAndFees.Text = resul.ToString();
+
+                CalcIva(vSerTax);
+                decimal resultPayArnMX = resultPayArn * vParidad;
+                string totalPesos = resultPayArnMX.ToString("F2");
+
+                txbTotalArnMXN.Text = totalPesos;
+                
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Algo salió mal durante el cálculo del total, verifica los datos ingresados.");
+            }
         }
 
         private void CalcIva(decimal subTotal)
         {
-            decimal vIva = (decimal.Parse(cmbIVA.SelectedItem == null ? "0" : cmbIVA.SelectedItem.ToString()) / 100);
-            decimal oper = Math.Round((vIva * subTotal), 2);
-            txbIva.Text = oper.ToString();
-
-        }
-        private void GrandCalc()
-        {
-            decimal vIva = (decimal.Parse(String.IsNullOrWhiteSpace(txbIva.Text) ? "0" : txbIva.Text.ToString()));
-            decimal vGoods = decimal.Parse(String.IsNullOrWhiteSpace(txbGoodUsd.Text) ? "0" : txbGoodUsd.Text);
-            decimal vSerTax = (decimal.Parse(String.IsNullOrWhiteSpace(txbSubTo.Text) ? "0" : txbSubTo.Text.ToString()));
-            decimal vParidad = decimal.Parse(String.IsNullOrWhiteSpace(txbParidad.Text) ? "0" : txbParidad.Text.ToString().Trim());
-            decimal resul = vGoods + vIva + vSerTax;
-            txbSubServAndFees.Text = resul.ToString();
-
-            decimal resultPayArn = vIva + vSerTax;
-            txbTotalArn.Text = resultPayArn.ToString();
-            
-            decimal resultPayArnMX = Math.Round(((vIva + vSerTax) * vParidad), 2);
-            totalPesos = resultPayArnMX.ToString();
-            txbTotalArnMXN.Text = totalPesos;
-            CalcIva(resultPayArn);
-
-        }
-        private void PayArn()
-        {
-
+            try
+            {
+                decimal vIva = (decimal.Parse(cmbIVA.SelectedItem == null ? "0" : cmbIVA.SelectedItem.ToString()) / 100);
+                decimal oper = vIva * subTotal;
+                txbIva.Text = oper.ToString("F2");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Algo salió mal durante el cálculo del IVA, verifica los datos ingresados.");
+            }
         }
 
         private void TaxesCalc()
         {
-            if (!String.IsNullOrWhiteSpace(txbEntradaACot.Text))
+            try
             {
-                List<decimal> lst = new List<decimal>();
-                decimal sumatoriaTaxesRound = 0;
-                decimal sumatoriaTaxes = 0;
-                decimal sumatoriaFeesRound = 0;
-                decimal sumatoriaFees = 0;
-                foreach (DataGridViewRow item in dgvEntradasACotizar.Rows)
+                if (!String.IsNullOrWhiteSpace(txbEntradaACot.Text))
                 {
-
-                    try
+                    List<decimal> lst = new List<decimal>();
+                    decimal sumatoriaTaxes = 0;
+                    decimal sumatoriaFees = 0;
+                    foreach (DataGridViewRow item in dgvEntradasACotizar.Rows)
                     {
                         string valorNombre = dgvEntradasACotizar.Rows[item.Index].Cells[0].Value.ToString();
-                        decimal valorDato = dgvEntradasACotizar.Rows[item.Index].Cells[2].Value == null?0:decimal.Parse(dgvEntradasACotizar.Rows[item.Index].Cells[2].Value.ToString());
+                        decimal valorDato = dgvEntradasACotizar.Rows[item.Index].Cells[2].Value == null ? 0 : decimal.Parse(dgvEntradasACotizar.Rows[item.Index].Cells[2].Value.ToString());
                         if (valorNombre.Contains("IGI") || valorNombre.Contains("DTA") || valorNombre.Contains("PREV") || valorNombre.Contains("CNT") || valorNombre.Contains("Others TAXES"))
                         {
-                            sumatoriaTaxes = sumatoriaTaxes + valorDato;
+                            sumatoriaTaxes += valorDato;
                         }
                         else
                         {
-                            sumatoriaFees = sumatoriaFees + valorDato;
+                            sumatoriaFees += valorDato;
                         }
-
-
                     }
-                    catch (Exception)
-                    {
-                        continue;
-                    }
+                    decimal sumatoriaTaxesRound = sumatoriaTaxes;
+                    decimal sumatoriaFeesRound = sumatoriaFees;
+                    txbSumOTax.Text = sumatoriaTaxesRound.ToString("F2");
+                    txbSerFee.Text = sumatoriaFeesRound.ToString("F2");
+                    TaxAFees = sumatoriaTaxesRound.ToString("F2");
                 }
-                sumatoriaTaxesRound = Math.Round(sumatoriaTaxes, 2);
-                sumatoriaFeesRound = Math.Round(sumatoriaFees, 2);
-                txbSumOTax.Text = sumatoriaTaxesRound.ToString();
-                txbSerFee.Text = sumatoriaFeesRound.ToString();
-                TaxAFees = sumatoriaTaxesRound.ToString();
+                else
+                {
+                    MessageBox.Show("No has agregado entradas a la cotizacion");
+                }
             }
-            else
+            catch (Exception)
             {
-                MessageBox.Show("No has agregado entradas a la cotizacion");
+                MessageBox.Show("Algo salió mal durante el cálculo de los impuestos, verifica los datos ingresados.");
             }
-           
-            
-
         }
 
-    
+
+
+
+
+
+
 
         private void dtgEnts_FilterStringChanged(object sender, EventArgs e)
         {
@@ -678,10 +683,10 @@ namespace mainVentana.VistaInicioCoordinadores
             {
                 CargaUltCot();
                  AltasCotizacion alta = new AltasCotizacion();
-               
+
                 alta.CreaCotizacionKDM1(sGlobal, nCotizacionG, DateTime.Now, lblCodCliente.Text.Trim(),
                     0, decimal.Parse(txbIva.Text), decimal.Parse(txbTotalArn.Text), DateTime.Now, cmbTipoPago.GetItemText(cmbTipoPago.SelectedItem).ToString(), cliente.Text.Trim(), "", "", "", float.Parse(txbParidad.Text.Trim()),
-                    decimal.Parse(txbSubTo.Text), "N", Negocios.Common.Cache.CacheLogin.username, DateTime.Now, txbGoodUsd.Text, txbGoodMnx.Text, txbReferencia.Text, txbTotalArn.Text, txbSerFee.Text, txbTotalArnMXN.Text, TaxAFees, txbComent.Text, txbPedimento.Text, lblTipoImp.Text);
+                    decimal.Parse(txbSubTo.Text), "N", Negocios.Common.Cache.CacheLogin.username, DateTime.Now, txbGoodUsd.Text, txbGoodMnx.Text, txbReferencia.Text, txbTotalArn.Text, txbSerFee.Text, txbTotalArnMXN.Text, TaxAFees, txbComent.Text, txbPedimento.Text, lblTipoImp.Text, descuentoGlobal.ToString());
                 alta.ActualizaSqlIov(sGlobal, 34, nCotizacionG);
                 AltaKDMENT();
                 AltaKDM2();
@@ -744,9 +749,10 @@ namespace mainVentana.VistaInicioCoordinadores
         {
             cmbIVA.Enabled = false;
             operacion();
+            operacion();
         }
 
-      
+
         private void SwitchAdd_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -762,6 +768,20 @@ namespace mainVentana.VistaInicioCoordinadores
             }
         }
 
-       
+
+        decimal descuentoGlobal = 0;
+        private void txbDescuento_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                decimal vDescuento = decimal.Parse(String.IsNullOrWhiteSpace(txbDescuento.Text) ? "0" : txbDescuento.Text.ToString().Trim());
+                descuentoGlobal = vDescuento;
+                operacion();
+                operacion();
+
+            }
+        }
+
+        
     }
 }

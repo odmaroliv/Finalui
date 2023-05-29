@@ -844,7 +844,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paridad</rd:DefaultName>
-            <Top>1.89806in</Top>
+            <Top>2.14806in</Top>
             <Left>5.52212in</Left>
             <Height>0.25in</Height>
             <Width>1.64322in</Width>
@@ -878,7 +878,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>1.89806in</Top>
+            <Top>2.14806in</Top>
             <Left>0.1966in</Left>
             <Height>0.25in</Height>
             <Width>2.41667in</Width>
@@ -894,7 +894,7 @@
             </Style>
           </Textbox>
           <Line Name="Line3">
-            <Top>2.14806in</Top>
+            <Top>2.39806in</Top>
             <Left>0.1966in</Left>
             <Height>0in</Height>
             <Width>6.96874in</Width>
@@ -945,7 +945,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paridad</rd:DefaultName>
-            <Top>2.48139in</Top>
+            <Top>2.73139in</Top>
             <Left>5.52212in</Left>
             <Height>0.25in</Height>
             <Width>1.64322in</Width>
@@ -979,7 +979,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>2.48139in</Top>
+            <Top>2.73139in</Top>
             <Left>0.1966in</Left>
             <Height>0.25in</Height>
             <Width>3.13715in</Width>
@@ -995,7 +995,7 @@
             </Style>
           </Textbox>
           <Line Name="Line5">
-            <Top>3.02306in</Top>
+            <Top>3.27306in</Top>
             <Left>0.1966in</Left>
             <Height>0in</Height>
             <Width>6.96874in</Width>
@@ -1024,7 +1024,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paridad</rd:DefaultName>
-            <Top>2.18972in</Top>
+            <Top>2.43972in</Top>
             <Left>5.52212in</Left>
             <Height>0.25in</Height>
             <Width>1.64322in</Width>
@@ -1058,7 +1058,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>2.18972in</Top>
+            <Top>2.43972in</Top>
             <Left>0.1966in</Left>
             <Height>0.25in</Height>
             <Width>2.41667in</Width>
@@ -1074,7 +1074,7 @@
             </Style>
           </Textbox>
           <Line Name="Line6">
-            <Top>2.43972in</Top>
+            <Top>2.68972in</Top>
             <Left>0.1966in</Left>
             <Height>0in</Height>
             <Width>6.96874in</Width>
@@ -1119,7 +1119,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paridad</rd:DefaultName>
-            <Top>2.77306in</Top>
+            <Top>3.02306in</Top>
             <Left>5.52212in</Left>
             <Height>0.25in</Height>
             <Width>1.64321in</Width>
@@ -1153,7 +1153,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>2.77306in</Top>
+            <Top>3.02306in</Top>
             <Left>0.19659in</Left>
             <Height>0.25in</Height>
             <Width>3.13715in</Width>
@@ -1330,8 +1330,78 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Textbox Name="paridad3">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>- </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Parameters!pDescuento.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>paridad</rd:DefaultName>
+            <Top>1.91194in</Top>
+            <Left>5.52212in</Left>
+            <Height>0.25in</Height>
+            <Width>1.64322in</Width>
+            <ZIndex>27</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox48">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Discount</Value>
+                    <Style>
+                      <FontWeight>Heavy</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>1.91194in</Top>
+            <Left>0.1966in</Left>
+            <Height>0.25in</Height>
+            <Width>2.41667in</Width>
+            <ZIndex>28</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
-        <Height>3.14459in</Height>
+        <Height>3.62376in</Height>
         <Style />
       </Body>
       <Width>7.28542in</Width>
@@ -1616,7 +1686,7 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>3.65625in</Height>
+          <Height>4.03125in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -2749,11 +2819,17 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="pDescuento">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>5</NumberOfRows>
+      <NumberOfRows>6</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
@@ -2849,6 +2925,11 @@
           <ColumnIndex>3</ColumnIndex>
           <RowIndex>4</RowIndex>
           <ParameterName>payment</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>5</RowIndex>
+          <ParameterName>pDescuento</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

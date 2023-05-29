@@ -13,7 +13,7 @@ namespace Negocios.NGCotizacion
 
         public async void CreaCotizacionKDM1(string c1, string c6, DateTime c9, string c10, decimal c13, decimal c14, decimal c16, DateTime c18, string c30
             , string c32, string c33, string c34, string c35, float c40, decimal c42, string c43,
-            string c67, DateTime c68, string c83, string c84, string c86, string c88, string c89, string c93, string c94, string c24, string pedimento, string tImpresion)
+            string c67, DateTime c68, string c83, string c84, string c86, string c88, string c89, string c93, string c94, string c24, string pedimento, string tImpresion, String dDescuento)
         {
 
 
@@ -63,6 +63,7 @@ namespace Negocios.NGCotizacion
                 d.C24 = c24; //Comentarios 
 
                 d.C27 = tImpresion; //Tipo de documento a imprimir
+                d.C113 = dDescuento; // descuento
 
 
                 modelo.KDM1.Add(d);

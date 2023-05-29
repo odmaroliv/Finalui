@@ -73,6 +73,8 @@ namespace Datos.ViewModels.Coord
 
         [DisplayName("Tipo Impresion")]
         public string C27 { get; set; }
+        [DisplayName("Descuento")]
+        public string C113 { get; set; }
 
 
     }

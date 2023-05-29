@@ -98,6 +98,7 @@ namespace Negocios.NGCotizacion
                                       C43 = d.C43,
                                       C44 = d.C44,
                                       C27 = d.C27,
+                                      C113 = d.C113
 
                                   };
                         lst2 = lst.ToList();
