@@ -155,24 +155,41 @@ namespace mainVentana.VistaInicioCoordinadores
 
         }
 
-
+        private bool _isBussy = false;
         private async void gunaTileButton2_Click(object sender, EventArgs e)
         {
-            string val = cmbIVA.SelectedItem?.ToString() ?? "";
-            if (val == "")
+            _isBussy = true;
+            try
             {
-                MessageBox.Show("Seleccione el IVA");
-                return;
+                gunaTileButton2.Enabled = false;
+                string val = cmbIVA.SelectedItem?.ToString() ?? "";
+                if (val == "")
+                {
+                    MessageBox.Show("Seleccione el IVA");
+                    return;
+                }
+                if (String.IsNullOrEmpty(lblCodCliente.Text))
+                {
+                    MessageBox.Show("Primero busca el cliente");
+                    return;
+                }
+                else
+                {
+                    await ejecutaeveto2();
+                }
+
             }
-            if (String.IsNullOrEmpty(lblCodCliente.Text))
+            catch (Exception)
             {
-                MessageBox.Show("Primero busca el cliente");
-                return;
+
+                throw;
             }
-            else
-            {
-                await ejecutaeveto2();
+            finally
+            { 
+                _isBussy = false;
+                gunaTileButton2.Enabled = true;
             }
+
 
         }
 
