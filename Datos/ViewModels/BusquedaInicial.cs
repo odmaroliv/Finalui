@@ -17,13 +17,13 @@ namespace Datos.ViewModels
         [DisplayName("Entrada")] //c6
         public string C6 { get; set; }
 
-        [DisplayName ("Etiqueta") ] //c9
+        [DisplayName("Etiqueta")] //c9
         public string C9 { get; set; }
 
         [DisplayName("Fecha de entrada")] //c69
         public string C69 { get; set; }
 
-        
+
 
         [DisplayName("Origen")] //c1
         public string origen { get; set; }
@@ -95,7 +95,11 @@ namespace Datos.ViewModels
         public string ultimamodififecha { get; set; }
         [DisplayName("Link")] //numero 26
         public string link { get; set; }
-        
+
+        [DisplayName("Alias")] //numero 26
+        public string alias { get; set; }
+        [DisplayName("Cotizacion")] //numero 26
+        public string cot { get; set; }
         //public string Estatus { get; set; }
 
 

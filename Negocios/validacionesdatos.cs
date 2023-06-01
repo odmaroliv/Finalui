@@ -74,6 +74,8 @@ namespace Negocios
                                          elaborado = k.C81.Trim(),
                                          coord = c.C3.Trim(),
                                          link = d.C46,
+                                         alias = k.C112,
+                                         cot = k.C115,
                                      }).ToListAsync();
                     }
                 }
@@ -121,6 +123,8 @@ namespace Negocios
                                          elaborado = k.C81.Trim(),
                                          coord = c.C3.Trim(),
                                          link = d.C46,
+                                         alias = k.C112,
+                                         cot = k.C115,
                                      }).ToListAsync();
                     }
                 }

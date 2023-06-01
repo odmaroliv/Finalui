@@ -400,12 +400,12 @@ namespace mainVentana.VistaInicioCoordinadores
             nuevaFila.Height = 50;
             dgvEntradasACotizar.Rows.Add(nuevaFila);
 
-            DataGridViewRow nuevaFila2 = new DataGridViewRow();
+            /*DataGridViewRow nuevaFila2 = new DataGridViewRow();
             nuevaFila2.CreateCells(dgvEntradasACotizar);
             nuevaFila2.Cells[0].Value = "License and permits Fees";
             nuevaFila2.Cells[1].Value = "0";
             nuevaFila2.Height = 50;
-            dgvEntradasACotizar.Rows.Add(nuevaFila2);
+            dgvEntradasACotizar.Rows.Add(nuevaFila2);*/
 
             DataGridViewRow nuevaFila3 = new DataGridViewRow();
             nuevaFila3.CreateCells(dgvEntradasACotizar);
@@ -486,6 +486,8 @@ namespace mainVentana.VistaInicioCoordinadores
             {
                 vMercanciaUSD = String.IsNullOrWhiteSpace(txbGoodUsd.Text) ? 0 : decimal.Parse(txbGoodUsd.Text);
                 vParidad = String.IsNullOrWhiteSpace(txbParidad.Text) ? 0 : decimal.Parse(txbParidad.Text.Trim());
+                vParidad = decimal.Truncate(vParidad * 100) / 100;
+
 
                 if (_valAgregarEntradas == true)
                 {
