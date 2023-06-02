@@ -190,6 +190,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BusquedaInicial.cs" />
+    <Compile Include="ViewModels\Configuracion\UsuarioModelo.cs" />
     <Compile Include="ViewModels\Coord\Clientes\vmAliasInfo.cs" />
     <Compile Include="ViewModels\Coord\Clientes\vmClienteDinamicoBusqueda.cs" />
     <Compile Include="ViewModels\Coord\Clientes\vmClientesInfo.cs" />

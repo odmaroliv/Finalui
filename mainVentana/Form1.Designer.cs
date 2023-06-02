@@ -97,6 +97,7 @@ namespace mainVentana
             this.rCordbtnBuscaCot = new System.Windows.Forms.RibbonButton();
             this.vbtnClientes = new System.Windows.Forms.RibbonButton();
             this.oldrpKepler = new System.Windows.Forms.RibbonButton();
+            this.btnCargaTo = new System.Windows.Forms.RibbonButton();
             this.ribbonSeparator8 = new System.Windows.Forms.RibbonSeparator();
             this.rbtnReportes = new System.Windows.Forms.RibbonButton();
             this.ribbonSeparator9 = new System.Windows.Forms.RibbonSeparator();
@@ -122,7 +123,8 @@ namespace mainVentana
             this.ribbonButton4 = new System.Windows.Forms.RibbonButton();
             this.ribbonDescriptionMenuItem2 = new System.Windows.Forms.RibbonDescriptionMenuItem();
             this.panelContenedorForm = new System.Windows.Forms.Panel();
-            this.btnCargaTo = new System.Windows.Forms.RibbonButton();
+            this.ribbonButton6 = new System.Windows.Forms.RibbonButton();
+            this.rbAgregarUsuario = new System.Windows.Forms.RibbonButton();
             this.panel11.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -569,6 +571,16 @@ namespace mainVentana
             this.oldrpKepler.Text = "Reporte Cotizaciones Kepler";
             this.oldrpKepler.Click += new System.EventHandler(this.oldrpKepler_Click);
             // 
+            // btnCargaTo
+            // 
+            this.btnCargaTo.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.btnCargaTo.Image = ((System.Drawing.Image)(resources.GetObject("btnCargaTo.Image")));
+            this.btnCargaTo.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnCargaTo.LargeImage")));
+            this.btnCargaTo.Name = "btnCargaTo";
+            this.btnCargaTo.SmallImage = ((System.Drawing.Image)(resources.GetObject("btnCargaTo.SmallImage")));
+            this.btnCargaTo.Text = "Asignar Cargas";
+            this.btnCargaTo.Click += new System.EventHandler(this.btnCargaTo_Click);
+            // 
             // ribbonSeparator8
             // 
             this.ribbonSeparator8.Name = "ribbonSeparator8";
@@ -589,6 +601,8 @@ namespace mainVentana
             // rbtnAjustes
             // 
             this.rbtnAjustes.DropDownItems.Add(this.apiConfig);
+            this.rbtnAjustes.DropDownItems.Add(this.rbAgregarUsuario);
+            this.rbtnAjustes.Enabled = false;
             this.rbtnAjustes.Image = global::mainVentana.Properties.Resources.settings;
             this.rbtnAjustes.LargeImage = global::mainVentana.Properties.Resources.settings;
             this.rbtnAjustes.Name = "rbtnAjustes";
@@ -599,6 +613,7 @@ namespace mainVentana
             // apiConfig
             // 
             this.apiConfig.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.apiConfig.DropDownItems.Add(this.ribbonButton6);
             this.apiConfig.Image = ((System.Drawing.Image)(resources.GetObject("apiConfig.Image")));
             this.apiConfig.LargeImage = ((System.Drawing.Image)(resources.GetObject("apiConfig.LargeImage")));
             this.apiConfig.Name = "apiConfig";
@@ -778,15 +793,23 @@ namespace mainVentana
             this.panelContenedorForm.Size = new System.Drawing.Size(1113, 601);
             this.panelContenedorForm.TabIndex = 2;
             // 
-            // btnCargaTo
+            // ribbonButton6
             // 
-            this.btnCargaTo.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
-            this.btnCargaTo.Image = ((System.Drawing.Image)(resources.GetObject("btnCargaTo.Image")));
-            this.btnCargaTo.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnCargaTo.LargeImage")));
-            this.btnCargaTo.Name = "btnCargaTo";
-            this.btnCargaTo.SmallImage = ((System.Drawing.Image)(resources.GetObject("btnCargaTo.SmallImage")));
-            this.btnCargaTo.Text = "Asignar Cargas";
-            this.btnCargaTo.Click += new System.EventHandler(this.btnCargaTo_Click);
+            this.ribbonButton6.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton6.Image")));
+            this.ribbonButton6.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton6.LargeImage")));
+            this.ribbonButton6.Name = "ribbonButton6";
+            this.ribbonButton6.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton6.SmallImage")));
+            this.ribbonButton6.Text = "ribbonButton6";
+            // 
+            // rbAgregarUsuario
+            // 
+            this.rbAgregarUsuario.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.rbAgregarUsuario.Image = ((System.Drawing.Image)(resources.GetObject("rbAgregarUsuario.Image")));
+            this.rbAgregarUsuario.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbAgregarUsuario.LargeImage")));
+            this.rbAgregarUsuario.Name = "rbAgregarUsuario";
+            this.rbAgregarUsuario.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbAgregarUsuario.SmallImage")));
+            this.rbAgregarUsuario.Text = "Crear Usuarios";
+            this.rbAgregarUsuario.Click += new System.EventHandler(this.rbAgregarUsuario_Click);
             // 
             // Form1
             // 
@@ -891,6 +914,8 @@ namespace mainVentana
         private RibbonButton rbtnEntradaAlta;
         private RibbonButton ribbonButton5;
         private RibbonButton btnCargaTo;
+        private RibbonButton ribbonButton6;
+        private RibbonButton rbAgregarUsuario;
     }
 }
 

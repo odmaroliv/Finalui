@@ -122,9 +122,6 @@ namespace mainVentana.VistaOrdenCarga
 
 
 
-
-
-
             txbParidad.Text = !String.IsNullOrEmpty(lst.paridad.ToString()) ? lst.paridad.ToString().Trim() : "";
             txbReferencia.Text = !String.IsNullOrEmpty(lst.referencia) ? lst.referencia.ToString().Trim() : "";
             txbFechaAlta.Text = lst.fechaAlta.Value.Date.ToString("MM/dd/yyyy");
@@ -490,7 +487,7 @@ namespace mainVentana.VistaOrdenCarga
 
 
 
-            //  rp.horaCierre = dtmHora.Value.Date.ToString("HH:mm:ss tt");
+            //  rp.horaCierre = dtmHora.Value.Date.ToString("HH:mm:ss");
             rp.fechaCierre = dtmFcierre.Value.Date.ToString("MM/dd/yyyy");
             rp.fechaImprecion = DateTime.Now.ToString();
             rp.ShowDialog();

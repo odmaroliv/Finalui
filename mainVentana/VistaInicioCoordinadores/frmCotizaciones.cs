@@ -313,7 +313,8 @@ namespace mainVentana.VistaInicioCoordinadores
                     if (rates.ContainsKey("MXN") && rates["MXN"].Type == JTokenType.Float)
                     {
                         double valorMXN = rates["MXN"].ToObject<double>();
-                        txbParidad.Text = Convert.ToDecimal(valorMXN).ToString("F2");
+                        vParidad = Convert.ToDecimal(Math.Truncate(valorMXN * 100) / 100); // Limitar a dos decimales sin redondear
+                        txbParidad.Text = vParidad.ToString();
                         return;
                     }
                 }
@@ -345,7 +346,8 @@ namespace mainVentana.VistaInicioCoordinadores
                         if (rates.ContainsKey("MXN") && rates["MXN"].Type == JTokenType.Float)
                         {
                             double valorMXN = rates["MXN"].ToObject<double>();
-                            txbParidad.Text = Convert.ToDecimal(valorMXN).ToString("F2");
+                            vParidad = Convert.ToDecimal(Math.Truncate(valorMXN * 100) / 100); // Limitar a dos decimales sin redondear
+                            txbParidad.Text = vParidad.ToString();
                             return;
                         }
                     }
@@ -360,12 +362,13 @@ namespace mainVentana.VistaInicioCoordinadores
                 {
                     foreach (var i in lista.ToList())
                     {
-                        txbParidad.Text = Convert.ToDecimal(i.valor).ToString("F2");
-
+                        vParidad = Convert.ToDecimal(Math.Truncate(Convert.ToDouble(i.valor) * 100) / 100); // Limitar a dos decimales sin redondear
+                        txbParidad.Text = vParidad.ToString();
                     }
                 }
             }
         }
+
 
         private void Moneda()
         {
@@ -436,7 +439,26 @@ namespace mainVentana.VistaInicioCoordinadores
                 AgregaDatosDGV();
                 LlenaTipoDePago();
             }
-            
+            try
+            {
+                vParidad = String.IsNullOrWhiteSpace(txbParidad.Text) ? 0 : decimal.Parse(txbParidad.Text.Trim());
+                vParidad = decimal.Truncate(vParidad * 100) / 100;
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Hay un probla al obtener la paridad");
+                txbParidad.Enabled = true;
+            }
+            finally
+            {
+                if (vParidad > 90)
+                {
+                    MessageBox.Show("La paridad parece estar mal, habilitaremos el campo de manera manual\nIntroduce solo 2 decimales separados por PUNTO, ejemplo:\n19.50");
+                    txbParidad.Enabled = true;
+                }
+            }
+
 
 
         }
@@ -482,46 +504,89 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private void dgvEntradasACotizar_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            try
+           
+            if (_isBussy == false)
             {
-                vMercanciaUSD = String.IsNullOrWhiteSpace(txbGoodUsd.Text) ? 0 : decimal.Parse(txbGoodUsd.Text);
-                vParidad = String.IsNullOrWhiteSpace(txbParidad.Text) ? 0 : decimal.Parse(txbParidad.Text.Trim());
-                vParidad = decimal.Truncate(vParidad * 100) / 100;
-
-
-                if (_valAgregarEntradas == true)
+              
+                try
                 {
-                    if (MessageBox.Show("Comenzaremos a cotizar\nYa no agregaras mas entradas?", "Validar", MessageBoxButtons.YesNo) == DialogResult.No)
+                    vMercanciaUSD = String.IsNullOrWhiteSpace(txbGoodUsd.Text) ? 0 : decimal.Parse(txbGoodUsd.Text);
+
+
+
+                    if (_valAgregarEntradas == true)
                     {
-                        _valAgregarEntradas = false;
+                        if (MessageBox.Show("Comenzaremos a cotizar\nYa no agregaras mas entradas?", "Validar", MessageBoxButtons.YesNo) == DialogResult.No)
+                        {
+                            _valAgregarEntradas = false;
+                        }
+                    }
+                    if (!String.IsNullOrWhiteSpace(txbGoodUsd.Text))
+                    {
+                        try
+                        {
+                            _isBussy = true;
+                            if (e.ColumnIndex == 1)
+                            {
+                                DataGridViewRow currentRow = dgvEntradasACotizar.Rows[e.RowIndex];
+                                decimal valorColumna1 = decimal.Parse(currentRow.Cells[1].Value == null ? "0" : currentRow.Cells[1].Value.ToString());
+
+                                decimal porcentaje = (valorColumna1 * vMercanciaUSD) / 100;
+                                currentRow.Cells[2].Value = porcentaje.ToString("F2");
+                                currentRow.Cells[3].Value = (porcentaje * vParidad).ToString("F2");
+
+                                operacion();
+                                operacion();
+                                //return;
+                            }
+                        }
+                        catch (Exception)
+                        {
+
+                            throw;
+                        }
+                        finally
+                        {
+                            _isBussy = false;
+                        }
+                        try
+                        {
+                            _isBussy = true;
+                            if (e.ColumnIndex == 2)
+                            {
+                                DataGridViewRow currentRow = dgvEntradasACotizar.Rows[e.RowIndex];
+                                decimal valorColumna2 = decimal.Parse(currentRow.Cells[2].Value == null ? "0" : currentRow.Cells[2].Value.ToString());
+
+                                decimal porcentaje = (valorColumna2 * vParidad);
+                                currentRow.Cells[1].Value = "0";
+                                currentRow.Cells[3].Value = porcentaje;
+                                operacion();
+                                operacion();
+                                //   return;
+                            }
+                        }
+                        catch (Exception)
+                        {
+
+                            throw;
+                        }
+                        finally
+                        {
+                            _isBussy = false;
+                        }
+                      
                     }
                 }
-                if (!String.IsNullOrWhiteSpace(txbGoodUsd.Text))
+                catch (Exception)
                 {
-                    if (e.ColumnIndex == 1)
-                    {
-                        DataGridViewRow currentRow = dgvEntradasACotizar.Rows[e.RowIndex];
-                        decimal valorColumna1 = decimal.Parse(currentRow.Cells[1].Value == null ? "0" : currentRow.Cells[1].Value.ToString());
-
-                        decimal porcentaje = (valorColumna1 * vMercanciaUSD) / 100;
-                        currentRow.Cells[2].Value = porcentaje.ToString("F2");
-                        currentRow.Cells[3].Value = (porcentaje * vParidad).ToString("F2");
-
-                        operacion();
-                        operacion();
-                    }
-                    if (e.ColumnIndex == 2)
-                    {
-                        DataGridViewRow currentRow = dgvEntradasACotizar.Rows[e.RowIndex];
-                        operacion();
-                        operacion();
-                    }
+                    MessageBox.Show("Algo salio mal, verifica los datos ingresados");
+                }
+                finally
+                {
+                    _isBussy = false;
                 }
             }
-            catch (Exception)
-            {
-                MessageBox.Show("Algo salio mal, verifica los datos ingresados");
-            }
+
         }
 
         private void operacion()

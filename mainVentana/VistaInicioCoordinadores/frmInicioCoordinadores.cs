@@ -18,6 +18,8 @@ using mainVentana.VistaInicioFoto;
 using mainVentana.VistaEntrada;
 using Datos.ViewModels.Entradas;
 using FontAwesome.Sharp;
+using DocumentFormat.OpenXml.Office.Word;
+using iTextSharp.tool.xml.css;
 
 namespace mainVentana.VistaInicioCoordinadores
 
@@ -107,19 +109,64 @@ namespace mainVentana.VistaInicioCoordinadores
         private string sucursal = "";
         DataTable DatosDataTable = null;
         List<vmInfoControlCors> dtgDatos = new List<vmInfoControlCors>();
+       private List<vmInfoControlCors> lss = new List<vmInfoControlCors>();
+
         public async Task<bool> CargaControles()
         {
+            lss.Clear();
             // Utilizar un diccionario para mapear los RadioButton a sus valores correspondientes
             var radioButtonMapping = new Dictionary<RadioButton, string>
-    {
+                {
         { rSd, "SD" },
         { rTj, "TJ" },
-        { rCa, "CSL" }
-    };
+        { rCa, "CSL" },
+        { rdId, "9999" }
+                 };
 
             // Encontrar el RadioButton seleccionado y obtener su valor correspondiente
             sucursal = radioButtonMapping.FirstOrDefault(r => r.Key.Checked).Value;
+            ngbdReportes rep = new ngbdReportes();
+            //var lss = new List<vmInfoControlCors>();
+            if (sucursal == "9999")
+            {
+                lss = await rep.CargaControlSinId(sucursal, dtFecha1.Value, dtFecha2.Value);
+            }
+            else
+            {
+                lss = await rep.CargaControl(sucursal, dtFecha1.Value, dtFecha2.Value);
+            }
+            
+              
 
+            if (dtgDatos != null)
+            {
+                dtgDatos.Clear();
+            }
+
+            // Utilizar LINQ para eliminar duplicados basados en el atributo 'entrada'
+            var uniqueLss = lss.GroupBy(x => x.entrada.Trim()).Select(x => x.First()).ToList();
+
+            // Agregar elementos únicos a dtgDatos
+            dtgDatos.AddRange(uniqueLss);
+
+            if (dtgDatos.Count > 0)
+            {
+                DataTable tb = VistaInicioCoordinadores.dataFilter.ConvierteADatatable(dtgDatos);
+
+                DatosDataTable = tb;
+                dtgEnts.DataSource = DatosDataTable;
+                lblCTotal.Text = dtgDatos.Count.ToString();
+            }
+            else
+            {
+                dtgEnts.DataSource = null;
+            }
+
+            return true;
+        }
+        public async Task<bool> CargaControlesSinId()
+        {
+           
             ngbdReportes rep = new ngbdReportes();
             var lss = await rep.CargaControl(sucursal, dtFecha1.Value, dtFecha2.Value);
 
@@ -150,7 +197,6 @@ namespace mainVentana.VistaInicioCoordinadores
             return true;
         }
 
-
         private void pnlEntradasDetalle_Paint(object sender, PaintEventArgs e)
         {
 
@@ -173,10 +219,10 @@ namespace mainVentana.VistaInicioCoordinadores
                     string en = Convert.ToString(selectedRow.Cells[1].Value); 
                     string edesc = Convert.ToString(selectedRow.Cells[11].Value);
                     string noCliente = Convert.ToString(selectedRow.Cells[4].Value);
-                    string al = Convert.ToString(selectedRow.Cells[12].Value);
-                    await CargaLosValoresDeDetalle(so, en, edesc, noCliente, al);
-                    ngbdReportes rep = new ngbdReportes();
-                    await rep.CargaControlid(so.Trim(), en.Trim());
+                   // string al = Convert.ToString(selectedRow.Cells[12].Value);
+                    await CargaLosValoresDeDetalle(so, en, edesc, noCliente);
+                    //ngbdReportes rep = new ngbdReportes();
+                    //await rep.CargaControlid(so.Trim(), en.Trim());
                 }
                 catch (Exception)
                 {
@@ -186,7 +232,7 @@ namespace mainVentana.VistaInicioCoordinadores
                
             }
         }
-        private async Task CargaLosValoresDeDetalle(string so, string en, string desc, string ncliente, string aliasDato)
+        private async Task CargaLosValoresDeDetalle(string so, string en, string desc, string ncliente)
         {
             txbAliasAct.Text = "";
             txbNoCliente.Text = "";
@@ -198,9 +244,10 @@ namespace mainVentana.VistaInicioCoordinadores
             txbNoCliente.Text = ncliente;
             gtxbOrdenCargaDetalle.Text = dt.ordcarga;
             gtxbOrdenSalidaDetalle.Text = desc;//dt.salida;
-            txbAliasAct.Text = aliasDato;
+            txbAliasAct.Text = dt.aliss.Trim();
             txbFecha.Text = dt.fechaentrada;
             txbSucOrigenDetalle.Text = dt.SucursalInicio.Trim();
+            txbCordUsr.Text = dt.Cotizacion.Trim();
 
         }
 
@@ -231,6 +278,7 @@ namespace mainVentana.VistaInicioCoordinadores
             try
             {
                 iconButton5.Enabled = false;
+                dtgEnts.Enabled = false;
                 await bd.ActualizaValores(txbEntradaDetalle.Text, txbSucOrigenDetalle.Text, nudValFac.Value.ToString(), nudValArn.Value.ToString());
                 if (String.IsNullOrWhiteSpace(calle))
                 {
@@ -244,7 +292,7 @@ namespace mainVentana.VistaInicioCoordinadores
                 }
                 if (String.IsNullOrWhiteSpace(txbAliasAct.Text))
                 {
-                    if (MessageBox.Show("La direccion que estas agregando esta en blanco, si esta enta entrada ya tenian una dirección asignada se borrara\nQuieres guardar la direccion en blanco?.", "Direccion en blanco", MessageBoxButtons.YesNo, MessageBoxIcon.Question)== DialogResult.No)
+                    if (MessageBox.Show("La direccion que estas agregando esta en blanco, si esta enta entrada ya tenian una dirección asignada se borrara\nQuieres guardar la direccion en blanco?.", "Direccion en blanco", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     {
                         await CargaControles();
                         SeleccionRow(txbEntradaDetalle.Text);
@@ -259,15 +307,19 @@ namespace mainVentana.VistaInicioCoordinadores
                 await CargaControles();
                 SeleccionRow(txbEntradaDetalle.Text);
                 iconButton5.Enabled = true;
-                Notificacion(1, txbEntradaDetalle.Text+" Los datos se han actualizado Correctamente", "Valores Actualizados", txbEntradaDetalle.Text +" Actualizada");
+                Notificacion(1, txbEntradaDetalle.Text + " Los datos se han actualizado Correctamente", "Valores Actualizados", txbEntradaDetalle.Text + " Actualizada");
                 LimpiVar();
             }
             catch (Exception)
             {
 
-                Notificacion(2, txbEntradaDetalle.Text+" No se han Actualizado los valores", "Error","Error");
+                Notificacion(2, txbEntradaDetalle.Text + " No se han Actualizado los valores", "Error", "Error");
                 iconButton5.Enabled = true;
 
+            }
+            finally
+            {
+                dtgEnts.Enabled = true;
             }
         }
 
@@ -442,7 +494,23 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private async void rSd_CheckedChanged(object sender, EventArgs e)
         {
-            bool ts = await CargaControles();
+            iconButton6.Enabled = false;
+            _isBusy = true;
+            try
+            {
+
+                bool ts = await CargaControles();
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            finally
+            {
+                iconButton6.Enabled = true;
+                _isBusy = false;
+            }
+           
         }
 
         private void iconButton3_Click(object sender, EventArgs e)
@@ -482,6 +550,19 @@ namespace mainVentana.VistaInicioCoordinadores
             numm = "";
         }
 
+        private async void rdId_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbCordUsr_DoubleClick(object sender, EventArgs e)
+        {
+            using (AltaEntrada nt =new AltaEntrada(2))
+            {
+                nt.ShowDialog();
+                //nt.modoCord = 2;
+            }
+        }
     }
 
 }

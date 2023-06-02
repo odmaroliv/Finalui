@@ -21,5 +21,6 @@ namespace mainVentana.vmLogin
         public string smtpemail { get; set; }
         public string smatppss { get; set; }
         public string rhook { get; set; }
+        public string master { get; set; }
     }
 }

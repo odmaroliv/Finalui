@@ -19,6 +19,7 @@ using mainVentana.VistaWMS;
 using mainVentana.Reportes.Cotizaciones.Antiguas;
 using mainVentana.VistaEntrada.Proovedor;
 using Vanara.PInvoke;
+using mainVentana.vistaConfiguraciones;
 
 namespace mainVentana
 {
@@ -51,9 +52,13 @@ namespace mainVentana
 
         private void validamenu()
         {
-            if (CacheLogin.rol.Trim() == "ADMIN" || CacheLogin.rol.Trim() == "JALMA")
+            if (CacheLogin.rol.Trim() == "ADMIN")
             {
-               
+                rbtnAjustes.Enabled = true;
+            }
+            else if (CacheLogin.rol.Trim() == "JALMA")
+            {
+
             }
             else if (CacheLogin.rol.Trim() == "OENTRA")
             {
@@ -515,6 +520,24 @@ namespace mainVentana
                 MessageBox.Show(ex.Message);
             }
 
+        }
+
+        private void rbAgregarUsuario_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (frmNuevoUsuario usr = new frmNuevoUsuario())
+                {
+
+                    usr.ShowDialog();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

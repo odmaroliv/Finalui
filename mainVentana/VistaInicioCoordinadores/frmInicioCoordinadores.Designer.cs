@@ -32,14 +32,20 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.gunaElipsePanel3 = new Guna.UI.WinForms.GunaElipsePanel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.dtFecha2 = new Guna.UI.WinForms.GunaDateTimePicker();
+            this.dtFecha1 = new Guna.UI.WinForms.GunaDateTimePicker();
+            this.lblCTotal = new System.Windows.Forms.Label();
             this.iconButton7 = new FontAwesome.Sharp.IconButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rdId = new System.Windows.Forms.RadioButton();
             this.rCa = new System.Windows.Forms.RadioButton();
             this.rTj = new System.Windows.Forms.RadioButton();
             this.rSd = new System.Windows.Forms.RadioButton();
@@ -66,11 +72,8 @@
             this.txbEntradaDetalle = new Guna.UI.WinForms.GunaLineTextBox();
             this.iconButton2 = new FontAwesome.Sharp.IconButton();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.lblCTotal = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.dtFecha2 = new Guna.UI.WinForms.GunaDateTimePicker();
-            this.dtFecha1 = new Guna.UI.WinForms.GunaDateTimePicker();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txbCordUsr = new Guna.UI.WinForms.GunaLineTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -126,6 +129,85 @@
             this.gunaElipsePanel3.Size = new System.Drawing.Size(703, 416);
             this.gunaElipsePanel3.TabIndex = 139;
             // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.label6.Location = new System.Drawing.Point(348, 51);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(17, 13);
+            this.label6.TabIndex = 168;
+            this.label6.Text = "A:";
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.label7.Location = new System.Drawing.Point(348, 23);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(25, 13);
+            this.label7.TabIndex = 167;
+            this.label7.Text = "DE:";
+            // 
+            // dtFecha2
+            // 
+            this.dtFecha2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtFecha2.BaseColor = System.Drawing.Color.White;
+            this.dtFecha2.BorderColor = System.Drawing.Color.Silver;
+            this.dtFecha2.CustomFormat = null;
+            this.dtFecha2.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
+            this.dtFecha2.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.dtFecha2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dtFecha2.ForeColor = System.Drawing.Color.Black;
+            this.dtFecha2.Location = new System.Drawing.Point(374, 42);
+            this.dtFecha2.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtFecha2.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtFecha2.Name = "dtFecha2";
+            this.dtFecha2.OnHoverBaseColor = System.Drawing.Color.White;
+            this.dtFecha2.OnHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.dtFecha2.OnHoverForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.dtFecha2.OnPressedColor = System.Drawing.Color.Black;
+            this.dtFecha2.Size = new System.Drawing.Size(200, 30);
+            this.dtFecha2.TabIndex = 166;
+            this.dtFecha2.Text = "viernes, marzo 10, 2023";
+            this.dtFecha2.Value = new System.DateTime(2023, 3, 10, 11, 29, 29, 92);
+            // 
+            // dtFecha1
+            // 
+            this.dtFecha1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtFecha1.BaseColor = System.Drawing.Color.White;
+            this.dtFecha1.BorderColor = System.Drawing.Color.Silver;
+            this.dtFecha1.CustomFormat = null;
+            this.dtFecha1.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
+            this.dtFecha1.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.dtFecha1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dtFecha1.ForeColor = System.Drawing.Color.Black;
+            this.dtFecha1.Location = new System.Drawing.Point(374, 6);
+            this.dtFecha1.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtFecha1.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtFecha1.Name = "dtFecha1";
+            this.dtFecha1.OnHoverBaseColor = System.Drawing.Color.White;
+            this.dtFecha1.OnHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.dtFecha1.OnHoverForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.dtFecha1.OnPressedColor = System.Drawing.Color.Black;
+            this.dtFecha1.Size = new System.Drawing.Size(200, 30);
+            this.dtFecha1.TabIndex = 165;
+            this.dtFecha1.Text = "viernes, marzo 10, 2023";
+            this.dtFecha1.Value = new System.DateTime(2023, 3, 10, 11, 29, 29, 92);
+            // 
+            // lblCTotal
+            // 
+            this.lblCTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCTotal.AutoSize = true;
+            this.lblCTotal.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.lblCTotal.Location = new System.Drawing.Point(629, 400);
+            this.lblCTotal.Name = "lblCTotal";
+            this.lblCTotal.Size = new System.Drawing.Size(47, 13);
+            this.lblCTotal.TabIndex = 164;
+            this.lblCTotal.Text = "Entrada:";
+            // 
             // iconButton7
             // 
             this.iconButton7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -141,10 +223,10 @@
             this.iconButton7.IconColor = System.Drawing.Color.Blue;
             this.iconButton7.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton7.IconSize = 25;
-            this.iconButton7.Location = new System.Drawing.Point(576, 30);
+            this.iconButton7.Location = new System.Drawing.Point(581, 30);
             this.iconButton7.Margin = new System.Windows.Forms.Padding(2);
             this.iconButton7.Name = "iconButton7";
-            this.iconButton7.Size = new System.Drawing.Size(36, 41);
+            this.iconButton7.Size = new System.Drawing.Size(31, 41);
             this.iconButton7.TabIndex = 139;
             this.iconButton7.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.iconButton7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -154,20 +236,32 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.rdId);
             this.groupBox1.Controls.Add(this.rCa);
             this.groupBox1.Controls.Add(this.rTj);
             this.groupBox1.Controls.Add(this.rSd);
             this.groupBox1.Location = new System.Drawing.Point(21, 23);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(280, 48);
+            this.groupBox1.Size = new System.Drawing.Size(321, 48);
             this.groupBox1.TabIndex = 137;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Sucursal";
             // 
+            // rdId
+            // 
+            this.rdId.AutoSize = true;
+            this.rdId.Location = new System.Drawing.Point(244, 19);
+            this.rdId.Name = "rdId";
+            this.rdId.Size = new System.Drawing.Size(51, 17);
+            this.rdId.TabIndex = 3;
+            this.rdId.Text = "SinID";
+            this.rdId.UseVisualStyleBackColor = true;
+            this.rdId.CheckedChanged += new System.EventHandler(this.rSd_CheckedChanged);
+            // 
             // rCa
             // 
             this.rCa.AutoSize = true;
-            this.rCa.Location = new System.Drawing.Point(188, 19);
+            this.rCa.Location = new System.Drawing.Point(175, 19);
             this.rCa.Name = "rCa";
             this.rCa.Size = new System.Drawing.Size(63, 17);
             this.rCa.TabIndex = 2;
@@ -203,9 +297,9 @@
             // 
             this.dtgEnts.AllowUserToAddRows = false;
             this.dtgEnts.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
-            this.dtgEnts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
+            this.dtgEnts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
             this.dtgEnts.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -214,25 +308,25 @@
             this.dtgEnts.BackgroundColor = System.Drawing.Color.White;
             this.dtgEnts.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dtgEnts.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgEnts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgEnts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.dtgEnts.ColumnHeadersHeight = 50;
             this.dtgEnts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dtgEnts.DateWithTime = false;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgEnts.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgEnts.DefaultCellStyle = dataGridViewCellStyle15;
             this.dtgEnts.EnableHeadersVisualStyles = false;
             this.dtgEnts.GridColor = System.Drawing.Color.White;
             this.dtgEnts.Location = new System.Drawing.Point(21, 76);
@@ -240,14 +334,14 @@
             this.dtgEnts.Name = "dtgEnts";
             this.dtgEnts.ReadOnly = true;
             this.dtgEnts.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgEnts.RowHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgEnts.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.dtgEnts.RowHeadersVisible = false;
             this.dtgEnts.RowTemplate.DividerHeight = 1;
             this.dtgEnts.RowTemplate.Height = 50;
@@ -291,6 +385,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gunaElipsePanel2.BackColor = System.Drawing.Color.Transparent;
             this.gunaElipsePanel2.BaseColor = System.Drawing.Color.White;
+            this.gunaElipsePanel2.Controls.Add(this.txbCordUsr);
+            this.gunaElipsePanel2.Controls.Add(this.label8);
             this.gunaElipsePanel2.Controls.Add(this.txbNoCliente);
             this.gunaElipsePanel2.Controls.Add(this.txbAliasAct);
             this.gunaElipsePanel2.Controls.Add(this.iconButton3);
@@ -332,7 +428,7 @@
             this.txbNoCliente.Name = "txbNoCliente";
             this.txbNoCliente.PasswordChar = '\0';
             this.txbNoCliente.ReadOnly = true;
-            this.txbNoCliente.Size = new System.Drawing.Size(44, 29);
+            this.txbNoCliente.Size = new System.Drawing.Size(28, 29);
             this.txbNoCliente.TabIndex = 163;
             this.txbNoCliente.Visible = false;
             // 
@@ -346,7 +442,7 @@
             this.txbAliasAct.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txbAliasAct.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbAliasAct.LineColor = System.Drawing.Color.Gainsboro;
-            this.txbAliasAct.Location = new System.Drawing.Point(27, 280);
+            this.txbAliasAct.Location = new System.Drawing.Point(27, 242);
             this.txbAliasAct.Margin = new System.Windows.Forms.Padding(2);
             this.txbAliasAct.Name = "txbAliasAct";
             this.txbAliasAct.PasswordChar = '\0';
@@ -368,7 +464,7 @@
             this.iconButton3.IconColor = System.Drawing.Color.Blue;
             this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton3.IconSize = 30;
-            this.iconButton3.Location = new System.Drawing.Point(303, 273);
+            this.iconButton3.Location = new System.Drawing.Point(303, 235);
             this.iconButton3.Margin = new System.Windows.Forms.Padding(2);
             this.iconButton3.Name = "iconButton3";
             this.iconButton3.Size = new System.Drawing.Size(36, 36);
@@ -389,7 +485,7 @@
             this.gtxbOrdenSalidaDetalle.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gtxbOrdenSalidaDetalle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.gtxbOrdenSalidaDetalle.Hint = "";
-            this.gtxbOrdenSalidaDetalle.Location = new System.Drawing.Point(27, 194);
+            this.gtxbOrdenSalidaDetalle.Location = new System.Drawing.Point(27, 156);
             this.gtxbOrdenSalidaDetalle.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             this.gtxbOrdenSalidaDetalle.Name = "gtxbOrdenSalidaDetalle";
             this.gtxbOrdenSalidaDetalle.ReadOnly = true;
@@ -406,7 +502,7 @@
             this.txbFecha.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txbFecha.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbFecha.LineColor = System.Drawing.Color.Gainsboro;
-            this.txbFecha.Location = new System.Drawing.Point(222, 75);
+            this.txbFecha.Location = new System.Drawing.Point(222, 47);
             this.txbFecha.Margin = new System.Windows.Forms.Padding(2);
             this.txbFecha.Name = "txbFecha";
             this.txbFecha.PasswordChar = '\0';
@@ -423,7 +519,7 @@
             this.txbSucOrigenDetalle.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txbSucOrigenDetalle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbSucOrigenDetalle.LineColor = System.Drawing.Color.Gainsboro;
-            this.txbSucOrigenDetalle.Location = new System.Drawing.Point(178, 75);
+            this.txbSucOrigenDetalle.Location = new System.Drawing.Point(178, 47);
             this.txbSucOrigenDetalle.Margin = new System.Windows.Forms.Padding(2);
             this.txbSucOrigenDetalle.Name = "txbSucOrigenDetalle";
             this.txbSucOrigenDetalle.PasswordChar = '\0';
@@ -484,7 +580,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label5.Location = new System.Drawing.Point(24, 178);
+            this.label5.Location = new System.Drawing.Point(24, 140);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(116, 13);
             this.label5.TabIndex = 149;
@@ -494,7 +590,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label4.Location = new System.Drawing.Point(262, 119);
+            this.label4.Location = new System.Drawing.Point(262, 91);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(84, 13);
             this.label4.TabIndex = 148;
@@ -514,7 +610,7 @@
             this.iconButton1.IconColor = System.Drawing.Color.Blue;
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton1.IconSize = 30;
-            this.iconButton1.Location = new System.Drawing.Point(303, 130);
+            this.iconButton1.Location = new System.Drawing.Point(303, 102);
             this.iconButton1.Margin = new System.Windows.Forms.Padding(2);
             this.iconButton1.Name = "iconButton1";
             this.iconButton1.Size = new System.Drawing.Size(36, 36);
@@ -528,7 +624,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label3.Location = new System.Drawing.Point(149, 119);
+            this.label3.Location = new System.Drawing.Point(149, 91);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 13);
             this.label3.TabIndex = 146;
@@ -538,7 +634,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label2.Location = new System.Drawing.Point(24, 119);
+            this.label2.Location = new System.Drawing.Point(24, 91);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 13);
             this.label2.TabIndex = 145;
@@ -548,7 +644,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label1.Location = new System.Drawing.Point(24, 61);
+            this.label1.Location = new System.Drawing.Point(24, 33);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(47, 13);
             this.label1.TabIndex = 144;
@@ -564,7 +660,7 @@
             this.gtxbOrdenCargaDetalle.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.gtxbOrdenCargaDetalle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gtxbOrdenCargaDetalle.LineColor = System.Drawing.Color.Gainsboro;
-            this.gtxbOrdenCargaDetalle.Location = new System.Drawing.Point(265, 137);
+            this.gtxbOrdenCargaDetalle.Location = new System.Drawing.Point(265, 109);
             this.gtxbOrdenCargaDetalle.Margin = new System.Windows.Forms.Padding(2);
             this.gtxbOrdenCargaDetalle.Name = "gtxbOrdenCargaDetalle";
             this.gtxbOrdenCargaDetalle.PasswordChar = '\0';
@@ -576,7 +672,7 @@
             // 
             this.nudValFac.DecimalPlaces = 2;
             this.nudValFac.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.nudValFac.Location = new System.Drawing.Point(27, 140);
+            this.nudValFac.Location = new System.Drawing.Point(27, 112);
             this.nudValFac.Maximum = new decimal(new int[] {
             999999,
             0,
@@ -590,7 +686,7 @@
             // 
             this.nudValArn.DecimalPlaces = 2;
             this.nudValArn.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.nudValArn.Location = new System.Drawing.Point(152, 140);
+            this.nudValArn.Location = new System.Drawing.Point(152, 112);
             this.nudValArn.Maximum = new decimal(new int[] {
             999999,
             0,
@@ -602,20 +698,18 @@
             // 
             // txbEntradaDetalle
             // 
-            this.txbEntradaDetalle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txbEntradaDetalle.Animated = true;
             this.txbEntradaDetalle.BackColor = System.Drawing.Color.White;
             this.txbEntradaDetalle.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txbEntradaDetalle.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txbEntradaDetalle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbEntradaDetalle.LineColor = System.Drawing.Color.Gainsboro;
-            this.txbEntradaDetalle.Location = new System.Drawing.Point(27, 75);
+            this.txbEntradaDetalle.Location = new System.Drawing.Point(27, 47);
             this.txbEntradaDetalle.Margin = new System.Windows.Forms.Padding(2);
             this.txbEntradaDetalle.Name = "txbEntradaDetalle";
             this.txbEntradaDetalle.PasswordChar = '\0';
             this.txbEntradaDetalle.ReadOnly = true;
-            this.txbEntradaDetalle.Size = new System.Drawing.Size(147, 29);
+            this.txbEntradaDetalle.Size = new System.Drawing.Size(92, 29);
             this.txbEntradaDetalle.TabIndex = 139;
             // 
             // iconButton2
@@ -631,11 +725,11 @@
             this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.BoxOpen;
             this.iconButton2.IconColor = System.Drawing.Color.Blue;
             this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton2.IconSize = 60;
-            this.iconButton2.Location = new System.Drawing.Point(156, 5);
+            this.iconButton2.IconSize = 30;
+            this.iconButton2.Location = new System.Drawing.Point(166, 5);
             this.iconButton2.Margin = new System.Windows.Forms.Padding(2);
             this.iconButton2.Name = "iconButton2";
-            this.iconButton2.Size = new System.Drawing.Size(72, 66);
+            this.iconButton2.Size = new System.Drawing.Size(36, 36);
             this.iconButton2.TabIndex = 138;
             this.iconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.iconButton2.UseVisualStyleBackColor = false;
@@ -646,84 +740,34 @@
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
             // 
-            // lblCTotal
+            // label8
             // 
-            this.lblCTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCTotal.AutoSize = true;
-            this.lblCTotal.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.lblCTotal.Location = new System.Drawing.Point(629, 400);
-            this.lblCTotal.Name = "lblCTotal";
-            this.lblCTotal.Size = new System.Drawing.Size(47, 13);
-            this.lblCTotal.TabIndex = 164;
-            this.lblCTotal.Text = "Entrada:";
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.label8.Location = new System.Drawing.Point(120, 33);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(46, 13);
+            this.label8.TabIndex = 164;
+            this.label8.Text = "Usuario:";
             // 
-            // label6
+            // txbCordUsr
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label6.Location = new System.Drawing.Point(306, 51);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(17, 13);
-            this.label6.TabIndex = 168;
-            this.label6.Text = "A:";
-            // 
-            // label7
-            // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label7.Location = new System.Drawing.Point(306, 23);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(25, 13);
-            this.label7.TabIndex = 167;
-            this.label7.Text = "DE:";
-            // 
-            // dtFecha2
-            // 
-            this.dtFecha2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtFecha2.BaseColor = System.Drawing.Color.White;
-            this.dtFecha2.BorderColor = System.Drawing.Color.Silver;
-            this.dtFecha2.CustomFormat = null;
-            this.dtFecha2.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
-            this.dtFecha2.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.dtFecha2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.dtFecha2.ForeColor = System.Drawing.Color.Black;
-            this.dtFecha2.Location = new System.Drawing.Point(332, 42);
-            this.dtFecha2.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtFecha2.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtFecha2.Name = "dtFecha2";
-            this.dtFecha2.OnHoverBaseColor = System.Drawing.Color.White;
-            this.dtFecha2.OnHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.dtFecha2.OnHoverForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.dtFecha2.OnPressedColor = System.Drawing.Color.Black;
-            this.dtFecha2.Size = new System.Drawing.Size(239, 30);
-            this.dtFecha2.TabIndex = 166;
-            this.dtFecha2.Text = "viernes, marzo 10, 2023";
-            this.dtFecha2.Value = new System.DateTime(2023, 3, 10, 11, 29, 29, 92);
-            // 
-            // dtFecha1
-            // 
-            this.dtFecha1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtFecha1.BaseColor = System.Drawing.Color.White;
-            this.dtFecha1.BorderColor = System.Drawing.Color.Silver;
-            this.dtFecha1.CustomFormat = null;
-            this.dtFecha1.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
-            this.dtFecha1.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.dtFecha1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.dtFecha1.ForeColor = System.Drawing.Color.Black;
-            this.dtFecha1.Location = new System.Drawing.Point(332, 6);
-            this.dtFecha1.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtFecha1.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtFecha1.Name = "dtFecha1";
-            this.dtFecha1.OnHoverBaseColor = System.Drawing.Color.White;
-            this.dtFecha1.OnHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.dtFecha1.OnHoverForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.dtFecha1.OnPressedColor = System.Drawing.Color.Black;
-            this.dtFecha1.Size = new System.Drawing.Size(239, 30);
-            this.dtFecha1.TabIndex = 165;
-            this.dtFecha1.Text = "viernes, marzo 10, 2023";
-            this.dtFecha1.Value = new System.DateTime(2023, 3, 10, 11, 29, 29, 92);
+            this.txbCordUsr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbCordUsr.Animated = true;
+            this.txbCordUsr.BackColor = System.Drawing.Color.White;
+            this.txbCordUsr.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbCordUsr.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.txbCordUsr.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbCordUsr.LineColor = System.Drawing.Color.Gainsboro;
+            this.txbCordUsr.Location = new System.Drawing.Point(123, 47);
+            this.txbCordUsr.Margin = new System.Windows.Forms.Padding(2);
+            this.txbCordUsr.Name = "txbCordUsr";
+            this.txbCordUsr.PasswordChar = '\0';
+            this.txbCordUsr.ReadOnly = true;
+            this.txbCordUsr.Size = new System.Drawing.Size(51, 29);
+            this.txbCordUsr.TabIndex = 165;
+            this.txbCordUsr.DoubleClick += new System.EventHandler(this.txbCordUsr_DoubleClick);
             // 
             // frmInicioCoordinadores
             // 
@@ -789,5 +833,8 @@
         private System.Windows.Forms.Label label7;
         private Guna.UI.WinForms.GunaDateTimePicker dtFecha2;
         private Guna.UI.WinForms.GunaDateTimePicker dtFecha1;
+        private System.Windows.Forms.RadioButton rdId;
+        private Guna.UI.WinForms.GunaLineTextBox txbCordUsr;
+        private System.Windows.Forms.Label label8;
     }
 }

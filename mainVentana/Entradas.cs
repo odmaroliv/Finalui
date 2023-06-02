@@ -155,15 +155,22 @@ namespace mainVentana
             var pasaa = new pasa(altaEntrada.CambiaDocumento);
             pasaa(1);
         }
-        
+
         private void btnModifica_DoubleClick(object sender, EventArgs e)
         {
             gunaShadowPanel1.ShadowColor = Color.FromArgb(245, 217, 181);
             var pasaa = new pasa(altaEntrada.CambiaDocumento);
             pasaa(2);
-           //-----------
+            //-----------
         }
-        
+
+        public void actualizaCords ()
+        {
+            gunaShadowPanel1.ShadowColor = Color.FromArgb(245, 217, 181);
+            var pasaa = new pasa(altaEntrada.CambiaDocumento);
+            pasaa(2);
+        }
+
         private void btnBaja_DoubleClick(object sender, EventArgs e)
         {
             gunaShadowPanel1.ShadowColor = Color.FromArgb(50, 202, 206);

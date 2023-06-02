@@ -136,7 +136,7 @@ namespace mainVentana.VistaOrdenCarga
         private async void llenaCampos()
         {
             Moneda();
-            dtmHora.CustomFormat = "HH:mm:ss tt";
+            dtmHora.CustomFormat = "HH:mm:ss";
 
             try
             {

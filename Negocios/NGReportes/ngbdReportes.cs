@@ -1,5 +1,6 @@
 ﻿using Datos.Datosenti;
 using Datos.ViewModels;
+using Datos.ViewModels.Configuracion;
 using Datos.ViewModels.Coord;
 using Datos.ViewModels.CXC;
 using Datos.ViewModels.Entradas;
@@ -116,9 +117,80 @@ namespace Negocios.NGReportes
         /// <summary>
         /// (SD TO CSL) Reporte Inicial a la hora de entrar al sistema, funciona por coordinador 
         /// </summary>
-        public async Task<List<vmInfoControlCors>> CargaControl(string dato, DateTime dateFrom,DateTime to)
+        public async Task<List<vmInfoControlCors>> CargaControl(string dato, DateTime dateFrom, DateTime to)
         {
-           
+
+            try
+            {
+                using (modelo2Entities modelo = new modelo2Entities())
+                {
+                    IQueryable<vmInfoControlCors> query = null;
+                    if (Common.Cache.CacheLogin.master == "1")
+                    {
+                        query = from d in modelo.KDMENT
+                                join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
+                                join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
+                                where k.C9 <= to && k.C9 >= dateFrom && d.C1.Contains(dato) && d.C19.Contains(dato) && d.C34 == "" && k.C4 == 35
+                                orderby d.C6 descending
+                                select new vmInfoControlCors
+                                {
+                                    entrada = d.C6,
+                                    fechaentrada = d.C69,
+                                    ordcarga = d.C54,
+                                    cliente = k.C32,
+                                    noCli = k.C10,
+                                    Cotizacion = k.C115,
+                                    ordapli = d.C16,
+                                    salida = d.C17,
+                                    SucursalInicio = d.C1,
+                                    valFact = k.C102,
+                                    valArn = k.C16.ToString(),
+                                    desc = a.C11,
+                                    aliss = k.C112,
+                                };
+                    }
+                    else
+                    {
+                        query = from d in modelo.KDMENT
+                                join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
+                                join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
+                                where k.C9 <= to && k.C9 >= dateFrom && d.C1.Contains(dato) && d.C19.Contains(dato) && d.C34 == "" && k.C12 == Common.Cache.CacheLogin.idusuario.ToString() && k.C4 == 35
+                                orderby d.C6 descending
+                                select new vmInfoControlCors
+                                {
+                                    entrada = d.C6,
+                                    fechaentrada = d.C69,
+                                    ordcarga = d.C54,
+                                    cliente = k.C32,
+                                    noCli = k.C10,
+                                    Cotizacion = k.C115,
+                                    ordapli = d.C16,
+                                    salida = d.C17,
+                                    SucursalInicio = d.C1,
+                                    valFact = k.C102,
+                                    valArn = k.C16.ToString(),
+                                    desc = a.C11,
+                                    aliss = d.C24,
+                                };
+                    }
+                     
+
+                    var result = await query.AsNoTracking().ToListAsync();
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Carga clientes sin Id 
+        /// </summary>
+        public async Task<List<vmInfoControlCors>> CargaControlSinId(string dato, DateTime dateFrom, DateTime to)
+        {
+
             try
             {
                 using (modelo2Entities modelo = new modelo2Entities())
@@ -126,7 +198,7 @@ namespace Negocios.NGReportes
                     var query = from d in modelo.KDMENT
                                 join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
                                 join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
-                                where k.C9 <= to && k.C9 >= dateFrom && d.C1.Contains(dato) && d.C19.Contains(dato) && d.C34 == "" && k.C12 == Common.Cache.CacheLogin.idusuario.ToString()
+                                where k.C9 <= to && k.C9 >= dateFrom && d.C34 == "" && k.C10 == "9999" && k.C4 == 35
                                 orderby d.C6 descending
                                 select new vmInfoControlCors
                                 {
@@ -193,7 +265,7 @@ namespace Negocios.NGReportes
                                          valFact = k.C102,
                                          valArn = k.C16.ToString(),
 
-                                     });;
+                                     }); ;
                         lst = lista.ToList();
                     }
                 });
@@ -230,7 +302,7 @@ namespace Negocios.NGReportes
                                      join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
                                      //join a in modelo.KDUV on k.C12 equals a.C2
                                      //join u in modelo.KDUSUARIOS on a.C22 equals u.C1
-
+                                     join c in modelo.KDUV on k.C12 equals c.C2
                                      where d.C1.Contains(sOrigen) && d.C6.Contains(entrada)
                                      orderby d.C6 descending
 
@@ -246,7 +318,8 @@ namespace Negocios.NGReportes
                                          //etiqueta = d.C9,
                                          valFact = k.C102,
                                          valArn = k.C16.ToString(),
-
+                                         aliss = d.C24,
+                                         Cotizacion = c.C3
                                      });
                         lst = lista.FirstOrDefault();
                     }
@@ -361,6 +434,131 @@ namespace Negocios.NGReportes
             }
         }
 
+
+        public async Task<List<KDUSUARIOS>> CargaUsuarios()
+        {
+            try
+            {
+                List<KDUSUARIOS> lst = null;
+                await Task.Run(() =>
+                {
+                    using (modelo2Entities modelo = new modelo2Entities())
+                    {
+                        var lista = (from d in modelo.KDUSUARIOS
+                                         // where d.C1.Contains(sOrigen) && d.C4 == 34 && d.C5 == dato && d.C6.Contains(coti)
+                                     select d);
+                        lst = lista.ToList();
+                    }
+                });
+                return lst;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task<UsuarioModelo> CargaUsuarioEsp(string usu)
+        {
+            try
+            {
+                UsuarioModelo lst = null;
+                await Task.Run(() =>
+                {
+                    using (modelo2Entities modelo = new modelo2Entities())
+                    {
+                        var lista = (from d in modelo.KDUSUARIOS
+                                     where d.C1.Contains(usu)
+                                     select new UsuarioModelo
+                                     {
+                                         C1 = d.C1,//usuario
+                                         C2 = d.C2,//nombre
+                                         C3 = d.C3, //contra
+                                         C4 = d.C4,//rol
+                                         C9 = d.C9,//correo
+                                         C10 = d.C10,//Suc
+                                         C12 = d.C12,//cliente
+                                         C13 = d.C13, // telefono
+                                         C8 = d.C8 // usuario tipo master
+                                     }).FirstOrDefault();
+                        lst = lista;
+                    }
+                });
+                return lst;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public async Task GuardarUsuario(UsuarioModelo usuario)
+        {
+            try
+            {
+                await Task.Run(() =>
+                {
+                    using (modelo2Entities modelo = new modelo2Entities())
+                    {
+                        // Crear una nueva instancia de KDUSUARIOS y asignar los valores del objeto UsuarioModelo
+                        var nuevoUsuario = new KDUSUARIOS
+                        {
+                            C1 = usuario.C1,   // usuario
+                            C2 = usuario.C2,   // nombre
+                            C3 = usuario.C3,   // contra
+                            C4 = usuario.C4,   // rol
+                            C9 = usuario.C9,   // correo
+                            C10 = usuario.C10, // Suc
+                            C12 = usuario.C12, // cliente
+                            C13 = usuario.C13, // telefono
+                            C8 = usuario.C8    // Master
+                    };
+
+                        // Agregar el nuevo usuario a la base de datos
+                        modelo.KDUSUARIOS.Add(nuevoUsuario);
+                        modelo.SaveChanges();
+                    }
+                });
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public async Task ActualizarUsuario(string codigoUsuario, UsuarioModelo usuario)
+        {
+            try
+            {
+                await Task.Run(() =>
+                {
+                    using (modelo2Entities modelo = new modelo2Entities())
+                    {
+                        // Buscar el usuario en la base de datos por el código
+                       // var usuarioExistente = modelo.KDUSUARIOS.Where(d => d.C1 == codigoUsuario).FirstOrDefault();
+                        var usuarioExistente = (from d in modelo.KDUSUARIOS
+                                     where d.C1.Contains(codigoUsuario)
+                                     select  d).FirstOrDefault();
+                        if (usuarioExistente != null)
+                        {
+                            // Actualizar los valores del usuario existente con los nuevos valores
+                            usuarioExistente.C2 = usuario.C2;   // nombre
+                            usuarioExistente.C3 = usuario.C3;   // contra
+                            usuarioExistente.C4 = usuario.C4;   // rol
+                            usuarioExistente.C9 = usuario.C9;   // correo
+                            usuarioExistente.C10 = usuario.C10; // Suc
+                            usuarioExistente.C12 = usuario.C12; // cliente
+                            usuarioExistente.C13 = usuario.C13; // telefono
+                            usuarioExistente.C8 = usuario.C8; // Master
+
+                            modelo.SaveChanges();
+                        }
+                    }
+                });
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
 
 

@@ -48,6 +48,8 @@ namespace mainVentana
             {
                 VistaCXC ts = new VistaCXC();
                 AbrirFormEnPanel(ts);
+                btnCordAdmin.Visible = true;
+                btnCordAdmin.Enabled = true;
             }
             else if (Negocios.Common.Cache.CacheLogin.rol.Trim() == "ADMIN")
             {
@@ -396,11 +398,6 @@ namespace mainVentana
         {
             frmInicioCoordinadores frm = new frmInicioCoordinadores();
             frm.ShowDialog();
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
 
         }
 

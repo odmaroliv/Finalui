@@ -863,6 +863,7 @@ namespace Negocios
                                     numero = d.C13,
                                     rol = d.C4,
                                     sucdefecto = d.C10,
+                                    master = d.C8,
                                 };
                     var item = lista.FirstOrDefault();
                     if (item != null)
@@ -874,6 +875,7 @@ namespace Negocios
                         Common.Cache.CacheLogin.sucdefecto = item.sucdefecto.Trim();
                         Common.Cache.CacheLogin.numero = item.numero.Trim();
                         Common.Cache.CacheLogin.idusuario = item.idusuario == null ? "" : item.idusuario.Trim();
+                        Common.Cache.CacheLogin.master = item.master == "" ? "0" : item.master.Trim();
                         return true;
                     }
                     else

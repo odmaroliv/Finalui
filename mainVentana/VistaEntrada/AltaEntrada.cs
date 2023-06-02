@@ -42,11 +42,12 @@ namespace mainVentana.VistaEntrada
         public string sucursalGlobal = Negocios.Common.Cache.CacheLogin.sucGlobal == default ? "SD":Negocios.Common.Cache.CacheLogin.sucGlobal;
         private string noEntGlobal = "";
         private string sbeArchivos = "";
-        public AltaEntrada()
+        public int modoCord = 0;
+        public AltaEntrada( int modoCor = 0)
         {
 
             InitializeComponent();
-
+            modoCord = modoCor;
         }
 
         private void AltaEntrada_Load(object sender, EventArgs e)
@@ -57,10 +58,21 @@ namespace mainVentana.VistaEntrada
                 InicioEntrada();
 
             }
-         
+            if (modoCord == 2)
+            {
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                CambiaDocumento(2);
+                sucDestino.Enabled = false;
+                groupBox3.Enabled = false;
+                groupBox5.Enabled = false;
+                groupBox6.Enabled = false;
+                groupBox4.Enabled = false;
+                Especificos.Enabled = false; 
+            }
+
         }
 
-        
+
         private async void InicioEntrada()
         {
           //  btnReimp.Visible = false;
@@ -409,7 +421,7 @@ namespace mainVentana.VistaEntrada
                 try
                 {
                     bd.agregaKDMENT(datoSucIni, datoEntrada, i.ToString(), datoSucIni.Trim() + "-UD3501-" + datoEntrada.Trim(), datoSucIni.Trim() + "-" + datoEntrada.Trim() + "-" + i.ToString(), datoSucDestino, datoSucIni.Trim(),
-              datoDetalles.Length >= 100 ? datoDetalles.Substring(0, 100) : datoDetalles, datoFecha.ToString(), 0, 0, "OE");
+              datoDetalles.Length >= 100 ? datoDetalles.Substring(0, 100) : datoDetalles, datoFecha.ToString("MM/dd/yyyy HH:mm:ss"), 0, 0, "OE");
 
                 }
                 catch (Exception x)
@@ -835,13 +847,13 @@ namespace mainVentana.VistaEntrada
 
         private DateTime regresafecha()
         {
-
             Servicio datos = new Servicio();
             try
             {
                 string fecha1 = datos.retornafechaLapaz();
                 FechaActual lst = JsonConvert.DeserializeObject<FechaActual>(fecha1);
-                return lst.datetime;
+                DateTime fechaActual = lst.datetime;
+                return fechaActual;
             }
             catch (Exception ex)
             {
@@ -849,6 +861,9 @@ namespace mainVentana.VistaEntrada
                 return DateTime.Now;
             }
         }
+
+
+
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
