@@ -76,11 +76,16 @@
             this.cmbVehuculo.FormattingEnabled = true;
             this.cmbVehuculo.Items.AddRange(new object[] {
             "",
-            "DUCATOCSL-08",
-            "ISUZUCSL-06",
-            "ISUZUCSL-11",
-            "NISSANCSL-07",
-            "RABONCSL-05"});
+            "DUCATO-CSL-08",
+            "DUCATO-CSL-09",
+            "ISUZU-CSL-04",
+            "ISUZU-CSL-10",
+            "NISSAN-CSL-02",
+            "NISSAN-CSL-05",
+            "NISSAN-CSL-06",
+            "NISSAN-CSL-07",
+            "RABON-CSL-01",
+            "RABON-CSL-03"});
             this.cmbVehuculo.Location = new System.Drawing.Point(760, 82);
             this.cmbVehuculo.Name = "cmbVehuculo";
             this.cmbVehuculo.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
@@ -290,9 +295,8 @@
             this.lblQueueCount.ForeColor = System.Drawing.Color.Black;
             this.lblQueueCount.Location = new System.Drawing.Point(20, 551);
             this.lblQueueCount.Name = "lblQueueCount";
-            this.lblQueueCount.Size = new System.Drawing.Size(124, 16);
+            this.lblQueueCount.Size = new System.Drawing.Size(0, 16);
             this.lblQueueCount.TabIndex = 16;
-            this.lblQueueCount.Text = "Sucursal que envía.";
             this.lblQueueCount.UseMnemonic = false;
             // 
             // frmOperSalidas

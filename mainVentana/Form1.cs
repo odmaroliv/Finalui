@@ -390,7 +390,7 @@ namespace mainVentana
 
         private void lblWebex_Click(object sender, EventArgs e)
         {
-            Process.Start("https://signin.webex.com/");
+            Process.Start("https://app.ringcentral.com/");
         }
 
         private void lblGmail_Click(object sender, EventArgs e)

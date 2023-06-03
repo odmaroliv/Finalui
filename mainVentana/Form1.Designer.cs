@@ -103,6 +103,8 @@ namespace mainVentana
             this.ribbonSeparator9 = new System.Windows.Forms.RibbonSeparator();
             this.rbtnAjustes = new System.Windows.Forms.RibbonButton();
             this.apiConfig = new System.Windows.Forms.RibbonButton();
+            this.ribbonButton6 = new System.Windows.Forms.RibbonButton();
+            this.rbAgregarUsuario = new System.Windows.Forms.RibbonButton();
             this.rpnlAccesosWeb = new System.Windows.Forms.RibbonPanel();
             this.ribbonItemGroup1 = new System.Windows.Forms.RibbonItemGroup();
             this.lblWha = new System.Windows.Forms.RibbonLabel();
@@ -123,8 +125,6 @@ namespace mainVentana
             this.ribbonButton4 = new System.Windows.Forms.RibbonButton();
             this.ribbonDescriptionMenuItem2 = new System.Windows.Forms.RibbonDescriptionMenuItem();
             this.panelContenedorForm = new System.Windows.Forms.Panel();
-            this.ribbonButton6 = new System.Windows.Forms.RibbonButton();
-            this.rbAgregarUsuario = new System.Windows.Forms.RibbonButton();
             this.panel11.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -621,6 +621,24 @@ namespace mainVentana
             this.apiConfig.Text = "Api Config";
             this.apiConfig.Click += new System.EventHandler(this.apiConfig_Click);
             // 
+            // ribbonButton6
+            // 
+            this.ribbonButton6.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton6.Image")));
+            this.ribbonButton6.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton6.LargeImage")));
+            this.ribbonButton6.Name = "ribbonButton6";
+            this.ribbonButton6.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton6.SmallImage")));
+            this.ribbonButton6.Text = "ribbonButton6";
+            // 
+            // rbAgregarUsuario
+            // 
+            this.rbAgregarUsuario.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.rbAgregarUsuario.Image = ((System.Drawing.Image)(resources.GetObject("rbAgregarUsuario.Image")));
+            this.rbAgregarUsuario.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbAgregarUsuario.LargeImage")));
+            this.rbAgregarUsuario.Name = "rbAgregarUsuario";
+            this.rbAgregarUsuario.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbAgregarUsuario.SmallImage")));
+            this.rbAgregarUsuario.Text = "Crear Usuarios";
+            this.rbAgregarUsuario.Click += new System.EventHandler(this.rbAgregarUsuario_Click);
+            // 
             // rpnlAccesosWeb
             // 
             this.rpnlAccesosWeb.ButtonMoreEnabled = false;
@@ -651,7 +669,7 @@ namespace mainVentana
             // 
             this.lblWebex.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Compact;
             this.lblWebex.Name = "lblWebex";
-            this.lblWebex.Text = "Webex";
+            this.lblWebex.Text = "RingCentral";
             this.lblWebex.ToolTip = "Utiliza este Boton para abrir WEBEX directamente.";
             this.lblWebex.Click += new System.EventHandler(this.lblWebex_Click);
             // 
@@ -701,7 +719,7 @@ namespace mainVentana
             this.cbxiSD.LargeImage = ((System.Drawing.Image)(resources.GetObject("cbxiSD.LargeImage")));
             this.cbxiSD.Name = "cbxiSD";
             this.cbxiSD.SmallImage = ((System.Drawing.Image)(resources.GetObject("cbxiSD.SmallImage")));
-            this.cbxiSD.Text = " San Diego";
+            this.cbxiSD.Text = "San Diego";
             this.cbxiSD.Value = "SD";
             // 
             // cbxiTJ
@@ -792,24 +810,6 @@ namespace mainVentana
             this.panelContenedorForm.Name = "panelContenedorForm";
             this.panelContenedorForm.Size = new System.Drawing.Size(1113, 601);
             this.panelContenedorForm.TabIndex = 2;
-            // 
-            // ribbonButton6
-            // 
-            this.ribbonButton6.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton6.Image")));
-            this.ribbonButton6.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton6.LargeImage")));
-            this.ribbonButton6.Name = "ribbonButton6";
-            this.ribbonButton6.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton6.SmallImage")));
-            this.ribbonButton6.Text = "ribbonButton6";
-            // 
-            // rbAgregarUsuario
-            // 
-            this.rbAgregarUsuario.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
-            this.rbAgregarUsuario.Image = ((System.Drawing.Image)(resources.GetObject("rbAgregarUsuario.Image")));
-            this.rbAgregarUsuario.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbAgregarUsuario.LargeImage")));
-            this.rbAgregarUsuario.Name = "rbAgregarUsuario";
-            this.rbAgregarUsuario.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbAgregarUsuario.SmallImage")));
-            this.rbAgregarUsuario.Text = "Crear Usuarios";
-            this.rbAgregarUsuario.Click += new System.EventHandler(this.rbAgregarUsuario_Click);
             // 
             // Form1
             // 
