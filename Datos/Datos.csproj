@@ -140,6 +140,7 @@
       <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Bill\VMSalidasBill.cs" />
+    <Compile Include="ViewModels\Carga\CargaCordsGeneral.cs" />
     <Compile Include="ViewModels\Carga\vmCargaConsultaGeneral.cs" />
     <Compile Include="ViewModels\Carga\vmCargaCordinadores.cs" />
     <Compile Include="ViewModels\Carga\vmChoferes.cs" />

@@ -1,5 +1,13 @@
-﻿using DocumentFormat.OpenXml.Presentation;
+﻿using Datos.ViewModels;
+using Datos.ViewModels.Carga;
+using Datos.ViewModels.Entradas;
+using Datos.ViewModels.Servicios;
+using DocumentFormat.OpenXml.Presentation;
 using mainVentana.VistaOrSalida;
+using Negocios;
+using Negocios.NGCarga;
+using Negocios.NGReportes;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,15 +22,308 @@ namespace mainVentana.VistaInicioCoordinadores
 {
     public partial class frmAddToCarga : Form
     {
+        private string sucursal = "SD";
+        string datoTipoOper = "";
+        private bool _isBussy = false;
+        private DateTime _cierreFecha = DateTime.Now;
+
+        private List<vmEntradasEnCarga> listaBultos = new List<vmEntradasEnCarga>();
+
+
         public frmAddToCarga()
         {
             InitializeComponent();
         }
 
-        private void btnAlta_Click(object sender, EventArgs e)
+        private async void btnAlta_Click(object sender, EventArgs e)
         {
+           await OperacionBoton();
+        }
+
+        private async Task OperacionBoton()
+        {
+            LimpiaDatos();
+            try
+            {
+                btnAlta.Enabled = false;
+                if (_isBussy == true)
+                {
+                    return;
+                }
+                CargaOrdenes();
+                await CargaEntradas();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally { btnAlta.Enabled = true; }
+
+        }
+
+        private async void frmAddToCarga_Load(object sender, EventArgs e)
+        {
+            dtFecha1.Value = DateTime.Now.AddDays(-30);
+            dtFecha2.Value = DateTime.Now;
+            dtFecha1.MinDate = DateTime.Now.AddDays(-460);
+            dtFecha1.MaxDate = DateTime.Now.AddDays(1);
+            dtFecha2.MinDate = DateTime.Now.AddDays(-460);
+            dtFecha2.MaxDate = DateTime.Now.AddDays(1);
+
+            //CargaOrdenes();
+           await CargaOperaciones();
+
+        }
+
+        private async void CargaOrdenes()
+        {
+
+            
+           await Task.Run(  () =>{
+
+               this.Invoke(new Action(() => {
+
+                   try
+                   {
+                       DateTime dFechaServicio = regresafecha();
+                       datoTipoOper = tipoOper.SelectedValue.ToString().Trim();
+                       Negocios.NGCarga.GETcarga get = new Negocios.NGCarga.GETcarga();
+
+                       var lst7 = get.ObtieneCargasDeEntrega(sucursal, datoTipoOper, dFechaServicio);
+
+                       cbxOrdenes.DisplayMember = "numeroCarga";
+                       cbxOrdenes.ValueMember = "numeroCarga";
+                       cbxOrdenes.DataSource = lst7;
+
+                   }
+                   catch (Exception)
+                   {
+
+                       throw;
+                   }
+
+               }));
+                   
+
+            });
+           
+        }
+
+        private DateTime regresafecha()
+        {
+            Servicio datos = new Servicio();
+            try
+            {
+                string fecha1 = datos.retornafechaLapaz();
+                FechaActual lst = JsonConvert.DeserializeObject<FechaActual>(fecha1);
+                DateTime fechaActual = lst.datetime;
+                return fechaActual;
+            }
+            catch (Exception ex)
+            {
+                // Si hay una excepción, devuelve la fecha actual del equipo
+                return DateTime.Now;
+            }
+        }
+
+        private async Task CargaOperaciones()
+        {
+            Servicios datos = new Servicios();
+
+            var lst7 = await datos.llenaOpera();
+
+            tipoOper.DisplayMember = "C2";
+            tipoOper.ValueMember = "C1";
+            tipoOper.DataSource = lst7;
+        }
+
+        private async void cbxOrdenes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox cmboBox = (ComboBox)sender;
+            string valor = cmboBox.SelectedValue != null ? cmboBox.SelectedValue.ToString() : "000000000";
+            if (valor == "000000000")
+            {
+                return;
+            }
+            try
+            {
+                GETcarga get = new GETcarga();
+                var lst = get.ObtieneOrdenDeCargaPorIdYSucursal(sucursal, valor);
+                /*foreach (vmTOperacion i in tipoOper.Items)
+                {
+                    if (i.c1.Trim() == lst.tipoOperacion.Trim())
+                    {
+                        tipoOper.SelectedValue = i.c1;
+                        break;
+                    }
+                }*/
+                txbCarga.Text = lst.numeroCarga.ToString();
+                tmCierre.Value = (DateTime)lst.fechaCierre;
+                _cierreFecha = (DateTime)lst.fechaCierre;
+
+                CargaEntradaEnDgv(lst.numeroCarga.ToString());
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+          
+        }
+
+        private void CargaEntradaEnDgv(string nCarga)
+        {
+            
             Negocios.NGCarga.GETcarga get = new Negocios.NGCarga.GETcarga();
-           dgvListaCargas.DataSource = get.ObtieneCargasDeEntrega("CSL","09");
+            var entradasTo = get.EntradasEnCargaConUsuario(sucursal, Convert.ToInt32(nCarga));
+            dgvCargadas.DataSource = entradasTo;
+           
+        }
+
+        private async Task CargaEntradas()
+        {
+            _isBussy = true;
+            try
+            {
+                ngbdReportes rep = new ngbdReportes();
+                var lss = await rep.CargaEntradasParaAsignarACarga(sucursal, dtFecha1.Value, dtFecha2.Value, datoTipoOper);
+                dtgSinAsignar.DataSource = lss;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { _isBussy = false; }
+
+        }
+
+        private void rSd_CheckedChanged(object sender, EventArgs e)
+        {
+
+            LimpiaDatos();
+
+            var radioButtonMapping = new Dictionary<RadioButton, string>
+                {
+        { rSd, "SD" },
+        { rTj, "TJ" },
+        { rCa, "CSL" },
+
+                 };
+
+            // Encontrar el RadioButton seleccionado y obtener su valor correspondiente
+            sucursal = radioButtonMapping.FirstOrDefault(r => r.Key.Checked).Value;
+        }
+
+        private void LimpiaDatos()
+        {
+            listaBultos.Clear();
+            dtgSinAsignar.DataSource = null;
+            dtgAsignados.DataSource = null;
+            txbCarga.Text = default;
+            tmCierre.Value = DateTime.Now;
+            cbxOrdenes.DataSource = default;
+        }
+
+        private void dtgSinAsignar_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var dataGridView = sender as DataGridView;
+
+            // Comprueba si el clic fue en la columna "bulto"
+            if (dataGridView.Columns[e.ColumnIndex].Name == "bulto")
+            {
+                string valorBulto = dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                string entradaEtiqueta = dataGridView.Rows[e.RowIndex].Cells["entrada"].Value.ToString();
+                if (!listaBultos.Any(x => x.Etiqueta == valorBulto))
+                {
+                    listaBultos.Add(new vmEntradasEnCarga
+                    {
+                        Etiqueta = valorBulto,
+                        Entrada = entradaEtiqueta,
+                    });
+                }
+
+            }
+            if (dataGridView.Columns[e.ColumnIndex].Name == "entrada")
+            {
+                string valorEntrada = dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+
+                foreach (DataGridViewRow row in dataGridView.Rows)
+                {
+                    string bultoEtiqueta = row.Cells["bulto"].Value.ToString(); // reemplaza "bulto" con el nombre de tu columna de bulto
+                    string entradaEtiqueta = row.Cells["entrada"].Value.ToString(); // reemplaza "Entrada" con el nombre de tu columna de entrada
+
+                    if (entradaEtiqueta == valorEntrada && !listaBultos.Any(x => x.Etiqueta == bultoEtiqueta))
+                    {
+                        listaBultos.Add(new vmEntradasEnCarga
+                        {
+                            Etiqueta = bultoEtiqueta,
+                            Entrada = entradaEtiqueta
+                        });
+                    }
+                }
+
+            }
+            dtgAsignados.DataSource = null;
+            dtgAsignados.DataSource = listaBultos;
+            txbTotal.Text = dtgAsignados.Rows.Count.ToString();
+        }
+
+        private async void btnGuardar_Click(object sender, EventArgs e)
+        {
+            await EjecutaFuncionDeModifica();
+            await OperacionBoton();
+        }
+
+        private async Task EjecutaFuncionDeModifica()
+        {
+            if (txbCarga.Text =="")
+            {
+                MessageBox.Show("No hay ninguna Orden");
+                return;
+            }
+            try
+            {
+                _isBussy = true;
+                btnGuardar.Enabled = false;
+                DateTime datoFecha = regresafecha();
+                string fechaHoy = datoFecha == null ? DateTime.Now.ToString("MM/dd/yyyy") : datoFecha.ToString("MM/dd/yyyy");
+                //DataGridViewRow selectedRow = dtgCargasFilter.Rows[dtgCargasFilter.SelectedCells[0].RowIndex];
+                string c_so = sucursal;
+                string c_car = txbCarga.Text.Trim();
+                string c_cargacompleta = c_so + "-UD4001-" + c_car;
+
+                // string e_eti = txbEntradaDetalle.Text.Trim();
+                //string e_so = sucursal;
+                Negocios.NGCarga.altasBDCarga get = new Negocios.NGCarga.altasBDCarga();
+                bool dato = await get.AsignaCargaAEntradaEspesifica(listaBultos, c_cargacompleta, fechaHoy);
+                //MessageBox.Show("La entrada: " + e_en + " fue asignada con exito a la carga " + c_cargacompleta, "Carga asignada", MessageBoxButtons.OK);
+                if (dato == false)
+                {
+                    MessageBox.Show("Ocurrio un error");
+                }
+                else
+                {
+                    MessageBox.Show("Asignación Correcta");
+                    await OperacionBoton();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                btnGuardar.Enabled = true;
+                _isBussy =false;
+            }
+              
+        }
+
+        private async void tipoOper_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            await OperacionBoton();
         }
     }
 }

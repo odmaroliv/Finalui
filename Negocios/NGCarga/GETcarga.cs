@@ -70,7 +70,7 @@ namespace Negocios.NGCarga
 
                     {
                         var lista = from d in modelo.KDM1
-                                    where d.C1.Contains(dSucursalInicio) && d.C6.Contains(dOrdenDeCarga) && d.C4 == 40//&& d.C19 != sdestino 
+                                    where d.C1.Contains(dSucursalInicio) && d.C6.Equals(dOrdenDeCarga) && d.C4 == 40//&& d.C19 != sdestino 
                                     select new vmCargaConsultaGeneral
                                     {
                                         sucursalOrigen = d.C1,
@@ -133,7 +133,38 @@ namespace Negocios.NGCarga
             }
 
         }
+        public List<vmEntradasEnCarga> EntradasEnCargaConUsuario(string datoSucIni, int carga)
+        {
+            string codigo = datoSucIni.Trim() + "-UD4001-" + carga.ToString("D7");
+            try
+            {
+                var lst2 = new List<vmEntradasEnCarga>();
 
+                using (modelo2Entities modelo = new modelo2Entities())
+
+                {
+                    var lista = from d in modelo.KDMENT
+                                join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
+                                where d.C54.Contains(codigo) && k.C12 == Common.Cache.CacheLogin.idusuario.ToString() //&& d.C19 != sdestino 
+                                select new vmEntradasEnCarga
+                                {
+                                    Entrada = d.C6,
+                                    Etiqueta = d.C9,
+                                    Unidad = k.C98,
+                                    Cliente = k.C32,
+                                };
+                    lst2 = lista.ToList();
+                }
+
+                return lst2;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
 
         public List<vmCargaCordinadores> ObtieneCargasActivas(string datoSucIni, string oper)
         {
@@ -264,22 +295,19 @@ namespace Negocios.NGCarga
             return FechaRestada;
         }
 
-        public List<vmCargaCordinadores> ObtieneCargasDeEntrega(string datoSucIni, string oper)
+        public List<vmCargaCordinadores> ObtieneCargasDeEntrega(string datoSucIni, string oper, DateTime fechaC)
         {
-            //string codigo = datoSucIni.Trim() + "-UD4001-" + carga.ToString("D7");
-            DateTime hoy = DateTime.Now;
-            int hora = DateTime.Now.Hour;
+            // Obtener la fecha del servicio
+            DateTime fechaServicio = fechaC;
 
             try
             {
                 var lst2 = new List<vmCargaCordinadores>();
 
                 using (modelo2Entities modelo = new modelo2Entities())
-
                 {
                     var lista = from d in modelo.KDM1
-                                   
-                                where d.C1.Contains(datoSucIni) && d.C4 == 40 && d.C43 == "N"  && d.C101.Contains(oper) 
+                                where d.C1.Contains(datoSucIni) && d.C4 == 40 && d.C43 == "N" && d.C101.Contains(oper)
                                 orderby (d.C6) descending
                                 select new vmCargaCordinadores
                                 {
@@ -289,20 +317,37 @@ namespace Negocios.NGCarga
                                     horaCierre = d.C112,
                                     destino = d.C103,
                                     referencia = d.C11
-
                                 };
                     lst2 = lista.ToList();
                 }
+
+                // Filtrar la lista según la fecha y hora de cierre
+                lst2 = lst2.Where(carga => {
+                    if (carga.fechaCierre.HasValue)
+                    {
+                        // Combinar fecha y hora de cierre
+                        DateTime fechaHoraCierre;
+                        if (DateTime.TryParse($"{carga.fechaCierre.Value.ToShortDateString()} {carga.horaCierre}", out fechaHoraCierre))
+                        {
+                            // Retornar solo las cargas donde la fecha y hora de cierre no son menores a la fecha del servicio
+                            return DateTime.Compare(fechaHoraCierre, fechaServicio) >= 0;
+                        }
+                    }
+
+                    // Si no tiene fecha de cierre o no se puede combinar la fecha y hora de cierre, no incluir en la lista
+                    return false;
+                }).ToList();
 
                 return lst2;
             }
             catch (Exception)
             {
-
                 throw;
             }
-
         }
+
+
+
 
     }
 }

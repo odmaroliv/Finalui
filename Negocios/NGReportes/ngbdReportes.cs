@@ -1,5 +1,6 @@
 ﻿using Datos.Datosenti;
 using Datos.ViewModels;
+using Datos.ViewModels.Carga;
 using Datos.ViewModels.Configuracion;
 using Datos.ViewModels.Coord;
 using Datos.ViewModels.CXC;
@@ -184,6 +185,78 @@ namespace Negocios.NGReportes
                 throw;
             }
         }
+
+        /// <summary>
+        /// (SD TO CSL) Reporte Inicial a la hora de entrar al sistema, funciona por coordinador 
+        /// </summary>
+        public async Task<List<CargaCordsGeneral>> CargaEntradasParaAsignarACarga(string dato, DateTime dateFrom, DateTime to, string oper)
+        {
+
+            try
+            {
+                using (modelo2Entities modelo = new modelo2Entities())
+                {
+                    IQueryable<CargaCordsGeneral> query = null;
+                    if (Common.Cache.CacheLogin.master == "1")
+                    {
+                        query = from d in modelo.KDMENT
+                                join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
+                                join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
+                                where k.C9 <= to && k.C9 >= dateFrom && d.C1.Contains(dato) && d.C19.Contains(dato) && d.C34 == "" && k.C4 == 35 && k.C101.Contains(oper) && (d.C16=="" || d.C16== null) && (d.C54 == "" || d.C54 == null)
+                                orderby d.C6 descending
+                                select new CargaCordsGeneral
+                                {
+                                    bulto = d.C9,
+                                    entrada = d.C6,
+                                    fechaentrada = d.C69,
+                                  
+                                    cliente = k.C32,
+                                    noCli = k.C10,
+                                    Cotizacion = k.C115,
+                                  
+                                    SucursalInicio = d.C1,
+                                    valFact = k.C102,
+                                    valArn = k.C16.ToString(),
+                                    desc = a.C11,
+                                    aliss = k.C112,
+                                };
+                    }
+                    else
+                    {
+                        query = from d in modelo.KDMENT
+                                join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
+                                join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
+                                where k.C9 <= to && k.C9 >= dateFrom && d.C1.Contains(dato) && d.C19.Contains(dato) && d.C34 == "" && k.C12 == Common.Cache.CacheLogin.idusuario.ToString() && k.C4 == 35 && k.C101.Contains(oper) && (d.C16 == "" || d.C16 == null) && (d.C54 == "" || d.C54 == null)
+                                orderby d.C6 descending
+                                select new CargaCordsGeneral
+                                {
+                                    bulto = d.C9,
+                                    entrada = d.C6,
+                                    fechaentrada = d.C69,
+                                  
+                                    cliente = k.C32,
+                                    noCli = k.C10,
+                                    Cotizacion = k.C115,
+                                   
+                                    SucursalInicio = d.C1,
+                                    valFact = k.C102,
+                                    valArn = k.C16.ToString(),
+                                    desc = a.C11,
+                                    aliss = d.C24,
+                                };
+                    }
+
+
+                    var result = await query.AsNoTracking().ToListAsync();
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
 
         /// <summary>
         /// Carga clientes sin Id 

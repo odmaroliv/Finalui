@@ -62,12 +62,13 @@ namespace mainVentana.VistaEntrada
             {
                 this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 CambiaDocumento(2);
-                sucDestino.Enabled = false;
+                //sucDestino.Enabled = false;
                 groupBox3.Enabled = false;
                 groupBox5.Enabled = false;
                 groupBox6.Enabled = false;
                 groupBox4.Enabled = false;
-                Especificos.Enabled = false; 
+                cmbMoneda.Enabled = false;
+                //Especificos.Enabled = false; 
             }
 
         }
@@ -95,12 +96,9 @@ namespace mainVentana.VistaEntrada
             llenaCampos();
             #region Autocompletar ref
 
-
-
             proveedor.AutoCompleteCustomSource = await proveeList();
 
             coloresSucursales();
-
 
             #endregion
         }
@@ -188,11 +186,15 @@ namespace mainVentana.VistaEntrada
 
                 if (tipodeDocumento == 2)
                 {
+                    if (lblEntrada.Text == "")
+                    {
+                        return;
+                    }
                     if (validacion.validacampo(sucEntrada.Text, sucDestino.Text, tipoOper.Text, cord.Text, cliente.Text, proveedor.Text, ordenCompra.Text, numFlete.Text, unidades.Text, peso.Text, bultos.Text, detalles.Text) == true)
                     {
                         Guardar.Enabled = false;
 
-
+                       
 
                         if (txbValFact.Text.Trim() == "" || txbValFact.Text.Trim() == "0")
                         {
@@ -956,6 +958,7 @@ namespace mainVentana.VistaEntrada
             else
             {
                 txbBuscarEnt.Text = "";
+                lblEntrada.Text = "";
             }
 
         }

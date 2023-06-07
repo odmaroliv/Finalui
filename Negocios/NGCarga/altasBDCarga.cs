@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Windows.Forms;
+using Datos.ViewModels.Carga;
+using System.Collections.ObjectModel;
 
 namespace Negocios.NGCarga
 {
@@ -251,6 +253,61 @@ namespace Negocios.NGCarga
 
         }
 
+        public async Task<bool> AsignaCargaAEntradaEspesifica(List<vmEntradasEnCarga> lista, string carga, string fecha)
+        {
+            bool te = true;
+            await Task.Run(() =>
+            {
+            using (modelo2Entities modelo = new modelo2Entities())
+            {
+                   
+                   
+                       
+                        foreach (var item in lista)
+                        {
+                        if (String.IsNullOrWhiteSpace(carga))
+                        {
+                            return;
+                        }
+                            try
+                            {
+                                var dato = (from q in modelo.KDMENT
+                                            where q.C9.Contains(item.Etiqueta) && q.C4 == 35
+                                            select q).FirstOrDefault();
+
+
+
+
+                                dato.C54 = carga;
+                                dato.C71 = fecha;
+                                /*
+                                 foreach (var item in d)
+                                 {
+                                     item.C54 = carga;
+                                     item.C71 = fecha;
+                                 }
+                                */
+
+                                modelo.SaveChanges();
+                            }
+                            catch (Exception ex)
+                            {
+                            Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "altasBDCargas.cs, AsignaCargaAEntradaEspesifica()... "+ item.Etiqueta+"");
+                            te = false;
+                            }
+                            
+                        }
+                        
+
+                }
+            });
+
+            return te;
+           
+
+        }
+
+        
         public async Task<bool> LiberaEntradaDeCarga(string dtSucInicio, string dtEntrada, string dtCargaAsignada)
         {
             bool terminado = true;
