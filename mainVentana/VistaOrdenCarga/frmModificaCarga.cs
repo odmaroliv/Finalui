@@ -267,9 +267,14 @@ namespace mainVentana.VistaOrdenCarga
         List<vmEntradasEnCarga> entradasTo = new List<vmEntradasEnCarga>();
         private void CargaEntradaEnDgv()
         {
+            string modo = "";
+            if (hopeSwitch1.Checked==true)
+            {
+                modo = "09";
+            }
             entradasTo = null;
            Negocios.NGCarga.GETcarga get = new Negocios.NGCarga.GETcarga();
-            entradasTo = get.EntradasEnCarga(cmbSucOrigen.SelectedValue.ToString(), Convert.ToInt32(cargaAModificar));
+            entradasTo = get.EntradasEnCarga(cmbSucOrigen.SelectedValue.ToString(), Convert.ToInt32(cargaAModificar),modo);
             dgvEntEnCarga.DataSource = entradasTo;
             txbTotal.Text = dgvEntEnCarga.Rows.Count.ToString();
         }
@@ -605,6 +610,11 @@ namespace mainVentana.VistaOrdenCarga
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void hopeSwitch1_CheckedChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

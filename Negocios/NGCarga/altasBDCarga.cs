@@ -253,22 +253,53 @@ namespace Negocios.NGCarga
 
         }
 
-        public async Task<bool> AsignaCargaAEntradaEspesifica(List<vmEntradasEnCarga> lista, string carga, string fecha)
+        public async Task<bool> AsignaCargaAEntradaEspesifica(List<vmEntradasEnCarga> lista, string carga, string fecha, string tipo = null)
         {
             bool te = true;
             await Task.Run(() =>
             {
             using (modelo2Entities modelo = new modelo2Entities())
             {
-                   
-                   
-                       
+
+                    if (tipo=="09")
+                    {
                         foreach (var item in lista)
                         {
-                        if (String.IsNullOrWhiteSpace(carga))
-                        {
-                            return;
+                            if (String.IsNullOrWhiteSpace(carga))
+                            {
+                                return;
+                            }
+                            try
+                            {
+                                var dato = (from q in modelo.KDMENT
+                                            where q.C9.Contains(item.Etiqueta) && q.C4 == 35
+                                            select q).FirstOrDefault();
+
+
+
+
+                                dato.C45 = carga;
+                                dato.C61 = fecha;
+                                
+
+                                modelo.SaveChanges();
+                            }
+                            catch (Exception ex)
+                            {
+                                Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "altasBDCargas.cs, AsignaCargaAEntradaEspesifica()... " + item.Etiqueta + "");
+                                te = false;
+                            }
+
                         }
+                    }
+                    else
+                    {
+                        foreach (var item in lista)
+                        {
+                            if (String.IsNullOrWhiteSpace(carga))
+                            {
+                                return;
+                            }
                             try
                             {
                                 var dato = (from q in modelo.KDMENT
@@ -292,11 +323,15 @@ namespace Negocios.NGCarga
                             }
                             catch (Exception ex)
                             {
-                            Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "altasBDCargas.cs, AsignaCargaAEntradaEspesifica()... "+ item.Etiqueta+"");
-                            te = false;
+                                Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "altasBDCargas.cs, AsignaCargaAEntradaEspesifica()... " + item.Etiqueta + "");
+                                te = false;
                             }
-                            
+
                         }
+
+                    }
+                       
+                        
                         
 
                 }

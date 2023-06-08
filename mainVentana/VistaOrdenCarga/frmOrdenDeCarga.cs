@@ -242,7 +242,12 @@ namespace mainVentana.VistaOrdenCarga
         //Boton de Dar de Alta la Orden de Carga.
         private void gunaGradientTileButton1_Click(object sender, EventArgs e)
         {
-            
+            if (hopeSwitch1.Checked == true)
+            {
+                
+                tipoOper.SelectedValue = "09";
+
+            }
             int validacion = ValidacionesGenerales();
             if (validacion==1)
             {

@@ -146,7 +146,7 @@ namespace Negocios.NGReportes
                                     SucursalInicio = d.C1,
                                     valFact = k.C102,
                                     valArn = k.C16.ToString(),
-                                    desc = a.C11,
+                                    //desc = a.C11,
                                     aliss = k.C112,
                                 };
                     }
@@ -197,54 +197,110 @@ namespace Negocios.NGReportes
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
                     IQueryable<CargaCordsGeneral> query = null;
-                    if (Common.Cache.CacheLogin.master == "1")
+                    if (oper == "09")
                     {
-                        query = from d in modelo.KDMENT
-                                join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
-                                join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
-                                where k.C9 <= to && k.C9 >= dateFrom && d.C1.Contains(dato) && d.C19.Contains(dato) && d.C34 == "" && k.C4 == 35 && k.C101.Contains(oper) && (d.C16=="" || d.C16== null) && (d.C54 == "" || d.C54 == null)
-                                orderby d.C6 descending
-                                select new CargaCordsGeneral
-                                {
-                                    bulto = d.C9,
-                                    entrada = d.C6,
-                                    fechaentrada = d.C69,
-                                  
-                                    cliente = k.C32,
-                                    noCli = k.C10,
-                                    Cotizacion = k.C115,
-                                  
-                                    SucursalInicio = d.C1,
-                                    valFact = k.C102,
-                                    valArn = k.C16.ToString(),
-                                    desc = a.C11,
-                                    aliss = k.C112,
-                                };
+
+                        if (Common.Cache.CacheLogin.master == "1")
+                        {
+                            query = from d in modelo.KDMENT
+                                    join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
+                                    join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
+                                    where k.C9 <= to && k.C9 >= dateFrom  && d.C19.Contains(dato) && d.C10.Contains(dato) && d.C20 == "F" && d.C34 == "" && k.C4 == 35 && (d.C45 == "" || d.C45 == null)
+                                    orderby d.C6 descending
+                                    select new CargaCordsGeneral
+                                    {
+                                        bulto = d.C9,
+                                        entrada = d.C6,
+                                        fechaentrada = d.C69,
+
+                                        cliente = k.C32,
+                                        noCli = k.C10,
+                                        Cotizacion = k.C115,
+
+                                        SucursalInicio = d.C1,
+                                        valFact = k.C102,
+                                        valArn = k.C16.ToString(),
+                                        desc = a.C11,
+                                        aliss = k.C112,
+                                    };
+                        }
+                        else
+                        {
+                            query = from d in modelo.KDMENT
+                                    join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
+                                    join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
+                                    where k.C9 <= to && k.C9 >= dateFrom &&  d.C19.Contains(dato) && d.C10.Contains(dato) && d.C20 == "F" && d.C34 == "" && k.C4 == 35 && (d.C45 == "" || d.C45 == null) && k.C12 == Common.Cache.CacheLogin.idusuario.ToString() 
+                                    orderby d.C6 descending
+                                    select new CargaCordsGeneral
+                                    {
+                                        bulto = d.C9,
+                                        entrada = d.C6,
+                                        fechaentrada = d.C69,
+
+                                        cliente = k.C32,
+                                        noCli = k.C10,
+                                        Cotizacion = k.C115,
+
+                                        SucursalInicio = d.C1,
+                                        valFact = k.C102,
+                                        valArn = k.C16.ToString(),
+                                        desc = a.C11,
+                                        aliss = d.C24,
+                                    };
+                        }
                     }
                     else
                     {
-                        query = from d in modelo.KDMENT
-                                join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
-                                join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
-                                where k.C9 <= to && k.C9 >= dateFrom && d.C1.Contains(dato) && d.C19.Contains(dato) && d.C34 == "" && k.C12 == Common.Cache.CacheLogin.idusuario.ToString() && k.C4 == 35 && k.C101.Contains(oper) && (d.C16 == "" || d.C16 == null) && (d.C54 == "" || d.C54 == null)
-                                orderby d.C6 descending
-                                select new CargaCordsGeneral
-                                {
-                                    bulto = d.C9,
-                                    entrada = d.C6,
-                                    fechaentrada = d.C69,
-                                  
-                                    cliente = k.C32,
-                                    noCli = k.C10,
-                                    Cotizacion = k.C115,
-                                   
-                                    SucursalInicio = d.C1,
-                                    valFact = k.C102,
-                                    valArn = k.C16.ToString(),
-                                    desc = a.C11,
-                                    aliss = d.C24,
-                                };
+                        if (Common.Cache.CacheLogin.master == "1")
+                        {
+                            query = from d in modelo.KDMENT
+                                    join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
+                                    join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
+                                    where k.C9 <= to && k.C9 >= dateFrom && d.C1.Contains(dato) && d.C19.Contains(dato) && d.C34 == "" && k.C4 == 35 && k.C101.Contains(oper) && (d.C16 == "" || d.C16 == null) && (d.C54 == "" || d.C54 == null)
+                                    orderby d.C6 descending
+                                    select new CargaCordsGeneral
+                                    {
+                                        bulto = d.C9,
+                                        entrada = d.C6,
+                                        fechaentrada = d.C69,
+
+                                        cliente = k.C32,
+                                        noCli = k.C10,
+                                        Cotizacion = k.C115,
+
+                                        SucursalInicio = d.C1,
+                                        valFact = k.C102,
+                                        valArn = k.C16.ToString(),
+                                        desc = a.C11,
+                                        aliss = k.C112,
+                                    };
+                        }
+                        else
+                        {
+                            query = from d in modelo.KDMENT
+                                    join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
+                                    join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
+                                    where k.C9 <= to && k.C9 >= dateFrom && d.C1.Contains(dato) && d.C19.Contains(dato) && d.C34 == "" && k.C12 == Common.Cache.CacheLogin.idusuario.ToString() && k.C4 == 35 && k.C101.Contains(oper) && (d.C16 == "" || d.C16 == null) && (d.C54 == "" || d.C54 == null)
+                                    orderby d.C6 descending
+                                    select new CargaCordsGeneral
+                                    {
+                                        bulto = d.C9,
+                                        entrada = d.C6,
+                                        fechaentrada = d.C69,
+
+                                        cliente = k.C32,
+                                        noCli = k.C10,
+                                        Cotizacion = k.C115,
+
+                                        SucursalInicio = d.C1,
+                                        valFact = k.C102,
+                                        valArn = k.C16.ToString(),
+                                        desc = a.C11,
+                                        aliss = d.C24,
+                                    };
+                        }
                     }
+                    
 
 
                     var result = await query.AsNoTracking().ToListAsync();
@@ -373,6 +429,7 @@ namespace Negocios.NGReportes
                     {
                         var lista = (from d in modelo.KDMENT
                                      join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
+                                     join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
                                      //join a in modelo.KDUV on k.C12 equals a.C2
                                      //join u in modelo.KDUSUARIOS on a.C22 equals u.C1
                                      join c in modelo.KDUV on k.C12 equals c.C2
@@ -392,7 +449,8 @@ namespace Negocios.NGReportes
                                          valFact = k.C102,
                                          valArn = k.C16.ToString(),
                                          aliss = d.C24,
-                                         Cotizacion = c.C3
+                                         Cotizacion = c.C3,
+                                         desc = a.C11
                                      });
                         lst = lista.FirstOrDefault();
                     }

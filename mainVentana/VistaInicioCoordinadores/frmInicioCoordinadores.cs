@@ -20,6 +20,8 @@ using Datos.ViewModels.Entradas;
 using FontAwesome.Sharp;
 using DocumentFormat.OpenXml.Office.Word;
 using iTextSharp.tool.xml.css;
+using ADGV;
+using mainVentana.Helpers;
 
 namespace mainVentana.VistaInicioCoordinadores
 
@@ -36,11 +38,20 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private bool _isBusy = false;
 
+        //Almacenan el filtrado
+        private string currentFilter = string.Empty;
+        private string currentSort = string.Empty;
+
+
         public frmInicioCoordinadores()
         {
             InitializeComponent();
             this.dtgEnts.MouseWheel += dtgEnts_MouseWheek;
+          
+
         }
+
+
 
         private void dtgEnts_MouseWheek(object sender, MouseEventArgs e)
         {
@@ -93,14 +104,17 @@ namespace mainVentana.VistaInicioCoordinadores
         private async void frmInicioCoordinadores_Load(object sender, EventArgs e)
         {
 
+            dtgEnts.EnableHeadersVisualStyles = false;
+            //dtgEnts.dou = false;
+
             dtFecha1.Value = DateTime.Now.AddDays(-1);
-            dtFecha2.Value = DateTime.Now;
+            dtFecha2.Value = DateTime.Now.AddDays(1);
             dtFecha1.MinDate = DateTime.Now.AddDays(-460);
             dtFecha1.MaxDate = DateTime.Now.AddDays(1);
             dtFecha2.MinDate = DateTime.Now.AddDays(-460);
             dtFecha2.MaxDate = DateTime.Now.AddDays(1);
-            nudValArn.Controls[0].Visible = false;
-            nudValFac.Controls[0].Visible = false;
+            nudValArn.Controls[0].Enabled = false;
+            nudValFac.Controls[0].Enabled = false;
 
             await ejecutaeveto2();
           
@@ -135,8 +149,40 @@ namespace mainVentana.VistaInicioCoordinadores
             {
                 lss = await rep.CargaControl(sucursal, dtFecha1.Value, dtFecha2.Value);
             }
-            
-              
+
+            foreach (var item in lss)
+            {
+                PropertyInfo[] properties = item.GetType().GetProperties();
+                foreach (var property in properties)
+                {
+                    if (property.PropertyType == typeof(string))
+                    {
+                        string value = (string)property.GetValue(item);
+                        if (value != null)
+                        {
+                            // Realizar validaciones adicionales aquí
+                            value = value.Trim();
+
+                            // Ejemplo de validación para establecer un valor predeterminado si es nulo o vacío
+                            if (string.IsNullOrEmpty(value))
+                            {
+                                value = "";
+                            }
+
+                            // Ejemplo de validación para ignorar espacios en blanco adicionales
+                            if (string.IsNullOrWhiteSpace(value))
+                            {
+                                continue; // Ignorar propiedad y pasar a la siguiente iteración del bucle
+                            }
+
+                            property.SetValue(item, value);
+                        }
+                    }
+                }
+            }
+
+
+
 
             if (dtgDatos != null)
             {
@@ -160,6 +206,15 @@ namespace mainVentana.VistaInicioCoordinadores
             else
             {
                 dtgEnts.DataSource = null;
+            }
+            string previousFilter = currentFilter;
+            string previousSort = currentSort;
+            using (BindingSource aada = new BindingSource())
+            {
+                aada.DataSource = DatosDataTable;
+                aada.Filter = previousFilter;
+                aada.Sort = previousSort;
+                // Resto del código para configurar el control AdvancedDataGridView con el BindingSource
             }
 
             return true;
@@ -217,10 +272,10 @@ namespace mainVentana.VistaInicioCoordinadores
                     DataGridViewRow selectedRow = dtgEnts.Rows[selectedrowindex];
                     string so = Convert.ToString(selectedRow.Cells[0].Value);
                     string en = Convert.ToString(selectedRow.Cells[1].Value); 
-                    string edesc = Convert.ToString(selectedRow.Cells[11].Value);
+                    //string edesc = Convert.ToString(selectedRow.Cells[11].Value);
                     string noCliente = Convert.ToString(selectedRow.Cells[4].Value);
                    // string al = Convert.ToString(selectedRow.Cells[12].Value);
-                    await CargaLosValoresDeDetalle(so, en, edesc, noCliente);
+                    await CargaLosValoresDeDetalle(so, en, noCliente);
                     //ngbdReportes rep = new ngbdReportes();
                     //await rep.CargaControlid(so.Trim(), en.Trim());
                 }
@@ -232,7 +287,7 @@ namespace mainVentana.VistaInicioCoordinadores
                
             }
         }
-        private async Task CargaLosValoresDeDetalle(string so, string en, string desc, string ncliente)
+        private async Task CargaLosValoresDeDetalle(string so, string en, string ncliente)
         {
             txbAliasAct.Text = "";
             txbNoCliente.Text = "";
@@ -243,7 +298,7 @@ namespace mainVentana.VistaInicioCoordinadores
             nudValFac.Value = String.IsNullOrWhiteSpace(dt.valFact) ? default : Convert.ToDecimal(dt.valFact);
             txbNoCliente.Text = ncliente;
             gtxbOrdenCargaDetalle.Text = dt.ordcarga;
-            gtxbOrdenSalidaDetalle.Text = desc;//dt.salida;
+            gtxbOrdenSalidaDetalle.Text = dt.desc;//dt.salida;
             txbAliasAct.Text = dt.aliss.Trim();
             txbFecha.Text = dt.fechaentrada;
             txbSucOrigenDetalle.Text = dt.SucursalInicio.Trim();
@@ -403,6 +458,8 @@ namespace mainVentana.VistaInicioCoordinadores
             notifyIcon1.Dispose();
         }
 
+
+        /*
         private void dtgEnts_FilterStringChanged(object sender, EventArgs e)
         {
             using (BindingSource aada = new BindingSource())
@@ -420,6 +477,29 @@ namespace mainVentana.VistaInicioCoordinadores
                 aada.DataSource = DatosDataTable;
                 aada.Sort = dtgEnts.SortString;
             }
+        }
+        */
+
+        private void dtgEnts_FilterStringChanged(object sender, EventArgs e)
+        {
+
+           
+            using (BindingSource aada = new BindingSource())
+            {
+                aada.DataSource = DatosDataTable;
+                aada.Filter = dtgEnts.FilterString;
+            }
+            currentFilter = dtgEnts.FilterString;
+        }
+
+        private void dtgEnts_SortStringChanged(object sender, EventArgs e)
+        {
+            using (BindingSource aada = new BindingSource())
+            {
+                aada.DataSource = DatosDataTable;
+                aada.Sort = dtgEnts.SortString;
+            }
+            currentSort = dtgEnts.SortString;
         }
 
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)

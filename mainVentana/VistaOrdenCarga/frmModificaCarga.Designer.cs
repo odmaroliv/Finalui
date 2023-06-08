@@ -33,7 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.loadControl1 = new Ventana1.LoadControl.loadControl();
             this.label11 = new System.Windows.Forms.Label();
             this.txbTotal = new System.Windows.Forms.TextBox();
             this.dgvEntEnCarga = new Guna.UI.WinForms.GunaDataGridView();
@@ -66,6 +65,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtOperacion = new System.Windows.Forms.Label();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.hopeSwitch1 = new ReaLTaiizor.Controls.HopeSwitch();
+            this.label12 = new System.Windows.Forms.Label();
+            this.loadControl1 = new Ventana1.LoadControl.loadControl();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEntEnCarga)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
@@ -76,6 +78,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label12);
+            this.panel2.Controls.Add(this.hopeSwitch1);
             this.panel2.Controls.Add(this.loadControl1);
             this.panel2.Controls.Add(this.label11);
             this.panel2.Controls.Add(this.txbTotal);
@@ -93,16 +97,6 @@
             this.panel2.Size = new System.Drawing.Size(800, 616);
             this.panel2.TabIndex = 2;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
-            // 
-            // loadControl1
-            // 
-            this.loadControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.loadControl1.Location = new System.Drawing.Point(293, 528);
-            this.loadControl1.Margin = new System.Windows.Forms.Padding(2);
-            this.loadControl1.Name = "loadControl1";
-            this.loadControl1.Size = new System.Drawing.Size(81, 79);
-            this.loadControl1.TabIndex = 35;
-            this.loadControl1.Visible = false;
             // 
             // label11
             // 
@@ -304,7 +298,7 @@
             // 
             this.txbFechaAlta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txbFechaAlta.Enabled = false;
-            this.txbFechaAlta.Location = new System.Drawing.Point(162, 88);
+            this.txbFechaAlta.Location = new System.Drawing.Point(162, 92);
             this.txbFechaAlta.Name = "txbFechaAlta";
             this.txbFechaAlta.Size = new System.Drawing.Size(128, 20);
             this.txbFechaAlta.TabIndex = 22;
@@ -312,7 +306,7 @@
             // txbCarga
             // 
             this.txbCarga.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbCarga.Location = new System.Drawing.Point(162, 58);
+            this.txbCarga.Location = new System.Drawing.Point(162, 62);
             this.txbCarga.Name = "txbCarga";
             this.txbCarga.Size = new System.Drawing.Size(128, 20);
             this.txbCarga.TabIndex = 21;
@@ -323,7 +317,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(14, 89);
+            this.label3.Location = new System.Drawing.Point(14, 93);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(92, 16);
             this.label3.TabIndex = 12;
@@ -334,7 +328,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(14, 59);
+            this.label2.Location = new System.Drawing.Point(14, 63);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(117, 16);
             this.label2.TabIndex = 11;
@@ -613,6 +607,46 @@
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
             // 
+            // hopeSwitch1
+            // 
+            this.hopeSwitch1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.hopeSwitch1.AutoSize = true;
+            this.hopeSwitch1.BackColor = System.Drawing.Color.White;
+            this.hopeSwitch1.BaseColor = System.Drawing.Color.White;
+            this.hopeSwitch1.BaseOffColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(223)))), ((int)(((byte)(230)))));
+            this.hopeSwitch1.BaseOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
+            this.hopeSwitch1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.hopeSwitch1.ForeColor = System.Drawing.Color.White;
+            this.hopeSwitch1.Location = new System.Drawing.Point(722, 32);
+            this.hopeSwitch1.Name = "hopeSwitch1";
+            this.hopeSwitch1.Size = new System.Drawing.Size(40, 20);
+            this.hopeSwitch1.TabIndex = 30;
+            this.hopeSwitch1.Text = "hopeSwitch1";
+            this.hopeSwitch1.UseVisualStyleBackColor = false;
+            this.hopeSwitch1.CheckedChanged += new System.EventHandler(this.hopeSwitch1_CheckedChanged);
+            // 
+            // label12
+            // 
+            this.label12.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(650, 33);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(57, 16);
+            this.label12.TabIndex = 29;
+            this.label12.Text = "Entrega:";
+            this.label12.UseMnemonic = false;
+            // 
+            // loadControl1
+            // 
+            this.loadControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.loadControl1.Location = new System.Drawing.Point(293, 528);
+            this.loadControl1.Margin = new System.Windows.Forms.Padding(2);
+            this.loadControl1.Name = "loadControl1";
+            this.loadControl1.Size = new System.Drawing.Size(81, 79);
+            this.loadControl1.TabIndex = 35;
+            this.loadControl1.Visible = false;
+            // 
             // frmModificaCarga
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -675,5 +709,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txbTotal;
         private Ventana1.LoadControl.loadControl loadControl1;
+        private System.Windows.Forms.Label label12;
+        private ReaLTaiizor.Controls.HopeSwitch hopeSwitch1;
     }
 }

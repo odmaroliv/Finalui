@@ -45,6 +45,7 @@ namespace mainVentana.VistaInicioCoordinadores
             LimpiaDatos();
             try
             {
+                dtgSinAsignar.Enabled = false;
                 btnAlta.Enabled = false;
                 if (_isBussy == true)
                 {
@@ -57,13 +58,13 @@ namespace mainVentana.VistaInicioCoordinadores
             {
                 throw;
             }
-            finally { btnAlta.Enabled = true; }
+            finally { btnAlta.Enabled = true; dtgSinAsignar.Enabled = true; }
 
         }
 
         private async void frmAddToCarga_Load(object sender, EventArgs e)
         {
-            dtFecha1.Value = DateTime.Now.AddDays(-30);
+            dtFecha1.Value = DateTime.Now.AddDays(-60);
             dtFecha2.Value = DateTime.Now;
             dtFecha1.MinDate = DateTime.Now.AddDays(-460);
             dtFecha1.MaxDate = DateTime.Now.AddDays(1);
@@ -160,6 +161,7 @@ namespace mainVentana.VistaInicioCoordinadores
                 txbCarga.Text = lst.numeroCarga.ToString();
                 tmCierre.Value = (DateTime)lst.fechaCierre;
                 _cierreFecha = (DateTime)lst.fechaCierre;
+                txbReferencia.Text = lst.referencia;
 
                 CargaEntradaEnDgv(lst.numeroCarga.ToString());
             }
@@ -168,14 +170,15 @@ namespace mainVentana.VistaInicioCoordinadores
 
                 throw;
             }
-          
+            //await OperacionBoton();
+
         }
 
         private void CargaEntradaEnDgv(string nCarga)
         {
             
             Negocios.NGCarga.GETcarga get = new Negocios.NGCarga.GETcarga();
-            var entradasTo = get.EntradasEnCargaConUsuario(sucursal, Convert.ToInt32(nCarga));
+            var entradasTo = get.EntradasEnCargaConUsuario(sucursal, Convert.ToInt32(nCarga),datoTipoOper);
             dgvCargadas.DataSource = entradasTo;
            
         }
@@ -198,7 +201,7 @@ namespace mainVentana.VistaInicioCoordinadores
 
         }
 
-        private void rSd_CheckedChanged(object sender, EventArgs e)
+        private async  void rSd_CheckedChanged(object sender, EventArgs e)
         {
 
             LimpiaDatos();
@@ -213,10 +216,13 @@ namespace mainVentana.VistaInicioCoordinadores
 
             // Encontrar el RadioButton seleccionado y obtener su valor correspondiente
             sucursal = radioButtonMapping.FirstOrDefault(r => r.Key.Checked).Value;
+            await OperacionBoton();
+            await CargaEntradas();
         }
 
         private void LimpiaDatos()
         {
+
             listaBultos.Clear();
             dtgSinAsignar.DataSource = null;
             dtgAsignados.DataSource = null;
@@ -296,7 +302,7 @@ namespace mainVentana.VistaInicioCoordinadores
                 // string e_eti = txbEntradaDetalle.Text.Trim();
                 //string e_so = sucursal;
                 Negocios.NGCarga.altasBDCarga get = new Negocios.NGCarga.altasBDCarga();
-                bool dato = await get.AsignaCargaAEntradaEspesifica(listaBultos, c_cargacompleta, fechaHoy);
+                bool dato = await get.AsignaCargaAEntradaEspesifica(listaBultos, c_cargacompleta, fechaHoy, datoTipoOper);
                 //MessageBox.Show("La entrada: " + e_en + " fue asignada con exito a la carga " + c_cargacompleta, "Carga asignada", MessageBoxButtons.OK);
                 if (dato == false)
                 {
@@ -323,7 +329,18 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private async void tipoOper_SelectedIndexChanged(object sender, EventArgs e)
         {
-            await OperacionBoton();
+            datoTipoOper = tipoOper.SelectedValue.ToString().Trim();
+            ComboBox cmboBox = (ComboBox)sender;
+            string valor = cmboBox.SelectedValue != null ? cmboBox.SelectedValue.ToString() : "000000000";
+            if (valor=="09")
+            {
+                await OperacionBoton();
+            }
+            else
+            {
+                await OperacionBoton();
+            }
+           
         }
     }
 }

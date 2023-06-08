@@ -101,9 +101,10 @@ namespace Negocios.NGCarga
 
 
         }
-        public List<vmEntradasEnCarga> EntradasEnCarga(string datoSucIni, int carga)
+        public List<vmEntradasEnCarga> EntradasEnCarga(string datoSucIni, int carga, string modo=null)
         {
             string codigo = datoSucIni.Trim() + "-UD4001-" + carga.ToString("D7");
+
             try
             {
                 var lst2 = new List<vmEntradasEnCarga>();
@@ -111,17 +112,35 @@ namespace Negocios.NGCarga
                 using (modelo2Entities modelo = new modelo2Entities())
 
                 {
-                    var lista = from d in modelo.KDMENT
-                                join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
-                                where d.C54.Contains(codigo) //&& d.C19 != sdestino 
-                                select new vmEntradasEnCarga
-                                {
-                                    Entrada = d.C6,
-                                    Etiqueta = d.C9,
-                                    Unidad = k.C98,
-                                    Cliente = k.C32,
-                                };
-                    lst2 = lista.ToList();
+                    if (modo =="09")
+                    {
+                        var lista = from d in modelo.KDMENT
+                                    join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
+                                    where d.C45.Contains(codigo) //&& d.C19 != sdestino 
+                                    select new vmEntradasEnCarga
+                                    {
+                                        Entrada = d.C6,
+                                        Etiqueta = d.C9,
+                                        Unidad = k.C98,
+                                        Cliente = k.C32,
+                                    };
+                        lst2 = lista.ToList();
+                    }
+                    else
+                    {
+                        var lista = from d in modelo.KDMENT
+                                    join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
+                                    where d.C54.Contains(codigo) //&& d.C19 != sdestino 
+                                    select new vmEntradasEnCarga
+                                    {
+                                        Entrada = d.C6,
+                                        Etiqueta = d.C9,
+                                        Unidad = k.C98,
+                                        Cliente = k.C32,
+                                    };
+                        lst2 = lista.ToList();
+                    }
+                    
                 }
 
                 return lst2;
@@ -133,7 +152,7 @@ namespace Negocios.NGCarga
             }
 
         }
-        public List<vmEntradasEnCarga> EntradasEnCargaConUsuario(string datoSucIni, int carga)
+        public List<vmEntradasEnCarga> EntradasEnCargaConUsuario(string datoSucIni, int carga, string modo=null)
         {
             string codigo = datoSucIni.Trim() + "-UD4001-" + carga.ToString("D7");
             try
@@ -143,17 +162,36 @@ namespace Negocios.NGCarga
                 using (modelo2Entities modelo = new modelo2Entities())
 
                 {
-                    var lista = from d in modelo.KDMENT
-                                join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
-                                where d.C54.Contains(codigo) && k.C12 == Common.Cache.CacheLogin.idusuario.ToString() //&& d.C19 != sdestino 
-                                select new vmEntradasEnCarga
-                                {
-                                    Entrada = d.C6,
-                                    Etiqueta = d.C9,
-                                    Unidad = k.C98,
-                                    Cliente = k.C32,
-                                };
-                    lst2 = lista.ToList();
+                    if (modo=="09")
+                    {
+                        var lista = from d in modelo.KDMENT
+                                    join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
+                                    where d.C45.Contains(codigo) && k.C12 == Common.Cache.CacheLogin.idusuario.ToString() //&& d.C19 != sdestino 
+                                    select new vmEntradasEnCarga
+                                    {
+                                        Entrada = d.C6,
+                                        Etiqueta = d.C9,
+                                        Unidad = k.C98,
+                                        Cliente = k.C32,
+                                    };
+                        lst2 = lista.ToList();
+                    }
+                    else
+                    {
+                        var lista = from d in modelo.KDMENT
+                                    join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
+                                    where d.C54.Contains(codigo) && k.C12 == Common.Cache.CacheLogin.idusuario.ToString() //&& d.C19 != sdestino 
+                                    select new vmEntradasEnCarga
+                                    {
+                                        Entrada = d.C6,
+                                        Etiqueta = d.C9,
+                                        Unidad = k.C98,
+                                        Cliente = k.C32,
+                                    };
+                        lst2 = lista.ToList();
+
+                    }
+                    
                 }
 
                 return lst2;
