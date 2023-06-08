@@ -2140,7 +2140,7 @@ namespace mainVentana.VistaEntrada
                             s += "\n";
                             s += "^FX Second section with recipient address and permit information.\n";
                             s += string.Format("^CF0,70^FO50,230^FDID: {0}^FS\n", q.Entrada.Trim());
-                            s += "^CF0,30";
+                            s += "^CF0,32";
                             s += string.Format("^FO50,300^FDClient: {0}^FS\n", q.Cliente.Trim());
                             s += string.Format("^FO50,340^FDOrigin: {0}^FS\n", q.Origen.Trim());
                             s += string.Format("^FO50,380^FDDestination: {0}^FS\n", q.Destino.Trim());
@@ -2161,10 +2161,10 @@ namespace mainVentana.VistaEntrada
                             s += "^FO100,1010^FDDate:^FS\n";
                             s += string.Format("^FO100,1060^FD{0}^FS\n", q.Fecha.Value.Date.ToString("MM/dd/yyyy"));
                             s += "^CF0,190\n";
-                            //s += string.Format("^FO470,930^FD{0}^FS\n", q.ZonaNumero.ToString().Trim());
+                            s += string.Format("^FO450,930^FD{0}^FS\n", q.ZonaNumero.ToString());
                             s += "\n";
                             s += "^CF0,30";
-                            //  s += string.Format("^FO50,1155^FDZona: {0}^FS\n", q.Zona.Trim());
+                            s += string.Format("^FO50,1155^FDZona: {0}^FS\n", q.Zona);
                             s += "\n";
                             s += "^XZ\n";
                             s += "\n";
@@ -2244,7 +2244,7 @@ namespace mainVentana.VistaEntrada
                         s += "\n";
                         s += "^FX Second section with recipient address and permit information.\n";
                         s += string.Format("^CF0,70^FO50,230^FDID: {0}^FS\n", q.Entrada.Trim());
-                        s += "^CF0,30";
+                        s += "^CF0,32";
                         s += string.Format("^FO50,300^FDClient: {0}^FS\n", q.Cliente.Trim());
                         s += string.Format("^FO50,340^FDOrigin: {0}^FS\n", q.Origen.Trim());
                         s += string.Format("^FO50,380^FDDestination: {0}^FS\n", q.Destino.Trim());
@@ -2265,10 +2265,10 @@ namespace mainVentana.VistaEntrada
                         s += "^FO100,1010^FDDate:^FS\n";
                         s += string.Format("^FO100,1060^FD{0}^FS\n", q.Fecha.Value.Date.ToString("MM/dd/yyyy"));
                         s += "^CF0,190\n";
-                        //s += string.Format("^FO470,930^FD{0}^FS\n", q.ZonaNumero.ToString().Trim());
+                        s += string.Format("^FO450,930^FD{0}^FS\n", q.ZonaNumero.ToString());
                         s += "\n";
                         s += "^CF0,30";
-                        //  s += string.Format("^FO50,1155^FDZona: {0}^FS\n", q.Zona.Trim());
+                        s += string.Format("^FO50,1155^FDZona: {0}^FS\n", q.Zona);
                         s += "\n";
                         s += "^XZ\n";
                         s += "\n";
