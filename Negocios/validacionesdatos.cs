@@ -32,7 +32,7 @@ namespace Negocios
 
 
 
-       public async Task<List<BusquedaInicial>> Cargabuscque(string id, string tipo)
+       public async Task<List<BusquedaInicial>> Cargabuscque(string id, string tipo, DateTime fecha1 = default, DateTime fecha2 = default)
         {
             List<BusquedaInicial> lst = new List<BusquedaInicial>();
             lst.Clear();
@@ -95,6 +95,55 @@ namespace Negocios
                                      join k in modelo.KDM1 on new { d.C1, d.C6, d.C4 } equals new { k.C1, k.C6, k.C4 }
                                      join c in modelo.KDUV on k.C12 equals c.C2
                                      where k.C95.Contains(id)
+                                     orderby d.C7
+                                     select new BusquedaInicial
+                                     {
+                                         C6 = d.C6.Trim(),
+                                         C9 = d.C9.Trim(),
+                                         origen = d.C1.Trim(),
+                                         C69 = d.C69.Trim(),
+                                         C10 = d.C10.Trim(),
+                                         C19 = d.C19.Trim(),
+                                         cliente = k.C32.Trim(),
+                                         cargaasig = d.C54.Trim(),
+                                         cafecha = d.C71.Trim(),
+                                         cargaapl = d.C16.Trim(),
+                                         capfecha = d.C72.Trim(),
+                                         osalida = d.C17.Trim(),
+                                         osfecha = d.C73.Trim(),
+                                         receptran = d.C18.Trim(),
+                                         receptranfecha = d.C74.Trim(),
+                                         saltrans = d.C64.Trim(),
+                                         saltransfehcha = d.C75.Trim(),
+                                         repfinal = d.C67.Trim(),
+                                         repfinalfecha = d.C76.Trim(),
+                                         bill = d.C34.Trim(),
+                                         billfecha = d.C77.Trim(),
+                                         C42 = d.C42.Trim(),
+                                         elaborado = k.C81.Trim(),
+                                         coord = c.C3.Trim(),
+                                         link = d.C46,
+                                         alias = k.C112,
+                                         cot = k.C115,
+                                     }).ToListAsync();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error de conexión a la base de datos: " + ex.Message);
+                    throw;
+                }
+            }
+            else if (tipo == "Cliente")
+            {
+                try
+                {
+                    using (var modelo = new modelo2Entities())
+                    {
+                        lst = await (from d in modelo.KDMENT
+                                     join k in modelo.KDM1 on new { d.C1, d.C6, d.C4 } equals new { k.C1, k.C6, k.C4 }
+                                     join c in modelo.KDUV on k.C12 equals c.C2
+                                     where k.C9 <= fecha2 && k.C9 >= fecha1 && k.C10.Equals(id)
                                      orderby d.C7
                                      select new BusquedaInicial
                                      {

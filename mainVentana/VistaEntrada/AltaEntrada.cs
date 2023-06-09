@@ -68,6 +68,8 @@ namespace mainVentana.VistaEntrada
                 groupBox6.Enabled = false;
                 groupBox4.Enabled = false;
                 cmbMoneda.Enabled = false;
+                txbValFact.Enabled = true;
+                txbValArn.Enabled = true;
                 //Especificos.Enabled = false; 
             }
 

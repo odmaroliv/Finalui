@@ -15,6 +15,7 @@ using mainVentana.VistaInicioFoto;
 using mainVentana.VistaInicioCoordinadores;
 using mainVentana.vistaReportes;
 using mainVentana.VistaCreditoCobranza;
+using Datos.ViewModels;
 
 namespace mainVentana
 {
@@ -68,8 +69,19 @@ namespace mainVentana
             AbrirFormEnPanel(ts);
 
             }
-            
+            CargaFecha();
             // gunaDataGridView1.CurrentCell = null;
+        }
+
+
+        private void CargaFecha()
+        {
+            dtFecha1.Value = DateTime.Now.AddDays(-30);
+            dtFecha2.Value = DateTime.Now.AddDays(1);
+            dtFecha1.MinDate = DateTime.Now.AddDays(-460);
+            dtFecha1.MaxDate = DateTime.Now.AddDays(1);
+            dtFecha2.MinDate = DateTime.Now.AddDays(-460);
+            dtFecha2.MaxDate = DateTime.Now.AddDays(1);
         }
         public void busquedamain()
         {
@@ -112,7 +124,7 @@ namespace mainVentana
             Negocios.Servicios vld = new Negocios.Servicios();
             gunaDataGridView1.DataSource = null;
 
-            gunaDataGridView1.DataSource = await vld.Cargabuscque(id,tipo);
+            gunaDataGridView1.DataSource = await vld.Cargabuscque(id,tipo, dtFecha1.Value, dtFecha2.Value);
             
             vld = null;
         }
@@ -173,15 +185,15 @@ namespace mainVentana
 
 
 
-                if (tiempo > TimeSpan.Parse("15.00:00:0.0") && gunaDataGridView1.Rows[i].Cells[5].Value.ToString() == gunaDataGridView1.Rows[i].Cells[3].Value.ToString() && gunaDataGridView1.Rows[i].Cells[19].Value != null)
-                { //cuando un item tiene mas de 30 dias en el almacen y la sursal actual es igual a la sucursal origen
+                if (tiempo > TimeSpan.Parse("10.00:00:0.0") && gunaDataGridView1.Rows[i].Cells[5].Value.ToString() == gunaDataGridView1.Rows[i].Cells[3].Value.ToString() && gunaDataGridView1.Rows[i].Cells[19].Value != null)
+                { //cuando un item tiene mas de 15 dias en el almacen y la sursal actual es igual a la sucursal origen
                     gunaDataGridView1.Rows[i].Cells[2].Style.BackColor = Color.FromArgb(156, 19, 18);
                     gunaDataGridView1.Rows[i].Cells[2].Style.ForeColor = Color.FromArgb(255, 255, 255);
                     gunaDataGridView1.Rows[i].Cells[5].Style.BackColor = Color.FromArgb(156, 19, 18);
                     gunaDataGridView1.Rows[i].Cells[5].Style.ForeColor = Color.FromArgb(255, 255, 255);
                 }
 
-                if (tiempo < TimeSpan.Parse("15.00:00:0.0") && gunaDataGridView1.Rows[i].Cells[5].Value.ToString() == gunaDataGridView1.Rows[i].Cells[3].Value.ToString() && gunaDataGridView1.Rows[i].Cells[19].Value != null)
+                if (tiempo < TimeSpan.Parse("10.00:00:0.0") && gunaDataGridView1.Rows[i].Cells[5].Value.ToString() == gunaDataGridView1.Rows[i].Cells[3].Value.ToString() && gunaDataGridView1.Rows[i].Cells[19].Value != null)
                 { //cuando la sucursal actual es la sucursal de origen y tiene menos de 15 dias
                     gunaDataGridView1.Rows[i].Cells[2].Style.BackColor = Color.FromArgb(19, 156, 18);
                     gunaDataGridView1.Rows[i].Cells[2].Style.ForeColor = Color.FromArgb(255, 255, 255);
@@ -288,6 +300,25 @@ namespace mainVentana
                             esTecleado = true;
                             id = gunaTextBox2.Text;
                             if (id == "" || id.Length <4)
+                            {
+                                MessageBox.Show("El campo de busqueda esta vacio!");
+                                return;
+                            }
+                            await refresh(id, _tipoBusqueda);
+                            if (gunaDataGridView1.RowCount <= 0)
+                            {
+                                MessageBox.Show("No se encontraron datos");
+                                return;
+                            }
+                            await Task.Run(() => { Thread.Sleep(1000); });
+                            formatodeceldas();
+                            e.Handled = true;
+                            break;
+                        case "Cliente":
+                            if (esTecleado) return;
+                            esTecleado = true;
+                            id = gunaTextBox2.Text;
+                            if (id == "" || id.Length < 2)
                             {
                                 MessageBox.Show("El campo de busqueda esta vacio!");
                                 return;

@@ -229,6 +229,7 @@ namespace mainVentana.VistaInicioCoordinadores
             txbCarga.Text = default;
             tmCierre.Value = DateTime.Now;
             cbxOrdenes.DataSource = default;
+            txbReferencia.Text = default;
         }
 
         private void dtgSinAsignar_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)

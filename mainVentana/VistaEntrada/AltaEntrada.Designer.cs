@@ -166,17 +166,17 @@
             this.panel1.Controls.Add(this.iconButton2);
             this.panel1.Controls.Add(this.dgvFotosModifi);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(8, 557);
+            this.panel1.Location = new System.Drawing.Point(8, 571);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1222, 136);
+            this.panel1.Size = new System.Drawing.Size(1222, 122);
             this.panel1.TabIndex = 0;
             // 
             // lblTotalArchivos
             // 
             this.lblTotalArchivos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTotalArchivos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalArchivos.Location = new System.Drawing.Point(1043, 121);
+            this.lblTotalArchivos.Location = new System.Drawing.Point(1043, 107);
             this.lblTotalArchivos.Name = "lblTotalArchivos";
             this.lblTotalArchivos.Size = new System.Drawing.Size(30, 12);
             this.lblTotalArchivos.TabIndex = 132;
@@ -186,7 +186,7 @@
             // 
             this.label41.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.Location = new System.Drawing.Point(1001, 121);
+            this.label41.Location = new System.Drawing.Point(1001, 107);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(40, 12);
             this.label41.TabIndex = 131;
@@ -237,7 +237,7 @@
             this.dgvDocs.RowHeadersWidth = 51;
             this.dgvDocs.RowTemplate.Height = 24;
             this.dgvDocs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvDocs.Size = new System.Drawing.Size(980, 118);
+            this.dgvDocs.Size = new System.Drawing.Size(980, 104);
             this.dgvDocs.TabIndex = 122;
             this.dgvDocs.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
             this.dgvDocs.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -306,7 +306,7 @@
             this.Guardar.Location = new System.Drawing.Point(1091, 0);
             this.Guardar.Margin = new System.Windows.Forms.Padding(2);
             this.Guardar.Name = "Guardar";
-            this.Guardar.Size = new System.Drawing.Size(131, 136);
+            this.Guardar.Size = new System.Drawing.Size(131, 122);
             this.Guardar.TabIndex = 121;
             this.Guardar.Text = "Guardar";
             this.Guardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -331,7 +331,7 @@
             this.iconButton2.Location = new System.Drawing.Point(0, 0);
             this.iconButton2.Margin = new System.Windows.Forms.Padding(2);
             this.iconButton2.Name = "iconButton2";
-            this.iconButton2.Size = new System.Drawing.Size(92, 136);
+            this.iconButton2.Size = new System.Drawing.Size(92, 122);
             this.iconButton2.TabIndex = 119;
             this.iconButton2.Text = "Archivos";
             this.iconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -380,7 +380,7 @@
             this.dgvFotosModifi.RowHeadersWidth = 51;
             this.dgvFotosModifi.RowTemplate.Height = 24;
             this.dgvFotosModifi.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvFotosModifi.Size = new System.Drawing.Size(980, 118);
+            this.dgvFotosModifi.Size = new System.Drawing.Size(980, 104);
             this.dgvFotosModifi.TabIndex = 124;
             this.dgvFotosModifi.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
             this.dgvFotosModifi.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -1210,7 +1210,6 @@
             this.groupBox6.Controls.Add(this.bntImpEntC);
             this.groupBox6.Controls.Add(this.mdfImg);
             this.groupBox6.Controls.Add(this.btnReimp);
-            this.groupBox6.Controls.Add(this.cbxNotif);
             this.groupBox6.Controls.Add(this.gunaTileButton5);
             this.groupBox6.Controls.Add(this.label33);
             this.groupBox6.Controls.Add(this.txbReferencia);
@@ -1220,7 +1219,7 @@
             this.groupBox6.Controls.Add(this.detalles);
             this.groupBox6.Controls.Add(this.label21);
             this.groupBox6.Controls.Add(this.label22);
-            this.groupBox6.Location = new System.Drawing.Point(25, 377);
+            this.groupBox6.Location = new System.Drawing.Point(25, 388);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(936, 175);
             this.groupBox6.TabIndex = 119;
@@ -1259,7 +1258,7 @@
             this.mdfImg.IconChar = FontAwesome.Sharp.IconChar.None;
             this.mdfImg.IconColor = System.Drawing.Color.Black;
             this.mdfImg.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.mdfImg.Location = new System.Drawing.Point(812, 11);
+            this.mdfImg.Location = new System.Drawing.Point(851, 13);
             this.mdfImg.Name = "mdfImg";
             this.mdfImg.Size = new System.Drawing.Size(62, 18);
             this.mdfImg.TabIndex = 130;
@@ -1279,7 +1278,7 @@
             this.cbxNotif.Enable = true;
             this.cbxNotif.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.cbxNotif.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(125)))), ((int)(((byte)(132)))));
-            this.cbxNotif.Location = new System.Drawing.Point(706, 13);
+            this.cbxNotif.Location = new System.Drawing.Point(879, 375);
             this.cbxNotif.Name = "cbxNotif";
             this.cbxNotif.Size = new System.Drawing.Size(85, 16);
             this.cbxNotif.TabIndex = 125;
@@ -1558,7 +1557,7 @@
             this.groupBox7.Controls.Add(this.rdbNoPagado);
             this.groupBox7.Controls.Add(this.rdbPagado);
             this.groupBox7.Enabled = false;
-            this.groupBox7.Location = new System.Drawing.Point(970, 376);
+            this.groupBox7.Location = new System.Drawing.Point(970, 387);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(242, 176);
             this.groupBox7.TabIndex = 124;
@@ -1706,6 +1705,7 @@
             this.Controls.Add(this.btnBuscarEnt);
             this.Controls.Add(this.lblBuscarEnt);
             this.Controls.Add(this.txbBuscarEnt);
+            this.Controls.Add(this.cbxNotif);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);

@@ -93,13 +93,13 @@ namespace mainVentana.VistaInicioCoordinadores
 
 
                 cmbZona.DataSource = null;
-                if (dt.C14 != null && String.IsNullOrWhiteSpace(dt.C14))
+                var lst2 = await ac.LLenaZona();
+                cmbZona.ValueMember = "C2";
+                cmbZona.DisplayMember = "C1";
+                cmbZona.DataSource = lst2;
+                if (dt.C14 != null && !String.IsNullOrWhiteSpace(dt.C14))
                 {
-                    var lst2 = await ac.LLenaZona();
-                    cmbZona.ValueMember = "C2";
-                    cmbZona.DisplayMember = "C1";
-                    cmbZona.DataSource = lst2;
-
+                   
                     foreach (vmZonas i in cmbZona.Items)
                     {
                         if (i.C2.Trim() == dt.C14.Trim())
@@ -161,12 +161,13 @@ namespace mainVentana.VistaInicioCoordinadores
 
 
                     cmbZona.DataSource = null;
+                    var lst2 = await ac.LLenaZona();
+                    cmbZona.ValueMember = "C2";
+                    cmbZona.DisplayMember = "C1";
+                    cmbZona.DataSource = lst2;
                     if (dt.C14 != null && !String.IsNullOrWhiteSpace(dt.C14))
                     {
-                        var lst2 = await ac.LLenaZona();
-                        cmbZona.ValueMember = "C2";
-                        cmbZona.DisplayMember = "C1";
-                        cmbZona.DataSource = lst2;
+                       
 
                         foreach (vmZonas i in cmbZona.Items)
                         {
