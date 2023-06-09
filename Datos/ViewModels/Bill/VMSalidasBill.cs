@@ -99,15 +99,15 @@ namespace Datos.ViewModels.Bill
 
         [DisplayName("Comentario")]
         public string Pago { get; set; }
-        [DisplayName("COTIZACION")]
+        [DisplayName("Quote")]
         public string Quote { get; set; }
         [DisplayName("Bill")]
         public string Bill { get; set; }
-        [DisplayName("Tipo Servicio")]
+        [DisplayName("TServicio")]
         public string TServicio { get; set; }
         [DisplayName("Coordinador")]
         public string Coordinador { get; set; }
-        [DisplayName("Tipo de pago")]
+        [DisplayName("Pago")]
         public string Tpago { get; set; }
         [DisplayName("Cantidad DLLS")]
         public decimal CantidaDlls { get; set; }
