@@ -64,12 +64,12 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private async void frmAddToCarga_Load(object sender, EventArgs e)
         {
-            dtFecha1.Value = DateTime.Now.AddDays(-60);
-            dtFecha2.Value = DateTime.Now;
-            dtFecha1.MinDate = DateTime.Now.AddDays(-460);
-            dtFecha1.MaxDate = DateTime.Now.AddDays(1);
-            dtFecha2.MinDate = DateTime.Now.AddDays(-460);
-            dtFecha2.MaxDate = DateTime.Now.AddDays(1);
+            dtFecha1.Value = DateTime.Now.AddDays(-80);
+            dtFecha2.Value = DateTime.Now.AddDays(1);
+            dtFecha1.MinDate = DateTime.Now.AddDays(-9000);
+            dtFecha1.MaxDate = DateTime.Now.AddDays(90);
+            dtFecha2.MinDate = DateTime.Now.AddDays(-900);
+            dtFecha2.MaxDate = DateTime.Now.AddDays(90);
 
             //CargaOrdenes();
            await CargaOperaciones();
@@ -224,7 +224,8 @@ namespace mainVentana.VistaInicioCoordinadores
         {
 
             listaBultos.Clear();
-            dtgSinAsignar.DataSource = null;
+            dgvCargadas.DataSource = null;
+            dtgSinAsignar.DataSource = null; 
             dtgAsignados.DataSource = null;
             txbCarga.Text = default;
             tmCierre.Value = DateTime.Now;
@@ -278,6 +279,15 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private async void btnGuardar_Click(object sender, EventArgs e)
         {
+            if (dtgAsignados.Rows.Count ==0)
+            {
+                return;
+
+            }
+            if (String.IsNullOrWhiteSpace(txbCarga.Text))
+            {
+                return;
+            }
             await EjecutaFuncionDeModifica();
             await OperacionBoton();
         }

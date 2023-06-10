@@ -40,6 +40,8 @@ namespace Datos.ViewModels.Carga
         public string desc { get; set; }
         [DisplayName("Alias")]
         public string aliss { get; set; }
-        
+       
+       
+
     }
 }

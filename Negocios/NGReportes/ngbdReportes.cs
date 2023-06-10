@@ -205,7 +205,7 @@ namespace Negocios.NGReportes
                             query = from d in modelo.KDMENT
                                     join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
                                     join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
-                                    where k.C9 <= to && k.C9 >= dateFrom  && d.C19.Contains(dato) && d.C10.Contains(dato) && d.C20 == "F" && d.C34 == "" && k.C4 == 35 && (d.C45 == "" || d.C45 == null)
+                                    where k.C9 <= to && k.C9 >= dateFrom  && d.C19.Contains(dato) && d.C10.Contains(dato) && d.C20 == "F"  && k.C4 == 35 && (k.C115 != "" && k.C115 != null) && (d.C45 == "" || d.C45 == null)
                                     orderby d.C6 descending
                                     select new CargaCordsGeneral
                                     {
@@ -229,7 +229,7 @@ namespace Negocios.NGReportes
                             query = from d in modelo.KDMENT
                                     join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
                                     join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
-                                    where k.C9 <= to && k.C9 >= dateFrom &&  d.C19.Contains(dato) && d.C10.Contains(dato) && d.C20 == "F" && d.C34 == "" && k.C4 == 35 && (d.C45 == "" || d.C45 == null) && k.C12 == Common.Cache.CacheLogin.idusuario.ToString() 
+                                    where k.C9 <= to && k.C9 >= dateFrom &&  d.C19.Contains(dato) && d.C10.Contains(dato) && d.C20 == "F" && k.C4 == 35 && (k.C115 != "" && k.C115 != null) && (d.C45 == "" || d.C45 == null) && k.C12 == Common.Cache.CacheLogin.idusuario.ToString() 
                                     orderby d.C6 descending
                                     select new CargaCordsGeneral
                                     {

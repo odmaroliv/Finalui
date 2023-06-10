@@ -111,7 +111,7 @@
             this.foreverLabel8.AutoSize = true;
             this.foreverLabel8.BackColor = System.Drawing.Color.Transparent;
             this.foreverLabel8.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.foreverLabel8.ForeColor = System.Drawing.Color.LightGray;
+            this.foreverLabel8.ForeColor = System.Drawing.Color.LightSlateGray;
             this.foreverLabel8.Location = new System.Drawing.Point(394, 203);
             this.foreverLabel8.Name = "foreverLabel8";
             this.foreverLabel8.Size = new System.Drawing.Size(27, 13);
@@ -123,7 +123,7 @@
             this.txbRfc.BackColor = System.Drawing.Color.White;
             this.txbRfc.EnabledCalc = true;
             this.txbRfc.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txbRfc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(133)))), ((int)(((byte)(142)))));
+            this.txbRfc.ForeColor = System.Drawing.Color.White;
             this.txbRfc.Location = new System.Drawing.Point(397, 219);
             this.txbRfc.MaxLength = 32767;
             this.txbRfc.MultiLine = false;
@@ -139,7 +139,7 @@
             this.foreverLabel4.AutoSize = true;
             this.foreverLabel4.BackColor = System.Drawing.Color.Transparent;
             this.foreverLabel4.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.foreverLabel4.ForeColor = System.Drawing.Color.LightGray;
+            this.foreverLabel4.ForeColor = System.Drawing.Color.LightSlateGray;
             this.foreverLabel4.Location = new System.Drawing.Point(394, 146);
             this.foreverLabel4.Name = "foreverLabel4";
             this.foreverLabel4.Size = new System.Drawing.Size(58, 13);
@@ -151,7 +151,7 @@
             this.txbPoblacion.BackColor = System.Drawing.Color.White;
             this.txbPoblacion.EnabledCalc = true;
             this.txbPoblacion.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txbPoblacion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(133)))), ((int)(((byte)(142)))));
+            this.txbPoblacion.ForeColor = System.Drawing.Color.White;
             this.txbPoblacion.Location = new System.Drawing.Point(397, 162);
             this.txbPoblacion.MaxLength = 32767;
             this.txbPoblacion.MultiLine = false;
@@ -167,7 +167,7 @@
             this.foreverLabel5.AutoSize = true;
             this.foreverLabel5.BackColor = System.Drawing.Color.Transparent;
             this.foreverLabel5.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.foreverLabel5.ForeColor = System.Drawing.Color.LightGray;
+            this.foreverLabel5.ForeColor = System.Drawing.Color.LightSlateGray;
             this.foreverLabel5.Location = new System.Drawing.Point(137, 146);
             this.foreverLabel5.Name = "foreverLabel5";
             this.foreverLabel5.Size = new System.Drawing.Size(47, 13);
@@ -179,7 +179,7 @@
             this.txbColonia.BackColor = System.Drawing.Color.White;
             this.txbColonia.EnabledCalc = true;
             this.txbColonia.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txbColonia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(133)))), ((int)(((byte)(142)))));
+            this.txbColonia.ForeColor = System.Drawing.Color.White;
             this.txbColonia.Location = new System.Drawing.Point(140, 162);
             this.txbColonia.MaxLength = 32767;
             this.txbColonia.MultiLine = false;
@@ -195,7 +195,7 @@
             this.foreverLabel3.AutoSize = true;
             this.foreverLabel3.BackColor = System.Drawing.Color.Transparent;
             this.foreverLabel3.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.foreverLabel3.ForeColor = System.Drawing.Color.LightGray;
+            this.foreverLabel3.ForeColor = System.Drawing.Color.LightSlateGray;
             this.foreverLabel3.Location = new System.Drawing.Point(394, 89);
             this.foreverLabel3.Name = "foreverLabel3";
             this.foreverLabel3.Size = new System.Drawing.Size(32, 13);
@@ -207,7 +207,7 @@
             this.txbCalle.BackColor = System.Drawing.Color.White;
             this.txbCalle.EnabledCalc = true;
             this.txbCalle.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txbCalle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(133)))), ((int)(((byte)(142)))));
+            this.txbCalle.ForeColor = System.Drawing.Color.White;
             this.txbCalle.Location = new System.Drawing.Point(397, 105);
             this.txbCalle.MaxLength = 32767;
             this.txbCalle.MultiLine = false;
@@ -223,7 +223,7 @@
             this.foreverLabel2.AutoSize = true;
             this.foreverLabel2.BackColor = System.Drawing.Color.Transparent;
             this.foreverLabel2.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.foreverLabel2.ForeColor = System.Drawing.Color.LightGray;
+            this.foreverLabel2.ForeColor = System.Drawing.Color.LightSlateGray;
             this.foreverLabel2.Location = new System.Drawing.Point(137, 89);
             this.foreverLabel2.Name = "foreverLabel2";
             this.foreverLabel2.Size = new System.Drawing.Size(48, 13);
@@ -235,7 +235,7 @@
             this.foreverLabel1.AutoSize = true;
             this.foreverLabel1.BackColor = System.Drawing.Color.Transparent;
             this.foreverLabel1.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.foreverLabel1.ForeColor = System.Drawing.Color.LightGray;
+            this.foreverLabel1.ForeColor = System.Drawing.Color.LightSlateGray;
             this.foreverLabel1.Location = new System.Drawing.Point(11, 89);
             this.foreverLabel1.Name = "foreverLabel1";
             this.foreverLabel1.Size = new System.Drawing.Size(34, 13);
@@ -247,7 +247,7 @@
             this.txbNombreProvedor.BackColor = System.Drawing.Color.White;
             this.txbNombreProvedor.EnabledCalc = true;
             this.txbNombreProvedor.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txbNombreProvedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(133)))), ((int)(((byte)(142)))));
+            this.txbNombreProvedor.ForeColor = System.Drawing.Color.White;
             this.txbNombreProvedor.Location = new System.Drawing.Point(140, 105);
             this.txbNombreProvedor.MaxLength = 32767;
             this.txbNombreProvedor.MultiLine = false;
@@ -263,7 +263,7 @@
             this.txbClave.BackColor = System.Drawing.Color.White;
             this.txbClave.EnabledCalc = true;
             this.txbClave.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txbClave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(133)))), ((int)(((byte)(142)))));
+            this.txbClave.ForeColor = System.Drawing.Color.White;
             this.txbClave.Location = new System.Drawing.Point(14, 105);
             this.txbClave.MaxLength = 32767;
             this.txbClave.MultiLine = false;
@@ -278,11 +278,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 388);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.parrotGroupBox1);
             this.Name = "frmProovedorAdd";
-            this.Text = "frmProovedorAdd";
+            this.ShowIcon = false;
+            this.Text = "Agregar Proveedor";
             this.Load += new System.EventHandler(this.frmProovedorAdd_Load);
             this.parrotGroupBox1.ResumeLayout(false);
             this.parrotGroupBox1.PerformLayout();

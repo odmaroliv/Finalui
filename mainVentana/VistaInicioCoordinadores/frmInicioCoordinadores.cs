@@ -45,13 +45,24 @@ namespace mainVentana.VistaInicioCoordinadores
 
         public frmInicioCoordinadores()
         {
+            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
+
             InitializeComponent();
             this.dtgEnts.MouseWheel += dtgEnts_MouseWheek;
-          
+            EnableDoubleBuffering(dtgEnts);
 
         }
 
+        private void EnableDoubleBuffering(Control control)
+        {
+            // Obtener el tipo del control
+            Type dgvType = control.GetType();
 
+            // Obtener el campo "DoubleBuffered" y establecerlo en true
+            PropertyInfo pi = dgvType.GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic);
+            pi.SetValue(control, true, null);
+            
+        }
 
         private void dtgEnts_MouseWheek(object sender, MouseEventArgs e)
         {
@@ -563,15 +574,7 @@ namespace mainVentana.VistaInicioCoordinadores
             
         }
 
-        private void iconButton7_Click(object sender, EventArgs e)
-        {
-            using (frmCotizaciones cot = new frmCotizaciones())
-            {
-                cot.sGlobal = Negocios.Common.Cache.CacheLogin.sucGlobal;
-                cot.ShowDialog();
-            }
-        }
-
+    
         private async void rSd_CheckedChanged(object sender, EventArgs e)
         {
             iconButton6.Enabled = false;

@@ -200,6 +200,7 @@ namespace mainVentana.vistaConfiguraciones
                 LimpiarCampos();
                 _modo = "N";
                 gbxNuser.Enabled = true;
+                txbUsuario.Enabled = true;
             }
             catch (Exception)
             {
