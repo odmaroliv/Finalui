@@ -76,6 +76,8 @@ namespace Negocios
                                          link = d.C46,
                                          alias = k.C112,
                                          cot = k.C115,
+                                         valArn = k.C16.ToString(),
+                                         valFact = k.C102,
                                      }).ToListAsync();
                     }
                 }
@@ -125,6 +127,8 @@ namespace Negocios
                                          link = d.C46,
                                          alias = k.C112,
                                          cot = k.C115,
+                                         valArn = k.C16.ToString(),
+                                         valFact = k.C102,
                                      }).ToListAsync();
                     }
                 }
@@ -174,6 +178,8 @@ namespace Negocios
                                          link = d.C46,
                                          alias = k.C112,
                                          cot = k.C115,
+                                         valArn = k.C16.ToString(),
+                                         valFact = k.C102,
                                      }).ToListAsync();
                     }
                 }
