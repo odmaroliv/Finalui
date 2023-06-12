@@ -314,6 +314,10 @@ namespace mainVentana.VistaInicioCoordinadores
             txbFecha.Text = dt.fechaentrada;
             txbSucOrigenDetalle.Text = dt.SucursalInicio.Trim();
             txbCordUsr.Text = dt.Cotizacion.Trim();
+            txbPcalle.Text = String.IsNullOrWhiteSpace(dt.calle) ? "" : dt.calle.Trim(); 
+            txbPcolonia.Text = String.IsNullOrWhiteSpace(dt.colonia) ? "" : dt.colonia.Trim();
+            txbPpoblacion.Text = String.IsNullOrWhiteSpace(dt.poblacio) ? "" : dt.poblacio.Trim();
+            txbPcp.Text = String.IsNullOrWhiteSpace(dt.zipcode) ? "" : dt.zipcode.Trim();
 
         }
 
@@ -338,8 +342,23 @@ namespace mainVentana.VistaInicioCoordinadores
            
         }
 
+        private void AsignaDatosSireccion()
+        {
+            if (String.IsNullOrWhiteSpace(txbAliasAct.Text))
+            {
+                calle = txbPcalle.Text;
+                colonia = txbPcolonia.Text;
+                estado = txbPcolonia.Text;
+                zipp = txbPcp.Text;
+                
+            }
+
+            
+        }
+
         private async void iconButton5_Click(object sender, EventArgs e)
         {
+            AsignaDatosSireccion();
             AltasBD bd = new AltasBD();
             try
             {
@@ -356,7 +375,7 @@ namespace mainVentana.VistaInicioCoordinadores
                     LimpiVar();
                     return;
                 }
-                if (String.IsNullOrWhiteSpace(txbAliasAct.Text))
+                if (String.IsNullOrWhiteSpace(txbPcalle.Text))
                 {
                     if (MessageBox.Show("La direccion que estas agregando esta en blanco, si esta enta entrada ya tenian una dirección asignada se borrara\nQuieres guardar la direccion en blanco?.", "Direccion en blanco", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     {

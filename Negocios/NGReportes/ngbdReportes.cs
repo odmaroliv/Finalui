@@ -450,7 +450,11 @@ namespace Negocios.NGReportes
                                          valArn = k.C16.ToString(),
                                          aliss = d.C24,
                                          Cotizacion = c.C3,
-                                         desc = a.C11
+                                         desc = a.C11,
+                                         calle = d.C25,
+                                         colonia = d.C26,
+                                         poblacio = d.C27,
+                                         zipcode = d.C28,
                                      });
                         lst = lista.FirstOrDefault();
                     }

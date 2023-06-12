@@ -37,7 +37,13 @@ namespace Datos.ViewModels.Reportes
         public string desc { get; set; }
         [DisplayName("Alias")]
         public string aliss { get; set; }
-        // public string etiqueta { get; set; }
-
+        [DisplayName("Calle")]
+        public string calle { get; set; }
+        [DisplayName("Colonia")]
+        public string colonia { get; set; }
+        [DisplayName("Población")]
+        public string poblacio { get; set; }
+        [DisplayName("ZIP")]
+        public string zipcode { get; set; }
     }
 }

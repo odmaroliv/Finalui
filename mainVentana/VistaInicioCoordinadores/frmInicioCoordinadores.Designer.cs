@@ -72,6 +72,15 @@
             this.nudValArn = new System.Windows.Forms.NumericUpDown();
             this.txbEntradaDetalle = new Guna.UI.WinForms.GunaLineTextBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.txbPcalle = new Guna.UI.WinForms.GunaLineTextBox();
+            this.txbPpoblacion = new Guna.UI.WinForms.GunaLineTextBox();
+            this.txbPcolonia = new Guna.UI.WinForms.GunaLineTextBox();
+            this.txbPcp = new Guna.UI.WinForms.GunaLineTextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -82,6 +91,7 @@
             this.gunaElipsePanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudValFac)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudValArn)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -133,7 +143,7 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label6.Location = new System.Drawing.Point(374, 51);
+            this.label6.Location = new System.Drawing.Point(363, 51);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(17, 13);
             this.label6.TabIndex = 168;
@@ -144,7 +154,7 @@
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label7.Location = new System.Drawing.Point(374, 23);
+            this.label7.Location = new System.Drawing.Point(363, 23);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(25, 13);
             this.label7.TabIndex = 167;
@@ -158,9 +168,9 @@
             this.dtFecha2.CustomFormat = null;
             this.dtFecha2.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.dtFecha2.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.dtFecha2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dtFecha2.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.dtFecha2.ForeColor = System.Drawing.Color.Black;
-            this.dtFecha2.Location = new System.Drawing.Point(400, 42);
+            this.dtFecha2.Location = new System.Drawing.Point(389, 42);
             this.dtFecha2.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtFecha2.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtFecha2.Name = "dtFecha2";
@@ -168,7 +178,7 @@
             this.dtFecha2.OnHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.dtFecha2.OnHoverForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.dtFecha2.OnPressedColor = System.Drawing.Color.Black;
-            this.dtFecha2.Size = new System.Drawing.Size(228, 30);
+            this.dtFecha2.Size = new System.Drawing.Size(258, 30);
             this.dtFecha2.TabIndex = 166;
             this.dtFecha2.Text = "viernes, marzo 10, 2023";
             this.dtFecha2.Value = new System.DateTime(2023, 3, 10, 11, 29, 29, 92);
@@ -181,9 +191,9 @@
             this.dtFecha1.CustomFormat = null;
             this.dtFecha1.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.dtFecha1.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.dtFecha1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dtFecha1.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.dtFecha1.ForeColor = System.Drawing.Color.Black;
-            this.dtFecha1.Location = new System.Drawing.Point(400, 6);
+            this.dtFecha1.Location = new System.Drawing.Point(389, 6);
             this.dtFecha1.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtFecha1.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtFecha1.Name = "dtFecha1";
@@ -191,7 +201,7 @@
             this.dtFecha1.OnHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.dtFecha1.OnHoverForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.dtFecha1.OnPressedColor = System.Drawing.Color.Black;
-            this.dtFecha1.Size = new System.Drawing.Size(228, 30);
+            this.dtFecha1.Size = new System.Drawing.Size(258, 30);
             this.dtFecha1.TabIndex = 165;
             this.dtFecha1.Text = "viernes, marzo 10, 2023";
             this.dtFecha1.Value = new System.DateTime(2023, 3, 10, 11, 29, 29, 92);
@@ -215,7 +225,7 @@
             this.groupBox1.Controls.Add(this.rSd);
             this.groupBox1.Location = new System.Drawing.Point(21, 23);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(321, 48);
+            this.groupBox1.Size = new System.Drawing.Size(312, 48);
             this.groupBox1.TabIndex = 137;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Sucursal";
@@ -357,6 +367,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gunaElipsePanel2.BackColor = System.Drawing.Color.Transparent;
             this.gunaElipsePanel2.BaseColor = System.Drawing.Color.White;
+            this.gunaElipsePanel2.Controls.Add(this.tableLayoutPanel1);
             this.gunaElipsePanel2.Controls.Add(this.txbCordUsr);
             this.gunaElipsePanel2.Controls.Add(this.label8);
             this.gunaElipsePanel2.Controls.Add(this.txbNoCliente);
@@ -540,11 +551,11 @@
             this.iconButton5.IconChar = FontAwesome.Sharp.IconChar.Copy;
             this.iconButton5.IconColor = System.Drawing.Color.Blue;
             this.iconButton5.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton5.IconSize = 40;
-            this.iconButton5.Location = new System.Drawing.Point(263, 324);
+            this.iconButton5.IconSize = 35;
+            this.iconButton5.Location = new System.Drawing.Point(263, 335);
             this.iconButton5.Margin = new System.Windows.Forms.Padding(2);
             this.iconButton5.Name = "iconButton5";
-            this.iconButton5.Size = new System.Drawing.Size(81, 72);
+            this.iconButton5.Size = new System.Drawing.Size(81, 67);
             this.iconButton5.TabIndex = 152;
             this.iconButton5.Text = "Guardar";
             this.iconButton5.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -718,6 +729,138 @@
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.Controls.Add(this.label12, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label11, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label10, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label9, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.txbPpoblacion, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.txbPcolonia, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.txbPcalle, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.txbPcp, 3, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(27, 286);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 13F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(310, 49);
+            this.tableLayoutPanel1.TabIndex = 166;
+            // 
+            // txbPcalle
+            // 
+            this.txbPcalle.Animated = true;
+            this.txbPcalle.BackColor = System.Drawing.Color.White;
+            this.txbPcalle.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbPcalle.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.txbPcalle.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.txbPcalle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbPcalle.LineColor = System.Drawing.Color.Gainsboro;
+            this.txbPcalle.Location = new System.Drawing.Point(2, 5);
+            this.txbPcalle.Margin = new System.Windows.Forms.Padding(2);
+            this.txbPcalle.Name = "txbPcalle";
+            this.txbPcalle.PasswordChar = '\0';
+            this.txbPcalle.Size = new System.Drawing.Size(73, 29);
+            this.txbPcalle.TabIndex = 163;
+            // 
+            // txbPpoblacion
+            // 
+            this.txbPpoblacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbPpoblacion.Animated = true;
+            this.txbPpoblacion.BackColor = System.Drawing.Color.White;
+            this.txbPpoblacion.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbPpoblacion.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.txbPpoblacion.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbPpoblacion.LineColor = System.Drawing.Color.Gainsboro;
+            this.txbPpoblacion.Location = new System.Drawing.Point(156, 5);
+            this.txbPpoblacion.Margin = new System.Windows.Forms.Padding(2);
+            this.txbPpoblacion.Name = "txbPpoblacion";
+            this.txbPpoblacion.PasswordChar = '\0';
+            this.txbPpoblacion.Size = new System.Drawing.Size(73, 29);
+            this.txbPpoblacion.TabIndex = 165;
+            // 
+            // txbPcolonia
+            // 
+            this.txbPcolonia.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbPcolonia.Animated = true;
+            this.txbPcolonia.BackColor = System.Drawing.Color.White;
+            this.txbPcolonia.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbPcolonia.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.txbPcolonia.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbPcolonia.LineColor = System.Drawing.Color.Gainsboro;
+            this.txbPcolonia.Location = new System.Drawing.Point(79, 5);
+            this.txbPcolonia.Margin = new System.Windows.Forms.Padding(2);
+            this.txbPcolonia.Name = "txbPcolonia";
+            this.txbPcolonia.PasswordChar = '\0';
+            this.txbPcolonia.Size = new System.Drawing.Size(73, 29);
+            this.txbPcolonia.TabIndex = 164;
+            // 
+            // txbPcp
+            // 
+            this.txbPcp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbPcp.Animated = true;
+            this.txbPcp.BackColor = System.Drawing.Color.White;
+            this.txbPcp.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbPcp.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.txbPcp.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbPcp.LineColor = System.Drawing.Color.Gainsboro;
+            this.txbPcp.Location = new System.Drawing.Point(233, 5);
+            this.txbPcp.Margin = new System.Windows.Forms.Padding(2);
+            this.txbPcp.Name = "txbPcp";
+            this.txbPcp.PasswordChar = '\0';
+            this.txbPcp.Size = new System.Drawing.Size(75, 29);
+            this.txbPcp.TabIndex = 166;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.label9.Location = new System.Drawing.Point(234, 36);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(24, 13);
+            this.label9.TabIndex = 167;
+            this.label9.Text = "C.P";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.label10.Location = new System.Drawing.Point(157, 36);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(54, 13);
+            this.label10.TabIndex = 168;
+            this.label10.Text = "Población";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.label11.Location = new System.Drawing.Point(80, 36);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(42, 13);
+            this.label11.TabIndex = 169;
+            this.label11.Text = "Colonia";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.label12.Location = new System.Drawing.Point(3, 36);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(30, 13);
+            this.label12.TabIndex = 170;
+            this.label12.Text = "Calle";
+            // 
             // frmInicioCoordinadores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -743,6 +886,8 @@
             this.gunaElipsePanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudValFac)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudValArn)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -784,5 +929,14 @@
         private System.Windows.Forms.RadioButton rdId;
         private Guna.UI.WinForms.GunaLineTextBox txbCordUsr;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private Guna.UI.WinForms.GunaLineTextBox txbPpoblacion;
+        private Guna.UI.WinForms.GunaLineTextBox txbPcolonia;
+        private Guna.UI.WinForms.GunaLineTextBox txbPcalle;
+        private Guna.UI.WinForms.GunaLineTextBox txbPcp;
     }
 }

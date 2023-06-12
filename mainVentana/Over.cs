@@ -25,6 +25,7 @@ namespace mainVentana
 
         frmInicioCoordinadores frm = new frmInicioCoordinadores();
         private string _tipoBusqueda = "Ent";
+        private bool _isBusy = false;
         public Over()
         {
             InitializeComponent();
@@ -273,77 +274,103 @@ namespace mainVentana
         {
             if (e.KeyCode == Keys.Enter)
             {
-                loadControl1.Visible = true;
-                bool esTecleado = false;
-                string id = "";
-                try
+                if (_isBusy==false)
                 {
-                    switch (_tipoBusqueda)
+                    _isBusy = true;
+                    loadControl1.Visible = true;
+                    bool esTecleado = false;
+                    string id = "";
+                    try
                     {
-                        case "Ent":
-                            if (esTecleado) return;
-                            esTecleado = true;
-                            ValidabPrincipal();
-                            id = gunaTextBox2.Text;
-                            await refresh(id, _tipoBusqueda);
-                            if (gunaDataGridView1.RowCount <= 0)
-                            {
-                                MessageBox.Show("No se encontraron datos");
-                                return;
-                            }
-                            await Task.Run(() => { Thread.Sleep(1000); });
-                            formatodeceldas();
-                            e.Handled = true;
-                            break;
-                        case "Flete":
-                            if (esTecleado) return;
-                            esTecleado = true;
-                            id = gunaTextBox2.Text;
-                            if (id == "" || id.Length <4)
-                            {
-                                MessageBox.Show("El campo de busqueda esta vacio!");
-                                return;
-                            }
-                            await refresh(id, _tipoBusqueda);
-                            if (gunaDataGridView1.RowCount <= 0)
-                            {
-                                MessageBox.Show("No se encontraron datos");
-                                return;
-                            }
-                            await Task.Run(() => { Thread.Sleep(1000); });
-                            formatodeceldas();
-                            e.Handled = true;
-                            break;
-                        case "Cliente":
-                            if (esTecleado) return;
-                            esTecleado = true;
-                            id = gunaTextBox2.Text;
-                            if (id == "" || id.Length < 2)
-                            {
-                                MessageBox.Show("El campo de busqueda esta vacio!");
-                                return;
-                            }
-                            await refresh(id, _tipoBusqueda);
-                            if (gunaDataGridView1.RowCount <= 0)
-                            {
-                                MessageBox.Show("No se encontraron datos");
-                                return;
-                            }
-                            await Task.Run(() => { Thread.Sleep(1000); });
-                            formatodeceldas();
-                            e.Handled = true;
-                            break;
+                        switch (_tipoBusqueda)
+                        {
+                            case "Ent":
+                                if (esTecleado) return;
+                                esTecleado = true;
+                                ValidabPrincipal();
+                                id = gunaTextBox2.Text;
+                                await refresh(id, _tipoBusqueda);
+                                if (gunaDataGridView1.RowCount <= 0)
+                                {
+                                    MessageBox.Show("No se encontraron datos");
+                                    return;
+                                }
+                                await Task.Run(() => { Thread.Sleep(1000); });
+                                formatodeceldas();
+                                e.Handled = true;
+                                break;
+                            case "Flete":
+                                if (esTecleado) return;
+                                esTecleado = true;
+                                id = gunaTextBox2.Text;
+                                if (id == "" || id.Length < 4)
+                                {
+                                    MessageBox.Show("El campo de busqueda esta vacio!");
+                                    return;
+                                }
+                                await refresh(id, _tipoBusqueda);
+                                if (gunaDataGridView1.RowCount <= 0)
+                                {
+                                    MessageBox.Show("No se encontraron datos");
+                                    return;
+                                }
+                                await Task.Run(() => { Thread.Sleep(1000); });
+                                formatodeceldas();
+                                e.Handled = true;
+                                break;
+                            case "Cliente":
+                                if (esTecleado) return;
+                                esTecleado = true;
+                                id = gunaTextBox2.Text;
+                                if (id == "" || id.Length < 2)
+                                {
+                                    MessageBox.Show("El campo de busqueda esta vacio!");
+                                    return;
+                                }
+                                await refresh(id, _tipoBusqueda);
+                                if (gunaDataGridView1.RowCount <= 0)
+                                {
+                                    MessageBox.Show("No se encontraron datos");
+                                    return;
+                                }
+                                await Task.Run(() => { Thread.Sleep(1000); });
+                                formatodeceldas();
+                                e.Handled = true;
+                                break;
+                            case "Usuario":
+                                if (esTecleado) return;
+                                esTecleado = true;
+                                /* //id = gunaTextBox2.Text;
+                                 if (id == "" || id.Length < 2)
+                                 {
+                                     MessageBox.Show("El campo de busqueda esta vacio!");
+                                     return;
+                                 }*/
+                                await refresh(id, _tipoBusqueda);
+                                if (gunaDataGridView1.RowCount <= 0)
+                                {
+                                    MessageBox.Show("No se encontraron datos");
+                                    return;
+                                }
+                                await Task.Run(() => { Thread.Sleep(1000); });
+                                formatodeceldas();
+                                e.Handled = true;
+                                break;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                    finally
+                    {
+                        esTecleado = false;
+                        loadControl1.Visible = false;
+                        _isBusy = false;
                     }
                 }
-                catch (Exception)
-                {
-                    throw;
-                }
-                finally
-                {
-                    esTecleado = false;
-                    loadControl1.Visible = false;
-                }
+              
+               
             }
         }
 
