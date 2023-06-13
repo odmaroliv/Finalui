@@ -406,7 +406,7 @@ namespace mainVentana
 
         private void gunaTextBox2_MouseEnter(object sender, EventArgs e)
         {
-            if (gunaTextBox2.Text == "Busqueda rapida de entrada :)")
+            if (gunaTextBox2.Text == "Buscar...")
             {
                 gunaTextBox2.Text = "";
 

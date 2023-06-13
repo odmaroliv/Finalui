@@ -41,14 +41,14 @@ namespace Negocios.NGBill
                         {
                             string[] partes = resultadoPrimeraConsulta.k.C115 != null ? resultadoPrimeraConsulta.k.C115.Split('-') : null;
 
-                           
-                            string rCodigo = (partes != null && partes.Length > 2) ? partes[2] : string.Empty;
+                          
+                            string rCodigo = (partes != null && partes.Length >= 2) ? partes[1].Trim() : string.Empty;
                             string rSuc = (partes != null && partes.Length > 0) ? partes[0] : string.Empty;
 
                             var resultadoSegundaQuery = (from k in modelo.KDM1.AsNoTracking()
-                                                         join a in modelo.KDFEMTOCFD on k.C110 equals a.C1
+                                                         //join a in modelo.KDFEMTOCFD on k.C30 equals a.C2
                                                          where k.C4 == 34 && k.C6 == rCodigo && k.C1 == rSuc
-                                                         select new { k.C16, a.C2, k.C40 }).FirstOrDefault();
+                                                         select new { k.C16, k.C30, k.C40 }).FirstOrDefault();
 
                             if (resultadoSegundaQuery != null && partes != null)
                             {
@@ -72,7 +72,7 @@ namespace Negocios.NGBill
                                     Bill = x.d.C34,
                                     Coordinador = x.v.C3,
                                     TServicio = x.k.C101,
-                                    Tpago = string.IsNullOrWhiteSpace(resultadoSegundaQuery.C2) ? string.Empty : resultadoSegundaQuery.C2.ToString(),
+                                    Tpago = string.IsNullOrWhiteSpace(resultadoSegundaQuery.C30) ? string.Empty : resultadoSegundaQuery.C30.ToString(),
                                     CantidaDlls = (decimal)(resultadoSegundaQuery.C16 != null ? resultadoSegundaQuery.C16 : 0),
                                     Paridad = (double)(resultadoSegundaQuery.C40 != null ? resultadoSegundaQuery.C40 : 0),
                                     Alias = string.IsNullOrWhiteSpace(x.d.C24) ? x.k.C112 : x.d.C24,
