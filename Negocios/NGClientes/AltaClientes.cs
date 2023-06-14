@@ -65,7 +65,7 @@ namespace Negocios.NGClientes
                     var d = (from q in modelo.KDUD
                              where q.C2 == clave
                              select q).FirstOrDefault();
-                   
+
                     d.C3 = nombre;
                     d.C4 = direccion;
                     d.C5 = colonia;
@@ -80,7 +80,7 @@ namespace Negocios.NGClientes
                     d.C24 = coment;
                     d.C32 = mailb;
 
-              
+
                     try
                     {
                         modelo.SaveChanges();
@@ -98,6 +98,46 @@ namespace Negocios.NGClientes
                 throw;
             }
         }
+
+        public bool EliminaCliente(string clave)
+        {
+            bool eliminado = false;
+            try
+            {
+                using (modelo2Entities modelo = new modelo2Entities())
+                {
+                    var d = (from q in modelo.KDUD
+                             where q.C2 == clave
+                             select q).FirstOrDefault();
+
+                    if (d != null)
+                    {
+                        modelo.KDUD.Remove(d);
+                        try
+                        {
+                            modelo.SaveChanges();
+                            eliminado = true;
+                        }
+                        catch (Exception ex)
+                        {
+                            throw;
+                        }
+                    }
+                    else
+                    {
+                        eliminado = false;
+                        // El cliente con esa clave no se encontró, maneja este caso como lo desees.
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                eliminado = false;
+                throw;
+            }
+            return eliminado;
+        }
+
 
         //---------------------
         public void CreaAlias(string nombre, string keplerCoordenadas, string codigoCliente, string calle, string colonia, string ciudadPais,string zip, 

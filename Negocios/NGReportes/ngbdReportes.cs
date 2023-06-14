@@ -245,7 +245,7 @@ namespace Negocios.NGReportes
                                         valFact = k.C102,
                                         valArn = k.C16.ToString(),
                                         desc = a.C11,
-                                        aliss = d.C24,
+                                        aliss = k.C112,
                                     };
                         }
                     }
@@ -296,7 +296,7 @@ namespace Negocios.NGReportes
                                         valFact = k.C102,
                                         valArn = k.C16.ToString(),
                                         desc = a.C11,
-                                        aliss = d.C24,
+                                        aliss = k.C112,
                                     };
                         }
                     }

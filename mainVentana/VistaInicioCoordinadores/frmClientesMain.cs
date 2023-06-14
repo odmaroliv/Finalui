@@ -12,6 +12,7 @@ using Negocios.NGClientes;
 using Datos.ViewModels.Entradas;
 using Negocios;
 using Datos.ViewModels.Coord.Clientes;
+using System.Linq.Expressions;
 
 namespace mainVentana.VistaInicioCoordinadores
 {
@@ -365,6 +366,41 @@ namespace mainVentana.VistaInicioCoordinadores
 
         }
 
+        private void txbClave_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(txbClave.Text))
+            {
+                return;
+            }
+            if (e.KeyCode == Keys.Delete && e.Shift)
+            {
+                try
+                {
+                    AccesoClientes acf = new AccesoClientes();
+                    /* var clv = acf.NumeroCliente();
+                     txbClave.Text = clv;*/
 
+                    AltaClientes ac = new AltaClientes();
+                   bool st =  ac.EliminaCliente(txbClave.Text.Trim());
+
+                    if (st==true)
+                    {
+                        MessageBox.Show("Eliminado");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se elimino, ocurrio un error");
+                    }
+                    this.Close();
+                }
+
+                catch 
+                {
+
+                }
+            }
+
+            
+        }
     }
 }

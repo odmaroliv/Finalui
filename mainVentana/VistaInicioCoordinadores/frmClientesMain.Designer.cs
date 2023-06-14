@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txbClave = new ReaLTaiizor.Controls.AloneTextBox();
             this.foreverLabel1 = new ReaLTaiizor.Controls.ForeverLabel();
             this.foreverLabel2 = new ReaLTaiizor.Controls.ForeverLabel();
             this.txbNombre = new ReaLTaiizor.Controls.AloneTextBox();
             this.parrotGroupBox1 = new ReaLTaiizor.Controls.ParrotGroupBox();
+            this.lblEstatus = new ReaLTaiizor.Controls.BigLabel();
+            this.cbxMail = new ReaLTaiizor.Controls.SkyCheckBox();
             this.foreverLabel12 = new ReaLTaiizor.Controls.ForeverLabel();
             this.txbComentarios = new ReaLTaiizor.Controls.AloneTextBox();
             this.foreverLabel11 = new ReaLTaiizor.Controls.ForeverLabel();
@@ -61,34 +62,18 @@
             this.foreverLabel13 = new ReaLTaiizor.Controls.ForeverLabel();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.btnGuardar = new ReaLTaiizor.Controls.DungeonButtonRight();
-            this.cbxMail = new ReaLTaiizor.Controls.SkyCheckBox();
-            this.lblEstatus = new ReaLTaiizor.Controls.BigLabel();
+            this.foreverLabel15 = new ReaLTaiizor.Controls.ForeverLabel();
+            this.txbClave = new Guna.UI.WinForms.GunaLineTextBox();
             this.parrotGroupBox1.SuspendLayout();
             this.parrotGroupBox2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // txbClave
-            // 
-            this.txbClave.BackColor = System.Drawing.Color.White;
-            this.txbClave.EnabledCalc = true;
-            this.txbClave.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txbClave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(133)))), ((int)(((byte)(142)))));
-            this.txbClave.Location = new System.Drawing.Point(14, 32);
-            this.txbClave.MaxLength = 32767;
-            this.txbClave.MultiLine = false;
-            this.txbClave.Name = "txbClave";
-            this.txbClave.ReadOnly = false;
-            this.txbClave.Size = new System.Drawing.Size(108, 29);
-            this.txbClave.TabIndex = 0;
-            this.txbClave.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.txbClave.UseSystemPasswordChar = false;
             // 
             // foreverLabel1
             // 
             this.foreverLabel1.AutoSize = true;
             this.foreverLabel1.BackColor = System.Drawing.Color.Transparent;
             this.foreverLabel1.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.foreverLabel1.ForeColor = System.Drawing.Color.LightGray;
+            this.foreverLabel1.ForeColor = System.Drawing.Color.Gray;
             this.foreverLabel1.Location = new System.Drawing.Point(11, 16);
             this.foreverLabel1.Name = "foreverLabel1";
             this.foreverLabel1.Size = new System.Drawing.Size(34, 13);
@@ -100,7 +85,7 @@
             this.foreverLabel2.AutoSize = true;
             this.foreverLabel2.BackColor = System.Drawing.Color.Transparent;
             this.foreverLabel2.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.foreverLabel2.ForeColor = System.Drawing.Color.LightGray;
+            this.foreverLabel2.ForeColor = System.Drawing.Color.Gray;
             this.foreverLabel2.Location = new System.Drawing.Point(137, 89);
             this.foreverLabel2.Name = "foreverLabel2";
             this.foreverLabel2.Size = new System.Drawing.Size(48, 13);
@@ -127,6 +112,8 @@
             // 
             this.parrotGroupBox1.BorderColor = System.Drawing.Color.DodgerBlue;
             this.parrotGroupBox1.BorderWidth = 1;
+            this.parrotGroupBox1.Controls.Add(this.txbClave);
+            this.parrotGroupBox1.Controls.Add(this.foreverLabel15);
             this.parrotGroupBox1.Controls.Add(this.lblEstatus);
             this.parrotGroupBox1.Controls.Add(this.cbxMail);
             this.parrotGroupBox1.Controls.Add(this.foreverLabel12);
@@ -154,7 +141,6 @@
             this.parrotGroupBox1.Controls.Add(this.foreverLabel2);
             this.parrotGroupBox1.Controls.Add(this.foreverLabel1);
             this.parrotGroupBox1.Controls.Add(this.txbNombre);
-            this.parrotGroupBox1.Controls.Add(this.txbClave);
             this.parrotGroupBox1.Location = new System.Drawing.Point(12, 12);
             this.parrotGroupBox1.Name = "parrotGroupBox1";
             this.parrotGroupBox1.ShowText = true;
@@ -164,12 +150,44 @@
             this.parrotGroupBox1.Text = "Datos";
             this.parrotGroupBox1.TextColor = System.Drawing.Color.DodgerBlue;
             // 
+            // lblEstatus
+            // 
+            this.lblEstatus.AutoSize = true;
+            this.lblEstatus.BackColor = System.Drawing.Color.Transparent;
+            this.lblEstatus.Font = new System.Drawing.Font("Segoe UI", 25F);
+            this.lblEstatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.lblEstatus.Location = new System.Drawing.Point(330, 15);
+            this.lblEstatus.Name = "lblEstatus";
+            this.lblEstatus.Size = new System.Drawing.Size(294, 46);
+            this.lblEstatus.TabIndex = 28;
+            this.lblEstatus.Text = "Consulta/Modifica";
+            // 
+            // cbxMail
+            // 
+            this.cbxMail.BackColor = System.Drawing.Color.Transparent;
+            this.cbxMail.BoxBGColorA = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.cbxMail.BoxBGColorB = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+            this.cbxMail.BoxBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
+            this.cbxMail.BoxBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
+            this.cbxMail.BoxBorderColorC = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(168)))), ((int)(((byte)(168)))));
+            this.cbxMail.Checked = false;
+            this.cbxMail.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(137)))));
+            this.cbxMail.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cbxMail.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Bold);
+            this.cbxMail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(137)))));
+            this.cbxMail.Location = new System.Drawing.Point(397, 386);
+            this.cbxMail.Name = "cbxMail";
+            this.cbxMail.Size = new System.Drawing.Size(90, 14);
+            this.cbxMail.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            this.cbxMail.TabIndex = 27;
+            this.cbxMail.Text = "MailBox";
+            // 
             // foreverLabel12
             // 
             this.foreverLabel12.AutoSize = true;
             this.foreverLabel12.BackColor = System.Drawing.Color.Transparent;
             this.foreverLabel12.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.foreverLabel12.ForeColor = System.Drawing.Color.LightGray;
+            this.foreverLabel12.ForeColor = System.Drawing.Color.Gray;
             this.foreverLabel12.Location = new System.Drawing.Point(11, 417);
             this.foreverLabel12.Name = "foreverLabel12";
             this.foreverLabel12.Size = new System.Drawing.Size(72, 13);
@@ -197,7 +215,7 @@
             this.foreverLabel11.AutoSize = true;
             this.foreverLabel11.BackColor = System.Drawing.Color.Transparent;
             this.foreverLabel11.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.foreverLabel11.ForeColor = System.Drawing.Color.LightGray;
+            this.foreverLabel11.ForeColor = System.Drawing.Color.Gray;
             this.foreverLabel11.Location = new System.Drawing.Point(394, 325);
             this.foreverLabel11.Name = "foreverLabel11";
             this.foreverLabel11.Size = new System.Drawing.Size(33, 13);
@@ -209,7 +227,7 @@
             this.foreverLabel10.AutoSize = true;
             this.foreverLabel10.BackColor = System.Drawing.Color.Transparent;
             this.foreverLabel10.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.foreverLabel10.ForeColor = System.Drawing.Color.LightGray;
+            this.foreverLabel10.ForeColor = System.Drawing.Color.Gray;
             this.foreverLabel10.Location = new System.Drawing.Point(11, 325);
             this.foreverLabel10.Name = "foreverLabel10";
             this.foreverLabel10.Size = new System.Drawing.Size(53, 13);
@@ -293,7 +311,7 @@
             this.foreverLabel9.AutoSize = true;
             this.foreverLabel9.BackColor = System.Drawing.Color.Transparent;
             this.foreverLabel9.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.foreverLabel9.ForeColor = System.Drawing.Color.LightGray;
+            this.foreverLabel9.ForeColor = System.Drawing.Color.Gray;
             this.foreverLabel9.Location = new System.Drawing.Point(11, 266);
             this.foreverLabel9.Name = "foreverLabel9";
             this.foreverLabel9.Size = new System.Drawing.Size(123, 13);
@@ -321,7 +339,7 @@
             this.foreverLabel8.AutoSize = true;
             this.foreverLabel8.BackColor = System.Drawing.Color.Transparent;
             this.foreverLabel8.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.foreverLabel8.ForeColor = System.Drawing.Color.LightGray;
+            this.foreverLabel8.ForeColor = System.Drawing.Color.Gray;
             this.foreverLabel8.Location = new System.Drawing.Point(394, 203);
             this.foreverLabel8.Name = "foreverLabel8";
             this.foreverLabel8.Size = new System.Drawing.Size(27, 13);
@@ -349,7 +367,7 @@
             this.foreverLabel7.AutoSize = true;
             this.foreverLabel7.BackColor = System.Drawing.Color.Transparent;
             this.foreverLabel7.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.foreverLabel7.ForeColor = System.Drawing.Color.LightGray;
+            this.foreverLabel7.ForeColor = System.Drawing.Color.Gray;
             this.foreverLabel7.Location = new System.Drawing.Point(137, 203);
             this.foreverLabel7.Name = "foreverLabel7";
             this.foreverLabel7.Size = new System.Drawing.Size(21, 13);
@@ -377,7 +395,7 @@
             this.foreverLabel6.AutoSize = true;
             this.foreverLabel6.BackColor = System.Drawing.Color.Transparent;
             this.foreverLabel6.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.foreverLabel6.ForeColor = System.Drawing.Color.LightGray;
+            this.foreverLabel6.ForeColor = System.Drawing.Color.Gray;
             this.foreverLabel6.Location = new System.Drawing.Point(11, 203);
             this.foreverLabel6.Name = "foreverLabel6";
             this.foreverLabel6.Size = new System.Drawing.Size(79, 13);
@@ -405,7 +423,7 @@
             this.foreverLabel4.AutoSize = true;
             this.foreverLabel4.BackColor = System.Drawing.Color.Transparent;
             this.foreverLabel4.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.foreverLabel4.ForeColor = System.Drawing.Color.LightGray;
+            this.foreverLabel4.ForeColor = System.Drawing.Color.Gray;
             this.foreverLabel4.Location = new System.Drawing.Point(394, 146);
             this.foreverLabel4.Name = "foreverLabel4";
             this.foreverLabel4.Size = new System.Drawing.Size(58, 13);
@@ -433,7 +451,7 @@
             this.foreverLabel5.AutoSize = true;
             this.foreverLabel5.BackColor = System.Drawing.Color.Transparent;
             this.foreverLabel5.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.foreverLabel5.ForeColor = System.Drawing.Color.LightGray;
+            this.foreverLabel5.ForeColor = System.Drawing.Color.Gray;
             this.foreverLabel5.Location = new System.Drawing.Point(137, 146);
             this.foreverLabel5.Name = "foreverLabel5";
             this.foreverLabel5.Size = new System.Drawing.Size(47, 13);
@@ -461,7 +479,7 @@
             this.foreverLabel3.AutoSize = true;
             this.foreverLabel3.BackColor = System.Drawing.Color.Transparent;
             this.foreverLabel3.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.foreverLabel3.ForeColor = System.Drawing.Color.LightGray;
+            this.foreverLabel3.ForeColor = System.Drawing.Color.Gray;
             this.foreverLabel3.Location = new System.Drawing.Point(394, 89);
             this.foreverLabel3.Name = "foreverLabel3";
             this.foreverLabel3.Size = new System.Drawing.Size(55, 13);
@@ -506,7 +524,7 @@
             this.foreverLabel14.AutoSize = true;
             this.foreverLabel14.BackColor = System.Drawing.Color.Transparent;
             this.foreverLabel14.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.foreverLabel14.ForeColor = System.Drawing.Color.LightGray;
+            this.foreverLabel14.ForeColor = System.Drawing.Color.Gray;
             this.foreverLabel14.Location = new System.Drawing.Point(6, 217);
             this.foreverLabel14.Name = "foreverLabel14";
             this.foreverLabel14.Size = new System.Drawing.Size(114, 13);
@@ -541,7 +559,7 @@
             this.foreverLabel13.AutoSize = true;
             this.foreverLabel13.BackColor = System.Drawing.Color.Transparent;
             this.foreverLabel13.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.foreverLabel13.ForeColor = System.Drawing.Color.LightGray;
+            this.foreverLabel13.ForeColor = System.Drawing.Color.Gray;
             this.foreverLabel13.Location = new System.Drawing.Point(18, 30);
             this.foreverLabel13.Name = "foreverLabel13";
             this.foreverLabel13.Size = new System.Drawing.Size(86, 13);
@@ -594,37 +612,32 @@
             this.btnGuardar.TextAlignment = System.Drawing.StringAlignment.Center;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
-            // cbxMail
+            // foreverLabel15
             // 
-            this.cbxMail.BackColor = System.Drawing.Color.Transparent;
-            this.cbxMail.BoxBGColorA = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.cbxMail.BoxBGColorB = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
-            this.cbxMail.BoxBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
-            this.cbxMail.BoxBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            this.cbxMail.BoxBorderColorC = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(168)))), ((int)(((byte)(168)))));
-            this.cbxMail.Checked = false;
-            this.cbxMail.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(137)))));
-            this.cbxMail.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cbxMail.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Bold);
-            this.cbxMail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(137)))));
-            this.cbxMail.Location = new System.Drawing.Point(397, 386);
-            this.cbxMail.Name = "cbxMail";
-            this.cbxMail.Size = new System.Drawing.Size(90, 14);
-            this.cbxMail.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            this.cbxMail.TabIndex = 27;
-            this.cbxMail.Text = "MailBox";
+            this.foreverLabel15.AutoSize = true;
+            this.foreverLabel15.BackColor = System.Drawing.Color.Transparent;
+            this.foreverLabel15.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.foreverLabel15.ForeColor = System.Drawing.Color.Gray;
+            this.foreverLabel15.Location = new System.Drawing.Point(11, 67);
+            this.foreverLabel15.Name = "foreverLabel15";
+            this.foreverLabel15.Size = new System.Drawing.Size(188, 13);
+            this.foreverLabel15.TabIndex = 30;
+            this.foreverLabel15.Text = "SHIFT + PARA BORRAR UN CLIENTE.";
             // 
-            // lblEstatus
+            // txbClave
             // 
-            this.lblEstatus.AutoSize = true;
-            this.lblEstatus.BackColor = System.Drawing.Color.Transparent;
-            this.lblEstatus.Font = new System.Drawing.Font("Segoe UI", 25F);
-            this.lblEstatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.lblEstatus.Location = new System.Drawing.Point(330, 15);
-            this.lblEstatus.Name = "lblEstatus";
-            this.lblEstatus.Size = new System.Drawing.Size(294, 46);
-            this.lblEstatus.TabIndex = 28;
-            this.lblEstatus.Text = "Consulta/Modifica";
+            this.txbClave.BackColor = System.Drawing.Color.White;
+            this.txbClave.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbClave.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.txbClave.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txbClave.LineColor = System.Drawing.Color.Gainsboro;
+            this.txbClave.Location = new System.Drawing.Point(14, 30);
+            this.txbClave.Margin = new System.Windows.Forms.Padding(2);
+            this.txbClave.Name = "txbClave";
+            this.txbClave.PasswordChar = '\0';
+            this.txbClave.Size = new System.Drawing.Size(108, 31);
+            this.txbClave.TabIndex = 31;
+            this.txbClave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbClave_KeyDown);
             // 
             // frmClientesMain
             // 
@@ -651,8 +664,6 @@
         }
 
         #endregion
-
-        private ReaLTaiizor.Controls.AloneTextBox txbClave;
         private ReaLTaiizor.Controls.ForeverLabel foreverLabel1;
         private ReaLTaiizor.Controls.ForeverLabel foreverLabel2;
         private ReaLTaiizor.Controls.AloneTextBox txbNombre;
@@ -687,5 +698,7 @@
         private ReaLTaiizor.Controls.DungeonButtonRight btnGuardar;
         private ReaLTaiizor.Controls.SkyCheckBox cbxMail;
         private ReaLTaiizor.Controls.BigLabel lblEstatus;
+        private ReaLTaiizor.Controls.ForeverLabel foreverLabel15;
+        private Guna.UI.WinForms.GunaLineTextBox txbClave;
     }
 }
