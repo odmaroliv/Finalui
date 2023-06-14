@@ -374,33 +374,35 @@ namespace mainVentana.VistaInicioCoordinadores
             }
             if (e.KeyCode == Keys.Delete && e.Shift)
             {
-                try
+                DialogResult dialogResult = MessageBox.Show("¿Estás seguro de que quieres eliminar el cliente?", "Confirmar eliminación", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
                 {
-                    AccesoClientes acf = new AccesoClientes();
-                    /* var clv = acf.NumeroCliente();
-                     txbClave.Text = clv;*/
-
-                    AltaClientes ac = new AltaClientes();
-                   bool st =  ac.EliminaCliente(txbClave.Text.Trim());
-
-                    if (st==true)
+                    try
                     {
-                        MessageBox.Show("Eliminado");
+                        AltaClientes ac = new AltaClientes();
+                        bool st = ac.EliminaCliente(txbClave.Text.Trim());
+
+                        if (st == true)
+                        {
+                            MessageBox.Show("Eliminado");
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se eliminó, ocurrió un error");
+                        }
+                        this.Close();
                     }
-                    else
+                    catch
                     {
-                        MessageBox.Show("No se elimino, ocurrio un error");
+                        // Aquí puedes manejar cualquier excepción que quieras
                     }
-                    this.Close();
                 }
-
-                catch 
+                else if (dialogResult == DialogResult.No)
                 {
-
+                    // Si el usuario decide no eliminar, puedes manejar esa situación aquí
                 }
             }
-
-            
         }
+
     }
 }
