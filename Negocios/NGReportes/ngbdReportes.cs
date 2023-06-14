@@ -490,9 +490,11 @@ namespace Negocios.NGReportes
                 {
                     using (modelo2Entities modelo = new modelo2Entities())
                     {
+
                         try
                         {
 
+                            modelo.Database.CommandTimeout = 500;
                             var query = @"SELECT m.C6 AS Entrada,
                                             MAX(m.C9) AS FechaEntrada,
                                             MAX(m.C1) AS SucursalOrigen,
