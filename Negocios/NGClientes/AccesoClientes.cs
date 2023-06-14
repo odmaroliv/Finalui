@@ -98,6 +98,32 @@ namespace Negocios.NGClientes
 
         }
 
+        public bool BorrarAliasPorCodigo(string codigo, string codCliente)
+        {
+            try
+            {
+                using (modelo2Entities modelo = new modelo2Entities())
+                {
+                    var objetoABorrar = (from d in modelo.KDUDA
+                                         where d.C1 == codigo && d.C3 == codCliente
+                                         select d).FirstOrDefault();
+                    if (objetoABorrar != null)
+                    {
+                        modelo.KDUDA.Remove(objetoABorrar);
+                        modelo.SaveChanges();
+                        return true;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return false;
+        }
+
+
+
         public List<vmAliasInfo> BuscaAliasenCliente(string codigo)
         {
 

@@ -32,6 +32,8 @@
             this.foreverLabel2 = new ReaLTaiizor.Controls.ForeverLabel();
             this.txbNombre = new ReaLTaiizor.Controls.AloneTextBox();
             this.parrotGroupBox1 = new ReaLTaiizor.Controls.ParrotGroupBox();
+            this.txbClave = new Guna.UI.WinForms.GunaLineTextBox();
+            this.foreverLabel15 = new ReaLTaiizor.Controls.ForeverLabel();
             this.lblEstatus = new ReaLTaiizor.Controls.BigLabel();
             this.cbxMail = new ReaLTaiizor.Controls.SkyCheckBox();
             this.foreverLabel12 = new ReaLTaiizor.Controls.ForeverLabel();
@@ -62,8 +64,6 @@
             this.foreverLabel13 = new ReaLTaiizor.Controls.ForeverLabel();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.btnGuardar = new ReaLTaiizor.Controls.DungeonButtonRight();
-            this.foreverLabel15 = new ReaLTaiizor.Controls.ForeverLabel();
-            this.txbClave = new Guna.UI.WinForms.GunaLineTextBox();
             this.parrotGroupBox1.SuspendLayout();
             this.parrotGroupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -149,6 +149,33 @@
             this.parrotGroupBox1.TabStop = false;
             this.parrotGroupBox1.Text = "Datos";
             this.parrotGroupBox1.TextColor = System.Drawing.Color.DodgerBlue;
+            // 
+            // txbClave
+            // 
+            this.txbClave.BackColor = System.Drawing.Color.White;
+            this.txbClave.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbClave.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.txbClave.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txbClave.LineColor = System.Drawing.Color.Gainsboro;
+            this.txbClave.Location = new System.Drawing.Point(14, 30);
+            this.txbClave.Margin = new System.Windows.Forms.Padding(2);
+            this.txbClave.Name = "txbClave";
+            this.txbClave.PasswordChar = '\0';
+            this.txbClave.Size = new System.Drawing.Size(108, 31);
+            this.txbClave.TabIndex = 31;
+            this.txbClave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbClave_KeyDown);
+            // 
+            // foreverLabel15
+            // 
+            this.foreverLabel15.AutoSize = true;
+            this.foreverLabel15.BackColor = System.Drawing.Color.Transparent;
+            this.foreverLabel15.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.foreverLabel15.ForeColor = System.Drawing.Color.Gray;
+            this.foreverLabel15.Location = new System.Drawing.Point(11, 67);
+            this.foreverLabel15.Name = "foreverLabel15";
+            this.foreverLabel15.Size = new System.Drawing.Size(187, 13);
+            this.foreverLabel15.TabIndex = 30;
+            this.foreverLabel15.Text = "SHIFT + DEL para borrar un cliente.";
             // 
             // lblEstatus
             // 
@@ -611,33 +638,6 @@
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.TextAlignment = System.Drawing.StringAlignment.Center;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // foreverLabel15
-            // 
-            this.foreverLabel15.AutoSize = true;
-            this.foreverLabel15.BackColor = System.Drawing.Color.Transparent;
-            this.foreverLabel15.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.foreverLabel15.ForeColor = System.Drawing.Color.Gray;
-            this.foreverLabel15.Location = new System.Drawing.Point(11, 67);
-            this.foreverLabel15.Name = "foreverLabel15";
-            this.foreverLabel15.Size = new System.Drawing.Size(188, 13);
-            this.foreverLabel15.TabIndex = 30;
-            this.foreverLabel15.Text = "SHIFT + PARA BORRAR UN CLIENTE.";
-            // 
-            // txbClave
-            // 
-            this.txbClave.BackColor = System.Drawing.Color.White;
-            this.txbClave.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txbClave.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.txbClave.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txbClave.LineColor = System.Drawing.Color.Gainsboro;
-            this.txbClave.Location = new System.Drawing.Point(14, 30);
-            this.txbClave.Margin = new System.Windows.Forms.Padding(2);
-            this.txbClave.Name = "txbClave";
-            this.txbClave.PasswordChar = '\0';
-            this.txbClave.Size = new System.Drawing.Size(108, 31);
-            this.txbClave.TabIndex = 31;
-            this.txbClave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbClave_KeyDown);
             // 
             // frmClientesMain
             // 

@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.parrotGroupBox1 = new ReaLTaiizor.Controls.ParrotGroupBox();
+            this.foreverLabel10 = new ReaLTaiizor.Controls.ForeverLabel();
+            this.txbLongitud = new ReaLTaiizor.Controls.AloneTextBox();
             this.dtgAlias = new Guna.UI.WinForms.GunaDataGridView();
             this.lblEstatus = new ReaLTaiizor.Controls.BigLabel();
             this.btnBuscar = new ReaLTaiizor.Controls.DungeonButtonRight();
@@ -50,11 +52,10 @@
             this.txbDireccion = new ReaLTaiizor.Controls.AloneTextBox();
             this.foreverLabel2 = new ReaLTaiizor.Controls.ForeverLabel();
             this.foreverLabel1 = new ReaLTaiizor.Controls.ForeverLabel();
-            this.txbNombre = new ReaLTaiizor.Controls.AloneTextBox();
             this.txbClaveAlias = new ReaLTaiizor.Controls.AloneTextBox();
-            this.foreverLabel10 = new ReaLTaiizor.Controls.ForeverLabel();
-            this.txbLongitud = new ReaLTaiizor.Controls.AloneTextBox();
             this.btnGuardar = new ReaLTaiizor.Controls.DungeonButtonRight();
+            this.txbNombre = new Guna.UI.WinForms.GunaLineTextBox();
+            this.foreverLabel15 = new ReaLTaiizor.Controls.ForeverLabel();
             this.parrotGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgAlias)).BeginInit();
             this.SuspendLayout();
@@ -63,6 +64,8 @@
             // 
             this.parrotGroupBox1.BorderColor = System.Drawing.Color.DodgerBlue;
             this.parrotGroupBox1.BorderWidth = 1;
+            this.parrotGroupBox1.Controls.Add(this.foreverLabel15);
+            this.parrotGroupBox1.Controls.Add(this.txbNombre);
             this.parrotGroupBox1.Controls.Add(this.foreverLabel10);
             this.parrotGroupBox1.Controls.Add(this.txbLongitud);
             this.parrotGroupBox1.Controls.Add(this.dtgAlias);
@@ -83,7 +86,6 @@
             this.parrotGroupBox1.Controls.Add(this.txbDireccion);
             this.parrotGroupBox1.Controls.Add(this.foreverLabel2);
             this.parrotGroupBox1.Controls.Add(this.foreverLabel1);
-            this.parrotGroupBox1.Controls.Add(this.txbNombre);
             this.parrotGroupBox1.Controls.Add(this.txbClaveAlias);
             this.parrotGroupBox1.Location = new System.Drawing.Point(12, 12);
             this.parrotGroupBox1.Name = "parrotGroupBox1";
@@ -94,13 +96,43 @@
             this.parrotGroupBox1.Text = "Datos";
             this.parrotGroupBox1.TextColor = System.Drawing.Color.DodgerBlue;
             // 
+            // foreverLabel10
+            // 
+            this.foreverLabel10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.foreverLabel10.AutoSize = true;
+            this.foreverLabel10.BackColor = System.Drawing.Color.Transparent;
+            this.foreverLabel10.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.foreverLabel10.ForeColor = System.Drawing.Color.LightGray;
+            this.foreverLabel10.Location = new System.Drawing.Point(335, 631);
+            this.foreverLabel10.Name = "foreverLabel10";
+            this.foreverLabel10.Size = new System.Drawing.Size(172, 13);
+            this.foreverLabel10.TabIndex = 34;
+            this.foreverLabel10.Text = "Longitud (-116.93467267982321)";
+            // 
+            // txbLongitud
+            // 
+            this.txbLongitud.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txbLongitud.BackColor = System.Drawing.Color.White;
+            this.txbLongitud.EnabledCalc = true;
+            this.txbLongitud.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txbLongitud.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(133)))), ((int)(((byte)(142)))));
+            this.txbLongitud.Location = new System.Drawing.Point(338, 647);
+            this.txbLongitud.MaxLength = 32767;
+            this.txbLongitud.MultiLine = false;
+            this.txbLongitud.Name = "txbLongitud";
+            this.txbLongitud.ReadOnly = false;
+            this.txbLongitud.Size = new System.Drawing.Size(286, 33);
+            this.txbLongitud.TabIndex = 33;
+            this.txbLongitud.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txbLongitud.UseSystemPasswordChar = false;
+            // 
             // dtgAlias
             // 
             this.dtgAlias.AllowUserToAddRows = false;
             this.dtgAlias.AllowUserToDeleteRows = false;
             this.dtgAlias.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.dtgAlias.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            this.dtgAlias.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dtgAlias.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -109,23 +141,23 @@
             this.dtgAlias.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dtgAlias.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedVertical;
             this.dtgAlias.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgAlias.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgAlias.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dtgAlias.ColumnHeadersHeight = 40;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgAlias.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgAlias.DefaultCellStyle = dataGridViewCellStyle9;
             this.dtgAlias.EnableHeadersVisualStyles = false;
             this.dtgAlias.GridColor = System.Drawing.Color.Azure;
             this.dtgAlias.Location = new System.Drawing.Point(14, 89);
@@ -428,23 +460,6 @@
             this.foreverLabel1.TabIndex = 1;
             this.foreverLabel1.Text = "Clave";
             // 
-            // txbNombre
-            // 
-            this.txbNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txbNombre.BackColor = System.Drawing.Color.White;
-            this.txbNombre.EnabledCalc = true;
-            this.txbNombre.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txbNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(133)))), ((int)(((byte)(142)))));
-            this.txbNombre.Location = new System.Drawing.Point(132, 468);
-            this.txbNombre.MaxLength = 32767;
-            this.txbNombre.MultiLine = false;
-            this.txbNombre.Name = "txbNombre";
-            this.txbNombre.ReadOnly = true;
-            this.txbNombre.Size = new System.Drawing.Size(238, 29);
-            this.txbNombre.TabIndex = 2;
-            this.txbNombre.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.txbNombre.UseSystemPasswordChar = false;
-            // 
             // txbClaveAlias
             // 
             this.txbClaveAlias.BackColor = System.Drawing.Color.White;
@@ -455,41 +470,11 @@
             this.txbClaveAlias.MaxLength = 32767;
             this.txbClaveAlias.MultiLine = false;
             this.txbClaveAlias.Name = "txbClaveAlias";
-            this.txbClaveAlias.ReadOnly = false;
+            this.txbClaveAlias.ReadOnly = true;
             this.txbClaveAlias.Size = new System.Drawing.Size(108, 29);
             this.txbClaveAlias.TabIndex = 0;
             this.txbClaveAlias.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txbClaveAlias.UseSystemPasswordChar = false;
-            // 
-            // foreverLabel10
-            // 
-            this.foreverLabel10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.foreverLabel10.AutoSize = true;
-            this.foreverLabel10.BackColor = System.Drawing.Color.Transparent;
-            this.foreverLabel10.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.foreverLabel10.ForeColor = System.Drawing.Color.LightGray;
-            this.foreverLabel10.Location = new System.Drawing.Point(335, 631);
-            this.foreverLabel10.Name = "foreverLabel10";
-            this.foreverLabel10.Size = new System.Drawing.Size(172, 13);
-            this.foreverLabel10.TabIndex = 34;
-            this.foreverLabel10.Text = "Longitud (-116.93467267982321)";
-            // 
-            // txbLongitud
-            // 
-            this.txbLongitud.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txbLongitud.BackColor = System.Drawing.Color.White;
-            this.txbLongitud.EnabledCalc = true;
-            this.txbLongitud.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txbLongitud.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(133)))), ((int)(((byte)(142)))));
-            this.txbLongitud.Location = new System.Drawing.Point(338, 647);
-            this.txbLongitud.MaxLength = 32767;
-            this.txbLongitud.MultiLine = false;
-            this.txbLongitud.Name = "txbLongitud";
-            this.txbLongitud.ReadOnly = false;
-            this.txbLongitud.Size = new System.Drawing.Size(286, 33);
-            this.txbLongitud.TabIndex = 33;
-            this.txbLongitud.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.txbLongitud.UseSystemPasswordChar = false;
             // 
             // btnGuardar
             // 
@@ -513,6 +498,34 @@
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.TextAlignment = System.Drawing.StringAlignment.Center;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // txbNombre
+            // 
+            this.txbNombre.BackColor = System.Drawing.Color.White;
+            this.txbNombre.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbNombre.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.txbNombre.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txbNombre.LineColor = System.Drawing.Color.Gainsboro;
+            this.txbNombre.Location = new System.Drawing.Point(132, 466);
+            this.txbNombre.Margin = new System.Windows.Forms.Padding(2);
+            this.txbNombre.Name = "txbNombre";
+            this.txbNombre.PasswordChar = '\0';
+            this.txbNombre.ReadOnly = true;
+            this.txbNombre.Size = new System.Drawing.Size(238, 31);
+            this.txbNombre.TabIndex = 36;
+            this.txbNombre.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbNombre_KeyDown);
+            // 
+            // foreverLabel15
+            // 
+            this.foreverLabel15.AutoSize = true;
+            this.foreverLabel15.BackColor = System.Drawing.Color.Transparent;
+            this.foreverLabel15.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.foreverLabel15.ForeColor = System.Drawing.Color.Gray;
+            this.foreverLabel15.Location = new System.Drawing.Point(11, 69);
+            this.foreverLabel15.Name = "foreverLabel15";
+            this.foreverLabel15.Size = new System.Drawing.Size(176, 13);
+            this.foreverLabel15.TabIndex = 37;
+            this.foreverLabel15.Text = "SHIFT + DEL para borrar un alias.";
             // 
             // frmAliasMain
             // 
@@ -553,11 +566,12 @@
         private ReaLTaiizor.Controls.AloneTextBox txbDireccion;
         private ReaLTaiizor.Controls.ForeverLabel foreverLabel2;
         private ReaLTaiizor.Controls.ForeverLabel foreverLabel1;
-        private ReaLTaiizor.Controls.AloneTextBox txbNombre;
         public ReaLTaiizor.Controls.AloneTextBox txbClaveAlias;
         public Guna.UI.WinForms.GunaDataGridView dtgAlias;
         private ReaLTaiizor.Controls.ForeverLabel foreverLabel10;
         private ReaLTaiizor.Controls.AloneTextBox txbLongitud;
         private ReaLTaiizor.Controls.DungeonButtonRight btnGuardar;
+        private Guna.UI.WinForms.GunaLineTextBox txbNombre;
+        private ReaLTaiizor.Controls.ForeverLabel foreverLabel15;
     }
 }

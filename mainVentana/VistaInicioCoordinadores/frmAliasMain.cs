@@ -203,5 +203,43 @@ namespace mainVentana.VistaInicioCoordinadores
             Limpia();
             txbNombre.ReadOnly = true;
         }
+
+        private void txbNombre_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(txbNombre.Text))
+            {
+                return;
+            }
+
+            
+
+
+
+            if (e.KeyCode == Keys.Delete && e.Shift)
+            {
+                DialogResult dialogResult = MessageBox.Show("¿Estás seguro de que quieres eliminar el Alias?", "Confirmar eliminación", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    AccesoClientes ac = new AccesoClientes();
+                    var dt = ac.BorrarAliasPorCodigo(txbNombre.Text.Trim(), txbClaveAlias.Text.Trim());
+                    if (dt == true)
+                    {
+                        MessageBox.Show("Borrado");
+                        
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se elimino");
+                    }
+                    this.Close();   
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    // Si el usuario decide no eliminar, puedes manejar esa situación aquí
+                }
+            }
+
+
+        }
     }
 }
