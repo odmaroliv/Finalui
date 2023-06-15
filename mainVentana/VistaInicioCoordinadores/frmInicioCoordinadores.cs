@@ -348,9 +348,8 @@ namespace mainVentana.VistaInicioCoordinadores
             {
                 calle = txbPcalle.Text;
                 colonia = txbPcolonia.Text;
-                estado = txbPcolonia.Text;
+                estado = txbPpoblacion.Text;
                 zipp = txbPcp.Text;
-                
             }
 
             

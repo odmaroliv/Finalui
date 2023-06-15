@@ -28,14 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle76 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle77 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle78 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
             this.paneldeBus = new Guna.UI.WinForms.GunaShadowPanel();
             this.gbxTipoBusqueda = new System.Windows.Forms.GroupBox();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.dtFecha1 = new Guna.UI.WinForms.GunaDateTimePicker();
@@ -61,8 +62,13 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.gunaDataGridView1 = new Guna.UI.WinForms.GunaDataGridView();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.rCa = new System.Windows.Forms.RadioButton();
+            this.rTj = new System.Windows.Forms.RadioButton();
             this.loadControl1 = new Ventana1.LoadControl.loadControl();
+            this.rSd = new System.Windows.Forms.RadioButton();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -71,6 +77,9 @@
             this.paneldeBus.SuspendLayout();
             this.gbxTipoBusqueda.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gunaDataGridView1)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.panel11.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -82,7 +91,7 @@
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(8);
-            this.panel2.Size = new System.Drawing.Size(1182, 609);
+            this.panel2.Size = new System.Drawing.Size(1244, 609);
             this.panel2.TabIndex = 2;
             // 
             // splitContainer1
@@ -99,7 +108,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.paneldeBus);
-            this.splitContainer1.Size = new System.Drawing.Size(1166, 593);
+            this.splitContainer1.Size = new System.Drawing.Size(1228, 593);
             this.splitContainer1.SplitterDistance = 335;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -110,8 +119,9 @@
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(1);
-            this.panel1.Size = new System.Drawing.Size(1166, 335);
+            this.panel1.Size = new System.Drawing.Size(1228, 335);
             this.panel1.TabIndex = 1;
+            this.panel1.Tag = "7";
             // 
             // paneldeBus
             // 
@@ -143,35 +153,41 @@
             this.paneldeBus.Name = "paneldeBus";
             this.paneldeBus.Radius = 10;
             this.paneldeBus.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
-            this.paneldeBus.ShadowDepth = 80;
-            this.paneldeBus.Size = new System.Drawing.Size(1166, 254);
+            this.paneldeBus.ShadowDepth = 50;
+            this.paneldeBus.Size = new System.Drawing.Size(1228, 254);
             this.paneldeBus.TabIndex = 0;
             // 
             // gbxTipoBusqueda
             // 
             this.gbxTipoBusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbxTipoBusqueda.Controls.Add(this.radioButton4);
-            this.gbxTipoBusqueda.Controls.Add(this.label1);
-            this.gbxTipoBusqueda.Controls.Add(this.radioButton3);
-            this.gbxTipoBusqueda.Controls.Add(this.dtFecha1);
-            this.gbxTipoBusqueda.Controls.Add(this.label2);
-            this.gbxTipoBusqueda.Controls.Add(this.radioButton2);
-            this.gbxTipoBusqueda.Controls.Add(this.dtFecha2);
-            this.gbxTipoBusqueda.Controls.Add(this.radioButton1);
-            this.gbxTipoBusqueda.Location = new System.Drawing.Point(22, 11);
+            this.gbxTipoBusqueda.Controls.Add(this.tableLayoutPanel1);
+            this.gbxTipoBusqueda.Location = new System.Drawing.Point(22, 12);
             this.gbxTipoBusqueda.Name = "gbxTipoBusqueda";
-            this.gbxTipoBusqueda.Size = new System.Drawing.Size(728, 53);
+            this.gbxTipoBusqueda.Size = new System.Drawing.Size(790, 57);
             this.gbxTipoBusqueda.TabIndex = 17;
             this.gbxTipoBusqueda.TabStop = false;
             this.gbxTipoBusqueda.Text = "Tipo de Busqueda";
             // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Location = new System.Drawing.Point(228, 3);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(61, 17);
+            this.radioButton4.TabIndex = 173;
+            this.radioButton4.Tag = "Usuario";
+            this.radioButton4.Text = "Usuario";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label1.Location = new System.Drawing.Point(564, 34);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(142, 5);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(17, 13);
             this.label1.TabIndex = 172;
@@ -180,11 +196,10 @@
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(209, 22);
+            this.radioButton3.Location = new System.Drawing.Point(163, 3);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(57, 17);
             this.radioButton3.TabIndex = 2;
-            this.radioButton3.TabStop = true;
             this.radioButton3.Tag = "Cliente";
             this.radioButton3.Text = "Cliente";
             this.radioButton3.UseVisualStyleBackColor = true;
@@ -192,16 +207,16 @@
             // 
             // dtFecha1
             // 
-            this.dtFecha1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtFecha1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dtFecha1.BaseColor = System.Drawing.Color.White;
             this.dtFecha1.BorderColor = System.Drawing.Color.Silver;
             this.dtFecha1.CustomFormat = null;
             this.dtFecha1.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.dtFecha1.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.dtFecha1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dtFecha1.Font = new System.Drawing.Font("Segoe UI", 7F);
             this.dtFecha1.ForeColor = System.Drawing.Color.Black;
             this.dtFecha1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtFecha1.Location = new System.Drawing.Point(430, 17);
+            this.dtFecha1.Location = new System.Drawing.Point(36, 3);
             this.dtFecha1.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtFecha1.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtFecha1.Name = "dtFecha1";
@@ -209,17 +224,18 @@
             this.dtFecha1.OnHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.dtFecha1.OnHoverForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.dtFecha1.OnPressedColor = System.Drawing.Color.Black;
-            this.dtFecha1.Size = new System.Drawing.Size(128, 30);
+            this.dtFecha1.Size = new System.Drawing.Size(106, 30);
             this.dtFecha1.TabIndex = 169;
             this.dtFecha1.Text = "3/10/2023";
             this.dtFecha1.Value = new System.DateTime(2023, 3, 10, 11, 29, 29, 92);
             // 
             // label2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label2.Location = new System.Drawing.Point(404, 34);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(11, 5);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(25, 13);
             this.label2.TabIndex = 171;
@@ -228,28 +244,27 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(85, 22);
+            this.radioButton2.Location = new System.Drawing.Point(71, 3);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(116, 17);
+            this.radioButton2.Size = new System.Drawing.Size(84, 17);
             this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
             this.radioButton2.Tag = "Flete";
-            this.radioButton2.Text = "Flete (No.Tracking)";
+            this.radioButton2.Text = "No.Tracking";
             this.radioButton2.UseVisualStyleBackColor = true;
             this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // dtFecha2
             // 
-            this.dtFecha2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtFecha2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dtFecha2.BaseColor = System.Drawing.Color.White;
             this.dtFecha2.BorderColor = System.Drawing.Color.Silver;
             this.dtFecha2.CustomFormat = null;
             this.dtFecha2.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.dtFecha2.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.dtFecha2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dtFecha2.Font = new System.Drawing.Font("Segoe UI", 7F);
             this.dtFecha2.ForeColor = System.Drawing.Color.Black;
             this.dtFecha2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtFecha2.Location = new System.Drawing.Point(587, 17);
+            this.dtFecha2.Location = new System.Drawing.Point(162, 3);
             this.dtFecha2.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtFecha2.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtFecha2.Name = "dtFecha2";
@@ -257,7 +272,7 @@
             this.dtFecha2.OnHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.dtFecha2.OnHoverForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.dtFecha2.OnPressedColor = System.Drawing.Color.Black;
-            this.dtFecha2.Size = new System.Drawing.Size(128, 30);
+            this.dtFecha2.Size = new System.Drawing.Size(106, 30);
             this.dtFecha2.TabIndex = 170;
             this.dtFecha2.Text = "3/10/2023";
             this.dtFecha2.Value = new System.DateTime(2023, 3, 10, 11, 29, 29, 92);
@@ -266,11 +281,10 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(15, 22);
+            this.radioButton1.Location = new System.Drawing.Point(3, 3);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(62, 17);
             this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
             this.radioButton1.Tag = "Ent";
             this.radioButton1.Text = "Entrada";
             this.radioButton1.UseVisualStyleBackColor = true;
@@ -299,7 +313,7 @@
             this.btnCxcp.HoverBorderColorD = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(25)))), ((int)(((byte)(73)))), ((int)(((byte)(109)))));
             this.btnCxcp.HoverForeColor = System.Drawing.Color.White;
             this.btnCxcp.HoverShadowForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnCxcp.Location = new System.Drawing.Point(1015, 200);
+            this.btnCxcp.Location = new System.Drawing.Point(1077, 203);
             this.btnCxcp.Name = "btnCxcp";
             this.btnCxcp.NormalBGColorA = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnCxcp.NormalBGColorB = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
@@ -340,7 +354,7 @@
             this.btnArtu.HoverBorderColorD = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(25)))), ((int)(((byte)(73)))), ((int)(((byte)(109)))));
             this.btnArtu.HoverForeColor = System.Drawing.Color.White;
             this.btnArtu.HoverShadowForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnArtu.Location = new System.Drawing.Point(1015, 223);
+            this.btnArtu.Location = new System.Drawing.Point(1077, 223);
             this.btnArtu.Name = "btnArtu";
             this.btnArtu.NormalBGColorA = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnArtu.NormalBGColorB = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
@@ -381,7 +395,7 @@
             this.btnAdminAdmin.HoverBorderColorD = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(25)))), ((int)(((byte)(73)))), ((int)(((byte)(109)))));
             this.btnAdminAdmin.HoverForeColor = System.Drawing.Color.White;
             this.btnAdminAdmin.HoverShadowForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnAdminAdmin.Location = new System.Drawing.Point(1100, 223);
+            this.btnAdminAdmin.Location = new System.Drawing.Point(1162, 223);
             this.btnAdminAdmin.Name = "btnAdminAdmin";
             this.btnAdminAdmin.NormalBGColorA = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnAdminAdmin.NormalBGColorB = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
@@ -422,7 +436,7 @@
             this.btnCordAdmin.HoverBorderColorD = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(25)))), ((int)(((byte)(73)))), ((int)(((byte)(109)))));
             this.btnCordAdmin.HoverForeColor = System.Drawing.Color.White;
             this.btnCordAdmin.HoverShadowForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnCordAdmin.Location = new System.Drawing.Point(1058, 223);
+            this.btnCordAdmin.Location = new System.Drawing.Point(1120, 223);
             this.btnCordAdmin.Name = "btnCordAdmin";
             this.btnCordAdmin.NormalBGColorA = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btnCordAdmin.NormalBGColorB = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
@@ -455,7 +469,7 @@
             this.iconButton10.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
             this.iconButton10.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton10.IconSize = 20;
-            this.iconButton10.Location = new System.Drawing.Point(1111, 32);
+            this.iconButton10.Location = new System.Drawing.Point(1167, 37);
             this.iconButton10.Margin = new System.Windows.Forms.Padding(2);
             this.iconButton10.Name = "iconButton10";
             this.iconButton10.Size = new System.Drawing.Size(29, 18);
@@ -475,12 +489,12 @@
             this.gunaTextBox2.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.gunaTextBox2.Font = new System.Drawing.Font("Trebuchet MS", 18F);
             this.gunaTextBox2.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.gunaTextBox2.Location = new System.Drawing.Point(767, 14);
+            this.gunaTextBox2.Location = new System.Drawing.Point(829, 21);
             this.gunaTextBox2.Margin = new System.Windows.Forms.Padding(2);
             this.gunaTextBox2.Name = "gunaTextBox2";
             this.gunaTextBox2.PasswordChar = '\0';
             this.gunaTextBox2.Radius = 10;
-            this.gunaTextBox2.Size = new System.Drawing.Size(379, 54);
+            this.gunaTextBox2.Size = new System.Drawing.Size(373, 47);
             this.gunaTextBox2.TabIndex = 11;
             this.gunaTextBox2.Text = "Buscar...";
             this.gunaTextBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gunaTextBox2_KeyDown);
@@ -596,8 +610,8 @@
             this.gunaDataGridView1.AllowUserToAddRows = false;
             this.gunaDataGridView1.AllowUserToDeleteRows = false;
             this.gunaDataGridView1.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.gunaDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle76.BackColor = System.Drawing.Color.White;
+            this.gunaDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle76;
             this.gunaDataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -606,23 +620,23 @@
             this.gunaDataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gunaDataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedVertical;
             this.gunaDataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gunaDataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle77.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle77.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle77.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle77.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle77.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle77.SelectionForeColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle77.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gunaDataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle77;
             this.gunaDataGridView1.ColumnHeadersHeight = 40;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gunaDataGridView1.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle78.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle78.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle78.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle78.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle78.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle78.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle78.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gunaDataGridView1.DefaultCellStyle = dataGridViewCellStyle78;
             this.gunaDataGridView1.EnableHeadersVisualStyles = false;
             this.gunaDataGridView1.GridColor = System.Drawing.Color.Azure;
             this.gunaDataGridView1.Location = new System.Drawing.Point(24, 72);
@@ -635,7 +649,7 @@
             this.gunaDataGridView1.RowTemplate.Height = 50;
             this.gunaDataGridView1.RowTemplate.ReadOnly = true;
             this.gunaDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.gunaDataGridView1.Size = new System.Drawing.Size(1116, 115);
+            this.gunaDataGridView1.Size = new System.Drawing.Size(1178, 123);
             this.gunaDataGridView1.TabIndex = 0;
             this.gunaDataGridView1.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
             this.gunaDataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -662,18 +676,29 @@
             this.gunaDataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gunaDataGridView1_CellDoubleClick);
             this.gunaDataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gunaDataGridView1_CellFormatting);
             // 
-            // radioButton4
+            // rCa
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(274, 22);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(61, 17);
-            this.radioButton4.TabIndex = 173;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Tag = "Usuario";
-            this.radioButton4.Text = "Usuario";
-            this.radioButton4.UseVisualStyleBackColor = true;
-            this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.rCa.AutoSize = true;
+            this.rCa.Location = new System.Drawing.Point(392, 3);
+            this.rCa.Name = "rCa";
+            this.rCa.Size = new System.Drawing.Size(45, 17);
+            this.rCa.TabIndex = 5;
+            this.rCa.Tag = "CSL";
+            this.rCa.Text = "CSL";
+            this.rCa.UseVisualStyleBackColor = true;
+            this.rCa.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // rTj
+            // 
+            this.rTj.AutoSize = true;
+            this.rTj.Location = new System.Drawing.Point(346, 3);
+            this.rTj.Name = "rTj";
+            this.rTj.Size = new System.Drawing.Size(37, 17);
+            this.rTj.TabIndex = 4;
+            this.rTj.Tag = "TJ";
+            this.rTj.Text = "TJ";
+            this.rTj.UseVisualStyleBackColor = true;
+            this.rTj.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // loadControl1
             // 
@@ -685,11 +710,75 @@
             this.loadControl1.TabIndex = 18;
             this.loadControl1.Visible = false;
             // 
+            // rSd
+            // 
+            this.rSd.AutoSize = true;
+            this.rSd.Location = new System.Drawing.Point(297, 3);
+            this.rSd.Name = "rSd";
+            this.rSd.Size = new System.Drawing.Size(40, 17);
+            this.rSd.TabIndex = 3;
+            this.rSd.Tag = "SD";
+            this.rSd.Text = "SD";
+            this.rSd.UseVisualStyleBackColor = true;
+            this.rSd.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.AutoScroll = true;
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel1.Controls.Add(this.panel11, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel7, 0, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 9);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(784, 48);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // panel7
+            // 
+            this.panel7.AutoScroll = true;
+            this.panel7.AutoScrollMargin = new System.Drawing.Size(1, 1);
+            this.panel7.AutoScrollMinSize = new System.Drawing.Size(40, 0);
+            this.panel7.Controls.Add(this.rCa);
+            this.panel7.Controls.Add(this.radioButton1);
+            this.panel7.Controls.Add(this.rSd);
+            this.panel7.Controls.Add(this.radioButton4);
+            this.panel7.Controls.Add(this.radioButton3);
+            this.panel7.Controls.Add(this.radioButton2);
+            this.panel7.Controls.Add(this.rTj);
+            this.panel7.Location = new System.Drawing.Point(3, 3);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(461, 42);
+            this.panel7.TabIndex = 0;
+            // 
+            // panel11
+            // 
+            this.panel11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel11.AutoScroll = true;
+            this.panel11.AutoScrollMargin = new System.Drawing.Size(1, 1);
+            this.panel11.AutoScrollMinSize = new System.Drawing.Size(262, 0);
+            this.panel11.Controls.Add(this.dtFecha1);
+            this.panel11.Controls.Add(this.label1);
+            this.panel11.Controls.Add(this.dtFecha2);
+            this.panel11.Controls.Add(this.label2);
+            this.panel11.Location = new System.Drawing.Point(470, 3);
+            this.panel11.MinimumSize = new System.Drawing.Size(300, 40);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(314, 42);
+            this.panel11.TabIndex = 1;
+            // 
             // Over
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1182, 609);
+            this.ClientSize = new System.Drawing.Size(1244, 609);
             this.Controls.Add(this.panel2);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -706,8 +795,12 @@
             this.paneldeBus.ResumeLayout(false);
             this.paneldeBus.PerformLayout();
             this.gbxTipoBusqueda.ResumeLayout(false);
-            this.gbxTipoBusqueda.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gunaDataGridView1)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -746,5 +839,11 @@
         private System.Windows.Forms.Label label2;
         private Guna.UI.WinForms.GunaDateTimePicker dtFecha2;
         private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton rCa;
+        private System.Windows.Forms.RadioButton rTj;
+        private System.Windows.Forms.RadioButton rSd;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Panel panel7;
     }
 }

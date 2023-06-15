@@ -51,6 +51,15 @@
             this.dtgEnts = new ADGV.AdvancedDataGridView();
             this.iconButton6 = new FontAwesome.Sharp.IconButton();
             this.gunaElipsePanel2 = new Guna.UI.WinForms.GunaElipsePanel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txbPpoblacion = new Guna.UI.WinForms.GunaLineTextBox();
+            this.txbPcolonia = new Guna.UI.WinForms.GunaLineTextBox();
+            this.txbPcalle = new Guna.UI.WinForms.GunaLineTextBox();
+            this.txbPcp = new Guna.UI.WinForms.GunaLineTextBox();
             this.txbCordUsr = new Guna.UI.WinForms.GunaLineTextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txbNoCliente = new Guna.UI.WinForms.GunaLineTextBox();
@@ -72,15 +81,6 @@
             this.nudValArn = new System.Windows.Forms.NumericUpDown();
             this.txbEntradaDetalle = new Guna.UI.WinForms.GunaLineTextBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.txbPcalle = new Guna.UI.WinForms.GunaLineTextBox();
-            this.txbPpoblacion = new Guna.UI.WinForms.GunaLineTextBox();
-            this.txbPcolonia = new Guna.UI.WinForms.GunaLineTextBox();
-            this.txbPcp = new Guna.UI.WinForms.GunaLineTextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -89,9 +89,9 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgEnts)).BeginInit();
             this.gunaElipsePanel2.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudValFac)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudValArn)).BeginInit();
-            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -135,7 +135,7 @@
             this.gunaElipsePanel3.Location = new System.Drawing.Point(9, 8);
             this.gunaElipsePanel3.Name = "gunaElipsePanel3";
             this.gunaElipsePanel3.Radius = 20;
-            this.gunaElipsePanel3.Size = new System.Drawing.Size(713, 416);
+            this.gunaElipsePanel3.Size = new System.Drawing.Size(713, 422);
             this.gunaElipsePanel3.TabIndex = 139;
             // 
             // label6
@@ -211,7 +211,7 @@
             this.lblCTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCTotal.AutoSize = true;
             this.lblCTotal.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.lblCTotal.Location = new System.Drawing.Point(639, 400);
+            this.lblCTotal.Location = new System.Drawing.Point(639, 406);
             this.lblCTotal.Name = "lblCTotal";
             this.lblCTotal.Size = new System.Drawing.Size(47, 13);
             this.lblCTotal.TabIndex = 164;
@@ -329,7 +329,7 @@
             this.dtgEnts.RowTemplate.DividerHeight = 1;
             this.dtgEnts.RowTemplate.Height = 50;
             this.dtgEnts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgEnts.Size = new System.Drawing.Size(665, 320);
+            this.dtgEnts.Size = new System.Drawing.Size(665, 326);
             this.dtgEnts.TabIndex = 138;
             this.dtgEnts.TimeFilter = false;
             this.dtgEnts.SortStringChanged += new System.EventHandler(this.dtgEnts_SortStringChanged);
@@ -391,8 +391,140 @@
             this.gunaElipsePanel2.Location = new System.Drawing.Point(11, 8);
             this.gunaElipsePanel2.Name = "gunaElipsePanel2";
             this.gunaElipsePanel2.Radius = 20;
-            this.gunaElipsePanel2.Size = new System.Drawing.Size(354, 416);
+            this.gunaElipsePanel2.Size = new System.Drawing.Size(354, 422);
             this.gunaElipsePanel2.TabIndex = 1;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.Controls.Add(this.label12, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label11, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label10, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label9, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.txbPpoblacion, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.txbPcolonia, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.txbPcalle, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.txbPcp, 3, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(27, 292);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 13F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(310, 49);
+            this.tableLayoutPanel1.TabIndex = 166;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.label12.Location = new System.Drawing.Point(3, 36);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(30, 13);
+            this.label12.TabIndex = 170;
+            this.label12.Text = "Calle";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.label11.Location = new System.Drawing.Point(80, 36);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(42, 13);
+            this.label11.TabIndex = 169;
+            this.label11.Text = "Colonia";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.label10.Location = new System.Drawing.Point(157, 36);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(54, 13);
+            this.label10.TabIndex = 168;
+            this.label10.Text = "Población";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.label9.Location = new System.Drawing.Point(234, 36);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(24, 13);
+            this.label9.TabIndex = 167;
+            this.label9.Text = "C.P";
+            // 
+            // txbPpoblacion
+            // 
+            this.txbPpoblacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbPpoblacion.Animated = true;
+            this.txbPpoblacion.BackColor = System.Drawing.Color.White;
+            this.txbPpoblacion.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbPpoblacion.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.txbPpoblacion.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbPpoblacion.LineColor = System.Drawing.Color.Gainsboro;
+            this.txbPpoblacion.Location = new System.Drawing.Point(156, 5);
+            this.txbPpoblacion.Margin = new System.Windows.Forms.Padding(2);
+            this.txbPpoblacion.Name = "txbPpoblacion";
+            this.txbPpoblacion.PasswordChar = '\0';
+            this.txbPpoblacion.Size = new System.Drawing.Size(73, 29);
+            this.txbPpoblacion.TabIndex = 165;
+            // 
+            // txbPcolonia
+            // 
+            this.txbPcolonia.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbPcolonia.Animated = true;
+            this.txbPcolonia.BackColor = System.Drawing.Color.White;
+            this.txbPcolonia.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbPcolonia.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.txbPcolonia.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbPcolonia.LineColor = System.Drawing.Color.Gainsboro;
+            this.txbPcolonia.Location = new System.Drawing.Point(79, 5);
+            this.txbPcolonia.Margin = new System.Windows.Forms.Padding(2);
+            this.txbPcolonia.Name = "txbPcolonia";
+            this.txbPcolonia.PasswordChar = '\0';
+            this.txbPcolonia.Size = new System.Drawing.Size(73, 29);
+            this.txbPcolonia.TabIndex = 164;
+            // 
+            // txbPcalle
+            // 
+            this.txbPcalle.Animated = true;
+            this.txbPcalle.BackColor = System.Drawing.Color.White;
+            this.txbPcalle.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbPcalle.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.txbPcalle.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.txbPcalle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbPcalle.LineColor = System.Drawing.Color.Gainsboro;
+            this.txbPcalle.Location = new System.Drawing.Point(2, 5);
+            this.txbPcalle.Margin = new System.Windows.Forms.Padding(2);
+            this.txbPcalle.Name = "txbPcalle";
+            this.txbPcalle.PasswordChar = '\0';
+            this.txbPcalle.Size = new System.Drawing.Size(73, 29);
+            this.txbPcalle.TabIndex = 163;
+            // 
+            // txbPcp
+            // 
+            this.txbPcp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbPcp.Animated = true;
+            this.txbPcp.BackColor = System.Drawing.Color.White;
+            this.txbPcp.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbPcp.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.txbPcp.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbPcp.LineColor = System.Drawing.Color.Gainsboro;
+            this.txbPcp.Location = new System.Drawing.Point(233, 5);
+            this.txbPcp.Margin = new System.Windows.Forms.Padding(2);
+            this.txbPcp.Name = "txbPcp";
+            this.txbPcp.PasswordChar = '\0';
+            this.txbPcp.Size = new System.Drawing.Size(75, 29);
+            this.txbPcp.TabIndex = 166;
             // 
             // txbCordUsr
             // 
@@ -434,7 +566,7 @@
             this.txbNoCliente.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txbNoCliente.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbNoCliente.LineColor = System.Drawing.Color.Gainsboro;
-            this.txbNoCliente.Location = new System.Drawing.Point(43, 380);
+            this.txbNoCliente.Location = new System.Drawing.Point(43, 386);
             this.txbNoCliente.Margin = new System.Windows.Forms.Padding(2);
             this.txbNoCliente.Name = "txbNoCliente";
             this.txbNoCliente.PasswordChar = '\0';
@@ -453,7 +585,7 @@
             this.txbAliasAct.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txbAliasAct.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbAliasAct.LineColor = System.Drawing.Color.Gainsboro;
-            this.txbAliasAct.Location = new System.Drawing.Point(27, 242);
+            this.txbAliasAct.Location = new System.Drawing.Point(27, 248);
             this.txbAliasAct.Margin = new System.Windows.Forms.Padding(2);
             this.txbAliasAct.Name = "txbAliasAct";
             this.txbAliasAct.PasswordChar = '\0';
@@ -475,7 +607,7 @@
             this.iconButton3.IconColor = System.Drawing.Color.Blue;
             this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton3.IconSize = 30;
-            this.iconButton3.Location = new System.Drawing.Point(301, 235);
+            this.iconButton3.Location = new System.Drawing.Point(301, 241);
             this.iconButton3.Margin = new System.Windows.Forms.Padding(2);
             this.iconButton3.Name = "iconButton3";
             this.iconButton3.Size = new System.Drawing.Size(36, 36);
@@ -500,7 +632,7 @@
             this.gtxbOrdenSalidaDetalle.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             this.gtxbOrdenSalidaDetalle.Name = "gtxbOrdenSalidaDetalle";
             this.gtxbOrdenSalidaDetalle.ReadOnly = true;
-            this.gtxbOrdenSalidaDetalle.Size = new System.Drawing.Size(310, 74);
+            this.gtxbOrdenSalidaDetalle.Size = new System.Drawing.Size(310, 80);
             this.gtxbOrdenSalidaDetalle.TabIndex = 155;
             this.gtxbOrdenSalidaDetalle.Text = "";
             // 
@@ -552,7 +684,7 @@
             this.iconButton5.IconColor = System.Drawing.Color.Blue;
             this.iconButton5.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton5.IconSize = 35;
-            this.iconButton5.Location = new System.Drawing.Point(263, 335);
+            this.iconButton5.Location = new System.Drawing.Point(263, 341);
             this.iconButton5.Margin = new System.Windows.Forms.Padding(2);
             this.iconButton5.Name = "iconButton5";
             this.iconButton5.Size = new System.Drawing.Size(81, 67);
@@ -577,7 +709,7 @@
             this.iconButton4.IconColor = System.Drawing.Color.Blue;
             this.iconButton4.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton4.IconSize = 30;
-            this.iconButton4.Location = new System.Drawing.Point(26, 340);
+            this.iconButton4.Location = new System.Drawing.Point(26, 346);
             this.iconButton4.Margin = new System.Windows.Forms.Padding(2);
             this.iconButton4.Name = "iconButton4";
             this.iconButton4.Size = new System.Drawing.Size(61, 36);
@@ -729,138 +861,6 @@
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
             // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Controls.Add(this.label12, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label11, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label10, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label9, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.txbPpoblacion, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.txbPcolonia, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.txbPcalle, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.txbPcp, 3, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(27, 286);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 13F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(310, 49);
-            this.tableLayoutPanel1.TabIndex = 166;
-            // 
-            // txbPcalle
-            // 
-            this.txbPcalle.Animated = true;
-            this.txbPcalle.BackColor = System.Drawing.Color.White;
-            this.txbPcalle.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txbPcalle.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.txbPcalle.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.txbPcalle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbPcalle.LineColor = System.Drawing.Color.Gainsboro;
-            this.txbPcalle.Location = new System.Drawing.Point(2, 5);
-            this.txbPcalle.Margin = new System.Windows.Forms.Padding(2);
-            this.txbPcalle.Name = "txbPcalle";
-            this.txbPcalle.PasswordChar = '\0';
-            this.txbPcalle.Size = new System.Drawing.Size(73, 29);
-            this.txbPcalle.TabIndex = 163;
-            // 
-            // txbPpoblacion
-            // 
-            this.txbPpoblacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbPpoblacion.Animated = true;
-            this.txbPpoblacion.BackColor = System.Drawing.Color.White;
-            this.txbPpoblacion.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txbPpoblacion.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.txbPpoblacion.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbPpoblacion.LineColor = System.Drawing.Color.Gainsboro;
-            this.txbPpoblacion.Location = new System.Drawing.Point(156, 5);
-            this.txbPpoblacion.Margin = new System.Windows.Forms.Padding(2);
-            this.txbPpoblacion.Name = "txbPpoblacion";
-            this.txbPpoblacion.PasswordChar = '\0';
-            this.txbPpoblacion.Size = new System.Drawing.Size(73, 29);
-            this.txbPpoblacion.TabIndex = 165;
-            // 
-            // txbPcolonia
-            // 
-            this.txbPcolonia.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbPcolonia.Animated = true;
-            this.txbPcolonia.BackColor = System.Drawing.Color.White;
-            this.txbPcolonia.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txbPcolonia.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.txbPcolonia.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbPcolonia.LineColor = System.Drawing.Color.Gainsboro;
-            this.txbPcolonia.Location = new System.Drawing.Point(79, 5);
-            this.txbPcolonia.Margin = new System.Windows.Forms.Padding(2);
-            this.txbPcolonia.Name = "txbPcolonia";
-            this.txbPcolonia.PasswordChar = '\0';
-            this.txbPcolonia.Size = new System.Drawing.Size(73, 29);
-            this.txbPcolonia.TabIndex = 164;
-            // 
-            // txbPcp
-            // 
-            this.txbPcp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbPcp.Animated = true;
-            this.txbPcp.BackColor = System.Drawing.Color.White;
-            this.txbPcp.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txbPcp.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.txbPcp.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbPcp.LineColor = System.Drawing.Color.Gainsboro;
-            this.txbPcp.Location = new System.Drawing.Point(233, 5);
-            this.txbPcp.Margin = new System.Windows.Forms.Padding(2);
-            this.txbPcp.Name = "txbPcp";
-            this.txbPcp.PasswordChar = '\0';
-            this.txbPcp.Size = new System.Drawing.Size(75, 29);
-            this.txbPcp.TabIndex = 166;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label9.Location = new System.Drawing.Point(234, 36);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(24, 13);
-            this.label9.TabIndex = 167;
-            this.label9.Text = "C.P";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label10.Location = new System.Drawing.Point(157, 36);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(54, 13);
-            this.label10.TabIndex = 168;
-            this.label10.Text = "Población";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label11.Location = new System.Drawing.Point(80, 36);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(42, 13);
-            this.label11.TabIndex = 169;
-            this.label11.Text = "Colonia";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label12.Location = new System.Drawing.Point(3, 36);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(30, 13);
-            this.label12.TabIndex = 170;
-            this.label12.Text = "Calle";
-            // 
             // frmInicioCoordinadores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -884,10 +884,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtgEnts)).EndInit();
             this.gunaElipsePanel2.ResumeLayout(false);
             this.gunaElipsePanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudValFac)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudValArn)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudValFac)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudValArn)).EndInit();
             this.ResumeLayout(false);
 
         }
