@@ -843,12 +843,14 @@ namespace mainVentana.VistaInicioCoordinadores
             if (SwitchAdd.Checked == false)
             {
                 _tipoImpresion = false;
-                lblTipoImp.Text = "IMP";
+                lblTipoImp.Text = "AD";
+                txbParidad.Enabled = false;
             }
             else
             {
                 _tipoImpresion = true;
-                lblTipoImp.Text = "AD";
+                lblTipoImp.Text = "IMP";
+                txbParidad.Enabled = true;
             }
         }
 
