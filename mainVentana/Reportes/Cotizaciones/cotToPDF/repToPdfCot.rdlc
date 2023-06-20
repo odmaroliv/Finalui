@@ -844,7 +844,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paridad</rd:DefaultName>
-            <Top>2.14806in</Top>
+            <Top>2.02306in</Top>
             <Left>5.52212in</Left>
             <Height>0.25in</Height>
             <Width>1.64322in</Width>
@@ -878,7 +878,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>2.14806in</Top>
+            <Top>2.02306in</Top>
             <Left>0.1966in</Left>
             <Height>0.25in</Height>
             <Width>2.41667in</Width>
@@ -894,7 +894,7 @@
             </Style>
           </Textbox>
           <Line Name="Line3">
-            <Top>2.39806in</Top>
+            <Top>2.27306in</Top>
             <Left>0.1966in</Left>
             <Height>0in</Height>
             <Width>6.96874in</Width>
@@ -907,7 +907,7 @@
             </Style>
           </Line>
           <Line Name="Line4">
-            <Top>1.85639in</Top>
+            <Top>1.73139in</Top>
             <Left>0.1966in</Left>
             <Height>0in</Height>
             <Width>6.96874in</Width>
@@ -945,7 +945,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paridad</rd:DefaultName>
-            <Top>2.73139in</Top>
+            <Top>2.60639in</Top>
             <Left>5.52212in</Left>
             <Height>0.25in</Height>
             <Width>1.64322in</Width>
@@ -980,7 +980,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>2.73139in</Top>
+            <Top>2.60639in</Top>
             <Left>0.1966in</Left>
             <Height>0.25in</Height>
             <Width>3.13715in</Width>
@@ -996,7 +996,7 @@
             </Style>
           </Textbox>
           <Line Name="Line5">
-            <Top>3.27306in</Top>
+            <Top>3.14806in</Top>
             <Left>0.1966in</Left>
             <Height>0in</Height>
             <Width>6.96874in</Width>
@@ -1025,7 +1025,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paridad</rd:DefaultName>
-            <Top>2.43972in</Top>
+            <Top>2.31472in</Top>
             <Left>5.52212in</Left>
             <Height>0.25in</Height>
             <Width>1.64322in</Width>
@@ -1059,7 +1059,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>2.43972in</Top>
+            <Top>2.31472in</Top>
             <Left>0.1966in</Left>
             <Height>0.25in</Height>
             <Width>2.41667in</Width>
@@ -1075,7 +1075,7 @@
             </Style>
           </Textbox>
           <Line Name="Line6">
-            <Top>2.68972in</Top>
+            <Top>2.56472in</Top>
             <Left>0.1966in</Left>
             <Height>0in</Height>
             <Width>6.96874in</Width>
@@ -1120,7 +1120,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paridad</rd:DefaultName>
-            <Top>3.02306in</Top>
+            <Top>2.89806in</Top>
             <Left>5.52212in</Left>
             <Height>0.25in</Height>
             <Width>1.64321in</Width>
@@ -1155,7 +1155,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>3.02306in</Top>
+            <Top>2.89806in</Top>
             <Left>0.19659in</Left>
             <Height>0.25in</Height>
             <Width>3.13715in</Width>
@@ -1353,7 +1353,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paridad</rd:DefaultName>
-            <Top>1.91194in</Top>
+            <Top>1.78694in</Top>
             <Left>5.52212in</Left>
             <Height>0.25in</Height>
             <Width>1.64322in</Width>
@@ -1387,7 +1387,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>1.91194in</Top>
+            <Top>1.78694in</Top>
             <Left>0.1966in</Left>
             <Height>0.25in</Height>
             <Width>2.41667in</Width>
@@ -1402,204 +1402,11 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="Textbox7">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>* All amounts have to be paid in advance</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontSize>7pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>DimGray</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>* This pre-quotation does not include any tax (IGI) that can generate the origin and materials of the goods.</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontSize>7pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>DimGray</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>* In the event that the goods will generate some additional tax (IGI), will be charged on the final bill.</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontSize>7pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>DimGray</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>* Arnian Fee Includes Warehouse Receiving, Inspection, Clasification, Cordination Import and truck unloading at final destination</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontSize>7pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>DimGray</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>* The 2% Insurance transportation is optional if the customer decides not to pay, goods are traveling at their own risk.</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontSize>7pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>DimGray</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>* As soon as payment confirmation has been received, we'll move forward with the importation service.</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontSize>7pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>DimGray</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>* Should the Insurance policy be utilized, a 15% deductible must be covered</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontSize>7pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>DimGray</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox7</rd:DefaultName>
-            <Top>3.57168in</Top>
-            <Left>0.17574in</Left>
-            <Height>1.03125in</Height>
-            <Width>6.96875in</Width>
-            <ZIndex>29</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox10">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>QUOTES AND AGREE TERMS</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontSize>7pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>_____________________________________________</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontSize>7pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox10</rd:DefaultName>
-            <Top>4.67238in</Top>
-            <Left>0.17574in</Left>
-            <Height>0.36458in</Height>
-            <Width>6.96875in</Width>
-            <ZIndex>30</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
         </ReportItems>
-        <Height>5.24876in</Height>
+        <Height>3.24529in</Height>
         <Style />
       </Body>
-      <Width>7.28542in</Width>
+      <Width>7.25923in</Width>
       <Page>
         <PageHeader>
           <Height>1.13194in</Height>
@@ -1882,7 +1689,7 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>2.1875in</Height>
+          <Height>3.57292in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1911,7 +1718,8 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox15</rd:DefaultName>
-                  <Left>0.02086in</Left>
+                  <Top>1.40278in</Top>
+                  <Left>0.02085in</Left>
                   <Height>0.25in</Height>
                   <Width>6.96876in</Width>
                   <Style>
@@ -1934,7 +1742,6 @@
                           <Value>Banco</Value>
                           <Style>
                             <FontStyle>Normal</FontStyle>
-                            <FontSize>12pt</FontSize>
                             <FontWeight>Bold</FontWeight>
                             <TextDecoration>None</TextDecoration>
                           </Style>
@@ -1946,9 +1753,9 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox15</rd:DefaultName>
-                  <Top>0.30556in</Top>
-                  <Left>0.13544in</Left>
-                  <Height>0.25in</Height>
+                  <Top>1.68055in</Top>
+                  <Left>0.13543in</Left>
+                  <Height>0.22223in</Height>
                   <Width>1.75001in</Width>
                   <ZIndex>1</ZIndex>
                   <Style>
@@ -1971,7 +1778,6 @@
                           <Value>Cheques</Value>
                           <Style>
                             <FontStyle>Normal</FontStyle>
-                            <FontSize>12pt</FontSize>
                             <FontWeight>Bold</FontWeight>
                             <TextDecoration>None</TextDecoration>
                           </Style>
@@ -1983,9 +1789,9 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox15</rd:DefaultName>
-                  <Top>0.30556in</Top>
-                  <Left>1.9549in</Left>
-                  <Height>0.25in</Height>
+                  <Top>1.68055in</Top>
+                  <Left>1.95489in</Left>
+                  <Height>0.22223in</Height>
                   <Width>1.62154in</Width>
                   <ZIndex>2</ZIndex>
                   <Style>
@@ -2008,7 +1814,6 @@
                           <Value>CLABE</Value>
                           <Style>
                             <FontStyle>Normal</FontStyle>
-                            <FontSize>12pt</FontSize>
                             <FontWeight>Bold</FontWeight>
                             <TextDecoration>None</TextDecoration>
                           </Style>
@@ -2020,9 +1825,9 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox15</rd:DefaultName>
-                  <Top>0.30556in</Top>
-                  <Left>3.64588in</Left>
-                  <Height>0.25in</Height>
+                  <Top>1.68055in</Top>
+                  <Left>3.64587in</Left>
+                  <Height>0.22223in</Height>
                   <Width>2.27428in</Width>
                   <ZIndex>3</ZIndex>
                   <Style>
@@ -2045,7 +1850,6 @@
                           <Value>Moneda</Value>
                           <Style>
                             <FontStyle>Normal</FontStyle>
-                            <FontSize>12pt</FontSize>
                             <FontWeight>Bold</FontWeight>
                             <TextDecoration>None</TextDecoration>
                           </Style>
@@ -2057,9 +1861,9 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox15</rd:DefaultName>
-                  <Top>0.30556in</Top>
-                  <Left>5.98961in</Left>
-                  <Height>0.25in</Height>
+                  <Top>1.68055in</Top>
+                  <Left>5.9896in</Left>
+                  <Height>0.22223in</Height>
                   <Width>0.89589in</Width>
                   <ZIndex>4</ZIndex>
                   <Style>
@@ -2095,8 +1899,8 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox15</rd:DefaultName>
-                  <Top>0.65278in</Top>
-                  <Left>0.13544in</Left>
+                  <Top>1.93056in</Top>
+                  <Left>0.13543in</Left>
                   <Height>0.25in</Height>
                   <Width>1.75001in</Width>
                   <ZIndex>5</ZIndex>
@@ -2120,7 +1924,7 @@
                           <Value>82-50109425-3</Value>
                           <Style>
                             <FontStyle>Normal</FontStyle>
-                            <FontSize>12pt</FontSize>
+                            <FontSize>11pt</FontSize>
                             <TextDecoration>None</TextDecoration>
                           </Style>
                         </TextRun>
@@ -2131,8 +1935,8 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox15</rd:DefaultName>
-                  <Top>0.65278in</Top>
-                  <Left>1.9549in</Left>
+                  <Top>1.93056in</Top>
+                  <Left>1.95489in</Left>
                   <Height>0.25in</Height>
                   <Width>1.62154in</Width>
                   <ZIndex>6</ZIndex>
@@ -2169,8 +1973,8 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox15</rd:DefaultName>
-                  <Top>0.65278in</Top>
-                  <Left>3.64588in</Left>
+                  <Top>1.93056in</Top>
+                  <Left>3.64587in</Left>
                   <Height>0.25in</Height>
                   <Width>2.27428in</Width>
                   <ZIndex>7</ZIndex>
@@ -2207,8 +2011,8 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox15</rd:DefaultName>
-                  <Top>0.65278in</Top>
-                  <Left>5.98961in</Left>
+                  <Top>1.93056in</Top>
+                  <Left>5.9896in</Left>
                   <Height>0.25in</Height>
                   <Width>0.89589in</Width>
                   <ZIndex>8</ZIndex>
@@ -2245,8 +2049,8 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox15</rd:DefaultName>
-                  <Top>0.94569in</Top>
-                  <Left>0.13544in</Left>
+                  <Top>2.22347in</Top>
+                  <Left>0.13543in</Left>
                   <Height>0.25in</Height>
                   <Width>1.75001in</Width>
                   <ZIndex>9</ZIndex>
@@ -2270,7 +2074,7 @@
                           <Value>65-50946836-2</Value>
                           <Style>
                             <FontStyle>Normal</FontStyle>
-                            <FontSize>12pt</FontSize>
+                            <FontSize>11pt</FontSize>
                             <TextDecoration>None</TextDecoration>
                           </Style>
                         </TextRun>
@@ -2281,8 +2085,8 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox15</rd:DefaultName>
-                  <Top>0.94569in</Top>
-                  <Left>1.9549in</Left>
+                  <Top>2.22347in</Top>
+                  <Left>1.95489in</Left>
                   <Height>0.25in</Height>
                   <Width>1.62154in</Width>
                   <ZIndex>10</ZIndex>
@@ -2319,8 +2123,8 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox15</rd:DefaultName>
-                  <Top>0.94569in</Top>
-                  <Left>3.64588in</Left>
+                  <Top>2.22347in</Top>
+                  <Left>3.64587in</Left>
                   <Height>0.25in</Height>
                   <Width>2.27428in</Width>
                   <ZIndex>11</ZIndex>
@@ -2355,8 +2159,8 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox15</rd:DefaultName>
-                  <Top>0.94569in</Top>
-                  <Left>5.98961in</Left>
+                  <Top>2.22347in</Top>
+                  <Left>5.9896in</Left>
                   <Height>0.25in</Height>
                   <Width>0.89589in</Width>
                   <ZIndex>12</ZIndex>
@@ -2371,8 +2175,8 @@
                   </Style>
                 </Textbox>
                 <Line Name="Line1">
-                  <Top>0.56945in</Top>
-                  <Left>0.02086in</Left>
+                  <Top>1.90278in</Top>
+                  <Left>0.01059in</Left>
                   <Height>0in</Height>
                   <Width>6.9896in</Width>
                   <ZIndex>13</ZIndex>
@@ -2406,8 +2210,8 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox15</rd:DefaultName>
-                  <Top>1.34896in</Top>
-                  <Left>0.14063in</Left>
+                  <Top>2.62674in</Top>
+                  <Left>0.14062in</Left>
                   <Height>0.25in</Height>
                   <Width>1.75001in</Width>
                   <ZIndex>14</ZIndex>
@@ -2431,7 +2235,7 @@
                           <Value>0116293980</Value>
                           <Style>
                             <FontStyle>Normal</FontStyle>
-                            <FontSize>12pt</FontSize>
+                            <FontSize>11pt</FontSize>
                             <TextDecoration>None</TextDecoration>
                           </Style>
                         </TextRun>
@@ -2442,8 +2246,8 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox15</rd:DefaultName>
-                  <Top>1.34896in</Top>
-                  <Left>1.96009in</Left>
+                  <Top>2.62674in</Top>
+                  <Left>1.96008in</Left>
                   <Height>0.25in</Height>
                   <Width>1.62154in</Width>
                   <ZIndex>15</ZIndex>
@@ -2480,8 +2284,8 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox15</rd:DefaultName>
-                  <Top>1.34896in</Top>
-                  <Left>3.65107in</Left>
+                  <Top>2.62674in</Top>
+                  <Left>3.65106in</Left>
                   <Height>0.25in</Height>
                   <Width>2.27428in</Width>
                   <ZIndex>16</ZIndex>
@@ -2518,8 +2322,8 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox15</rd:DefaultName>
-                  <Top>1.34896in</Top>
-                  <Left>5.9948in</Left>
+                  <Top>2.62674in</Top>
+                  <Left>5.99479in</Left>
                   <Height>0.25in</Height>
                   <Width>0.89589in</Width>
                   <ZIndex>17</ZIndex>
@@ -2556,8 +2360,8 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox15</rd:DefaultName>
-                  <Top>1.64187in</Top>
-                  <Left>0.14063in</Left>
+                  <Top>2.91965in</Top>
+                  <Left>0.14062in</Left>
                   <Height>0.25in</Height>
                   <Width>1.75001in</Width>
                   <ZIndex>18</ZIndex>
@@ -2581,7 +2385,7 @@
                           <Value>0116293786</Value>
                           <Style>
                             <FontStyle>Normal</FontStyle>
-                            <FontSize>12pt</FontSize>
+                            <FontSize>11pt</FontSize>
                             <TextDecoration>None</TextDecoration>
                           </Style>
                         </TextRun>
@@ -2592,8 +2396,8 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox15</rd:DefaultName>
-                  <Top>1.64187in</Top>
-                  <Left>1.96009in</Left>
+                  <Top>2.91965in</Top>
+                  <Left>1.96008in</Left>
                   <Height>0.25in</Height>
                   <Width>1.62154in</Width>
                   <ZIndex>19</ZIndex>
@@ -2630,8 +2434,8 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox15</rd:DefaultName>
-                  <Top>1.64187in</Top>
-                  <Left>3.65107in</Left>
+                  <Top>2.91965in</Top>
+                  <Left>3.65106in</Left>
                   <Height>0.25in</Height>
                   <Width>2.27428in</Width>
                   <ZIndex>20</ZIndex>
@@ -2666,8 +2470,8 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox15</rd:DefaultName>
-                  <Top>1.64187in</Top>
-                  <Left>5.9948in</Left>
+                  <Top>2.91965in</Top>
+                  <Left>5.99479in</Left>
                   <Height>0.25in</Height>
                   <Width>0.89589in</Width>
                   <ZIndex>21</ZIndex>
@@ -2681,14 +2485,320 @@
                     <PaddingBottom>2pt</PaddingBottom>
                   </Style>
                 </Textbox>
+                <Textbox Name="Textbox17">
+                  <CanGrow>true</CanGrow>
+                  <KeepTogether>true</KeepTogether>
+                  <Paragraphs>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>QUOTES AND AGREE TERMS</Value>
+                          <Style>
+                            <FontStyle>Normal</FontStyle>
+                            <FontSize>7pt</FontSize>
+                            <FontWeight>Bold</FontWeight>
+                            <TextDecoration>None</TextDecoration>
+                            <Color>#000000</Color>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style>
+                        <TextAlign>Center</TextAlign>
+                      </Style>
+                    </Paragraph>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>_____________________________________________</Value>
+                          <Style>
+                            <FontStyle>Normal</FontStyle>
+                            <FontSize>7pt</FontSize>
+                            <FontWeight>Bold</FontWeight>
+                            <TextDecoration>None</TextDecoration>
+                            <Color>#000000</Color>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style>
+                        <TextAlign>Center</TextAlign>
+                      </Style>
+                    </Paragraph>
+                  </Paragraphs>
+                  <rd:DefaultName>Textbox10</rd:DefaultName>
+                  <Top>0.97805in</Top>
+                  <Left>0.02085in</Left>
+                  <Height>0.36458in</Height>
+                  <Width>6.96875in</Width>
+                  <ZIndex>22</ZIndex>
+                  <Style>
+                    <Border>
+                      <Style>None</Style>
+                    </Border>
+                    <PaddingLeft>2pt</PaddingLeft>
+                    <PaddingRight>2pt</PaddingRight>
+                    <PaddingTop>2pt</PaddingTop>
+                    <PaddingBottom>2pt</PaddingBottom>
+                  </Style>
+                </Textbox>
+                <Textbox Name="Textbox52">
+                  <CanGrow>true</CanGrow>
+                  <KeepTogether>true</KeepTogether>
+                  <Paragraphs>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>* All amounts have to be paid in advance</Value>
+                          <Style>
+                            <FontStyle>Normal</FontStyle>
+                            <FontSize>7pt</FontSize>
+                            <FontWeight>Normal</FontWeight>
+                            <TextDecoration>None</TextDecoration>
+                            <Color>DimGray</Color>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style />
+                    </Paragraph>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>* This pre-quotation does not include any tax (IGI) that can generate the origin and materials of the goods.</Value>
+                          <Style>
+                            <FontStyle>Normal</FontStyle>
+                            <FontSize>7pt</FontSize>
+                            <FontWeight>Normal</FontWeight>
+                            <TextDecoration>None</TextDecoration>
+                            <Color>DimGray</Color>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style>
+                        <TextAlign>Left</TextAlign>
+                      </Style>
+                    </Paragraph>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>* In the event that the goods will generate some additional tax (IGI), will be charged on the final bill.</Value>
+                          <Style>
+                            <FontStyle>Normal</FontStyle>
+                            <FontSize>7pt</FontSize>
+                            <FontWeight>Normal</FontWeight>
+                            <TextDecoration>None</TextDecoration>
+                            <Color>DimGray</Color>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style>
+                        <TextAlign>Left</TextAlign>
+                      </Style>
+                    </Paragraph>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>* Arnian Fee Includes Warehouse Receiving, Inspection, Clasification, Cordination Import and truck unloading at final destination</Value>
+                          <Style>
+                            <FontStyle>Normal</FontStyle>
+                            <FontSize>7pt</FontSize>
+                            <FontWeight>Normal</FontWeight>
+                            <TextDecoration>None</TextDecoration>
+                            <Color>DimGray</Color>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style>
+                        <TextAlign>Left</TextAlign>
+                      </Style>
+                    </Paragraph>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>* The 2% Insurance transportation is optional if the customer decides not to pay, goods are traveling at their own risk.</Value>
+                          <Style>
+                            <FontStyle>Normal</FontStyle>
+                            <FontSize>7pt</FontSize>
+                            <FontWeight>Normal</FontWeight>
+                            <TextDecoration>None</TextDecoration>
+                            <Color>DimGray</Color>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style>
+                        <TextAlign>Left</TextAlign>
+                      </Style>
+                    </Paragraph>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>* As soon as payment confirmation has been received, we'll move forward with the importation service.</Value>
+                          <Style>
+                            <FontStyle>Normal</FontStyle>
+                            <FontSize>7pt</FontSize>
+                            <FontWeight>Normal</FontWeight>
+                            <TextDecoration>None</TextDecoration>
+                            <Color>DimGray</Color>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style>
+                        <TextAlign>Left</TextAlign>
+                      </Style>
+                    </Paragraph>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>* Should the Insurance policy be utilized, a 15% deductible must be covered</Value>
+                          <Style>
+                            <FontStyle>Normal</FontStyle>
+                            <FontSize>7pt</FontSize>
+                            <FontWeight>Normal</FontWeight>
+                            <TextDecoration>None</TextDecoration>
+                            <Color>DimGray</Color>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style>
+                        <TextAlign>Left</TextAlign>
+                      </Style>
+                    </Paragraph>
+                  </Paragraphs>
+                  <rd:DefaultName>Textbox7</rd:DefaultName>
+                  <Top>0.00235in</Top>
+                  <Left>0.02085in</Left>
+                  <Height>0.91667in</Height>
+                  <Width>6.96875in</Width>
+                  <ZIndex>23</ZIndex>
+                  <Style>
+                    <Border>
+                      <Style>None</Style>
+                    </Border>
+                    <PaddingLeft>2pt</PaddingLeft>
+                    <PaddingRight>2pt</PaddingRight>
+                    <PaddingTop>2pt</PaddingTop>
+                    <PaddingBottom>2pt</PaddingBottom>
+                  </Style>
+                </Textbox>
               </ReportItems>
               <KeepTogether>true</KeepTogether>
-              <Top>0.02778in</Top>
-              <Left>0.17574in</Left>
-              <Height>1.97347in</Height>
-              <Width>7.01046in</Width>
+              <Top>0.14236in</Top>
+              <Left>0.15489in</Left>
+              <Height>3.37972in</Height>
+              <Width>7.03131in</Width>
               <Visibility>
                 <Hidden>=IIf(Parameters!tImprecionRep.Value = "True", True, False)</Hidden>
+              </Visibility>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
+            </Rectangle>
+            <Rectangle Name="Rectangle2">
+              <ReportItems>
+                <Textbox Name="Textbox7">
+                  <CanGrow>true</CanGrow>
+                  <KeepTogether>true</KeepTogether>
+                  <Paragraphs>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>* Amount in USD. All costs must be paid in full in advance.
+* The 2% Transportation insurance is optional. Should it be declined, all goods travel under the customer's own risk.
+* Should the Insurance policy be utilized, a 15% deductible must be covered.
+* Transportation Insurance is only applicable in the event of an accident or theft.
+* The insurance policy does not cover damages in transit or any items made out of clay, ceramic granite or glass.
+* The insurance does not cover glass and/or ceramic.
+* Physical proof of merchandise or material damage must be presented along with the invoice the vendor produced so a replacement or reimbursement ma
+* A timeframe for a replacement or reimbursement will be provided upon receipt of the full amount of the proportionate deductible.</Value>
+                          <Style>
+                            <FontStyle>Normal</FontStyle>
+                            <FontSize>7pt</FontSize>
+                            <FontWeight>Normal</FontWeight>
+                            <TextDecoration>None</TextDecoration>
+                            <Color>DimGray</Color>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style />
+                    </Paragraph>
+                  </Paragraphs>
+                  <rd:DefaultName>Textbox7</rd:DefaultName>
+                  <Top>0.10418in</Top>
+                  <Height>1.03125in</Height>
+                  <Width>6.96875in</Width>
+                  <Style>
+                    <Border>
+                      <Style>None</Style>
+                    </Border>
+                    <PaddingLeft>2pt</PaddingLeft>
+                    <PaddingRight>2pt</PaddingRight>
+                    <PaddingTop>2pt</PaddingTop>
+                    <PaddingBottom>2pt</PaddingBottom>
+                  </Style>
+                </Textbox>
+                <Textbox Name="Textbox10">
+                  <CanGrow>true</CanGrow>
+                  <KeepTogether>true</KeepTogether>
+                  <Paragraphs>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>QUOTES AND AGREE TERMS</Value>
+                          <Style>
+                            <FontStyle>Normal</FontStyle>
+                            <FontSize>7pt</FontSize>
+                            <FontWeight>Bold</FontWeight>
+                            <TextDecoration>None</TextDecoration>
+                            <Color>#000000</Color>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style>
+                        <TextAlign>Center</TextAlign>
+                      </Style>
+                    </Paragraph>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>_____________________________________________</Value>
+                          <Style>
+                            <FontStyle>Normal</FontStyle>
+                            <FontSize>7pt</FontSize>
+                            <FontWeight>Bold</FontWeight>
+                            <TextDecoration>None</TextDecoration>
+                            <Color>#000000</Color>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style>
+                        <TextAlign>Center</TextAlign>
+                      </Style>
+                    </Paragraph>
+                  </Paragraphs>
+                  <rd:DefaultName>Textbox10</rd:DefaultName>
+                  <Top>1.20488in</Top>
+                  <Height>0.29166in</Height>
+                  <Width>6.96875in</Width>
+                  <ZIndex>1</ZIndex>
+                  <Style>
+                    <Border>
+                      <Style>None</Style>
+                    </Border>
+                    <PaddingLeft>2pt</PaddingLeft>
+                    <PaddingRight>2pt</PaddingRight>
+                    <PaddingTop>2pt</PaddingTop>
+                    <PaddingBottom>2pt</PaddingBottom>
+                  </Style>
+                </Textbox>
+              </ReportItems>
+              <KeepTogether>true</KeepTogether>
+              <Top>0.06944in</Top>
+              <Left>0.16548in</Left>
+              <Height>1.54862in</Height>
+              <Width>6.99986in</Width>
+              <ZIndex>1</ZIndex>
+              <Visibility>
+                <Hidden>=IIf(Parameters!tImprecionRep.Value = "False", True, False)</Hidden>
               </Visibility>
               <Style>
                 <Border>
