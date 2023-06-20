@@ -232,26 +232,29 @@ namespace mainVentana
         public event Cierra Cerrado;
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // Liberar recursos adicionales si es necesario
             liberarR();
+
+            // Cerrar la aplicación
+           
         }
+
         private void liberarR()
         {
-            tmFechaHora.Enabled = false;
-            Cerrado();
-            frmOver.Dispose();
-            frmOver.Close();
-            this.Dispose();
-            this.Close();
+            tmFechaHora.Enabled = false; // Detener un posible temporizador activo
+          //  Cerrado(); // Realizar cualquier acción personalizada antes del cierre
         }
 
-      
 
-     
 
-      
+
+
+
+
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             liberarR();
+            Application.Exit();
 
         }
 

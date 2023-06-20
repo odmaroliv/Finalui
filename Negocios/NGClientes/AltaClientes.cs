@@ -60,36 +60,33 @@ namespace Negocios.NGClientes
             {
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
-
-
                     var d = (from q in modelo.KDUD
                              where q.C2 == clave
                              select q).FirstOrDefault();
 
-                    d.C3 = nombre;
-                    d.C4 = direccion;
-                    d.C5 = colonia;
-                    d.C6 = poblacion;
-                    d.C7 = tel;
-
-                    d.C10 = rfc;
-                    d.C11 = email;
-                    d.C12 = coord;
-                    d.C14 = zona;
-                    d.C27 = zip;
-                    d.C24 = coment;
-                    d.C32 = mailb;
-
+                    d.C3 = nombre?.Trim();
+                    d.C4 = direccion?.Trim();
+                    d.C5 = colonia?.Trim();
+                    d.C6 = poblacion?.Trim();
+                    d.C7 = tel?.Trim();
+                    d.C10 = rfc?.Trim();
+                    d.C11 = email?.Trim();
+                    d.C12 = coord?.Trim();
+                    d.C14 = zona?.Trim();
+                    d.C27 = zip?.Trim();
+                    d.C24 = coment?.Trim();
+                    d.C32 = mailb?.Trim();
 
                     try
                     {
                         modelo.SaveChanges();
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
-                        throw;
+                        //throw;
                     }
                 }
+
             }
             catch (Exception e)
             {

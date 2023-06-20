@@ -176,6 +176,7 @@ namespace mainVentana.VistaCreditoCobranza
                     ValorFactura = w.ValorFactura,
                     Comentario = w.Comentario?.Trim(),
                     Operacion = w.Operacion?.Trim(),
+                    sucActual = w.sucActual?.Trim(),
                    
                     
                 });

@@ -498,6 +498,7 @@ namespace Negocios.NGReportes
                             var query = @"SELECT m.C6 AS Entrada,
                                             MAX(m.C9) AS FechaEntrada,
                                             MAX(m.C1) AS SucursalOrigen,
+                                            MAX(K.C19) AS sucActual,
                                             MAX(m.C115) AS Cotizacion,
                                             MAX(m.C32) AS Cliente,
                                             MAX(m.C112) AS Alias,
