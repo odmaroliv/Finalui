@@ -75,7 +75,7 @@ namespace mainVentana.VistaCreditoCobranza
         private async void VistaCXC_Load(object sender, EventArgs e)
         {
             dtFecha1.Value = DateTime.Now;
-            dtFecha2.Value = DateTime.Now;
+            dtFecha2.Value = DateTime.Now.AddDays(1);
             dtFecha1.MinDate = DateTime.Now.AddDays(-90);
             dtFecha1.MaxDate = DateTime.Now.AddDays(1);
             dtFecha2.MinDate = DateTime.Now.AddDays(-90);
@@ -177,6 +177,7 @@ namespace mainVentana.VistaCreditoCobranza
                     Comentario = w.Comentario?.Trim(),
                     Operacion = w.Operacion?.Trim(),
                     sucActual = w.sucActual?.Trim(),
+                    Nota =  w.Nota?.Trim(),
                    
                     
                 });

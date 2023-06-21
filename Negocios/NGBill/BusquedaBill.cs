@@ -2,6 +2,7 @@
 using Datos.ViewModels.Bill;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -232,6 +233,82 @@ namespace Negocios.NGBill
 
 
             return true;
+        }
+
+
+
+
+        public bool AltaBillkdm1(string datoSucIni,
+           string datoBill,
+           DateTime datoFechaAlta,
+        //   string datoOperacion,
+          // string datoSucDest,
+        //   string datoMoneda,
+           //double datoParidad,
+           string datoRefe)
+           //DateTime datoFCorte,
+           //string datoHora)
+        {
+
+            using (modelo2Entities modelo = new modelo2Entities())
+            {
+                try
+                {
+                    var d = new KDM1();
+                    d.C1 = datoSucIni;
+                    d.C2 = "U";
+                    d.C3 = "D";
+                    d.C4 = 55;
+                    d.C5 = 1;
+                    d.C6 = datoBill;
+                   // d.C7 = datoMoneda;
+                    d.C8 = 1;
+                    d.C9 = datoFechaAlta;
+                    d.C11 = datoRefe;
+                    d.C18 = datoFechaAlta;
+                    d.C30 = "Bill";
+                    //d.C40 = datoParidad;
+                    d.C43 = "N";
+                    d.C63 = "UD5501-";
+                    d.C67 = Common.Cache.CacheLogin.username.ToString().Trim();
+                    d.C68 = datoFechaAlta;
+                    /*d.C101 = datoOperacion;
+                    d.C103 = datoSucDest;
+                    d.C111 = datoFCorte;
+                    d.C112 = datoHora;*/
+                    modelo.KDM1.Add(d);
+                    modelo.SaveChanges();
+                    return true;
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "altasBDCargas.cs, AltaOrdCarga()... " + datoBill + "");
+                    return false;
+                    
+                }
+
+            }
+
+
+        }
+        public void ActualizaSqlIov(string datoSucIni, int modo, string dato)
+        {
+
+
+            string br = "KFUD" + modo + "01." + datoSucIni;
+            using (modelo2Entities modelo = new modelo2Entities())
+            {
+
+                try
+                {
+                    modelo.aumentaSQLint(br, modo.ToString().Trim());
+                }
+                catch (Exception)
+                {
+
+                    System.Windows.Forms.MessageBox.Show("Ha Ocurrido un error, datos faltantes o incorrectos.");
+                }
+            }
         }
 
     }

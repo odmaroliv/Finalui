@@ -287,17 +287,7 @@ namespace mainVentana.VistaOrdenCarga
                 }
                 catch (DbEntityValidationException o)
                 {
-                    foreach (var eve in o.EntityValidationErrors)
-                    {
-                        MessageBox.Show(string.Format("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                            eve.Entry.Entity.GetType().Name, eve.Entry.State));
-                        foreach (var ve in eve.ValidationErrors)
-                        {
-                            MessageBox.Show(string.Format("- Property: \"{0}\", Error: \"{1}\"",
-                                ve.PropertyName, ve.ErrorMessage));
-                        }
-                    }
-
+                    Negocios.LOGs.ArsLogs.LogEdit(o.Message, "frmOrdenDeCarga.cs, Cuando se dio click al boton de crear orden de Carga... " + datoOrdCarga + "");
                     throw;
                 }
                 Notificacion(1,"El documento: "+ datoOrdCarga +"\rDe: "+datoSucIni+" Con destino a: "+ datoSucDest + "\rSe creo correctamente.", "Exito "+ datoOrdCarga,datoOrdCarga);
@@ -307,9 +297,8 @@ namespace mainVentana.VistaOrdenCarga
                 this.Close();
             }
 
-
-
         }
+
 
         private int ValidacionesGenerales()
         {

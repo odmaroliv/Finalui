@@ -28,6 +28,8 @@ using FontAwesome.Sharp;
 using DocumentFormat.OpenXml.Office2010.Excel;
 using mainVentana.VistaEntrada.Proovedor;
 using Datos.Datosenti;
+using DocumentFormat.OpenXml.Office2013.Excel;
+using Guna.UI.WinForms;
 
 namespace mainVentana.VistaEntrada
 {
@@ -65,7 +67,10 @@ namespace mainVentana.VistaEntrada
                 //sucDestino.Enabled = false;
                 groupBox3.Enabled = false;
                 groupBox5.Enabled = false;
-                groupBox6.Enabled = false;
+                //  groupBox6.Enabled = false;
+                detalles.Enabled = false;
+                gunaTileButton5.Enabled = false;
+                txbReferencia.Enabled = false;
                 groupBox4.Enabled = false;
                 cmbMoneda.Enabled = false;
                 txbValFact.Enabled = true;

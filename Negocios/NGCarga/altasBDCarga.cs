@@ -55,26 +55,18 @@ namespace Negocios.NGCarga
                     modelo.KDM1.Add(d);
                     modelo.SaveChanges();
                 }
-                catch (DbEntityValidationException e)
+                catch (DbEntityValidationException ex)
                 {
-                    foreach (var eve in e.EntityValidationErrors)
-                    {
-                        Debug.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                        foreach (var ve in eve.ValidationErrors)
-                        {
-                            Debug.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                                ve.PropertyName, ve.ErrorMessage);
-                        }
-                    }
-
+                    Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "altasBDCargas.cs, AltaOrdCarga()... " + datoOrdCarga + "");
                     throw;
                 }
 
             }
-
-
         }
+
+
+
+
 
         public void ModificaOrdCarga(string datoSucIni,
             string datoOrdCarga,
@@ -215,9 +207,9 @@ namespace Negocios.NGCarga
                 {
                     modelo.aumentaSQLint(br, modo.ToString().Trim());
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "altasBDCargas.cs, ActualizaSqlIov()... " + dato + "");
                     System.Windows.Forms.MessageBox.Show("Ha Ocurrido un error, datos faltantes o incorrectos.");
                 }
             }
@@ -245,6 +237,7 @@ namespace Negocios.NGCarga
                 }
                 catch (DbEntityValidationException e)
                 {
+                    Negocios.LOGs.ArsLogs.LogEdit(e.Message, "altasBDCargas.cs, AsignaCargaAEntrada()... " + datoEntrada + "");
                     throw;
                 }
 
@@ -342,7 +335,53 @@ namespace Negocios.NGCarga
 
         }
 
-        
+
+        public async Task<bool> AsignarABill(List<vmEntradasEnCarga> lista, string nBill, string fecha, string tipo = null)
+        {
+            bool te = true;
+            await Task.Run(() =>
+            {
+                using (modelo2Entities modelo = new modelo2Entities())
+                {
+
+                        foreach (var item in lista)
+                        {
+                            if (String.IsNullOrWhiteSpace(nBill))
+                            {
+                                return;
+                            }
+                            try
+                            {
+                                var dato = (from q in modelo.KDMENT
+                                            where q.C9.Contains(item.Etiqueta) && q.C4 == 35
+                                            select q).FirstOrDefault();
+
+
+
+
+                                dato.C34 = nBill;
+                                dato.C77 = fecha;
+
+
+                                modelo.SaveChanges();
+                            }
+                            catch (Exception ex)
+                            {
+                                Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "altasBDCargas.cs, AsignarABill()... " + item.Etiqueta + "");
+                                te = false;
+                            }
+
+                        }
+                    
+                  
+                }
+            });
+
+            return te;
+
+
+        }
+
         public async Task<bool> LiberaEntradaDeCarga(string dtSucInicio, string dtEntrada, string dtCargaAsignada)
         {
             bool terminado = true;

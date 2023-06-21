@@ -131,8 +131,8 @@
             this.gbxDatosGenerales.BaseColor = System.Drawing.Color.White;
             this.gbxDatosGenerales.BorderColor = System.Drawing.Color.Blue;
             this.gbxDatosGenerales.Controls.Add(this.cmbSucOrigen);
-            this.gbxDatosGenerales.Controls.Add(this.label1);
             this.gbxDatosGenerales.Controls.Add(this.groupBox1);
+            this.gbxDatosGenerales.Controls.Add(this.label1);
             this.gbxDatosGenerales.ForeColor = System.Drawing.Color.White;
             this.gbxDatosGenerales.LineColor = System.Drawing.Color.Brown;
             this.gbxDatosGenerales.Location = new System.Drawing.Point(215, 56);
@@ -155,7 +155,7 @@
             this.cmbSucOrigen.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cmbSucOrigen.ForeColor = System.Drawing.Color.Black;
             this.cmbSucOrigen.FormattingEnabled = true;
-            this.cmbSucOrigen.Location = new System.Drawing.Point(14, 133);
+            this.cmbSucOrigen.Location = new System.Drawing.Point(13, 64);
             this.cmbSucOrigen.Name = "cmbSucOrigen";
             this.cmbSucOrigen.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.cmbSucOrigen.OnHoverItemForeColor = System.Drawing.Color.White;
@@ -165,11 +165,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(11, 109);
+            this.label1.Location = new System.Drawing.Point(10, 40);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(124, 16);
+            this.label1.Size = new System.Drawing.Size(143, 16);
             this.label1.TabIndex = 12;
             this.label1.Text = "Sucursal que envía.";
             this.label1.UseMnemonic = false;
@@ -181,7 +181,7 @@
             this.groupBox1.Controls.Add(this.rbOCSL);
             this.groupBox1.Controls.Add(this.rbOTJ);
             this.groupBox1.Controls.Add(this.rbOSD);
-            this.groupBox1.Location = new System.Drawing.Point(14, 41);
+            this.groupBox1.Location = new System.Drawing.Point(13, 103);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);

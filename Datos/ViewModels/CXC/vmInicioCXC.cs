@@ -28,6 +28,7 @@ namespace Datos.ViewModels.CXC
         public string Comentario { get; set; }
         public string Operacion { get; set; }
         public string sucActual { get; set; }
+        public string Nota { get; set; }
 
     }
 }

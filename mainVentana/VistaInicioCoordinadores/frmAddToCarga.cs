@@ -1,10 +1,12 @@
-﻿using Datos.ViewModels;
+﻿using Datos.Datosenti;
+using Datos.ViewModels;
 using Datos.ViewModels.Carga;
 using Datos.ViewModels.Entradas;
 using Datos.ViewModels.Servicios;
 using DocumentFormat.OpenXml.Presentation;
 using mainVentana.VistaOrSalida;
 using Negocios;
+using Negocios.NGBill;
 using Negocios.NGCarga;
 using Negocios.NGReportes;
 using Newtonsoft.Json;
@@ -12,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Validation;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -26,9 +29,9 @@ namespace mainVentana.VistaInicioCoordinadores
         string datoTipoOper = "";
         private bool _isBussy = false;
         private DateTime _cierreFecha = DateTime.Now;
-
+        private bool _isBill = false;
         private List<vmEntradasEnCarga> listaBultos = new List<vmEntradasEnCarga>();
-
+        private string _numeroBill = "";
 
         public frmAddToCarga()
         {
@@ -37,7 +40,7 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private async void btnAlta_Click(object sender, EventArgs e)
         {
-           await OperacionBoton();
+            await OperacionBoton();
         }
 
         private async Task OperacionBoton()
@@ -72,42 +75,44 @@ namespace mainVentana.VistaInicioCoordinadores
             dtFecha2.MaxDate = DateTime.Now.AddDays(90);
 
             //CargaOrdenes();
-           await CargaOperaciones();
+            await CargaOperaciones();
 
         }
 
         private async void CargaOrdenes()
         {
 
-            
-           await Task.Run(  () =>{
 
-               this.Invoke(new Action(() => {
+            await Task.Run(() =>
+            {
 
-                   try
-                   {
-                       DateTime dFechaServicio = regresafecha();
-                       datoTipoOper = tipoOper.SelectedValue.ToString().Trim();
-                       Negocios.NGCarga.GETcarga get = new Negocios.NGCarga.GETcarga();
+                this.Invoke(new Action(() =>
+                {
 
-                       var lst7 = get.ObtieneCargasDeEntrega(sucursal, datoTipoOper, dFechaServicio);
+                    try
+                    {
+                        DateTime dFechaServicio = regresafecha();
+                        datoTipoOper = tipoOper.SelectedValue.ToString().Trim();
+                        Negocios.NGCarga.GETcarga get = new Negocios.NGCarga.GETcarga();
 
-                       cbxOrdenes.DisplayMember = "numeroCarga";
-                       cbxOrdenes.ValueMember = "numeroCarga";
-                       cbxOrdenes.DataSource = lst7;
+                        var lst7 = get.ObtieneCargasDeEntrega(sucursal, datoTipoOper, dFechaServicio);
 
-                   }
-                   catch (Exception)
-                   {
+                        cbxOrdenes.DisplayMember = "numeroCarga";
+                        cbxOrdenes.ValueMember = "numeroCarga";
+                        cbxOrdenes.DataSource = lst7;
 
-                       throw;
-                   }
+                    }
+                    catch (Exception)
+                    {
 
-               }));
-                   
+                        throw;
+                    }
+
+                }));
+
 
             });
-           
+
         }
 
         private DateTime regresafecha()
@@ -176,11 +181,11 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private void CargaEntradaEnDgv(string nCarga)
         {
-            
+
             Negocios.NGCarga.GETcarga get = new Negocios.NGCarga.GETcarga();
-            var entradasTo = get.EntradasEnCargaConUsuario(sucursal, Convert.ToInt32(nCarga),datoTipoOper);
+            var entradasTo = get.EntradasEnCargaConUsuario(sucursal, Convert.ToInt32(nCarga), datoTipoOper);
             dgvCargadas.DataSource = entradasTo;
-           
+
         }
 
         private async Task CargaEntradas()
@@ -201,7 +206,7 @@ namespace mainVentana.VistaInicioCoordinadores
 
         }
 
-        private async  void rSd_CheckedChanged(object sender, EventArgs e)
+        private async void rSd_CheckedChanged(object sender, EventArgs e)
         {
 
             LimpiaDatos();
@@ -225,7 +230,7 @@ namespace mainVentana.VistaInicioCoordinadores
 
             listaBultos.Clear();
             dgvCargadas.DataSource = null;
-            dtgSinAsignar.DataSource = null; 
+            dtgSinAsignar.DataSource = null;
             dtgAsignados.DataSource = null;
             txbCarga.Text = default;
             tmCierre.Value = DateTime.Now;
@@ -279,22 +284,63 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private async void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (dtgAsignados.Rows.Count ==0)
+            if (dtgAsignados.Rows.Count == 0)
             {
                 return;
 
             }
-            if (String.IsNullOrWhiteSpace(txbCarga.Text))
-            {
-                return;
-            }
+          
             await EjecutaFuncionDeModifica();
             await OperacionBoton();
         }
 
         private async Task EjecutaFuncionDeModifica()
         {
-            if (txbCarga.Text =="")
+            if (datoTipoOper == "")
+            {
+                MessageBox.Show("No se ha seleccionado una operación");
+                return;
+            }
+            if (datoTipoOper == "BILL")
+            {
+                txbCarga.Text = "";
+                _isBussy = true;
+                btnGuardar.Enabled = false;
+                
+                DateTime datoFecha = regresafecha();
+                string fechaHoy = datoFecha == null ? DateTime.Now.ToString("MM/dd/yyyy") : datoFecha.ToString("MM/dd/yyyy");
+                string b_so = sucursal;
+                string b_car = _numeroBill;
+                string b_billCompleto = b_so + "-UD5501-" + b_car;
+
+                Negocios.NGCarga.altasBDCarga get = new Negocios.NGCarga.altasBDCarga();
+                bool st = crearBillkdm1();
+                if (st)
+                {
+                    bool dato = await get.AsignarABill(listaBultos, b_billCompleto, fechaHoy, datoTipoOper);
+                    if (dato == false)
+                    {
+                        MessageBox.Show("Ocurrio un error intente de nuevo");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Documento " + _numeroBill + " creado con exito", "Terminado", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        Notificacion(1, "El documento: " + _numeroBill + "\r\rSe asigno correctamente.", "Exito ");
+                        await OperacionBoton();
+                    }
+                }
+              
+
+                
+
+            }
+            else
+            {
+                if (String.IsNullOrWhiteSpace(txbCarga.Text))
+                {
+                    return;
+                }
+                if (txbCarga.Text == "")
             {
                 MessageBox.Show("No hay ninguna Orden");
                 return;
@@ -333,9 +379,9 @@ namespace mainVentana.VistaInicioCoordinadores
             finally
             {
                 btnGuardar.Enabled = true;
-                _isBussy =false;
+                _isBussy = false;
             }
-              
+          }
         }
 
         private async void tipoOper_SelectedIndexChanged(object sender, EventArgs e)
@@ -343,7 +389,7 @@ namespace mainVentana.VistaInicioCoordinadores
             datoTipoOper = tipoOper.SelectedValue.ToString().Trim();
             ComboBox cmboBox = (ComboBox)sender;
             string valor = cmboBox.SelectedValue != null ? cmboBox.SelectedValue.ToString() : "000000000";
-            if (valor=="09")
+            if (valor == "09")
             {
                 await OperacionBoton();
             }
@@ -351,7 +397,111 @@ namespace mainVentana.VistaInicioCoordinadores
             {
                 await OperacionBoton();
             }
-           
+
         }
+
+        private void swBill_CheckedChanged(object sender, EventArgs e)
+        {
+            if (swBill.Checked == true)
+            {
+                _isBill = true;
+                tipoOper.Enabled = false;
+                datoTipoOper = "BILL";
+                cargaultbill();
+            }
+            else
+            {
+                _isBill = false;
+                tipoOper.Enabled = true;
+                datoTipoOper = "";
+            }
+
+        }
+
+        private void cargaultbill()
+        {
+            string dBill = "";
+
+            GETcarga datos = new GETcarga();
+
+            foreach (var i in datos.ultimaCarga(sucursal, 55)) //Bill
+            {
+                int numero = Convert.ToInt32(i.OrdenCarga);
+                dBill = numero.ToString("D7");
+            }
+            // return 
+            _numeroBill = dBill != "" || dBill == null ? dBill.ToString().Trim() : "";
+        }
+       
+        private bool crearBillkdm1()
+        {
+            string datoSucIni = sucursal;
+            DateTime datoFecha = regresafecha();
+            DateTime datoFechaAlta;
+            try { datoFechaAlta = datoFecha; } catch { datoFechaAlta = DateTime.Now; }
+          
+            string datoRefe = txbReferencia.Text.ToString();
+
+            cargaultbill();
+            BusquedaBill bd = new BusquedaBill();
+            try
+            {
+                
+                bool status = bd.AltaBillkdm1(datoSucIni,
+                _numeroBill,
+                datoFechaAlta,
+
+                datoRefe
+
+                );
+                bd.ActualizaSqlIov(datoSucIni.Trim(), 55, _numeroBill);
+                if (status)
+                {
+                    return true;
+                }
+                else
+                {
+
+                    return false;
+                }
+
+            }
+            catch (DbEntityValidationException o)
+            {
+                bd.ActualizaSqlIov(datoSucIni.Trim(), 55, _numeroBill);
+                Negocios.LOGs.ArsLogs.LogEdit(o.Message, "frmOrdenDeCarga.cs, Cuando se dio click al boton de crear orden de Carga... " + _numeroBill + "");
+                return false;
+            }
+            
+            
+        }
+        private void Notificacion(int estatus, string Texto, string titulo, string cursor = null)
+        {
+            /*
+             2 = ERROR
+             1 = EXITO
+            */
+
+            if (estatus == 1)
+            {
+                notifyIcon1.Visible = true;
+                notifyIcon1.Text = cursor;
+                notifyIcon1.BalloonTipTitle = titulo;
+                notifyIcon1.BalloonTipText = Texto;
+                notifyIcon1.ShowBalloonTip(10000);
+                notifyIcon1.Icon = SystemIcons.Information;
+            }
+            else if (estatus == 2)
+            {
+                notifyIcon1.Visible = true;
+                notifyIcon1.Text = "Error";
+                notifyIcon1.BalloonTipTitle = titulo;
+                notifyIcon1.BalloonTipText = Texto;
+                notifyIcon1.ShowBalloonTip(10000);
+                notifyIcon1.Icon = SystemIcons.Warning;
+            }
+
+        }
+
     }
 }
