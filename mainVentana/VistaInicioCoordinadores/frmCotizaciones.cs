@@ -422,7 +422,7 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private void frmCotizaciones_Load(object sender, EventArgs e)
         {
-            lblTipoImp.Text = "IMP";
+            lblTipoImp.Text = "AD";
             if (String.IsNullOrWhiteSpace(sGlobal))
             {
                 MessageBox.Show("No se establecio una Sucursal Global");
