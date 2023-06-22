@@ -125,6 +125,7 @@ namespace mainVentana
             this.ribbonButton4 = new System.Windows.Forms.RibbonButton();
             this.ribbonDescriptionMenuItem2 = new System.Windows.Forms.RibbonDescriptionMenuItem();
             this.panelContenedorForm = new System.Windows.Forms.Panel();
+            this.consultaBill = new System.Windows.Forms.RibbonButton();
             this.panel11.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -524,6 +525,7 @@ namespace mainVentana
             this.rbtnCord.DropDownItems.Add(this.vbtnClientes);
             this.rbtnCord.DropDownItems.Add(this.oldrpKepler);
             this.rbtnCord.DropDownItems.Add(this.btnCargaTo);
+            this.rbtnCord.DropDownItems.Add(this.consultaBill);
             this.rbtnCord.Image = global::mainVentana.Properties.Resources.b2c__2_;
             this.rbtnCord.LargeImage = global::mainVentana.Properties.Resources.b2c__2_;
             this.rbtnCord.Name = "rbtnCord";
@@ -811,6 +813,17 @@ namespace mainVentana
             this.panelContenedorForm.Size = new System.Drawing.Size(1113, 601);
             this.panelContenedorForm.TabIndex = 2;
             // 
+            // consultaBill
+            // 
+            this.consultaBill.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.consultaBill.Image = ((System.Drawing.Image)(resources.GetObject("consultaBill.Image")));
+            this.consultaBill.LargeImage = ((System.Drawing.Image)(resources.GetObject("consultaBill.LargeImage")));
+            this.consultaBill.Name = "consultaBill";
+            this.consultaBill.SmallImage = ((System.Drawing.Image)(resources.GetObject("consultaBill.SmallImage")));
+            this.consultaBill.Text = "Consulta Bill";
+            this.consultaBill.ToolTip = "Consulta bills de Arsys y Kepler";
+            this.consultaBill.Click += new System.EventHandler(this.consultaBill_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -916,6 +929,7 @@ namespace mainVentana
         private RibbonButton btnCargaTo;
         private RibbonButton ribbonButton6;
         private RibbonButton rbAgregarUsuario;
+        private RibbonButton consultaBill;
     }
 }
 

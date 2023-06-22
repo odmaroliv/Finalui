@@ -172,6 +172,28 @@ namespace mainVentana.VistaRecepcion
             }
 
         }
+
+        private void BuscaUltimaSalidaFull(string suc)
+        {
+           
+
+                    //List<string> lista1 = new List<string>();
+                    Negocios.AccesoRecepciones.ngAccesoRecepciones sls = new Negocios.AccesoRecepciones.ngAccesoRecepciones();
+                    var lista1 = sls.ultimaRecepcionsql(sRecepcion, 50);
+
+
+                    foreach (var i in lista1)
+                    {
+                        int sl = Convert.ToInt32(i.recep.ToString());
+                        ulDato = sRecepcion + "-UD5001-" + sl.ToString("D7");
+                        lblSalida.Text = ulDato;
+                        ulDatoSolo = sl.ToString("D7");
+                    }
+                    iniciodesalida = 1;// establece el numero de salida en el actual
+          
+
+        }
+
         List<vmEntBySalida> lista = new List<vmEntBySalida>();
         private async void BuscaentradasCarga()
         {
@@ -369,6 +391,8 @@ namespace mainVentana.VistaRecepcion
 
 
 
+        private Queue<string> colaEtiquetas = new Queue<string>();
+
         private void txbEscaneo_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode != Keys.Enter) return;
@@ -377,22 +401,30 @@ namespace mainVentana.VistaRecepcion
             e.SuppressKeyPress = true;
 
             string etiqueta = ObtenerEtiquetaEscaneada();
-            if (EtiquetaYaEscaneada(etiqueta))
-            {
-                txbEscaneo.Text = "";
-                return;
-            }
-            int fila = BuscarFilaEtiqueta(etiqueta);
-            if (fila != -1)
-            {
-                ProcesarEtiquetaEncontrada(etiqueta, fila);
-            }
-            else
-            {
-                ProcesarEtiquetaNoEncontrada(etiqueta);
-            }
-
+            colaEtiquetas.Enqueue(etiqueta);
             txbEscaneo.Text = "";
+            ProcesadoColaEtiquetas();
+        }
+
+        private void ProcesadoColaEtiquetas()
+        {
+            while (colaEtiquetas.Count > 0)
+            {
+                string etiqueta = colaEtiquetas.Dequeue();
+                if (EtiquetaYaEscaneada(etiqueta))
+                {
+                    continue;
+                }
+                int fila = BuscarFilaEtiqueta(etiqueta);
+                if (fila != -1)
+                {
+                    ProcesarEtiquetaEncontrada(etiqueta, fila);
+                }
+                else
+                {
+                    ProcesarEtiquetaNoEncontrada(etiqueta);
+                }
+            }
         }
 
         private string ObtenerEtiquetaEscaneada()
@@ -665,6 +697,7 @@ namespace mainVentana.VistaRecepcion
             }
         }
 
+
         private async void CreaRecepcionEnKDM1()
         {
             groupBox1.Enabled = false;
@@ -684,7 +717,7 @@ namespace mainVentana.VistaRecepcion
                 estatuss = "PRCSL";
             }
 
-            BuscaUltimaSalida(sRecepcion);
+            BuscaUltimaSalidaFull(sRecepcion);
             Negocios.AccesoRecepciones.altasRecepciones at = new Negocios.AccesoRecepciones.altasRecepciones();
             at.ActualizaSqlIov(sRecepcion.Trim(), 50, ulDatoSolo.Trim());
             at.CRecepcionEnKDM1(sRecepcion.Trim()

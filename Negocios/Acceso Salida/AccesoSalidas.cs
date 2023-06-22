@@ -221,7 +221,7 @@ namespace Negocios.Acceso_Salida
 
         }
 
-        public List<string> BuscUltimaSalida(string suc)
+      /*  public List<string> BuscUltimaSalida(string suc)
         {
 
             List<string> lista1 = new List<string>();
@@ -238,6 +238,35 @@ namespace Negocios.Acceso_Salida
 
 
             return lista1;
+
+        }*/
+        public List<vnNoSalida> BuscUltimaSalida(string datoSucIni, int modo)
+        {
+            string br = "KFUD" + modo + "01." + datoSucIni;
+            try
+            {
+                var lst2 = new List<vnNoSalida>();
+
+                using (modelo2Entities modelo = new modelo2Entities())
+
+                {
+                    var lista = from d in modelo.SqlIov
+                                where d.C1.Contains(br) //&& d.C19 != sdestino 
+                                select new vnNoSalida
+                                {
+                                    salida = d.C4
+                                };
+                    lst2 = lista.ToList();
+
+                }
+
+                return lst2;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
 
         }
 

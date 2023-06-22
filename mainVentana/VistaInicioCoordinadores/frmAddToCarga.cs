@@ -391,10 +391,12 @@ namespace mainVentana.VistaInicioCoordinadores
             string valor = cmboBox.SelectedValue != null ? cmboBox.SelectedValue.ToString() : "000000000";
             if (valor == "09")
             {
+                swBill.Enabled= true;
                 await OperacionBoton();
             }
             else
             {
+                swBill.Enabled = false;
                 await OperacionBoton();
             }
 

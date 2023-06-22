@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Datos.ViewModels.Entradas;
 using Ventana1.vm;
 using System.Windows.Forms;
+using Amazon.SimpleEmail.Model;
 
 namespace Negocios
 {
@@ -292,11 +293,11 @@ namespace Negocios
         //----------------------------------------------Salidas--------------------------------------------------------------------------
 
 
-        public async void CSalidaEnKDM1(string c1, string c2, string c3, decimal c4, decimal c5, string c6, decimal c8, DateTime c9, string c11, decimal c16, DateTime c18, string c24
+        public async Task<bool> CSalidaEnKDM1(string c1, string c2, string c3, decimal c4, decimal c5, string c6, decimal c8, DateTime c9, string c11, decimal c16, DateTime c18, string c24
             , string c31, string c61, string c63, string c67, DateTime c68, string c94, string c95, string c96, string c103)
         {
 
-
+            bool status = true;
 
             using (modelo2Entities modelo = new modelo2Entities())
             {
@@ -334,8 +335,9 @@ namespace Negocios
                 catch (Exception ex)
                 {
                     Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "AltasBD.UCSalidaEnKDM1() " + c6);
-                    throw;
+                    status = false;
                 }
+                return status;
             }
         }
 

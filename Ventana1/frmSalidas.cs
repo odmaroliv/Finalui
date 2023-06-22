@@ -25,6 +25,9 @@ using Negocios;
 using Datos.Datosenti;
 using KDMENT = Datos.Datosenti.KDMENT;
 using System.Drawing;
+using Microsoft.Win32;
+using OfficeOpenXml;
+
 
 namespace Ventana1
 {
@@ -130,6 +133,90 @@ namespace Ventana1
             txbtError.Text = "";
             txbtCorrecto.Text = "";
         }
+
+
+        private void ObtieneDatosDeExcel()
+        {
+            LimpiaDatosEnVista();
+
+            openFileDialog1.InitialDirectory = @"C:\\";
+            openFileDialog1.Filter = "Archivos de texto (*.xlsx)|*.xlsx";
+            List<vm.Salidas_por_cotizacion> lst = new List<vm.Salidas_por_cotizacion>();
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                using (ExcelPackage package = new ExcelPackage(new FileInfo(openFileDialog1.FileName)))
+                {
+                    ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+                    ExcelWorksheet workSheet = package.Workbook.Worksheets[0];
+                    int IRow = 2;
+
+                    while (!string.IsNullOrEmpty(workSheet.Cells[IRow, 1].Value?.ToString()))
+                    {
+                        vm.Salidas_por_cotizacion Odats = new vm.Salidas_por_cotizacion();
+
+                        Odats.c2 = workSheet.Cells[IRow, 1].Value?.ToString().Replace("'", "-").Replace("’", "-").Replace(" ", "").ToUpper().Trim() ?? string.Empty;
+
+                        if (!string.IsNullOrEmpty(workSheet.Cells[IRow, 2].Value?.ToString().Trim()))
+                        {
+                            lblChofer.Text = workSheet.Cells[IRow, 2].Value.ToString().Trim().Length >= 50 ? workSheet.Cells[IRow, 2].Value.ToString().Trim().Substring(0, 50) : workSheet.Cells[IRow, 2].Value.ToString().Trim();
+                        }
+                        if (!string.IsNullOrEmpty(workSheet.Cells[IRow, 3].Value?.ToString().Trim()))
+                        {
+                            lblPlacas.Text = workSheet.Cells[IRow, 3].Value.ToString().Trim().Length >= 50 ? workSheet.Cells[IRow, 3].Value.ToString().Trim().Substring(0, 50) : workSheet.Cells[IRow, 3].Value.ToString().Trim();
+                        }
+                        if (!string.IsNullOrEmpty(workSheet.Cells[IRow, 4].Value?.ToString().Trim()))
+                        {
+                            lblTransportista.Text = workSheet.Cells[IRow, 4].Value.ToString().Trim().Length >= 50 ? workSheet.Cells[IRow, 4].Value.ToString().Trim().Substring(0, 50) : workSheet.Cells[IRow, 4].Value.ToString().Trim();
+                        }
+
+                        lst.Add(Odats);
+
+                        IRow++;
+                    }
+                }
+
+                var query = lst.GroupBy(x => x.c2)
+               .Where(g => g.Count() > 1)
+               .Select(y => new { Etiquetas = y.Key, No = y.Count() - 1 })
+               .ToList();
+
+
+                var listasinduplis = new HashSet<string>(lst.Select(d => d.c2).ToList()).ToList();
+
+                dgvDuplicados.DataSource = query;
+
+                dgvRaw.DataSource = lst.ToList();
+
+                var nlst = lst.Select(d => d.c2).Distinct();
+                List<Salidas_por_cotizacion> nls = new List<Salidas_por_cotizacion>();
+                foreach (var q in nlst)
+                {
+                    nls.Add(new Salidas_por_cotizacion { c2 = q.ToString() });
+                }
+
+
+                dgvInicial.DataSource = nls.ToList();
+
+
+
+                txbSubT.Text = lst.Count().ToString();
+                txbTotal.Text = listasinduplis.Count().ToString();
+
+
+
+                int cantidadrep = 0;
+                foreach (var i in query)
+                {
+                    cantidadrep = cantidadrep + i.No;
+                }
+                txbtEtiduplicadas.Text = cantidadrep.ToString();
+
+            }
+        }
+
+
+        /*
         private void ObtieneDatosDeExcel()
         {
             LimpiaDatosEnVista();
@@ -214,19 +301,19 @@ namespace Ventana1
 
         }
 
-
+        */
 
         private void BuscaUltimaSalida(string suc)
         {
 
             //List<string> lista1 = new List<string>();
             Negocios.Acceso_Salida.AccesoSalidas sls = new Negocios.Acceso_Salida.AccesoSalidas();
-            var lista1 = sls.BuscUltimaSalida(suc);
+            var lista1 = sls.BuscUltimaSalida(suc,45);
 
 
             foreach (var i in lista1)
             {
-                int sl = Convert.ToInt32(i.ToString()) + 1;
+                int sl = Convert.ToInt32(i.salida.ToString());
                 ulDato = sOrigen + "-UD4501-" + sl.ToString("D7");
                 lblSalida.Text = ulDato;
                 ulDatoSolo = sl.ToString("D7");
@@ -320,9 +407,10 @@ namespace Ventana1
             GifLoading(1);
             groupBox1.Enabled = false;
             groupBox2.Enabled = false;
+            ActualizaSqlIov(sOrigen.Trim(), 45, ulDatoSolo.Trim());
             BuscaUltimaSalida(sOrigen);
             Negocios.AltasBD at = new AltasBD();
-            at.CSalidaEnKDM1(sOrigen
+            bool resultado = await at.CSalidaEnKDM1(sOrigen
                 , "U"
                 , "D"
                 , Convert.ToDecimal(45)
@@ -344,7 +432,10 @@ namespace Ventana1
                 , lblChofer.Text.Length >= 100 ? lblChofer.Text.Substring(0, 100) : lblChofer.Text
                 , sDestino);
 
-
+            if (resultado==false)
+            {
+                ActualizaSqlIov(sOrigen.Trim(), 45, ulDatoSolo.Trim());
+            }
             if (sDestino == "CSL" && sOrigen == "SD")
             {
                 await ModificaKDMENTTOCABO();
@@ -386,8 +477,26 @@ namespace Ventana1
 
             BuscaUltimaSalida(sOrigen);
         }
-        
-      
+        public void ActualizaSqlIov(string datoSucIni, int modo, string dato)
+        {
+
+
+            string br = "KFUD" + modo + "01." + datoSucIni;
+            using (modelo2Entities modelo = new modelo2Entities())
+            {
+
+                try
+                {
+                    modelo.aumentaSQLint(br, modo.ToString().Trim());
+                }
+                catch (Exception)
+                {
+
+                    System.Windows.Forms.MessageBox.Show("Ha Ocurrido un error, datos faltantes o incorrectos.");
+                }
+            }
+        }
+
         //Sucursal destino cabo sucursal origen tijuana
         private async Task<bool> ModificaKDMENTtj()
         {

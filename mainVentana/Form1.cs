@@ -542,5 +542,10 @@ namespace mainVentana
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void consultaBill_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

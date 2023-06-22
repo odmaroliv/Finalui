@@ -251,6 +251,7 @@
     <Compile Include="ViewModels\Salidas\vmEntByCarga.cs" />
     <Compile Include="ViewModels\Salidas\vmEnviodeNotificacion.cs" />
     <Compile Include="ViewModels\Salidas\vmGeneralesSalidas.cs" />
+    <Compile Include="ViewModels\Salidas\vnNoSalida.cs" />
     <Compile Include="ViewModels\Servicios\FechaActual.cs" />
     <Compile Include="ViewModels\Servicios\Paridad.cs" />
     <Compile Include="ViewModels\Login\vmLogin.cs" />

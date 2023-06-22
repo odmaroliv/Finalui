@@ -8,6 +8,7 @@ using Microsoft.Win32;
 using Negocios;
 using Negocios.Acceso_Salida;
 using Negocios.WebHooks;
+using OfficeOpenXml;
 using SpreadsheetLight;
 using System;
 using System.Collections.Generic;
@@ -122,17 +123,17 @@ namespace mainVentana.VistaOrSalida
         {
             if (ulSalidaPSolo == "")
             {
-                if (iniciodesalida ==0)
+                if (iniciodesalida == 0)
                 {
 
-                //List<string> lista1 = new List<string>();
-                Negocios.Acceso_Salida.AccesoSalidas sls = new Negocios.Acceso_Salida.AccesoSalidas();
-                var lista1 = sls.BuscUltimaSalida(suc);
+                    //List<string> lista1 = new List<string>();
+                    Negocios.Acceso_Salida.AccesoSalidas sls = new Negocios.Acceso_Salida.AccesoSalidas();
+                    var lista1 = sls.BuscUltimaSalida(suc, 45);
 
 
                     foreach (var i in lista1)
                     {
-                        int sl = Convert.ToInt32(i.ToString()) + 1;
+                        int sl = Convert.ToInt32(i.salida.ToString());
                         ulDato = sOrigen + "-UD4501-" + sl.ToString("D7");
                         lblSalida.Text = ulDato;
                         ulDatoSolo = sl.ToString("D7");
@@ -140,7 +141,7 @@ namespace mainVentana.VistaOrSalida
                     iniciodesalida = 1;// establece el numero de salida en el actual
                 }
             }
-                else
+            else
             {
                 char[] ch = "-".ToCharArray();
                 string sl = ulSalidaPSolo.Split(ch)[2];
@@ -153,6 +154,60 @@ namespace mainVentana.VistaOrSalida
 
 
         }
+
+
+
+
+
+        private void BuscaUltimaSalidaFull(string suc)
+        {
+          
+              
+                    //List<string> lista1 = new List<string>();
+                    Negocios.Acceso_Salida.AccesoSalidas sls = new Negocios.Acceso_Salida.AccesoSalidas();
+                    var lista1 = sls.BuscUltimaSalida(suc, 45);
+
+
+                    foreach (var i in lista1)
+                    {
+                        int sl = Convert.ToInt32(i.salida.ToString());
+                        ulDato = sOrigen + "-UD4501-" + sl.ToString("D7");
+                        lblSalida.Text = ulDato;
+                        ulDatoSolo = sl.ToString("D7");
+                    }
+                    iniciodesalida = 1;// establece el numero de salida en el actual
+                
+          
+
+        }
+
+
+
+
+
+
+
+
+        public void ActualizaSqlIov(string datoSucIni, int modo, string dato)
+        {
+
+
+            string br = "KFUD" + modo + "01." + datoSucIni;
+            using (modelo2Entities modelo = new modelo2Entities())
+            {
+
+                try
+                {
+                    modelo.aumentaSQLint(br, modo.ToString().Trim());
+                }
+                catch (Exception)
+                {
+
+                    System.Windows.Forms.MessageBox.Show("Ha Ocurrido un error, datos faltantes o incorrectos.");
+                }
+            }
+        }
+
         private void ValidaOrigen(object sender, EventArgs e)
         {
             RadioButton rb = (RadioButton)sender;
@@ -628,6 +683,8 @@ namespace mainVentana.VistaOrSalida
 
             return error;
         }
+        private Queue<string> colaEtiquetas = new Queue<string>();
+
         private void txbEscaneo_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode != Keys.Enter)
@@ -638,9 +695,20 @@ namespace mainVentana.VistaOrSalida
 
             var etiqueta = txbEscaneo.Text?.Trim()?.ToUpper()?.Replace("'", "-");
             txbEscaneo.Text = "";
-            ProcesadoEtiqueta(etiqueta);
 
+            colaEtiquetas.Enqueue(etiqueta);
+            ProcesadoColaEtiquetas();
         }
+
+        private void ProcesadoColaEtiquetas()
+        {
+            while (colaEtiquetas.Count > 0)
+            {
+                var etiqueta = colaEtiquetas.Dequeue();
+                ProcesadoEtiqueta(etiqueta);
+            }
+        }
+
 
         private void ProcesadoEtiqueta(string etiqueta)
         {
@@ -722,9 +790,10 @@ namespace mainVentana.VistaOrSalida
 
             groupBox1.Enabled = false;
             groupBox2.Enabled = false;
-            BuscaUltimaSalida(sOrigen);
+            BuscaUltimaSalidaFull(sOrigen);
+            ActualizaSqlIov(sOrigen.Trim(), 45, ulDatoSolo.Trim());
             Negocios.AltasBD at = new AltasBD();
-            at.CSalidaEnKDM1(sOrigen
+            bool resultado = await at.CSalidaEnKDM1(sOrigen
                 , "U"
                 , "D"
                 , Convert.ToDecimal(45)
@@ -746,6 +815,10 @@ namespace mainVentana.VistaOrSalida
                 , txbChofer.Text.Length >= 100 ? txbChofer.Text.Substring(0, 100) : txbChofer.Text
                 , sDestino);
 
+            if (resultado == false)
+            {
+                ActualizaSqlIov(sOrigen.Trim(), 45, ulDatoSolo.Trim());
+            }
 
             btnIniciaSalida.Enabled = false;
             bntSalidaPausa.Enabled = false;
@@ -1162,7 +1235,7 @@ namespace mainVentana.VistaOrSalida
 
                         try
                         {
-                            MandaHookRing();
+                           // MandaHookRing();
                         }
                         catch (Exception)
                         {
@@ -1255,80 +1328,71 @@ namespace mainVentana.VistaOrSalida
         }
         private async void ObtieneDatosDeExcel()
         {
-
-
             openFileDialog1.InitialDirectory = @"C:\\";
             openFileDialog1.Filter = "Archivos de texto (*.xlsx)|*.xlsx";
             List<Ventana1.vm.Salidas_por_cotizacion> lst = new List<Ventana1.vm.Salidas_por_cotizacion>();
 
-            // codigo para abrir el cuadro de dialogo
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
-                    System.Data.DataTable dt = new System.Data.DataTable();
-                    SLDocument doc = new SLDocument(openFileDialog1.FileName);
-                    int IRow = 2;
-
-                    while (!string.IsNullOrEmpty(doc.GetCellValueAsString(IRow, 1)))
+                    using (ExcelPackage package = new ExcelPackage(new FileInfo(openFileDialog1.FileName)))
                     {
-                        Ventana1.vm.Salidas_por_cotizacion Odats = new Ventana1.vm.Salidas_por_cotizacion();
+                        ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+                        ExcelWorksheet workSheet = package.Workbook.Worksheets[0];
+                        int IRow = 2;
 
-                        Odats.c2 = doc.GetCellValueAsString(IRow, 1).ToString().Replace("'", "-").Replace("’", "-").Replace(" ", "").ToUpper().Trim();
-
-                        if (doc.GetCellValueAsString(IRow, 2).ToString().Trim() != "")
+                        while (!string.IsNullOrEmpty(workSheet.Cells[IRow, 1].Value?.ToString()))
                         {
-                            txbChofer.Text = doc.GetCellValueAsString(IRow, 2).ToString().Trim().Length >= 50 ? doc.GetCellValueAsString(IRow, 2).ToString().Trim().Substring(0, 50) : doc.GetCellValueAsString(IRow, 2).ToString().Trim();
+                            Ventana1.vm.Salidas_por_cotizacion Odats = new Ventana1.vm.Salidas_por_cotizacion();
+
+                            Odats.c2 = workSheet.Cells[IRow, 1].Value?.ToString().Replace("'", "-").Replace("’", "-").Replace(" ", "").ToUpper().Trim() ?? string.Empty;
+
+                            if (!string.IsNullOrEmpty(workSheet.Cells[IRow, 2].Value?.ToString().Trim()))
+                            {
+                                txbChofer.Text = workSheet.Cells[IRow, 2].Value.ToString().Trim().Length >= 50 ? workSheet.Cells[IRow, 2].Value.ToString().Trim().Substring(0, 50) : workSheet.Cells[IRow, 2].Value.ToString().Trim();
+                            }
+                            if (!string.IsNullOrEmpty(workSheet.Cells[IRow, 3].Value?.ToString().Trim()))
+                            {
+                                txbPlacas.Text = workSheet.Cells[IRow, 3].Value.ToString().Trim().Length >= 50 ? workSheet.Cells[IRow, 3].Value.ToString().Trim().Substring(0, 50) : workSheet.Cells[IRow, 3].Value.ToString().Trim();
+                            }
+                            if (!string.IsNullOrEmpty(workSheet.Cells[IRow, 4].Value?.ToString().Trim()))
+                            {
+                                txbTransportista.Text = workSheet.Cells[IRow, 4].Value.ToString().Trim().Length >= 50 ? workSheet.Cells[IRow, 4].Value.ToString().Trim().Substring(0, 50) : workSheet.Cells[IRow, 4].Value.ToString().Trim();
+                            }
+
+                            lst.Add(Odats);
+
+                            IRow++;
                         }
-                        if (doc.GetCellValueAsString(IRow, 3).ToString().Trim() != "")
-                        {
-                            txbPlacas.Text = doc.GetCellValueAsString(IRow, 3).ToString().Trim().Length >= 50 ? doc.GetCellValueAsString(IRow, 3).ToString().Trim().Substring(0, 50) : doc.GetCellValueAsString(IRow, 3).ToString().Trim();
-                        }
-                        if (doc.GetCellValueAsString(IRow, 4).ToString().Trim() != "")
-                        {
-                            txbTransportista.Text = doc.GetCellValueAsString(IRow, 4).ToString().Trim().Length >= 50 ? doc.GetCellValueAsString(IRow, 4).ToString().Trim().Substring(0, 50) : doc.GetCellValueAsString(IRow, 4).ToString().Trim();
-                        }
-
-
-
-                        lst.Add(Odats);
-
-                        IRow++;
                     }
-                    doc.Dispose();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Cierra bien el archivo " + ex.Message);
                 }
 
+                var query = lst.GroupBy(x => x.c2)
+                    .Where(g => g.Count() > 1)
+                    .Select(y => new { Etiquetas = y.Key, No = y.Count() - 1 })
+                    .ToList();
 
-            }
+                var listasinduplis = new HashSet<string>(lst.Select(d => d.c2).ToList()).ToList();
 
-            var query = lst.GroupBy(x => x.c2)
-              .Where(g => g.Count() > 1)
-              .Select(y => new { Etiquetas = y.Key, No = y.Count() - 1 })
-              .ToList();
+                var nlst = lst.Select(d => d.c2).Distinct();
+                List<Salidas_por_cotizacion> nls = new List<Salidas_por_cotizacion>();
+                foreach (var q in nlst)
+                {
+                    nls.Add(new Salidas_por_cotizacion { c2 = q.ToString() });
+                }
 
-
-            var listasinduplis = new HashSet<string>(lst.Select(d => d.c2).ToList()).ToList();
-
-            //dgvDuplicados.DataSource = query;
-
-            //            dgvRaw.DataSource = lst.ToList();
-
-            var nlst = lst.Select(d => d.c2).Distinct();
-            List<Salidas_por_cotizacion> nls = new List<Salidas_por_cotizacion>();
-            foreach (var q in nlst)
-            {
-                nls.Add(new Salidas_por_cotizacion { c2 = q.ToString() });
-            }
-
-            foreach (var q in nls)
-            {
-                await ProcesarEtiquetaAsync(q.c2);
+                foreach (var q in nls)
+                {
+                    await ProcesarEtiquetaAsync(q.c2);
+                }
             }
         }
+
         private async Task ProcesarEtiquetaAsync(string etiqueta)
         {
             await Task.Run(() => {
@@ -1341,6 +1405,11 @@ namespace mainVentana.VistaOrSalida
         private void iconButton1_Click(object sender, EventArgs e)
         {
            MandaHookRing();
+        }
+
+        private void frmOrdSalida_Load(object sender, EventArgs e)
+        {
+
         }
     }
 
