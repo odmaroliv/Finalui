@@ -9,16 +9,20 @@ namespace Datos.ViewModels.Coord
 {
     public class vmEntCordsCot
     {
-      
-            [DisplayName("Entrada")]
-            public string entrada { get; set; }
-        
-            [DisplayName("Val.Factura")]
-            public string valFact { get; set; }
-            [DisplayName("Val.Arnian")]
-            public string valArn { get; set; }
+
+        [DisplayName("Entrada")]
+        public string entrada { get; set; }
+
+        [DisplayName("Val.Factura")]
+        public string valFact { get; set; }
+        [DisplayName("Val.Arnian")]
+        public string valArn { get; set; }
         // public string etiqueta { get; set; }
-            public string Origen { get; set; }
+        public string Origen { get; set; }
+
+
+        [DisplayName("Operacion")]
+        public string tOper { get; set; }
 
 
     }

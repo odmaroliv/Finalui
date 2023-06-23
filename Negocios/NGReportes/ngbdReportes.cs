@@ -393,6 +393,7 @@ namespace Negocios.NGReportes
                                          //etiqueta = d.C9,
                                          valFact = k.C102,
                                          valArn = k.C16.ToString(),
+                                         tOper = k.C101,
 
                                      }); ;
                         lst = lista.ToList();

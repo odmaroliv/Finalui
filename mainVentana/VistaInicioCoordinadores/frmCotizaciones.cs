@@ -113,6 +113,7 @@ namespace mainVentana.VistaInicioCoordinadores
                             valArn = w.valArn,
                             valFact = w.valFact,
                             Origen = w.Origen,
+                            tOper = w.tOper,
                         });
 
                         break;

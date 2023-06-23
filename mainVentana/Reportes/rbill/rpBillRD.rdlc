@@ -802,6 +802,38 @@
                   <PaddingBottom>2pt</PaddingBottom>
                 </Style>
               </Textbox>
+              <Textbox Name="to">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Parameters!to.Value</Value>
+                        <Style>
+                          <FontSize>8pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>to</rd:DefaultName>
+                <Top>0.06473in</Top>
+                <Left>3.43452in</Left>
+                <Height>0.20833in</Height>
+                <Width>2.58507in</Width>
+                <ZIndex>20</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Top>0.06944in</Top>
@@ -815,38 +847,6 @@
               </Border>
             </Style>
           </Rectangle>
-          <Textbox Name="to">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Parameters!to.Value</Value>
-                    <Style>
-                      <FontSize>8pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>to</rd:DefaultName>
-            <Top>0.13417in</Top>
-            <Left>3.65673in</Left>
-            <Height>0.20833in</Height>
-            <Width>2.51911in</Width>
-            <ZIndex>3</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
           <Tablix Name="Tablix1">
             <TablixBody>
               <TablixColumns>
@@ -1225,13 +1225,12 @@
             </TablixRowHierarchy>
             <RepeatRowHeaders>true</RepeatRowHeaders>
             <FixedRowHeaders>true</FixedRowHeaders>
-            <KeepTogether>true</KeepTogether>
             <DataSetName>ListaEntradasEnBill</DataSetName>
             <Top>4.13417in</Top>
             <Left>0.15626in</Left>
             <Height>0.5in</Height>
             <Width>6.24874in</Width>
-            <ZIndex>4</ZIndex>
+            <ZIndex>3</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1357,7 +1356,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>numeroBill</rd:DefaultName>
-              <Top>0.40403in</Top>
+              <Top>0.375in</Top>
               <Left>4.95709in</Left>
               <Height>0.25in</Height>
               <Width>1.21875in</Width>
@@ -1406,6 +1405,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
+              <Top>0in</Top>
               <Left>5.51042in</Left>
               <Height>0.20833in</Height>
               <Width>0.89458in</Width>

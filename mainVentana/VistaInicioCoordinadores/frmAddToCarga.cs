@@ -306,15 +306,17 @@ namespace mainVentana.VistaInicioCoordinadores
                 txbCarga.Text = "";
                 _isBussy = true;
                 btnGuardar.Enabled = false;
-                
+
                 DateTime datoFecha = regresafecha();
+               
                 string fechaHoy = datoFecha == null ? DateTime.Now.ToString("MM/dd/yyyy") : datoFecha.ToString("MM/dd/yyyy");
+              
+                Negocios.NGCarga.altasBDCarga get = new Negocios.NGCarga.altasBDCarga();
+                bool st = crearBillkdm1();
                 string b_so = sucursal;
                 string b_car = _numeroBill;
                 string b_billCompleto = b_so + "-UD5501-" + b_car;
 
-                Negocios.NGCarga.altasBDCarga get = new Negocios.NGCarga.altasBDCarga();
-                bool st = crearBillkdm1();
                 if (st)
                 {
                     bool dato = await get.AsignarABill(listaBultos, b_billCompleto, fechaHoy, datoTipoOper);
@@ -413,6 +415,7 @@ namespace mainVentana.VistaInicioCoordinadores
                 _isBill = false;
                 tipoOper.Enabled = true;
                 datoTipoOper = "";
+                lblnBill.Text = "";
             }
 
         }
@@ -430,8 +433,11 @@ namespace mainVentana.VistaInicioCoordinadores
             }
             // return 
             _numeroBill = dBill != "" || dBill == null ? dBill.ToString().Trim() : "";
+
+            lblnBill.Text = _numeroBill;
+
         }
-       
+
         private bool crearBillkdm1()
         {
             string datoSucIni = sucursal;
