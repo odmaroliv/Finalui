@@ -70,7 +70,7 @@
             this.txbPass2.PasswordChar = '\0';
             this.txbPass2.Size = new System.Drawing.Size(275, 31);
             this.txbPass2.TabIndex = 1;
-            this.txbPass2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbPass_KeyDown);
+            this.txbPass2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbPass2_KeyDown);
             // 
             // label1
             // 

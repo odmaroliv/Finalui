@@ -6,16 +6,19 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Runtime;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media;
 using Datos.Datosenti;
 using mainVentana.Helpers;
 using mainVentana.Loading;
 using mainVentana.Properties;
 using mainVentana.vistaConfiguraciones;
+using NAudio.Wave;
 using Negocios;
 
 namespace mainVentana
@@ -100,15 +103,14 @@ namespace mainVentana
             }
         
             return 1;
-            
+
         }
 
-
-        
 
 
         private async void iconButton1_Click(object sender, EventArgs e)
         {
+
             int result = await ConeccionRed.TestInternet();
             if (result == 1)
             {
@@ -117,7 +119,7 @@ namespace mainVentana
             }
             else
             {
-                if (_prueba==true)
+                if (_prueba == true)
                 {
                     if (MessageBox.Show("Estas igresando al entorno de PRUEBAS, ten cuidado.\nNada de lo que hagas aqui sera guardado para su uso real", "Estas seguro?", MessageBoxButtons.OKCancel, MessageBoxIcon.Stop) == DialogResult.Cancel)
                     {
@@ -126,8 +128,9 @@ namespace mainVentana
 
                 }
                 Validaciones_P_Busqueda();
-                
+
             }
+
 
 
         }
@@ -151,7 +154,7 @@ namespace mainVentana
 
         private async Task Inicio()
         {
-            int result = await ConeccionRed.TestInternet();
+           /* int result = await ConeccionRed.TestInternet();
 
             // Verificar la conexión a internet
             if (result != 0)
@@ -159,6 +162,7 @@ namespace mainVentana
                 MessageBox.Show("No hay conexión a internet.");
                 return;
             }
+           */
 
             // Validar credenciales de inicio de sesión
             Servicios vld = new Servicios();
@@ -167,11 +171,16 @@ namespace mainVentana
                 MessageBox.Show("Usuario o contraseña incorrectos.");
                 return;
             }
-
+           
             // Obtener configuraciones de correo electrónico
             bool smtp = await vld.ObtieneEmail();
             bool hk = await vld.RingCHook();
             // Mostrar formulario
+            using (SoundPlayer player = new SoundPlayer(Properties.Resources.SonidoArsys))
+            {
+                player.Play();
+            }
+
             using (Form1 frm1 = new Form1())
             {
                 frm1.Cerrado += new Form1.Cierra(ActivaElForm);
@@ -219,31 +228,7 @@ namespace mainVentana
             this.Close();
         }
 
-        private async void txbPass_KeyDown(object sender, KeyEventArgs e)
-        {
-            int result = await ConeccionRed.TestInternet();
-            if (e.KeyCode == Keys.Return)
-            {
-                if (result == 1)
-                {
-                    MessageBox.Show("No tienes internet");
-                    return;
-                }
-                loadinggg(1);
-
-                if (_prueba == true)
-                {
-                    if (MessageBox.Show("Estas igresando al entorno de PRUEBAS, ten cuidado.\nNada de lo que hagas aqui sera guardado para su uso real", "Estas seguro?", MessageBoxButtons.OKCancel, MessageBoxIcon.Stop) == DialogResult.Cancel)
-                    {
-                        return;
-                    }
-
-                }
-
-                Validaciones_P_Busqueda();
-               
-            }
-        }
+      
         private async void Validaciones_P_Busqueda()
         {
             
@@ -351,6 +336,34 @@ namespace mainVentana
             Settings.Default.Save();
             psisarn.CS(Negocios.MB.mbsecurity.SN, Negocios.MB.mbsecurity.CSN, Settings.Default.Catalogo);
            
+        }
+
+        private async void txbPass2_KeyDown(object sender, KeyEventArgs e)
+        {
+            int result = await ConeccionRed.TestInternet();
+
+            if (e.KeyCode == Keys.Return)
+            {
+                e.SuppressKeyPress = true;  // Esto evitará el sonido de beep
+
+                if (result == 1)
+                {
+                    MessageBox.Show("No tienes internet");
+                    return;
+                }
+
+                loadinggg(1);
+
+                if (_prueba == true)
+                {
+                    if (MessageBox.Show("Estas ingresando al entorno de PRUEBAS, ten cuidado.\nNada de lo que hagas aquí será guardado para su uso real", "Estas seguro?", MessageBoxButtons.OKCancel, MessageBoxIcon.Stop) == DialogResult.Cancel)
+                    {
+                        return;
+                    }
+                }
+
+                Validaciones_P_Busqueda();
+            }
         }
     }
 }

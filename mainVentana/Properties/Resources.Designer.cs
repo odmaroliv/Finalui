@@ -382,7 +382,7 @@ namespace mainVentana.Properties {
         ///  &lt;meta content=&quot;width=device-width, initial-scale=1&quot; name=&quot;viewport&quot;&gt;
         ///  &lt;meta name=&quot;x-apple-disable-message-reformatting&quot;&gt;
         ///  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
-        ///  &lt;meta content= [resto de la cadena truncado]&quot;;.
+        ///  &lt;meta c [resto de la cadena truncado]&quot;;.
         /// </summary>
         internal static string salidacorreo {
             get {
@@ -397,6 +397,15 @@ namespace mainVentana.Properties {
             get {
                 object obj = ResourceManager.GetObject("settings", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream SonidoArsys {
+            get {
+                return ResourceManager.GetStream("SonidoArsys", resourceCulture);
             }
         }
         
