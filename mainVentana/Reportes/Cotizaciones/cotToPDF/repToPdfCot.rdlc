@@ -556,10 +556,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>referencia</rd:DefaultName>
-            <Top>0.67236in</Top>
-            <Left>4.90153in</Left>
-            <Height>0.25in</Height>
-            <Width>2.24296in</Width>
+            <Top>0.68055in</Top>
+            <Left>5.34945in</Left>
+            <Height>0.24181in</Height>
+            <Width>1.79504in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -649,7 +649,7 @@
             <Top>0.67236in</Top>
             <Left>1.34945in</Left>
             <Height>0.25in</Height>
-            <Width>1.05903in</Width>
+            <Width>0.69607in</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -1189,8 +1189,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>0.68055in</Top>
-            <Left>2.46134in</Left>
+            <Top>0.67236in</Top>
+            <Left>2.08719in</Left>
             <Height>0.25in</Height>
             <Width>0.43324in</Width>
             <ZIndex>22</ZIndex>
@@ -1224,8 +1224,8 @@
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
             <Top>0.68055in</Top>
-            <Left>4.00989in</Left>
-            <Height>0.25in</Height>
+            <Left>4.4717in</Left>
+            <Height>0.24181in</Height>
             <Width>0.83608in</Width>
             <ZIndex>23</ZIndex>
             <Style>
@@ -1253,10 +1253,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>referencia</rd:DefaultName>
-            <Top>0.68055in</Top>
-            <Left>2.93625in</Left>
+            <Top>0.67236in</Top>
+            <Left>2.58987in</Left>
             <Height>0.25in</Height>
-            <Width>1.03198in</Width>
+            <Width>1.81238in</Width>
             <ZIndex>24</ZIndex>
             <Style>
               <Border>

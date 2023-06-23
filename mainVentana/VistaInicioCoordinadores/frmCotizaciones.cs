@@ -771,7 +771,7 @@ namespace mainVentana.VistaInicioCoordinadores
 
                 alta.CreaCotizacionKDM1(sGlobal, nCotizacionG, DateTime.Now, lblCodCliente.Text.Trim(),
                     0, decimal.Parse(txbIva.Text), decimal.Parse(txbTotalArn.Text), DateTime.Now, cmbTipoPago.GetItemText(cmbTipoPago.SelectedItem).ToString(), cliente.Text.Trim(), "", "", "", float.Parse(txbParidad.Text.Trim()),
-                    decimal.Parse(txbSubTo.Text), "N", Negocios.Common.Cache.CacheLogin.username, DateTime.Now, txbGoodUsd.Text, txbGoodMnx.Text, txbReferencia.Text, txbTotalArn.Text, txbSerFee.Text, txbTotalArnMXN.Text, TaxAFees, txbComent.Text, txbPedimento.Text, lblTipoImp.Text, descuentoGlobal.ToString());
+                    decimal.Parse(txbSubTo.Text), "N", Negocios.Common.Cache.CacheLogin.nombre, DateTime.Now, txbGoodUsd.Text, txbGoodMnx.Text, txbReferencia.Text, txbTotalArn.Text, txbSerFee.Text, txbTotalArnMXN.Text, TaxAFees, txbComent.Text, txbPedimento.Text, lblTipoImp.Text, descuentoGlobal.ToString());
                 alta.ActualizaSqlIov(sGlobal, 34, nCotizacionG);
                 AltaKDMENT();
                 AltaKDM2();
