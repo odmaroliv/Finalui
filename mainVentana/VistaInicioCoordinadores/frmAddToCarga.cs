@@ -329,10 +329,7 @@ namespace mainVentana.VistaInicioCoordinadores
                         await OperacionBoton();
                     }
                 }
-              
-
                 
-
             }
             else
             {

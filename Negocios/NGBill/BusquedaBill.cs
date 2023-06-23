@@ -1,7 +1,9 @@
 ﻿using Datos.Datosenti;
 using Datos.ViewModels.Bill;
+using Datos.ViewModels.Carga;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.SqlServer;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
@@ -310,6 +312,104 @@ namespace Negocios.NGBill
                 }
             }
         }
+
+
+        public List<vmBillEntradaDoc> EntradasEnBill(string datoSucIni, int carga, string modo = null)
+        {
+            string codigo = datoSucIni.Trim() + "-UD5501-" + carga.ToString("D7");
+
+            try
+            {
+                var lst2 = new List<vmBillEntradaDoc>();
+
+                using (modelo2Entities modelo = new modelo2Entities())
+
+                {
+
+                    var lista = (from d in modelo.KDMENT.AsNoTracking()
+                                 join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
+                                 where d.C34.Contains(codigo) && k.C4 ==  35 //&& d.C19 != sdestino 
+                                 select new vmBillEntradaDoc
+                                 {
+                                     entrada = d.C6,
+                                     etiqueta = d.C9,
+                                     desc = d.C42,
+                                     oper = k.C101
+                                 }).ToList();
+
+                    lst2 = lista.Select((d, index) => new vmBillEntradaDoc
+                    {
+                        entrada = d.entrada,
+                        etiqueta = d.etiqueta,
+                        desc = !String.IsNullOrWhiteSpace(d.desc) ? d.desc.Trim() : "",
+                        oper = d.oper,
+                        nItem = index + 1 // Agregar el número de fila sumando 1 al índice
+                    }).ToList();
+
+
+                }
+
+                return lst2;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        public async Task<vmInfoBill> InfoEnBill(string entBus, string modo = null)
+        {
+           // string codigo = datoSucIni.Trim() + "-UD5501-" + carga.ToString("D7");
+
+            try
+            {
+                var dt = new vmInfoBill();
+
+                using (modelo2Entities modelo = new modelo2Entities())
+
+                {
+
+                      var lista = (from d in modelo.KDMENT
+                                    join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
+                                    join a in modelo.KDUV on k.C12 equals a.C2
+                                    //join u in modelo.KDUSUARIOS on a.C22 equals u.C1
+                                    join s in modelo.KDUD on k.C10 equals s.C2
+                                            
+                                   
+
+                                 where d.C9 == entBus && k.C4 == 35
+                                 select new vmInfoBill
+                                 {
+                                     toNombre = d.C24,
+                                     toCalle = d.C25,
+                                     toColonia = d.C26,
+                                     toLocalidad = d.C27,
+                                     toZip = d.C28,
+                                     fromNombre = s.C3,
+                                     fromCalle = s.C4,
+                                     fromColonia = s.C5,
+                                     fromLocalidad = s.C6,
+                                     fromZip = s.C27,
+                                     telCliente = s.C7,
+                                     coord = a.C3,
+                                    
+                                 });
+                    dt = lista.FirstOrDefault();
+
+                }
+
+               return dt;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+        
 
     }
 

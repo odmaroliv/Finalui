@@ -30,10 +30,10 @@
     <UpdateUrl>https://raw.githubusercontent.com/odmaroliv/Finalui/master/published/</UpdateUrl>
     <ProductName>ARSYS</ProductName>
     <PublisherName>Daniel Olivares H.</PublisherName>
-    <MinimumRequiredVersion>1.0.0.167</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.0.168</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>167</ApplicationRevision>
+    <ApplicationRevision>168</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -761,6 +761,7 @@
     </EmbeddedResource>
     <None Include="mainVentana_TemporaryKey.pfx" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Datos.ViewModels.Bill.vmBillEntradaDoc.datasource" />
     <None Include="Properties\DataSources\Datos.ViewModels.Carga.vmEntradasEnCarga.datasource" />
     <None Include="Properties\DataSources\Datos.ViewModels.Coord.vmInfoTablaCot.datasource" />
     <None Include="Properties\DataSources\Datos.ViewModels.Reportes.Bill.vmBillOfTable.datasource" />

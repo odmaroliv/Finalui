@@ -20,6 +20,7 @@ using mainVentana.Reportes.Cotizaciones.Antiguas;
 using mainVentana.VistaEntrada.Proovedor;
 using Vanara.PInvoke;
 using mainVentana.vistaConfiguraciones;
+using mainVentana.VistaBill;
 
 namespace mainVentana
 {
@@ -545,7 +546,10 @@ namespace mainVentana
 
         private void consultaBill_Click(object sender, EventArgs e)
         {
-
+            frmConsultaBill bll = new frmConsultaBill();
+            openForms.Add(bll);
+            bll.FormClosed += frm_FormClosed_Libera;
+            bll.Show();
         }
     }
 }

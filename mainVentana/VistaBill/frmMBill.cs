@@ -34,8 +34,7 @@ namespace mainVentana.VistaBill
         }
 
         private void gunaGradientTileButton2_Click(object sender, EventArgs e)
-        {
-            using (frmBillVisorImp bill = new frmBillVisorImp())
+        {/* using (frmBillVisorImp bill = new frmBillVisorImp())
             {
                 bill.from = "Cliente";
                 bill.fromCalle = "Hola";
@@ -60,7 +59,7 @@ namespace mainVentana.VistaBill
 
                 bill.lst = lst;
                 bill.ShowDialog();
-            }
+            }*/
         }
     }
 }

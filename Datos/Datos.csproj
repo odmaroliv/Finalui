@@ -142,6 +142,8 @@
     <Compile Include="Datosenti\SqlIov.cs">
       <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Bill\vmBillEntradaDoc.cs" />
+    <Compile Include="ViewModels\Bill\vmInfoBill.cs" />
     <Compile Include="ViewModels\Bill\VMSalidasBill.cs" />
     <Compile Include="ViewModels\Carga\CargaCordsGeneral.cs" />
     <Compile Include="ViewModels\Carga\vmCargaConsultaGeneral.cs" />

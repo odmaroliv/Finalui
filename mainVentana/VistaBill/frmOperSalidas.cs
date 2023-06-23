@@ -276,7 +276,7 @@ namespace mainVentana.VistaBill
 
         private void LlamaReporte()
         {
-            using (frmBillVisorImp bill = new frmBillVisorImp())
+            /*using (frmBillVisorImp bill = new frmBillVisorImp())
             {
                 bill.from = "Cliente";
                 bill.fromCalle = "Hola";
@@ -301,7 +301,7 @@ namespace mainVentana.VistaBill
 
                 bill.lst = lst;
                 bill.ShowDialog();
-            }
+            }*/
 
         }
 

@@ -1,4 +1,5 @@
-﻿using Datos.ViewModels.Reportes.Bill;
+﻿using Datos.ViewModels.Bill;
+using Datos.ViewModels.Reportes.Bill;
 using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,8 @@ namespace mainVentana.Reportes.rbill
         public string ShipDate;
         public string totalCases;
         public string Coordinador;
-        public List<vmBillOfTable> lst = new List<vmBillOfTable>();
+        public string numeroBill;
+        public List<vmBillEntradaDoc> lst = new List<vmBillEntradaDoc>();
         public frmBillVisorImp()
         {
             InitializeComponent();
@@ -59,6 +61,7 @@ namespace mainVentana.Reportes.rbill
             reportParameters.Add(new ReportParameter("ShipDate", ShipDate));
             reportParameters.Add(new ReportParameter("totalCases", totalCases));
             reportParameters.Add(new ReportParameter("Coordinador", Coordinador));
+            reportParameters.Add(new ReportParameter("numeroBill", numeroBill));
 
 
 
@@ -66,7 +69,7 @@ namespace mainVentana.Reportes.rbill
             ReportDataSource rs = new ReportDataSource();
 
             //establecemos el origen de datos a la lista primero se creo el origen en el archibo rdlc
-            rs.Name = "itemsList";
+            rs.Name = "ListaEntradasEnBill";
             rs.Value = lst;
             reportViewer1.LocalReport.DataSources.Add(rs);
 

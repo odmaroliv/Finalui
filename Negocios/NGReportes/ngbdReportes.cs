@@ -427,7 +427,7 @@ namespace Negocios.NGReportes
                     using (modelo2Entities modelo = new modelo2Entities())
 
                     {
-                        var lista = (from d in modelo.KDMENT
+                        var lista = (from d in modelo.KDMENT.AsNoTracking()
                                      join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
                                      join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
                                      //join a in modelo.KDUV on k.C12 equals a.C2
@@ -455,7 +455,7 @@ namespace Negocios.NGReportes
                                          colonia = d.C26,
                                          poblacio = d.C27,
                                          zipcode = d.C28,
-                                     });
+                                     }) ;
                         lst = lista.FirstOrDefault();
                     }
                 });
