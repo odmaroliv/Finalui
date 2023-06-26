@@ -24,15 +24,6 @@ namespace mainVentana.VistaInicioCoordinadores
             InitializeComponent();
         }
 
-        private void gunaTextBox2_MouseEnter(object sender, EventArgs e)
-        {
-            if (gunaTextBox2.Text == "No.Cot :)")
-            {
-                gunaTextBox2.Text = "";
-
-            }
-        }
-
         private async void gunaTextBox2_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)

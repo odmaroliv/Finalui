@@ -537,9 +537,7 @@
             this.gunaTextBox2.Radius = 10;
             this.gunaTextBox2.Size = new System.Drawing.Size(257, 54);
             this.gunaTextBox2.TabIndex = 11;
-            this.gunaTextBox2.Text = "No.Cot :)";
             this.gunaTextBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gunaTextBox2_KeyDown);
-            this.gunaTextBox2.MouseEnter += new System.EventHandler(this.gunaTextBox2_MouseEnter);
             // 
             // gunaDataGridView1
             // 

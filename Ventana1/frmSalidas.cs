@@ -407,8 +407,8 @@ namespace Ventana1
             GifLoading(1);
             groupBox1.Enabled = false;
             groupBox2.Enabled = false;
-            ActualizaSqlIov(sOrigen.Trim(), 45, ulDatoSolo.Trim());
             BuscaUltimaSalida(sOrigen);
+            ActualizaSqlIov(sOrigen.Trim(), 45, ulDatoSolo.Trim());
             Negocios.AltasBD at = new AltasBD();
             bool resultado = await at.CSalidaEnKDM1(sOrigen
                 , "U"
