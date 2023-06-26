@@ -48,7 +48,7 @@ namespace Negocios
                     d.C42 = valArn == "" ? 1 : Convert.ToDecimal(valArn);
                     d.C43 = "N";
                     d.C63 = "UD3501-";
-                    d.C67 = Common.Cache.CacheLogin.username.ToString().Trim();//Ultimo en modificar la entrada
+                    d.C67 = d.C67 = Common.Cache.CacheLogin.username.ToString().Trim().Substring(0, Math.Min(Common.Cache.CacheLogin.username.ToString().Trim().Length, 22));//Ultimo en modificar la entrada
                     d.C68 = fecha;//fecha de la ultima modificacion
                     d.C69 = fecha.Hour.ToString();//Hora de la ultima modificacion
                     d.C80 = noTrakin; //elaboro
@@ -320,7 +320,7 @@ namespace Negocios
                 d.C31 = c31;
                 d.C61 = c61;
                 d.C63 = c63;
-                d.C67 = c67;
+                d.C67 = c67.Substring(0, Math.Min(c67.Length, 22));
                 d.C68 = c68;
                 d.C94 = c94;
                 d.C95 = c95;

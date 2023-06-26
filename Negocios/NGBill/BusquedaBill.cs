@@ -77,7 +77,7 @@ namespace Negocios.NGBill
                                     TServicio = x.k.C101,
                                     Tpago = string.IsNullOrWhiteSpace(resultadoSegundaQuery.C30) ? string.Empty : resultadoSegundaQuery.C30.ToString(),
                                     CantidaDlls = (decimal)(resultadoSegundaQuery.C16 != null ? resultadoSegundaQuery.C16 : 0),
-                                    Paridad = (double)(resultadoSegundaQuery.C40 != null ? resultadoSegundaQuery.C40 : 0),
+                                    Paridad = Math.Truncate((double)(resultadoSegundaQuery.C40 != null ? resultadoSegundaQuery.C40 : 0) * 100) / 100,
                                     Alias = string.IsNullOrWhiteSpace(x.d.C24) ? x.k.C112 : x.d.C24,
 
                                 }).ToList();

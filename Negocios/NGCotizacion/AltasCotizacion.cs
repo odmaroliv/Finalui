@@ -49,7 +49,7 @@ namespace Negocios.NGCotizacion
                 d.C42 = c42; //SubTotal
                 d.C43 = c43; //Estatus
 
-                d.C67 = c67; // Elaboro
+                d.C67 = c67.Substring(0, Math.Min(c67.Length, 22)); // Elaboro
                 d.C68 = c68;// fecha de captura
                 d.C82 = pedimento;
                 d.C83 = c83; //Valor mercancia USD  
