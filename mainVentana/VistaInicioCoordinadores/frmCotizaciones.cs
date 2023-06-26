@@ -762,17 +762,25 @@ namespace mainVentana.VistaInicioCoordinadores
             nCotizacionG = cotizacion.ToString().Trim();
             return cotizacion != "" || cotizacion == null ? cotizacion.ToString().Trim() : "";
         }
-        private void AltaKDM1()
+        private async Task AltaKDM1()
         {
             try
             {
                 CargaUltCot();
                  AltasCotizacion alta = new AltasCotizacion();
 
-                alta.CreaCotizacionKDM1(sGlobal, nCotizacionG, DateTime.Now, lblCodCliente.Text.Trim(),
+            bool dtAlt = await alta.CreaCotizacionKDM1(sGlobal, nCotizacionG, DateTime.Now, lblCodCliente.Text.Trim(),
                     0, decimal.Parse(txbIva.Text), decimal.Parse(txbTotalArn.Text), DateTime.Now, cmbTipoPago.GetItemText(cmbTipoPago.SelectedItem).ToString(), cliente.Text.Trim(), "", "", "", float.Parse(txbParidad.Text.Trim()),
                     decimal.Parse(txbSubTo.Text), "N", Negocios.Common.Cache.CacheLogin.nombre, DateTime.Now, txbGoodUsd.Text, txbGoodMnx.Text, txbReferencia.Text, txbTotalArn.Text, txbSerFee.Text, txbTotalArnMXN.Text, TaxAFees, txbComent.Text, txbPedimento.Text, lblTipoImp.Text, descuentoGlobal.ToString());
                 alta.ActualizaSqlIov(sGlobal, 34, nCotizacionG);
+
+                if (dtAlt == false)
+                {
+                    MessageBox.Show("Al parecer hubo un problema, vuelve a intentarlo, si ya lo hiciste y aun continuas sin lograr crear la cotización, cominicate con el dep. de Sistemas.");
+                    CargaUltCot();
+                    return;
+                }
+                
                 AltaKDMENT();
                 AltaKDM2();
                 Clipboard.SetText(nCotizacionG);

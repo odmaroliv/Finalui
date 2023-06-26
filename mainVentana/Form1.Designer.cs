@@ -98,6 +98,7 @@ namespace mainVentana
             this.vbtnClientes = new System.Windows.Forms.RibbonButton();
             this.oldrpKepler = new System.Windows.Forms.RibbonButton();
             this.btnCargaTo = new System.Windows.Forms.RibbonButton();
+            this.consultaBill = new System.Windows.Forms.RibbonButton();
             this.ribbonSeparator8 = new System.Windows.Forms.RibbonSeparator();
             this.rbtnReportes = new System.Windows.Forms.RibbonButton();
             this.ribbonSeparator9 = new System.Windows.Forms.RibbonSeparator();
@@ -125,7 +126,6 @@ namespace mainVentana
             this.ribbonButton4 = new System.Windows.Forms.RibbonButton();
             this.ribbonDescriptionMenuItem2 = new System.Windows.Forms.RibbonDescriptionMenuItem();
             this.panelContenedorForm = new System.Windows.Forms.Panel();
-            this.consultaBill = new System.Windows.Forms.RibbonButton();
             this.panel11.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -583,6 +583,17 @@ namespace mainVentana
             this.btnCargaTo.Text = "Asignar Cargas";
             this.btnCargaTo.Click += new System.EventHandler(this.btnCargaTo_Click);
             // 
+            // consultaBill
+            // 
+            this.consultaBill.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.consultaBill.Image = ((System.Drawing.Image)(resources.GetObject("consultaBill.Image")));
+            this.consultaBill.LargeImage = ((System.Drawing.Image)(resources.GetObject("consultaBill.LargeImage")));
+            this.consultaBill.Name = "consultaBill";
+            this.consultaBill.SmallImage = ((System.Drawing.Image)(resources.GetObject("consultaBill.SmallImage")));
+            this.consultaBill.Text = "Consulta Bill";
+            this.consultaBill.ToolTip = "Consulta bills de Arsys y Kepler";
+            this.consultaBill.Click += new System.EventHandler(this.consultaBill_Click);
+            // 
             // ribbonSeparator8
             // 
             this.ribbonSeparator8.Name = "ribbonSeparator8";
@@ -812,17 +823,6 @@ namespace mainVentana
             this.panelContenedorForm.Name = "panelContenedorForm";
             this.panelContenedorForm.Size = new System.Drawing.Size(1113, 601);
             this.panelContenedorForm.TabIndex = 2;
-            // 
-            // consultaBill
-            // 
-            this.consultaBill.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
-            this.consultaBill.Image = ((System.Drawing.Image)(resources.GetObject("consultaBill.Image")));
-            this.consultaBill.LargeImage = ((System.Drawing.Image)(resources.GetObject("consultaBill.LargeImage")));
-            this.consultaBill.Name = "consultaBill";
-            this.consultaBill.SmallImage = ((System.Drawing.Image)(resources.GetObject("consultaBill.SmallImage")));
-            this.consultaBill.Text = "Consulta Bill";
-            this.consultaBill.ToolTip = "Consulta bills de Arsys y Kepler";
-            this.consultaBill.Click += new System.EventHandler(this.consultaBill_Click);
             // 
             // Form1
             // 

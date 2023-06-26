@@ -2,6 +2,7 @@
 using Datos.ViewModels.Coord;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace Negocios.NGCotizacion
     public class AltasCotizacion
     {
 
-        public async void CreaCotizacionKDM1(string c1, string c6, DateTime c9, string c10, decimal c13, decimal c14, decimal c16, DateTime c18, string c30
+        public async Task<bool> CreaCotizacionKDM1(string c1, string c6, DateTime c9, string c10, decimal c13, decimal c14, decimal c16, DateTime c18, string c30
             , string c32, string c33, string c34, string c35, float c40, decimal c42, string c43,
             string c67, DateTime c68, string c83, string c84, string c86, string c88, string c89, string c93, string c94, string c24, string pedimento, string tImpresion, String dDescuento)
         {
@@ -70,10 +71,27 @@ namespace Negocios.NGCotizacion
                 try
                 {
                     modelo.SaveChanges();
+                    return true;
                 }
                 catch (Exception ex)
                 {
-                    throw;
+                    Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "AltasCotizacion.CreaCotizacionKDM1" + c6);
+
+                    if (ex is DbEntityValidationException entityValidationEx)
+                    {
+                        foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
+                        {
+                            // Acceder a los Entity Validation Errors
+                            foreach (var validationError in entityValidationError.ValidationErrors)
+                            {
+                                var propertyName = validationError.PropertyName;
+                                var errorMessage = validationError.ErrorMessage;
+                                Negocios.LOGs.ArsLogs.LogEdit($"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}", "AltasCotizacion.CreaCotizacionKDM1" + c6);
+                            }
+                        }
+                    }
+
+                    return false;
                 }
             }
         }

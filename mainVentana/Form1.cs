@@ -271,8 +271,9 @@ namespace mainVentana
 
         private async void ribbonButton1_Click(object sender, EventArgs e)
         {
-            string val = rcmbSucAct.SelectedValue;
-            MessageBox.Show(val);
+            Negocios.LOGs.ArsLogs.RutePaht();
+            //string val = rcmbSucAct.SelectedValue;
+            MessageBox.Show("Copiado");
         }
 
         private async void rbtnEntrada_Click(object sender, EventArgs e)
