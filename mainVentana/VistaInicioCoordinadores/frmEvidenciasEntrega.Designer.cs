@@ -43,6 +43,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.gbFirma = new System.Windows.Forms.GroupBox();
             this.pbxFirma = new System.Windows.Forms.PictureBox();
+            this.gMapControl1 = new GMap.NET.WindowsForms.GMapControl();
             this.SucCombo.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.gbFirma.SuspendLayout();
@@ -96,12 +97,13 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 182);
+            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.AutoScrollMargin = new System.Drawing.Size(742, 216);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 165);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1029, 216);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(742, 192);
             this.flowLayoutPanel1.TabIndex = 15;
             // 
             // lblEnt
@@ -209,7 +211,7 @@
             this.groupBox1.Controls.Add(this.lblRecibe);
             this.groupBox1.Location = new System.Drawing.Point(12, 72);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(428, 104);
+            this.groupBox1.Size = new System.Drawing.Size(428, 88);
             this.groupBox1.TabIndex = 156;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Generales";
@@ -218,9 +220,9 @@
             // 
             this.gbFirma.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.gbFirma.Controls.Add(this.pbxFirma);
-            this.gbFirma.Location = new System.Drawing.Point(12, 404);
+            this.gbFirma.Location = new System.Drawing.Point(12, 363);
             this.gbFirma.Name = "gbFirma";
-            this.gbFirma.Size = new System.Drawing.Size(237, 180);
+            this.gbFirma.Size = new System.Drawing.Size(237, 221);
             this.gbFirma.TabIndex = 157;
             this.gbFirma.TabStop = false;
             this.gbFirma.Text = "Firma";
@@ -229,15 +231,45 @@
             // 
             this.pbxFirma.Location = new System.Drawing.Point(9, 19);
             this.pbxFirma.Name = "pbxFirma";
-            this.pbxFirma.Size = new System.Drawing.Size(156, 110);
+            this.pbxFirma.Size = new System.Drawing.Size(122, 70);
             this.pbxFirma.TabIndex = 0;
             this.pbxFirma.TabStop = false;
+            // 
+            // gMapControl1
+            // 
+            this.gMapControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gMapControl1.AutoScroll = true;
+            this.gMapControl1.Bearing = 0F;
+            this.gMapControl1.CanDragMap = false;
+            this.gMapControl1.EmptyTileColor = System.Drawing.Color.Navy;
+            this.gMapControl1.GrayScaleMode = false;
+            this.gMapControl1.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
+            this.gMapControl1.LevelsKeepInMemory = 5;
+            this.gMapControl1.Location = new System.Drawing.Point(775, 165);
+            this.gMapControl1.MarkersEnabled = true;
+            this.gMapControl1.MaxZoom = 16;
+            this.gMapControl1.MinZoom = 0;
+            this.gMapControl1.MouseWheelZoomEnabled = false;
+            this.gMapControl1.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
+            this.gMapControl1.Name = "gMapControl1";
+            this.gMapControl1.NegativeMode = false;
+            this.gMapControl1.PolygonsEnabled = true;
+            this.gMapControl1.RetryLoadTile = 0;
+            this.gMapControl1.RoutesEnabled = true;
+            this.gMapControl1.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
+            this.gMapControl1.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
+            this.gMapControl1.ShowTileGridLines = false;
+            this.gMapControl1.Size = new System.Drawing.Size(261, 192);
+            this.gMapControl1.TabIndex = 158;
+            this.gMapControl1.Zoom = 16D;
             // 
             // frmEvidenciasEntrega
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1053, 612);
+            this.Controls.Add(this.gMapControl1);
             this.Controls.Add(this.gbFirma);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnImprimir);
@@ -245,6 +277,8 @@
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.iconButton10);
             this.Controls.Add(this.txbBuscar);
+            this.MaximumSize = new System.Drawing.Size(1069, 651);
+            this.MinimumSize = new System.Drawing.Size(1069, 651);
             this.Name = "frmEvidenciasEntrega";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -276,5 +310,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox gbFirma;
         private System.Windows.Forms.PictureBox pbxFirma;
+        private GMap.NET.WindowsForms.GMapControl gMapControl1;
     }
 }

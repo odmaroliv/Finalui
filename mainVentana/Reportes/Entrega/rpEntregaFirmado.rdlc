@@ -1,6 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DatosViewModelsEntrega">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>04ef3f69-f6f3-49b7-9437-f6590653ff53</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="DatosViewModelsEntrega1">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>d1bd69ca-1455-40b1-98e5-8d4f36489d30</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="ImageDataSource">
+      <Query>
+        <DataSourceName>DatosViewModelsEntrega</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Image">
+          <DataField>Image</DataField>
+          <rd:TypeName>System.Byte[]</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>Datos.ViewModels.Entrega</rd:DataSetName>
+        <rd:TableName>ReportImage</rd:TableName>
+        <rd:ObjectDataSourceType>Datos.ViewModels.Entrega.ReportImage, Datos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="ImagenMapa">
+      <Query>
+        <DataSourceName>DatosViewModelsEntrega1</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Image">
+          <DataField>Image</DataField>
+          <rd:TypeName>System.Byte[]</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>Datos.ViewModels.Entrega</rd:DataSetName>
+        <rd:TableName>ReportImage</rd:TableName>
+        <rd:ObjectDataSourceType>Datos.ViewModels.Entrega.ReportImage, Datos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -133,13 +185,14 @@
             </Style>
           </Textbox>
           <Image Name="imgSignature">
-            <Source>External</Source>
-            <Value />
+            <Source>Database</Source>
+            <Value>=First(Fields!Image.Value, "ImageDataSource")</Value>
+            <MIMEType>image/jpeg</MIMEType>
             <Sizing>FitProportional</Sizing>
-            <Top>3.23139in</Top>
-            <Left>4.37504in</Left>
-            <Height>1.20833in</Height>
-            <Width>1.6875in</Width>
+            <Top>5.68625in</Top>
+            <Left>0.07295in</Left>
+            <Height>1.55556in</Height>
+            <Width>2.28125in</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -168,8 +221,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox2</rd:DefaultName>
-            <Top>2.96056in</Top>
-            <Left>4.37504in</Left>
+            <Top>5.38765in</Top>
+            <Left>0.07295in</Left>
             <Height>0.22916in</Height>
             <Width>1.6875in</Width>
             <ZIndex>5</ZIndex>
@@ -191,7 +244,9 @@
                 <TextRuns>
                   <TextRun>
                     <Value>=Parameters!nArnian.Value</Value>
-                    <Style />
+                    <Style>
+                      <Color>DimGray</Color>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
@@ -201,7 +256,7 @@
             <Top>1.56125in</Top>
             <Left>1.8299in</Left>
             <Height>0.25in</Height>
-            <Width>4.27083in</Width>
+            <Width>4.55556in</Width>
             <ZIndex>6</ZIndex>
             <Style>
               <Border>
@@ -221,7 +276,9 @@
                 <TextRuns>
                   <TextRun>
                     <Value>=Parameters!fechaEntrega.Value</Value>
-                    <Style />
+                    <Style>
+                      <Color>DimGray</Color>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
@@ -231,7 +288,7 @@
             <Top>1.88069in</Top>
             <Left>1.8299in</Left>
             <Height>0.25in</Height>
-            <Width>4.27083in</Width>
+            <Width>4.55556in</Width>
             <ZIndex>7</ZIndex>
             <Style>
               <Border>
@@ -251,7 +308,9 @@
                 <TextRuns>
                   <TextRun>
                     <Value>=Parameters!recibio.Value</Value>
-                    <Style />
+                    <Style>
+                      <Color>DimGray</Color>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
@@ -261,7 +320,7 @@
             <Top>2.20014in</Top>
             <Left>1.8299in</Left>
             <Height>0.25in</Height>
-            <Width>4.27083in</Width>
+            <Width>4.55556in</Width>
             <ZIndex>8</ZIndex>
             <Style>
               <Border>
@@ -281,7 +340,9 @@
                 <TextRuns>
                   <TextRun>
                     <Value>=Parameters!cordsEnt.Value</Value>
-                    <Style />
+                    <Style>
+                      <Color>DimGray</Color>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
@@ -291,7 +352,7 @@
             <Top>2.51958in</Top>
             <Left>1.8299in</Left>
             <Height>0.25in</Height>
-            <Width>4.27083in</Width>
+            <Width>4.55556in</Width>
             <ZIndex>9</ZIndex>
             <Style>
               <Border>
@@ -371,7 +432,7 @@
             <Top>0.60354in</Top>
             <Left>0.08209in</Left>
             <Height>0.82292in</Height>
-            <Width>6.01864in</Width>
+            <Width>6.30337in</Width>
             <ZIndex>11</ZIndex>
             <Style>
               <Border>
@@ -383,8 +444,24 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Image Name="imgMapar">
+            <Source>Database</Source>
+            <Value>=First(Fields!Image.Value, "ImagenMapa")</Value>
+            <MIMEType>image/jpeg</MIMEType>
+            <Sizing>FitProportional</Sizing>
+            <Top>2.83902in</Top>
+            <Left>3.67365in</Left>
+            <Height>2.77779in</Height>
+            <Width>2.71181in</Width>
+            <ZIndex>12</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Image>
         </ReportItems>
-        <Height>4.47792in</Height>
+        <Height>7.37375in</Height>
         <Style />
       </Body>
       <Width>6.5in</Width>
@@ -452,7 +529,7 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>1.64583in</Height>
+          <Height>0.64583in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -465,7 +542,6 @@
                     <TextRun>
                       <Value>Arnian.com</Value>
                       <Style>
-                        <FontSize>20pt</FontSize>
                         <Color>DarkBlue</Color>
                       </Style>
                     </TextRun>
@@ -476,9 +552,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0.66542in</Top>
+              <Top>0.41542in</Top>
               <Left>2.14458in</Left>
-              <Height>0.46875in</Height>
+              <Height>0.19792in</Height>
               <Width>2.20833in</Width>
               <Style>
                 <Border>
@@ -526,9 +602,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Top>0.06125in</Top>
+              <Top>0.05083in</Top>
               <Left>2.14458in</Left>
-              <Height>0.48958in</Height>
+              <Height>0.42015in</Height>
               <Width>2.20833in</Width>
               <ZIndex>1</ZIndex>
               <Style>

@@ -1,5 +1,7 @@
 ﻿using Datos.ViewModels;
 using Datos.ViewModels.Coord;
+using GMap.NET.MapProviders;
+using GMap.NET;
 using Guna.UI.WinForms;
 using mainVentana.Reportes.Entrega;
 using Microsoft.Reporting.Map.WebForms.BingMaps;
@@ -12,11 +14,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GMap.NET.WindowsForms;
 
 namespace mainVentana.VistaInicioCoordinadores
 {
@@ -30,6 +34,10 @@ namespace mainVentana.VistaInicioCoordinadores
         public frmEvidenciasEntrega()
         {
             InitializeComponent();
+            gMapControl1.MapProvider = GMapProviders.OpenStreetMap;
+            GMaps.Instance.Mode = AccessMode.ServerOnly; // Para evitar mostrar mensajes de error en caso de falta de conexión a Internet
+            gMapControl1.SetPositionByKeywords("Tijuana, Mexico"); // Establece una ubicación inicial por nombre de ciudad o país
+            gMapControl1.Zoom = 5; // Ajusta el nivel de zoom inicial
         }
 
         private void iconButton10_Click(object sender, EventArgs e)
@@ -37,10 +45,23 @@ namespace mainVentana.VistaInicioCoordinadores
             Aldatagrid();
         }
 
+        private void LimpiaDatos()
+        {
+            lblEnt.Text = "";
+            lblRecibe.Text = "";
+            flowLayoutPanel1.Controls.Clear();
+            pbxFirma.Image = null;
+            gMapControl1.SetPositionByKeywords("Tijuana, Mexico");
+            _dtoCompleto = "";
+
+
+        }
+
         private void Aldatagrid()
         {
             if (String.IsNullOrWhiteSpace(_codigoBee))
             {
+                LimpiaDatos();
                 MessageBox.Show("Error");
                 return;
             }
@@ -59,39 +80,61 @@ namespace mainVentana.VistaInicioCoordinadores
                     request.AddHeader("X-AUTH-TOKEN", auth);
                     var response = client.Execute(request);
 
-                    vmResponceBeeEnt myResponse = JsonConvert.DeserializeObject<vmResponceBeeEnt>(response.Content);
-                    List<Dispatch> myList = new List<Dispatch>();
-                    Dispatch ispatch = myResponse.response;
-                    //myList.Add(myResponse.response);
-                    //  gunaDataGridView1.DataSource = myList;
-                    datosEntrada = ispatch;
-                    lblEnt.Text = ispatch.identifier.ToString();
-                    lblRecibe.Text = ispatch.evaluation_answers[2].value ?? ispatch.evaluation_answers[2].value.ToString();
-
-
-                    if (ispatch != null && ispatch.evaluation_answers != null)
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
-                        LoadEvaluationAnswers(ispatch);
+                        vmResponceBeeEnt myResponse = JsonConvert.DeserializeObject<vmResponceBeeEnt>(response.Content);
+                        List<Dispatch> myList = new List<Dispatch>();
+                        Dispatch ispatch = myResponse.response;
+                        //myList.Add(myResponse.response);
+                        //  gunaDataGridView1.DataSource = myList;
+                        datosEntrada = ispatch;
+                        lblEnt.Text = ispatch.identifier.ToString();
+                        lblRecibe.Text = ispatch.evaluation_answers[2].value ?? ispatch.evaluation_answers[2].value.ToString();
+
+
+                        if (ispatch != null && ispatch.evaluation_answers != null)
+                        {
+                            LoadEvaluationAnswers(ispatch);
+                        }
+                        else
+                        {
+                            LimpiaDatos();
+                        }
+                        BuscaMapa();
+
                     }
                     else
                     {
-                        // No se encontraron evaluaciones o la respuesta fue nula
-                        // Realiza la lógica correspondiente o muestra un mensaje de error si es necesario
+                        LimpiaDatos();
                     }
+
                 }
             }
             catch (Exception)
             {
-                // Agrega un manejo de errores más detallado aquí
+                LimpiaDatos();
                 throw;
             }
         }
+        private void BuscaMapa()
+        {
+            double latitude, longitude;
+            if (double.TryParse(datosEntrada.latitude, out latitude) && double.TryParse(datosEntrada.longitude, out longitude))
+            {
+                gMapControl1.Position = new PointLatLng(latitude, longitude);
+                gMapControl1.Zoom = 15;
+            }
+            else
+            {
 
+                MessageBox.Show("Las coordenadas no son válidas.");
+            }
+        }
         private void LoadEvaluationAnswers(Dispatch ispatch)
         {
             foreach (var answer in ispatch.evaluation_answers)
             {
-                if ( answer.cast == "photo")
+                if (answer.cast == "photo")
                 {
                     string[] imageUrls = answer.value.Split(',');
                     foreach (string imageUrl in imageUrls)
@@ -118,6 +161,10 @@ namespace mainVentana.VistaInicioCoordinadores
 
 
         }
+       
+
+
+
 
         private void CreatePictureBox(string imageUrl)
         {
@@ -242,11 +289,26 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
+            if (String.IsNullOrWhiteSpace(_dtoCompleto))
+            {
+                MessageBox.Show("No puedes imprimir");
+                return;
+            }
             using (frmComprobanteEntImp rp = new frmComprobanteEntImp())
             {
                 rp.nArnian = datosEntrada.identifier.ToString();
                 rp.recibio = datosEntrada.evaluation_answers[2].value ?? datosEntrada.evaluation_answers[2].value.ToString();
-                // Obtén la imagen del PictureBox pbxFirma
+                // Asume que datosEntrada.arrived_at es una cadena en formato ISO 8601
+                string arrivedAtUtc = datosEntrada.arrived_at;
+
+                // Convierte la cadena a DateTime
+                DateTime arrivedAtDateTimeUtc = DateTime.Parse(arrivedAtUtc, CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind);
+
+                // Convierte la DateTime a una cadena y almacénala en rp.fechaEntrega
+                rp.fechaEntrega = arrivedAtDateTimeUtc.ToString("MM/dd/yyyy HH:mm");
+
+                rp.cordsEnt = datosEntrada.latitude + "," + datosEntrada.longitude;
+
                 if (pbxFirma.Image != null)
                 {
                     using (MemoryStream ms = new MemoryStream())
@@ -254,6 +316,19 @@ namespace mainVentana.VistaInicioCoordinadores
                         pbxFirma.Image.Save(ms, pbxFirma.Image.RawFormat);
                         rp.imgSignature = ms.ToArray();
                     }
+                }
+                else
+                {
+                    return;
+                }
+                if (gMapControl1 != null)
+                {
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        gMapControl1.ToImage().Save(ms, pbxFirma.Image.RawFormat);
+                        rp.imgMapa = ms.ToArray();
+                    }
+                  
                 }
                 else
                 {

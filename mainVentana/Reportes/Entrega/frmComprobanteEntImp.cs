@@ -1,4 +1,5 @@
-﻿using Microsoft.Reporting.WinForms;
+﻿using Datos.ViewModels.Entrega;
+using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,7 +22,8 @@ namespace mainVentana.Reportes.Entrega
         public string cordsEnt;
 
         public byte[] imgSignature;
-
+        public byte[] imgMapa;
+        public vmReportDataEntrega ReportData { get; set; }
 
 
         public frmComprobanteEntImp()
@@ -40,8 +42,7 @@ namespace mainVentana.Reportes.Entrega
         private void CargaParam()
         {
 
-            //vmEtiquetasReporteBindingSource.DataSource = lstrep;
-
+            // vmEtiquetasReporteBindingSource.DataSource = lstrep;
 
             ReportParameterCollection reportParameters = new ReportParameterCollection();
             reportParameters.Add(new ReportParameter("nArnian", nArnian));
@@ -53,11 +54,21 @@ namespace mainVentana.Reportes.Entrega
 
             if (imgSignature != null)
             {
-                ReportParameter imagenParam = new ReportParameter("imgSignature", Convert.ToBase64String(imgSignature));
-                reportParameters.Add(imagenParam);
+                var image = new ReportImage { Image = imgSignature };
+                var images = new List<ReportImage> { image };
+                var rds = new ReportDataSource("ImageDataSource", images);  
+                this.reportViewer1.LocalReport.DataSources.Add(rds);
+            }
+            if (imgMapa != null)
+            {
+                var image = new ReportImage { Image = imgMapa };
+                var images = new List<ReportImage> { image };
+                var rds = new ReportDataSource("ImagenMapa", images);  
+                this.reportViewer1.LocalReport.DataSources.Add(rds);
             }
 
-            //  this.reportViewer1.LocalReport.SetParameters(reportParameters);
+            this.reportViewer1.LocalReport.SetParameters(reportParameters);
+
 
             this.reportViewer1.RefreshReport();
         }
