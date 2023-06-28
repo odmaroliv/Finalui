@@ -552,5 +552,13 @@ namespace mainVentana
             bll.FormClosed += frm_FormClosed_Libera;
             bll.Show();
         }
+
+        private void rbtnEntregasPruebas_Click(object sender, EventArgs e)
+        {
+            frmEvidenciasEntrega Evide = new frmEvidenciasEntrega();
+            openForms.Add(Evide);
+            Evide.FormClosed += frm_FormClosed_Libera;
+            Evide.Show();
+        }
     }
 }

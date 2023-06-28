@@ -30,10 +30,10 @@
     <UpdateUrl>https://raw.githubusercontent.com/odmaroliv/Finalui/master/published/</UpdateUrl>
     <ProductName>ARSYS</ProductName>
     <PublisherName>Daniel Olivares H.</PublisherName>
-    <MinimumRequiredVersion>1.0.0.174</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.0.176</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>174</ApplicationRevision>
+    <ApplicationRevision>176</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -63,10 +63,10 @@
     <ApplicationIcon>icoarn.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>11ECD52FE8DD95E6F0328684CF6C5C6BD8C6261A</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>5140E5CA6C58D3A1E7B361FAAA424ED45C9A1493</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>mainVentana_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>mainVentana_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -135,8 +135,8 @@
     <Reference Include="Magick.NET.Core, Version=11.1.0.0, Culture=neutral, PublicKeyToken=2004825badfa91ec, processorArchitecture=MSIL">
       <HintPath>..\packages\Magick.NET.Core.11.1.2\lib\net20\Magick.NET.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.7.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.DependencyInjection, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.5.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
@@ -210,6 +210,9 @@
     <Reference Include="ReaLTaiizor, Version=3.7.9.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ReaLTaiizor.3.7.9\lib\net48\ReaLTaiizor.dll</HintPath>
     </Reference>
+    <Reference Include="RestSharp, Version=110.2.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.110.2.0\lib\net471\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="SpreadsheetLight, Version=3.5.0.0, Culture=neutral, PublicKeyToken=32fbb46dc1730c57, processorArchitecture=MSIL">
       <HintPath>..\packages\SpreadsheetLight.3.5.0\lib\netstandard2.0\SpreadsheetLight.dll</HintPath>
     </Reference>
@@ -270,11 +273,11 @@
     <Reference Include="System.Security.Principal.Windows, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.Principal.Windows.4.7.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
     </Reference>
-    <Reference Include="System.Text.Encodings.Web, Version=5.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Text.Encodings.Web.5.0.1\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    <Reference Include="System.Text.Encodings.Web, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.7.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
     </Reference>
-    <Reference Include="System.Text.Json, Version=5.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Text.Json.5.0.2\lib\net461\System.Text.Json.dll</HintPath>
+    <Reference Include="System.Text.Json, Version=7.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.7.0.2\lib\net462\System.Text.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -283,6 +286,7 @@
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Windows.Forms.Ribbon, Version=2.0.0.0, Culture=neutral, PublicKeyToken=928736e248aa81f9, processorArchitecture=MSIL">
       <HintPath>..\packages\RibbonWinForms.5.0.1.1\lib\net48\System.Windows.Forms.Ribbon.dll</HintPath>
@@ -396,6 +400,12 @@
       <DependentUpon>frmToRepCot.cs</DependentUpon>
     </Compile>
     <Compile Include="Reportes\DashBoardArturo\VMsucursalesValorArn.cs" />
+    <Compile Include="Reportes\Entrega\frmComprobanteEntImp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Entrega\frmComprobanteEntImp.Designer.cs">
+      <DependentUpon>frmComprobanteEntImp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\OrdenDeCarga\reporteSencilloCarga.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -541,6 +551,12 @@
     <Compile Include="VistaInicioCoordinadores\frmCotizaciones.Designer.cs">
       <DependentUpon>frmCotizaciones.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaInicioCoordinadores\frmEvidenciasEntrega.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaInicioCoordinadores\frmEvidenciasEntrega.Designer.cs">
+      <DependentUpon>frmEvidenciasEntrega.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaInicioCoordinadores\frmInfoEntradaCords.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -671,6 +687,10 @@
       <DependentUpon>frmToRepCot.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Cotizaciones\cotToPDF\repToPdfCot.rdlc" />
+    <EmbeddedResource Include="Reportes\Entrega\frmComprobanteEntImp.resx">
+      <DependentUpon>frmComprobanteEntImp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Entrega\rpEntregaFirmado.rdlc" />
     <EmbeddedResource Include="Reportes\OrdenDeCarga\reporteSencilloCarga.resx">
       <DependentUpon>reporteSencilloCarga.cs</DependentUpon>
     </EmbeddedResource>
@@ -743,6 +763,9 @@
     <EmbeddedResource Include="VistaInicioCoordinadores\frmCotizaciones.resx">
       <DependentUpon>frmCotizaciones.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VistaInicioCoordinadores\frmEvidenciasEntrega.resx">
+      <DependentUpon>frmEvidenciasEntrega.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VistaInicioCoordinadores\frmInfoEntradaCords.resx">
       <DependentUpon>frmInfoEntradaCords.cs</DependentUpon>
     </EmbeddedResource>
@@ -789,7 +812,7 @@
     <EmbeddedResource Include="VistaWMS\frmMainWMS.resx">
       <DependentUpon>frmMainWMS.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="mainVentana_TemporaryKey.pfx" />
+    <None Include="mainVentana_1_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Datos.ViewModels.Bill.vmBillEntradaDoc.datasource" />
     <None Include="Properties\DataSources\Datos.ViewModels.Carga.vmEntradasEnCarga.datasource" />

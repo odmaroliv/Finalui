@@ -577,6 +577,11 @@ namespace mainVentana
             _tipoBusqueda = rd.Tag.ToString();
         }
 
+        private void radioButton5_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
 
 
 

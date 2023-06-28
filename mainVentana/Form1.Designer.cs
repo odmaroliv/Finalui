@@ -126,6 +126,7 @@ namespace mainVentana
             this.ribbonButton4 = new System.Windows.Forms.RibbonButton();
             this.ribbonDescriptionMenuItem2 = new System.Windows.Forms.RibbonDescriptionMenuItem();
             this.panelContenedorForm = new System.Windows.Forms.Panel();
+            this.rbtnEntregasPruebas = new System.Windows.Forms.RibbonButton();
             this.panel11.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -526,6 +527,7 @@ namespace mainVentana
             this.rbtnCord.DropDownItems.Add(this.oldrpKepler);
             this.rbtnCord.DropDownItems.Add(this.btnCargaTo);
             this.rbtnCord.DropDownItems.Add(this.consultaBill);
+            this.rbtnCord.DropDownItems.Add(this.rbtnEntregasPruebas);
             this.rbtnCord.Image = global::mainVentana.Properties.Resources.b2c__2_;
             this.rbtnCord.LargeImage = global::mainVentana.Properties.Resources.b2c__2_;
             this.rbtnCord.Name = "rbtnCord";
@@ -824,6 +826,16 @@ namespace mainVentana
             this.panelContenedorForm.Size = new System.Drawing.Size(1113, 601);
             this.panelContenedorForm.TabIndex = 2;
             // 
+            // rbtnEntregasPruebas
+            // 
+            this.rbtnEntregasPruebas.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.rbtnEntregasPruebas.Image = ((System.Drawing.Image)(resources.GetObject("rbtnEntregasPruebas.Image")));
+            this.rbtnEntregasPruebas.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbtnEntregasPruebas.LargeImage")));
+            this.rbtnEntregasPruebas.Name = "rbtnEntregasPruebas";
+            this.rbtnEntregasPruebas.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbtnEntregasPruebas.SmallImage")));
+            this.rbtnEntregasPruebas.Text = "Pruebas de entrega";
+            this.rbtnEntregasPruebas.Click += new System.EventHandler(this.rbtnEntregasPruebas_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -930,6 +942,7 @@ namespace mainVentana
         private RibbonButton ribbonButton6;
         private RibbonButton rbAgregarUsuario;
         private RibbonButton consultaBill;
+        private RibbonButton rbtnEntregasPruebas;
     }
 }
 

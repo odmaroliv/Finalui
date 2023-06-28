@@ -208,6 +208,7 @@
     <Compile Include="ViewModels\Coord\vmEntCot.cs" />
     <Compile Include="ViewModels\Coord\vmInfoTablaCot.cs" />
     <Compile Include="ViewModels\Coord\vmNoCot.cs" />
+    <Compile Include="ViewModels\Coord\vmResponceBeeEnt.cs" />
     <Compile Include="ViewModels\Coord\vmTablaCotizacion.cs" />
     <Compile Include="ViewModels\CXC\vmInicioCXC.cs" />
     <Compile Include="ViewModels\CXC\vmInicioCXCBd.cs" />

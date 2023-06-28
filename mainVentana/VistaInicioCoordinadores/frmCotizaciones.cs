@@ -876,7 +876,5 @@ namespace mainVentana.VistaInicioCoordinadores
 
             }
         }
-
-        
     }
 }
