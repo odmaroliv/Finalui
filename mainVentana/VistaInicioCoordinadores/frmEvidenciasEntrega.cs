@@ -3,6 +3,7 @@ using Datos.ViewModels.Coord;
 using Guna.UI.WinForms;
 using mainVentana.Reportes.Entrega;
 using Microsoft.Reporting.Map.WebForms.BingMaps;
+using Negocios.NGBill;
 using Newtonsoft.Json;
 using Org.BouncyCastle.Asn1.Crmf;
 using RestSharp;
@@ -24,6 +25,7 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private string sucursal = "SD";
         private string _dtoCompleto = "";
+        private string _codigoBee;
         Dispatch datosEntrada;
         public frmEvidenciasEntrega()
         {
@@ -37,7 +39,12 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private void Aldatagrid()
         {
-            string auth = "";
+            if (String.IsNullOrWhiteSpace(_codigoBee))
+            {
+                MessageBox.Show("Error");
+                return;
+            }
+            string auth = _codigoBee.Trim();
             string idprod = _dtoCompleto ?? _dtoCompleto.Trim();
             string sURL = $"https://app.beetrack.com/api/external/v1/dispatches/{idprod}?evaluations=true";
 
@@ -160,9 +167,12 @@ namespace mainVentana.VistaInicioCoordinadores
             pb.Size = (Size)pb.Tag; // Restaura el tamaño original
         }
 
-        private void frmEvidenciasEntrega_Load(object sender, EventArgs e)
+        private async  void frmEvidenciasEntrega_Load(object sender, EventArgs e)
         {
-
+            BusquedaBill dt = new BusquedaBill();
+            
+                _codigoBee = await dt.BeetrackCode();
+            
         }
 
 
@@ -209,7 +219,7 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private void ValidabPrincipal()
         {
-            if (txbBuscar.Text == "")
+            if (txbBuscar.Text == "") 
             {
                 MessageBox.Show("El campo de busqueda esta vacio!");
                 return;

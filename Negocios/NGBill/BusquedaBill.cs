@@ -44,12 +44,12 @@ namespace Negocios.NGBill
                         {
                             string[] partes = resultadoPrimeraConsulta.k.C115 != null ? resultadoPrimeraConsulta.k.C115.Split('-') : null;
 
-                          
+
                             string rCodigo = (partes != null && partes.Length >= 2) ? partes[1].Trim() : string.Empty;
                             string rSuc = (partes != null && partes.Length > 0) ? partes[0] : string.Empty;
 
                             var resultadoSegundaQuery = (from k in modelo.KDM1.AsNoTracking()
-                                                         //join a in modelo.KDFEMTOCFD on k.C30 equals a.C2
+                                                             //join a in modelo.KDFEMTOCFD on k.C30 equals a.C2
                                                          where k.C4 == 34 && k.C6 == rCodigo && k.C1 == rSuc
                                                          select new { k.C16, k.C30, k.C40 }).FirstOrDefault();
 
@@ -118,8 +118,8 @@ namespace Negocios.NGBill
 
                             throw;
                         }
-                       
-                       
+
+
                     }
                     else
                     {
@@ -243,13 +243,13 @@ namespace Negocios.NGBill
         public bool AltaBillkdm1(string datoSucIni,
            string datoBill,
            DateTime datoFechaAlta,
-        //   string datoOperacion,
-          // string datoSucDest,
-        //   string datoMoneda,
+           //   string datoOperacion,
+           // string datoSucDest,
+           //   string datoMoneda,
            //double datoParidad,
            string datoRefe)
-           //DateTime datoFCorte,
-           //string datoHora)
+        //DateTime datoFCorte,
+        //string datoHora)
         {
 
             using (modelo2Entities modelo = new modelo2Entities())
@@ -263,7 +263,7 @@ namespace Negocios.NGBill
                     d.C4 = 55;
                     d.C5 = 1;
                     d.C6 = datoBill;
-                   // d.C7 = datoMoneda;
+                    // d.C7 = datoMoneda;
                     d.C8 = 1;
                     d.C9 = datoFechaAlta;
                     d.C11 = datoRefe;
@@ -286,7 +286,7 @@ namespace Negocios.NGBill
                 {
                     Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "altasBDCargas.cs, AltaOrdCarga()... " + datoBill + "");
                     return false;
-                    
+
                 }
 
             }
@@ -328,7 +328,7 @@ namespace Negocios.NGBill
 
                     var lista = (from d in modelo.KDMENT.AsNoTracking()
                                  join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
-                                 where d.C34.Contains(codigo) && k.C4 ==  35 //&& d.C19 != sdestino 
+                                 where d.C34.Contains(codigo) && k.C4 == 35 //&& d.C19 != sdestino 
                                  select new vmBillEntradaDoc
                                  {
                                      entrada = d.C6,
@@ -361,7 +361,7 @@ namespace Negocios.NGBill
 
         public async Task<vmInfoBill> InfoEnBill(string entBus, string modo = null)
         {
-           // string codigo = datoSucIni.Trim() + "-UD5501-" + carga.ToString("D7");
+            // string codigo = datoSucIni.Trim() + "-UD5501-" + carga.ToString("D7");
 
             try
             {
@@ -371,13 +371,13 @@ namespace Negocios.NGBill
 
                 {
 
-                      var lista = (from d in modelo.KDMENT
-                                    join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
-                                    join a in modelo.KDUV on k.C12 equals a.C2
-                                    //join u in modelo.KDUSUARIOS on a.C22 equals u.C1
-                                    join s in modelo.KDUD on k.C10 equals s.C2
-                                            
-                                   
+                    var lista = (from d in modelo.KDMENT
+                                 join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
+                                 join a in modelo.KDUV on k.C12 equals a.C2
+                                 //join u in modelo.KDUSUARIOS on a.C22 equals u.C1
+                                 join s in modelo.KDUD on k.C10 equals s.C2
+
+
 
                                  where d.C9 == entBus && k.C4 == 35
                                  select new vmInfoBill
@@ -394,13 +394,13 @@ namespace Negocios.NGBill
                                      fromZip = s.C27,
                                      telCliente = s.C7,
                                      coord = a.C3,
-                                    
+
                                  });
                     dt = lista.FirstOrDefault();
 
                 }
 
-               return dt;
+                return dt;
             }
             catch (Exception)
             {
@@ -409,10 +409,43 @@ namespace Negocios.NGBill
             }
 
         }
-        
+
+        public async Task<string> BeetrackCode()
+        {
+            // string codigo = datoSucIni.Trim() + "-UD5501-" + carga.ToString("D7");
+
+            try
+            {
+                string dt = "";
+
+                using (modelo2Entities modelo = new modelo2Entities())
+
+                {
+
+                    var lista = (from d in modelo.SqlIov
+                                 where d.C1 == "Bee"
+                                 select d.C16);
+                               
+                    dt = lista.FirstOrDefault();
+
+                }
+
+                return dt;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+
+
+
 
     }
 
 
-    
+
 }
