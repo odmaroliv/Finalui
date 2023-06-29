@@ -36,10 +36,12 @@ namespace mainVentana.VistaInicioCoordinadores
             InitializeComponent();
             try
             {
+                /*
                 gMapControl1.MapProvider = GMapProviders.OpenStreetMap;
                 GMaps.Instance.Mode = AccessMode.ServerOnly; // Para evitar mostrar mensajes de error en caso de falta de conexión a Internet
                 gMapControl1.SetPositionByKeywords("Tijuana, Mexico"); // Establece una ubicación inicial por nombre de ciudad o país
                 gMapControl1.Zoom = 5; // Ajusta el nivel de zoom inicial
+                */
             }
             catch (Exception)
             {
@@ -60,7 +62,7 @@ namespace mainVentana.VistaInicioCoordinadores
             lblRecibe.Text = "";
             flowLayoutPanel1.Controls.Clear();
             pbxFirma.Image = null;
-            gMapControl1.SetPositionByKeywords("Tijuana, Mexico");
+          //  gMapControl1.SetPositionByKeywords("Tijuana, Mexico");
             _dtoCompleto = "";
 
 
@@ -130,8 +132,8 @@ namespace mainVentana.VistaInicioCoordinadores
             double latitude, longitude;
             if (double.TryParse(datosEntrada.latitude, out latitude) && double.TryParse(datosEntrada.longitude, out longitude))
             {
-                gMapControl1.Position = new PointLatLng(latitude, longitude);
-                gMapControl1.Zoom = 15;
+                //gMapControl1.Position = new PointLatLng(latitude, longitude);
+                //gMapControl1.Zoom = 15;
             }
             else
             {
@@ -330,7 +332,7 @@ namespace mainVentana.VistaInicioCoordinadores
                 {
                     return;
                 }
-                if (gMapControl1 != null)
+               /* if (gMapControl1 != null)
                 {
                     using (MemoryStream ms = new MemoryStream())
                     {
@@ -342,7 +344,7 @@ namespace mainVentana.VistaInicioCoordinadores
                 else
                 {
                     return;
-                }
+                }*/
 
                 // Abre el formulario rp
                 rp.ShowDialog();
