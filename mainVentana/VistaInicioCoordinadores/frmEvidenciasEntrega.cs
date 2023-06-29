@@ -214,7 +214,7 @@ namespace mainVentana.VistaInicioCoordinadores
         private void Pb_MouseEnter(object sender, EventArgs e)
         {
             PictureBox pb = sender as PictureBox;
-            pb.Size = new Size((int)(pb.Width * 2.5), (int)(pb.Height * 2.5));
+            pb.Size = new Size((int)(pb.Width * 1.0), (int)(pb.Height * 1.0));
         }
 
         private void Pb_MouseLeave(object sender, EventArgs e)
