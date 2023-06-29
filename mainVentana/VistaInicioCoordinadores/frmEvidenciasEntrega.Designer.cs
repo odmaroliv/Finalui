@@ -222,7 +222,7 @@
             this.gbFirma.Controls.Add(this.pbxFirma);
             this.gbFirma.Location = new System.Drawing.Point(12, 363);
             this.gbFirma.Name = "gbFirma";
-            this.gbFirma.Size = new System.Drawing.Size(237, 221);
+            this.gbFirma.Size = new System.Drawing.Size(216, 221);
             this.gbFirma.TabIndex = 157;
             this.gbFirma.TabStop = false;
             this.gbFirma.Text = "Firma";

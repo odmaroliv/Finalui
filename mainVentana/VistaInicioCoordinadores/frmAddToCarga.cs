@@ -408,6 +408,7 @@ namespace mainVentana.VistaInicioCoordinadores
                 _isBill = true;
                 tipoOper.Enabled = false;
                 datoTipoOper = "BILL";
+                groupBox1.Enabled = false;
                 cargaultbill();
             }
             else
@@ -416,6 +417,7 @@ namespace mainVentana.VistaInicioCoordinadores
                 tipoOper.Enabled = true;
                 datoTipoOper = "";
                 lblnBill.Text = "";
+                groupBox1.Enabled = true;
             }
 
         }
