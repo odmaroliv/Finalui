@@ -18,6 +18,7 @@ using ClosedXML.Excel;
 using mainVentana.VistaOrSalida;
 using System.IO;
 using Datos.Datosenti;
+using static Vanara.PInvoke.AdvApi32;
 
 namespace mainVentana.VistaCreditoCobranza
 {
@@ -178,8 +179,8 @@ namespace mainVentana.VistaCreditoCobranza
                     Operacion = w.Operacion?.Trim(),
                     sucActual = w.sucActual?.Trim(),
                     Nota =  w.Nota?.Trim(),
+                    Link = String.IsNullOrWhiteSpace(w.Link)?"": string.Format("https://app.beetrack.com/search/{0}", w.SucursalOrigen?.Trim() + "-" + w.Entrada?.Trim()),
                    
-                    
                 });
 
 

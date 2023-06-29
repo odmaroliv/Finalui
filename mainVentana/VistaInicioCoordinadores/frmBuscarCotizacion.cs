@@ -154,50 +154,68 @@ namespace mainVentana.VistaInicioCoordinadores
             {
                 return;
             }
-            if (MessageBox.Show("Seguro que quieres Cancelar esta cotización?","Cuidado",MessageBoxButtons.OKCancel,MessageBoxIcon.Question)==DialogResult.OK)
+            VistaEntrada.Desbloqueo buscador = new Desbloqueo();
+
+            buscador.cambiar += new Desbloqueo.cambio(CancelaCotizacionChechk);
+            buscador.ShowDialog();
+
+
+          
+
+        }
+
+        public void CancelaCotizacionChechk(bool dato)
+        {
+            if (dato == true)
             {
-                try
+                if (MessageBox.Show("Seguro que quieres Cancelar esta cotización?", "Cuidado", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
-                    if (gunaDataGridView1.Rows.Count > 0)
+                    try
                     {
-                        string value1 = gunaDataGridView1.Rows[0].Cells[0].Value?.ToString().Trim() ?? string.Empty;
-                        string value2 = gunaDataGridView1.Rows[0].Cells[1].Value?.ToString().Trim() ?? string.Empty;
-
-                        if (!string.IsNullOrEmpty(value1) && !string.IsNullOrEmpty(value2))
+                        if (gunaDataGridView1.Rows.Count > 0)
                         {
+                            string value1 = gunaDataGridView1.Rows[0].Cells[0].Value?.ToString().Trim() ?? string.Empty;
+                            string value2 = gunaDataGridView1.Rows[0].Cells[1].Value?.ToString().Trim() ?? string.Empty;
 
-                            try
+                            if (!string.IsNullOrEmpty(value1) && !string.IsNullOrEmpty(value2))
                             {
-                                AltasCotizacion alta = new AltasCotizacion();
 
-                                string entradas = string.Join(",", listaEntEnCot.Select(x => x.Entrada.ToString().Trim()));
-                                string su = string.Join(",", listaEntEnCot.Select(x => x.sucursal.ToString().Trim()));
-                                alta.CancelaCotEnEntradas(listaEntEnCot);
-                                alta.CancelarCotizacion(value1, value2);
-                                MessageBox.Show("Listo");
-                            }
-                            catch (Exception)
-                            {
-                                MessageBox.Show("Ha ocurrido un error");
-                                throw;
-                            }
+                                try
+                                {
+                                    AltasCotizacion alta = new AltasCotizacion();
 
+                                    string entradas = string.Join(",", listaEntEnCot.Select(x => x.Entrada.ToString().Trim()));
+                                    string su = string.Join(",", listaEntEnCot.Select(x => x.sucursal.ToString().Trim()));
+                                    alta.CancelaCotEnEntradas(listaEntEnCot);
+                                    alta.CancelarCotizacion(value1, value2);
+                                    MessageBox.Show("Listo");
+                                    refresh(_nCotD7);
+                                }
+                                catch (Exception)
+                                {
+                                    MessageBox.Show("Ha ocurrido un error");
+                                    throw;
+                                }
+
+                            }
                         }
+
+
+                    }
+                    catch (Exception)
+                    {
+                        throw;
                     }
 
 
                 }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-
+            }
+            else
+            {
+                MessageBox.Show("No puedes cancelar esta Cotización");
             }
 
         }
-
-      
 
         private void rdbPagado_CheckedChanged(object sender, EventArgs e)
         {

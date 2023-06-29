@@ -109,6 +109,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Desbloqueo";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Desbloqueo_FormClosed);
+            this.Load += new System.EventHandler(this.Desbloqueo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

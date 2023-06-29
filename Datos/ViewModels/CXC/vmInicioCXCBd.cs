@@ -26,6 +26,8 @@ namespace Datos.ViewModels.CXC
         public string Operacion { get; set; }
         public string sucActual { get; set; }
         public string Nota { get; set; }
+        public string Link { get; set; }
+        
 
     }
 }

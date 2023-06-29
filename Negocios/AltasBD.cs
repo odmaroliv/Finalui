@@ -188,7 +188,7 @@ namespace Negocios
                 {
                     var d = (from q in modelo.KDM1
                              where q.C6 == id && q.C4 == 35 && q.C1 == sucursalOrigen
-                             select q).First();
+                             select q).FirstOrDefault();
 
                     if (!string.IsNullOrEmpty(sucursaldestino))
                     {
@@ -273,7 +273,7 @@ namespace Negocios
                 {
                     var d = (from q in modelo.KDM1COMEN
                              where q.C6 == id && q.C1 == sucursalOrigen
-                             select q).First();
+                             select q).FirstOrDefault();
 
                     d.C11 = descripcion;
                     modelo.SaveChanges();
@@ -287,6 +287,32 @@ namespace Negocios
             }
 
         }
+
+        public void UpdateKDMentSuc(string id, string sucursalOrigen, string destino)
+        {
+            try
+            {
+                using (modelo2Entities modelo = new modelo2Entities())
+                {
+                    var data = (from q in modelo.KDMENT
+                                where q.C6 == id && q.C1 == sucursalOrigen
+                                select q);
+
+                    foreach (var item in data)
+                    {
+                        item.C10 = destino;
+                    }
+
+                    modelo.SaveChanges();
+                }
+            }
+            catch (DbEntityValidationException e)
+            {
+                Negocios.LOGs.ArsLogs.LogEdit(e.Message, "AltasBD.UpdateKDMentSuc() " + id);
+                System.Windows.Forms.MessageBox.Show("Hubo un problema al actualizar, no se pudo actualizar este código");
+            }
+        }
+
 
 
 

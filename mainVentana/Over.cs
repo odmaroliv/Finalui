@@ -144,66 +144,71 @@ namespace mainVentana
             int filas = gunaDataGridView1.Rows.Count;
             for (int i = 0; i < filas; i++)
             {
-
-
-
                 DateTime fechaactual = DateTime.Now;
                 DateTime fechaent;
-                DateTime dt;
-                if (gunaDataGridView1.Rows[i].Cells[2].Value==null || gunaDataGridView1.Rows[i].Cells[2].Value.ToString() == "")
+
+                if (gunaDataGridView1.Rows[i].Cells[2].Value == null || string.IsNullOrEmpty(gunaDataGridView1.Rows[i].Cells[2].Value.ToString()))
                 {
-                    fechaent = DateTime.Parse("7/6/2021 12:16:02 PM");
+                    fechaent = DateTime.Parse("7/6/2021 12:16:02 PM"); // Revisar esta fecha
                 }
                 else
                 {
-                    fechaent = DateTime.TryParse(gunaDataGridView1.Rows[i].Cells[2].Value.ToString().Trim(),out dt) == false ? DateTime.Parse("7/6/2021 12:16:02 PM") : dt;
+                    if (!DateTime.TryParse(gunaDataGridView1.Rows[i].Cells[2].Value.ToString().Trim(), out fechaent))
+                    {
+                        fechaent = DateTime.Parse("7/6/2021 12:16:02 PM"); // Revisar esta fecha
+                    }
                 }
 
+                int tiempoEnDias = (fechaactual - fechaent).Days;
 
+                string valorCelda4 = gunaDataGridView1.Rows[i].Cells[4].Value?.ToString();
+                string valorCelda5 = gunaDataGridView1.Rows[i].Cells[5].Value?.ToString();
+                string valorCelda3 = gunaDataGridView1.Rows[i].Cells[3].Value?.ToString();
+                string valorCelda19 = gunaDataGridView1.Rows[i].Cells[19].Value?.ToString();
+                string valorCelda26 = gunaDataGridView1.Rows[i].Cells[26].Value?.ToString();
 
-                TimeSpan tiempo = fechaactual - fechaent;
-
-                if (gunaDataGridView1.Rows[i].Cells[4].Value.ToString() == gunaDataGridView1.Rows[i].Cells[5].Value.ToString() && gunaDataGridView1.Rows[i].Cells[19].Value.ToString().Trim() != "")
-                {//cuando la surusal origen es igual a la destino 
+                if (valorCelda4 == valorCelda5 && !string.IsNullOrEmpty(valorCelda19))
+                {
                     gunaDataGridView1.Rows[i].Cells[5].Style.BackColor = Color.FromArgb(68, 183, 255);
-                    gunaDataGridView1.Rows[i].Cells[5].Style.ForeColor = Color.FromArgb(255, 255, 255); 
+                    gunaDataGridView1.Rows[i].Cells[5].Style.ForeColor = Color.FromArgb(255, 255, 255);
                 }
-                else if (gunaDataGridView1.Rows[i].Cells[4].Value.ToString() == gunaDataGridView1.Rows[i].Cells[5].Value.ToString() && gunaDataGridView1.Rows[i].Cells[19].Value.ToString().Trim() == "")
-                {//cuando la surusal origen es igual a la destino y no tienen bill 
+                else if (valorCelda4 == valorCelda5 && string.IsNullOrEmpty(valorCelda19))
+                {
                     gunaDataGridView1.Rows[i].Cells[5].Style.BackColor = Color.FromArgb(248, 44, 155);
                     gunaDataGridView1.Rows[i].Cells[5].Style.ForeColor = Color.FromArgb(255, 255, 255);
                 }
-                else if (gunaDataGridView1.Rows[i].Cells[4].Value.ToString() != gunaDataGridView1.Rows[i].Cells[3].Value.ToString() && gunaDataGridView1.Rows[i].Cells[4].Value.ToString() != gunaDataGridView1.Rows[i].Cells[5].Value.ToString())
-                { //Cuando la sucursal origen es diferente de la sucursal destino y la sucursal actual es diferente de la sucursal origen
+                else if (valorCelda4 != valorCelda3 && valorCelda4 != valorCelda5)
+                {
                     gunaDataGridView1.Rows[i].Cells[5].Style.BackColor = Color.FromArgb(252, 173, 5);
                     gunaDataGridView1.Rows[i].Cells[5].Style.ForeColor = Color.FromArgb(255, 255, 255);
                 }
-                /*else if (gunaDataGridView1.Rows[i].Cells[4].Value.ToString() != gunaDataGridView1.Rows[i].Cells[5].Value.ToString())
-                {//cuando la sucursal actual es diferente de la sucursal final 
-                    gunaDataGridView1.Rows[i].Cells[5].Style.BackColor = Color.FromArgb(156, 19, 18);
-                    gunaDataGridView1.Rows[i].Cells[5].Style.ForeColor = Color.FromArgb(255, 255, 255);
-                }*/
 
+                if (!String.IsNullOrWhiteSpace(valorCelda26))
+                {
+                    gunaDataGridView1.Rows[i].Cells[2].Style.BackColor = Color.FromArgb(192, 64, 0);
+                    gunaDataGridView1.Rows[i].Cells[2].Style.ForeColor = Color.FromArgb(255, 255, 255);
+                    gunaDataGridView1.Rows[i].Cells[1].Style.BackColor = Color.FromArgb(192, 64, 0);
+                    gunaDataGridView1.Rows[i].Cells[1].Style.ForeColor = Color.FromArgb(255, 255, 255);
+                }
 
-
-                if (tiempo > TimeSpan.Parse("10.00:00:0.0") && gunaDataGridView1.Rows[i].Cells[5].Value.ToString() == gunaDataGridView1.Rows[i].Cells[3].Value.ToString() && gunaDataGridView1.Rows[i].Cells[19].Value != null)
-                { //cuando un item tiene mas de 15 dias en el almacen y la sursal actual es igual a la sucursal origen
+                if (tiempoEnDias > 10 && valorCelda5 == valorCelda3 && valorCelda19 != null)
+                {
                     gunaDataGridView1.Rows[i].Cells[2].Style.BackColor = Color.FromArgb(156, 19, 18);
                     gunaDataGridView1.Rows[i].Cells[2].Style.ForeColor = Color.FromArgb(255, 255, 255);
                     gunaDataGridView1.Rows[i].Cells[5].Style.BackColor = Color.FromArgb(156, 19, 18);
                     gunaDataGridView1.Rows[i].Cells[5].Style.ForeColor = Color.FromArgb(255, 255, 255);
                 }
 
-                if (tiempo < TimeSpan.Parse("10.00:00:0.0") && gunaDataGridView1.Rows[i].Cells[5].Value.ToString() == gunaDataGridView1.Rows[i].Cells[3].Value.ToString() && gunaDataGridView1.Rows[i].Cells[19].Value != null)
-                { //cuando la sucursal actual es la sucursal de origen y tiene menos de 15 dias
+                if (tiempoEnDias < 10 && valorCelda5 == valorCelda3 && valorCelda19 != null)
+                {
                     gunaDataGridView1.Rows[i].Cells[2].Style.BackColor = Color.FromArgb(19, 156, 18);
                     gunaDataGridView1.Rows[i].Cells[2].Style.ForeColor = Color.FromArgb(255, 255, 255);
                     gunaDataGridView1.Rows[i].Cells[5].Style.BackColor = Color.FromArgb(19, 156, 18);
                     gunaDataGridView1.Rows[i].Cells[5].Style.ForeColor = Color.FromArgb(255, 255, 255);
                 }
-
             }
         }
+
 
         private void gunaShadowPanel2_Click(object sender, EventArgs e)
         {
@@ -489,8 +494,9 @@ namespace mainVentana
                     string url = string.Format("https://app.beetrack.com/search/{0}", ValorSuc.Trim() + "-" + valorEnt.Trim()) ;
                     System.Diagnostics.Process.Start(url);
                     return;
+              
                 }
-               
+
                 string id = gunaDataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
                 string orig = gunaDataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
 

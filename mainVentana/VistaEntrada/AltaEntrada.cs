@@ -118,11 +118,19 @@ namespace mainVentana.VistaEntrada
             {
                 return;
             }
-            if (sucEntrada.SelectedValue == sucDestino.SelectedValue)
+            if (cbxDestinoModify.Checked == true)
             {
-                MessageBox.Show("La sucursal de entrada y destino no pueden ser iguales.");
-                return;
+
             }
+            else
+            {
+                if (sucEntrada.SelectedValue == sucDestino.SelectedValue)
+                {
+                    MessageBox.Show("La sucursal de entrada y destino no pueden ser iguales.");
+                    return;
+                }
+            }
+           
             groupBox1.Enabled = false;
             if (MessageBox.Show("De: "+sucEntrada.Text + "\nPara: "+ sucDestino.Text, "Verificación",MessageBoxButtons.OKCancel,MessageBoxIcon.Exclamation)==DialogResult.Cancel)
             {
@@ -1266,6 +1274,9 @@ namespace mainVentana.VistaEntrada
             iconButton2.Enabled = false;
             sbeArchivos = "";
             mdfImg.Visible = true;
+            cbxDestinoModify.Visible = true;
+            cbxDestinoModify.Enable = true;
+            sucDestino.Enabled = false;
             abreModifica(false);
 
             try
@@ -1631,9 +1642,13 @@ namespace mainVentana.VistaEntrada
             {
                 bd.UpdateKDM1(datoEntrada, datoSucDestino, datoNoCord, datoNota, datoReferencia, pagado, datoTipoOper, datoValFact, datoValArn, datoSucOrigen, datoNoFlete, datoOrConpra,
                     datoNuCliente,datoNomCliente,datoCalle,datoColonia,datoCiudadZip,datoProvedor, datosAlias);
-                if (detalles.Enabled==true)
+                if (detalles.Enabled == true)
                 {
                     bd.UpdateKDM1Coment(datoEntrada, datoSucOrigen, datoDescripcion);
+                }
+                if (cbxDestinoModify.Checked == true)
+                {
+                    bd.UpdateKDMentSuc(datoEntrada, datoSucOrigen, datoSucDestino);
                 }
             }
             catch (Exception)
@@ -2540,6 +2555,18 @@ namespace mainVentana.VistaEntrada
            
             proveedor.AutoCompleteCustomSource = await proveeList();
            
+        }
+
+        private void cbxDestinoModify_CheckedChanged(object sender)
+        {
+            if (cbxDestinoModify.Checked == true)
+            {
+                sucDestino.Enabled = true;
+            }
+            else
+            {
+                sucDestino.Enabled = false;
+            }
         }
     }
 }

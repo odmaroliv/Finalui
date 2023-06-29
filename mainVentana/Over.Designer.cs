@@ -44,6 +44,7 @@
             this.dtFecha2 = new Guna.UI.WinForms.GunaDateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.rSalida = new System.Windows.Forms.RadioButton();
             this.rCa = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.rSd = new System.Windows.Forms.RadioButton();
@@ -69,7 +70,8 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.gunaDataGridView1 = new Guna.UI.WinForms.GunaDataGridView();
-            this.rSalida = new System.Windows.Forms.RadioButton();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -128,6 +130,8 @@
             // 
             this.paneldeBus.BackColor = System.Drawing.Color.Transparent;
             this.paneldeBus.BaseColor = System.Drawing.Color.White;
+            this.paneldeBus.Controls.Add(this.label3);
+            this.paneldeBus.Controls.Add(this.panel6);
             this.paneldeBus.Controls.Add(this.loadControl1);
             this.paneldeBus.Controls.Add(this.gbxTipoBusqueda);
             this.paneldeBus.Controls.Add(this.btnCxcp);
@@ -161,7 +165,7 @@
             // loadControl1
             // 
             this.loadControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.loadControl1.Location = new System.Drawing.Point(767, 200);
+            this.loadControl1.Location = new System.Drawing.Point(849, 200);
             this.loadControl1.Margin = new System.Windows.Forms.Padding(2);
             this.loadControl1.Name = "loadControl1";
             this.loadControl1.Size = new System.Drawing.Size(72, 40);
@@ -304,6 +308,18 @@
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(487, 42);
             this.panel7.TabIndex = 0;
+            // 
+            // rSalida
+            // 
+            this.rSalida.AutoSize = true;
+            this.rSalida.Location = new System.Drawing.Point(441, 3);
+            this.rSalida.Name = "rSalida";
+            this.rSalida.Size = new System.Drawing.Size(38, 17);
+            this.rSalida.TabIndex = 174;
+            this.rSalida.Tag = "SL";
+            this.rSalida.Text = "SL";
+            this.rSalida.UseVisualStyleBackColor = true;
+            this.rSalida.CheckedChanged += new System.EventHandler(this.radioButton5_CheckedChanged);
             // 
             // rCa
             // 
@@ -606,7 +622,7 @@
             // 
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(533, 221);
+            this.label8.Location = new System.Drawing.Point(615, 221);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(194, 13);
             this.label8.TabIndex = 10;
@@ -616,7 +632,7 @@
             // 
             this.panel10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(156)))), ((int)(((byte)(18)))));
-            this.panel10.Location = new System.Drawing.Point(733, 223);
+            this.panel10.Location = new System.Drawing.Point(815, 223);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(17, 11);
             this.panel10.TabIndex = 9;
@@ -625,7 +641,7 @@
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(306, 221);
+            this.label7.Location = new System.Drawing.Point(388, 221);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(182, 13);
             this.label7.TabIndex = 8;
@@ -635,7 +651,7 @@
             // 
             this.panel9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(19)))), ((int)(((byte)(18)))));
-            this.panel9.Location = new System.Drawing.Point(496, 223);
+            this.panel9.Location = new System.Drawing.Point(578, 223);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(17, 11);
             this.panel9.TabIndex = 7;
@@ -777,17 +793,24 @@
             this.gunaDataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gunaDataGridView1_CellDoubleClick);
             this.gunaDataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gunaDataGridView1_CellFormatting);
             // 
-            // rSalida
+            // label3
             // 
-            this.rSalida.AutoSize = true;
-            this.rSalida.Location = new System.Drawing.Point(441, 3);
-            this.rSalida.Name = "rSalida";
-            this.rSalida.Size = new System.Drawing.Size(38, 17);
-            this.rSalida.TabIndex = 174;
-            this.rSalida.Tag = "SL";
-            this.rSalida.Text = "SL";
-            this.rSalida.UseVisualStyleBackColor = true;
-            this.rSalida.CheckedChanged += new System.EventHandler(this.radioButton5_CheckedChanged);
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(303, 221);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(50, 13);
+            this.label3.TabIndex = 20;
+            this.label3.Text = "Beetrack";
+            // 
+            // panel6
+            // 
+            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.panel6.Location = new System.Drawing.Point(354, 223);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(17, 11);
+            this.panel6.TabIndex = 19;
             // 
             // Over
             // 
@@ -861,5 +884,7 @@
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.RadioButton rSalida;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel panel6;
     }
 }

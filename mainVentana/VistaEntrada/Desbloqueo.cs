@@ -21,7 +21,7 @@ namespace mainVentana.VistaEntrada
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
-            if (gunaLineTextBox2.Text.Trim() == 12345.ToString().Trim())
+            if (gunaLineTextBox2.Text.Trim() == 147258.ToString())
             {
                 cambiar(true);
                 this.Dispose();
@@ -39,6 +39,11 @@ namespace mainVentana.VistaEntrada
         {
             this.Dispose();
             this.Close();
+        }
+
+        private void Desbloqueo_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

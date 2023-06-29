@@ -110,6 +110,7 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.bntImpEntC = new FontAwesome.Sharp.IconButton();
             this.mdfImg = new FontAwesome.Sharp.IconButton();
+            this.cbxNotif = new ReaLTaiizor.Controls.CheckBox();
             this.gunaTileButton5 = new Guna.UI.WinForms.GunaTileButton();
             this.label33 = new System.Windows.Forms.Label();
             this.txbReferencia = new System.Windows.Forms.TextBox();
@@ -119,7 +120,6 @@
             this.detalles = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.cbxNotif = new ReaLTaiizor.Controls.CheckBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.Especificos = new Guna.UI.WinForms.GunaGroupBox();
             this.lblParidad = new System.Windows.Forms.TextBox();
@@ -144,6 +144,7 @@
             this.lblBuscarEnt = new System.Windows.Forms.Label();
             this.btnBuscarEnt = new Guna.UI.WinForms.GunaCircleButton();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.cbxDestinoModify = new ReaLTaiizor.Controls.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDocs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFotosModifi)).BeginInit();
@@ -573,6 +574,7 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox1.Controls.Add(this.cbxDestinoModify);
             this.groupBox1.Controls.Add(this.cmbAlmacen);
             this.groupBox1.Controls.Add(this.label30);
             this.groupBox1.Controls.Add(this.cord);
@@ -1267,6 +1269,24 @@
             this.mdfImg.UseVisualStyleBackColor = false;
             this.mdfImg.Click += new System.EventHandler(this.mdfImg_Click);
             // 
+            // cbxNotif
+            // 
+            this.cbxNotif.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxNotif.Checked = false;
+            this.cbxNotif.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(76)))), ((int)(((byte)(85)))));
+            this.cbxNotif.CheckedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(76)))), ((int)(((byte)(85)))));
+            this.cbxNotif.CheckedDisabledColor = System.Drawing.Color.WhiteSmoke;
+            this.cbxNotif.CheckedEnabledColor = System.Drawing.Color.Silver;
+            this.cbxNotif.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cbxNotif.Enable = true;
+            this.cbxNotif.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.cbxNotif.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(125)))), ((int)(((byte)(132)))));
+            this.cbxNotif.Location = new System.Drawing.Point(706, 13);
+            this.cbxNotif.Name = "cbxNotif";
+            this.cbxNotif.Size = new System.Drawing.Size(85, 16);
+            this.cbxNotif.TabIndex = 125;
+            this.cbxNotif.Text = "Notificar";
+            // 
             // gunaTileButton5
             // 
             this.gunaTileButton5.AnimationHoverSpeed = 0.07F;
@@ -1371,24 +1391,6 @@
             this.label22.Size = new System.Drawing.Size(104, 22);
             this.label22.TabIndex = 116;
             this.label22.Text = "Descripcion";
-            // 
-            // cbxNotif
-            // 
-            this.cbxNotif.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbxNotif.Checked = false;
-            this.cbxNotif.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(76)))), ((int)(((byte)(85)))));
-            this.cbxNotif.CheckedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(76)))), ((int)(((byte)(85)))));
-            this.cbxNotif.CheckedDisabledColor = System.Drawing.Color.WhiteSmoke;
-            this.cbxNotif.CheckedEnabledColor = System.Drawing.Color.Silver;
-            this.cbxNotif.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cbxNotif.Enable = true;
-            this.cbxNotif.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.cbxNotif.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(125)))), ((int)(((byte)(132)))));
-            this.cbxNotif.Location = new System.Drawing.Point(760, 13);
-            this.cbxNotif.Name = "cbxNotif";
-            this.cbxNotif.Size = new System.Drawing.Size(85, 16);
-            this.cbxNotif.TabIndex = 125;
-            this.cbxNotif.Text = "Notificar";
             // 
             // openFileDialog1
             // 
@@ -1698,6 +1700,26 @@
             this.btnBuscarEnt.Visible = false;
             this.btnBuscarEnt.Click += new System.EventHandler(this.btnBuscarEnt_Click);
             // 
+            // cbxDestinoModify
+            // 
+            this.cbxDestinoModify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxDestinoModify.Checked = false;
+            this.cbxDestinoModify.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.cbxDestinoModify.CheckedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.cbxDestinoModify.CheckedDisabledColor = System.Drawing.Color.WhiteSmoke;
+            this.cbxDestinoModify.CheckedEnabledColor = System.Drawing.Color.Silver;
+            this.cbxDestinoModify.Cursor = System.Windows.Forms.Cursors.Default;
+            this.cbxDestinoModify.Enable = false;
+            this.cbxDestinoModify.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.cbxDestinoModify.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(125)))), ((int)(((byte)(132)))));
+            this.cbxDestinoModify.Location = new System.Drawing.Point(12, 97);
+            this.cbxDestinoModify.Name = "cbxDestinoModify";
+            this.cbxDestinoModify.Size = new System.Drawing.Size(153, 16);
+            this.cbxDestinoModify.TabIndex = 126;
+            this.cbxDestinoModify.Text = "Modificar Destino";
+            this.cbxDestinoModify.Visible = false;
+            this.cbxDestinoModify.CheckedChanged += new ReaLTaiizor.Controls.CheckBox.CheckedChangedEventHandler(this.cbxDestinoModify_CheckedChanged);
+            // 
             // AltaEntrada
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1858,5 +1880,6 @@
         private Guna.UI.WinForms.GunaTileButton btnAltaProvEnt;
         private System.Windows.Forms.Label lblTotalArchivos;
         private System.Windows.Forms.Label label41;
+        private ReaLTaiizor.Controls.CheckBox cbxDestinoModify;
     }
 }
