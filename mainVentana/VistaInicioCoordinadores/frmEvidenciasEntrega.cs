@@ -34,10 +34,19 @@ namespace mainVentana.VistaInicioCoordinadores
         public frmEvidenciasEntrega()
         {
             InitializeComponent();
-            gMapControl1.MapProvider = GMapProviders.OpenStreetMap;
-            GMaps.Instance.Mode = AccessMode.ServerOnly; // Para evitar mostrar mensajes de error en caso de falta de conexión a Internet
-            gMapControl1.SetPositionByKeywords("Tijuana, Mexico"); // Establece una ubicación inicial por nombre de ciudad o país
-            gMapControl1.Zoom = 5; // Ajusta el nivel de zoom inicial
+            try
+            {
+                gMapControl1.MapProvider = GMapProviders.OpenStreetMap;
+                GMaps.Instance.Mode = AccessMode.ServerOnly; // Para evitar mostrar mensajes de error en caso de falta de conexión a Internet
+                gMapControl1.SetPositionByKeywords("Tijuana, Mexico"); // Establece una ubicación inicial por nombre de ciudad o país
+                gMapControl1.Zoom = 5; // Ajusta el nivel de zoom inicial
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
         }
 
         private void iconButton10_Click(object sender, EventArgs e)
