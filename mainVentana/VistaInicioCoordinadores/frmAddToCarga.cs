@@ -385,6 +385,9 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private async void tipoOper_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+            LimpiaDatos();
+
             datoTipoOper = tipoOper.SelectedValue.ToString().Trim();
             ComboBox cmboBox = (ComboBox)sender;
             string valor = cmboBox.SelectedValue != null ? cmboBox.SelectedValue.ToString() : "000000000";

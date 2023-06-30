@@ -662,14 +662,14 @@
             this.panel2.Controls.Add(this.swBill);
             this.panel2.Location = new System.Drawing.Point(1086, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 32);
+            this.panel2.Size = new System.Drawing.Size(189, 32);
             this.panel2.TabIndex = 194;
             // 
             // swBill
             // 
             this.swBill.AutoSize = true;
             this.swBill.Depth = 0;
-            this.swBill.Location = new System.Drawing.Point(120, -5);
+            this.swBill.Location = new System.Drawing.Point(104, -5);
             this.swBill.Margin = new System.Windows.Forms.Padding(0);
             this.swBill.MouseLocation = new System.Drawing.Point(-1, -1);
             this.swBill.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
