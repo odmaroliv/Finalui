@@ -9,5 +9,6 @@ namespace Datos.ViewModels.Recepciones
     public class vmSalidaDocumentoONLY
     {
         public string salidaDoc { get; set; }
+        public string referencia { get; set; }
     }
 }

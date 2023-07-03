@@ -26,48 +26,48 @@ namespace Negocios.AccesoRecepciones
         /// <returns></returns>
         /// 
 
-        public async Task<List<vmSalidaDocumentoONLY>> LlenaDGV(string sucori, string doc, int numerosuc, string envia)
-        {
-            sucori = sucori.Trim();
+        /*  public async Task<List<vmSalidaDocumentoONLY>> LlenaDGV(string sucori, string doc, int numerosuc, string envia)
+          {
+              sucori = sucori.Trim();
 
-            try
-            {
-                string c20Value = sucori.Contains("TJ") ? "F" : "PR";
-                string selectColumn = (sucori.Contains("TJ") || (envia == "SD" && sucori == "CSL")) ? "km.C17" : "km.C64";
-                string condition = (sucori.Contains("TJ") || (envia == "SD" && sucori == "CSL")) ? $"km.c20 {(sucori.Contains("TJ") ? "!=" : "=")} '{c20Value}' AND (km.C34 IS NOT NULL OR km.C34 != '') AND (km.C18 IS NOT NULL OR km.C18 != '')" : "km.c20 != 'F' AND (km.C34 IS NOT NULL OR km.C34 != '') AND (km.C18 IS NULL OR km.C18 = '')";
+              try
+              {
+                  string c20Value = sucori.Contains("TJ") ? "F" : "PR";
+                  string selectColumn = (sucori.Contains("TJ") || (envia == "SD" && sucori == "CSL")) ? "km.C17" : "km.C64";
+                  string condition = (sucori.Contains("TJ") || (envia == "SD" && sucori == "CSL")) ? $"km.c20 {(sucori.Contains("TJ") ? "!=" : "=")} '{c20Value}' AND (km.C34 IS NOT NULL OR km.C34 != '') AND (km.C18 IS NOT NULL OR km.C18 != '')" : "km.c20 != 'F' AND (km.C34 IS NOT NULL OR km.C34 != '') AND (km.C18 IS NULL OR km.C18 = '')";
 
-                List<vmSalidaDocumentoONLY> result = null;
+                  List<vmSalidaDocumentoONLY> result = null;
 
-                using (modelo2Entities modelo = new modelo2Entities())
-                {
+                  using (modelo2Entities modelo = new modelo2Entities())
+                  {
 
-                    modelo.Database.CommandTimeout = 300;
-                    result = await Task.Run(() =>
-                    {
-                        return modelo.Database.SqlQuery<vmSalidaDocumentoONLY>($@"
-                    SELECT salidaDoc = {selectColumn} 
-                    FROM KDMENT km 
-                    JOIN (
-                        SELECT kd.C103, kd.C4,kd.C6 
-                        FROM KDM1 kd 
-                        WHERE kd.C1 = @envia and kd.C103 = @sucori and kd.C4 = 45
-                    ) kd 
-                    ON km.C55 like '%'+kd.C6+'%' and {condition}
-                    GROUP BY {selectColumn}",
-                            new SqlParameter("@envia", envia),
-                            new SqlParameter("@sucori", sucori))
-                            .ToList();
-                    });
-                }
+                      modelo.Database.CommandTimeout = 300;
+                      result = await Task.Run(() =>
+                      {
+                          return modelo.Database.SqlQuery<vmSalidaDocumentoONLY>($@"
+                      SELECT salidaDoc = {selectColumn} 
+                      FROM KDMENT km 
+                      JOIN (
+                          SELECT kd.C103, kd.C4,kd.C6 
+                          FROM KDM1 kd 
+                          WHERE kd.C1 = @envia and kd.C103 = @sucori and kd.C4 = 45
+                      ) kd 
+                      ON km.C55 like '%'+kd.C6+'%' and {condition}
+                      GROUP BY {selectColumn}",
+                              new SqlParameter("@envia", envia),
+                              new SqlParameter("@sucori", sucori))
+                              .ToList();
+                      });
+                  }
 
-                return result.OrderByDescending(x => x.salidaDoc).Take(200).ToList();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
+                  return result.OrderByDescending(x => x.salidaDoc).Take(200).ToList();
+              }
+              catch (Exception)
+              {
+                  throw;
+              }
+          }
+        */
 
         /* public async Task<List<vmSalidaDocumentoONLY>> LlenaDGV(string sucori, string doc, int numerosuc, string envia)
          {
@@ -102,6 +102,40 @@ namespace Negocios.AccesoRecepciones
                  throw;
              }
          }*/
+        public async Task<List<vmSalidaDocumentoONLY>> LlenaDGV(string sucori, string doc, int numerosuc, string envia)
+        {
+            var lst2 = new List<vmSalidaDocumentoONLY>();
+            int cha = sucori.Trim().ToString().Length;
+            string sql = string.Empty;
+            string numeroCompleto = "-UD4501-";
+
+            try
+            {
+                await Task.Run(() =>
+                {
+                    using (modelo2Entities modelo = new modelo2Entities())
+                    {
+                        if (sucori.Trim().Contains("TJ") || (envia == "SD" && sucori == "CSL"))
+                        {
+                            string c20Value = sucori.Trim().Contains("TJ") ? "F" : "PR";
+                            sql = $"SELECT salidaDoc = CONCAT(TRIM(kd.C1), '{numeroCompleto}', kd.C6), referencia = kd.C11 FROM KDM1 kd WHERE kd.C1 = '{envia}' AND kd.C103 = '{sucori}' AND kd.C4 = 45 GROUP BY kd.C6, kd.C11, kd.C1";
+                        }
+                        else
+                        {
+                            sql = $"SELECT salidaDoc = CONCAT(TRIM(kd.C1), '{numeroCompleto}', kd.C6), referencia = kd.C11 FROM KDM1 kd WHERE kd.C1 = '{envia}' AND kd.C103 = '{sucori}' AND kd.C4 = 45 GROUP BY kd.C6, kd.C11, kd.C1";
+                        }
+
+                        lst2 = modelo.Database.SqlQuery<vmSalidaDocumentoONLY>(sql).OrderByDescending(x => x.salidaDoc).Take(100).ToList();
+                    }
+                });
+
+                return lst2;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
 
 
