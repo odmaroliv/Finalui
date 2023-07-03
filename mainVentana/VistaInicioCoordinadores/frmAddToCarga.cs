@@ -4,6 +4,8 @@ using Datos.ViewModels.Carga;
 using Datos.ViewModels.Entradas;
 using Datos.ViewModels.Servicios;
 using DocumentFormat.OpenXml.Presentation;
+using iTextSharp.text.pdf.codec.wmf;
+using mainVentana.VistaEntrada;
 using mainVentana.VistaOrSalida;
 using Negocios;
 using Negocios.NGBill;
@@ -33,6 +35,12 @@ namespace mainVentana.VistaInicioCoordinadores
         private List<vmEntradasEnCarga> listaBultos = new List<vmEntradasEnCarga>();
         private string _numeroBill = "";
 
+        private string calle;
+        private string colonia;
+        private string estado;
+        private string zipp;
+        private string numm;
+
         public frmAddToCarga()
         {
             InitializeComponent();
@@ -41,6 +49,7 @@ namespace mainVentana.VistaInicioCoordinadores
         private async void btnAlta_Click(object sender, EventArgs e)
         {
             await OperacionBoton();
+            await CargaEntradas();
         }
 
         private async Task OperacionBoton()
@@ -221,8 +230,8 @@ namespace mainVentana.VistaInicioCoordinadores
 
             // Encontrar el RadioButton seleccionado y obtener su valor correspondiente
             sucursal = radioButtonMapping.FirstOrDefault(r => r.Key.Checked).Value;
-            await OperacionBoton();
-            await CargaEntradas();
+           // await OperacionBoton();
+           // await CargaEntradas();
         }
 
         private void LimpiaDatos()
@@ -317,9 +326,12 @@ namespace mainVentana.VistaInicioCoordinadores
                 string b_car = _numeroBill;
                 string b_billCompleto = b_so + "-UD5501-" + b_car;
 
+              //  AltasBD bd = new AltasBD();
+                AsignaDatosSireccion();
+                
                 if (st)
                 {
-                    bool dato = await get.AsignarABill(listaBultos, b_billCompleto, fechaHoy, datoTipoOper);
+                    bool dato = await get.AsignarABill(listaBultos, b_billCompleto, fechaHoy, calle, colonia, estado, txbAliasAct.Text, zipp, numm, datoTipoOper);
                     if (dato == false)
                     {
                         MessageBox.Show("Ocurrio un error intente de nuevo");
@@ -328,6 +340,8 @@ namespace mainVentana.VistaInicioCoordinadores
                     {
                         MessageBox.Show("Documento " + _numeroBill + " creado con exito", "Terminado", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                         Notificacion(1, "El documento: " + _numeroBill + "\r\rSe asigno correctamente.", "Exito ");
+                        Clipboard.SetText(_numeroBill);
+                        cargaultbill();
                         await OperacionBoton();
                     }
                 }
@@ -382,7 +396,19 @@ namespace mainVentana.VistaInicioCoordinadores
             }
           }
         }
+        private void AsignaDatosSireccion()
+        {
+            if (String.IsNullOrWhiteSpace(txbAliasAct.Text))
+            {
+                calle = txbPcalle.Text;
+                colonia = txbPcolonia.Text;
+                estado = txbPpoblacion.Text;
+                zipp = txbPcp.Text;
+                numm = txbTel.Text;
+            }
 
+
+        }
         private async void tipoOper_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -394,12 +420,12 @@ namespace mainVentana.VistaInicioCoordinadores
             if (valor == "09")
             {
                 swBill.Enabled= true;
-                await OperacionBoton();
+               // await OperacionBoton();
             }
             else
             {
                 swBill.Enabled = false;
-                await OperacionBoton();
+              //  await OperacionBoton();
             }
 
         }
@@ -479,7 +505,7 @@ namespace mainVentana.VistaInicioCoordinadores
             catch (DbEntityValidationException o)
             {
                 bd.ActualizaSqlIov(datoSucIni.Trim(), 55, _numeroBill);
-                Negocios.LOGs.ArsLogs.LogEdit(o.Message, "frmOrdenDeCarga.cs, Cuando se dio click al boton de crear orden de Carga... " + _numeroBill + "");
+                Negocios.LOGs.ArsLogs.LogEdit(o.Message, "frmOrdenDeCarga.cs, Cuando se dio click al boton de asignar... " + _numeroBill + "");
                 return false;
             }
             
@@ -513,5 +539,46 @@ namespace mainVentana.VistaInicioCoordinadores
 
         }
 
+        private void gbxBill_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void iconButton3_Click(object sender, EventArgs e)
+        {
+            VistaEntrada.BusquedasEnt buscador = new BusquedasEnt();
+            buscador.label2.Text = "ALIASDIREC";
+            buscador.pasado += new BusquedasEnt.pasar(moverinfo);
+            buscador.ShowDialog();
+        }
+        public void moverinfo(string dato, string dato2, string dato3, string dato4, string dato5, string dato6, string dato7, string correoCliente, int bandera) //cambia los datos de los textbox alias y clientes, la bandera dependera de la manera en la que se haya abierto el frm buscar, 0 clientes 1 alias, ADEMAS tambien sirve para cambiar el campo de cord
+        {
+            LimpiVar();
+           // string nClien = txbNoCliente.Text.Trim();
+            string oClien = dato7 != null ? dato7.Trim() : string.Empty;
+          /*  if (nClien != oClien)
+            {
+                MessageBox.Show("Este alias no pertenece a este cliente");
+                return;
+            }*/
+            if (bandera == 1)//alias
+            {
+                calle = dato4;
+                colonia = dato5;
+                estado = dato6;
+                zipp = dato3;
+                numm = correoCliente;
+                txbAliasAct.Text = dato;
+            }
+        }
+        private void LimpiVar()
+        {
+            calle = "";
+            colonia = "";
+            estado = "";
+            txbAliasAct.Text = "";
+            zipp = "";
+            numm = "";
+        }
     }
 }

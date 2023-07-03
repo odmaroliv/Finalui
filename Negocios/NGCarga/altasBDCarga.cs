@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using Datos.ViewModels.Carga;
 using System.Collections.ObjectModel;
+using Datos.ViewModels.Entradas;
 
 namespace Negocios.NGCarga
 {
@@ -336,7 +337,7 @@ namespace Negocios.NGCarga
         }
 
 
-        public async Task<bool> AsignarABill(List<vmEntradasEnCarga> lista, string nBill, string fecha, string tipo = null)
+        public async Task<bool> AsignarABill(List<vmEntradasEnCarga> lista, string nBill, string fecha, string aliass, string calle, string colonia, string estado, string zip, string num,string tipo = null)
         {
             bool te = true;
             await Task.Run(() =>
@@ -361,9 +362,14 @@ namespace Negocios.NGCarga
 
                                 dato.C34 = nBill;
                                 dato.C77 = fecha;
+                            dato.C24 = aliass;
+                            dato.C25 = calle;
+                            dato.C26 = colonia;
+                            dato.C27 = estado;
+                            dato.C28 = zip;
+                            dato.C29 = num;
 
-
-                                modelo.SaveChanges();
+                            modelo.SaveChanges();
                             }
                             catch (Exception ex)
                             {
