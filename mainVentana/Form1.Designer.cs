@@ -841,11 +841,13 @@ namespace mainVentana
             // 
             // rbtnConsultaCargaCord
             // 
+            this.rbtnConsultaCargaCord.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
             this.rbtnConsultaCargaCord.Image = ((System.Drawing.Image)(resources.GetObject("rbtnConsultaCargaCord.Image")));
             this.rbtnConsultaCargaCord.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbtnConsultaCargaCord.LargeImage")));
             this.rbtnConsultaCargaCord.Name = "rbtnConsultaCargaCord";
             this.rbtnConsultaCargaCord.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbtnConsultaCargaCord.SmallImage")));
             this.rbtnConsultaCargaCord.Text = "Consulta Cargas";
+            this.rbtnConsultaCargaCord.Click += new System.EventHandler(this.rbtnConsultaCargaCord_Click);
             // 
             // Form1
             // 

@@ -563,6 +563,11 @@ namespace mainVentana
 
         private void rbtnCord_Click(object sender, EventArgs e)
         {
+        }
+
+        private void rbtnConsultaCargaCord_Click(object sender, EventArgs e)
+        {
+
             try
             {
                 frmModificaCarga ent = new frmModificaCarga();
