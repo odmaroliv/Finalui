@@ -60,7 +60,7 @@ namespace Negocios.AccesoRecepciones
                     });
                 }
 
-                return result.OrderByDescending(x => x.salidaDoc).Take(50).ToList();
+                return result.OrderByDescending(x => x.salidaDoc).Take(200).ToList();
             }
             catch (Exception)
             {

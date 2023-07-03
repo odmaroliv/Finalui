@@ -560,5 +560,21 @@ namespace mainVentana
             Evide.FormClosed += frm_FormClosed_Libera;
             Evide.Show();
         }
+
+        private void rbtnCord_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmModificaCarga ent = new frmModificaCarga();
+                ent.Text = "Consulta";
+                ent.modoForm = "Consulta";
+
+                ent.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

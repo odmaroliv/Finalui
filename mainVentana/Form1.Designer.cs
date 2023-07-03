@@ -99,6 +99,7 @@ namespace mainVentana
             this.oldrpKepler = new System.Windows.Forms.RibbonButton();
             this.btnCargaTo = new System.Windows.Forms.RibbonButton();
             this.consultaBill = new System.Windows.Forms.RibbonButton();
+            this.rbtnEntregasPruebas = new System.Windows.Forms.RibbonButton();
             this.ribbonSeparator8 = new System.Windows.Forms.RibbonSeparator();
             this.rbtnReportes = new System.Windows.Forms.RibbonButton();
             this.ribbonSeparator9 = new System.Windows.Forms.RibbonSeparator();
@@ -126,7 +127,7 @@ namespace mainVentana
             this.ribbonButton4 = new System.Windows.Forms.RibbonButton();
             this.ribbonDescriptionMenuItem2 = new System.Windows.Forms.RibbonDescriptionMenuItem();
             this.panelContenedorForm = new System.Windows.Forms.Panel();
-            this.rbtnEntregasPruebas = new System.Windows.Forms.RibbonButton();
+            this.rbtnConsultaCargaCord = new System.Windows.Forms.RibbonButton();
             this.panel11.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -528,12 +529,14 @@ namespace mainVentana
             this.rbtnCord.DropDownItems.Add(this.btnCargaTo);
             this.rbtnCord.DropDownItems.Add(this.consultaBill);
             this.rbtnCord.DropDownItems.Add(this.rbtnEntregasPruebas);
+            this.rbtnCord.DropDownItems.Add(this.rbtnConsultaCargaCord);
             this.rbtnCord.Image = global::mainVentana.Properties.Resources.b2c__2_;
             this.rbtnCord.LargeImage = global::mainVentana.Properties.Resources.b2c__2_;
             this.rbtnCord.Name = "rbtnCord";
             this.rbtnCord.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbtnCord.SmallImage")));
             this.rbtnCord.Style = System.Windows.Forms.RibbonButtonStyle.SplitDropDown;
             this.rbtnCord.Text = "Ejecutivo";
+            this.rbtnCord.Click += new System.EventHandler(this.rbtnCord_Click);
             // 
             // vbtnCotizacion
             // 
@@ -595,6 +598,16 @@ namespace mainVentana
             this.consultaBill.Text = "Consulta Bill";
             this.consultaBill.ToolTip = "Consulta bills de Arsys y Kepler";
             this.consultaBill.Click += new System.EventHandler(this.consultaBill_Click);
+            // 
+            // rbtnEntregasPruebas
+            // 
+            this.rbtnEntregasPruebas.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.rbtnEntregasPruebas.Image = ((System.Drawing.Image)(resources.GetObject("rbtnEntregasPruebas.Image")));
+            this.rbtnEntregasPruebas.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbtnEntregasPruebas.LargeImage")));
+            this.rbtnEntregasPruebas.Name = "rbtnEntregasPruebas";
+            this.rbtnEntregasPruebas.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbtnEntregasPruebas.SmallImage")));
+            this.rbtnEntregasPruebas.Text = "Pruebas de entrega";
+            this.rbtnEntregasPruebas.Click += new System.EventHandler(this.rbtnEntregasPruebas_Click);
             // 
             // ribbonSeparator8
             // 
@@ -826,15 +839,13 @@ namespace mainVentana
             this.panelContenedorForm.Size = new System.Drawing.Size(1113, 601);
             this.panelContenedorForm.TabIndex = 2;
             // 
-            // rbtnEntregasPruebas
+            // rbtnConsultaCargaCord
             // 
-            this.rbtnEntregasPruebas.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
-            this.rbtnEntregasPruebas.Image = ((System.Drawing.Image)(resources.GetObject("rbtnEntregasPruebas.Image")));
-            this.rbtnEntregasPruebas.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbtnEntregasPruebas.LargeImage")));
-            this.rbtnEntregasPruebas.Name = "rbtnEntregasPruebas";
-            this.rbtnEntregasPruebas.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbtnEntregasPruebas.SmallImage")));
-            this.rbtnEntregasPruebas.Text = "Pruebas de entrega";
-            this.rbtnEntregasPruebas.Click += new System.EventHandler(this.rbtnEntregasPruebas_Click);
+            this.rbtnConsultaCargaCord.Image = ((System.Drawing.Image)(resources.GetObject("rbtnConsultaCargaCord.Image")));
+            this.rbtnConsultaCargaCord.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbtnConsultaCargaCord.LargeImage")));
+            this.rbtnConsultaCargaCord.Name = "rbtnConsultaCargaCord";
+            this.rbtnConsultaCargaCord.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbtnConsultaCargaCord.SmallImage")));
+            this.rbtnConsultaCargaCord.Text = "Consulta Cargas";
             // 
             // Form1
             // 
@@ -943,6 +954,7 @@ namespace mainVentana
         private RibbonButton rbAgregarUsuario;
         private RibbonButton consultaBill;
         private RibbonButton rbtnEntregasPruebas;
+        private RibbonButton rbtnConsultaCargaCord;
     }
 }
 
