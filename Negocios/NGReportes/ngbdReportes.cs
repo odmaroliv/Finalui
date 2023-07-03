@@ -206,7 +206,7 @@ namespace Negocios.NGReportes
                                     join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
                                     join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
                                     join u in modelo .KDUD on k.C10 equals u.C2
-                                    where k.C9 <= to && k.C9 >= dateFrom  && d.C19.Contains(dato) && d.C10.Contains(dato) && (d.C20 == "F" || d.C20 == "PR")  && k.C4 == 35 && ((k.C115 != "" && k.C115 != null) || u.C32 == "1") && (d.C45 == "" || d.C45 == null) && (d.C34 == "" || d.C34 == null)
+                                    where k.C9 <= to && k.C9 >= dateFrom  /*&& d.C19.Contains(dato)*/ && d.C10.Contains(dato) && (d.C20 == "F" || d.C20 == "PR")  && k.C4 == 35 && ((k.C115 != "" && k.C115 != null) || u.C32 == "1") && (d.C45 == "" || d.C45 == null) && (d.C34 == "" || d.C34 == null)
                                     orderby d.C6 descending
                                     select new CargaCordsGeneral
                                     {
@@ -231,7 +231,7 @@ namespace Negocios.NGReportes
                                     join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
                                     join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
                                     join u in modelo.KDUD on k.C10 equals u.C2
-                                    where k.C9 <= to && k.C9 >= dateFrom &&  d.C19.Contains(dato) && d.C10.Contains(dato) && (d.C20 == "F" || d.C20 == "PR") && k.C4 == 35 && ((k.C115 != "" && k.C115 != null) || u.C32 == "1") && (d.C45 == "" || d.C45 == null) && (d.C34 == "" || d.C34 == null) && k.C12 == Common.Cache.CacheLogin.idusuario.ToString() 
+                                    where k.C9 <= to && k.C9 >= dateFrom /*&&  d.C19.Contains(dato)*/ && d.C10.Contains(dato) && (d.C20 == "F" || d.C20 == "PR") && k.C4 == 35 && ((k.C115 != "" && k.C115 != null) || u.C32 == "1") && (d.C45 == "" || d.C45 == null) && (d.C34 == "" || d.C34 == null) && k.C12 == Common.Cache.CacheLogin.idusuario.ToString() 
                                     orderby d.C6 descending
                                     select new CargaCordsGeneral
                                     {
