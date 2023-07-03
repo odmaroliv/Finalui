@@ -200,7 +200,6 @@ namespace mainVentana.VistaInicioCoordinadores
                             }
                         }
 
-
                     }
                     catch (Exception)
                     {
