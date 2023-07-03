@@ -154,10 +154,10 @@ namespace Negocios.NGCotizacion
                 }
             }
         }
-        public async Task ModificaKDM1Cotiza(List<vmEntCordsCot> lst, string nCot)
+        public async Task <bool> ModificaKDM1Cotiza(List<vmEntCordsCot> lst, string nCot)
         {
 
-
+            bool bandera = true;
             await Task.Run(() =>
             {
                 using (modelo2Entities modelo = new modelo2Entities())
@@ -173,7 +173,7 @@ namespace Negocios.NGCotizacion
                         kd.Add(d);
 
                     }
-                   
+
 
                     try
                     {
@@ -181,10 +181,14 @@ namespace Negocios.NGCotizacion
                     }
                     catch (Exception ex)
                     {
+                        bandera = false;
+                        Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "ModificaKDM1Cotiza(), AltaCotización()");
                         throw;
                     }
+
                 }
             });
+            return bandera;
         }
         public void CancelarCotizacion(string SucCoti,
           string NoCotizacion)

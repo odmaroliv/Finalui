@@ -814,7 +814,12 @@ namespace mainVentana.VistaInicioCoordinadores
         {
             AltasCotizacion alta = new AltasCotizacion();
             string cotCompleta = lblSuc.Text.Trim() +"-"+ nCotizacionG;
-            await alta.ModificaKDM1Cotiza(listaEntsEnCotizacion, cotCompleta);
+           bool rs = await alta.ModificaKDM1Cotiza(listaEntsEnCotizacion, cotCompleta);
+            if (!rs)
+            {
+                MessageBox.Show("La cotización no se creo, no podras imprimirla, solamente se guardo sin entradas, por favor avisa a Sistemas");
+                return;
+            }
 
         }
 
