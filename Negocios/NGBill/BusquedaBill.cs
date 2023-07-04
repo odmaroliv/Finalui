@@ -392,7 +392,7 @@ namespace Negocios.NGBill
                                      fromColonia = s.C5,
                                      fromLocalidad = s.C6,
                                      fromZip = s.C27,
-                                     telCliente = s.C7,
+                                     telCliente = s.C7 +", "+ d.C29,
                                      coord = a.C3,
 
                                  });

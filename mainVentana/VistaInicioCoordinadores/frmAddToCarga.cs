@@ -5,6 +5,7 @@ using Datos.ViewModels.Entradas;
 using Datos.ViewModels.Servicios;
 using DocumentFormat.OpenXml.Presentation;
 using iTextSharp.text.pdf.codec.wmf;
+using mainVentana.VistaBill;
 using mainVentana.VistaEntrada;
 using mainVentana.VistaOrSalida;
 using Negocios;
@@ -298,7 +299,14 @@ namespace mainVentana.VistaInicioCoordinadores
                 return;
 
             }
-          
+            if (swBill.Checked == true)
+            {
+                cargaultbillRefuerzo();
+            }
+            else
+            {
+                
+            }
             await EjecutaFuncionDeModifica();
             await OperacionBoton();
         }
@@ -312,6 +320,7 @@ namespace mainVentana.VistaInicioCoordinadores
             }
             if (datoTipoOper == "BILL")
             {
+
                 txbCarga.Text = "";
                 _isBussy = true;
                 btnGuardar.Enabled = false;
@@ -341,6 +350,7 @@ namespace mainVentana.VistaInicioCoordinadores
                         MessageBox.Show("Documento " + _numeroBill + " creado con exito", "Terminado", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                         Notificacion(1, "El documento: " + _numeroBill + "\r\rSe asigno correctamente.", "Exito ");
                         Clipboard.SetText(_numeroBill);
+                        cargaImprime();
                         cargaultbill();
                         await OperacionBoton();
                     }
@@ -394,7 +404,7 @@ namespace mainVentana.VistaInicioCoordinadores
                 btnGuardar.Enabled = true;
                 _isBussy = false;
             }
-          }
+            }
         }
         private void AsignaDatosSireccion()
         {
@@ -407,6 +417,14 @@ namespace mainVentana.VistaInicioCoordinadores
                 numm = txbTel.Text;
             }
 
+
+        }
+        private void cargaImprime()
+        {
+            using (frmConsultaBill bll = new frmConsultaBill())
+            {
+                bll.ShowDialog();
+            }
 
         }
         private async void tipoOper_SelectedIndexChanged(object sender, EventArgs e)
@@ -434,11 +452,13 @@ namespace mainVentana.VistaInicioCoordinadores
         {
             if (swBill.Checked == true)
             {
+
                 _isBill = true;
                 tipoOper.Enabled = false;
                 datoTipoOper = "BILL";
                 groupBox1.Enabled = false;
                 cargaultbill();
+                cargaultbillRefuerzo();
             }
             else
             {
@@ -450,8 +470,15 @@ namespace mainVentana.VistaInicioCoordinadores
             }
 
         }
-
-        private void cargaultbill()
+        private void cargaultbillRefuerzo() //unicamente paso lo que esta en el Switch a aqui para ejecutarlo antes de darle click al boton de asignar
+        {
+            _isBill = true;
+            tipoOper.Enabled = false;
+            datoTipoOper = "BILL";
+            groupBox1.Enabled = false;
+            cargaultbill();
+        }
+            private void cargaultbill()
         {
             string dBill = "";
 

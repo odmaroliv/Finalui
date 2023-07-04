@@ -1,6 +1,7 @@
 ﻿using Datos.ViewModels.Coord;
 using Datos.ViewModels.Entradas;
 using Datos.ViewModels.Servicios;
+using mainVentana.VistaBill;
 using mainVentana.VistaEntrada;
 using Negocios;
 using Negocios.NGCotizacion;
@@ -282,12 +283,25 @@ namespace mainVentana.VistaInicioCoordinadores
         {
             if (Convert.ToInt32(cmbMoneda.SelectedValue) == 1)
             {
-                txbParidad.Text = "";
+                try
+                {
+                    dgvEntradasACotizar.Columns[3].ReadOnly = false;
+                    dgvEntradasACotizar.Columns[2].ReadOnly = true;
+                    Cargaparidad();
+                }
+                catch (Exception)
+                {
+
+                    MessageBox.Show("la paridad no pudo se encontrada en el diario oficial de la federacion por favor agregela manualmente");
+                    txbParidad.Enabled = true;
+                }
             }
             else if (Convert.ToInt32(cmbMoneda.SelectedValue) == 2)
             {
                 try
                 {
+                    dgvEntradasACotizar.Columns[3].ReadOnly = true;
+                    dgvEntradasACotizar.Columns[2].ReadOnly = false;
                     Cargaparidad();
                 }
                 catch (Exception)
@@ -575,7 +589,32 @@ namespace mainVentana.VistaInicioCoordinadores
                         {
                             _isBussy = false;
                         }
-                      
+                        try
+                        {
+                            _isBussy = true;
+                            if (e.ColumnIndex == 3)
+                            {
+                                DataGridViewRow currentRow = dgvEntradasACotizar.Rows[e.RowIndex];
+                                decimal valorColumna2 = decimal.Parse(currentRow.Cells[3].Value == null ? "0" : currentRow.Cells[3].Value.ToString());
+
+                                decimal porcentaje = (valorColumna2 / vParidad);
+                                currentRow.Cells[1].Value = "0";
+                                currentRow.Cells[2].Value = porcentaje.ToString("N2");
+                                operacion();
+                                operacion();
+                                //   return;
+                            }
+                        }
+                        catch (Exception)
+                        {
+
+                            throw;
+                        }
+                        finally
+                        {
+                            _isBussy = false;
+                        }
+
                     }
                 }
                 catch (Exception)
@@ -881,5 +920,27 @@ namespace mainVentana.VistaInicioCoordinadores
 
             }
         }
+
+        private void txbParidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                try
+                { 
+                    vParidad = String.IsNullOrWhiteSpace(txbParidad.Text) ? 0 : decimal.Parse(txbParidad.Text.Trim());
+                    vParidad = decimal.Truncate(vParidad * 100) / 100;
+                    MessageBox.Show("Tipo de cambio modificado");
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+               
+
+
+            }
+        }
+     
     }
 }
