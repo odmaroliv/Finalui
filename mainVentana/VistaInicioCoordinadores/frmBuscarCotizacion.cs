@@ -164,7 +164,7 @@ namespace mainVentana.VistaInicioCoordinadores
 
         }
 
-        public void CancelaCotizacionChechk(bool dato)
+        public async void CancelaCotizacionChechk(bool dato)
         {
             if (dato == true)
             {
@@ -186,10 +186,10 @@ namespace mainVentana.VistaInicioCoordinadores
 
                                     string entradas = string.Join(",", listaEntEnCot.Select(x => x.Entrada.ToString().Trim()));
                                     string su = string.Join(",", listaEntEnCot.Select(x => x.sucursal.ToString().Trim()));
-                                    alta.CancelaCotEnEntradas(listaEntEnCot);
+                                    await alta.CancelaCotEnEntradas(listaEntEnCot);
                                     alta.CancelarCotizacion(value1, value2);
                                     MessageBox.Show("Listo");
-                                    refresh(_nCotD7);
+                                    await refresh(_nCotD7);
                                 }
                                 catch (Exception)
                                 {

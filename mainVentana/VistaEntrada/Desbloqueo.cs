@@ -21,18 +21,33 @@ namespace mainVentana.VistaEntrada
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
-            if (gunaLineTextBox2.Text.Trim() == 147258.ToString())
+            try
+            {
+                if (gunaLineTextBox2.Text.Trim() == 147258.ToString())
+                {
+                    cambiar(true);
+                    this.Dispose();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("LA CONTRASEÑA ES INCORRECTA");
+                    gunaLineTextBox2.Text = "";
+                    gunaLineTextBox2.Focus();
+                }
+
+            }
+            catch (Exception)
             {
                 cambiar(true);
-                this.Dispose();
-                this.Close();
+               // throw;
             }
-            else
-            {
-                MessageBox.Show("LA CONTRASEÑA ES INCORRECTA");
-                gunaLineTextBox2.Text = "";
-                gunaLineTextBox2.Focus();
+            finally {
+
+                cambiar(false);
+
             }
+           
         }
 
         private void Desbloqueo_FormClosed(object sender, FormClosedEventArgs e)
