@@ -100,6 +100,7 @@ namespace mainVentana
             this.btnCargaTo = new System.Windows.Forms.RibbonButton();
             this.consultaBill = new System.Windows.Forms.RibbonButton();
             this.rbtnEntregasPruebas = new System.Windows.Forms.RibbonButton();
+            this.rbtnConsultaCargaCord = new System.Windows.Forms.RibbonButton();
             this.ribbonSeparator8 = new System.Windows.Forms.RibbonSeparator();
             this.rbtnReportes = new System.Windows.Forms.RibbonButton();
             this.ribbonSeparator9 = new System.Windows.Forms.RibbonSeparator();
@@ -127,7 +128,7 @@ namespace mainVentana
             this.ribbonButton4 = new System.Windows.Forms.RibbonButton();
             this.ribbonDescriptionMenuItem2 = new System.Windows.Forms.RibbonDescriptionMenuItem();
             this.panelContenedorForm = new System.Windows.Forms.Panel();
-            this.rbtnConsultaCargaCord = new System.Windows.Forms.RibbonButton();
+            this.rbReporteSalida = new System.Windows.Forms.RibbonButton();
             this.panel11.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -609,16 +610,28 @@ namespace mainVentana
             this.rbtnEntregasPruebas.Text = "Pruebas de entrega";
             this.rbtnEntregasPruebas.Click += new System.EventHandler(this.rbtnEntregasPruebas_Click);
             // 
+            // rbtnConsultaCargaCord
+            // 
+            this.rbtnConsultaCargaCord.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.rbtnConsultaCargaCord.Image = ((System.Drawing.Image)(resources.GetObject("rbtnConsultaCargaCord.Image")));
+            this.rbtnConsultaCargaCord.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbtnConsultaCargaCord.LargeImage")));
+            this.rbtnConsultaCargaCord.Name = "rbtnConsultaCargaCord";
+            this.rbtnConsultaCargaCord.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbtnConsultaCargaCord.SmallImage")));
+            this.rbtnConsultaCargaCord.Text = "Consulta Cargas";
+            this.rbtnConsultaCargaCord.Click += new System.EventHandler(this.rbtnConsultaCargaCord_Click);
+            // 
             // ribbonSeparator8
             // 
             this.ribbonSeparator8.Name = "ribbonSeparator8";
             // 
             // rbtnReportes
             // 
+            this.rbtnReportes.DropDownItems.Add(this.rbReporteSalida);
             this.rbtnReportes.Image = global::mainVentana.Properties.Resources.delivery;
             this.rbtnReportes.LargeImage = global::mainVentana.Properties.Resources.delivery;
             this.rbtnReportes.Name = "rbtnReportes";
             this.rbtnReportes.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbtnReportes.SmallImage")));
+            this.rbtnReportes.Style = System.Windows.Forms.RibbonButtonStyle.DropDown;
             this.rbtnReportes.Text = "Reportes";
             this.rbtnReportes.Click += new System.EventHandler(this.rbtnReportes_Click);
             // 
@@ -839,15 +852,15 @@ namespace mainVentana
             this.panelContenedorForm.Size = new System.Drawing.Size(1113, 601);
             this.panelContenedorForm.TabIndex = 2;
             // 
-            // rbtnConsultaCargaCord
+            // rbReporteSalida
             // 
-            this.rbtnConsultaCargaCord.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
-            this.rbtnConsultaCargaCord.Image = ((System.Drawing.Image)(resources.GetObject("rbtnConsultaCargaCord.Image")));
-            this.rbtnConsultaCargaCord.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbtnConsultaCargaCord.LargeImage")));
-            this.rbtnConsultaCargaCord.Name = "rbtnConsultaCargaCord";
-            this.rbtnConsultaCargaCord.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbtnConsultaCargaCord.SmallImage")));
-            this.rbtnConsultaCargaCord.Text = "Consulta Cargas";
-            this.rbtnConsultaCargaCord.Click += new System.EventHandler(this.rbtnConsultaCargaCord_Click);
+            this.rbReporteSalida.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.rbReporteSalida.Image = ((System.Drawing.Image)(resources.GetObject("rbReporteSalida.Image")));
+            this.rbReporteSalida.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbReporteSalida.LargeImage")));
+            this.rbReporteSalida.Name = "rbReporteSalida";
+            this.rbReporteSalida.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbReporteSalida.SmallImage")));
+            this.rbReporteSalida.Text = "Reporte Salidas";
+            this.rbReporteSalida.Click += new System.EventHandler(this.rbReporteSalida_Click);
             // 
             // Form1
             // 
@@ -957,6 +970,7 @@ namespace mainVentana
         private RibbonButton consultaBill;
         private RibbonButton rbtnEntregasPruebas;
         private RibbonButton rbtnConsultaCargaCord;
+        private RibbonButton rbReporteSalida;
     }
 }
 

@@ -35,7 +35,6 @@ namespace mainVentana.VistaEntrada
                     gunaLineTextBox2.Text = "";
                     gunaLineTextBox2.Focus();
                 }
-
             }
             catch (Exception)
             {

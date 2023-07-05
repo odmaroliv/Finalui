@@ -21,6 +21,7 @@ using mainVentana.VistaEntrada.Proovedor;
 using Vanara.PInvoke;
 using mainVentana.vistaConfiguraciones;
 using mainVentana.VistaBill;
+using mainVentana.Reportes.Salidas;
 
 namespace mainVentana
 {
@@ -580,6 +581,15 @@ namespace mainVentana
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void rbReporteSalida_Click(object sender, EventArgs e)
+        {
+
+            frmRepSalidas Evide = new frmRepSalidas();
+            openForms.Add(Evide);
+            Evide.FormClosed += frm_FormClosed_Libera;
+            Evide.Show();
         }
     }
 }

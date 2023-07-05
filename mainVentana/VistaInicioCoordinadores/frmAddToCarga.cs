@@ -87,6 +87,8 @@ namespace mainVentana.VistaInicioCoordinadores
             //CargaOrdenes();
             await CargaOperaciones();
 
+            
+
         }
 
         private async void CargaOrdenes()

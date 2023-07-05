@@ -221,25 +221,25 @@ namespace Negocios.Acceso_Salida
 
         }
 
-      /*  public List<string> BuscUltimaSalida(string suc)
-        {
+        /*  public List<string> BuscUltimaSalida(string suc)
+          {
 
-            List<string> lista1 = new List<string>();
+              List<string> lista1 = new List<string>();
 
-            using (modelo2Entities db = new modelo2Entities())
-            {
-                var lst = from k in db.NumeroMAX(suc, "45")
+              using (modelo2Entities db = new modelo2Entities())
+              {
+                  var lst = from k in db.NumeroMAX(suc, "45")
 
-                          select k;
+                            select k;
 
-                lista1 = lst.ToList();
+                  lista1 = lst.ToList();
 
-            }
+              }
 
 
-            return lista1;
+              return lista1;
 
-        }*/
+          }*/
         public List<vnNoSalida> BuscUltimaSalida(string datoSucIni, int modo)
         {
             string br = "KFUD" + modo + "01." + datoSucIni;
@@ -507,28 +507,74 @@ namespace Negocios.Acceso_Salida
 
         public async Task<List<vmCargaOrdenesDeCarga>> LlenaDGVEntrega(string sucori, string sudest, string doc, int numerosuc)
         {
-                int cha = sucori.Trim().ToString().Length;
+            int cha = sucori.Trim().ToString().Length;
+            try
+            {
+                var lst2 = new List<vmCargaOrdenesDeCarga>();
+                await Task.Run(() =>
+                {
+                    using (modelo2Entities modelo = new modelo2Entities())
+                    {
+                        lst2.Clear();
+
+
+
+                        var oDocument = (from q in modelo.KDMENT
+                                         join k in modelo.KDM1 on new { q.C1, q.C4, q.C6 } equals new { k.C1, k.C4, k.C6 }
+                                         where q.C19.Contains("CSL") && q.C20 == "F" && q.C46 != "BTRACKSALIDA" && q.C18 != "ESPECIAL" && !string.IsNullOrEmpty(k.C116)
+
+                                         group k.C116 by k.C116 into g
+                                         select new vmCargaOrdenesDeCarga
+                                         {
+                                             //Origen= q.C9
+                                             Documento = g.Key
+                                         }).OrderByDescending(x => x.Documento).ToList();
+
+                        lst2 = oDocument;
+                    }
+                });
+                return lst2;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+        }
+
+        
+
+
+        //Solo sirve para San Diego 
+        public async Task<List<vmSalidaReporte>> BuscEntradasSalidaReporte(string salida, string origen) //Solo SD
+        {
+            if (origen.Contains("TJ"))
+            {
+
                 try
                 {
-                    var lst2 = new List<vmCargaOrdenesDeCarga>();
+                    var lst2 = new List<vmSalidaReporte>();
                     await Task.Run(() =>
                     {
                         using (modelo2Entities modelo = new modelo2Entities())
                         {
                             lst2.Clear();
+                            var oDocument = (
+                                             from k in modelo.KDM1 
+                                            
+                                             where k.C6.Equals(salida) && k.C1 == origen
 
-                           
+                                             //group k by q.C55 into g
 
-                            var oDocument = (from q in modelo.KDMENT
-                                             join k in modelo.KDM1 on new { q.C1, q.C4, q.C6 } equals new { k.C1, k.C4, k.C6 }
-                                             where q.C19.Contains("CSL") && q.C20 == "F" && q.C46 != "BTRACKSALIDA" && q.C18 != "ESPECIAL" && !string.IsNullOrEmpty(k.C116)
 
-                                             group k.C116 by k.C116 into g
-                                             select new vmCargaOrdenesDeCarga
+                                             select new vmSalidaReporte
                                              {
-                                                 //Origen= q.C9
-                                                 Documento = g.Key
-                                             }).OrderByDescending(x => x.Documento).ToList();
+                                                 salida = k.C6,
+                                                 referencia = k.C11,
+                                                 fecha = k.C9,
+                                             }).ToList();
 
                             lst2 = oDocument;
                         }
@@ -540,7 +586,45 @@ namespace Negocios.Acceso_Salida
 
                     throw;
                 }
+            }
+            else
+            {
+                try
+                {
+                    var lst2 = new List<vmSalidaReporte>();
+                /*    await Task.Run(() =>
+                    {
+                        using (modelo2Entities modelo = new modelo2Entities())
+                        {
+                            lst2.Clear();
+                            var oDocument = (from q in modelo.KDMENT
+                                             join k in modelo.KDM1 on new { q.C1, q.C4, q.C6 } equals new { k.C1, k.C4, k.C6 }
+                                             join a in modelo.KDUV on k.C12 equals a.C2
+                                             join u in modelo.KDUSUARIOS on a.C22 equals u.C1
+                                             where q.C55.Contains(salida)
 
+                                             //group k by q.C55 into g
+
+
+                                             select new vmSalidaReporte
+                                             {
+                                                 Documento = q.C9,
+                                                 Referencia = q.C54,
+                                                 correo = u.C9
+                                             }).ToList();
+
+                            lst2 = oDocument;
+                        }
+                    });*/
+                    return lst2;
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+                
+            }
 
         }
 

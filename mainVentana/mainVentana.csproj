@@ -30,10 +30,10 @@
     <UpdateUrl>https://raw.githubusercontent.com/odmaroliv/Finalui/master/published/</UpdateUrl>
     <ProductName>ARSYS</ProductName>
     <PublisherName>Daniel Olivares H.</PublisherName>
-    <MinimumRequiredVersion>1.0.0.203</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.0.204</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>203</ApplicationRevision>
+    <ApplicationRevision>204</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -441,6 +441,12 @@
     <Compile Include="Reportes\rbill\frmBillVisorImp.Designer.cs">
       <DependentUpon>frmBillVisorImp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\Salidas\frmRepSalidas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Salidas\frmRepSalidas.Designer.cs">
+      <DependentUpon>frmRepSalidas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\TestReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -723,6 +729,9 @@
     <EmbeddedResource Include="Reportes\rbill\rpBillRD.rdlc" />
     <EmbeddedResource Include="Reportes\Report1.rdlc" />
     <EmbeddedResource Include="Reportes\rp\f.rdlc" />
+    <EmbeddedResource Include="Reportes\Salidas\frmRepSalidas.resx">
+      <DependentUpon>frmRepSalidas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\TestReport.resx">
       <DependentUpon>TestReport.cs</DependentUpon>
     </EmbeddedResource>

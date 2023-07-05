@@ -193,19 +193,19 @@
             this.tableLayoutPanel1.Controls.Add(this.txbPcolonia, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.txbPcalle, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txbPcp, 3, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(375, 21);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(375, 11);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 13F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(310, 58);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(310, 68);
             this.tableLayoutPanel1.TabIndex = 169;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label12.Location = new System.Drawing.Point(3, 45);
+            this.label12.Location = new System.Drawing.Point(3, 55);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(30, 13);
             this.label12.TabIndex = 170;
@@ -215,7 +215,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label11.Location = new System.Drawing.Point(80, 45);
+            this.label11.Location = new System.Drawing.Point(80, 55);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(42, 13);
             this.label11.TabIndex = 169;
@@ -225,7 +225,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label10.Location = new System.Drawing.Point(157, 45);
+            this.label10.Location = new System.Drawing.Point(157, 55);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(54, 13);
             this.label10.TabIndex = 168;
@@ -235,7 +235,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label9.Location = new System.Drawing.Point(234, 45);
+            this.label9.Location = new System.Drawing.Point(234, 55);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(24, 13);
             this.label9.TabIndex = 167;
@@ -251,7 +251,7 @@
             this.txbPpoblacion.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txbPpoblacion.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbPpoblacion.LineColor = System.Drawing.Color.Gainsboro;
-            this.txbPpoblacion.Location = new System.Drawing.Point(156, 14);
+            this.txbPpoblacion.Location = new System.Drawing.Point(156, 24);
             this.txbPpoblacion.Margin = new System.Windows.Forms.Padding(2);
             this.txbPpoblacion.Name = "txbPpoblacion";
             this.txbPpoblacion.PasswordChar = '\0';
@@ -268,7 +268,7 @@
             this.txbPcolonia.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txbPcolonia.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbPcolonia.LineColor = System.Drawing.Color.Gainsboro;
-            this.txbPcolonia.Location = new System.Drawing.Point(79, 14);
+            this.txbPcolonia.Location = new System.Drawing.Point(79, 24);
             this.txbPcolonia.Margin = new System.Windows.Forms.Padding(2);
             this.txbPcolonia.Name = "txbPcolonia";
             this.txbPcolonia.PasswordChar = '\0';
@@ -284,7 +284,7 @@
             this.txbPcalle.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txbPcalle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbPcalle.LineColor = System.Drawing.Color.Gainsboro;
-            this.txbPcalle.Location = new System.Drawing.Point(2, 14);
+            this.txbPcalle.Location = new System.Drawing.Point(2, 24);
             this.txbPcalle.Margin = new System.Windows.Forms.Padding(2);
             this.txbPcalle.Name = "txbPcalle";
             this.txbPcalle.PasswordChar = '\0';
@@ -301,7 +301,7 @@
             this.txbPcp.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txbPcp.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbPcp.LineColor = System.Drawing.Color.Gainsboro;
-            this.txbPcp.Location = new System.Drawing.Point(233, 14);
+            this.txbPcp.Location = new System.Drawing.Point(233, 24);
             this.txbPcp.Margin = new System.Windows.Forms.Padding(2);
             this.txbPcp.Name = "txbPcp";
             this.txbPcp.PasswordChar = '\0';
@@ -320,7 +320,6 @@
             this.txbAliasAct.Margin = new System.Windows.Forms.Padding(2);
             this.txbAliasAct.Name = "txbAliasAct";
             this.txbAliasAct.PasswordChar = '\0';
-            this.txbAliasAct.ReadOnly = true;
             this.txbAliasAct.Size = new System.Drawing.Size(259, 29);
             this.txbAliasAct.TabIndex = 168;
             // 
