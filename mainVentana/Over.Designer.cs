@@ -35,6 +35,9 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
             this.paneldeBus = new Guna.UI.WinForms.GunaShadowPanel();
+            this.btnToExcel = new FontAwesome.Sharp.IconButton();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.loadControl1 = new Ventana1.LoadControl.loadControl();
             this.gbxTipoBusqueda = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -70,8 +73,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.gunaDataGridView1 = new Guna.UI.WinForms.GunaDataGridView();
-            this.label3 = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -130,6 +131,7 @@
             // 
             this.paneldeBus.BackColor = System.Drawing.Color.Transparent;
             this.paneldeBus.BaseColor = System.Drawing.Color.White;
+            this.paneldeBus.Controls.Add(this.btnToExcel);
             this.paneldeBus.Controls.Add(this.label3);
             this.paneldeBus.Controls.Add(this.panel6);
             this.paneldeBus.Controls.Add(this.loadControl1);
@@ -161,6 +163,48 @@
             this.paneldeBus.ShadowDepth = 50;
             this.paneldeBus.Size = new System.Drawing.Size(1267, 254);
             this.paneldeBus.TabIndex = 0;
+            // 
+            // btnToExcel
+            // 
+            this.btnToExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnToExcel.AutoSize = true;
+            this.btnToExcel.BackColor = System.Drawing.Color.Transparent;
+            this.btnToExcel.FlatAppearance.BorderSize = 0;
+            this.btnToExcel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Navy;
+            this.btnToExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnToExcel.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnToExcel.ForeColor = System.Drawing.Color.Transparent;
+            this.btnToExcel.IconChar = FontAwesome.Sharp.IconChar.TableCellsLarge;
+            this.btnToExcel.IconColor = System.Drawing.Color.Blue;
+            this.btnToExcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnToExcel.IconSize = 25;
+            this.btnToExcel.Location = new System.Drawing.Point(1065, 209);
+            this.btnToExcel.Margin = new System.Windows.Forms.Padding(2);
+            this.btnToExcel.Name = "btnToExcel";
+            this.btnToExcel.Size = new System.Drawing.Size(46, 31);
+            this.btnToExcel.TabIndex = 148;
+            this.btnToExcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnToExcel.UseVisualStyleBackColor = false;
+            this.btnToExcel.Click += new System.EventHandler(this.btnToExcel_Click);
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(303, 221);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(50, 13);
+            this.label3.TabIndex = 20;
+            this.label3.Text = "Beetrack";
+            // 
+            // panel6
+            // 
+            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.panel6.Location = new System.Drawing.Point(354, 223);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(17, 11);
+            this.panel6.TabIndex = 19;
             // 
             // loadControl1
             // 
@@ -793,25 +837,6 @@
             this.gunaDataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gunaDataGridView1_CellDoubleClick);
             this.gunaDataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gunaDataGridView1_CellFormatting);
             // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(303, 221);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(50, 13);
-            this.label3.TabIndex = 20;
-            this.label3.Text = "Beetrack";
-            // 
-            // panel6
-            // 
-            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.panel6.Location = new System.Drawing.Point(354, 223);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(17, 11);
-            this.panel6.TabIndex = 19;
-            // 
             // Over
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -886,5 +911,6 @@
         private System.Windows.Forms.RadioButton rSalida;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel6;
+        private FontAwesome.Sharp.IconButton btnToExcel;
     }
 }

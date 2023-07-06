@@ -16,6 +16,8 @@ using mainVentana.VistaInicioCoordinadores;
 using mainVentana.vistaReportes;
 using mainVentana.VistaCreditoCobranza;
 using Datos.ViewModels;
+using Datos.ViewModels.CXC;
+using ClosedXML.Excel;
 
 namespace mainVentana
 {
@@ -124,8 +126,8 @@ namespace mainVentana
            
             Negocios.Servicios vld = new Negocios.Servicios();
             gunaDataGridView1.DataSource = null;
-
-            gunaDataGridView1.DataSource = await vld.Cargabuscque(id,tipo, dtFecha1.Value, dtFecha2.Value);
+            dtgDatos = await vld.Cargabuscque(id, tipo, dtFecha1.Value, dtFecha2.Value);
+            gunaDataGridView1.DataSource = dtgDatos;
             
             vld = null;
         }
@@ -588,10 +590,78 @@ namespace mainVentana
 
         }
 
+        private async void btnToExcel_Click(object sender, EventArgs e)
+        {
+            await GeneraExcel();
+        }
+        List<BusquedaInicial> dtgDatos = new List<BusquedaInicial>();
+
+        private async Task GeneraExcel()
+        {
+            btnToExcel.Enabled = false;
+            loadControl1.Visible = true;
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Archivos de Excel (*.xlsx)|*.xlsx";
+            saveFileDialog.Title = "Guardar archivo de Excel";
+
+            if (saveFileDialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+            string nm = saveFileDialog.FileName;
+            await Task.Run(() =>
+            {
 
 
 
+                try
+                {
+                    if (dtgDatos.Count() <= 0)
+                    {
+                        MessageBox.Show("No hay datos para Enviar");
 
+                        return;
+                    }
+
+                    // Mostrar el diálogo para seleccionar la ubicación y el nombre del archivo
+
+
+                    string fullPath = nm;
+                    new Over().Export<BusquedaInicial>(dtgDatos, fullPath, "salida");
+                    MessageBox.Show("El documento se creó satisfactoriamente", "Creado");
+
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Ocurrio un error", "Error");
+
+                    throw;
+                }
+                finally
+                {
+                    loadControl1.Invoke(new Action(() => { loadControl1.Visible = false; }));
+                    btnToExcel.Invoke(new Action(() => { btnToExcel.Enabled = true; }));
+                }
+            });
+
+
+        }
+
+        public bool Export<T>(List<T> list, string file, string nombre)
+        {
+            bool exportado = false;
+            using (XLWorkbook xlfile = new XLWorkbook())
+            {
+                xlfile.AddWorksheet(nombre).FirstCell().InsertTable<T>(list, false);
+                //xlfile.Worksheets.Add("Reporte");
+                //xlfile.Table("Reporte").ShowAutoFilter = false;// Disable AutoFilter.
+                //xlfile.Table(nombre).Theme = XLTableTheme.TableStyleDark5;// Remove Theme.
+                xlfile.SaveAs(file);
+                exportado = true;
+
+            }
+            return exportado;
+        }
         //--------------grafuca
 
     }

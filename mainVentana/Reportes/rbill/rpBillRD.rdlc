@@ -2,19 +2,12 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="DatosViewModelsReportesBill">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>32a645d7-0a36-45a3-8083-dc98e55a7414</rd:DataSourceID>
-    </DataSource>
     <DataSource Name="DatosViewModelsBill">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>3c4d126b-0c01-4db1-88f9-a86327415fe2</rd:DataSourceID>
+      <rd:DataSourceID>27b03bb7-45eb-48d8-b786-ff4af5e36580</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -24,6 +17,10 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
+        <Field Name="alias">
+          <DataField>alias</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="desc">
           <DataField>desc</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -851,19 +848,22 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>0.39763in</Width>
+                  <Width>0.313in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.95808in</Width>
+                  <Width>0.83275in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.24975in</Width>
+                  <Width>1.04175in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.90395in</Width>
+                  <Width>1.62136in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.73933in</Width>
+                  <Width>1.93236in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.50752in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -1019,7 +1019,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Type Ope</Value>
+                                  <Value>Alias</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -1029,6 +1029,41 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox23</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Width>2pt</Width>
+                            </Border>
+                            <BottomBorder>
+                              <Style>Solid</Style>
+                            </BottomBorder>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox2">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Type Ope</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox2</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1150,7 +1185,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!desc.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>7pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -1172,7 +1209,37 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="oper">
+                        <Textbox Name="alias">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!alias.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>alias</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>DimGray</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="oper1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1186,7 +1253,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>oper</rd:DefaultName>
+                          <rd:DefaultName>oper1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>DimGray</Color>
@@ -1206,6 +1273,7 @@
             </TablixBody>
             <TablixColumnHierarchy>
               <TablixMembers>
+                <TablixMember />
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
@@ -1405,7 +1473,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0in</Top>
               <Left>5.51042in</Left>
               <Height>0.20833in</Height>
               <Width>0.89458in</Width>

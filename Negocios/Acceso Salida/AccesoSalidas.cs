@@ -544,15 +544,14 @@ namespace Negocios.Acceso_Salida
 
         }
 
-        
 
 
-        //Solo sirve para San Diego 
-        public async Task<List<vmSalidaReporte>> BuscEntradasSalidaReporte(string salida, string origen) //Solo SD
+
+
+        public async Task<List<vmSalidaReporte>> BuscEntradasSalidaReporte(string salida, string origen, DateTime dateFrom, DateTime to)
         {
-            if (origen.Contains("TJ"))
+            if (!String.IsNullOrWhiteSpace(salida) && salida != "0000000")
             {
-
                 try
                 {
                     var lst2 = new List<vmSalidaReporte>();
@@ -562,13 +561,9 @@ namespace Negocios.Acceso_Salida
                         {
                             lst2.Clear();
                             var oDocument = (
-                                             from k in modelo.KDM1 
-                                            
-                                             where k.C6.Equals(salida) && k.C1 == origen
-
-                                             //group k by q.C55 into g
-
-
+                                             from k in modelo.KDM1
+                                             where k.C6.Equals(salida) && k.C1 == origen && k.C4 == 45
+                                             orderby k.C9 descending
                                              select new vmSalidaReporte
                                              {
                                                  salida = k.C6,
@@ -583,7 +578,6 @@ namespace Negocios.Acceso_Salida
                 }
                 catch (Exception)
                 {
-
                     throw;
                 }
             }
@@ -592,40 +586,32 @@ namespace Negocios.Acceso_Salida
                 try
                 {
                     var lst2 = new List<vmSalidaReporte>();
-                /*    await Task.Run(() =>
+                    await Task.Run(() =>
                     {
                         using (modelo2Entities modelo = new modelo2Entities())
                         {
                             lst2.Clear();
-                            var oDocument = (from q in modelo.KDMENT
-                                             join k in modelo.KDM1 on new { q.C1, q.C4, q.C6 } equals new { k.C1, k.C4, k.C6 }
-                                             join a in modelo.KDUV on k.C12 equals a.C2
-                                             join u in modelo.KDUSUARIOS on a.C22 equals u.C1
-                                             where q.C55.Contains(salida)
-
-                                             //group k by q.C55 into g
-
-
+                            var oDocument = (
+                                             from k in modelo.KDM1
+                                             where k.C1 == origen && k.C4 == 45 && k.C9 <= to && k.C9 >= dateFrom
+                                             orderby k.C9 descending
                                              select new vmSalidaReporte
                                              {
-                                                 Documento = q.C9,
-                                                 Referencia = q.C54,
-                                                 correo = u.C9
+                                                 salida = k.C6,
+                                                 referencia = k.C11,
+                                                 fecha = k.C9,
                                              }).ToList();
 
                             lst2 = oDocument;
                         }
-                    });*/
+                    });
                     return lst2;
                 }
                 catch (Exception)
                 {
-
                     throw;
                 }
-                
             }
-
         }
 
 

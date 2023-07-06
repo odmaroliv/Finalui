@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvSalidas = new Guna.UI.WinForms.GunaDataGridView();
             this.iconButton10 = new FontAwesome.Sharp.IconButton();
             this.txbBusqueda = new Guna.UI.WinForms.GunaTextBox();
@@ -39,14 +39,18 @@
             this.rCa = new System.Windows.Forms.RadioButton();
             this.rTj = new System.Windows.Forms.RadioButton();
             this.rSd = new System.Windows.Forms.RadioButton();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.dtFecha2 = new Guna.UI.WinForms.GunaDateTimePicker();
+            this.dtFecha1 = new Guna.UI.WinForms.GunaDateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSalidas)).BeginInit();
             this.SucCombo.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvSalidas
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dgvSalidas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            this.dgvSalidas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvSalidas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -55,23 +59,23 @@
             this.dgvSalidas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvSalidas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvSalidas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvSalidas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSalidas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvSalidas.ColumnHeadersHeight = 30;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvSalidas.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvSalidas.DefaultCellStyle = dataGridViewCellStyle9;
             this.dgvSalidas.EnableHeadersVisualStyles = false;
             this.dgvSalidas.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvSalidas.Location = new System.Drawing.Point(22, 86);
@@ -82,7 +86,7 @@
             this.dgvSalidas.RowTemplate.Height = 30;
             this.dgvSalidas.RowTemplate.ReadOnly = true;
             this.dgvSalidas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSalidas.Size = new System.Drawing.Size(733, 284);
+            this.dgvSalidas.Size = new System.Drawing.Size(911, 284);
             this.dgvSalidas.TabIndex = 33;
             this.dgvSalidas.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
             this.dgvSalidas.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -112,7 +116,6 @@
             this.iconButton10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.iconButton10.BackColor = System.Drawing.Color.White;
             this.iconButton10.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.iconButton10.Enabled = false;
             this.iconButton10.FlatAppearance.BorderSize = 0;
             this.iconButton10.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.iconButton10.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
@@ -123,12 +126,13 @@
             this.iconButton10.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
             this.iconButton10.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton10.IconSize = 20;
-            this.iconButton10.Location = new System.Drawing.Point(720, 29);
+            this.iconButton10.Location = new System.Drawing.Point(898, 17);
             this.iconButton10.Margin = new System.Windows.Forms.Padding(2);
             this.iconButton10.Name = "iconButton10";
-            this.iconButton10.Size = new System.Drawing.Size(29, 18);
+            this.iconButton10.Size = new System.Drawing.Size(29, 36);
             this.iconButton10.TabIndex = 35;
             this.iconButton10.UseVisualStyleBackColor = false;
+            this.iconButton10.Click += new System.EventHandler(this.iconButton10_Click);
             // 
             // txbBusqueda
             // 
@@ -143,18 +147,18 @@
             this.txbBusqueda.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txbBusqueda.Font = new System.Drawing.Font("Trebuchet MS", 18F);
             this.txbBusqueda.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.txbBusqueda.Location = new System.Drawing.Point(498, 11);
+            this.txbBusqueda.Location = new System.Drawing.Point(783, 11);
             this.txbBusqueda.Margin = new System.Windows.Forms.Padding(2);
             this.txbBusqueda.Name = "txbBusqueda";
             this.txbBusqueda.PasswordChar = '\0';
             this.txbBusqueda.Radius = 10;
-            this.txbBusqueda.Size = new System.Drawing.Size(257, 54);
+            this.txbBusqueda.Size = new System.Drawing.Size(150, 54);
             this.txbBusqueda.TabIndex = 34;
             this.txbBusqueda.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gunaTextBox2_KeyDown);
             // 
             // btnImprimir
             // 
-            this.btnImprimir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnImprimir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnImprimir.Enabled = false;
             this.btnImprimir.FlatAppearance.BorderSize = 0;
             this.btnImprimir.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -162,7 +166,7 @@
             this.btnImprimir.IconColor = System.Drawing.Color.Black;
             this.btnImprimir.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnImprimir.Location = new System.Drawing.Point(502, 387);
+            this.btnImprimir.Location = new System.Drawing.Point(680, 387);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(253, 51);
             this.btnImprimir.TabIndex = 36;
@@ -216,11 +220,83 @@
             this.rSd.UseVisualStyleBackColor = true;
             this.rSd.CheckedChanged += new System.EventHandler(this.rSd_CheckedChanged);
             // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.label6.Location = new System.Drawing.Point(537, 21);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(17, 13);
+            this.label6.TabIndex = 179;
+            this.label6.Text = "A:";
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.label7.Location = new System.Drawing.Point(278, 21);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(25, 13);
+            this.label7.TabIndex = 178;
+            this.label7.Text = "DE:";
+            // 
+            // dtFecha2
+            // 
+            this.dtFecha2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtFecha2.BaseColor = System.Drawing.Color.White;
+            this.dtFecha2.BorderColor = System.Drawing.Color.Silver;
+            this.dtFecha2.CustomFormat = null;
+            this.dtFecha2.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
+            this.dtFecha2.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.dtFecha2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dtFecha2.ForeColor = System.Drawing.Color.Black;
+            this.dtFecha2.Location = new System.Drawing.Point(560, 23);
+            this.dtFecha2.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtFecha2.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtFecha2.Name = "dtFecha2";
+            this.dtFecha2.OnHoverBaseColor = System.Drawing.Color.White;
+            this.dtFecha2.OnHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.dtFecha2.OnHoverForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.dtFecha2.OnPressedColor = System.Drawing.Color.Black;
+            this.dtFecha2.Size = new System.Drawing.Size(196, 30);
+            this.dtFecha2.TabIndex = 177;
+            this.dtFecha2.Text = "viernes, marzo 10, 2023";
+            this.dtFecha2.Value = new System.DateTime(2023, 3, 10, 11, 29, 29, 92);
+            // 
+            // dtFecha1
+            // 
+            this.dtFecha1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtFecha1.BaseColor = System.Drawing.Color.White;
+            this.dtFecha1.BorderColor = System.Drawing.Color.Silver;
+            this.dtFecha1.CustomFormat = null;
+            this.dtFecha1.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
+            this.dtFecha1.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.dtFecha1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dtFecha1.ForeColor = System.Drawing.Color.Black;
+            this.dtFecha1.Location = new System.Drawing.Point(309, 23);
+            this.dtFecha1.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtFecha1.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtFecha1.Name = "dtFecha1";
+            this.dtFecha1.OnHoverBaseColor = System.Drawing.Color.White;
+            this.dtFecha1.OnHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.dtFecha1.OnHoverForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.dtFecha1.OnPressedColor = System.Drawing.Color.Black;
+            this.dtFecha1.Size = new System.Drawing.Size(203, 30);
+            this.dtFecha1.TabIndex = 176;
+            this.dtFecha1.Text = "viernes, marzo 10, 2023";
+            this.dtFecha1.Value = new System.DateTime(2023, 3, 10, 11, 29, 29, 92);
+            // 
             // frmRepSalidas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(978, 450);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.dtFecha2);
+            this.Controls.Add(this.dtFecha1);
             this.Controls.Add(this.SucCombo);
             this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.iconButton10);
@@ -233,6 +309,7 @@
             this.SucCombo.ResumeLayout(false);
             this.SucCombo.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -246,5 +323,9 @@
         private System.Windows.Forms.RadioButton rCa;
         private System.Windows.Forms.RadioButton rTj;
         private System.Windows.Forms.RadioButton rSd;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private Guna.UI.WinForms.GunaDateTimePicker dtFecha2;
+        private Guna.UI.WinForms.GunaDateTimePicker dtFecha1;
     }
 }

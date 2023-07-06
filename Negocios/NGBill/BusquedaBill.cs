@@ -334,8 +334,18 @@ namespace Negocios.NGBill
                                      entrada = d.C6,
                                      etiqueta = d.C9,
                                      desc = d.C42,
-                                     oper = k.C101
+                                     oper = k.C101,
+                                     alias = k.C112,
+                                     alias2 = d.C24
                                  }).ToList();
+
+                    foreach (var item in lista)
+                    {
+                        if (string.IsNullOrWhiteSpace(item.alias))
+                        {
+                            item.alias = item.alias2;
+                        }
+                    }
 
                     lst2 = lista.Select((d, index) => new vmBillEntradaDoc
                     {
@@ -343,7 +353,8 @@ namespace Negocios.NGBill
                         etiqueta = d.etiqueta,
                         desc = !String.IsNullOrWhiteSpace(d.desc) ? d.desc.Trim() : "",
                         oper = d.oper,
-                        nItem = index + 1 // Agregar el número de fila sumando 1 al índice
+                        nItem = index + 1, // Agregar el número de fila sumando 1 al índice
+                        alias = d.alias,
                     }).ToList();
 
 

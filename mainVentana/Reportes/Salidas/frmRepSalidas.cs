@@ -21,6 +21,12 @@ namespace mainVentana.Reportes.Salidas
         public frmRepSalidas()
         {
             InitializeComponent();
+            dtFecha1.Value = DateTime.Now.AddDays(-80);
+            dtFecha2.Value = DateTime.Now.AddDays(1);
+            dtFecha1.MinDate = DateTime.Now.AddDays(-9000);
+            dtFecha1.MaxDate = DateTime.Now.AddDays(90);
+            dtFecha2.MinDate = DateTime.Now.AddDays(-900);
+            dtFecha2.MaxDate = DateTime.Now.AddDays(90);
         }
 
         private void rSd_CheckedChanged(object sender, EventArgs e)
@@ -62,8 +68,14 @@ namespace mainVentana.Reportes.Salidas
         private async void buscaSalida()
         {
             AccesoSalidas sld = new AccesoSalidas();
-            dgvSalidas.DataSource =  await sld.BuscEntradasSalidaReporte(_salidaBuscada.ToString(),sucursal);
+            dgvSalidas.DataSource =  await sld.BuscEntradasSalidaReporte(_salidaBuscada.ToString("D7"),sucursal, dtFecha1.Value, dtFecha2.Value);
 
+        }
+
+        private void iconButton10_Click(object sender, EventArgs e)
+        {
+
+            buscaSalida();
         }
     }
 }

@@ -24,6 +24,10 @@ namespace Datos.ViewModels.Bill
         [DisplayName("Type Ope")]
         public string oper { get; set; }
 
+        [DisplayName("Alias")]
+        public string alias { get; set; }
+        [DisplayName("Alias 2")]
+        public string alias2 { get; set; }
 
     }
 }
