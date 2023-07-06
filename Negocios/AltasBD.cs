@@ -346,7 +346,7 @@ namespace Negocios
                 d.C31 = c31;
                 d.C61 = c61;
                 d.C63 = c63;
-                d.C67 = c67.Substring(0, Math.Min(c67.Length, 22));
+                d.C67 = c67.Substring(0, Math.Min(c67.Length, 22)); //Elaboro
                 d.C68 = c68;
                 d.C94 = c94;
                 d.C95 = c95;

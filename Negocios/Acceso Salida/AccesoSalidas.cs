@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.SqlServer;
 using System.Data.SqlClient;
 using System.Linq;
@@ -569,6 +570,7 @@ namespace Negocios.Acceso_Salida
                                                  salida = k.C6,
                                                  referencia = k.C11,
                                                  fecha = k.C9,
+                                                 elaboro = k.C67
                                              }).ToList();
 
                             lst2 = oDocument;
@@ -600,6 +602,7 @@ namespace Negocios.Acceso_Salida
                                                  salida = k.C6,
                                                  referencia = k.C11,
                                                  fecha = k.C9,
+                                                 elaboro = k.C67
                                              }).ToList();
 
                             lst2 = oDocument;
@@ -613,6 +616,139 @@ namespace Negocios.Acceso_Salida
                 }
             }
         }
+        public async Task<List<vmSalidaReporteEntradas>> BuscEntradasSalidaReporteYtreaeEntradas(string salida, string origen)
+        {
+            string datoCompleto = origen.Trim() + "-UD4501-" + salida.Trim();
+            if (origen.Contains("TJ"))
+            {
+
+                try
+                {
+                    var lst2 = new List<vmSalidaReporteEntradas>();
+                    await Task.Run(() =>
+                    {
+                        using (modelo2Entities modelo = new modelo2Entities())
+                        {
+                            lst2.Clear();
+                            var oDocument = (from q in modelo.KDMENT
+                                             join k in modelo.KDM1 on new { q.C1, q.C4, q.C6 } equals new { k.C1, k.C4, k.C6 }
+                                             //join a in modelo.KDUV on k.C12 equals a.C2
+                                             // join u in modelo.KDUSUARIOS on a.C22 equals u.C1
+                                             where q.C64.Contains(datoCompleto)
+
+                                             //group k by q.C55 into g
+
+
+                                             select new vmSalidaReporteEntradas
+                                             {
+                                                 Etiqueta = q.C9,
+                                                 Entrada = q.C6,
+                                                 Alias = k.C112,
+                                                 Cliente = k.C32,
+                                                 //Carga = q.C67,
+                                                 //  correo = u.C9,
+                                             }).ToList();
+
+                            lst2 = oDocument;
+                        }
+                    });
+                    return lst2;
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
+            else
+            {
+                try
+                {
+                    var lst2 = new List<vmSalidaReporteEntradas>();
+                    await Task.Run(() =>
+                    {
+                        using (modelo2Entities modelo = new modelo2Entities())
+                        {
+                            lst2.Clear();
+                            var oDocument = (from q in modelo.KDMENT
+                                             join k in modelo.KDM1 on new { q.C1, q.C4, q.C6 } equals new { k.C1, k.C4, k.C6 }
+                                             //  join a in modelo.KDUV on k.C12 equals a.C2
+                                             // join u in modelo.KDUSUARIOS on a.C22 equals u.C1
+                                             where q.C55.Contains(datoCompleto)
+
+                                             //group k by q.C55 into g
+
+
+                                             select new vmSalidaReporteEntradas
+                                             {
+                                                 Etiqueta = q.C9,
+                                                 Entrada = q.C6,
+                                                 Alias = k.C112,
+                                                 Cliente = k.C32,
+                                                 //  Referencia = q.C54,
+
+                                             }).ToList();
+
+                            lst2 = oDocument;
+                        }
+                    });
+                    return lst2;
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+
+            }
+
+        }
+        public async Task<List<vmSalidaReporte>> CalculaValorDeLasSalidasPorEntrada(List<vmSalidaReporte> salidas, string origen)
+        {
+            try
+            {
+                List<vmSalidaReporte> result = new List<vmSalidaReporte>();
+
+                using (modelo2Entities modelo = new modelo2Entities())
+                {
+                    foreach (var salida in salidas)
+                    {
+                        decimal? totalArnian = 0;
+
+                        string datoCompleto = $"{origen.Trim()}-UD4501-{salida.salida}";
+
+                        var oDocument = await modelo.KDMENT
+                            .Join(modelo.KDM1, q => new { q.C1, q.C4, q.C6 }, k => new { k.C1, k.C4, k.C6 }, (q, k) => new { q, k })
+                            .Where(x => (origen.Equals("TJ") ? x.q.C64 : x.q.C55).Equals(datoCompleto))
+                            .GroupBy(x => new { x.q.C6 })
+                            .Select(g => g.FirstOrDefault().k.C42)
+                            .ToListAsync();
+
+                        totalArnian += oDocument.Sum();
+
+                        vmSalidaReporte singleResult = new vmSalidaReporte
+                        {
+                            salida = salida.salida,
+                            referencia = salida.referencia,
+                            fecha = salida.fecha,
+                            totalArnian = totalArnian,
+                            elaboro = salida.elaboro
+                        };
+
+                        result.Add(singleResult);
+                    }
+                }
+
+                return result;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+
 
 
     }

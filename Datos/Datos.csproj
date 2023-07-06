@@ -276,6 +276,7 @@
     <Compile Include="ViewModels\Salidas\vmEnviodeNotificacion.cs" />
     <Compile Include="ViewModels\Salidas\vmGeneralesSalidas.cs" />
     <Compile Include="ViewModels\Salidas\vmSalidaReporte.cs" />
+    <Compile Include="ViewModels\Salidas\vmSalidaReporteEntradas.cs" />
     <Compile Include="ViewModels\Salidas\vnNoSalida.cs" />
     <Compile Include="ViewModels\Servicios\FechaActual.cs" />
     <Compile Include="ViewModels\Servicios\Paridad.cs" />
