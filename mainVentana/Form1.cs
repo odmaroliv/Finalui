@@ -22,6 +22,7 @@ using Vanara.PInvoke;
 using mainVentana.vistaConfiguraciones;
 using mainVentana.VistaBill;
 using mainVentana.Reportes.Salidas;
+using mainVentana.Reportes.Coords;
 
 namespace mainVentana
 {
@@ -587,6 +588,15 @@ namespace mainVentana
         {
 
             frmRepSalidas Evide = new frmRepSalidas();
+            openForms.Add(Evide);
+            Evide.FormClosed += frm_FormClosed_Libera;
+            Evide.Show();
+        }
+
+        private void rbReporteClienteXcord_Click(object sender, EventArgs e)
+        {
+            
+            frmReporteClientesxCord Evide = new frmReporteClientesxCord();
             openForms.Add(Evide);
             Evide.FormClosed += frm_FormClosed_Libera;
             Evide.Show();

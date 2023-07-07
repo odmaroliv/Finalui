@@ -103,6 +103,7 @@ namespace mainVentana
             this.rbtnConsultaCargaCord = new System.Windows.Forms.RibbonButton();
             this.ribbonSeparator8 = new System.Windows.Forms.RibbonSeparator();
             this.rbtnReportes = new System.Windows.Forms.RibbonButton();
+            this.rbReporteSalida = new System.Windows.Forms.RibbonButton();
             this.ribbonSeparator9 = new System.Windows.Forms.RibbonSeparator();
             this.rbtnAjustes = new System.Windows.Forms.RibbonButton();
             this.apiConfig = new System.Windows.Forms.RibbonButton();
@@ -128,7 +129,7 @@ namespace mainVentana
             this.ribbonButton4 = new System.Windows.Forms.RibbonButton();
             this.ribbonDescriptionMenuItem2 = new System.Windows.Forms.RibbonDescriptionMenuItem();
             this.panelContenedorForm = new System.Windows.Forms.Panel();
-            this.rbReporteSalida = new System.Windows.Forms.RibbonButton();
+            this.rbReporteClienteXcord = new System.Windows.Forms.RibbonButton();
             this.panel11.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -627,6 +628,7 @@ namespace mainVentana
             // rbtnReportes
             // 
             this.rbtnReportes.DropDownItems.Add(this.rbReporteSalida);
+            this.rbtnReportes.DropDownItems.Add(this.rbReporteClienteXcord);
             this.rbtnReportes.Image = global::mainVentana.Properties.Resources.delivery;
             this.rbtnReportes.LargeImage = global::mainVentana.Properties.Resources.delivery;
             this.rbtnReportes.Name = "rbtnReportes";
@@ -634,6 +636,16 @@ namespace mainVentana
             this.rbtnReportes.Style = System.Windows.Forms.RibbonButtonStyle.DropDown;
             this.rbtnReportes.Text = "Reportes";
             this.rbtnReportes.Click += new System.EventHandler(this.rbtnReportes_Click);
+            // 
+            // rbReporteSalida
+            // 
+            this.rbReporteSalida.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.rbReporteSalida.Image = ((System.Drawing.Image)(resources.GetObject("rbReporteSalida.Image")));
+            this.rbReporteSalida.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbReporteSalida.LargeImage")));
+            this.rbReporteSalida.Name = "rbReporteSalida";
+            this.rbReporteSalida.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbReporteSalida.SmallImage")));
+            this.rbReporteSalida.Text = "Reporte Salidas";
+            this.rbReporteSalida.Click += new System.EventHandler(this.rbReporteSalida_Click);
             // 
             // ribbonSeparator9
             // 
@@ -852,15 +864,15 @@ namespace mainVentana
             this.panelContenedorForm.Size = new System.Drawing.Size(1113, 601);
             this.panelContenedorForm.TabIndex = 2;
             // 
-            // rbReporteSalida
+            // rbReporteClienteXcord
             // 
-            this.rbReporteSalida.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
-            this.rbReporteSalida.Image = ((System.Drawing.Image)(resources.GetObject("rbReporteSalida.Image")));
-            this.rbReporteSalida.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbReporteSalida.LargeImage")));
-            this.rbReporteSalida.Name = "rbReporteSalida";
-            this.rbReporteSalida.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbReporteSalida.SmallImage")));
-            this.rbReporteSalida.Text = "Reporte Salidas";
-            this.rbReporteSalida.Click += new System.EventHandler(this.rbReporteSalida_Click);
+            this.rbReporteClienteXcord.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.rbReporteClienteXcord.Image = ((System.Drawing.Image)(resources.GetObject("rbReporteClienteXcord.Image")));
+            this.rbReporteClienteXcord.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbReporteClienteXcord.LargeImage")));
+            this.rbReporteClienteXcord.Name = "rbReporteClienteXcord";
+            this.rbReporteClienteXcord.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbReporteClienteXcord.SmallImage")));
+            this.rbReporteClienteXcord.Text = "Reporte de Clientes x Cord";
+            this.rbReporteClienteXcord.Click += new System.EventHandler(this.rbReporteClienteXcord_Click);
             // 
             // Form1
             // 
@@ -971,6 +983,7 @@ namespace mainVentana
         private RibbonButton rbtnEntregasPruebas;
         private RibbonButton rbtnConsultaCargaCord;
         private RibbonButton rbReporteSalida;
+        private RibbonButton rbReporteClienteXcord;
     }
 }
 

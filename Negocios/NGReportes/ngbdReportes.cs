@@ -6,6 +6,7 @@ using Datos.ViewModels.Coord;
 using Datos.ViewModels.CXC;
 using Datos.ViewModels.Entradas;
 using Datos.ViewModels.Reportes;
+using Datos.ViewModels.Reportes.Coords;
 using Datos.ViewModels.Salidas;
 using System;
 using System.Collections.Generic;
@@ -703,6 +704,37 @@ namespace Negocios.NGReportes
             }
         }
 
+        /// <summary>
+        /// Carga clientes sin Id 
+        /// </summary>
+        public async Task<List<vmClientesXCord>> CargaReporteClientesXCord(string Cord)
+        {
+
+            try
+            {
+                using (modelo2Entities modelo = new modelo2Entities())
+                {
+                    var query = from d in modelo.KDUD
+                                join k in modelo.KDUV on d.C12  equals k.C2
+                                
+                                where k.C2 == Cord
+                                orderby d.C6 descending
+                                select new vmClientesXCord
+                                {
+                                    Cliente = d.C3,
+                                    Numero = d.C2,
+                                    Coordinador = k.C3
+                                };
+
+                    var result = await query.AsNoTracking().ToListAsync();
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
 
     }

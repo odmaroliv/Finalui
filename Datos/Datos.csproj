@@ -262,6 +262,7 @@
     <Compile Include="ViewModels\Recepciones\vmRecepcionesVistaSalida.cs" />
     <Compile Include="ViewModels\Recepciones\vmSalidaDocumentoONLY.cs" />
     <Compile Include="ViewModels\Reportes\Bill\vmBillOfTable.cs" />
+    <Compile Include="ViewModels\Reportes\Coords\vmClientesXCord.cs" />
     <Compile Include="ViewModels\Reportes\DashBoardArturo\VMsucursalesValorArn.cs" />
     <Compile Include="ViewModels\Reportes\OrdenCarga\vmReporteCargaSimple.cs" />
     <Compile Include="ViewModels\Reportes\vmCorreoInforma.cs" />
