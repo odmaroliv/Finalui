@@ -592,6 +592,10 @@ namespace mainVentana
 
         private async void btnToExcel_Click(object sender, EventArgs e)
         {
+            if (gunaDataGridView1.Rows.Count ==0)
+            {
+                return;
+            }
             await GeneraExcel();
         }
         List<BusquedaInicial> dtgDatos = new List<BusquedaInicial>();
