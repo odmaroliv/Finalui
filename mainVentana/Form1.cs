@@ -89,7 +89,7 @@ namespace mainVentana
                 rbtnEntrada.Enabled = false;
                 rbtnCargas.Enabled = false;
                 rbtnSalida.Enabled = false;
-                rbtnReportes.Enabled = false;
+                rbtnReportes.Enabled = true;
                 rbtnRecepcion.Enabled = false;
                 
 
@@ -98,7 +98,7 @@ namespace mainVentana
                 rbtnEntrada.Visible = false;
                 rbtnCargas.Visible = false;
                 rbtnSalida.Visible = false;
-                rbtnReportes.Visible = false;
+                rbtnReportes.Visible = true;
                 rbtnRecepcion.Visible = false;
               
 
