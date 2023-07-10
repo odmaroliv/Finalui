@@ -310,7 +310,7 @@ namespace mainVentana
                                 if (esTecleado) return;
                                 esTecleado = true;
                                 id = gunaTextBox2.Text;
-                                if (id == "" || id.Length < 4)
+                                if (String.IsNullOrWhiteSpace(gunaTextBox2.Text) || id.Length < 4)
                                 {
                                     MessageBox.Show("El campo de busqueda esta vacio!");
                                     return;
@@ -602,8 +602,7 @@ namespace mainVentana
 
         private async Task GeneraExcel()
         {
-            btnToExcel.Enabled = false;
-            loadControl1.Visible = true;
+          
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Archivos de Excel (*.xlsx)|*.xlsx";
             saveFileDialog.Title = "Guardar archivo de Excel";
@@ -626,7 +625,8 @@ namespace mainVentana
 
                         return;
                     }
-
+                    btnToExcel.Enabled = false;
+                    loadControl1.Visible = true;
                     // Mostrar el diálogo para seleccionar la ubicación y el nombre del archivo
 
 

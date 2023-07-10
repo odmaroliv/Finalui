@@ -101,9 +101,15 @@ namespace Datos.ViewModels
         [DisplayName("Cotizacion")] //numero 26
         public string cot { get; set; }
         [DisplayName("Valor Arnian")] //numero 26
-        public string valArn  { get; set; }
-         [DisplayName("Valor Factura")] //numero 26
+        public string valArn { get; set; }
+        [DisplayName("Valor Factura")] //numero 26
         public string valFact { get; set; }
+        [DisplayName("Tipo de Operacion")] 
+        public string tOper { get; set; }
+        [DisplayName("Traking Proovedor")] 
+        public string nFlete { get; set; }
+
+
         //public string Estatus { get; set; }
 
 

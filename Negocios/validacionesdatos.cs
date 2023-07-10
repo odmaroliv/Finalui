@@ -78,6 +78,9 @@ namespace Negocios
                                          cot = k.C115,
                                          valArn = k.C16.ToString(),
                                          valFact = k.C102,
+                                         tOper = k.C101,
+                                         nFlete = k.C95
+
                                      }).ToListAsync();
                     }
                 }
@@ -129,6 +132,8 @@ namespace Negocios
                                          cot = k.C115,
                                          valArn = k.C16.ToString(),
                                          valFact = k.C102,
+                                         tOper = k.C101,
+                                         nFlete = k.C95
                                      }).ToListAsync();
                     }
                 }
@@ -180,6 +185,8 @@ namespace Negocios
                                          cot = k.C115,
                                          valArn = k.C16.ToString(),
                                          valFact = k.C102,
+                                         tOper = k.C101,
+                                         nFlete = k.C95
                                      }).ToListAsync();
                     }
                 }
@@ -231,6 +238,8 @@ namespace Negocios
                                          cot = k.C115,
                                          valArn = k.C16.ToString(),
                                          valFact = k.C102,
+                                         tOper = k.C101,
+                                         nFlete = k.C95
                                      }).ToListAsync();
                     }
                 }
@@ -282,6 +291,8 @@ namespace Negocios
                                          cot = k.C115,
                                          valArn = k.C16.ToString(),
                                          valFact = k.C102,
+                                         tOper = k.C101,
+                                         nFlete = k.C95
                                      }).ToListAsync();
                     }
                 }
