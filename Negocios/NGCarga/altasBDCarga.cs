@@ -332,12 +332,12 @@ namespace Negocios.NGCarga
             });
 
             return te;
-           
+
 
         }
 
 
-        public async Task<bool> AsignarABill(List<vmEntradasEnCarga> lista, string nBill, string fecha, string aliass, string calle, string colonia, string estado, string zip, string num,string tipo = null)
+        public async Task<bool> AsignarABill(List<vmEntradasEnCarga> lista, string nBill, string fecha, string aliass, string calle, string colonia, string estado, string zip, string num, string tipo = null)
         {
             bool te = true;
             await Task.Run(() =>
@@ -345,41 +345,60 @@ namespace Negocios.NGCarga
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
 
-                        foreach (var item in lista)
+                    foreach (var item in lista)
+                    {
+                        if (String.IsNullOrWhiteSpace(nBill))
                         {
-                            if (String.IsNullOrWhiteSpace(nBill))
-                            {
-                                return;
-                            }
-                            try
-                            {
-                                var dato = (from q in modelo.KDMENT
-                                            where q.C9.Contains(item.Etiqueta) && q.C4 == 35
-                                            select q).FirstOrDefault();
+                            return;
+                        }
+                        try
+                        {
+                            var dato = (from q in modelo.KDMENT
+                                        where q.C9.Contains(item.Etiqueta) && q.C4 == 35
+                                        select q).FirstOrDefault();
 
 
 
 
-                                dato.C34 = nBill;
-                                dato.C77 = fecha;
-                            dato.C24 = aliass;
-                            dato.C25 = calle;
-                            dato.C26 = colonia;
-                            dato.C27 = estado;
-                            dato.C28 = zip;
-                            dato.C29 = num;
+                            dato.C34 = nBill;
+                            dato.C77 = fecha;
+                            // Uso de la función auxiliar para limitar la longitud de los valores
+
+                            dato.C24 = LimitarLongitud(aliass, 30);
+                            dato.C25 = LimitarLongitud(calle, 100);
+                            dato.C26 = LimitarLongitud(colonia, 50);
+                            dato.C27 = LimitarLongitud(estado, 50);
+                            dato.C28 = LimitarLongitud(zip, 10);
+                            dato.C29 = LimitarLongitud(num, 20);
 
                             modelo.SaveChanges();
-                            }
-                            catch (Exception ex)
+                        }
+                        catch (Exception ex)
+                        {
+                            Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "altasBDCargas.cs, AsignarABill()... " + item.Etiqueta + "    ");
+
+
+
+                            if (ex is DbEntityValidationException entityValidationEx)
                             {
-                                Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "altasBDCargas.cs, AsignarABill()... " + item.Etiqueta + "");
-                                te = false;
+                                foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
+                                {
+                                    // Acceder a los Entity Validation Errors
+                                    foreach (var validationError in entityValidationError.ValidationErrors)
+                                    {
+                                        var propertyName = validationError.PropertyName;
+                                        var errorMessage = validationError.ErrorMessage;
+                                        Negocios.LOGs.ArsLogs.LogEdit($"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}", "altasBDCargas.cs, AsignarABill()..." + item.Etiqueta + "    ");
+                                    }
+                                }
                             }
 
+                            te = false;
                         }
-                    
-                  
+
+                    }
+
+
                 }
             });
 
@@ -387,6 +406,18 @@ namespace Negocios.NGCarga
 
 
         }
+        // Función auxiliar para limitar la longitud de una cadena
+        private string LimitarLongitud(string valor, int longitudMaxima)
+        {
+            if (valor.Length > longitudMaxima)
+            {
+                return valor.Substring(0, longitudMaxima);
+            }
+            return valor;
+        }
+
+      
+
 
         public async Task<bool> LiberaEntradaDeCarga(string dtSucInicio, string dtEntrada, string dtCargaAsignada)
         {
