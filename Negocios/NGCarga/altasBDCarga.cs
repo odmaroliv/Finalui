@@ -409,14 +409,21 @@ namespace Negocios.NGCarga
         // Función auxiliar para limitar la longitud de una cadena
         private string LimitarLongitud(string valor, int longitudMaxima)
         {
+            if (string.IsNullOrEmpty(valor))
+            {
+                return valor;
+            }
+
             if (valor.Length > longitudMaxima)
             {
                 return valor.Substring(0, longitudMaxima);
             }
+
             return valor;
         }
 
-      
+
+
 
 
         public async Task<bool> LiberaEntradaDeCarga(string dtSucInicio, string dtEntrada, string dtCargaAsignada)
