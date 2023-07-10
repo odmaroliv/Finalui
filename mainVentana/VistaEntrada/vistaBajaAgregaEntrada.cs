@@ -71,7 +71,7 @@ namespace mainVentana.VistaEntrada
         }
 
 
-        private async void eliminaDatos()
+        private async Task eliminaDatos()
         {
            
             int index = 1;
@@ -97,7 +97,7 @@ namespace mainVentana.VistaEntrada
             try
             {
                 BajaDB baja = new BajaDB();
-                baja.BorraEtiquitas(listaNueva);
+                await baja.BorraEtiquitas(listaNueva);
                 string nuevoTotal = (Convert.ToInt32(txbTotalEt.Text) - nFilas).ToString();
 
                 await baja.ActualizaBultos(entrada, suOrigen, nuevoTotal);
@@ -106,10 +106,12 @@ namespace mainVentana.VistaEntrada
             }
             catch (Exception)
             {
+
                 MessageBox.Show("Ocurrio un error y no se han podido borrar las etiquetas");
+                throw;
             }
-           
-            
+
+
             listaNueva.Clear();
         }
         private async Task agregaDatos()
@@ -159,9 +161,9 @@ namespace mainVentana.VistaEntrada
 
         }
 
-        private void btnBorra_Click(object sender, EventArgs e)
+        private async void btnBorra_Click(object sender, EventArgs e)
         {
-            eliminaDatos();
+            await eliminaDatos();
             this.Dispose();
             this.Close();
         }
