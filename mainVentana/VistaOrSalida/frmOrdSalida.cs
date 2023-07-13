@@ -1254,7 +1254,7 @@ namespace mainVentana.VistaOrSalida
 
         }
 
-        private void gunaGradientTileButton1_Click(object sender, EventArgs e)
+        private async void gunaGradientTileButton1_Click(object sender, EventArgs e)
         {
             if (ValidacionesGenerales()==0)
             {
@@ -1262,12 +1262,12 @@ namespace mainVentana.VistaOrSalida
                 {
                     if (MessageBox.Show("Estás a punto de cerrar la salida \nA partir de aquí ya no se podrá modificar \nContinuar?", "Alerta", MessageBoxButtons.OKCancel) == DialogResult.OK)
                     {
-                        FinalizaSalidaKDM1();
+                        await FinalizaSalidaKDM1();
                         iniciodesalida = 0;
 
                         try
                         {
-                           // MandaHookRing();
+                            MandaHookRing();
                         }
                         catch (Exception)
                         {
