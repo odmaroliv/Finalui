@@ -3,10 +3,13 @@ using Datos.Datosenti;
 using Datos.ViewModels.hooks;
 using Datos.ViewModels.Salidas;
 using Datos.ViewModels.Servicios;
+using Guna.UI.WinForms;
 using mainVentana.reportes.vmreportes;
+using mainVentana.VistaEntrada;
 using Microsoft.Win32;
 using Negocios;
 using Negocios.Acceso_Salida;
+using Negocios.NGCotizacion;
 using Negocios.WebHooks;
 using OfficeOpenXml;
 using SpreadsheetLight;
@@ -114,9 +117,11 @@ namespace mainVentana.VistaOrSalida
 
         private void gunaGradientTileButton2_Click(object sender, EventArgs e)
         {
-            Ventana1.frmSalidas d = new frmSalidas();
-            d.ShowDialog();
-            d.Dispose();
+            VistaEntrada.Desbloqueo buscador = new Desbloqueo();
+
+            buscador.cambiar += new Desbloqueo.cambio(IniSalida);
+            buscador.ShowDialog();
+           
         }
 
         private void BuscaUltimaSalida(string suc)
@@ -1090,18 +1095,45 @@ namespace mainVentana.VistaOrSalida
             {
                 return;
             }
-
             if (MessageBox.Show("Estas apunto de iniciar la salida; recuerda que este numero quedara reservado hasta que la finalices formalmente", "Atencion", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-
-                CreaSalidaEnKDM1();
+                try
+                {
+                 CreaSalidaEnKDM1();
                 btnIniciaSalida.Enabled = false;
                 btnImportarExcel.Enabled = false;
                 bntSalidaPausa.Enabled = false;
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+              
+            }
+            
+        }
+
+        private void IniSalida( bool dato)
+        {
+            
+
+            if (dato == true)
+            {
+                Ventana1.frmSalidas d = new frmSalidas();
+                d.ShowDialog();
+                d.Dispose();
+            }
+            else
+            {
+                MessageBox.Show("No puedes usar esta opcion, pide ayuda a un supervisor o a Sistemas.");
             }
 
 
+
         }
+
+ 
 
         private void gunaGradientTileButton2_Click_1(object sender, EventArgs e)
         {
@@ -1410,6 +1442,15 @@ namespace mainVentana.VistaOrSalida
         private void frmOrdSalida_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void frmOrdSalida_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (colaEtiquetas.Count >0)
+            {
+                MessageBox.Show("Hay etiquetas procesandoce");
+                return;
+            }
         }
     }
 

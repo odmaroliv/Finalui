@@ -125,7 +125,7 @@ namespace Negocios.AccesoRecepciones
                             sql = $"SELECT salidaDoc = CONCAT(TRIM(kd.C1), '{numeroCompleto}', kd.C6), referencia = kd.C11 FROM KDM1 kd WHERE kd.C1 = '{envia}' AND kd.C103 = '{sucori}' AND kd.C4 = 45 GROUP BY kd.C6, kd.C11, kd.C1";
                         }
 
-                        lst2 = modelo.Database.SqlQuery<vmSalidaDocumentoONLY>(sql).OrderByDescending(x => x.salidaDoc).Take(100).ToList();
+                        lst2 = modelo.Database.SqlQuery<vmSalidaDocumentoONLY>(sql).OrderByDescending(x => x.salidaDoc).Take(200).ToList();
                     }
                 });
 
@@ -137,6 +137,40 @@ namespace Negocios.AccesoRecepciones
             }
         }
 
+        public async Task<List<vmSalidaDocumentoONLY>> LlenaDGVPorBusqueda(string sucori, string doc, int numerosuc, string envia)
+        {
+            var lst2 = new List<vmSalidaDocumentoONLY>();
+            int cha = sucori.Trim().ToString().Length;
+            string sql = string.Empty;
+            string numeroCompleto = "-UD4501-";
+
+            try
+            {
+                await Task.Run(() =>
+                {
+                    using (modelo2Entities modelo = new modelo2Entities())
+                    {
+                        if (sucori.Trim().Contains("TJ") || (envia == "SD" && sucori == "CSL"))
+                        {
+                            string c20Value = sucori.Trim().Contains("TJ") ? "F" : "PR";
+                            sql = $"SELECT salidaDoc = CONCAT(TRIM(kd.C1), '{numeroCompleto}', kd.C6), referencia = kd.C11 FROM KDM1 kd WHERE kd.C1 = '{envia}'  AND kd.C103 = '{sucori}' AND kd.C4 = 45 AND kd.C6 = {doc}GROUP BY kd.C6, kd.C11, kd.C1";
+                        }
+                        else
+                        {
+                            sql = $"SELECT salidaDoc = CONCAT(TRIM(kd.C1), '{numeroCompleto}', kd.C6), referencia = kd.C11 FROM KDM1 kd WHERE kd.C1 = '{envia}'  AND kd.C103 = '{sucori}' AND kd.C4 = 45 AND kd.C6 = {doc} GROUP BY kd.C6, kd.C11, kd.C1";
+                        }
+
+                        lst2 = modelo.Database.SqlQuery<vmSalidaDocumentoONLY>(sql).OrderByDescending(x => x.salidaDoc).ToList();
+                    }
+                });
+
+                return lst2;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
 
         public async Task<List<vmEntBySalida>> CargaEntBySalida(string id, string sOrigen, string sEnvia)

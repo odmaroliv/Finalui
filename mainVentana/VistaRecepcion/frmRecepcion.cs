@@ -934,10 +934,10 @@ namespace mainVentana.VistaRecepcion
                         }
                         catch (Exception)
                         {
-                            MessageBox.Show("El documento de Excel no se pudo generar correctamente, pero la Salida se creó satisfactoriamente");
+                            MessageBox.Show("El documento de Excel no se pudo generar correctamente, pero la Recepcion se creó satisfactoriamente");
                         }
 
-                        MessageBox.Show("Salida: " + ulDatoSolo + " con origen: " + sRecepcion + " finalizada");
+                        MessageBox.Show("Recepción: " + ulDatoSolo + " con origen: " + sRecepcion + " finalizada");
                        
                         this.Dispose();
                         this.Close();

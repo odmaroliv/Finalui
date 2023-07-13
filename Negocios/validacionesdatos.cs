@@ -72,7 +72,7 @@ namespace Negocios
                                          //repfinal = d.C67.Trim(),
                                          //repfinalfecha = d.C76.Trim(),
                                          repfinal = d.C18.Trim(),
-                                         repfinalfecha = d.C76.Trim(),
+                                         repfinalfecha = d.C74.Trim(),
                                          bill = d.C34.Trim(),
                                          billfecha = d.C77.Trim(),
                                          C42 = d.C42.Trim(),

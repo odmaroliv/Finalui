@@ -217,7 +217,7 @@ namespace mainVentana.VistaInicioCoordinadores
                 string e_en = txbEntradaDetalle.Text.Trim();
                 string e_so = txbSucOrigenDetalle.Text.Trim();
                 Negocios.NGCarga.altasBDCarga get = new Negocios.NGCarga.altasBDCarga();
-                await get.AsignaCargaAEntrada(e_so, e_en, c_cargacompleta, fechaHoy);
+                await get.AsignaCargaAEntrada(e_so, e_en, c_cargacompleta, DateTime.Now.ToString("MM/dd/yyyy"));
                 MessageBox.Show("La entrada: " + e_en + " fue asignada con exito a la carga " + c_cargacompleta, "Carga asignada", MessageBoxButtons.OK);
             }
             catch (Exception)

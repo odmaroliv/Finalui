@@ -494,5 +494,10 @@ namespace mainVentana.VistaInicioCoordinadores
         {
 
         }
+
+        private void gunaTextBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

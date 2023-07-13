@@ -62,5 +62,29 @@ namespace mainVentana.VistaRecepcion
             ngAccesoRecepciones sv = new ngAccesoRecepciones();
             gunaDataGridView1.DataSource = await sv.LlenaDGV(sOrigen, documento, numerosuc,sEnvia);
         }
+
+        private async void gunaTextBox2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string id = gunaTextBox2.Text;
+
+                int numero;
+                if (int.TryParse(id, out numero))
+                {
+                    gunaDataGridView1.DataSource = null;
+                    ngAccesoRecepciones sv = new ngAccesoRecepciones();
+                    gunaDataGridView1.DataSource = await sv.LlenaDGVPorBusqueda(sOrigen, id, numerosuc, sEnvia);
+                }
+                else
+                {
+                    // El valor del TextBox no es un número válido
+                    
+                }
+
+                e.SuppressKeyPress = true;
+            }
+        }
+
     }
 }
