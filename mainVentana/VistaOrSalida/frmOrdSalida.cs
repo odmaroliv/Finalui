@@ -901,7 +901,7 @@ namespace mainVentana.VistaOrSalida
 
                 await ModificaKDMENTtj(etiqueta);
             }
-            if (sDestino == "TJ" || sDestino == "SD" && sOrigen == "CSL")
+            if ((sDestino == "TJ" || sDestino == "SD") && sOrigen == "CSL")
             {
                 await ModificaKDMENTsd(etiqueta);
             }

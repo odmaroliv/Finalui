@@ -388,11 +388,11 @@ namespace mainVentana.VistaInicioCoordinadores
                     frm.date = fechaElabora;
                     frm.paridad = paridad;
                     frm.entradas = entradas;
-                    frm.vGod = valoeMercaUsa;
-                    frm.subTotal = subTotal;
+                    frm.vGod = !string.IsNullOrEmpty(valoeMercaUsa) ? decimal.Parse(valoeMercaUsa).ToString("N2") : string.Empty;
+                    frm.subTotal = !string.IsNullOrEmpty(subTotal) ? decimal.Parse(subTotal).ToString("N2") : string.Empty;
                     frm.iva = iva;
-                    frm.toPayArn = payArn;
-                    frm.totalPesos = payArnMXN;
+                    frm.toPayArn = !string.IsNullOrEmpty(payArn) ? decimal.Parse(payArn).ToString("N2") : string.Empty;
+                    frm.totalPesos = !string.IsNullOrEmpty(payArnMXN) ? decimal.Parse(payArnMXN).ToString("N2") : string.Empty;
                     frm.referencia = referencia;
                     frm.User = User;
                     frm.payment = formPayment;

@@ -42,6 +42,8 @@ namespace mainVentana.VistaInicioCoordinadores
         private string zipp;
         private string numm;
 
+        private bool _infoDesdeAlias = false;
+
         public frmAddToCarga()
         {
             InitializeComponent();
@@ -410,7 +412,8 @@ namespace mainVentana.VistaInicioCoordinadores
         }
         private void AsignaDatosSireccion()
         {
-            if (String.IsNullOrWhiteSpace(txbAliasAct.Text))
+            
+            if (_infoDesdeAlias == false)
             {
                 calle = txbPcalle.Text;
                 colonia = txbPcolonia.Text;
@@ -582,6 +585,7 @@ namespace mainVentana.VistaInicioCoordinadores
         }
         public void moverinfo(string dato, string dato2, string dato3, string dato4, string dato5, string dato6, string dato7, string correoCliente, int bandera) //cambia los datos de los textbox alias y clientes, la bandera dependera de la manera en la que se haya abierto el frm buscar, 0 clientes 1 alias, ADEMAS tambien sirve para cambiar el campo de cord
         {
+            _infoDesdeAlias = true;
             LimpiVar();
            // string nClien = txbNoCliente.Text.Trim();
             string oClien = dato7 != null ? dato7.Trim() : string.Empty;
