@@ -37,7 +37,7 @@ namespace mainVentana.VistaEntrada
     public partial class AltaEntrada : Form
     {
         //KunLibertad_DesktopControl Desk = new KunLibertad_DesktopControl();
-
+        private static readonly HttpClient _client = new HttpClient();
         string entradaBusqueda;
         //int ventana;
         public int tipodeDocumento = 1;
@@ -45,11 +45,17 @@ namespace mainVentana.VistaEntrada
         private string noEntGlobal = "";
         private string sbeArchivos = "";
         public int modoCord = 0;
+
+        string usernameapi = Settings.Default.apiFotosUs;
+        string passwordapi = Settings.Default.apiFotosPs;
         public AltaEntrada( int modoCor = 0)
         {
 
             InitializeComponent();
             modoCord = modoCor;
+            // Configurar la autenticación aquí
+            var authValue = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{usernameapi}:{passwordapi}")));
+            _client.DefaultRequestHeaders.Authorization = authValue;
         }
 
         private void AltaEntrada_Load(object sender, EventArgs e)
@@ -244,8 +250,9 @@ namespace mainVentana.VistaEntrada
                             }
                             if (cbxNotif.Checked == true)
                             {
-                                //validapsoemail();
-                             await envEmail();
+                                await ReenviaEnvEmail();
+                                
+                             
                             }
                             updateDatos(pagado);
                             SelectPrinter();
@@ -447,7 +454,7 @@ namespace mainVentana.VistaEntrada
                     MessageBox.Show("Ocurrio un error y no se pudo actualizar");
                    
                 }
-               
+
 
             }
 
@@ -461,7 +468,7 @@ namespace mainVentana.VistaEntrada
 
             string cordCordinadorCMB = cord.SelectedValue.ToString().Trim();
 
-            string doc = tipodeDocumento == 2 ? lblEntrada.Text.Trim(): noEntGlobal;
+            string doc = tipodeDocumento == 2 ? lblEntrada.Text.Trim() : noEntGlobal;
             EnviarEmail servicio = new EnviarEmail();
 
             List<string> archivos = new List<string>();
@@ -474,7 +481,7 @@ namespace mainVentana.VistaEntrada
                 }
             }
             try
-                {
+            {
 
                 var respuesta = await servicio.EnviaMail(doc, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, archivos, coreoClientes, cordCordinadorCMB);
                 //var respuesta = await servicio.EnviaMailAmazonSES(doc, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, archivos, coreoClientes, cordCordinadorCMB);
@@ -482,7 +489,7 @@ namespace mainVentana.VistaEntrada
                 if (respuesta == 1)
                 {
                     MessageBox.Show("El correo NO SE ENVIÓ PORQUE supera el límite máximo de 25 MB en cada correo, intenta borrar documentos y reenvía la notificación", "CUIDADO EL CORREO NO SE ENVIO");
-                    NotificaEmail(0, doc, cliente.Text +" / "+alias.Text);
+                    NotificaEmail(0, doc, cliente.Text + " / " + alias.Text);
                 }
                 else if (respuesta == 2)
                 {
@@ -491,30 +498,139 @@ namespace mainVentana.VistaEntrada
                 }
                 else
                 {
-                        NotificaEmail(1, doc, cliente.Text + " / " + alias.Text);
-                    }
+                    NotificaEmail(1, doc, cliente.Text + " / " + alias.Text);
+                }
 
-                }
-                catch (Exception x)
-                {
+            }
+            catch (Exception x)
+            {
                 Negocios.LOGs.ArsLogs.LogEdit(x.Message, doc + " Correo - lado de AltaEntrada");
-               
-                }
+
+            }
             finally
             {
                 // Libera los recursos aquí
-                
+
                 archivos.Clear();
             }
 
 
-
-
-
-
         }
-      
-      
+
+        private async Task ReenviaEnvEmail()
+        {
+            string cordCordinadorCMB = cord.SelectedValue.ToString().Trim();
+            string doc = tipodeDocumento == 2 ? lblEntrada.Text.Trim() : noEntGlobal;
+            EnviarEmail servicio = new EnviarEmail();
+
+            List<string> archivos = new List<string>();
+
+            string path = AppDomain.CurrentDomain.BaseDirectory;
+            string folder = path + "\\temp\\" + tbxRastreo.Text + "\\"; // Crear una carpeta específica para cada rastreo
+
+            if (dgvFotosModifi.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow row in dgvFotosModifi.Rows)
+                {
+                    try
+                    {
+                        string id = row.Cells[0].Value.ToString();
+                        await DescargaDocsDesdeFolder(id, folder); // Descargar el archivo y guardarlo en la carpeta del rastreo
+                        string fullFilePath = folder + id;
+                        archivos.Add(fullFilePath); // Agregar la ruta completa del archivo a la lista
+                    }
+                    catch (Exception ex)
+                    {
+                        Negocios.LOGs.ArsLogs.LogEdit(ex.Message, doc + " Correo - problemas con el archivo");
+                    }
+                }
+            }
+
+            try
+            {
+                var respuesta = await servicio.EnviaMail(doc, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, archivos, coreoClientes, cordCordinadorCMB);
+
+                if (respuesta == 1)
+                {
+                    MessageBox.Show("El correo NO SE ENVIÓ PORQUE supera el límite máximo de 25 MB en cada correo, intenta borrar documentos y reenvía la notificación", "CUIDADO EL CORREO NO SE ENVIO");
+                    NotificaEmail(0, doc, cliente.Text + " / " + alias.Text);
+                }
+                else if (respuesta == 2)
+                {
+                    MessageBox.Show("El correo NO SE ENVIÓ (msg), pero la entrada si se dio de Alta", "CUIDADO EL CORREO NO SE ENVIO");
+                    NotificaEmail(0, doc, cliente.Text + " / " + alias.Text);
+                }
+                else
+                {
+                    NotificaEmail(1, doc, cliente.Text + " / " + alias.Text);
+                }
+            }
+            catch (Exception x)
+            {
+                Negocios.LOGs.ArsLogs.LogEdit(x.Message, doc + " Correo - lado de AltaEntrada");
+            }
+            finally
+            {
+                // Eliminar la carpeta del rastreo y todos sus contenidos después del envío del correo
+                if (Directory.Exists(folder))
+                {
+                    Directory.Delete(folder, true);
+                }
+
+                // Limpiar los recursos
+                archivos.Clear();
+            }
+        }
+
+        private async Task DescargaDocsDesdeFolder(string dato, string folder)
+        {
+            string nombreArchivo = dato.Trim();
+            int tipoRespuesta = 2;
+            string mensajeRespuesta = "";
+
+            if (!string.IsNullOrWhiteSpace(nombreArchivo))
+            {
+                var authValue = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{usernameapi}:{passwordapi}")));
+
+                _client.DefaultRequestHeaders.Authorization = authValue;
+
+                try
+                {
+                    string url = "http://104.198.241.64:90/api/Archivo/?nombreArchivo=" + nombreArchivo;
+                    using (HttpResponseMessage respuestaConsulta = await _client.GetAsync(url))
+                    {
+                        if (respuestaConsulta.IsSuccessStatusCode)
+                        {
+                            byte[] arrContenido = await respuestaConsulta.Content.ReadAsAsync<byte[]>();
+
+                            string fullFilePath = folder + dato;
+
+                            if (File.Exists(fullFilePath))
+                                File.Delete(fullFilePath);
+
+                            if (!Directory.Exists(folder))
+                                Directory.CreateDirectory(folder);
+
+                            File.WriteAllBytes(fullFilePath, arrContenido);
+
+                            tipoRespuesta = 1;
+                            // mensajeRespuesta = "Se descargó correctamente el archivo " + nombreArchivo;
+                           // Process.Start(fullFilePath);
+                        }
+                        else
+                        {
+                            mensajeRespuesta = await respuestaConsulta.Content.ReadAsStringAsync();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    tipoRespuesta = 3;
+                    mensajeRespuesta = ex.Message;
+                }
+            }
+        }
+
 
         private async Task SubeFotos()
         {
@@ -1718,52 +1834,47 @@ namespace mainVentana.VistaEntrada
         {
 
         }
-        string usernameapi = Settings.Default.apiFotosUs;
-        string passwordapi = Settings.Default.apiFotosPs;
-        private async void DescargaDocs(string dato)
+
+        private async Task DescargaDocs(string dato)
         {
             string nombreArchivo = dato.Trim();
             int tipoRespuesta = 2;
             string mensajeRespuesta = "";
+
             if (!string.IsNullOrWhiteSpace(nombreArchivo))
             {
                 var authValue = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{usernameapi}:{passwordapi}")));
-                using (var clientHandler = new HttpClientHandler { Credentials = new CredentialCache { { new Uri("http://104.198.241.64:90/"), "Basic", new NetworkCredential(usernameapi, passwordapi) } } })
 
+                _client.DefaultRequestHeaders.Authorization = authValue;
 
-                    try
+                try
+                {
+                    string url = "http://104.198.241.64:90/api/Archivo/?nombreArchivo=" + nombreArchivo;
+                    using (HttpResponseMessage respuestaConsulta = await _client.GetAsync(url)) // usar _client aquí
                     {
-                    using (HttpClient cliente = new HttpClient())
-                    {
-                        string url = "http://104.198.241.64:90/api/Archivo/?nombreArchivo=" + nombreArchivo;
-                            cliente.DefaultRequestHeaders.Authorization = authValue;
-                            using (HttpResponseMessage respuestaConsulta = await cliente.GetAsync(url))
+                        if (respuestaConsulta.IsSuccessStatusCode)
                         {
-                            if (respuestaConsulta.IsSuccessStatusCode)
-                            {
-                                byte[] arrContenido = await respuestaConsulta.Content.ReadAsAsync<byte[]>();
+                            byte[] arrContenido = await respuestaConsulta.Content.ReadAsAsync<byte[]>();
 
+                            string path = AppDomain.CurrentDomain.BaseDirectory;
+                            string folder = path + "\\temp\\";
+                            string fullFilePath = folder + dato;
 
-                                string path = AppDomain.CurrentDomain.BaseDirectory;
-                                string folder = path + "\\temp\\";
-                                string fullFilePath = folder + dato;
+                            if (File.Exists(fullFilePath))
+                                File.Delete(fullFilePath);
 
-                                if (File.Exists(fullFilePath))
-                                    File.Delete(fullFilePath);
+                            if (!Directory.Exists(folder))
+                                Directory.CreateDirectory(folder);
 
-                                if (!Directory.Exists(folder))
-                                    Directory.CreateDirectory(folder);
+                            File.WriteAllBytes(fullFilePath, arrContenido);
 
-                                File.WriteAllBytes(fullFilePath, arrContenido);
-
-                                tipoRespuesta = 1;
-                                // mensajeRespuesta = "Se descargó correctamente el archivo " + nombreArchivo;
-                                Process.Start(fullFilePath);
-                            }
-                            else
-                            {
-                                mensajeRespuesta = await respuestaConsulta.Content.ReadAsStringAsync();
-                            }
+                            tipoRespuesta = 1;
+                            // mensajeRespuesta = "Se descargó correctamente el archivo " + nombreArchivo;
+                            Process.Start(fullFilePath);
+                        }
+                        else
+                        {
+                            mensajeRespuesta = await respuestaConsulta.Content.ReadAsStringAsync();
                         }
                     }
                 }
@@ -1772,22 +1883,10 @@ namespace mainVentana.VistaEntrada
                     tipoRespuesta = 3;
                     mensajeRespuesta = ex.Message;
                 }
-
             }
-
-
-
-
-            /* MessageBoxIcon iconoMensaje;
-             if (tipoRespuesta == 1)
-                 iconoMensaje = MessageBoxIcon.Information;
-             else if (tipoRespuesta == 2)
-                 iconoMensaje = MessageBoxIcon.Warning;
-             else
-                 iconoMensaje = MessageBoxIcon.Error;
-             MessageBox.Show(mensajeRespuesta, "Descarga de archivos", MessageBoxButtons.OK, iconoMensaje);*/
         }
-       
+
+
         private async Task CargaPH()
         {
             List<string> archivos = new List<string>();

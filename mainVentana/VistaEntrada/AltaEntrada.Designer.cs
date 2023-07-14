@@ -60,6 +60,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbxDestinoModify = new ReaLTaiizor.Controls.CheckBox();
             this.cmbAlmacen = new System.Windows.Forms.ComboBox();
             this.label30 = new System.Windows.Forms.Label();
             this.cord = new System.Windows.Forms.ComboBox();
@@ -144,7 +145,6 @@
             this.lblBuscarEnt = new System.Windows.Forms.Label();
             this.btnBuscarEnt = new Guna.UI.WinForms.GunaCircleButton();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.cbxDestinoModify = new ReaLTaiizor.Controls.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDocs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFotosModifi)).BeginInit();
@@ -590,6 +590,26 @@
             this.groupBox1.TabIndex = 100;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Generales";
+            // 
+            // cbxDestinoModify
+            // 
+            this.cbxDestinoModify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxDestinoModify.Checked = false;
+            this.cbxDestinoModify.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.cbxDestinoModify.CheckedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.cbxDestinoModify.CheckedDisabledColor = System.Drawing.Color.WhiteSmoke;
+            this.cbxDestinoModify.CheckedEnabledColor = System.Drawing.Color.Silver;
+            this.cbxDestinoModify.Cursor = System.Windows.Forms.Cursors.Default;
+            this.cbxDestinoModify.Enable = false;
+            this.cbxDestinoModify.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.cbxDestinoModify.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(125)))), ((int)(((byte)(132)))));
+            this.cbxDestinoModify.Location = new System.Drawing.Point(12, 97);
+            this.cbxDestinoModify.Name = "cbxDestinoModify";
+            this.cbxDestinoModify.Size = new System.Drawing.Size(153, 16);
+            this.cbxDestinoModify.TabIndex = 126;
+            this.cbxDestinoModify.Text = "Modificar Destino";
+            this.cbxDestinoModify.Visible = false;
+            this.cbxDestinoModify.CheckedChanged += new ReaLTaiizor.Controls.CheckBox.CheckedChangedEventHandler(this.cbxDestinoModify_CheckedChanged);
             // 
             // cmbAlmacen
             // 
@@ -1699,26 +1719,6 @@
             this.btnBuscarEnt.TabIndex = 131;
             this.btnBuscarEnt.Visible = false;
             this.btnBuscarEnt.Click += new System.EventHandler(this.btnBuscarEnt_Click);
-            // 
-            // cbxDestinoModify
-            // 
-            this.cbxDestinoModify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbxDestinoModify.Checked = false;
-            this.cbxDestinoModify.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.cbxDestinoModify.CheckedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.cbxDestinoModify.CheckedDisabledColor = System.Drawing.Color.WhiteSmoke;
-            this.cbxDestinoModify.CheckedEnabledColor = System.Drawing.Color.Silver;
-            this.cbxDestinoModify.Cursor = System.Windows.Forms.Cursors.Default;
-            this.cbxDestinoModify.Enable = false;
-            this.cbxDestinoModify.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.cbxDestinoModify.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(125)))), ((int)(((byte)(132)))));
-            this.cbxDestinoModify.Location = new System.Drawing.Point(12, 97);
-            this.cbxDestinoModify.Name = "cbxDestinoModify";
-            this.cbxDestinoModify.Size = new System.Drawing.Size(153, 16);
-            this.cbxDestinoModify.TabIndex = 126;
-            this.cbxDestinoModify.Text = "Modificar Destino";
-            this.cbxDestinoModify.Visible = false;
-            this.cbxDestinoModify.CheckedChanged += new ReaLTaiizor.Controls.CheckBox.CheckedChangedEventHandler(this.cbxDestinoModify_CheckedChanged);
             // 
             // AltaEntrada
             // 
