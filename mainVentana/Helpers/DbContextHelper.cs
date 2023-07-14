@@ -13,12 +13,20 @@ namespace mainVentana.Helpers
     {
         public static async Task PreloadContextAsync(modelo2Entities context)
         {
-           
-            await context.KDMENT.FirstOrDefaultAsync();
-            await context.KDM1.FirstOrDefaultAsync();
-            await context.KDM1COMEN.FirstOrDefaultAsync();
+            try
+            {
+                await context.KDMENT.FirstOrDefaultAsync();
+                await context.KDM1.FirstOrDefaultAsync();
+                await context.KDM1COMEN.FirstOrDefaultAsync();
+            }
+            catch (Exception)
+            {
 
-            // Agrega más consultas para precargar las demás tablas 
+               
+            }
+           
+
+        
         }
 
 

@@ -30,6 +30,7 @@ using mainVentana.VistaEntrada.Proovedor;
 using Datos.Datosenti;
 using DocumentFormat.OpenXml.Office2013.Excel;
 using Guna.UI.WinForms;
+using System.Threading;
 
 namespace mainVentana.VistaEntrada
 {
@@ -281,6 +282,7 @@ namespace mainVentana.VistaEntrada
             {
 
                 MessageBox.Show("Ocurrio el siguente error: (Tomar Foto) \n" + ex);
+                throw;
             }
             finally
             {
@@ -571,17 +573,36 @@ namespace mainVentana.VistaEntrada
             }
             finally
             {
-                // Eliminar la carpeta del rastreo y todos sus contenidos después del envío del correo
-                if (Directory.Exists(folder))
-                {
-                    Directory.Delete(folder, true);
-                }
+               await  EliminaFolder(folder);
 
                 // Limpiar los recursos
                 archivos.Clear();
             }
         }
 
+        private async Task EliminaFolder(string folder)
+        {
+           await Task.Run(() =>
+            {
+                Thread.Sleep(200);
+                try
+                {
+                    if (Directory.Exists(folder))
+                    {
+                        Directory.Delete(folder, true);
+                    }
+                }
+                catch (Exception x)
+                {
+                    MessageBox.Show("No se puedo borrar el folder de la entrada: " + folder);
+                    Negocios.LOGs.ArsLogs.LogEdit(x.Message, "");
+                }
+            });
+            
+           
+          
+
+        }
         private async Task DescargaDocsDesdeFolder(string dato, string folder)
         {
             string nombreArchivo = dato.Trim();
