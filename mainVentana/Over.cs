@@ -493,7 +493,7 @@ namespace mainVentana
                 {
                     string valorEnt = gunaDataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
                     string ValorSuc = gunaDataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
-                    string url = string.Format("https://app.beetrack.com/search/{0}", ValorSuc.Trim() + "-" + valorEnt.Trim()) ;
+                    string url = string.Format("https://arniangroup.dispatchtrack.com/search/{0}", ValorSuc.Trim() + "-" + valorEnt.Trim()) ;
                     System.Diagnostics.Process.Start(url);
                     return;
               

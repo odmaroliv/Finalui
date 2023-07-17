@@ -407,7 +407,7 @@ namespace mainVentana
 
         private void lblAmazon_Click(object sender, EventArgs e)
         {
-            Process.Start("https://www.amazon.com/");
+            Process.Start("https://arniangroup.dispatchtrack.com/");
 
         }
 
