@@ -180,15 +180,14 @@ namespace mainVentana.VistaCreditoCobranza
                     sucActual = w.sucActual?.Trim(),
                     Nota =  w.Nota?.Trim(),
                     Link = String.IsNullOrWhiteSpace(w.Link)?"": string.Format("https://arniangroup.dispatchtrack.com/search/{0}", w.SucursalOrigen?.Trim() + "-" + w.Entrada?.Trim()),
+                    FechaCarga = w.FechaCarga?.Trim(),
+                    FechaRepFinal = w.FechaRepFinal?.Trim(),
+                    FechaBol = w.FechaBol?.Trim(),
                    
                 });
 
 
-
             }
-
-
-
 
 
             if (dtgDatos.Count > 0)

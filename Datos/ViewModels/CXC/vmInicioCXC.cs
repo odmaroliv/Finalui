@@ -30,6 +30,9 @@ namespace Datos.ViewModels.CXC
         public string sucActual { get; set; }
         public string Nota { get; set; }
         public string Link { get; set; }
+        public string FechaCarga { get; set; }
+        public string FechaRepFinal { get; set; }
+        public string FechaBol { get; set; }
 
     }
 }
