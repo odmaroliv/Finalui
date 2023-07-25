@@ -75,6 +75,22 @@ namespace Negocios
             {
 
                 Negocios.LOGs.ArsLogs.LogEdit(e.Message, " agregaKDM1() " + entrada);
+
+
+                if (e is DbEntityValidationException entityValidationEx)
+                {
+                    foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
+                    {
+                        // Acceder a los Entity Validation Errors
+                        foreach (var validationError in entityValidationError.ValidationErrors)
+                        {
+                            var propertyName = validationError.PropertyName;
+                            var errorMessage = validationError.ErrorMessage;
+                            Negocios.LOGs.ArsLogs.LogEdit($"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}", "altasBD.cs,  agregaKDM1())..." + entrada + "    ");
+                        }
+                    }
+                }
+
                 throw;
             }
 
@@ -176,6 +192,19 @@ namespace Negocios
             catch (DbEntityValidationException e)
             {
                 Negocios.LOGs.ArsLogs.LogEdit(e.Message, "AltasBD.agregaKDMENT() " + etiqueta);
+                if (e is DbEntityValidationException entityValidationEx)
+                {
+                    foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
+                    {
+                        // Acceder a los Entity Validation Errors
+                        foreach (var validationError in entityValidationError.ValidationErrors)
+                        {
+                            var propertyName = validationError.PropertyName;
+                            var errorMessage = validationError.ErrorMessage;
+                            Negocios.LOGs.ArsLogs.LogEdit($"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}", "AltasBD.agregaKDMENT()..." + etiqueta + "    ");
+                        }
+                    }
+                }
                 throw;
             }
         }
@@ -254,6 +283,19 @@ namespace Negocios
                     catch (Exception ex)
                     {
                         MessageBox.Show("ocurrio un error" + ex.Message.ToString());
+                        if (ex is DbEntityValidationException entityValidationEx)
+                        {
+                            foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
+                            {
+                                // Acceder a los Entity Validation Errors
+                                foreach (var validationError in entityValidationError.ValidationErrors)
+                                {
+                                    var propertyName = validationError.PropertyName;
+                                    var errorMessage = validationError.ErrorMessage;
+                                    Negocios.LOGs.ArsLogs.LogEdit($"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}", "AltasBD.UpdateKDM1()..." + id + "    ");
+                                }
+                            }
+                        }
                         //throw;
                     }
                 }

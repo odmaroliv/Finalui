@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.SqlServer;
+using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -69,9 +70,21 @@ namespace Negocios.Acceso_Salida
                     });
                     return lst2;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    if (ex is DbEntityValidationException entityValidationEx)
+                    {
+                        foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
+                        {
+                            // Acceder a los Entity Validation Errors
+                            foreach (var validationError in entityValidationError.ValidationErrors)
+                            {
+                                var propertyName = validationError.PropertyName;
+                                var errorMessage = validationError.ErrorMessage;
+                                Negocios.LOGs.ArsLogs.LogEdit($"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}", "AccesoSalida.LlenaDGV().. ");
+                            }
+                        }
+                    }
                     throw;
                 }
 
@@ -116,9 +129,21 @@ namespace Negocios.Acceso_Salida
                     });
                     return lst2;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    if (ex is DbEntityValidationException entityValidationEx)
+                    {
+                        foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
+                        {
+                            // Acceder a los Entity Validation Errors
+                            foreach (var validationError in entityValidationError.ValidationErrors)
+                            {
+                                var propertyName = validationError.PropertyName;
+                                var errorMessage = validationError.ErrorMessage;
+                                Negocios.LOGs.ArsLogs.LogEdit($"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}", "AccesoSalida.LlenaDGV().. ");
+                            }
+                        }
+                    }
                     throw;
                 }
             }
@@ -168,9 +193,21 @@ namespace Negocios.Acceso_Salida
                     });
                     return lst2;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    if (ex is DbEntityValidationException entityValidationEx)
+                    {
+                        foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
+                        {
+                            // Acceder a los Entity Validation Errors
+                            foreach (var validationError in entityValidationError.ValidationErrors)
+                            {
+                                var propertyName = validationError.PropertyName;
+                                var errorMessage = validationError.ErrorMessage;
+                                Negocios.LOGs.ArsLogs.LogEdit($"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}", "AccesoSalida.LlenaDGVSalidas().. ");
+                            }
+                        }
+                    }
                     throw;
                 }
             }
@@ -213,9 +250,21 @@ namespace Negocios.Acceso_Salida
                     });
                     return lst2;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    if (ex is DbEntityValidationException entityValidationEx)
+                    {
+                        foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
+                        {
+                            // Acceder a los Entity Validation Errors
+                            foreach (var validationError in entityValidationError.ValidationErrors)
+                            {
+                                var propertyName = validationError.PropertyName;
+                                var errorMessage = validationError.ErrorMessage;
+                                Negocios.LOGs.ArsLogs.LogEdit($"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}", "AccesoSalida.LlenaDGVSalidas().. ");
+                            }
+                        }
+                    }
                     throw;
                 }
             }
@@ -263,9 +312,21 @@ namespace Negocios.Acceso_Salida
 
                 return lst2;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                if (ex is DbEntityValidationException entityValidationEx)
+                {
+                    foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
+                    {
+                        // Acceder a los Entity Validation Errors
+                        foreach (var validationError in entityValidationError.ValidationErrors)
+                        {
+                            var propertyName = validationError.PropertyName;
+                            var errorMessage = validationError.ErrorMessage;
+                            Negocios.LOGs.ArsLogs.LogEdit($"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}", "AccesoSalida.BuscUltimaSalida().. ");
+                        }
+                    }
+                }
                 throw;
             }
 
@@ -285,9 +346,21 @@ namespace Negocios.Acceso_Salida
                 });
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                if (ex is DbEntityValidationException entityValidationEx)
+                {
+                    foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
+                    {
+                        // Acceder a los Entity Validation Errors
+                        foreach (var validationError in entityValidationError.ValidationErrors)
+                        {
+                            var propertyName = validationError.PropertyName;
+                            var errorMessage = validationError.ErrorMessage;
+                            Negocios.LOGs.ArsLogs.LogEdit($"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}", "AccesoSalida.AltaSalidaUPU().. ");
+                        }
+                    }
+                }
                 throw;
             }
         }
@@ -326,9 +399,21 @@ namespace Negocios.Acceso_Salida
                     });
                     return lst2;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    if (ex is DbEntityValidationException entityValidationEx)
+                    {
+                        foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
+                        {
+                            // Acceder a los Entity Validation Errors
+                            foreach (var validationError in entityValidationError.ValidationErrors)
+                            {
+                                var propertyName = validationError.PropertyName;
+                                var errorMessage = validationError.ErrorMessage;
+                                Negocios.LOGs.ArsLogs.LogEdit($"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}", "AccesoSalida.BuscEntradasEnSalida().. ");
+                            }
+                        }
+                    }
                     throw;
                 }
             }
@@ -363,8 +448,21 @@ namespace Negocios.Acceso_Salida
                     });
                     return lst2;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    if (ex is DbEntityValidationException entityValidationEx)
+                    {
+                        foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
+                        {
+                            // Acceder a los Entity Validation Errors
+                            foreach (var validationError in entityValidationError.ValidationErrors)
+                            {
+                                var propertyName = validationError.PropertyName;
+                                var errorMessage = validationError.ErrorMessage;
+                                Negocios.LOGs.ArsLogs.LogEdit($"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}", "AccesoSalida.BuscEntradasEnSalida().. ");
+                            }
+                        }
+                    }
 
                     throw;
                 }
@@ -399,9 +497,21 @@ namespace Negocios.Acceso_Salida
                 });
                 return lst2;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                if (ex is DbEntityValidationException entityValidationEx)
+                {
+                    foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
+                    {
+                        // Acceder a los Entity Validation Errors
+                        foreach (var validationError in entityValidationError.ValidationErrors)
+                        {
+                            var propertyName = validationError.PropertyName;
+                            var errorMessage = validationError.ErrorMessage;
+                            Negocios.LOGs.ArsLogs.LogEdit($"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}", "AccesoSalidas.LlenaDGVpausadas().. ");
+                        }
+                    }
+                }
                 throw;
             }
         }
@@ -436,9 +546,21 @@ namespace Negocios.Acceso_Salida
                 });
                 return lst2;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                if (ex is DbEntityValidationException entityValidationEx)
+                {
+                    foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
+                    {
+                        // Acceder a los Entity Validation Errors
+                        foreach (var validationError in entityValidationError.ValidationErrors)
+                        {
+                            var propertyName = validationError.PropertyName;
+                            var errorMessage = validationError.ErrorMessage;
+                            Negocios.LOGs.ArsLogs.LogEdit($"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}", "AccesoSalidas.LlenaGeneralesSalida().. ");
+                        }
+                    }
+                }
                 throw;
             }
         }
@@ -536,9 +658,21 @@ namespace Negocios.Acceso_Salida
                 });
                 return lst2;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                if (ex is DbEntityValidationException entityValidationEx)
+                {
+                    foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
+                    {
+                        // Acceder a los Entity Validation Errors
+                        foreach (var validationError in entityValidationError.ValidationErrors)
+                        {
+                            var propertyName = validationError.PropertyName;
+                            var errorMessage = validationError.ErrorMessage;
+                            Negocios.LOGs.ArsLogs.LogEdit($"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}", "AccesoSalidas.LlenaDGVEntrega().. ");
+                        }
+                    }
+                }
                 throw;
             }
 
@@ -578,8 +712,21 @@ namespace Negocios.Acceso_Salida
                     });
                     return lst2;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    if (ex is DbEntityValidationException entityValidationEx)
+                    {
+                        foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
+                        {
+                            // Acceder a los Entity Validation Errors
+                            foreach (var validationError in entityValidationError.ValidationErrors)
+                            {
+                                var propertyName = validationError.PropertyName;
+                                var errorMessage = validationError.ErrorMessage;
+                                Negocios.LOGs.ArsLogs.LogEdit($"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}", "AccesoSalidas.BuscEntradasSalidaReporte().. ");
+                            }
+                        }
+                    }
                     throw;
                 }
             }
@@ -654,9 +801,21 @@ namespace Negocios.Acceso_Salida
                     });
                     return lst2;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    if (ex is DbEntityValidationException entityValidationEx)
+                    {
+                        foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
+                        {
+                            // Acceder a los Entity Validation Errors
+                            foreach (var validationError in entityValidationError.ValidationErrors)
+                            {
+                                var propertyName = validationError.PropertyName;
+                                var errorMessage = validationError.ErrorMessage;
+                                Negocios.LOGs.ArsLogs.LogEdit($"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}", "AccesoSalida.BuscEntradasSalidaReporteYtreaeEntradas().. ");
+                            }
+                        }
+                    }
                     throw;
                 }
             }
@@ -694,8 +853,21 @@ namespace Negocios.Acceso_Salida
                     });
                     return lst2;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    if (ex is DbEntityValidationException entityValidationEx)
+                    {
+                        foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
+                        {
+                            // Acceder a los Entity Validation Errors
+                            foreach (var validationError in entityValidationError.ValidationErrors)
+                            {
+                                var propertyName = validationError.PropertyName;
+                                var errorMessage = validationError.ErrorMessage;
+                                Negocios.LOGs.ArsLogs.LogEdit($"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}", "AccesoSalida.BuscEntradasSalidaReporteYtreaeEntradas().. ");
+                            }
+                        }
+                    }
 
                     throw;
                 }
@@ -741,8 +913,21 @@ namespace Negocios.Acceso_Salida
 
                 return result;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                if (ex is DbEntityValidationException entityValidationEx)
+                {
+                    foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
+                    {
+                        // Acceder a los Entity Validation Errors
+                        foreach (var validationError in entityValidationError.ValidationErrors)
+                        {
+                            var propertyName = validationError.PropertyName;
+                            var errorMessage = validationError.ErrorMessage;
+                            Negocios.LOGs.ArsLogs.LogEdit($"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}", "AccesoSalida.CalculaValorDeLasSalidasPorEntrada().. ");
+                        }
+                    }
+                }
                 throw;
             }
         }

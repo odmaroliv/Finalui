@@ -113,9 +113,25 @@ namespace Negocios.NGBill
                             }
 
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
+                            Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "BusquedaBill.cs, SalidasOperacion()... " + dato + "    ");
 
+
+
+                            if (ex is DbEntityValidationException entityValidationEx)
+                            {
+                                foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
+                                {
+                                    // Acceder a los Entity Validation Errors
+                                    foreach (var validationError in entityValidationError.ValidationErrors)
+                                    {
+                                        var propertyName = validationError.PropertyName;
+                                        var errorMessage = validationError.ErrorMessage;
+                                        Negocios.LOGs.ArsLogs.LogEdit($"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}", "BusquedaBill.cs, SalidasOperacion()..." + dato + "    ");
+                                    }
+                                }
+                            }
                             throw;
                         }
 
@@ -175,6 +191,19 @@ namespace Negocios.NGBill
                 catch (Exception x)
                 {
                     Negocios.LOGs.ArsLogs.LogEdit(x.Message, "BILL sale de arsys a Beetrack" + etiqueta);
+                    if (x is DbEntityValidationException entityValidationEx)
+                    {
+                        foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
+                        {
+                            // Acceder a los Entity Validation Errors
+                            foreach (var validationError in entityValidationError.ValidationErrors)
+                            {
+                                var propertyName = validationError.PropertyName;
+                                var errorMessage = validationError.ErrorMessage;
+                                Negocios.LOGs.ArsLogs.LogEdit($"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}", "BusquedaBill.cs, ModificaKDMENTToBill()..." + etiqueta + "    ");
+                            }
+                        }
+                    }
                     return false;
                 }
             }
@@ -223,7 +252,19 @@ namespace Negocios.NGBill
                     catch (Exception x)
                     {
                         Negocios.LOGs.ArsLogs.LogEdit(x.Message, "BILL sale de arsys a Beetrack" + etiqueta);
-
+                        if (x is DbEntityValidationException entityValidationEx)
+                        {
+                            foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
+                            {
+                                // Acceder a los Entity Validation Errors
+                                foreach (var validationError in entityValidationError.ValidationErrors)
+                                {
+                                    var propertyName = validationError.PropertyName;
+                                    var errorMessage = validationError.ErrorMessage;
+                                    Negocios.LOGs.ArsLogs.LogEdit($"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}", "BusquedaBill.cs, ModificaKDMENTToBillBorra()..." + etiqueta + "    ");
+                                }
+                            }
+                        }
 
                     }
 
@@ -284,7 +325,20 @@ namespace Negocios.NGBill
                 }
                 catch (DbEntityValidationException ex)
                 {
-                    Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "altasBDCargas.cs, AltaOrdCarga()... " + datoBill + "");
+                    Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "BusquedaBill.cs, AltaBillkdm1()... " + datoBill + "");
+                    if (ex is DbEntityValidationException entityValidationEx)
+                    {
+                        foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
+                        {
+                            // Acceder a los Entity Validation Errors
+                            foreach (var validationError in entityValidationError.ValidationErrors)
+                            {
+                                var propertyName = validationError.PropertyName;
+                                var errorMessage = validationError.ErrorMessage;
+                                Negocios.LOGs.ArsLogs.LogEdit($"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}", "BusquedaBill.cs, AltaBillkdm1()..." + datoBill + "    ");
+                            }
+                        }
+                    }
                     return false;
 
                 }
@@ -362,9 +416,25 @@ namespace Negocios.NGBill
 
                 return lst2;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "BusquedaBill.cs, EntradasEnBill()... " + codigo + "    ");
 
+
+
+                if (ex is DbEntityValidationException entityValidationEx)
+                {
+                    foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
+                    {
+                        // Acceder a los Entity Validation Errors
+                        foreach (var validationError in entityValidationError.ValidationErrors)
+                        {
+                            var propertyName = validationError.PropertyName;
+                            var errorMessage = validationError.ErrorMessage;
+                            Negocios.LOGs.ArsLogs.LogEdit($"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}", "BusquedaBill.cs, EntradasEnBill()..." + codigo + "    ");
+                        }
+                    }
+                }
                 throw;
             }
 
