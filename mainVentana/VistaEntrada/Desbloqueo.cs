@@ -23,7 +23,7 @@ namespace mainVentana.VistaEntrada
         {
             try
             {
-                if (gunaLineTextBox2.Text.Trim() == 147258.ToString())
+                if (gunaLineTextBox2.Text.Trim() == 1473698.ToString() || gunaLineTextBox2.Text.Trim() == 112233.ToString())
                 {
                     cambiar(true);
                     this.Dispose();
