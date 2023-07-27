@@ -376,7 +376,39 @@ namespace Negocios.NGReportes
                     using (modelo2Entities modelo = new modelo2Entities())
 
                     {
-                        var lista = (from d in modelo.KDMENT.AsNoTracking()
+                        IQueryable<vmEntCordsCot> lista = null;
+                       
+                       if (Common.Cache.CacheLogin.master == "1")
+                           
+                       {
+                            lista = (from d in modelo.KDMENT.AsNoTracking()
+                                     join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
+                                     //join a in modelo.KDUV on k.C12 equals a.C2
+                                     //join u in modelo.KDUSUARIOS on a.C22 equals u.C1
+
+                                     where d.C1.Contains(dato) && k.C10 == nuCliente && (k.C115 == "" || k.C115 == null)
+                                     orderby d.C6 descending
+
+                                     select new vmEntCordsCot
+                                     {
+                                         entrada = d.C6.Trim(),
+                                         // fechaentrada = d.C69.Trim(),
+                                         //ordcarga = d.C54.Trim(),
+                                         //cliente = k.C32.Trim(),
+                                         //ordapli = d.C16.Trim(),
+                                         //salida = d.C17.Trim(),
+                                         Origen = d.C1,
+                                         //etiqueta = d.C9,
+                                         valFact = k.C102,
+                                         valArn = k.C16.ToString(),
+                                         tOper = k.C101,
+
+                                     }); ;
+                            lst = lista.ToList();
+                        }
+                        else
+                       {
+                            lista = (from d in modelo.KDMENT.AsNoTracking()
                                      join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
                                      //join a in modelo.KDUV on k.C12 equals a.C2
                                      //join u in modelo.KDUSUARIOS on a.C22 equals u.C1
@@ -399,7 +431,9 @@ namespace Negocios.NGReportes
                                          tOper = k.C101,
 
                                      }); ;
-                        lst = lista.ToList();
+                            lst = lista.ToList();
+                        }
+                               
                     }
                 });
                 return lst;
