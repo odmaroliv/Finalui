@@ -211,4 +211,10 @@
   <data name="SonidoArsys" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SonidoArsys.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="AlertaBienArsys" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AlertaBienArsys.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AlertaNoCargaArsys" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AlertaNoCargaArsys.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

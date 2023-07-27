@@ -4,6 +4,7 @@ using Datos.ViewModels.hooks;
 using Datos.ViewModels.Salidas;
 using Datos.ViewModels.Servicios;
 using Guna.UI.WinForms;
+using iTextSharp.text.pdf.qrcode;
 using mainVentana.reportes.vmreportes;
 using mainVentana.VistaEntrada;
 using Microsoft.Win32;
@@ -21,6 +22,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
@@ -40,9 +42,20 @@ namespace mainVentana.VistaOrSalida
         string sOrigen = "";
         string sDestino = "";
         int iniciodesalida = 0;
+        private SoundPlayer alertaNoCargaPlayer;
+        private SoundPlayer alertaBienPlayer;
         public frmOrdSalida()
         {
             InitializeComponent();
+            try
+            {
+                alertaNoCargaPlayer = new SoundPlayer(Properties.Resources.AlertaNoCargaArsys);
+                alertaBienPlayer = new SoundPlayer(Properties.Resources.AlertaBienArsys);
+            }
+            catch (Exception)
+            {
+                // Aquí puedes manejar el error si los archivos de sonido no pueden ser cargados
+            }
         }
 
         private void btnAlta_Click(object sender, EventArgs e)
@@ -743,6 +756,16 @@ namespace mainVentana.VistaOrSalida
 
             if (index == -1)
             {
+                RepSonido(0);
+                if (MessageBox.Show("Se agregara la etiqueta: \n"+etiqueta+"\nVolver a preguntar?","Cuidado",MessageBoxButtons.YesNo)==DialogResult.Yes)
+                {
+                    RepSonido(0);
+                    if (MessageBox.Show("Deseas agregar esta etiqueta a la salida?\n" + etiqueta, "Cuidado", MessageBoxButtons.YesNo) == DialogResult.No)
+                    {
+                        return;
+                    }
+                    
+                }
                 AltKDMENT(etiqueta);
 
                 var cO = sls.ObtieCorreo(etiqueta, sOrigen.Trim());
@@ -757,6 +780,8 @@ namespace mainVentana.VistaOrSalida
             else
             {
                 AltKDMENT(etiqueta);
+                RepSonido(1);
+
 
                 var cOr = sls.ObtieCorreo(etiqueta, sOrigen.Trim());
                 lista.RemoveAt(index);
@@ -774,6 +799,28 @@ namespace mainVentana.VistaOrSalida
             }
 
             //  txbEscaneo.Text = "";
+        }
+        private async void RepSonido(int modo)
+        {
+            await Task.Run(() => {
+                try
+                {
+                    if (modo == 0)
+                    {
+                        alertaNoCargaPlayer.Play();
+                    }
+                    else
+                    {
+                        alertaBienPlayer.Play();
+                    }
+                }
+                catch (Exception)
+                {
+                    // Aquí puedes manejar el error si el sonido no puede ser reproducido
+                }
+            });
+
+
         }
         private async void CreaSalidaEnKDM1()
         {
@@ -1446,11 +1493,13 @@ namespace mainVentana.VistaOrSalida
 
         private void frmOrdSalida_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (colaEtiquetas.Count >0)
+            if (colaEtiquetas.Count > 0)
             {
                 MessageBox.Show("Hay etiquetas procesandoce");
                 return;
             }
+            alertaNoCargaPlayer.Dispose();
+            alertaBienPlayer.Dispose();
         }
     }
 
