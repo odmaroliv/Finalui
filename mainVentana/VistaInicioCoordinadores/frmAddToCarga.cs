@@ -201,15 +201,15 @@ namespace mainVentana.VistaInicioCoordinadores
             dgvCargadas.DataSource = entradasTo;
 
         }
-
+        List<CargaCordsGeneral> lssGlobal = null;
         private async Task CargaEntradas()
         {
             _isBussy = true;
             try
             {
                 ngbdReportes rep = new ngbdReportes();
-                var lss = await rep.CargaEntradasParaAsignarACarga(sucursal, dtFecha1.Value, dtFecha2.Value, datoTipoOper);
-                dtgSinAsignar.DataSource = lss;
+                lssGlobal = await rep.CargaEntradasParaAsignarACarga(sucursal, dtFecha1.Value, dtFecha2.Value, datoTipoOper);
+                dtgSinAsignar.DataSource = lssGlobal;
             }
             catch (Exception)
             {
@@ -324,7 +324,14 @@ namespace mainVentana.VistaInicioCoordinadores
             }
             if (datoTipoOper == "BILL")
             {
+                if (String.IsNullOrWhiteSpace(txbAliasAct.Text))
+                {
 
+                    if (MessageBox.Show("Al parecer no has asignado una dirección\n" + "¿Deseas continua?","Cuidado",MessageBoxButtons.YesNo) == DialogResult.No)
+                    {
+                        return;
+                    }
+                }
                 txbCarga.Text = "";
                 _isBussy = true;
                 btnGuardar.Enabled = false;
@@ -613,5 +620,46 @@ namespace mainVentana.VistaInicioCoordinadores
             zipp = "";
             numm = "";
         }
+
+        private void txbBusqueda_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string searchValue = txbBusqueda.Text;
+
+                if (string.IsNullOrWhiteSpace(searchValue))
+                {
+                   
+                    MessageBox.Show("Por favor, introduce un valor de búsqueda válido.");
+                    dtgSinAsignar.DataSource = lssGlobal;
+                }
+                else
+                {
+                    if (lssGlobal==null)
+                    {
+                        return;
+                    }
+                    var filteredData = lssGlobal.Where(item =>
+    (item.entrada?.Contains(searchValue) ?? false) ||
+    (item.cliente?.Contains(searchValue) ?? false) ||
+    (item.noCli?.Contains(searchValue) ?? false) ||
+    (item.Cotizacion?.Contains(searchValue) ?? false) ||
+    (item.desc?.Contains(searchValue) ?? false) ||
+    (item.aliss?.Contains(searchValue) ?? false)).ToList();
+
+
+                    dtgSinAsignar.DataSource = filteredData;
+
+                    if (!filteredData.Any())
+                    {
+                        MessageBox.Show("No se encontraron resultados para tu búsqueda.");
+                    }
+                }
+
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+
     }
 }
