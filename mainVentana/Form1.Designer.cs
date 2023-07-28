@@ -386,7 +386,7 @@ namespace mainVentana
             this.ribbonButton1.LargeImage = global::mainVentana.Properties.Resources.dupdo;
             this.ribbonButton1.Name = "ribbonButton1";
             this.ribbonButton1.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton1.SmallImage")));
-            this.ribbonButton1.Text = "Copiar";
+            this.ribbonButton1.Text = "LOG";
             this.ribbonButton1.Click += new System.EventHandler(this.ribbonButton1_Click);
             // 
             // ribbonSeparator2
@@ -400,7 +400,8 @@ namespace mainVentana
             this.ribbonButton2.LargeImage = global::mainVentana.Properties.Resources.papel;
             this.ribbonButton2.Name = "ribbonButton2";
             this.ribbonButton2.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton2.SmallImage")));
-            this.ribbonButton2.Text = "Pegar";
+            this.ribbonButton2.Text = "Decimal";
+            this.ribbonButton2.Click += new System.EventHandler(this.ribbonButton2_Click);
             // 
             // ribbonDescriptionMenuItem1
             // 

@@ -329,7 +329,7 @@ namespace mainVentana.VistaInicioCoordinadores
                     {
                         double valorMXN = rates["MXN"].ToObject<double>();
                         vParidad = Convert.ToDecimal(Math.Truncate(valorMXN * 100) / 100); // Limitar a dos decimales sin redondear
-                        txbParidad.Text = vParidad.ToString();
+                        txbParidad.Text = !string.IsNullOrEmpty(vParidad.ToString()) ? decimal.Parse(vParidad.ToString()).ToString("N2") : string.Empty; ; 
                         return;
                     }
                 }
@@ -362,7 +362,7 @@ namespace mainVentana.VistaInicioCoordinadores
                         {
                             double valorMXN = rates["MXN"].ToObject<double>();
                             vParidad = Convert.ToDecimal(Math.Truncate(valorMXN * 100) / 100); // Limitar a dos decimales sin redondear
-                            txbParidad.Text = vParidad.ToString();
+                            txbParidad.Text = !string.IsNullOrEmpty(vParidad.ToString()) ? decimal.Parse(vParidad.ToString()).ToString("N2") : string.Empty; ;
                             return;
                         }
                     }
@@ -378,7 +378,7 @@ namespace mainVentana.VistaInicioCoordinadores
                     foreach (var i in lista.ToList())
                     {
                         vParidad = Convert.ToDecimal(Math.Truncate(Convert.ToDouble(i.valor) * 100) / 100); // Limitar a dos decimales sin redondear
-                        txbParidad.Text = vParidad.ToString();
+                        txbParidad.Text = !string.IsNullOrEmpty(vParidad.ToString()) ? decimal.Parse(vParidad.ToString()).ToString("N2") : string.Empty;
                     }
                 }
             }
@@ -458,6 +458,7 @@ namespace mainVentana.VistaInicioCoordinadores
             {
                 vParidad = String.IsNullOrWhiteSpace(txbParidad.Text) ? 0 : decimal.Parse(txbParidad.Text.Trim());
                 vParidad = decimal.Truncate(vParidad * 100) / 100;
+                
             }
             catch (Exception)
             {
@@ -547,8 +548,9 @@ namespace mainVentana.VistaInicioCoordinadores
                                 decimal valorColumna1 = decimal.Parse(currentRow.Cells[1].Value == null ? "0" : currentRow.Cells[1].Value.ToString());
 
                                 decimal porcentaje = (valorColumna1 * vMercanciaUSD) / 100;
-                                currentRow.Cells[2].Value = porcentaje.ToString("F2");
-                                currentRow.Cells[3].Value = (porcentaje * vParidad).ToString("F2");
+                                currentRow.Cells[2].Value = !string.IsNullOrEmpty(porcentaje.ToString()) ? decimal.Parse(porcentaje.ToString()).ToString("N2") : string.Empty;  
+                                decimal dtoPorPorPari = (porcentaje * vParidad);
+                                currentRow.Cells[3].Value = !string.IsNullOrEmpty(dtoPorPorPari.ToString()) ? decimal.Parse(dtoPorPorPari.ToString()).ToString("N2") : string.Empty; 
 
                                 operacion();
                                 operacion();
@@ -574,7 +576,7 @@ namespace mainVentana.VistaInicioCoordinadores
 
                                 decimal porcentaje = (valorColumna2 * vParidad);
                                 currentRow.Cells[1].Value = "0";
-                                currentRow.Cells[3].Value = porcentaje;
+                                currentRow.Cells[3].Value = !string.IsNullOrEmpty(porcentaje.ToString()) ? decimal.Parse(porcentaje.ToString()).ToString("N2") : string.Empty;  ;
                                 operacion();
                                 operacion();
                                 //   return;
@@ -640,8 +642,9 @@ namespace mainVentana.VistaInicioCoordinadores
                 }
                
                 decimal submenosdesc = sumatoria - descuentoGlobal;
-                txbSubTo.Text = submenosdesc.ToString("F2");
-                txbSubTomxn.Text = (submenosdesc * vParidad).ToString("F2");
+                txbSubTo.Text = !string.IsNullOrEmpty(submenosdesc.ToString()) ? decimal.Parse(submenosdesc.ToString()).ToString("N2") : string.Empty; 
+                string datoGuardaSubT = (submenosdesc * vParidad).ToString("F2");
+                txbSubTomxn.Text = !string.IsNullOrEmpty(datoGuardaSubT) ? decimal.Parse(datoGuardaSubT).ToString("N2") : string.Empty;
 
                 TaxesCalc();
                 GrandCalc();
@@ -663,15 +666,15 @@ namespace mainVentana.VistaInicioCoordinadores
                // decimal vDescuento = decimal.Parse(String.IsNullOrWhiteSpace(txbDescuento.Text) ? "0" : txbDescuento.Text.ToString().Trim());
                
                 decimal resultPayArn = (vIva + vSerTax);
-                txbTotalArn.Text = resultPayArn.ToString();
+                txbTotalArn.Text = !string.IsNullOrEmpty(resultPayArn.ToString()) ? decimal.Parse(resultPayArn.ToString()).ToString("N2") : string.Empty; 
                 decimal resul = vMercanciaUSD + vIva + vSerTax;
-                txbSubServAndFees.Text = resul.ToString();
+                txbSubServAndFees.Text = !string.IsNullOrEmpty(resul.ToString()) ? decimal.Parse(resul.ToString()).ToString("N2") : string.Empty; 
 
                 CalcIva(vSerTax);
                 decimal resultPayArnMX = resultPayArn * vParidad;
-                string totalPesos = resultPayArnMX.ToString("F2");
+                string totalPesos = !string.IsNullOrEmpty(resultPayArnMX.ToString()) ? decimal.Parse(resultPayArnMX.ToString()).ToString("N2") : string.Empty;
 
-                txbTotalArnMXN.Text = totalPesos;
+                txbTotalArnMXN.Text = !string.IsNullOrEmpty(totalPesos.ToString()) ? decimal.Parse(totalPesos.ToString()).ToString("N2") : string.Empty; ;
                 
             }
             catch (Exception)
@@ -686,7 +689,7 @@ namespace mainVentana.VistaInicioCoordinadores
             {
                 decimal vIva = (decimal.Parse(cmbIVA.SelectedItem == null ? "0" : cmbIVA.SelectedItem.ToString()) / 100);
                 decimal oper = vIva * subTotal;
-                txbIva.Text = oper.ToString("F2");
+                txbIva.Text = !string.IsNullOrEmpty(oper.ToString()) ? decimal.Parse(oper.ToString()).ToString("N2") : string.Empty; ;
             }
             catch (Exception)
             {
@@ -761,15 +764,15 @@ namespace mainVentana.VistaInicioCoordinadores
             }
         }
 
-        private void aloneButton1_Click(object sender, EventArgs e)
+        private async void aloneButton1_Click(object sender, EventArgs e)
         {
             if (!String.IsNullOrWhiteSpace(lblCodCliente.Text))
             {
-                if (!String.IsNullOrWhiteSpace(txbEntradaACot.Text))
+                if (!String.IsNullOrWhiteSpace(txbEntradaACot.Text) || SwitchAlmacenaje.Checked == true)
                 {
                     if (!String.IsNullOrWhiteSpace(txbParidad.Text))
                     {
-                        AltaKDM1();
+                        await AltaKDM1();
                         using (frmBuscarCotizacion cot = new frmBuscarCotizacion())
                         {
                             //cot.sGlobal = Negocios.Common.Cache.CacheLogin.sucGlobal;
@@ -820,7 +823,7 @@ namespace mainVentana.VistaInicioCoordinadores
                     return;
                 }
                 
-                AltaKDMENT();
+                await AltaKDMENT();
                 AltaKDM2();
                 Clipboard.SetText(nCotizacionG);
                 MessageBox.Show("La Cotizacion " + nCotizacionG + " se ha realizado con exito, se ha copiado el numero en el porta papeles, CTRL V", "Finalizado", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
@@ -941,6 +944,26 @@ namespace mainVentana.VistaInicioCoordinadores
 
             }
         }
-     
+
+        private void SwitchAlmacenaje_CheckedChanged(object sender, EventArgs e)
+        {
+            if (SwitchAlmacenaje.Checked == false)
+            {
+                //_tipoImpresion = false;
+                lblTipoImp.Text = "AD";
+                SwitchAdd.Checked = false;
+                SwitchAdd.Enabled = true;
+                //  txbParidad.Enabled = false;
+            }
+            else
+            {
+                // _tipoImpresion = true;
+                lblTipoImp.Text = "ALM";
+                SwitchAdd.Enabled = false;
+                txbGoodMnx.Text = "0";
+                txbGoodUsd.Text = "0";
+                // txbParidad.Enabled = true;
+            }
+        }
     }
 }

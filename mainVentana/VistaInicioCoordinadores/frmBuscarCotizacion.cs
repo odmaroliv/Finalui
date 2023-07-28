@@ -342,14 +342,15 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
-
-            if (dgvEntsCot.RowCount < 1)
+            string tipoImp = gunaDataGridView1.Rows[0].Cells[26].Value?.ToString().Trim() ?? string.Empty;
+            if (tipoImp != "ALM")
             {
-                return;
+                if (dgvEntsCot.RowCount < 1)
+                {
+                    return;
+                }
             }
-
-                string tipoImp = gunaDataGridView1.Rows[0].Cells[26].Value?.ToString().Trim() ?? string.Empty;
-            
+           
                 using (frmToRepCot frm = new frmToRepCot())
                 {
                     string sucursal = gunaDataGridView1.Rows[0].Cells[0].Value?.ToString().Trim() ?? string.Empty;
@@ -398,7 +399,25 @@ namespace mainVentana.VistaInicioCoordinadores
                     frm.payment = formPayment;
                     frm.pDescuento = dDescuento;
 
-                frm.lst = listaInfoEnCot;
+                List<vmInfoTablaCotStrings> listaInfoEnCotStrings = new List<vmInfoTablaCotStrings>();
+
+                foreach (var item in listaInfoEnCot)
+                {
+                    listaInfoEnCotStrings.Add(new vmInfoTablaCotStrings
+                    {
+                        C7 = item.C7,
+                        C10 = item.C10,
+                        C39 = item.C39,
+                        C13 = item.C13.HasValue ? item.C13.Value.ToString("#,##0.00") : null,
+                        C12 = item.C12.HasValue ? item.C12.Value.ToString("#,##0.00") : null,
+                        C17 = item.C17,
+                        C36 = item.C36
+                    });
+                }
+
+                
+
+                frm.lst = listaInfoEnCotStrings;
                 if (tipoImp == "IMP")
                 {
                     frm.tImprecionRep = false;

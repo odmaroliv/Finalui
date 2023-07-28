@@ -225,6 +225,7 @@
     <Compile Include="ViewModels\Coord\vmEntCordsCot.cs" />
     <Compile Include="ViewModels\Coord\vmEntCot.cs" />
     <Compile Include="ViewModels\Coord\vmInfoTablaCot.cs" />
+    <Compile Include="ViewModels\Coord\vmInfoTablaCotStrings.cs" />
     <Compile Include="ViewModels\Coord\vmNoCot.cs" />
     <Compile Include="ViewModels\Coord\vmResponceBeeEnt.cs" />
     <Compile Include="ViewModels\Coord\vmTablaCotizacion.cs" />

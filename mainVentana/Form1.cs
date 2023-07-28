@@ -601,5 +601,42 @@ namespace mainVentana
             Evide.FormClosed += frm_FormClosed_Libera;
             Evide.Show();
         }
+
+        private void ribbonButton2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var culture = System.Globalization.CultureInfo.CurrentCulture;
+                var numberFormat = culture.NumberFormat;
+                string message1 = "El separador decimal es: " + culture +
+                "\nEl separador de grupo (miles) es: " + numberFormat;
+
+                MessageBox.Show(message1);
+                if (numberFormat.NumberDecimalSeparator != "." || numberFormat.NumberGroupSeparator != ",")
+                {
+                    string message = "La configuración actual es: \n" +
+                                     "Separador decimal: " + numberFormat.NumberDecimalSeparator +
+                                     "\nSeparador de grupo (miles): " + numberFormat.NumberGroupSeparator +
+                                     "\n\n¿Deseas cambiar la configuración a separador decimal '.' y separador de miles ','?";
+
+                    var result = MessageBox.Show(message, "Cambiar configuración", MessageBoxButtons.YesNo);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        var newCulture = (System.Globalization.CultureInfo)culture.Clone();
+                        newCulture.NumberFormat.NumberDecimalSeparator = ".";
+                        newCulture.NumberFormat.NumberGroupSeparator = ",";
+                        System.Threading.Thread.CurrentThread.CurrentCulture = newCulture;
+
+                        MessageBox.Show("La configuración se ha cambiado exitosamente.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ha ocurrido un error: " + ex.Message);
+            }
+
+        }
     }
 }

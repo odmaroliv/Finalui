@@ -35,7 +35,7 @@ namespace mainVentana.Reportes.Cotizaciones.cotToPDF
         public string payment;
         public string pDescuento;
         
-        public List<vmInfoTablaCot> lst = new List<vmInfoTablaCot>();
+        public List<vmInfoTablaCotStrings> lst = new List<vmInfoTablaCotStrings>();
         public bool tImprecionRep;
 
 
