@@ -259,7 +259,7 @@ namespace Negocios.NGReportes
                             query = from d in modelo.KDMENT
                                     join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
                                     join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
-                                    where k.C9 <= to && k.C9 >= dateFrom && d.C1.Contains(dato) && d.C19.Contains(dato) && d.C34 == "" && k.C4 == 35 && k.C101.Contains(oper) && (d.C16 == "" || d.C16 == null) && (d.C54 == "" || d.C54 == null)
+                                    where k.C9 <= to && k.C9 >= dateFrom && d.C1.Contains(dato) && d.C19.Contains(dato) && (d.C34 == "" || d.C34 == null) && k.C4 == 35 && k.C101.Contains(oper) && (d.C16 == "" || d.C16 == null) && (d.C54 == "" || d.C54 == null)
                                     orderby d.C6 descending
                                     select new CargaCordsGeneral
                                     {
@@ -283,7 +283,7 @@ namespace Negocios.NGReportes
                             query = from d in modelo.KDMENT
                                     join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
                                     join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
-                                    where k.C9 <= to && k.C9 >= dateFrom && d.C1.Contains(dato) && d.C19.Contains(dato) && d.C34 == "" && k.C12 == Common.Cache.CacheLogin.idusuario.ToString() && k.C4 == 35 && k.C101.Contains(oper) && (d.C16 == "" || d.C16 == null) && (d.C54 == "" || d.C54 == null)
+                                    where k.C9 <= to && k.C9 >= dateFrom && d.C1.Contains(dato) && d.C19.Contains(dato) && (d.C34 == "" || d.C34 == null) && k.C12 == Common.Cache.CacheLogin.idusuario.ToString() && k.C4 == 35 && k.C101.Contains(oper) && (d.C16 == "" || d.C16 == null) && (d.C54 == "" || d.C54 == null)
                                     orderby d.C6 descending
                                     select new CargaCordsGeneral
                                     {
