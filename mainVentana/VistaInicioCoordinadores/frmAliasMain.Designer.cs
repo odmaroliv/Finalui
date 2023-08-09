@@ -32,6 +32,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.parrotGroupBox1 = new ReaLTaiizor.Controls.ParrotGroupBox();
+            this.foreverLabel15 = new ReaLTaiizor.Controls.ForeverLabel();
+            this.txbNombre = new Guna.UI.WinForms.GunaLineTextBox();
             this.foreverLabel10 = new ReaLTaiizor.Controls.ForeverLabel();
             this.txbLongitud = new ReaLTaiizor.Controls.AloneTextBox();
             this.dtgAlias = new Guna.UI.WinForms.GunaDataGridView();
@@ -54,8 +56,6 @@
             this.foreverLabel1 = new ReaLTaiizor.Controls.ForeverLabel();
             this.txbClaveAlias = new ReaLTaiizor.Controls.AloneTextBox();
             this.btnGuardar = new ReaLTaiizor.Controls.DungeonButtonRight();
-            this.txbNombre = new Guna.UI.WinForms.GunaLineTextBox();
-            this.foreverLabel15 = new ReaLTaiizor.Controls.ForeverLabel();
             this.parrotGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgAlias)).BeginInit();
             this.SuspendLayout();
@@ -95,6 +95,35 @@
             this.parrotGroupBox1.TabStop = false;
             this.parrotGroupBox1.Text = "Datos";
             this.parrotGroupBox1.TextColor = System.Drawing.Color.DodgerBlue;
+            // 
+            // foreverLabel15
+            // 
+            this.foreverLabel15.AutoSize = true;
+            this.foreverLabel15.BackColor = System.Drawing.Color.Transparent;
+            this.foreverLabel15.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.foreverLabel15.ForeColor = System.Drawing.Color.Gray;
+            this.foreverLabel15.Location = new System.Drawing.Point(11, 69);
+            this.foreverLabel15.Name = "foreverLabel15";
+            this.foreverLabel15.Size = new System.Drawing.Size(176, 13);
+            this.foreverLabel15.TabIndex = 37;
+            this.foreverLabel15.Text = "SHIFT + DEL para borrar un alias.";
+            // 
+            // txbNombre
+            // 
+            this.txbNombre.BackColor = System.Drawing.Color.White;
+            this.txbNombre.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbNombre.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.txbNombre.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txbNombre.LineColor = System.Drawing.Color.Gainsboro;
+            this.txbNombre.Location = new System.Drawing.Point(132, 466);
+            this.txbNombre.Margin = new System.Windows.Forms.Padding(2);
+            this.txbNombre.MaxLength = 30;
+            this.txbNombre.Name = "txbNombre";
+            this.txbNombre.PasswordChar = '\0';
+            this.txbNombre.ReadOnly = true;
+            this.txbNombre.Size = new System.Drawing.Size(238, 31);
+            this.txbNombre.TabIndex = 36;
+            this.txbNombre.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbNombre_KeyDown);
             // 
             // foreverLabel10
             // 
@@ -306,7 +335,7 @@
             this.txbTel.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbTel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(133)))), ((int)(((byte)(142)))));
             this.txbTel.Location = new System.Drawing.Point(132, 582);
-            this.txbTel.MaxLength = 32767;
+            this.txbTel.MaxLength = 40;
             this.txbTel.MultiLine = false;
             this.txbTel.Name = "txbTel";
             this.txbTel.ReadOnly = false;
@@ -366,7 +395,7 @@
             this.txbPoblacion.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbPoblacion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(133)))), ((int)(((byte)(142)))));
             this.txbPoblacion.Location = new System.Drawing.Point(389, 525);
-            this.txbPoblacion.MaxLength = 32767;
+            this.txbPoblacion.MaxLength = 100;
             this.txbPoblacion.MultiLine = false;
             this.txbPoblacion.Name = "txbPoblacion";
             this.txbPoblacion.ReadOnly = false;
@@ -396,7 +425,7 @@
             this.txbColonia.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbColonia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(133)))), ((int)(((byte)(142)))));
             this.txbColonia.Location = new System.Drawing.Point(132, 525);
-            this.txbColonia.MaxLength = 32767;
+            this.txbColonia.MaxLength = 100;
             this.txbColonia.MultiLine = false;
             this.txbColonia.Name = "txbColonia";
             this.txbColonia.ReadOnly = false;
@@ -426,7 +455,7 @@
             this.txbDireccion.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbDireccion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(133)))), ((int)(((byte)(142)))));
             this.txbDireccion.Location = new System.Drawing.Point(389, 468);
-            this.txbDireccion.MaxLength = 32767;
+            this.txbDireccion.MaxLength = 100;
             this.txbDireccion.MultiLine = false;
             this.txbDireccion.Name = "txbDireccion";
             this.txbDireccion.ReadOnly = false;
@@ -498,34 +527,6 @@
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.TextAlignment = System.Drawing.StringAlignment.Center;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // txbNombre
-            // 
-            this.txbNombre.BackColor = System.Drawing.Color.White;
-            this.txbNombre.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txbNombre.FocusedLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.txbNombre.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txbNombre.LineColor = System.Drawing.Color.Gainsboro;
-            this.txbNombre.Location = new System.Drawing.Point(132, 466);
-            this.txbNombre.Margin = new System.Windows.Forms.Padding(2);
-            this.txbNombre.Name = "txbNombre";
-            this.txbNombre.PasswordChar = '\0';
-            this.txbNombre.ReadOnly = true;
-            this.txbNombre.Size = new System.Drawing.Size(238, 31);
-            this.txbNombre.TabIndex = 36;
-            this.txbNombre.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbNombre_KeyDown);
-            // 
-            // foreverLabel15
-            // 
-            this.foreverLabel15.AutoSize = true;
-            this.foreverLabel15.BackColor = System.Drawing.Color.Transparent;
-            this.foreverLabel15.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.foreverLabel15.ForeColor = System.Drawing.Color.Gray;
-            this.foreverLabel15.Location = new System.Drawing.Point(11, 69);
-            this.foreverLabel15.Name = "foreverLabel15";
-            this.foreverLabel15.Size = new System.Drawing.Size(176, 13);
-            this.foreverLabel15.TabIndex = 37;
-            this.foreverLabel15.Text = "SHIFT + DEL para borrar un alias.";
             // 
             // frmAliasMain
             // 

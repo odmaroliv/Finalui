@@ -62,7 +62,7 @@ namespace mainVentana.vistaConfiguraciones
             }
             catch (Exception)
             {
-                throw;
+                MessageBox.Show("Error");
             }
         }
 
@@ -201,6 +201,7 @@ namespace mainVentana.vistaConfiguraciones
                 _modo = "N";
                 gbxNuser.Enabled = true;
                 txbUsuario.Enabled = true;
+                txbUsuario.ReadOnly = false;
             }
             catch (Exception)
             {

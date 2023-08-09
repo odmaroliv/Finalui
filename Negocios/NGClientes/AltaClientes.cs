@@ -54,7 +54,7 @@ namespace Negocios.NGClientes
             }
         }
         public void ModificaCliente(string clave, string nombre, string direccion, string colonia, string poblacion, string zip, string tel, string rfc, string email
-            , string coord, string zona, string mailb, string coment = null)
+              , string coord, string zona, string mailb, string coment = null)
         {
             try
             {
@@ -64,18 +64,18 @@ namespace Negocios.NGClientes
                              where q.C2 == clave
                              select q).FirstOrDefault();
 
-                    d.C3 = nombre?.Trim();
-                    d.C4 = direccion?.Trim();
-                    d.C5 = colonia?.Trim();
-                    d.C6 = poblacion?.Trim();
-                    d.C7 = tel?.Trim();
-                    d.C10 = rfc?.Trim();
-                    d.C11 = email?.Trim();
-                    d.C12 = coord?.Trim();
-                    d.C14 = zona?.Trim();
-                    d.C27 = zip?.Trim();
-                    d.C24 = coment?.Trim();
-                    d.C32 = mailb?.Trim();
+                    d.C3 = nombre?.Length > 60 ? nombre.Substring(0, 60).Trim() : nombre?.Trim();
+                    d.C4 = direccion?.Length > 40 ? direccion.Substring(0, 40).Trim() : direccion?.Trim();
+                    d.C5 = colonia?.Length > 40 ? colonia.Substring(0, 40).Trim() : colonia?.Trim();
+                    d.C6 = poblacion?.Length > 40 ? poblacion.Substring(0, 40).Trim() : poblacion?.Trim();
+                    d.C7 = tel?.Length > 14 ? tel.Substring(0, 14).Trim() : tel?.Trim();
+                    d.C10 = rfc?.Length > 40 ? rfc.Substring(0, 40).Trim() : rfc?.Trim();
+                    d.C11 = email?.Length > 450 ? email.Substring(0, 450).Trim() : email?.Trim();
+                    d.C12 = coord?.Length > 5 ? coord.Substring(0, 5).Trim() : coord?.Trim();
+                    d.C14 = zona?.Length > 5 ? zona.Substring(0, 5).Trim() : zona?.Trim();
+                    d.C27 = zip?.Length > 10 ? zip.Substring(0, 10).Trim() : zip?.Trim();
+                    d.C24 = coment?.Length > 40 ? coment.Substring(0, 40).Trim() : coment?.Trim();
+                    d.C32 = mailb?.Length > 2 ? mailb.Substring(0, 2).Trim() : mailb?.Trim();
 
                     try
                     {
@@ -90,8 +90,6 @@ namespace Negocios.NGClientes
             }
             catch (Exception e)
             {
-
-
                 throw;
             }
         }
@@ -137,28 +135,23 @@ namespace Negocios.NGClientes
 
 
         //---------------------
-        public void CreaAlias(string nombre, string keplerCoordenadas, string codigoCliente, string calle, string colonia, string ciudadPais,string zip, 
-            string nTel, string latitud, string longitud)
+        public void CreaAlias(string nombre, string keplerCoordenadas, string codigoCliente, string calle, string colonia, string ciudadPais, string zip,
+              string nTel, string latitud, string longitud)
         {
             try
             {
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
-
-
                     var d = new KDUDA();
-                    d.C1 = nombre;
-                    //d.C2 = clave;
-                    d.C3 = codigoCliente;
-                    d.C4 = calle;
-                    d.C5 = colonia;
-                    d.C6 = ciudadPais;
-                    d.C7 = zip;
-
-                    d.C8 = nTel;
-                    d.C10 = latitud;
-                    d.C11 = longitud;
-                  
+                    d.C1 = nombre?.Length > 30 ? nombre.Substring(0, 30) : nombre;
+                    d.C3 = codigoCliente?.Length > 20 ? codigoCliente.Substring(0, 20) : codigoCliente;
+                    d.C4 = calle?.Length > 100 ? calle.Substring(0, 100) : calle;
+                    d.C5 = colonia?.Length > 100 ? colonia.Substring(0, 100) : colonia;
+                    d.C6 = ciudadPais?.Length > 100 ? ciudadPais.Substring(0, 100) : ciudadPais;
+                    d.C7 = zip?.Length > 20 ? zip.Substring(0, 20) : zip;
+                    d.C8 = nTel?.Length > 40 ? nTel.Substring(0, 40) : nTel;
+                    d.C10 = latitud?.Length > 30 ? latitud.Substring(0, 30) : latitud;
+                    d.C11 = longitud?.Length > 30 ? longitud.Substring(0, 30) : longitud;
 
                     modelo.KDUDA.Add(d);
                     try
@@ -173,11 +166,10 @@ namespace Negocios.NGClientes
             }
             catch (Exception e)
             {
-
-
                 throw;
             }
         }
+
         public void ModificaAlias(string nombre, string keplerCoordenadas, string codigoCliente, string calle, string colonia, string ciudadPais, string zip,
             string nTel, string latitud, string longitud)
         {

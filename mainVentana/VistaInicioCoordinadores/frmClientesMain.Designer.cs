@@ -99,7 +99,7 @@
             this.txbNombre.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(133)))), ((int)(((byte)(142)))));
             this.txbNombre.Location = new System.Drawing.Point(140, 105);
-            this.txbNombre.MaxLength = 32767;
+            this.txbNombre.MaxLength = 60;
             this.txbNombre.MultiLine = false;
             this.txbNombre.Name = "txbNombre";
             this.txbNombre.ReadOnly = false;
@@ -352,7 +352,7 @@
             this.txbEmail.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(133)))), ((int)(((byte)(142)))));
             this.txbEmail.Location = new System.Drawing.Point(14, 282);
-            this.txbEmail.MaxLength = 32767;
+            this.txbEmail.MaxLength = 450;
             this.txbEmail.MultiLine = false;
             this.txbEmail.Name = "txbEmail";
             this.txbEmail.ReadOnly = false;
@@ -380,7 +380,7 @@
             this.txbRfc.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbRfc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(133)))), ((int)(((byte)(142)))));
             this.txbRfc.Location = new System.Drawing.Point(397, 219);
-            this.txbRfc.MaxLength = 32767;
+            this.txbRfc.MaxLength = 40;
             this.txbRfc.MultiLine = false;
             this.txbRfc.Name = "txbRfc";
             this.txbRfc.ReadOnly = false;
@@ -408,7 +408,7 @@
             this.txbTel.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbTel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(133)))), ((int)(((byte)(142)))));
             this.txbTel.Location = new System.Drawing.Point(140, 219);
-            this.txbTel.MaxLength = 32767;
+            this.txbTel.MaxLength = 14;
             this.txbTel.MultiLine = false;
             this.txbTel.Name = "txbTel";
             this.txbTel.ReadOnly = false;
@@ -464,7 +464,7 @@
             this.txbPoblacion.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbPoblacion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(133)))), ((int)(((byte)(142)))));
             this.txbPoblacion.Location = new System.Drawing.Point(397, 162);
-            this.txbPoblacion.MaxLength = 32767;
+            this.txbPoblacion.MaxLength = 40;
             this.txbPoblacion.MultiLine = false;
             this.txbPoblacion.Name = "txbPoblacion";
             this.txbPoblacion.ReadOnly = false;
@@ -492,7 +492,7 @@
             this.txbColonia.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbColonia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(133)))), ((int)(((byte)(142)))));
             this.txbColonia.Location = new System.Drawing.Point(140, 162);
-            this.txbColonia.MaxLength = 32767;
+            this.txbColonia.MaxLength = 40;
             this.txbColonia.MultiLine = false;
             this.txbColonia.Name = "txbColonia";
             this.txbColonia.ReadOnly = false;
@@ -520,7 +520,7 @@
             this.txbDireccion.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbDireccion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(133)))), ((int)(((byte)(142)))));
             this.txbDireccion.Location = new System.Drawing.Point(397, 105);
-            this.txbDireccion.MaxLength = 32767;
+            this.txbDireccion.MaxLength = 40;
             this.txbDireccion.MultiLine = false;
             this.txbDireccion.Name = "txbDireccion";
             this.txbDireccion.ReadOnly = false;
