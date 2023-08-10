@@ -757,15 +757,19 @@ namespace mainVentana.VistaOrSalida
             if (index == -1)
             {
                 RepSonido(0);
-                if (MessageBox.Show("Se agregara la etiqueta: \n"+etiqueta+"\nVolver a preguntar?","Cuidado",MessageBoxButtons.YesNo)==DialogResult.Yes)
+                if (rbOTJ.Checked==false)
                 {
-                    RepSonido(0);
-                    if (MessageBox.Show("Deseas agregar esta etiqueta a la salida?\n" + etiqueta, "Cuidado", MessageBoxButtons.YesNo) == DialogResult.No)
+                    if (MessageBox.Show("Se agregara la etiqueta: \n" + etiqueta + "\nVolver a preguntar?", "Cuidado", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        return;
+                        RepSonido(0);
+                        if (MessageBox.Show("Deseas agregar esta etiqueta a la salida?\n" + etiqueta, "Cuidado", MessageBoxButtons.YesNo) == DialogResult.No)
+                        {
+                            return;
+                        }
+
                     }
-                    
                 }
+               
                 AltKDMENT(etiqueta);
 
                 var cO = sls.ObtieCorreo(etiqueta, sOrigen.Trim());

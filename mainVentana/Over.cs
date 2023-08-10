@@ -169,12 +169,12 @@ namespace mainVentana
                 string valorCelda19 = gunaDataGridView1.Rows[i].Cells[19].Value?.ToString();
                 string valorCelda26 = gunaDataGridView1.Rows[i].Cells[26].Value?.ToString();
 
-                if (valorCelda4 == valorCelda5 && !string.IsNullOrEmpty(valorCelda19))
+                if (valorCelda4 == valorCelda5 && !string.IsNullOrWhiteSpace(valorCelda19))
                 {
                     gunaDataGridView1.Rows[i].Cells[5].Style.BackColor = Color.FromArgb(68, 183, 255);
                     gunaDataGridView1.Rows[i].Cells[5].Style.ForeColor = Color.FromArgb(255, 255, 255);
                 }
-                else if (valorCelda4 == valorCelda5 && string.IsNullOrEmpty(valorCelda19))
+                else if (valorCelda4 == valorCelda5 && string.IsNullOrWhiteSpace(valorCelda19))
                 {
                     gunaDataGridView1.Rows[i].Cells[5].Style.BackColor = Color.FromArgb(248, 44, 155);
                     gunaDataGridView1.Rows[i].Cells[5].Style.ForeColor = Color.FromArgb(255, 255, 255);

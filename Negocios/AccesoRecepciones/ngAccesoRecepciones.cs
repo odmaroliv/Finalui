@@ -153,7 +153,7 @@ namespace Negocios.AccesoRecepciones
                         if (sucori.Trim().Contains("TJ") || (envia == "SD" && sucori == "CSL"))
                         {
                             string c20Value = sucori.Trim().Contains("TJ") ? "F" : "PR";
-                            sql = $"SELECT salidaDoc = CONCAT(TRIM(kd.C1), '{numeroCompleto}', kd.C6), referencia = kd.C11 FROM KDM1 kd WHERE kd.C1 = '{envia}'  AND kd.C103 = '{sucori}' AND kd.C4 = 45 AND kd.C6 = {doc}GROUP BY kd.C6, kd.C11, kd.C1";
+                            sql = $"SELECT salidaDoc = CONCAT(TRIM(kd.C1), '{numeroCompleto}', kd.C6), referencia = kd.C11 FROM KDM1 kd WHERE kd.C1 = '{envia}'  AND kd.C4 = 45 AND kd.C6 = {doc}GROUP BY kd.C6, kd.C11, kd.C1";
                         }
                         else
                         {
