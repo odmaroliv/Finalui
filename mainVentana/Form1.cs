@@ -52,7 +52,16 @@ namespace mainVentana
             sucursales();
 
         }
+        private void ClearCredentials()
+        {
+            mainVentana.Properties.Settings.Default.apiFotosUs = string.Empty;
+            mainVentana.Properties.Settings.Default.apiFotosPs = string.Empty;
+            mainVentana.Properties.Settings.Default.Save();
 
+            Negocios.Properties.Settings.Default.apiUs = string.Empty;
+            Negocios.Properties.Settings.Default.apiPs = string.Empty;
+            Negocios.Properties.Settings.Default.Save();
+        }
         private void validamenu()
         {
             if (CacheLogin.rol.Trim() == "ADMIN")
@@ -237,9 +246,9 @@ namespace mainVentana
         {
             // Liberar recursos adicionales si es necesario
             liberarR();
-
+            ClearCredentials();
             // Cerrar la aplicación
-           
+
         }
 
         private void liberarR()

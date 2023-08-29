@@ -330,9 +330,10 @@ namespace mainVentana.VistaEntrada
             string datosAlias = alias.Text;
             string datoNota = txbNotas.Text;
             string datoReferencia = txbReferencia.Text;
+            string isDanado = cbxDano.Checked == true ? "1": "0"; //representa una entrada dañanada, se guarda por entrada completa, no por bulto en el campo 27 de kdm1 1 si esta dañada 0 si no lo esta
 
-               try
-                {
+            try
+            {
                     bd.ActualizaSqlIov(datoSucIni.Trim(), 35);
                 }
                 catch (Exception ex)
@@ -348,7 +349,7 @@ namespace mainVentana.VistaEntrada
                 {
                     bd.agregaKDM1(datoSucIni, datoEntrada, datoMoneda, datoFecha, datoNuCliente, datoNoCord, datoValArn, datoNomCliente, datoCalle, datoColonia, datoCiudadZip,
            datoValFact, datoParidad, datoNoTrakin, datoProvedor, datoOrdCompra, datoNoFlete, datoNoUnidades, datoTipoUnidad, datoPeso, datoUnidadMedida, datoTipoOper,
-           datoSucDestino, datoBultos, datosAlias, datoNota, datoReferencia);
+           datoSucDestino, datoBultos, datosAlias, datoNota, datoReferencia, isDanado);
                 }
                 catch (Exception ex)
                 {
@@ -485,7 +486,7 @@ namespace mainVentana.VistaEntrada
             try
             {
 
-                var respuesta = await servicio.EnviaMail(doc, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, archivos, coreoClientes, cordCordinadorCMB);
+                var respuesta = await servicio.EnviaMail(doc, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, archivos, coreoClientes, cbxDano.Checked, cordCordinadorCMB);
                 //var respuesta = await servicio.EnviaMailAmazonSES(doc, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, archivos, coreoClientes, cordCordinadorCMB);
 
                 if (respuesta == 1)
@@ -550,7 +551,7 @@ namespace mainVentana.VistaEntrada
 
             try
             {
-                var respuesta = await servicio.EnviaMail(doc, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, archivos, coreoClientes, cordCordinadorCMB);
+                var respuesta = await servicio.EnviaMail(doc, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, archivos, coreoClientes, cbxDano.Checked, cordCordinadorCMB);
 
                 if (respuesta == 1)
                 {
@@ -1297,8 +1298,7 @@ namespace mainVentana.VistaEntrada
                     lblUser.Text = CacheLogin.username;
                     mdfImg.Visible = false;
                     iconButton2.Enabled = true;
-                  
-
+                    cbxDano.Enabled = false;
 
                     limpiaImg();
                     GeneraRastreo();
@@ -1674,6 +1674,7 @@ namespace mainVentana.VistaEntrada
                     }
 
                 }
+                cbxDano.Checked = q.C27?.Contains("1") ?? false;
 
                 peso.Text = q.C99.ToString();
 

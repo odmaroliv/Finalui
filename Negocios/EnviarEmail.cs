@@ -16,7 +16,7 @@ namespace Negocios
     public class EnviarEmail
     {
 
-        public async Task<int> EnviaMail(string Entrada, string Cliente, string Notraking, string Alias, string OrdCompra, string Noflete, string Proveedor, string Desc, List<string> Archivos, string correosClientes, string idCord = "")
+        public async Task<int> EnviaMail(string Entrada, string Cliente, string Notraking, string Alias, string OrdCompra, string Noflete, string Proveedor, string Desc, List<string> Archivos, string correosClientes, bool isDano, string idCord = "")
         {
             int bandera = default;
 
@@ -55,6 +55,17 @@ namespace Negocios
                     plantilla = plantilla.Replace("@NOFLETE", Noflete);
                     plantilla = plantilla.Replace("@PROVEEDOR", Proveedor);
                     plantilla = plantilla.Replace("@CUERPO", Desc);
+                    if (isDano)
+                    {
+                        plantilla = plantilla.Replace("@DANADO", "Contiene mercancía dañada.");
+                        msg.Subject = "[Dañado] Notificacion Arnian entrada: " + Entrada;
+                    }
+                    else
+                    {
+                        plantilla = plantilla.Replace("@DANADO", "");
+                    }
+
+
                     using (StringReader sr = new StringReader(plantilla))
                     {
                         msg.Body = sr.ReadToEnd().ToString();

@@ -40,6 +40,9 @@
     <Reference Include="AWSSDK.SimpleEmail, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
       <HintPath>..\packages\AWSSDK.SimpleEmail.3.7.100.111\lib\net45\AWSSDK.SimpleEmail.dll</HintPath>
     </Reference>
+    <Reference Include="CredentialManagement, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CredentialManagement.1.0.2\lib\net35\CredentialManagement.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -80,6 +83,7 @@
     <Compile Include="BajaDB.cs" />
     <Compile Include="Common\Cache\AccesData.cs" />
     <Compile Include="Common\Cache\CacheLogin.cs" />
+    <Compile Include="Common\CryptoHelper.cs" />
     <Compile Include="ConeccionRed.cs" />
     <Compile Include="EnviarEmail.cs" />
     <Compile Include="LOGs\ArsLogs.cs" />

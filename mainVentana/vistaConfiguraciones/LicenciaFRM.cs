@@ -1,4 +1,5 @@
 ﻿
+using Negocios.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,31 +21,8 @@ namespace mainVentana.vistaConfiguraciones
 
         private void foreverButton1_Click(object sender, EventArgs e)
         {
-            mainVentana.Properties.Settings.Default.apiFotosUs = txbUs.Text.Trim();
-            mainVentana.Properties.Settings.Default.apiFotosPs = txbPs.Text.Trim();
-
-
-            try
-            {
-                mainVentana.Properties.Settings.Default.Save();
-            }
-
-            catch (Exception)
-            {
-                MessageBox.Show("Ha ocurrido un error");
-            }
-
-           Negocios.Properties.Settings.Default.apiUs = txbUs.Text.Trim(); 
-           Negocios.Properties.Settings.Default.apiPs = txbPs.Text.Trim(); 
-
-            try
-            {
-                Negocios.Properties.Settings.Default.Save();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Ha ocurrido un error");
-            }
+            CryptoHelper.SaveEncryptedCredential("MyAppUK", txbUs.Text.Trim());
+            CryptoHelper.SaveEncryptedCredential("MyAppPK", txbPs.Text.Trim());
 
             MessageBox.Show("Actualizado correctamente");
         }

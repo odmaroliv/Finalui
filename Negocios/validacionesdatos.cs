@@ -1152,6 +1152,7 @@ namespace Negocios
                                     C12 = d.C12,
                                     C16 = d.C16,
                                     C24 = d.C24,
+                                    C27 = d.C27,
                                     C31 = d.C31,
                                     C32 = d.C32,
                                     C33 = d.C33,

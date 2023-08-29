@@ -20,6 +20,7 @@ using mainVentana.Properties;
 using mainVentana.vistaConfiguraciones;
 using NAudio.Wave;
 using Negocios;
+using Negocios.Common;
 
 namespace mainVentana
 {
@@ -35,7 +36,7 @@ namespace mainVentana
         
         private async void Login_Load(object sender, EventArgs e)
         {
-            
+            LoadAndSetCredentials();
             await obtain();
             txbPass2.UseSystemPasswordChar = true;
             Negocios.psisarn psisarn = new Negocios.psisarn();
@@ -206,6 +207,7 @@ namespace mainVentana
         {
             try
             {
+                ClearCredentials();
                 string carpetaTemporal = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "temp");
                 lblBorrarArch.Text = "Borrando Archivos Temporales, Espere...";
                 BorrarCarpetaTemporal(carpetaTemporal);
@@ -220,7 +222,16 @@ namespace mainVentana
             Application.Exit(); // cierra la aplicacion completamente
 
         }
+        private void ClearCredentials()
+        {
+            mainVentana.Properties.Settings.Default.apiFotosUs = string.Empty;
+            mainVentana.Properties.Settings.Default.apiFotosPs = string.Empty;
+            mainVentana.Properties.Settings.Default.Save();
 
+            Negocios.Properties.Settings.Default.apiUs = string.Empty;
+            Negocios.Properties.Settings.Default.apiPs = string.Empty;
+            Negocios.Properties.Settings.Default.Save();
+        }
         private void Login_FormClosed(object sender, FormClosedEventArgs e)
         {
            // Cierra el formulario
@@ -335,7 +346,7 @@ namespace mainVentana
             Settings.Default.Catalogo = cmbServerSelect.SelectedItem.ToString();
             Settings.Default.Save();
             psisarn.CS(Negocios.MB.mbsecurity.SN, Negocios.MB.mbsecurity.CSN, Settings.Default.Catalogo);
-           
+
         }
 
         private async void txbPass2_KeyDown(object sender, KeyEventArgs e)
@@ -365,5 +376,27 @@ namespace mainVentana
                 Validaciones_P_Busqueda();
             }
         }
+        private void LoadAndSetCredentials()
+        {
+            try
+            {
+                string user = CryptoHelper.RetrieveEncryptedCredential("MyAppUK");
+                string password = CryptoHelper.RetrieveEncryptedCredential("MyAppPK");
+
+                // Establecer las credenciales en las configuraciones
+                mainVentana.Properties.Settings.Default.apiFotosUs = user;
+                mainVentana.Properties.Settings.Default.apiFotosPs = password;
+                mainVentana.Properties.Settings.Default.Save();
+
+                Negocios.Properties.Settings.Default.apiUs = user;
+                Negocios.Properties.Settings.Default.apiPs = password;
+                Negocios.Properties.Settings.Default.Save();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ha ocurrido un error al cargar las credenciales.");
+            }
+        }
+
     }
 }

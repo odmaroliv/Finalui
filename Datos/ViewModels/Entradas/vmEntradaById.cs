@@ -22,7 +22,8 @@ namespace Datos.ViewModels.Entradas
                public string C11  {get; set;}
                public string C12  {get; set;}
                public decimal? C16  {get; set;}
-               public string C24  {get; set;}
+               public string C24  {get; set; }
+               public string C27 { get; set; }
                public string C31  {get; set;}
                public string C32  {get; set;}
                public string C33  {get; set;}
