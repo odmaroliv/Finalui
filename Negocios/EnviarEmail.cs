@@ -6,8 +6,6 @@ using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
-using Amazon.SimpleEmail;
-using Amazon.SimpleEmail.Model;
 using System.Web;
 //using Amazon.Runtime;
 
@@ -133,7 +131,7 @@ namespace Negocios
 
 
 
-
+        /*
             public async Task<int> EnviaMailAmazonSES(string Entrada, string Cliente, string Notraking, string Alias, string OrdCompra, string Noflete, string Proveedor, string Desc, List<string> attachmentPaths, string correosClientes, string idCord = "")
         {
             string subject = "Notificacion Arnian entrada: " + Entrada;
@@ -237,7 +235,7 @@ namespace Negocios
 
             return messageId;
         }
-
+        */
 
 
         private string ConstruirCuerpoDelCorreo(string entrada, string cliente, string notraking, string alias, string ordCompra, string noflete, string proveedor, string desc)

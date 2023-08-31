@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Datos.ViewModels.Entradas;
 using Ventana1.vm;
 using System.Windows.Forms;
-using Amazon.SimpleEmail.Model;
+
 using Datos.ViewModels.Coord;
 
 namespace Negocios
