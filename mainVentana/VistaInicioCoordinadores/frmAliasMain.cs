@@ -1,4 +1,6 @@
-﻿using mainVentana.VistaEntrada;
+﻿using Datos.ViewModels.Carga;
+using Datos.ViewModels.Coord.Clientes;
+using mainVentana.VistaEntrada;
 using Negocios.NGClientes;
 using System;
 using System.Collections.Generic;
@@ -14,6 +16,10 @@ namespace mainVentana.VistaInicioCoordinadores
 {
     public partial class frmAliasMain : Form
     {
+
+        List<vmAliasInfo> lssGlobal = null;
+        private bool _isBussy;
+
         public frmAliasMain()
         {
             InitializeComponent();
@@ -45,8 +51,8 @@ namespace mainVentana.VistaInicioCoordinadores
             {
 
                 AccesoClientes ac = new AccesoClientes();
-                var dt = ac.BuscaAliasenCliente(dato7);
-                dtgAlias.DataSource = dt;
+               lssGlobal = ac.BuscaAliasenCliente(dato7);
+                dtgAlias.DataSource = lssGlobal;
             }
             catch (Exception)
             {
@@ -60,6 +66,9 @@ namespace mainVentana.VistaInicioCoordinadores
         
         public async void moverinfo(string dato, string dato2, string dato3, string dato4, string dato5, string dato6, string dato7, string correoCliente, int bandera) //cambia los datos de los textbox alias y clientes, la bandera dependera de la manera en la que se haya abierto el frm buscar, 0 clientes 1 alias, ADEMAS tambien sirve para cambiar el campo de cord
         {
+            if (_isBussy) 
+                return;
+            _isBussy = true;
             dtgAlias.DataSource = null;
             try
             {
@@ -67,8 +76,8 @@ namespace mainVentana.VistaInicioCoordinadores
                 if (bandera == 0) //clientes
                 {
                     AccesoClientes ac = new AccesoClientes();
-                    var dt = ac.BuscaAliasenCliente(dato7);
-                    dtgAlias.DataSource = dt;
+                   lssGlobal = ac.BuscaAliasenCliente(dato7);
+                    dtgAlias.DataSource = lssGlobal;
                 }
 
             }
@@ -77,7 +86,8 @@ namespace mainVentana.VistaInicioCoordinadores
 
                 throw;
             }
-
+            finally { _isBussy = false; }
+            
         }
 
         private void CargaInfoEspecial(string alias)
@@ -241,5 +251,41 @@ namespace mainVentana.VistaInicioCoordinadores
 
 
         }
+
+        private void txbBusqueda_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string searchValue = txbBusqueda.Text.Trim().ToLower(); // Convertir a minúsculas y eliminar espacios
+
+                if (string.IsNullOrWhiteSpace(searchValue))
+                {
+                    MessageBox.Show("Por favor, introduce un valor de búsqueda válido.");
+                    dtgAlias.DataSource = lssGlobal;
+                }
+                else
+                {
+                    if (lssGlobal == null)
+                    {
+                        return;
+                    }
+                    var filteredData = lssGlobal.Where(item =>
+                        (item.C1?.ToLower().Contains(searchValue) ?? false)).ToList(); // Comparación sin tener en cuenta mayúsculas/minúsculas
+
+                    dtgAlias.DataSource = filteredData;
+
+                    if (!filteredData.Any())
+                    {
+                        MessageBox.Show("No se encontraron resultados para tu búsqueda.");
+                    }
+                }
+
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+
+        }
+
+       
     }
 }

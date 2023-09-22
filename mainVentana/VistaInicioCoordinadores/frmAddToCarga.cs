@@ -640,12 +640,12 @@ namespace mainVentana.VistaInicioCoordinadores
                         return;
                     }
                     var filteredData = lssGlobal.Where(item =>
-    (item.entrada?.Contains(searchValue) ?? false) ||
-    (item.cliente?.Contains(searchValue) ?? false) ||
-    (item.noCli?.Contains(searchValue) ?? false) ||
-    (item.Cotizacion?.Contains(searchValue) ?? false) ||
-    (item.desc?.Contains(searchValue) ?? false) ||
-    (item.aliss?.Contains(searchValue) ?? false)).ToList();
+    (item.entrada?.ToLower().Contains(searchValue) ?? false) ||
+    (item.cliente?.ToLower().Contains(searchValue) ?? false) ||
+    (item.noCli?.ToLower().Contains(searchValue) ?? false) ||
+    (item.Cotizacion?.ToLower().Contains(searchValue) ?? false) ||
+    (item.desc?.ToLower().Contains(searchValue) ?? false) ||
+    (item.aliss?.ToLower().Contains(searchValue) ?? false)).ToList();
 
 
                     dtgSinAsignar.DataSource = filteredData;

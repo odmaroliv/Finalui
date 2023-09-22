@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.parrotGroupBox1 = new ReaLTaiizor.Controls.ParrotGroupBox();
             this.foreverLabel15 = new ReaLTaiizor.Controls.ForeverLabel();
             this.txbNombre = new Guna.UI.WinForms.GunaLineTextBox();
@@ -56,6 +56,8 @@
             this.foreverLabel1 = new ReaLTaiizor.Controls.ForeverLabel();
             this.txbClaveAlias = new ReaLTaiizor.Controls.AloneTextBox();
             this.btnGuardar = new ReaLTaiizor.Controls.DungeonButtonRight();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txbBusqueda = new System.Windows.Forms.TextBox();
             this.parrotGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgAlias)).BeginInit();
             this.SuspendLayout();
@@ -64,6 +66,8 @@
             // 
             this.parrotGroupBox1.BorderColor = System.Drawing.Color.DodgerBlue;
             this.parrotGroupBox1.BorderWidth = 1;
+            this.parrotGroupBox1.Controls.Add(this.label4);
+            this.parrotGroupBox1.Controls.Add(this.txbBusqueda);
             this.parrotGroupBox1.Controls.Add(this.foreverLabel15);
             this.parrotGroupBox1.Controls.Add(this.txbNombre);
             this.parrotGroupBox1.Controls.Add(this.foreverLabel10);
@@ -87,10 +91,10 @@
             this.parrotGroupBox1.Controls.Add(this.foreverLabel2);
             this.parrotGroupBox1.Controls.Add(this.foreverLabel1);
             this.parrotGroupBox1.Controls.Add(this.txbClaveAlias);
-            this.parrotGroupBox1.Location = new System.Drawing.Point(12, 12);
+            this.parrotGroupBox1.Location = new System.Drawing.Point(12, 3);
             this.parrotGroupBox1.Name = "parrotGroupBox1";
             this.parrotGroupBox1.ShowText = true;
-            this.parrotGroupBox1.Size = new System.Drawing.Size(642, 723);
+            this.parrotGroupBox1.Size = new System.Drawing.Size(642, 732);
             this.parrotGroupBox1.TabIndex = 5;
             this.parrotGroupBox1.TabStop = false;
             this.parrotGroupBox1.Text = "Datos";
@@ -132,7 +136,7 @@
             this.foreverLabel10.BackColor = System.Drawing.Color.Transparent;
             this.foreverLabel10.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.foreverLabel10.ForeColor = System.Drawing.Color.LightGray;
-            this.foreverLabel10.Location = new System.Drawing.Point(335, 631);
+            this.foreverLabel10.Location = new System.Drawing.Point(335, 640);
             this.foreverLabel10.Name = "foreverLabel10";
             this.foreverLabel10.Size = new System.Drawing.Size(172, 13);
             this.foreverLabel10.TabIndex = 34;
@@ -145,7 +149,7 @@
             this.txbLongitud.EnabledCalc = true;
             this.txbLongitud.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbLongitud.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(133)))), ((int)(((byte)(142)))));
-            this.txbLongitud.Location = new System.Drawing.Point(338, 647);
+            this.txbLongitud.Location = new System.Drawing.Point(338, 656);
             this.txbLongitud.MaxLength = 32767;
             this.txbLongitud.MultiLine = false;
             this.txbLongitud.Name = "txbLongitud";
@@ -160,8 +164,8 @@
             this.dtgAlias.AllowUserToAddRows = false;
             this.dtgAlias.AllowUserToDeleteRows = false;
             this.dtgAlias.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            this.dtgAlias.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
+            this.dtgAlias.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dtgAlias.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -170,26 +174,26 @@
             this.dtgAlias.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dtgAlias.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedVertical;
             this.dtgAlias.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgAlias.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgAlias.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dtgAlias.ColumnHeadersHeight = 40;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgAlias.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgAlias.DefaultCellStyle = dataGridViewCellStyle12;
             this.dtgAlias.EnableHeadersVisualStyles = false;
             this.dtgAlias.GridColor = System.Drawing.Color.Azure;
-            this.dtgAlias.Location = new System.Drawing.Point(14, 89);
+            this.dtgAlias.Location = new System.Drawing.Point(14, 102);
             this.dtgAlias.Margin = new System.Windows.Forms.Padding(2);
             this.dtgAlias.Name = "dtgAlias";
             this.dtgAlias.ReadOnly = true;
@@ -199,7 +203,7 @@
             this.dtgAlias.RowTemplate.Height = 50;
             this.dtgAlias.RowTemplate.ReadOnly = true;
             this.dtgAlias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dtgAlias.Size = new System.Drawing.Size(598, 343);
+            this.dtgAlias.Size = new System.Drawing.Size(598, 339);
             this.dtgAlias.TabIndex = 31;
             this.dtgAlias.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
             this.dtgAlias.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -272,7 +276,7 @@
             this.dungeonButtonRight1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.dungeonButtonRight1.InactiveColorA = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(175)))), ((int)(((byte)(143)))));
             this.dungeonButtonRight1.InactiveColorB = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(146)))), ((int)(((byte)(106)))));
-            this.dungeonButtonRight1.Location = new System.Drawing.Point(6, 452);
+            this.dungeonButtonRight1.Location = new System.Drawing.Point(6, 461);
             this.dungeonButtonRight1.Name = "dungeonButtonRight1";
             this.dungeonButtonRight1.PressedColorA = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(146)))), ((int)(((byte)(106)))));
             this.dungeonButtonRight1.PressedColorB = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(146)))), ((int)(((byte)(106)))));
@@ -291,7 +295,7 @@
             this.foreverLabel9.BackColor = System.Drawing.Color.Transparent;
             this.foreverLabel9.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.foreverLabel9.ForeColor = System.Drawing.Color.LightGray;
-            this.foreverLabel9.Location = new System.Drawing.Point(11, 631);
+            this.foreverLabel9.Location = new System.Drawing.Point(11, 640);
             this.foreverLabel9.Name = "foreverLabel9";
             this.foreverLabel9.Size = new System.Drawing.Size(157, 13);
             this.foreverLabel9.TabIndex = 17;
@@ -304,7 +308,7 @@
             this.txbLatitud.EnabledCalc = true;
             this.txbLatitud.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbLatitud.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(133)))), ((int)(((byte)(142)))));
-            this.txbLatitud.Location = new System.Drawing.Point(14, 647);
+            this.txbLatitud.Location = new System.Drawing.Point(14, 656);
             this.txbLatitud.MaxLength = 32767;
             this.txbLatitud.MultiLine = false;
             this.txbLatitud.Name = "txbLatitud";
@@ -321,7 +325,7 @@
             this.foreverLabel7.BackColor = System.Drawing.Color.Transparent;
             this.foreverLabel7.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.foreverLabel7.ForeColor = System.Drawing.Color.LightGray;
-            this.foreverLabel7.Location = new System.Drawing.Point(129, 566);
+            this.foreverLabel7.Location = new System.Drawing.Point(129, 575);
             this.foreverLabel7.Name = "foreverLabel7";
             this.foreverLabel7.Size = new System.Drawing.Size(21, 13);
             this.foreverLabel7.TabIndex = 13;
@@ -334,7 +338,7 @@
             this.txbTel.EnabledCalc = true;
             this.txbTel.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbTel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(133)))), ((int)(((byte)(142)))));
-            this.txbTel.Location = new System.Drawing.Point(132, 582);
+            this.txbTel.Location = new System.Drawing.Point(132, 591);
             this.txbTel.MaxLength = 40;
             this.txbTel.MultiLine = false;
             this.txbTel.Name = "txbTel";
@@ -351,7 +355,7 @@
             this.foreverLabel6.BackColor = System.Drawing.Color.Transparent;
             this.foreverLabel6.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.foreverLabel6.ForeColor = System.Drawing.Color.LightGray;
-            this.foreverLabel6.Location = new System.Drawing.Point(3, 566);
+            this.foreverLabel6.Location = new System.Drawing.Point(3, 575);
             this.foreverLabel6.Name = "foreverLabel6";
             this.foreverLabel6.Size = new System.Drawing.Size(79, 13);
             this.foreverLabel6.TabIndex = 11;
@@ -364,7 +368,7 @@
             this.txbZip.EnabledCalc = true;
             this.txbZip.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbZip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(133)))), ((int)(((byte)(142)))));
-            this.txbZip.Location = new System.Drawing.Point(6, 582);
+            this.txbZip.Location = new System.Drawing.Point(6, 591);
             this.txbZip.MaxLength = 32767;
             this.txbZip.MultiLine = false;
             this.txbZip.Name = "txbZip";
@@ -381,7 +385,7 @@
             this.foreverLabel4.BackColor = System.Drawing.Color.Transparent;
             this.foreverLabel4.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.foreverLabel4.ForeColor = System.Drawing.Color.LightGray;
-            this.foreverLabel4.Location = new System.Drawing.Point(386, 509);
+            this.foreverLabel4.Location = new System.Drawing.Point(386, 518);
             this.foreverLabel4.Name = "foreverLabel4";
             this.foreverLabel4.Size = new System.Drawing.Size(58, 13);
             this.foreverLabel4.TabIndex = 9;
@@ -394,7 +398,7 @@
             this.txbPoblacion.EnabledCalc = true;
             this.txbPoblacion.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbPoblacion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(133)))), ((int)(((byte)(142)))));
-            this.txbPoblacion.Location = new System.Drawing.Point(389, 525);
+            this.txbPoblacion.Location = new System.Drawing.Point(389, 534);
             this.txbPoblacion.MaxLength = 100;
             this.txbPoblacion.MultiLine = false;
             this.txbPoblacion.Name = "txbPoblacion";
@@ -411,7 +415,7 @@
             this.foreverLabel5.BackColor = System.Drawing.Color.Transparent;
             this.foreverLabel5.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.foreverLabel5.ForeColor = System.Drawing.Color.LightGray;
-            this.foreverLabel5.Location = new System.Drawing.Point(129, 509);
+            this.foreverLabel5.Location = new System.Drawing.Point(129, 518);
             this.foreverLabel5.Name = "foreverLabel5";
             this.foreverLabel5.Size = new System.Drawing.Size(47, 13);
             this.foreverLabel5.TabIndex = 7;
@@ -424,7 +428,7 @@
             this.txbColonia.EnabledCalc = true;
             this.txbColonia.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbColonia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(133)))), ((int)(((byte)(142)))));
-            this.txbColonia.Location = new System.Drawing.Point(132, 525);
+            this.txbColonia.Location = new System.Drawing.Point(132, 534);
             this.txbColonia.MaxLength = 100;
             this.txbColonia.MultiLine = false;
             this.txbColonia.Name = "txbColonia";
@@ -441,7 +445,7 @@
             this.foreverLabel3.BackColor = System.Drawing.Color.Transparent;
             this.foreverLabel3.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.foreverLabel3.ForeColor = System.Drawing.Color.LightGray;
-            this.foreverLabel3.Location = new System.Drawing.Point(386, 452);
+            this.foreverLabel3.Location = new System.Drawing.Point(386, 461);
             this.foreverLabel3.Name = "foreverLabel3";
             this.foreverLabel3.Size = new System.Drawing.Size(55, 13);
             this.foreverLabel3.TabIndex = 5;
@@ -454,7 +458,7 @@
             this.txbDireccion.EnabledCalc = true;
             this.txbDireccion.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbDireccion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(133)))), ((int)(((byte)(142)))));
-            this.txbDireccion.Location = new System.Drawing.Point(389, 468);
+            this.txbDireccion.Location = new System.Drawing.Point(389, 477);
             this.txbDireccion.MaxLength = 100;
             this.txbDireccion.MultiLine = false;
             this.txbDireccion.Name = "txbDireccion";
@@ -471,7 +475,7 @@
             this.foreverLabel2.BackColor = System.Drawing.Color.Transparent;
             this.foreverLabel2.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.foreverLabel2.ForeColor = System.Drawing.Color.LightGray;
-            this.foreverLabel2.Location = new System.Drawing.Point(129, 452);
+            this.foreverLabel2.Location = new System.Drawing.Point(129, 461);
             this.foreverLabel2.Name = "foreverLabel2";
             this.foreverLabel2.Size = new System.Drawing.Size(48, 13);
             this.foreverLabel2.TabIndex = 3;
@@ -528,6 +532,26 @@
             this.btnGuardar.TextAlignment = System.Drawing.StringAlignment.Center;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.label4.Location = new System.Drawing.Point(422, 61);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(190, 13);
+            this.label4.TabIndex = 198;
+            this.label4.Text = "Filtro (Escriba el valor y precione Enter)";
+            // 
+            // txbBusqueda
+            // 
+            this.txbBusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbBusqueda.Location = new System.Drawing.Point(389, 77);
+            this.txbBusqueda.Name = "txbBusqueda";
+            this.txbBusqueda.Size = new System.Drawing.Size(224, 20);
+            this.txbBusqueda.TabIndex = 197;
+            this.txbBusqueda.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbBusqueda_KeyDown);
+            // 
             // frmAliasMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -574,5 +598,7 @@
         private ReaLTaiizor.Controls.DungeonButtonRight btnGuardar;
         private Guna.UI.WinForms.GunaLineTextBox txbNombre;
         private ReaLTaiizor.Controls.ForeverLabel foreverLabel15;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txbBusqueda;
     }
 }

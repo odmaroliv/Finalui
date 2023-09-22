@@ -394,13 +394,25 @@ namespace mainVentana.VistaInicioCoordinadores
                     }
                     catch
                     {
-                        // Aquí puedes manejar cualquier excepción que quieras
+                       
                     }
                 }
                 else if (dialogResult == DialogResult.No)
                 {
-                    // Si el usuario decide no eliminar, puedes manejar esa situación aquí
+                    
                 }
+            }
+
+            if (e.KeyCode == Keys.Enter)
+            {
+
+                if (!String.IsNullOrWhiteSpace(txbClave.Text))
+                {
+                    NoMoverinfo(txbClave.Text.Trim());
+                }
+
+                e.Handled = true;
+                e.SuppressKeyPress = true;
             }
         }
 
