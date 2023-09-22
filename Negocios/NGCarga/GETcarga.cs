@@ -123,6 +123,8 @@ namespace Negocios.NGCarga
                                         Etiqueta = d.C9,
                                         Unidad = k.C98,
                                         Cliente = k.C32,
+                                        valArn = k.C42 == null ? "" : k.C42.ToString(),
+                                        valFact = k.C102,
                                     };
                         lst2 = lista.ToList();
                     }
@@ -137,6 +139,8 @@ namespace Negocios.NGCarga
                                         Etiqueta = d.C9,
                                         Unidad = k.C98,
                                         Cliente = k.C32,
+                                        valArn = k.C42 == null ? "" : k.C42.ToString(),
+                                        valFact = k.C102,
                                     };
                         lst2 = lista.ToList();
                     }

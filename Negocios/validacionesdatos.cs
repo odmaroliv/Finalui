@@ -260,10 +260,79 @@ namespace Negocios
                 {
                     using (var modelo = new modelo2Entities())
                     {
+                        // Construcción base de la consulta
+                        var baseQuery = from d in modelo.KDMENT
+                                        join k in modelo.KDM1 on new { d.C1, d.C6, d.C4 } equals new { k.C1, k.C6, k.C4 }
+                                        join c in modelo.KDUV on k.C12 equals c.C2
+                                        where k.C9 <= fecha2 && k.C9 >= fecha1 && d.C19 == tipo
+                                        orderby d.C6 descending, d.C7 descending
+                                        select new { d, k, c };
+
+                        // Aplicar filtro adicional si master no es "1"
+                        if (Common.Cache.CacheLogin.master != "1")
+                        {
+                            baseQuery = baseQuery.Where(item => item.k.C12 == Common.Cache.CacheLogin.idusuario.ToString());
+                        }
+
+                        // Seleccionar la proyección final
+                        var finalQuery = from item in baseQuery
+                                         select new BusquedaInicial
+                                         {
+                                             C6 = item.d.C6.Trim(),
+                                             C9 = item.d.C9.Trim(),
+                                             origen = item.d.C1.Trim(),
+                                             C69 = item.k.C9.ToString(),
+                                             C10 = item.d.C10.Trim(),
+                                             C19 = item.d.C19.Trim(),
+                                             cliente = item.k.C32.Trim(),
+                                             cargaasig = item.d.C54.Trim(),
+                                             cafecha = item.d.C71.Trim(),
+                                             cargaapl = item.d.C16.Trim(),
+                                             capfecha = item.d.C72.Trim(),
+                                             osalida = item.d.C17.Trim(),
+                                             osfecha = item.d.C73.Trim(),
+                                             receptran = item.d.C18.Trim(),
+                                             receptranfecha = item.d.C74.Trim(),
+                                             saltrans = item.d.C64.Trim(),
+                                             saltransfehcha = item.d.C75.Trim(),
+                                             repfinal = item.d.C67.Trim(),
+                                             repfinalfecha = item.d.C76.Trim(),
+                                             bill = item.d.C34.Trim(),
+                                             billfecha = item.d.C77.Trim(),
+                                             C42 = item.d.C42.Trim(),
+                                             elaborado = item.k.C81.Trim(),
+                                             coord = item.c.C3.Trim(),
+                                             link = item.d.C46,
+                                             alias = item.k.C112,
+                                             cot = item.k.C115,
+                                             valArn = item.k.C16.ToString(),
+                                             valFact = item.k.C102,
+                                             tOper = item.k.C101,
+                                             nFlete = item.k.C95
+                                         };
+
+
+                        lst = await finalQuery.ToListAsync();
+                       
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error de conexión a la base de datos: " + ex.Message);
+                    throw;
+                }
+
+            }
+            else if (tipo == "usrEnt")
+            {
+                try
+                {
+                    using (var modelo = new modelo2Entities())
+                    {
                         lst = await (from d in modelo.KDMENT
                                      join k in modelo.KDM1 on new { d.C1, d.C6, d.C4 } equals new { k.C1, k.C6, k.C4 }
                                      join c in modelo.KDUV on k.C12 equals c.C2
-                                     where k.C9 <= fecha2 && k.C9 >= fecha1 && k.C12 == Common.Cache.CacheLogin.idusuario.ToString() && d.C19 == tipo
+                                     where k.C9 <= fecha2 && k.C9 >= fecha1 && k.C81== id
                                      orderby d.C6 descending, d.C7 descending
                                      select new BusquedaInicial
                                      {
@@ -307,7 +376,6 @@ namespace Negocios
                     throw;
                 }
             }
-
             return lst;
         }
 

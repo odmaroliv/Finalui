@@ -63,7 +63,7 @@ namespace Negocios
                     d.C99 = Convert.ToDecimal(peso);
                     d.C100 = unidadMedida;
                     d.C101 = tipOperacion;
-                    d.C102 = valFact == "" ? "0" : valArn; //este valor lo usamos en los reportes
+                    d.C102 = valFact == "" ? "0" : valFact; //este valor lo usamos en los reportes
                     d.C103 = sucDestino.Trim();
                     d.C108 = bultos;
                     d.C112 = Alias.Trim();

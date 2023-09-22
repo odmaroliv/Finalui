@@ -299,6 +299,7 @@
       <DependentUpon>modeloPrueba.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Datos.ViewModels.Carga.vmEntradasEnCarga.datasource" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Datosenti\Model1.Context.tt">
