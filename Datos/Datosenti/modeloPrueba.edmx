@@ -385,6 +385,7 @@
           <Property Name="C30" Type="char" MaxLength="20" />
           <Property Name="C31" Type="char" MaxLength="2" />
           <Property Name="C32" Type="char" MaxLength="2" />
+          <Property Name="creation_date" Type="datetime" />
         </EntityType>
         <EntityType Name="KDUDA">
           <Key>
@@ -402,6 +403,7 @@
           <Property Name="C10" Type="char" MaxLength="30" />
           <Property Name="C11" Type="char" MaxLength="30" />
           <Property Name="C16" Type="char" MaxLength="250" />
+          <Property Name="creation_date" Type="datetime" />
         </EntityType>
         <EntityType Name="KDUDCHOF">
           <Key>
@@ -453,6 +455,7 @@
           <Property Name="C29" Type="char" MaxLength="1" />
           <Property Name="C30" Type="char" MaxLength="1" />
           <Property Name="C31" Type="char" MaxLength="20" />
+          <Property Name="C32" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="KDUV">
           <Key>
@@ -923,6 +926,7 @@
           <Property Name="C30" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
           <Property Name="C31" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
           <Property Name="C32" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="creation_date" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="KDUDA">
           <Key>
@@ -940,6 +944,7 @@
           <Property Name="C10" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
           <Property Name="C11" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
           <Property Name="C16" Type="String" MaxLength="250" FixedLength="true" Unicode="false" />
+          <Property Name="creation_date" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="KDUSUARIOS">
           <Key>
@@ -976,6 +981,7 @@
           <Property Name="C29" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="C30" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="C31" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="C32" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="KDUV">
           <Key>
@@ -1723,6 +1729,7 @@
           <EntitySetMapping Name="KDUD">
             <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.KDUD">
               <MappingFragment StoreEntitySet="KDUD">
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
                 <ScalarProperty Name="C1" ColumnName="C1" />
                 <ScalarProperty Name="C2" ColumnName="C2" />
                 <ScalarProperty Name="C3" ColumnName="C3" />
@@ -1761,6 +1768,7 @@
           <EntitySetMapping Name="KDUDA">
             <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.KDUDA">
               <MappingFragment StoreEntitySet="KDUDA">
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
                 <ScalarProperty Name="C16" ColumnName="C16" />
                 <ScalarProperty Name="C11" ColumnName="C11" />
                 <ScalarProperty Name="C10" ColumnName="C10" />
@@ -1779,6 +1787,7 @@
           <EntitySetMapping Name="KDUSUARIOS">
             <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.KDUSUARIOS">
               <MappingFragment StoreEntitySet="KDUSUARIOS">
+                <ScalarProperty Name="C32" ColumnName="C32" />
                 <ScalarProperty Name="C1" ColumnName="C1" />
                 <ScalarProperty Name="C2" ColumnName="C2" />
                 <ScalarProperty Name="C3" ColumnName="C3" />

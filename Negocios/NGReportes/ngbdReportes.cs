@@ -660,7 +660,8 @@ namespace Negocios.NGReportes
                                          C10 = d.C10,//Suc
                                          C12 = d.C12,//cliente
                                          C13 = d.C13, // telefono
-                                         C8 = d.C8 // usuario tipo master
+                                         C8 = d.C8, // usuario tipo master
+                                         C32 = d.C32 // Usuario UUID
                                      }).FirstOrDefault();
                         lst = lista;
                     }
@@ -691,8 +692,9 @@ namespace Negocios.NGReportes
                             C10 = usuario.C10, // Suc
                             C12 = usuario.C12, // cliente
                             C13 = usuario.C13, // telefono
-                            C8 = usuario.C8    // Master
-                    };
+                            C8 = usuario.C8,    // Master
+                            C32 = usuario.C32    // uid
+                        };
 
                         // Agregar el nuevo usuario a la base de datos
                         modelo.KDUSUARIOS.Add(nuevoUsuario);
@@ -729,6 +731,7 @@ namespace Negocios.NGReportes
                             usuarioExistente.C12 = usuario.C12; // cliente
                             usuarioExistente.C13 = usuario.C13; // telefono
                             usuarioExistente.C8 = usuario.C8; // Master
+                            usuarioExistente.C32 = usuario.C32; // uid
 
                             modelo.SaveChanges();
                         }

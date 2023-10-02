@@ -46,5 +46,6 @@ namespace Datos.Datosenti
         public string C30 { get; set; }
         public string C31 { get; set; }
         public string C32 { get; set; }
+        public Nullable<System.DateTime> creation_date { get; set; }
     }
 }

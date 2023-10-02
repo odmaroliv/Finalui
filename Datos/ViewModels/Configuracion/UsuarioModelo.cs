@@ -17,5 +17,7 @@ namespace Datos.ViewModels.Configuracion
         public string C12 { get; set; }  // cliente
         public string C13 { get; set; }  // telefono
         public string C8 { get; set; }  // Usuario Master
+        public string C32 { get; set; }  // Usuario UUID
     }
 }
+

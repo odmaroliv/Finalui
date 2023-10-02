@@ -45,5 +45,6 @@ namespace Datos.Datosenti
         public string C29 { get; set; }
         public string C30 { get; set; }
         public string C31 { get; set; }
+        public string C32 { get; set; }
     }
 }

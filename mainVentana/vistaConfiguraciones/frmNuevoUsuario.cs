@@ -1,5 +1,6 @@
 ﻿using Datos.Datosenti;
 using Datos.ViewModels;
+using Datos.ViewModels.Carga;
 using Datos.ViewModels.Configuracion;
 using Negocios;
 using Negocios.NGReportes;
@@ -20,7 +21,7 @@ namespace mainVentana.vistaConfiguraciones
         public string sucursalGlobal = Negocios.Common.Cache.CacheLogin.sucGlobal == default ? "SD" : Negocios.Common.Cache.CacheLogin.sucGlobal;
 
         private string _modo = "B";
-        
+        List<KDUSUARIOS> lssGlobal = null;
         public frmNuevoUsuario()
         {
             InitializeComponent();
@@ -39,8 +40,8 @@ namespace mainVentana.vistaConfiguraciones
         private async void gunaTileButton1_Click(object sender, EventArgs e)
         {
             ngbdReportes bd = new ngbdReportes();
-            var dt = await bd.CargaUsuarios();
-            dgvUsuarios.DataSource = dt;
+            lssGlobal = await bd.CargaUsuarios();
+            dgvUsuarios.DataSource = lssGlobal;
         }
 
         private async void dgvUsuarios_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -59,6 +60,7 @@ namespace mainVentana.vistaConfiguraciones
                 txbCliente.Text = dt.C12;
                 txbTelefono.Text = dt.C13;
                 txbMaster.Text = dt.C8;
+                txbUid.Text = dt.C32;
             }
             catch (Exception)
             {
@@ -168,6 +170,7 @@ namespace mainVentana.vistaConfiguraciones
                         C12 = txbCliente.Text,
                         C13 = txbTelefono.Text,
                         C8 = txbMaster.Text,
+                        C32 = txbUid.Text,
                     };
                     lst = usuario;
                 });
@@ -190,6 +193,7 @@ namespace mainVentana.vistaConfiguraciones
             txbCliente.Text = string.Empty;
             txbTelefono.Text = string.Empty;
             txbMaster.Text = string.Empty;
+            txbUid.Text = string.Empty;
         }
 
 
@@ -238,6 +242,43 @@ namespace mainVentana.vistaConfiguraciones
             finally
             {
                // gbxNuser.Enabled = false;
+            }
+        }
+
+        private void txbBusqueda_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string searchValue = txbBusqueda.Text;
+
+                if (string.IsNullOrWhiteSpace(searchValue))
+                {
+
+                    MessageBox.Show("Por favor, introduce un valor de búsqueda válido.");
+                    dgvUsuarios.DataSource = lssGlobal;
+                }
+                else
+                {
+                    if (lssGlobal == null)
+                    {
+                        return;
+                    }
+                    var filteredData = lssGlobal.Where(item =>
+    (item.C1?.ToLower().Contains(searchValue) ?? false) ||
+    (item.C2?.ToLower().Contains(searchValue) ?? false) ||
+    (item.C9?.ToLower().Contains(searchValue) ?? false)).ToList();
+
+
+                    dgvUsuarios.DataSource = filteredData;
+
+                    if (!filteredData.Any())
+                    {
+                        MessageBox.Show("No se encontraron resultados para tu búsqueda.");
+                    }
+                }
+
+                e.Handled = true;
+                e.SuppressKeyPress = true;
             }
         }
     }
