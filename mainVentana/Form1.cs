@@ -647,5 +647,18 @@ namespace mainVentana
             }
 
         }
+
+        private void rbRepEntradasSD_Click(object sender, EventArgs e)
+        {
+            if (Negocios.Common.Cache.CacheLogin.rol != "ADMIN" && Negocios.Common.Cache.CacheLogin.rol != "JALMA" )
+            {
+                return;
+            }
+            frmMenuReportes Evide = new frmMenuReportes();
+            openForms.Add(Evide);
+            Evide.FormClosed += frm_FormClosed_Libera;
+            Evide.Show();
+            
+        }
     }
 }

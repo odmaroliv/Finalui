@@ -55,7 +55,6 @@ namespace Negocios.NGReportes
                                         cord = a.C3.Trim(),
                                         correoCord = u.C9.Trim(),
                                         des = d.C42.Trim()
-
                                     };
                         lst = lista.ToList();
 

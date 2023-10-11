@@ -130,6 +130,7 @@ namespace mainVentana
             this.ribbonButton4 = new System.Windows.Forms.RibbonButton();
             this.ribbonDescriptionMenuItem2 = new System.Windows.Forms.RibbonDescriptionMenuItem();
             this.panelContenedorForm = new System.Windows.Forms.Panel();
+            this.rbRepEntradasSD = new System.Windows.Forms.RibbonButton();
             this.panel11.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -630,6 +631,7 @@ namespace mainVentana
             // 
             this.rbtnReportes.DropDownItems.Add(this.rbReporteSalida);
             this.rbtnReportes.DropDownItems.Add(this.rbReporteClienteXcord);
+            this.rbtnReportes.DropDownItems.Add(this.rbRepEntradasSD);
             this.rbtnReportes.Image = global::mainVentana.Properties.Resources.delivery;
             this.rbtnReportes.LargeImage = global::mainVentana.Properties.Resources.delivery;
             this.rbtnReportes.Name = "rbtnReportes";
@@ -875,6 +877,16 @@ namespace mainVentana
             this.panelContenedorForm.Size = new System.Drawing.Size(1113, 601);
             this.panelContenedorForm.TabIndex = 2;
             // 
+            // rbRepEntradasSD
+            // 
+            this.rbRepEntradasSD.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.rbRepEntradasSD.Image = ((System.Drawing.Image)(resources.GetObject("rbRepEntradasSD.Image")));
+            this.rbRepEntradasSD.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbRepEntradasSD.LargeImage")));
+            this.rbRepEntradasSD.Name = "rbRepEntradasSD";
+            this.rbRepEntradasSD.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbRepEntradasSD.SmallImage")));
+            this.rbRepEntradasSD.Text = "Entradas Con tiempo";
+            this.rbRepEntradasSD.Click += new System.EventHandler(this.rbRepEntradasSD_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -985,6 +997,7 @@ namespace mainVentana
         private RibbonButton rbtnConsultaCargaCord;
         private RibbonButton rbReporteSalida;
         private RibbonButton rbReporteClienteXcord;
+        private RibbonButton rbRepEntradasSD;
     }
 }
 

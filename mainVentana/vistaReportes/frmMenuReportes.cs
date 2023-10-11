@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -16,11 +17,15 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Input;
+using Ventana1.LoadControl;
 
 namespace mainVentana.vistaReportes
 {
     public partial class frmMenuReportes : Form
     {
+        private bool _isBusy;
+
         public frmMenuReportes()
         {
             InitializeComponent();
@@ -28,74 +33,73 @@ namespace mainVentana.vistaReportes
 
         private async void sd1_Click(object sender, EventArgs e)
         {
+            progressBar1.Visible = true;
+            progressBar1.Value = 10;
             dgvRepos.DataSource = null;
             ngbdReportes rep = new ngbdReportes();
-
+            progressBar1.Value = 40;
             var lst = await rep.sd1();
             dgvRepos.DataSource = lst;
 
             txbTotal.Text = lst.Count.ToString();
-
+            progressBar1.Value = 60;
             await Task.Run(() => { Thread.Sleep(1000); });
+            progressBar1.Value = 80;
             formatodeceldas();
-
+            progressBar1.Value = 100;
+            label2.Text = $"+ de {numericUpDown1.Value} dias en almacen:";
+            label3.Text = $"- de {numericUpDown1.Value} dias en almacen:";
+        
+            progressBar1.Visible = false;
+            
         }
-
 
 
 
         private void formatodeceldas()
         {
-            int filas = dgvRepos.Rows.Count;
             int ma = 0;
             int me = 0;
 
-            for (int i = 0; i < filas; i++)
+            DateTime fechaActual = DateTime.Now.Date;
+            DateTime fechaInicio = fechaActual.AddDays(-Convert.ToDouble(numericUpDown1.Value) + 1); // Ajustado para incluir la fecha de inicio.
+
+            foreach (DataGridViewRow row in dgvRepos.Rows)
             {
-                DateTime fechaactual = DateTime.Now;
-                DateTime fechaent;
-                DateTime dt;
-                if (dgvRepos.Rows[i].Cells[2].Value.ToString().Trim() == "")
+                if (DateTime.TryParse(row.Cells[2].Value.ToString().Trim(), out DateTime fechaEntrada))
                 {
-                    fechaent = DateTime.Parse("7/6/2021 12:16:02 PM");
+                    fechaEntrada = fechaEntrada.Date; // Obtiene solo la fecha sin el tiempo.
+
+                    if (fechaEntrada >= fechaInicio && fechaEntrada <= fechaActual)
+                    {
+                        // Pinta de verde.
+                        PintarCelda(row.Cells[2], Color.FromArgb(19, 156, 18));
+                        PintarCelda(row.Cells[0], Color.FromArgb(19, 156, 18));
+                        me++;
+                    }
+                    else
+                    {
+                        // Pinta de rojo.
+                        PintarCelda(row.Cells[2], Color.FromArgb(156, 19, 18));
+                        PintarCelda(row.Cells[0], Color.FromArgb(156, 19, 18));
+                        ma++;
+                    }
                 }
-                else
-                {
-                    fechaent = DateTime.TryParse(dgvRepos.Rows[i].Cells[2].Value.ToString().Trim(), out dt) == false ? DateTime.Parse("7/6/2021 12:16:02 PM") : dt;
-                }
-
-
-
-                TimeSpan tiempo = fechaactual - fechaent;
-
-
-
-                if (tiempo > TimeSpan.Parse("3.00:00:0.0"))
-                { //cuando un item tiene mas de 3 dias en el almacen y la sursal actual es igual a la sucursal origen
-                    dgvRepos.Rows[i].Cells[2].Style.BackColor = Color.FromArgb(156, 19, 18);
-                    dgvRepos.Rows[i].Cells[2].Style.ForeColor = Color.FromArgb(255, 255, 255);
-                    dgvRepos.Rows[i].Cells[0].Style.BackColor = Color.FromArgb(156, 19, 18);
-                    dgvRepos.Rows[i].Cells[0].Style.ForeColor = Color.FromArgb(255, 255, 255);
-
-                    ma = ma + 1;
-
-                }
-
-                if (tiempo < TimeSpan.Parse("3.00:00:0.0"))
-                { //cuando la sucursal actual es la sucursal de origen y tiene menos de 3 dias
-                    dgvRepos.Rows[i].Cells[2].Style.BackColor = Color.FromArgb(19, 156, 18);
-                    dgvRepos.Rows[i].Cells[2].Style.ForeColor = Color.FromArgb(255, 255, 255);
-                    dgvRepos.Rows[i].Cells[0].Style.BackColor = Color.FromArgb(19, 156, 18);
-                    dgvRepos.Rows[i].Cells[0].Style.ForeColor = Color.FromArgb(255, 255, 255);
-
-                    me = me + 1;
-                }
-
             }
+
             txbMa.Text = ma.ToString();
             txbMe.Text = me.ToString();
-
         }
+
+
+        private void PintarCelda(DataGridViewCell celda, Color colorFondo)
+        {
+            celda.Style.BackColor = colorFondo;
+            celda.Style.ForeColor = Color.FromArgb(255, 255, 255);
+        }
+
+
+
 
         private async void sd2_Click(object sender, EventArgs e)
         {
@@ -115,9 +119,11 @@ namespace mainVentana.vistaReportes
 
         private void gunaAdvenceButton1_Click(object sender, EventArgs e)
         {
+           
             if (dgvRepos.Rows.Count <= 0)
             {
                 MessageBox.Show("No hay datos para Enviar");
+             
                 return;
             }
 
@@ -125,6 +131,7 @@ namespace mainVentana.vistaReportes
             int filas = dgvRepos.Rows.Count;
             for (int i = 0; i < filas; i++)
             {
+               
                 DateTime fechaactual = DateTime.Now;
                 DateTime fechaent;
                 DateTime dt;
@@ -383,6 +390,23 @@ namespace mainVentana.vistaReportes
                 gunaAdvenceButton1.Visible = false;
             }
            
+        }
+
+        private void numericUpDown1_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (_isBusy == false && numericUpDown1.Value!=1)
+                {
+                    _isBusy = true;
+                    formatodeceldas();
+                    label2.Text = $"+ de {numericUpDown1.Value} dias en almacen:";
+                    label3.Text = $"- de {numericUpDown1.Value} dias en almacen:";
+                    _isBusy = false;
+
+                }
+            }
         }
     }
 }
