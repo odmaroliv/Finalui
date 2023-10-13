@@ -75,7 +75,7 @@ namespace Negocios
                                          repfinalfecha = d.C74.Trim(),
                                          bill = d.C34.Trim(),
                                          billfecha = d.C77.Trim(),
-                                         C42 = d.C42.Trim(),
+                                         C42 = d.C42.Trim(),//desc corta
                                          elaborado = k.C81.Trim(),
                                          coord = c.C3.Trim(),
                                          link = d.C46,

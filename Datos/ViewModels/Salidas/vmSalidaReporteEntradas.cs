@@ -11,6 +11,7 @@ namespace Datos.ViewModels.Salidas
         public string Etiqueta { get; set; }
         public string Entrada { get; set; }
         public string Cliente { get; set;}
-        public string Alias { get; set;}   
+        public string Alias { get; set;}
+        public string Descripcion { get; set; }
     }
 }

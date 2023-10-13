@@ -792,6 +792,8 @@ namespace Negocios.Acceso_Salida
                                                  Entrada = q.C6,
                                                  Alias = k.C112,
                                                  Cliente = k.C32,
+                                                 Descripcion = q.C42,
+                                                 
                                                  //Carga = q.C67,
                                                  //  correo = u.C9,
                                              }).ToList();
@@ -844,6 +846,7 @@ namespace Negocios.Acceso_Salida
                                                  Entrada = q.C6,
                                                  Alias = k.C112,
                                                  Cliente = k.C32,
+                                                 Descripcion = q.C42,
                                                  //  Referencia = q.C54,
 
                                              }).ToList();
