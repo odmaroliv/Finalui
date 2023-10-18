@@ -552,6 +552,7 @@
             this.txbCordUsr.Size = new System.Drawing.Size(49, 29);
             this.txbCordUsr.TabIndex = 165;
             this.txbCordUsr.DoubleClick += new System.EventHandler(this.txbCordUsr_DoubleClick);
+            this.txbCordUsr.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbCordUsr_KeyDown);
             // 
             // label8
             // 

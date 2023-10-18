@@ -202,6 +202,7 @@ namespace mainVentana.VistaInicioCoordinadores
 
         }
         List<CargaCordsGeneral> lssGlobal = null;
+
         private async Task CargaEntradas()
         {
             _isBussy = true;
@@ -209,16 +210,20 @@ namespace mainVentana.VistaInicioCoordinadores
             {
                 ngbdReportes rep = new ngbdReportes();
                 lssGlobal = await rep.CargaEntradasParaAsignarACarga(sucursal, dtFecha1.Value, dtFecha2.Value, datoTipoOper);
+
                 dtgSinAsignar.DataSource = lssGlobal;
+
+             
             }
             catch (Exception)
             {
-
                 throw;
             }
             finally { _isBussy = false; }
-
         }
+
+       
+
 
         private async void rSd_CheckedChanged(object sender, EventArgs e)
         {
@@ -273,22 +278,31 @@ namespace mainVentana.VistaInicioCoordinadores
             }
             if (dataGridView.Columns[e.ColumnIndex].Name == "entrada")
             {
-                string valorEntrada = dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-
-                foreach (DataGridViewRow row in dataGridView.Rows)
+                try
                 {
-                    string bultoEtiqueta = row.Cells["bulto"].Value.ToString(); // reemplaza "bulto" con el nombre de tu columna de bulto
-                    string entradaEtiqueta = row.Cells["entrada"].Value.ToString(); // reemplaza "Entrada" con el nombre de tu columna de entrada
+                    string valorEntrada = dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
 
-                    if (entradaEtiqueta == valorEntrada && !listaBultos.Any(x => x.Etiqueta == bultoEtiqueta))
+                    foreach (DataGridViewRow row in dataGridView.Rows)
                     {
-                        listaBultos.Add(new vmEntradasEnCarga
+                        string bultoEtiqueta = row.Cells["bulto"].Value.ToString(); // reemplaza "bulto" con el nombre de tu columna de bulto
+                        string entradaEtiqueta = row.Cells["entrada"].Value.ToString(); // reemplaza "Entrada" con el nombre de tu columna de entrada
+
+                        if (entradaEtiqueta == valorEntrada && !listaBultos.Any(x => x.Etiqueta == bultoEtiqueta))
                         {
-                            Etiqueta = bultoEtiqueta,
-                            Entrada = entradaEtiqueta
-                        });
+                            listaBultos.Add(new vmEntradasEnCarga
+                            {
+                                Etiqueta = bultoEtiqueta,
+                                Entrada = entradaEtiqueta
+                            });
+                        }
                     }
                 }
+                catch (Exception)
+                {
+
+                   
+                }
+               
 
             }
             dtgAsignados.DataSource = null;
@@ -661,5 +675,14 @@ namespace mainVentana.VistaInicioCoordinadores
             }
         }
 
+        private void btnOrdenaName_Click(object sender, EventArgs e)
+        {
+            if (lssGlobal != null && lssGlobal.Any())
+            {
+                lssGlobal = lssGlobal.OrderBy(c => c.cliente).ToList();
+                dtgSinAsignar.DataSource = null; // Limpiamos el DataSource
+                dtgSinAsignar.DataSource = lssGlobal; // Establecemos la lista ordenada como nuevo DataSource
+            }
+        }
     }
 }

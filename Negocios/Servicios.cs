@@ -82,7 +82,39 @@ namespace Negocios
             }
 
         }
+        public string fechaLapazNoAsyc()//obtiene la paridad diaria del diario oficial de la federacion 
+        {
+            /*try
+            {
+                string urlFecha = "https://worldtimeapi.org/api/timezone/America/Mazatlan";
+                WebRequest oRequest = WebRequest.Create(urlFecha);
+                WebResponse oResponse = oRequest.GetResponse();
+                StreamReader sr = new StreamReader(oResponse.GetResponseStream());
+                return await sr.ReadToEndAsync();
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }*/
+
+            try
+            {
+                string urlFecha = "https://worldtimeapi.org/api/timezone/America/Mazatlan";
+                WebRequest oRequest = WebRequest.Create(urlFecha);
+                WebResponse oResponse = oRequest.GetResponse();
+                StreamReader sr = new StreamReader(oResponse.GetResponseStream());
+                string fecha =  sr.ReadToEnd();
+                return JsonConvert.DeserializeObject<FechaActual>(fecha).datetime.Date.ToString("MM/dd/yyyy");
+            }
+            catch (Exception)
+            {
+                // Si se produce una excepción, establecer la fecha en DateTime.Now
+                DateTime fechaActual = DateTime.Now;
+                return fechaActual.ToString("MM/dd/yyyy");
+            }
+
+        }
         public string retornafechaLapaz()//obtiene la paridad diaria del diario oficial de la federacion 
         {
             string urlFecha = "https://worldtimeapi.org/api/timezone/America/Mazatlan";

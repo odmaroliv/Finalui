@@ -82,6 +82,7 @@ namespace mainVentana.VistaEntrada
                 cmbMoneda.Enabled = false;
                 txbValFact.Enabled = true;
                 txbValArn.Enabled = true;
+              
                 //Especificos.Enabled = false; 
             }
 
@@ -304,7 +305,7 @@ namespace mainVentana.VistaEntrada
             string datoSucIni = sucEntrada.SelectedValue.ToString();
             datoEntrada = recuperUltimaent();
             string datoMoneda = cmbMoneda.GetItemText(cmbMoneda.SelectedItem).ToString();
-            DateTime datoFecha = regresafecha();
+            DateTime datoFecha =  regresafecha();
             
             string datoNoCord = cord.SelectedValue.ToString();
             string datoValArn = txbValArn.Text;
@@ -1005,7 +1006,7 @@ namespace mainVentana.VistaEntrada
             Servicio datos = new Servicio();
             try
             {
-                string fecha1 = datos.retornafechaLapaz();
+                string fecha1 =  datos.fechaLapazNoAsyc();
                 FechaActual lst = JsonConvert.DeserializeObject<FechaActual>(fecha1);
                 DateTime fechaActual = lst.datetime;
                 return fechaActual;
@@ -1560,7 +1561,10 @@ namespace mainVentana.VistaEntrada
                 coreoClientes = await datos.BuscarC11(lblCodCliente.Text);
                 label27.Text = "";
                 label28.Text = "";
-                detalles.Enabled = false;
+              //  detalles.Enabled = false;
+               
+                    detalles.Enabled = true;
+                    detalles.ReadOnly = true;
                 
             }
 
@@ -1774,12 +1778,12 @@ namespace mainVentana.VistaEntrada
             string datoCiudadZip = label25.Text;
             string datoProvedor = proveedor.SelectedValue.ToString();
             string datosAlias = alias.Text;
-
+            DateTime datoFecha = regresafecha();
             AltasBD bd = new AltasBD();
             try
             {
                 bd.UpdateKDM1(datoEntrada, datoSucDestino, datoNoCord, datoNota, datoReferencia, pagado, datoTipoOper, datoValFact, datoValArn, datoSucOrigen, datoNoFlete, datoOrConpra,
-                    datoNuCliente,datoNomCliente,datoCalle,datoColonia,datoCiudadZip,datoProvedor, datosAlias);
+                    datoNuCliente,datoNomCliente,datoCalle,datoColonia,datoCiudadZip,datoProvedor, datosAlias, datoFecha);
                 if (detalles.Enabled == true)
                 {
                     bd.UpdateKDM1Coment(datoEntrada, datoSucOrigen, datoDescripcion);

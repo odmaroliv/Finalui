@@ -84,7 +84,10 @@ namespace Negocios
                                          valArn = k.C16.ToString(),
                                          valFact = k.C102,
                                          tOper = k.C101,
-                                         nFlete = k.C95
+                                         nFlete = k.C95,
+                                         ultimamodifi = k.C67,
+                                         ultimamodififecha = k.C68 != null ? k.C68.ToString() : null
+
 
                                      }).ToListAsync();
                     }
@@ -138,7 +141,10 @@ namespace Negocios
                                          valArn = k.C16.ToString(),
                                          valFact = k.C102,
                                          tOper = k.C101,
-                                         nFlete = k.C95
+                                         nFlete = k.C95,
+                                         ultimamodifi = k.C67,
+                                         ultimamodififecha = k.C68 != null ? k.C68.ToString() : null
+
                                      }).ToListAsync();
                     }
                 }
@@ -191,7 +197,10 @@ namespace Negocios
                                          valArn = k.C16.ToString(),
                                          valFact = k.C102,
                                          tOper = k.C101,
-                                         nFlete = k.C95
+                                         nFlete = k.C95,
+                                         ultimamodifi = k.C67,
+                                         ultimamodififecha = k.C68 != null ? k.C68.ToString() : null
+
                                      }).ToListAsync();
                     }
                 }
@@ -244,7 +253,10 @@ namespace Negocios
                                          valArn = k.C16.ToString(),
                                          valFact = k.C102,
                                          tOper = k.C101,
-                                         nFlete = k.C95
+                                         nFlete = k.C95,
+                                         ultimamodifi = k.C67,
+                                         ultimamodififecha = k.C68 != null ? k.C68.ToString() : null
+
                                      }).ToListAsync();
                     }
                 }
@@ -308,7 +320,10 @@ namespace Negocios
                                              valArn = item.k.C16.ToString(),
                                              valFact = item.k.C102,
                                              tOper = item.k.C101,
-                                             nFlete = item.k.C95
+                                             nFlete = item.k.C95,
+                                             ultimamodifi = item.k.C67,
+                                             ultimamodififecha = item.k.C68 != null ? item.k.C68.ToString() : null
+
                                          };
 
 

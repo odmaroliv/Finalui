@@ -664,6 +664,32 @@ namespace mainVentana.VistaInicioCoordinadores
                 //nt.modoCord = 2;
             }
         }
+        private bool _abriendo = false;
+        private void txbCordUsr_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (_abriendo == true)
+            {
+                return;
+            }
+            try
+            {
+                _abriendo = true;
+                if (e.KeyCode == Keys.ControlKey)
+                {
+                    using (AltaEntrada nt = new AltaEntrada(2))
+                    {
+                        nt.ShowDialog();
+                        //nt.modoCord = 2;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally { _abriendo = false; }
+           
+        }
     }
 
 }

@@ -24,6 +24,7 @@ namespace mainVentana.VistaCreditoCobranza
 {
     public partial class VistaCXC : Form
     {
+        private bool _abriendo = false;
 
         private List<DatosCXC_Result7> _data;
         private int _currentPage = 1;
@@ -527,6 +528,33 @@ namespace mainVentana.VistaCreditoCobranza
             await GeneraExcel();
         }
 
+        private void txbEntradaDetalle_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (_abriendo == true)
+            {
+                return;
+            }
+            try
+            {
+                _abriendo = true;
+                if (e.KeyCode == Keys.ControlKey)
+                {
+                    using (AltaEntrada nt = new AltaEntrada(2))
+                    {
+                        nt.ShowDialog();
+                        //nt.modoCord = 2;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally { _abriendo = false; }
+
+
+        }
+       
        
     }
 }
