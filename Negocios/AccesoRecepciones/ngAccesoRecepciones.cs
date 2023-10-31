@@ -318,47 +318,44 @@ namespace Negocios.AccesoRecepciones
 
             string estatuss = default;
 
-            if (sucori == "TJ")
-            {
-                estatuss = "PRTJ";
-            }
-            else if (sucori == "SD")
-            {
-                estatuss = "PRSD";
-            }
-            else if (sucori == "CSL")
-            {
-                estatuss = "PRCSL";
-            }
+            if (sucori == "TJ") { estatuss = "PRTJ"; }
+            else if (sucori == "SD") { estatuss = "PRSD"; }
+            else if (sucori == "CSL") { estatuss = "PRCSL"; }
+
+            bool isTJ = sucori.Contains("TJ");
 
             try
             {
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
-                    var baseQuery = modelo.KDMENT.AsQueryable().Join(modelo.KDM1,
-                                        q => q.C56,
-                                        k => sucori + "-UD5001-" + k.C6,
-                                        (q, k) => new { Q = q, K = k });
+                    modelo.Database.CommandTimeout = 300;
 
-                    if (sucori.Contains("TJ"))
+                    var baseQuery = modelo.KDMENT.AsNoTracking().AsQueryable().Join(modelo.KDM1,
+                                          q => q.C56,
+                                          k => sucori + "-UD5001-" + k.C6,
+                                          (q, k) => new { Q = q, K = k })
+                                          .Where(x => x.K.C4 == 50 && x.K.C61.Contains(estatuss));
+
+                    if (isTJ)
                     {
-                        baseQuery = baseQuery.Where(x => x.Q.C19.Contains(sucori) && x.K.C61.Contains(estatuss) && x.K.C4 == 50);
+                        baseQuery = baseQuery.Where(x => x.Q.C19.Contains(sucori));
                     }
                     else
                     {
-                        baseQuery = baseQuery.Where(x => x.Q.C18.Contains(sucori) && x.Q.C19.Contains(sucori) && x.K.C1.Contains(sucori) && x.K.C61.Contains(estatuss) && x.K.C4 == 50);
+                        baseQuery = baseQuery.Where(x => x.Q.C18.Contains(sucori) && x.Q.C19.Contains(sucori) && x.K.C1.Contains(sucori));
                     }
 
-                    var documents = await baseQuery.GroupBy(x => sucori.Contains("TJ") ? x.Q.C67 : x.Q.C56)
-                                                    .Select(g => new vmCargaOrdenesDeRecepcion
-                                                    {
-                                                        Documento = g.Key,
-                                                        Referencia = g.Select(x => x.K.C11).FirstOrDefault(),
-                                                        Fecha = g.Select(x => x.K.C9).FirstOrDefault().Value
-                                                    })
-                                                    .OrderByDescending(x => x.Documento)
-                                                    .Take(30)
-                                                    .ToListAsync();
+                    var documents = await baseQuery
+                                          .GroupBy(x => isTJ ? x.Q.C67 : x.Q.C56)
+                                          .Select(g => new vmCargaOrdenesDeRecepcion
+                                          {
+                                              Documento = g.Key,
+                                              Referencia = g.FirstOrDefault().K.C11,
+                                              Fecha = g.FirstOrDefault().K.C9.Value
+                                          })
+                                          .OrderByDescending(x => x.Documento)
+                                          .Take(30)
+                                          .ToListAsync();
 
                     return documents;
                 }
@@ -368,6 +365,7 @@ namespace Negocios.AccesoRecepciones
                 throw;
             }
         }
+
 
         /*public async Task<List<vmCargaOrdenesDeRecepcion>> LlenaDGVRecepcion(string sucori, string doc, int numerosuc)
         {

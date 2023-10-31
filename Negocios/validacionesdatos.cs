@@ -160,6 +160,7 @@ namespace Negocios
                 {
                     using (var modelo = new modelo2Entities())
                     {
+
                         lst = await (from d in modelo.KDMENT
                                      join k in modelo.KDM1 on new { d.C1, d.C6, d.C4 } equals new { k.C1, k.C6, k.C4 }
                                      join c in modelo.KDUV on k.C12 equals c.C2
@@ -216,6 +217,7 @@ namespace Negocios
                 {
                     using (var modelo = new modelo2Entities())
                     {
+                        modelo.Database.CommandTimeout = 300;
                         lst = await (from d in modelo.KDMENT
                                      join k in modelo.KDM1 on new { d.C1, d.C6, d.C4 } equals new { k.C1, k.C6, k.C4 }
                                      join c in modelo.KDUV on k.C12 equals c.C2
@@ -272,6 +274,7 @@ namespace Negocios
                 {
                     using (var modelo = new modelo2Entities())
                     {
+                        modelo.Database.CommandTimeout = 300;
                         // Construcción base de la consulta
                         var baseQuery = from d in modelo.KDMENT
                                         join k in modelo.KDM1 on new { d.C1, d.C6, d.C4 } equals new { k.C1, k.C6, k.C4 }
@@ -344,6 +347,7 @@ namespace Negocios
                 {
                     using (var modelo = new modelo2Entities())
                     {
+                        modelo.Database.CommandTimeout = 300;
                         lst = await (from d in modelo.KDMENT
                                      join k in modelo.KDM1 on new { d.C1, d.C6, d.C4 } equals new { k.C1, k.C6, k.C4 }
                                      join c in modelo.KDUV on k.C12 equals c.C2

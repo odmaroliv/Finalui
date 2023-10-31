@@ -37,6 +37,7 @@ namespace Negocios.Acceso_Salida
                     {
                         using (modelo2Entities modelo = new modelo2Entities())
                         {
+                            modelo.Database.CommandTimeout = 300;
                             lst2.Clear();
 
                             /*
@@ -179,6 +180,7 @@ namespace Negocios.Acceso_Salida
                     {
                         using (modelo2Entities modelo = new modelo2Entities())
                         {
+                            modelo.Database.CommandTimeout = 300;
                             lst2.Clear();
                             string query = "WITH CTE AS (SELECT DISTINCT q.C55 as Documento, MAX(k.C11) as Referencia, MAX(k.C9) as Fecha " +
                                   "FROM KDMENT q " +
