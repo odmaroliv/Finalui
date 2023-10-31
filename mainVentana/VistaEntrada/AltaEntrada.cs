@@ -15,7 +15,6 @@ using Datos.ViewModels.Servicios;
 using Newtonsoft.Json;
 using Negocios.Common.Cache;
 using System.Diagnostics;
-using ImageMagick;
 using Datos.ViewModels.Reportes;
 using System.Net.Http;
 using Datos.ViewModels.InicioFotoVisor;
@@ -660,7 +659,7 @@ namespace mainVentana.VistaEntrada
           await CargaPH();
         }
       
-       
+       /*
         private byte[] RedimencionaIMG(string path)
         {
             byte[] pic;
@@ -673,7 +672,7 @@ namespace mainVentana.VistaEntrada
             return pic;
 
         }
-
+       */
         private void AltaEntrada_KeyPress(object sender, KeyPressEventArgs e)
         {
 

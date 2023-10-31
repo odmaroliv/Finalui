@@ -18,7 +18,6 @@ using ClosedXML.Excel;
 using mainVentana.VistaOrSalida;
 using System.IO;
 using Datos.Datosenti;
-using static Vanara.PInvoke.AdvApi32;
 
 namespace mainVentana.VistaCreditoCobranza
 {

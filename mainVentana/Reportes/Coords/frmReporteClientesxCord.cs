@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Vanara.PInvoke.Kernel32;
+
 
 namespace mainVentana.Reportes.Coords
 {

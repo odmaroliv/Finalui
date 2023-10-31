@@ -18,7 +18,7 @@ using mainVentana.VistaInicioCoordinadores;
 using mainVentana.VistaWMS;
 using mainVentana.Reportes.Cotizaciones.Antiguas;
 using mainVentana.VistaEntrada.Proovedor;
-using Vanara.PInvoke;
+
 using mainVentana.vistaConfiguraciones;
 using mainVentana.VistaBill;
 using mainVentana.Reportes.Salidas;
