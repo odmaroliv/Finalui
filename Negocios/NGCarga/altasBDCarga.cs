@@ -70,7 +70,7 @@ namespace Negocios.NGCarga
 
 
 
-
+        //md
         public void ModificaOrdCarga(string datoSucIni,
             string datoOrdCarga,
             DateTime datoFechaAlta,
