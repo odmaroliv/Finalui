@@ -22,6 +22,9 @@
         <EntityTypeShape EntityType="KEPLER_PRUEBASModel.KDM2" Width="1.5" PointX="7.375" PointY="13.75" />
         <EntityTypeShape EntityType="KEPLER_PRUEBASModel.SqlIov" Width="1.5" PointX="13.375" PointY="3.75" />
         <EntityTypeShape EntityType="KEPLER_PRUEBASModel.KDUDCHOF" Width="1.5" PointX="13.375" PointY="9.75" />
+        <EntityTypeShape EntityType="KEPLER_PRUEBASModel.SubSucursales" Width="1.5" PointX="9.375" PointY="13.75" />
+        <EntityTypeShape EntityType="KEPLER_PRUEBASModel.TiposMovimiento" Width="1.5" PointX="11.375" PointY="13.75" />
+        <EntityTypeShape EntityType="KEPLER_PRUEBASModel.HistorialMovimientos" Width="1.5" PointX="15.375" PointY="0.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

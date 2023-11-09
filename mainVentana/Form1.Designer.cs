@@ -105,11 +105,14 @@ namespace mainVentana
             this.rbtnReportes = new System.Windows.Forms.RibbonButton();
             this.rbReporteSalida = new System.Windows.Forms.RibbonButton();
             this.rbReporteClienteXcord = new System.Windows.Forms.RibbonButton();
+            this.rbRepEntradasSD = new System.Windows.Forms.RibbonButton();
             this.ribbonSeparator9 = new System.Windows.Forms.RibbonSeparator();
             this.rbtnAjustes = new System.Windows.Forms.RibbonButton();
             this.apiConfig = new System.Windows.Forms.RibbonButton();
             this.ribbonButton6 = new System.Windows.Forms.RibbonButton();
             this.rbAgregarUsuario = new System.Windows.Forms.RibbonButton();
+            this.ribbonSeparator10 = new System.Windows.Forms.RibbonSeparator();
+            this.rbtnMovimientos = new System.Windows.Forms.RibbonButton();
             this.rpnlAccesosWeb = new System.Windows.Forms.RibbonPanel();
             this.ribbonItemGroup1 = new System.Windows.Forms.RibbonItemGroup();
             this.lblWha = new System.Windows.Forms.RibbonLabel();
@@ -130,7 +133,7 @@ namespace mainVentana
             this.ribbonButton4 = new System.Windows.Forms.RibbonButton();
             this.ribbonDescriptionMenuItem2 = new System.Windows.Forms.RibbonDescriptionMenuItem();
             this.panelContenedorForm = new System.Windows.Forms.Panel();
-            this.rbRepEntradasSD = new System.Windows.Forms.RibbonButton();
+            this.cbxiIMSD = new System.Windows.Forms.RibbonButton();
             this.panel11.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -433,6 +436,8 @@ namespace mainVentana
             this.rpnlInicio.Items.Add(this.rbtnReportes);
             this.rpnlInicio.Items.Add(this.ribbonSeparator9);
             this.rpnlInicio.Items.Add(this.rbtnAjustes);
+            this.rpnlInicio.Items.Add(this.ribbonSeparator10);
+            this.rpnlInicio.Items.Add(this.rbtnMovimientos);
             this.rpnlInicio.Name = "rpnlInicio";
             this.rpnlInicio.Text = "Pantallas";
             // 
@@ -660,6 +665,16 @@ namespace mainVentana
             this.rbReporteClienteXcord.Text = "Reporte de Clientes x Cord";
             this.rbReporteClienteXcord.Click += new System.EventHandler(this.rbReporteClienteXcord_Click);
             // 
+            // rbRepEntradasSD
+            // 
+            this.rbRepEntradasSD.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.rbRepEntradasSD.Image = ((System.Drawing.Image)(resources.GetObject("rbRepEntradasSD.Image")));
+            this.rbRepEntradasSD.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbRepEntradasSD.LargeImage")));
+            this.rbRepEntradasSD.Name = "rbRepEntradasSD";
+            this.rbRepEntradasSD.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbRepEntradasSD.SmallImage")));
+            this.rbRepEntradasSD.Text = "Entradas Con tiempo";
+            this.rbRepEntradasSD.Click += new System.EventHandler(this.rbRepEntradasSD_Click);
+            // 
             // ribbonSeparator9
             // 
             this.ribbonSeparator9.Name = "ribbonSeparator9";
@@ -704,6 +719,20 @@ namespace mainVentana
             this.rbAgregarUsuario.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbAgregarUsuario.SmallImage")));
             this.rbAgregarUsuario.Text = "Crear Usuarios";
             this.rbAgregarUsuario.Click += new System.EventHandler(this.rbAgregarUsuario_Click);
+            // 
+            // ribbonSeparator10
+            // 
+            this.ribbonSeparator10.Name = "ribbonSeparator10";
+            // 
+            // rbtnMovimientos
+            // 
+            this.rbtnMovimientos.Enabled = false;
+            this.rbtnMovimientos.Image = global::mainVentana.Properties.Resources.almatrans;
+            this.rbtnMovimientos.LargeImage = global::mainVentana.Properties.Resources.almatrans;
+            this.rbtnMovimientos.Name = "rbtnMovimientos";
+            this.rbtnMovimientos.SmallImage = global::mainVentana.Properties.Resources.almatrans;
+            this.rbtnMovimientos.Text = "Movimientos";
+            this.rbtnMovimientos.Click += new System.EventHandler(this.rbtnMovimientos_Click);
             // 
             // rpnlAccesosWeb
             // 
@@ -769,6 +798,7 @@ namespace mainVentana
             this.rcmbSucAct.DropDownItems.Add(this.cbxiSD);
             this.rcmbSucAct.DropDownItems.Add(this.cbxiTJ);
             this.rcmbSucAct.DropDownItems.Add(this.cbxiCSL);
+            this.rcmbSucAct.DropDownItems.Add(this.cbxiIMSD);
             this.rcmbSucAct.Name = "rcmbSucAct";
             this.rcmbSucAct.SelectedIndex = -1;
             this.rcmbSucAct.Text = "Sucursal";
@@ -877,15 +907,14 @@ namespace mainVentana
             this.panelContenedorForm.Size = new System.Drawing.Size(1113, 601);
             this.panelContenedorForm.TabIndex = 2;
             // 
-            // rbRepEntradasSD
+            // cbxiIMSD
             // 
-            this.rbRepEntradasSD.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
-            this.rbRepEntradasSD.Image = ((System.Drawing.Image)(resources.GetObject("rbRepEntradasSD.Image")));
-            this.rbRepEntradasSD.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbRepEntradasSD.LargeImage")));
-            this.rbRepEntradasSD.Name = "rbRepEntradasSD";
-            this.rbRepEntradasSD.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbRepEntradasSD.SmallImage")));
-            this.rbRepEntradasSD.Text = "Entradas Con tiempo";
-            this.rbRepEntradasSD.Click += new System.EventHandler(this.rbRepEntradasSD_Click);
+            this.cbxiIMSD.Image = ((System.Drawing.Image)(resources.GetObject("cbxiIMSD.Image")));
+            this.cbxiIMSD.LargeImage = ((System.Drawing.Image)(resources.GetObject("cbxiIMSD.LargeImage")));
+            this.cbxiIMSD.Name = "cbxiIMSD";
+            this.cbxiIMSD.SmallImage = ((System.Drawing.Image)(resources.GetObject("cbxiIMSD.SmallImage")));
+            this.cbxiIMSD.Text = "IMP-EXP SD CA";
+            this.cbxiIMSD.Value = "IMSD";
             // 
             // Form1
             // 
@@ -998,6 +1027,9 @@ namespace mainVentana
         private RibbonButton rbReporteSalida;
         private RibbonButton rbReporteClienteXcord;
         private RibbonButton rbRepEntradasSD;
+        private RibbonSeparator ribbonSeparator10;
+        private RibbonButton rbtnMovimientos;
+        private RibbonButton cbxiIMSD;
     }
 }
 

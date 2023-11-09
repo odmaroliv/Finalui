@@ -263,6 +263,8 @@ namespace mainVentana.VistaOrdenCarga
             btnImprimir.Visible = true;
         }
         List<vmEntradasEnCarga> entradasTo = new List<vmEntradasEnCarga>();
+        private bool _isCerrar = false;
+
         private void CargaEntradaEnDgv()
         {
             string modo = "";
@@ -394,13 +396,13 @@ namespace mainVentana.VistaOrdenCarga
                 error = 1;
             }
 
-            if (fcha == -1)
+            if (fcha == -1 && _isCerrar ==false)
             {
                 MessageBox.Show("La fecha de cierre no puede ser anterior a la fecha de hoy");
                 dtmFcierre.Focus();
                 error = 1;
             }
-            if (fcha == 0)
+            if (fcha == 0 &&_isCerrar == false)
             {
                 if (dtmHora.Value.Hour <= DateTime.Now.Hour)
                 {
@@ -503,7 +505,7 @@ namespace mainVentana.VistaOrdenCarga
         {
 
 
-
+            _isCerrar = true;
             btnCerrar.Enabled = false;
             loadControl1.Visible = true;
             try
@@ -524,7 +526,9 @@ namespace mainVentana.VistaOrdenCarga
             finally{
                 btnCerrar.Enabled = true;
                 loadControl1.Visible = false;
+                _isCerrar = false;
             }
+
             this.Dispose();
             this.Close();
 
@@ -549,7 +553,7 @@ namespace mainVentana.VistaOrdenCarga
                     string c_cargacompleta = c_so + "-UD4001-" + cargaAModificar;
                     foreach (DataGridViewRow i in dgvEntEnCarga.Rows)
                     {
-                        e_eti = Convert.ToString(i.Cells[1].Value).Trim();
+                        e_eti = Convert.ToString(i.Cells[1].Value)?.Trim();
                         await get.CerrarCargaKdment(e_eti, c_cargacompleta);
                     }
                 }

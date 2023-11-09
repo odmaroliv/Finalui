@@ -23,6 +23,7 @@ using mainVentana.vistaConfiguraciones;
 using mainVentana.VistaBill;
 using mainVentana.Reportes.Salidas;
 using mainVentana.Reportes.Coords;
+using mainVentana.TraspasoMercancias;
 
 namespace mainVentana
 {
@@ -67,10 +68,11 @@ namespace mainVentana
             if (CacheLogin.rol.Trim() == "ADMIN")
             {
                 rbtnAjustes.Enabled = true;
+                rbtnMovimientos.Enabled = true;
             }
             else if (CacheLogin.rol.Trim() == "JALMA")
             {
-
+               
             }
             else if (CacheLogin.rol.Trim() == "OENTRA")
             {
@@ -422,7 +424,6 @@ namespace mainVentana
 
         private void sucursales()
         {
-
         }
 
         private void rcmbSucAct_DropDownItemClicked(object sender, RibbonItemEventArgs e)
@@ -659,6 +660,15 @@ namespace mainVentana
             Evide.FormClosed += frm_FormClosed_Libera;
             Evide.Show();
             
+        }
+
+        private void rbtnMovimientos_Click(object sender, EventArgs e)
+        {
+            MovimientoMercanciaView Evide = new MovimientoMercanciaView();
+            openForms.Add(Evide);
+            Evide.FormClosed += frm_FormClosed_Libera;
+            Evide.Show();
+
         }
     }
 }

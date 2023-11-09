@@ -11,6 +11,6 @@ namespace Datos.ViewModels
         public string c1 { get; set; }
         public string c2 { get; set; }
 
-
+       
     }
 }

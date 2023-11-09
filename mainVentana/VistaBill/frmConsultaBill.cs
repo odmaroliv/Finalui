@@ -2,6 +2,7 @@
 using Datos.ViewModels.Bill;
 using Datos.ViewModels.Reportes.Bill;
 using mainVentana.Reportes.rbill;
+using Negocios;
 using Negocios.NGBill;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Dynamic.Core;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,25 +24,14 @@ namespace mainVentana.VistaBill
         private int _billBuscado;
         private vmInfoBill _infoBill;
         private List<vmBillEntradaDoc> lstEntsBill;
+        private object sucursalBusqueda;
+
         public frmConsultaBill()
         {
             InitializeComponent();
         }
 
-        private void rSd_CheckedChanged(object sender, EventArgs e)
-        {
-
-            var radioButtonMapping = new Dictionary<RadioButton, string>
-                {
-        { rSd, "SD" },
-        { rTj, "TJ" },
-        { rCa, "CSL" },
-
-                 };
-
-            // Encontrar el RadioButton seleccionado y obtener su valor correspondiente
-            sucursal = radioButtonMapping.FirstOrDefault(r => r.Key.Checked).Value;
-        }
+      
 
         private void gunaTextBox2_KeyDown(object sender, KeyEventArgs e)
         {
@@ -68,14 +59,35 @@ namespace mainVentana.VistaBill
 
         }
 
+        private void CargaSOrigen()
+        {
+            Servicios datos = new Servicios();
+            var lst2 = datos.llenaSuc();
 
+
+            // Utilizamos Invoke para actualizar la UI de manera segura desde un hilo secundario
+            this.Invoke(new Action(() =>
+            {
+                cmbSucEntrada.DisplayMember = "C2";
+                cmbSucEntrada.ValueMember = "C1";
+                cmbSucEntrada.DataSource = lst2;
+                foreach (var i in from Sucursales i in cmbSucEntrada.Items select i)
+                {
+                    cmbSucEntrada.SelectedValue = i.c1;
+                    break;
+                }
+
+            }));
+
+            datos = null;
+        }
 
         private async Task buscaEntradasEnBill()
         {
             BusquedaBill bs = new BusquedaBill();
             lstEntsBill = bs.EntradasEnBill(sucursal, _billBuscado);
 
-            if (lstEntsBill.Count >= 1)
+            if (lstEntsBill.Any())
             {
                 string entrada = lstEntsBill[0].etiqueta.Trim();
                 _infoBill = await bs.InfoEnBill(entrada);
@@ -153,6 +165,23 @@ namespace mainVentana.VistaBill
                 LlamaReporte();
             }
            
+        }
+
+        private void cmbSucEntrada_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var name = cmbSucEntrada.SelectedValue?.ToString().Trim();
+
+            if (String.IsNullOrWhiteSpace(name))
+            {
+                MessageBox.Show("La sucursal Destino no puede esta bacia");
+                return;
+            }
+            sucursal = name.Trim();
+        }
+
+        private void frmConsultaBill_Load(object sender, EventArgs e)
+        {
+            Task.Run(() => CargaSOrigen());
         }
     }
 }

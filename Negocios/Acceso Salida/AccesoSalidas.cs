@@ -104,7 +104,7 @@ namespace Negocios.Acceso_Salida
                             string query = "SELECT DISTINCT q.C54 as Documento " +
                                             "FROM KDMENT q " +
                                             // "INNER JOIN KDM1 k ON q.C54 = CONCAT(TRIM({0}),'-UD4001-',k.C6) " +
-                                            "WHERE q.c46 !='BTRACKSALIDA'  AND ( C16 IS NOT NULL AND C16 != '') AND (q.C17 IS NULL or q.C17 = '') AND (q.C18 IS NULL or q.C18 = '') AND q.C54 LIKE '%' + {0} + '%' AND q.C19 LIKE '%' + {0} + '%' AND (q.C20 <> 'F' or q.C20 IS NULL)" +
+                                            "WHERE q.c46 !='BTRACKSALIDA'  AND ( C16 IS NOT NULL AND C16 != '')  AND q.C54 LIKE '%' + {0} + '%' AND q.C19 = {0}  AND (q.C20 <> 'F' or q.C20 IS NULL)" +
                                             "GROUP BY q.C54 " +
                                             "ORDER BY q.C54 DESC ";
 
@@ -153,10 +153,10 @@ namespace Negocios.Acceso_Salida
 
         public async Task<List<vmCargaOrdenesDeSalida>> LlenaDGVSalidas(string sucori, string doc, int numerosuc)
         {
-
+            
             string estatuss = default;
-
-            if (sucori.Trim() == "TJ")
+            estatuss = "PS" + sucori.Trim();
+            /*if (sucori.Trim() == "TJ")
             {
                 estatuss = "PSTJ";
             }
@@ -167,7 +167,7 @@ namespace Negocios.Acceso_Salida
             if (sucori.Trim() == "CSL")
             {
                 estatuss = "PSCSL";
-            }
+            }*/
 
             int cha = sucori.Trim().ToString().Length;
             int cade = "-UD4501-".Length;
@@ -185,7 +185,7 @@ namespace Negocios.Acceso_Salida
                             string query = "WITH CTE AS (SELECT DISTINCT q.C55 as Documento, MAX(k.C11) as Referencia, MAX(k.C9) as Fecha " +
                                   "FROM KDMENT q " +
                                   "INNER JOIN KDM1 k ON q.C55 = CONCAT(TRIM({0}),'-UD4501-',k.C6) " +
-                                  "WHERE q.C19 LIKE '%' + {0} + '%' AND k.C61 = {1} AND k.C4 = {2} AND q.c46 !='BTRACKSALIDA'" +
+                                  "WHERE q.C19 = {0} AND k.C61 = {1} AND k.C4 = {2} AND q.c46 !='BTRACKSALIDA'" +
                                   "GROUP BY q.C55) " +
                                   "SELECT Documento, Referencia, Fecha FROM CTE ORDER BY Documento DESC OFFSET 0 ROWS FETCH NEXT {3} ROWS ONLY";
 
@@ -241,7 +241,7 @@ namespace Negocios.Acceso_Salida
                             string query = "WITH CTE AS (SELECT DISTINCT q.C55 as Documento, MAX(k.C11) as Referencia, MAX(k.C9) as Fecha " +
                                  "FROM KDMENT q " +
                                  "INNER JOIN KDM1 k ON q.C55 = CONCAT(TRIM({0}),'-UD4501-',k.C6) " +
-                                 "WHERE q.C18 = '' AND q.C19 LIKE '%' + {0} + '%' AND k.C61 = {1} AND k.C4 = {2} AND q.c46 !='BTRACKSALIDA' " +
+                                 "WHERE (q.C18 = '' OR q.C18 IS NULL) AND q.C19 = {0} AND k.C61 = {1} AND k.C4 = {2} AND q.c46 !='BTRACKSALIDA' " +
                                  "GROUP BY q.C55) " +
                                  "SELECT Documento, Referencia, Fecha FROM CTE ORDER BY Documento DESC OFFSET 0 ROWS FETCH NEXT {3} ROWS ONLY";
 
@@ -530,7 +530,7 @@ namespace Negocios.Acceso_Salida
                         lst2.Clear();
                         var oDocument = (from q in modelo.KDM1
 
-                                         where q.C6.Contains(salidapausada) && q.C4 == 45 && q.C1.Contains(sOrigen)
+                                         where q.C6.Contains(salidapausada) && q.C4 == 45 && q.C1.Equals(sOrigen)
 
                                          //group q.C54 by q.C54 into g
                                          select new vmGeneralesSalidas

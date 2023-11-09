@@ -172,7 +172,13 @@ namespace Negocios.AccesoRecepciones
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="sOrigen">ESTA ES LA SUCURSAL QUE RECIBE LA SALDA DE OTRA SUCURSAL</param>
+        /// <param name="sEnvia">ESTA ES LA SUCURSAL QUE HIZO LA SALIDA</param>
+        /// <returns></returns>
         public async Task<List<vmEntBySalida>> CargaEntBySalida(string id, string sOrigen, string sEnvia)
         {
             if (sOrigen.Contains("TJ"))
@@ -210,7 +216,7 @@ namespace Negocios.AccesoRecepciones
             else
             {
 
-                if (sEnvia=="SD" && sOrigen=="CSL")
+                if (sEnvia == "SD" && sOrigen == "CSL")
                 {
                     try
                     {
@@ -241,7 +247,7 @@ namespace Negocios.AccesoRecepciones
                         throw;
                     }
                 }
-                else
+                else if (sEnvia == "CSL" && sOrigen == "SD")
                 {
                     try
                     {
@@ -273,9 +279,75 @@ namespace Negocios.AccesoRecepciones
 
                         throw;
                     }
+
+                }
+                else if (sEnvia == "TJ")
+                {
+                    try
+                    {
+                        var lst2 = new List<vmEntBySalida>();
+                        await Task.Run(() =>
+                        {
+                            using (modelo2Entities modelo = new modelo2Entities())
+
+                            {
+                                var lista = from d in modelo.KDMENT
+
+                                            where d.C64.Equals(id) && String.IsNullOrEmpty(d.C34) && /*String.IsNullOrEmpty(d.C18) &&*/ d.C20 != "F"
+                                            select new vmEntBySalida
+                                            {
+                                                Etiqueta = d.C9,
+                                                Salida = d.C64
+
+
+                                            };
+                                lst2 = lista.ToList();
+
+                            }
+                        });
+
+                        return lst2;
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+
+                }
+                else
+                {
+                    try
+                    {
+                        var lst2 = new List<vmEntBySalida>();
+                        await Task.Run(() =>
+                        {
+                            using (modelo2Entities modelo = new modelo2Entities())
+
+                            {
+                                var lista = from d in modelo.KDMENT
+
+                                            where d.C17.Equals(id) && String.IsNullOrEmpty(d.C34) && String.IsNullOrEmpty(d.C67) && d.C20 == "OC"
+                                            select new vmEntBySalida
+                                            {
+                                                Etiqueta = d.C9.Trim(),
+                                                Salida = d.C17.Trim()
+                                            };
+                                lst2 = lista.ToList();
+
+                            }
+                        });
+
+                        return lst2;
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
                 }
 
-                
+
             }
 
         }
@@ -342,7 +414,7 @@ namespace Negocios.AccesoRecepciones
                     }
                     else
                     {
-                        baseQuery = baseQuery.Where(x => x.Q.C18.Contains(sucori) && x.Q.C19.Contains(sucori) && x.K.C1.Contains(sucori));
+                        baseQuery = baseQuery.Where(x => x.Q.C18.Contains(sucori) && x.Q.C19.Contains(sucori) && x.K.C1.Equals(sucori));
                     }
 
                     var documents = await baseQuery
@@ -540,7 +612,7 @@ namespace Negocios.AccesoRecepciones
                         throw;
                     }
                 }
-                else
+                else if (sEnvia == "CSL" && origen == "SD")
                 {
                     try
                     {
@@ -577,7 +649,44 @@ namespace Negocios.AccesoRecepciones
                         throw;
                     }
                 }
-               
+                else 
+                {
+                    try
+                    {
+                        var lst2 = new List<vmCargaOrdenesDeRecepcion>();
+                        await Task.Run(() =>
+                        {
+                            using (modelo2Entities modelo = new modelo2Entities())
+                            {
+                                lst2.Clear();
+                                var oDocument = (from q in modelo.KDMENT
+                                                 join k in modelo.KDM1 on new { q.C1, q.C4, q.C6 } equals new { k.C1, k.C4, k.C6 }
+                                                 join a in modelo.KDUV on k.C12 equals a.C2
+                                                 join u in modelo.KDUSUARIOS on a.C22 equals u.C1
+                                                 where q.C56.Contains(recepcion)
+
+                                                 //group k by q.C55 into g
+
+
+                                                 select new vmCargaOrdenesDeRecepcion
+                                                 {
+                                                     Documento = q.C9,
+                                                     Referencia = q.C17,
+                                                     correo = u.C9,
+                                                 }).ToList();
+
+                                lst2 = oDocument;
+                            }
+                        });
+                        return lst2;
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+                }
+
 
             }
 
@@ -659,7 +768,7 @@ namespace Negocios.AccesoRecepciones
                         lst2.Clear();
                         var oDocument = (from q in modelo.KDM1
 
-                                         where q.C6.Contains(salidapausada) && q.C4 == 50 && q.C1.Contains(sOrigen)
+                                         where q.C6.Contains(salidapausada) && q.C4 == 50 && q.C1.Equals(sOrigen)
 
                                          //group q.C54 by q.C54 into g
                                          select new vmGeneralesSalidas
@@ -684,12 +793,12 @@ namespace Negocios.AccesoRecepciones
         }
 
 
-        public KDMENT VerificaEntrada(string recepausada)
+        public vmSucursalesRecepcion VerificaEntrada(string recepausada)
         {
 
             try
             {
-                var lst2 = new KDMENT();
+                var lst2 = new vmSucursalesRecepcion();
                
                     using (modelo2Entities modelo = new modelo2Entities())
                     {
@@ -699,7 +808,15 @@ namespace Negocios.AccesoRecepciones
                                          where q.C9.Contains(recepausada)
 
                                          //group q.C54 by q.C54 into g
-                                         select q).FirstOrDefault();
+                                         select new vmSucursalesRecepcion
+                                         {
+                                             SucActual = q.C19,
+                                             SucFinal = q.C10,
+                                             SucInicial = q.C1,
+                                         }
+
+
+                                         ).FirstOrDefault();
 
                         lst2 = oDocument;
                     }

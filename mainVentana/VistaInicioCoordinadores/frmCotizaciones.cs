@@ -1,4 +1,5 @@
-﻿using Datos.ViewModels.Coord;
+﻿using Datos.ViewModels;
+using Datos.ViewModels.Coord;
 using Datos.ViewModels.Entradas;
 using Datos.ViewModels.Servicios;
 using mainVentana.VistaBill;
@@ -26,6 +27,7 @@ namespace mainVentana.VistaInicioCoordinadores
     {
 
         private bool _tipoImpresion = false;
+        private string sucursalBusqueda;
         public string sGlobal;
         private List<vmEntCordsCot> listaEntsEnCotizacion = new List<vmEntCordsCot>();
         private string nCotizacionG = default;
@@ -72,22 +74,11 @@ namespace mainVentana.VistaInicioCoordinadores
         DataTable DatosDataTable = null;
         public async Task<bool> CargaControles()
         {
-            string sucursal = default;
-           
+            string sucursal = sucursalBusqueda;
+
             List<vmEntCordsCot> dtgDatos = new List<vmEntCordsCot>();
 
-            if (rSd.Checked == true)
-            {
-                sucursal = "SD";
-            }
-            if (rTj.Checked == true)
-            {
-                sucursal = "TJ";
-            }
-            if (rCa.Checked == true)
-            {
-                sucursal = "CSL";
-            }
+           
 
             List<vmEntCordsCot> lss = new List<vmEntCordsCot>();
             lss.Clear();
@@ -150,6 +141,17 @@ namespace mainVentana.VistaInicioCoordinadores
 
 
         }
+        private void EstableceSucursal()
+        {
+            var name = cmbSucEntrada.SelectedValue?.ToString().Trim();
+
+            if (String.IsNullOrWhiteSpace(name))
+            {
+                MessageBox.Show("La sucursal Destino no puede esta bacia");
+                return;
+            }
+            sucursalBusqueda = name.Trim();
+        }
         public async Task ejecutaeveto2()
         {
             dtgEnts.DataSource = null;
@@ -161,6 +163,7 @@ namespace mainVentana.VistaInicioCoordinadores
         private async void gunaTileButton2_Click(object sender, EventArgs e)
         {
             _isBussy = true;
+            EstableceSucursal();
             try
             {
                 gunaTileButton2.Enabled = false;
@@ -458,7 +461,7 @@ namespace mainVentana.VistaInicioCoordinadores
             {
                 vParidad = String.IsNullOrWhiteSpace(txbParidad.Text) ? 0 : decimal.Parse(txbParidad.Text.Trim());
                 vParidad = decimal.Truncate(vParidad * 100) / 100;
-                
+
             }
             catch (Exception)
             {
@@ -474,9 +477,31 @@ namespace mainVentana.VistaInicioCoordinadores
                     txbParidad.Enabled = true;
                 }
             }
+             Task.Run(() => CargaSOrigen()); 
 
 
+        }
+        private void CargaSOrigen()
+        {
+            Servicios datos = new Servicios();
+            var lst2 = datos.llenaSuc();
 
+
+            // Utilizamos Invoke para actualizar la UI de manera segura desde un hilo secundario
+            this.Invoke(new Action(() =>
+            {
+                cmbSucEntrada.DisplayMember = "C2";
+                cmbSucEntrada.ValueMember = "C1";
+                cmbSucEntrada.DataSource = lst2;
+                foreach (var i in from Sucursales i in cmbSucEntrada.Items select i)
+                {
+                    cmbSucEntrada.SelectedValue = i.c1;
+                    break;
+                }
+
+            }));
+
+            datos = null;
         }
         private void LlenaTipoDePago()
         {

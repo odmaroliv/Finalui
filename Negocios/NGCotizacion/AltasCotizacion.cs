@@ -1,5 +1,6 @@
 ﻿using Datos.Datosenti;
 using Datos.ViewModels.Coord;
+using Negocios.LOGs;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
@@ -71,6 +72,7 @@ namespace Negocios.NGCotizacion
                 try
                 {
                     modelo.SaveChanges();
+
                     return true;
                 }
                 catch (Exception ex)
@@ -166,13 +168,14 @@ namespace Negocios.NGCotizacion
                     foreach (var i in lst)
                     {
                         var d = (from fd in modelo.KDM1
-                                 where fd.C1.Contains(i.Origen) && fd.C4 == 35 && fd.C6.Contains(i.entrada)
+                                 where fd.C1.Equals(i.Origen) && fd.C4 == 35 && fd.C6.Contains(i.entrada)
                                  select fd).First();
 
                         d.C115 = nCot;
                         kd.Add(d);
 
                     }
+                    
 
 
                     try
@@ -185,7 +188,10 @@ namespace Negocios.NGCotizacion
                         Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "ModificaKDM1Cotiza(), AltaCotización()");
                         throw;
                     }
-
+                    foreach (var i in lst)
+                    {
+                        GeneralMovimientosLog.AddMovimientoConParametrosDirectos(i.entrada?.Trim(), 35, "", 34, nCot, i.Origen?.Trim(), "", "", "Cotiza","","Se agrega a la cotizacion No. "+nCot,"","",nCot,Convert.ToDecimal(i.valArn),Convert.ToDecimal(i.valFact));
+                    }
                 }
             });
             return bandera;
@@ -200,7 +206,7 @@ namespace Negocios.NGCotizacion
                 try
                 {
                     var d = (from q in modelo.KDM1
-                             where q.C1.Contains(SucCoti) && q.C6.Contains(NoCotizacion) && q.C4 == 34
+                             where q.C1.Equals(SucCoti) && q.C6.Contains(NoCotizacion) && q.C4 == 34
                              select q).First();
 
 
@@ -230,7 +236,7 @@ namespace Negocios.NGCotizacion
                     foreach (var i in lst)
                     {
                         var d = (from fd in modelo.KDM1
-                                 where fd.C1.Contains(i.sucursal) && fd.C4 == 35 && fd.C6.Contains(i.Entrada)
+                                 where fd.C1.Equals(i.sucursal) && fd.C4 == 35 && fd.C6.Contains(i.Entrada)
                                  select fd).First();
 
                         d.C115 = "";
@@ -247,6 +253,13 @@ namespace Negocios.NGCotizacion
                     {
                         throw;
                     }
+
+                    foreach (var i in lst)
+                    {
+                        GeneralMovimientosLog.AddMovimientoConParametrosDirectos(i.Entrada?.Trim(), 35, "", 34, "", i.sucursal?.Trim(), "", "", "Baja", "", "Se baja de cotizacion");
+
+                    }
+
                 }
             });
         }
@@ -259,7 +272,7 @@ namespace Negocios.NGCotizacion
                 try
                 {
                     var d = (from q in modelo.KDM1
-                             where q.C1.Contains(SucCoti) && q.C6.Contains(NoCotizacion) && q.C4 == 34
+                             where q.C1.Equals(SucCoti) && q.C6.Contains(NoCotizacion) && q.C4 == 34
                              select q).First();
 
 

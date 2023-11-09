@@ -1,5 +1,6 @@
 ﻿using ClosedXML.Excel;
 using Datos.Datosenti;
+using Datos.ViewModels;
 using Datos.ViewModels.hooks;
 using Datos.ViewModels.Salidas;
 using Datos.ViewModels.Servicios;
@@ -10,6 +11,7 @@ using mainVentana.VistaEntrada;
 using Microsoft.Win32;
 using Negocios;
 using Negocios.Acceso_Salida;
+using Negocios.LOGs;
 using Negocios.NGCotizacion;
 using Negocios.WebHooks;
 using OfficeOpenXml;
@@ -757,7 +759,7 @@ namespace mainVentana.VistaOrSalida
             if (index == -1)
             {
                 RepSonido(0);
-                if (rbOTJ.Checked==false)
+                if (sDestino != "TJ")
                 {
                     if (MessageBox.Show("Se agregara la etiqueta: \n" + etiqueta + "\nVolver a preguntar?", "Cuidado", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
@@ -766,11 +768,14 @@ namespace mainVentana.VistaOrSalida
                         {
                             return;
                         }
-
                     }
                 }
                
                 AltKDMENT(etiqueta);
+                GeneralMovimientosLog.AddMovimientoConParametrosDirectos(GeneralMovimientosLog.ObtenerFolioDesdeEtiqueta(etiqueta), 35, etiqueta, 45, ulDatoSolo, sOrigen, sDestino,"", "Scaneo","","Se agrega a la salida "+ulDatoSolo);
+
+
+
 
                 var cO = sls.ObtieCorreo(etiqueta, sOrigen.Trim());
                 var obsRow = new DataGridViewRow();
@@ -784,6 +789,7 @@ namespace mainVentana.VistaOrSalida
             else
             {
                 AltKDMENT(etiqueta);
+                GeneralMovimientosLog.AddMovimientoConParametrosDirectos(GeneralMovimientosLog.ObtenerFolioDesdeEtiqueta(etiqueta), 35, etiqueta,45, ulDatoSolo, sOrigen,sDestino,"","Scaneo","", "Se agrega a la salida " + ulDatoSolo);
                 RepSonido(1);
 
 
@@ -826,24 +832,26 @@ namespace mainVentana.VistaOrSalida
 
 
         }
+        
+
         private async void CreaSalidaEnKDM1()
         {
 
             string estatuss = default;
-
-            if (sOrigen.Trim() == "TJ")
-            {
-                estatuss = "PSTJ";
-            }
-            if (sOrigen.Trim() == "SD")
-            {
-                estatuss = "PSSD";
-            }
-            if (sOrigen.Trim() == "CSL")
-            {
-                estatuss = "PSCSL";
-            }
-
+            estatuss = "PS" + sOrigen.Trim();
+            /* if (sOrigen.Trim() == "TJ")
+             {
+                 estatuss = "PSTJ";
+             }
+             if (sOrigen.Trim() == "SD")
+             {
+                 estatuss = "PSSD";
+             }
+             if (sOrigen.Trim() == "CSL")
+             {
+                 estatuss = "PSCSL";
+             }
+            */
             groupBox1.Enabled = false;
             groupBox2.Enabled = false;
             BuscaUltimaSalidaFull(sOrigen);
@@ -926,38 +934,24 @@ namespace mainVentana.VistaOrSalida
                 await at.TerminaSalida(ulDatoSolo,sOrigen);
             }
         }
-             
-
-           
 
 
-        
+
+
+
+
 
 
 
         private async void AltKDMENT(string etiqueta)
         {
-            if (sDestino == "TJ" && sOrigen == "SD")
-            {
-                await ModificaKDMENTsd(etiqueta);
-            }
-
-            if (sDestino == "CSL" && sOrigen == "SD")
-            {
-                await ModificaKDMENTsd(etiqueta);
-            }
-
-
-            if (sDestino == "SD" && sOrigen == "TJ")
+            // Casos especiales donde se ejecuta ModificaKDMENTtj
+            if ((sDestino == "SD" && sOrigen == "TJ") || (sDestino == "CSL" && sOrigen == "TJ"))
             {
                 await ModificaKDMENTtj(etiqueta);
             }
-            if (sDestino == "CSL" && sOrigen == "TJ")
-            {
-
-                await ModificaKDMENTtj(etiqueta);
-            }
-            if ((sDestino == "TJ" || sDestino == "SD") && sOrigen == "CSL")
+            // Todos los demás casos ejecutan ModificaKDMENTsd
+            else
             {
                 await ModificaKDMENTsd(etiqueta);
             }
@@ -1153,7 +1147,8 @@ namespace mainVentana.VistaOrSalida
                  CreaSalidaEnKDM1();
                 btnIniciaSalida.Enabled = false;
                 btnImportarExcel.Enabled = false;
-                bntSalidaPausa.Enabled = false;
+                 bntSalidaPausa.Enabled = false;
+                    gbxDetalles.Enabled = false;
                 }
                 catch (Exception)
                 {
@@ -1266,7 +1261,7 @@ namespace mainVentana.VistaOrSalida
             var gn = await sls.LlenaGeneralesSalida(ulDatoSolo,sOrigen);
 
             foreach (var i in gn)
-            {
+            {/*
 
                 if (i.sDestino.Trim().Contains("TJ"))
                 {
@@ -1279,27 +1274,55 @@ namespace mainVentana.VistaOrSalida
                 if (i.sDestino.Trim().Contains("SD"))
                 {
                     rbDSD.Checked = true;
-                }
+                }*/
 
 
-                if (i.sOrigen.Trim().Contains("TJ"))
-                {
-                    rbOTJ.Checked = true;
-                }
-                if (i.sOrigen.Trim().Contains("CSL"))
-                {
-                    rbOCSL.Checked = true;
-                }
-                if (i.sOrigen.Trim().Contains("SD"))
-                {
-                    rbOSD.Checked = true;
-                }
+                /* if (i.sOrigen.Trim().Contains("TJ"))
+                 {
+                     rbOTJ.Checked = true;
+                 }
+                 if (i.sOrigen.Trim().Contains("CSL"))
+                 {
+                     rbOCSL.Checked = true;
+                 }
+                 if (i.sOrigen.Trim().Contains("SD"))
+                 {
+                     rbOSD.Checked = true;
+                 }
+                */
 
-                
+                cmbSucOrigen.SelectedIndexChanged -= cmbSucOrigen_SelectedIndexChanged;
+                sucDestino.SelectedIndexChanged -= sucDestino_SelectedIndexChanged;
+
+                foreach (Sucursales item in cmbSucOrigen.Items)
+                {
+                    if (item.c1.Trim() == i.sOrigen.Trim())
+                    {
+                        cmbSucOrigen.SelectedValue = item.c1;
+                        break;
+
+                    }
+
+                }
+          
+                foreach (Sucursales item in sucDestino.Items)
+                {
+                    if (item.c1.Trim() == i.sDestino.Trim())
+                    {
+                        sucDestino.SelectedValue = item.c1;
+                        break;
+
+                    }
+
+                }
+                cmbSucOrigen.SelectedIndexChanged += cmbSucOrigen_SelectedIndexChanged;
+                sucDestino.SelectedIndexChanged += sucDestino_SelectedIndexChanged;
+
                 txbTransportista.Text = i.Transportista.ToString();
                 txbReferencia.Text = i.Referencia.ToString();
-                txbPlacas.Text = i.Placas.ToString(); 
+                txbPlacas.Text = i.Placas.ToString();
                 txbChofer.Text = i.Chofer.ToString();
+                this.Refresh();
 
             }
 
@@ -1492,8 +1515,36 @@ namespace mainVentana.VistaOrSalida
 
         private void frmOrdSalida_Load(object sender, EventArgs e)
         {
-
+            
+            Task.Run(() => { CargaSOrigen(); });
+           
         }
+        private void CargaSOrigen()
+        {
+            Servicios datos = new Servicios();
+            var lst2 = datos.llenaSuc();
+            var lst2_2 = new List<Sucursales>(lst2);
+
+            // Utilizamos Invoke para actualizar la UI de manera segura desde un hilo secundario
+            this.Invoke(new Action(() =>
+            {
+                cmbSucOrigen.DisplayMember = "C2";
+                cmbSucOrigen.ValueMember = "C1";
+                cmbSucOrigen.DataSource = lst2;
+                foreach (var i in from Sucursales i in cmbSucOrigen.Items select i)
+                {
+                    cmbSucOrigen.SelectedValue = i.c1;
+                    break;
+                }
+
+                sucDestino.DisplayMember = "C2";
+                sucDestino.ValueMember = "C1";
+                sucDestino.DataSource = lst2_2;
+            }));
+
+            datos = null;
+        }
+
 
         private void frmOrdSalida_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -1504,6 +1555,58 @@ namespace mainVentana.VistaOrSalida
             }
             alertaNoCargaPlayer.Dispose();
             alertaBienPlayer.Dispose();
+        }
+
+        private void cmbSucOrigen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           var name = cmbSucOrigen.SelectedValue?.ToString().Trim();
+
+            if (String.IsNullOrWhiteSpace(name))
+            {
+                MessageBox.Show("La sucursal Destino no puede esta bacia");
+                return;
+            }
+            sOrigen = name.Trim();
+            if (sOrigen == "TJ")
+            {
+                
+                lblSalida.ForeColor = Color.Blue;
+
+            }
+            if (sOrigen == "CSL")
+            {
+                
+                lblSalida.ForeColor = Color.DarkViolet;
+
+            }
+            if (sOrigen == "SD")
+            {
+               
+                lblSalida.ForeColor = Color.Red;
+
+            }
+            if (sOrigen == "IMSD")
+            {
+
+                lblSalida.ForeColor = Color.Yellow;
+
+            }
+            iniciodesalida = 0;
+            BuscaUltimaSalida(sOrigen);
+        }
+
+        private void sucDestino_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+             var name = sucDestino.SelectedValue?.ToString().Trim();
+
+            if (String.IsNullOrWhiteSpace(name))
+            {
+                MessageBox.Show("La sucursal Destino no puede esta bacia");
+                return;
+            }
+            sDestino = name.Trim();
+            
         }
     }
 

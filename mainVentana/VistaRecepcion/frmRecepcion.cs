@@ -20,6 +20,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DocumentFormat.OpenXml.Presentation;
+using Negocios.LOGs;
 
 namespace mainVentana.VistaRecepcion
 {
@@ -32,7 +34,8 @@ namespace mainVentana.VistaRecepcion
         string ulSalidaPSolo = "";
         string ulDato = "";
         string ulDatoSolo = "";
-        string sRecepcion = "";
+        string sRecepcion = ""; // SUCURSAL QUE DA LA RECE
+        string sEnvia = ""; //SUCURSAL QUE ENVIA LA SALIDA
         int iniciodesalida = 0;
 
 
@@ -200,7 +203,7 @@ namespace mainVentana.VistaRecepcion
             Negocios.AccesoRecepciones.ngAccesoRecepciones datos = new Negocios.AccesoRecepciones.ngAccesoRecepciones();
 
             dgvOrdenesEntrada.DataSource = null;
-           string  sEnvia = cmbSucOrigen.SelectedValue.ToString().Trim();
+          // string  sEnvia = cmbSucOrigen.SelectedValue.ToString().Trim();
 
 
             lista.Clear();
@@ -363,22 +366,44 @@ namespace mainVentana.VistaRecepcion
 
         private async void AltKDMENT(string eti)
         {
-            if (sRecepcion == "SD")
+            /* if (sRecepcion == "SD")
+             {
+                 await ModificaKDMENTsd(sRecepcion, eti);
+             }
+
+             if (sRecepcion == "CSL")
+             {
+                 await ModificaKDMENTsd(sRecepcion, eti);
+             }
+
+
+             if (sRecepcion == "TJ")
+             {
+                 await ModificaKDMENTtj(sRecepcion, eti);
+             }
+             if (sRecepcion == "IMSD")
+             {
+                 await ModificaKDMENTsd(sRecepcion, eti);
+             }
+            */
+            // Primero, determina si la entrada es final o transitoria.
+            string tipoRecepcion = VerificaEntrada(eti, sRecepcion);
+
+            // Luego, según sea el tipo de recepción, llama al método apropiado.
+            if (tipoRecepcion == "F")
             {
-                await ModificaKDMENTsd(sRecepcion, eti);
+                // Si la recepción es final, llama a ModificaKDMENTsd
+                await ModificaKDMENTsd(sRecepcion, eti, "F");
             }
-
-            if (sRecepcion == "CSL")
+            else if (tipoRecepcion == "R")
             {
-                await ModificaKDMENTsd(sRecepcion, eti);
+                // Si la recepción es transitoria, llama a ModificaKDMENTtj
+                await ModificaKDMENTtj(sRecepcion, eti,"R");
             }
-
-
-            if (sRecepcion == "TJ")
+            else
             {
-                await ModificaKDMENTtj(sRecepcion, eti);
+                //MessageBox.Show("Error");
             }
-
         }
 
         private void txbEscaneo_Leave(object sender, EventArgs e)
@@ -468,6 +493,7 @@ namespace mainVentana.VistaRecepcion
         private void ProcesarEtiquetaEncontrada(string etiqueta, int fila)
         {
             AltKDMENT(etiqueta);
+            GeneralMovimientosLog.AddMovimientoConParametrosDirectos(GeneralMovimientosLog.ObtenerFolioDesdeEtiqueta(etiqueta), 35, etiqueta, 50, ulDatoSolo, sRecepcion, sEnvia,"", "Scaneo", "","Se agrega a la recepcion " + ulDatoSolo);
             var correoOrden = new Negocios.Acceso_Salida.AccesoSalidas().ObtieCorreo(etiqueta);
             lista.RemoveAt(lista.FindIndex(a => a.Etiqueta.Trim().Equals(etiqueta)));
             dgvOrdenesEntrada.DataSource = null;
@@ -485,6 +511,8 @@ namespace mainVentana.VistaRecepcion
         private void ProcesarEtiquetaNoEncontrada(string etiqueta)
         {
             AltKDMENT(etiqueta);
+            GeneralMovimientosLog.AddMovimientoConParametrosDirectos(GeneralMovimientosLog.ObtenerFolioDesdeEtiqueta(etiqueta), 35, etiqueta, 50, ulDatoSolo, sRecepcion, sEnvia,"", "Scaneo","", "Se agrega a la recepcion " + ulDatoSolo);
+
             var correoOrden = new Negocios.Acceso_Salida.AccesoSalidas().ObtieCorreo(etiqueta);
             DataGridViewRow rowObser = new DataGridViewRow();
             rowObser.CreateCells(dgvObser);
@@ -510,14 +538,14 @@ namespace mainVentana.VistaRecepcion
         }
 
         //Sucursal ORIGEN TIJUANA REPCEPCION
-        private async Task<bool> ModificaKDMENTtj(string sucOrigen, string etiqueta)
+        private async Task<bool> ModificaKDMENTtj(string sucOrigen, string etiqueta, string tipo)
         {
 
             string uld = (string)ulDato.Trim().Clone();
             //string sc = sDestino == "CSL" ? "PR" : "OC";
 
             //string eti = String.IsNullOrWhiteSpace(txbEscaneo.Text) ? "000000" : txbEscaneo.Text.ToString().ToUpper().Trim();
-            string statusRecep =  VerificaEntrada(etiqueta, sucOrigen);
+            string statusRecep = tipo; // VerificaEntrada(etiqueta, sucOrigen);
             await Task.Run(() =>
             {
                 using (modelo2Entities modelo = new modelo2Entities())
@@ -591,9 +619,9 @@ namespace mainVentana.VistaRecepcion
             var fila = dt.VerificaEntrada(etiqueta);
 
             string valor = default;
-            if (fila.C10 != null)
+            if (fila != null)
             {
-                if (fila.C10.Trim().Contains(sucActual.Trim()))
+                if (fila.SucFinal.Trim().Contains(sucActual.Trim()))
                 {
                     valor = "F";
                 }
@@ -611,11 +639,11 @@ namespace mainVentana.VistaRecepcion
         }
 
         //sucursa recibe san diego o cabo
-        private async Task<bool> ModificaKDMENTsd(string sucOrigen, string etiqueta)
+        private async Task<bool> ModificaKDMENTsd(string sucOrigen, string etiqueta, string tipo)
         {
 
-           // string eti = String.IsNullOrWhiteSpace(txbEscaneo.Text) ? "000000" : txbEscaneo.Text.ToString().ToUpper().Trim();
-            string statusRecep =  VerificaEntrada(etiqueta, sucOrigen);
+            // string eti = String.IsNullOrWhiteSpace(txbEscaneo.Text) ? "000000" : txbEscaneo.Text.ToString().ToUpper().Trim();
+            string statusRecep =  tipo;//VerificaEntrada(etiqueta, sucOrigen);
             // string sc = sDestino == "CSL" ? "PR" : "OC";
             await Task.Run(() =>
             {
@@ -694,6 +722,9 @@ namespace mainVentana.VistaRecepcion
                 btnIniciaSalida.Enabled = false;
                 btnImportarExcel.Enabled = false;
                 bntSalidaPausa.Enabled = false;
+                gbxDatosGenerales.Enabled = false;
+                cmbSucActual.Enabled = false;
+                gbxDetalles.Enabled = false;
             }
         }
 
@@ -812,9 +843,12 @@ namespace mainVentana.VistaRecepcion
             await CargaGenerales();
             btnIniciaSalida.Enabled = false;
             groupBox1.Enabled = false;
-
+            gbxDatosGenerales.Enabled = false;
+            gbxDetalles.Enabled = false;
             btnImportarExcel.Enabled = false;
             cmbSucOrigen.Enabled = false;
+            cmbSucActual.Enabled = false;
+            txbReferencia.Enabled = false;
 
         }
         private async Task CargaGenerales()
@@ -827,18 +861,18 @@ namespace mainVentana.VistaRecepcion
                 foreach (var i in gn)
                 {
 
+                
+                    cmbSucActual.SelectedIndexChanged -= cmbSucActual_SelectedIndexChanged;
+                    cmbSucOrigen.SelectedIndexChanged -= cmbSucOrigen_SelectedIndexChanged;
+                    foreach (Sucursales item in cmbSucActual.Items)
+                    {
+                        if (item.c1.Trim() == i.sOrigen.Trim())
+                        {
+                            cmbSucActual.SelectedValue = item.c1;
+                            break;
 
-                    if (i.sOrigen.Trim().Contains("TJ"))
-                    {
-                        rbOTJ.Checked = true;
-                    }
-                    if (i.sOrigen.Trim().Contains("CSL"))
-                    {
-                        rbOCSL.Checked = true;
-                    }
-                    if (i.sOrigen.Trim().Contains("SD"))
-                    {
-                        rbOSD.Checked = true;
+                        }
+
                     }
 
                     foreach (Sucursales r in cmbSucOrigen.Items)
@@ -852,7 +886,8 @@ namespace mainVentana.VistaRecepcion
 
                     }
 
-
+                    cmbSucOrigen.SelectedIndexChanged += cmbSucOrigen_SelectedIndexChanged;
+                    cmbSucActual.SelectedIndexChanged += cmbSucActual_SelectedIndexChanged;
                     txbReferencia.Text = i.Referencia.ToString();
                     txbNotas.Text = i.Chofer.ToString();
 
@@ -1163,16 +1198,28 @@ namespace mainVentana.VistaRecepcion
             cmbSucOrigen.DisplayMember = "C2";
             cmbSucOrigen.ValueMember = "C1";
             cmbSucOrigen.DataSource = lst2;
-            foreach (var i in from Sucursales i in cmbSucOrigen.Items
+
+
+            cmbSucActual.DisplayMember = "C2";
+            cmbSucActual.ValueMember = "C1";
+            cmbSucActual.DataSource = lst2_2;
+
+            foreach (var i in from Sucursales i in cmbSucActual.Items
 
                               select i)
             {
-                cmbSucOrigen.SelectedValue = i.c1;
+                cmbSucActual.SelectedValue = i.c1;
                 break;
             }
+
+
+
+
             datos = null;
+
+
         }
-      
+
 
         private void Notifica(int nttipo, string nsalida)
         {
@@ -1204,7 +1251,55 @@ namespace mainVentana.VistaRecepcion
 
         }
 
+        private void cmbSucActual_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var name = cmbSucActual.SelectedValue?.ToString().Trim();
 
+            if (String.IsNullOrWhiteSpace(name))
+            {
+                MessageBox.Show("La sucursal Destino no puede esta bacia");
+                return;
+            }
+            sRecepcion = name.Trim();
+            if (sRecepcion == "TJ")
+            {
 
+                lblSalida.ForeColor = Color.Blue;
+
+            }
+            if (sRecepcion == "CSL")
+            {
+
+                lblSalida.ForeColor = Color.DarkViolet;
+
+            }
+            if (sRecepcion == "SD")
+            {
+
+                lblSalida.ForeColor = Color.Red;
+
+            }
+            if (sRecepcion == "IMSD")
+            {
+
+                lblSalida.ForeColor = Color.Yellow;
+
+            }
+            iniciodesalida = 0;
+            BuscaUltimaSalida(sRecepcion);
+        }
+
+        private void cmbSucOrigen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var name = cmbSucOrigen.SelectedValue?.ToString().Trim();
+
+            if (String.IsNullOrWhiteSpace(name))
+            {
+                MessageBox.Show("La sucursal Destino no puede esta bacia");
+                return;
+            }
+            sEnvia = name.Trim();
+             
+        }
     }
 }

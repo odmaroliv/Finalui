@@ -94,7 +94,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(800, 616);
+            this.panel2.Size = new System.Drawing.Size(934, 671);
             this.panel2.TabIndex = 2;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
@@ -103,7 +103,7 @@
             this.label12.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(650, 33);
+            this.label12.Location = new System.Drawing.Point(784, 33);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(57, 16);
             this.label12.TabIndex = 29;
@@ -120,7 +120,7 @@
             this.hopeSwitch1.BaseOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
             this.hopeSwitch1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.hopeSwitch1.ForeColor = System.Drawing.Color.White;
-            this.hopeSwitch1.Location = new System.Drawing.Point(722, 32);
+            this.hopeSwitch1.Location = new System.Drawing.Point(856, 32);
             this.hopeSwitch1.Name = "hopeSwitch1";
             this.hopeSwitch1.Size = new System.Drawing.Size(40, 20);
             this.hopeSwitch1.TabIndex = 30;
@@ -131,7 +131,7 @@
             // loadControl1
             // 
             this.loadControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.loadControl1.Location = new System.Drawing.Point(293, 528);
+            this.loadControl1.Location = new System.Drawing.Point(293, 583);
             this.loadControl1.Margin = new System.Windows.Forms.Padding(2);
             this.loadControl1.Name = "loadControl1";
             this.loadControl1.Size = new System.Drawing.Size(81, 79);
@@ -141,7 +141,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(35, 535);
+            this.label11.Location = new System.Drawing.Point(32, 583);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(52, 13);
             this.label11.TabIndex = 34;
@@ -149,7 +149,7 @@
             // 
             // txbTotal
             // 
-            this.txbTotal.Location = new System.Drawing.Point(93, 530);
+            this.txbTotal.Location = new System.Drawing.Point(90, 578);
             this.txbTotal.Name = "txbTotal";
             this.txbTotal.ReadOnly = true;
             this.txbTotal.Size = new System.Drawing.Size(189, 20);
@@ -194,7 +194,7 @@
             this.dgvEntEnCarga.RowTemplate.Height = 30;
             this.dgvEntEnCarga.RowTemplate.ReadOnly = true;
             this.dgvEntEnCarga.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEntEnCarga.Size = new System.Drawing.Size(733, 145);
+            this.dgvEntEnCarga.Size = new System.Drawing.Size(867, 187);
             this.dgvEntEnCarga.TabIndex = 32;
             this.dgvEntEnCarga.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
             this.dgvEntEnCarga.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -224,7 +224,7 @@
             this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel1.Controls.Add(this.gunaGradientTileButton1);
             this.flowLayoutPanel1.Controls.Add(this.btnCerrar);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(393, 547);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(527, 602);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(369, 114);
             this.flowLayoutPanel1.TabIndex = 29;
@@ -295,7 +295,7 @@
             this.btnImprimir.IconColor = System.Drawing.Color.Black;
             this.btnImprimir.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnImprimir.Location = new System.Drawing.Point(29, 556);
+            this.btnImprimir.Location = new System.Drawing.Point(29, 611);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(253, 51);
             this.btnImprimir.TabIndex = 28;
@@ -310,7 +310,7 @@
             this.dtmHora.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dtmHora.CustomFormat = "HH:mm:ss";
             this.dtmHora.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtmHora.Location = new System.Drawing.Point(620, 340);
+            this.dtmHora.Location = new System.Drawing.Point(754, 340);
             this.dtmHora.Name = "dtmHora";
             this.dtmHora.ShowUpDown = true;
             this.dtmHora.Size = new System.Drawing.Size(120, 20);
@@ -327,7 +327,7 @@
             this.gunaGroupBox3.Controls.Add(this.label3);
             this.gunaGroupBox3.Controls.Add(this.label2);
             this.gunaGroupBox3.LineColor = System.Drawing.Color.DarkSalmon;
-            this.gunaGroupBox3.Location = new System.Drawing.Point(417, 58);
+            this.gunaGroupBox3.Location = new System.Drawing.Point(551, 58);
             this.gunaGroupBox3.Name = "gunaGroupBox3";
             this.gunaGroupBox3.Size = new System.Drawing.Size(345, 143);
             this.gunaGroupBox3.TabIndex = 8;
@@ -387,7 +387,7 @@
             this.gunaGroupBox2.LineColor = System.Drawing.Color.DarkSalmon;
             this.gunaGroupBox2.Location = new System.Drawing.Point(29, 58);
             this.gunaGroupBox2.Name = "gunaGroupBox2";
-            this.gunaGroupBox2.Size = new System.Drawing.Size(345, 143);
+            this.gunaGroupBox2.Size = new System.Drawing.Size(479, 143);
             this.gunaGroupBox2.TabIndex = 7;
             this.gunaGroupBox2.Text = "Generales.";
             this.gunaGroupBox2.TextLocation = new System.Drawing.Point(10, 8);
@@ -445,7 +445,7 @@
             this.gunaGroupBox1.LineColor = System.Drawing.Color.DarkSalmon;
             this.gunaGroupBox1.Location = new System.Drawing.Point(29, 207);
             this.gunaGroupBox1.Name = "gunaGroupBox1";
-            this.gunaGroupBox1.Size = new System.Drawing.Size(733, 161);
+            this.gunaGroupBox1.Size = new System.Drawing.Size(867, 161);
             this.gunaGroupBox1.TabIndex = 6;
             this.gunaGroupBox1.Text = "Detalles.";
             this.gunaGroupBox1.TextLocation = new System.Drawing.Point(10, 8);
@@ -455,7 +455,7 @@
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(591, 42);
+            this.label10.Location = new System.Drawing.Point(725, 42);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(87, 16);
             this.label10.TabIndex = 26;
@@ -467,7 +467,7 @@
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(591, 94);
+            this.label9.Location = new System.Drawing.Point(725, 94);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(77, 16);
             this.label9.TabIndex = 25;
@@ -485,7 +485,7 @@
             this.dtmFcierre.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.dtmFcierre.ForeColor = System.Drawing.Color.Black;
             this.dtmFcierre.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtmFcierre.Location = new System.Drawing.Point(591, 61);
+            this.dtmFcierre.Location = new System.Drawing.Point(725, 61);
             this.dtmFcierre.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtmFcierre.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtmFcierre.Name = "dtmFcierre";
@@ -501,7 +501,7 @@
             // txbReferencia
             // 
             this.txbReferencia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbReferencia.Location = new System.Drawing.Point(364, 124);
+            this.txbReferencia.Location = new System.Drawing.Point(498, 124);
             this.txbReferencia.MaxLength = 19;
             this.txbReferencia.Name = "txbReferencia";
             this.txbReferencia.Size = new System.Drawing.Size(221, 20);
@@ -512,7 +512,7 @@
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(285, 121);
+            this.label8.Location = new System.Drawing.Point(419, 121);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(76, 16);
             this.label8.TabIndex = 21;
@@ -523,7 +523,7 @@
             // 
             this.txbParidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txbParidad.Enabled = false;
-            this.txbParidad.Location = new System.Drawing.Point(364, 93);
+            this.txbParidad.Location = new System.Drawing.Point(498, 93);
             this.txbParidad.Name = "txbParidad";
             this.txbParidad.Size = new System.Drawing.Size(221, 20);
             this.txbParidad.TabIndex = 20;
@@ -540,7 +540,7 @@
             this.cmbMoneda.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cmbMoneda.ForeColor = System.Drawing.Color.Black;
             this.cmbMoneda.FormattingEnabled = true;
-            this.cmbMoneda.Location = new System.Drawing.Point(364, 61);
+            this.cmbMoneda.Location = new System.Drawing.Point(498, 61);
             this.cmbMoneda.Name = "cmbMoneda";
             this.cmbMoneda.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.cmbMoneda.OnHoverItemForeColor = System.Drawing.Color.White;
@@ -552,7 +552,7 @@
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(285, 93);
+            this.label7.Location = new System.Drawing.Point(419, 93);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(58, 16);
             this.label7.TabIndex = 16;
@@ -564,7 +564,7 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(285, 61);
+            this.label6.Location = new System.Drawing.Point(419, 61);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(60, 16);
             this.label6.TabIndex = 15;
@@ -651,7 +651,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 616);
+            this.ClientSize = new System.Drawing.Size(934, 671);
             this.Controls.Add(this.panel2);
             this.MinimumSize = new System.Drawing.Size(816, 596);
             this.Name = "frmModificaCarga";

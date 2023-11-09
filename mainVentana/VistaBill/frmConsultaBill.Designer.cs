@@ -48,9 +48,7 @@
             this.gbxGeneral = new System.Windows.Forms.GroupBox();
             this.lblTel = new System.Windows.Forms.Label();
             this.SucCombo = new System.Windows.Forms.GroupBox();
-            this.rCa = new System.Windows.Forms.RadioButton();
-            this.rTj = new System.Windows.Forms.RadioButton();
-            this.rSd = new System.Windows.Forms.RadioButton();
+            this.cmbSucEntrada = new System.Windows.Forms.ComboBox();
             this.btnImprimir = new FontAwesome.Sharp.IconButton();
             this.dgvEntEnCarga = new Guna.UI.WinForms.GunaDataGridView();
             this.iconButton10 = new FontAwesome.Sharp.IconButton();
@@ -225,48 +223,34 @@
             // 
             // SucCombo
             // 
-            this.SucCombo.Controls.Add(this.rCa);
-            this.SucCombo.Controls.Add(this.rTj);
-            this.SucCombo.Controls.Add(this.rSd);
+            this.SucCombo.Controls.Add(this.cmbSucEntrada);
             this.SucCombo.Location = new System.Drawing.Point(18, 16);
             this.SucCombo.Name = "SucCombo";
-            this.SucCombo.Size = new System.Drawing.Size(237, 48);
+            this.SucCombo.Size = new System.Drawing.Size(357, 48);
             this.SucCombo.TabIndex = 150;
             this.SucCombo.TabStop = false;
             this.SucCombo.Text = "Sucursal";
             // 
-            // rCa
+            // cmbSucEntrada
             // 
-            this.rCa.AutoSize = true;
-            this.rCa.Location = new System.Drawing.Point(153, 19);
-            this.rCa.Name = "rCa";
-            this.rCa.Size = new System.Drawing.Size(63, 17);
-            this.rCa.TabIndex = 2;
-            this.rCa.Text = "Cabo S.";
-            this.rCa.UseVisualStyleBackColor = true;
-            // 
-            // rTj
-            // 
-            this.rTj.AutoSize = true;
-            this.rTj.Location = new System.Drawing.Point(87, 19);
-            this.rTj.Name = "rTj";
-            this.rTj.Size = new System.Drawing.Size(60, 17);
-            this.rTj.TabIndex = 1;
-            this.rTj.Text = "Tijuana";
-            this.rTj.UseVisualStyleBackColor = true;
-            // 
-            // rSd
-            // 
-            this.rSd.AutoSize = true;
-            this.rSd.Checked = true;
-            this.rSd.Location = new System.Drawing.Point(6, 19);
-            this.rSd.Name = "rSd";
-            this.rSd.Size = new System.Drawing.Size(75, 17);
-            this.rSd.TabIndex = 0;
-            this.rSd.TabStop = true;
-            this.rSd.Text = "San Diego";
-            this.rSd.UseVisualStyleBackColor = true;
-            this.rSd.CheckedChanged += new System.EventHandler(this.rSd_CheckedChanged);
+            this.cmbSucEntrada.AutoCompleteCustomSource.AddRange(new string[] {
+            "SD",
+            "TJ",
+            "CSL"});
+            this.cmbSucEntrada.DisplayMember = "SD";
+            this.cmbSucEntrada.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSucEntrada.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbSucEntrada.FormattingEnabled = true;
+            this.cmbSucEntrada.Items.AddRange(new object[] {
+            "SD",
+            "TJ",
+            "CSL"});
+            this.cmbSucEntrada.Location = new System.Drawing.Point(9, 14);
+            this.cmbSucEntrada.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbSucEntrada.Name = "cmbSucEntrada";
+            this.cmbSucEntrada.Size = new System.Drawing.Size(336, 28);
+            this.cmbSucEntrada.TabIndex = 191;
+            this.cmbSucEntrada.SelectedIndexChanged += new System.EventHandler(this.cmbSucEntrada_SelectedIndexChanged);
             // 
             // btnImprimir
             // 
@@ -426,6 +410,7 @@
             this.Name = "frmConsultaBill";
             this.ShowIcon = false;
             this.Text = "Consulta Bill";
+            this.Load += new System.EventHandler(this.frmConsultaBill_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.gbxTo.ResumeLayout(false);
@@ -435,7 +420,6 @@
             this.gbxGeneral.ResumeLayout(false);
             this.gbxGeneral.PerformLayout();
             this.SucCombo.ResumeLayout(false);
-            this.SucCombo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEntEnCarga)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
             this.ResumeLayout(false);
@@ -451,9 +435,6 @@
         private Guna.UI.WinForms.GunaDataGridView dgvEntEnCarga;
         private FontAwesome.Sharp.IconButton btnImprimir;
         private System.Windows.Forms.GroupBox SucCombo;
-        private System.Windows.Forms.RadioButton rCa;
-        private System.Windows.Forms.RadioButton rTj;
-        private System.Windows.Forms.RadioButton rSd;
         private System.Windows.Forms.GroupBox gbxGeneral;
         private System.Windows.Forms.Label lblTel;
         private System.Windows.Forms.GroupBox gbxTo;
@@ -469,5 +450,6 @@
         private System.Windows.Forms.Label lblFromCalle;
         private System.Windows.Forms.Label lblFromNombre;
         private System.Windows.Forms.Label lblCantida;
+        private System.Windows.Forms.ComboBox cmbSucEntrada;
     }
 }

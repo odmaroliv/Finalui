@@ -112,6 +112,9 @@
     <Compile Include="Datosenti\Docto_Prv_Result1.cs">
       <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
+    <Compile Include="Datosenti\HistorialMovimientos.cs">
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
+    </Compile>
     <Compile Include="Datosenti\KDFEMTOCFD.cs">
       <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
@@ -155,6 +158,12 @@
       <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
     <Compile Include="Datosenti\SqlIov.cs">
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datosenti\SubSucursales.cs">
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datosenti\TiposMovimiento.cs">
       <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Bill\vmBillEntradaDoc.cs" />
@@ -234,6 +243,7 @@
     <Compile Include="ViewModels\Entradas\Moneda.cs" />
     <Compile Include="ViewModels\Entradas\mvlistas\clientecord.cs" />
     <Compile Include="ViewModels\Entradas\mvlistas\vmDescipcion.cs" />
+    <Compile Include="ViewModels\Entradas\SubSucursal.cs" />
     <Compile Include="ViewModels\Entradas\vmAlmacenes.cs" />
     <Compile Include="ViewModels\Entradas\vmEntradaById.cs" />
     <Compile Include="ViewModels\Entradas\vmEntradaByIdComent.cs" />
@@ -253,12 +263,14 @@
     <Compile Include="ViewModels\Entrega\vmReportDataEntrega.cs" />
     <Compile Include="ViewModels\hooks\whRingC.cs" />
     <Compile Include="ViewModels\InicioFotoVisor\FotoInicioVM.cs" />
+    <Compile Include="ViewModels\Log\HistorialMovimientosParams.cs" />
     <Compile Include="ViewModels\Recepciones\vmCargaOrdenesDeRecepcion.cs" />
     <Compile Include="ViewModels\Recepciones\vmEntBySalida.cs" />
     <Compile Include="ViewModels\Recepciones\vmNoRecepcion.cs" />
     <Compile Include="ViewModels\Recepciones\vmNumeroDeRecepcion.cs" />
     <Compile Include="ViewModels\Recepciones\vmRecepcionesVistaSalida.cs" />
     <Compile Include="ViewModels\Recepciones\vmSalidaDocumentoONLY.cs" />
+    <Compile Include="ViewModels\Recepciones\vmSucursalesRecepcion.cs" />
     <Compile Include="ViewModels\Reportes\Bill\vmBillOfTable.cs" />
     <Compile Include="ViewModels\Reportes\Coords\vmClientesXCord.cs" />
     <Compile Include="ViewModels\Reportes\DashBoardArturo\VMsucursalesValorArn.cs" />

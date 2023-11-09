@@ -111,6 +111,16 @@ namespace mainVentana.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap almatrans {
+            get {
+                object obj = ResourceManager.GetObject("almatrans", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap arniacolor {
             get {
                 object obj = ResourceManager.GetObject("arniacolor", resourceCulture);

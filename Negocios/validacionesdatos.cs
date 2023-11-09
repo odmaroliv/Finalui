@@ -554,11 +554,76 @@ namespace Negocios
                                 {
 
                                     c1 = d.C1,
-                                    c2 = d.C2
-
+                                    c2 = d.C2,
+                                   
 
                                 };
                     return lista.ToList();
+                }
+            }
+
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+
+
+        }
+
+
+        public List<SubSucursales> llenaSubSuc(bool esParametro, string suc = null)
+        {
+            try
+            {
+                
+                int indexSuc = 0;
+                if (esParametro)
+                {
+                    indexSuc = BuscaSucSelect(suc);
+                }
+
+                using (modelo2Entities modelo = new modelo2Entities())
+                {
+                    IQueryable<SubSucursales> query = from d in modelo.SubSucursales
+                                                    select d;
+
+                    if (esParametro)
+                    {
+                        query = query.Where(d => d.KDMSID == indexSuc);
+                    }
+                    
+                    var nd = query.ToList();
+                    
+                    return nd;
+
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public int BuscaSucSelect(string suc)
+        {
+       
+
+            try
+            {
+
+                using (modelo2Entities modelo = new modelo2Entities())
+
+                {
+                    var lista = from d in modelo.KDMS
+                                where d.C1 == suc  
+                                select d.IDNumerico;
+
+
+                    return lista.FirstOrDefault();
+              
                 }
             }
 
@@ -1391,7 +1456,7 @@ namespace Negocios
                         {
                             var lista = from d in modelo.KDMENT
 
-                                        where d.C16.Equals(id) && String.IsNullOrEmpty(d.C17) && String.IsNullOrEmpty(d.C18) && String.IsNullOrEmpty(d.C55)
+                                        where d.C16.Equals(id) //&& String.IsNullOrEmpty(d.C18) && String.IsNullOrEmpty(d.C55)
                                         select new vmEntByCarga
                                         {
                                             Etiqueta = d.C9,
@@ -1461,7 +1526,7 @@ namespace Negocios
 
                     {
                         var lista = from d in modelo.KDMENT
-                                    where d.C6.Contains(id) && d.C4 == 35 && d.C1.Contains(sOrigen) //&& d.C19 != sdestino
+                                    where d.C6.Contains(id) && d.C4 == 35 && d.C1.Equals(sOrigen) //&& d.C19 != sdestino
                                     orderby d.C7 descending
                                     select new vmEtiquetasInfo
                                     {

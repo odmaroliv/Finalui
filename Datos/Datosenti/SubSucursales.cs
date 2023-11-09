@@ -12,20 +12,10 @@ namespace Datos.Datosenti
     using System;
     using System.Collections.Generic;
     
-    public partial class KDMS
+    public partial class SubSucursales
     {
-        public string C1 { get; set; }
-        public string C2 { get; set; }
-        public string C3 { get; set; }
-        public string C4 { get; set; }
-        public string C5 { get; set; }
-        public string C6 { get; set; }
-        public string C7 { get; set; }
-        public string C8 { get; set; }
-        public string C9 { get; set; }
-        public string C10 { get; set; }
-        public string C11 { get; set; }
-        public string C12 { get; set; }
-        public int IDNumerico { get; set; }
+        public int SubID { get; set; }
+        public string SubSucursal { get; set; }
+        public Nullable<int> KDMSID { get; set; }
     }
 }

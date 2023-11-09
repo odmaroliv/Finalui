@@ -21,6 +21,7 @@ using System.Data.Entity.Validation;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -34,6 +35,9 @@ namespace mainVentana.VistaInicioCoordinadores
         private DateTime _cierreFecha = DateTime.Now;
         private bool _isBill = false;
         private List<vmEntradasEnCarga> listaBultos = new List<vmEntradasEnCarga>();
+        private List<vmEntradasEnCarga> entradasCargadas = new List<vmEntradasEnCarga>();
+
+
         private string _numeroBill = "";
 
         private string calle;
@@ -51,30 +55,84 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private async void btnAlta_Click(object sender, EventArgs e)
         {
+            ActualizarProgreso(5);
+
             await OperacionBoton();
-            await CargaEntradas();
+           // await CargaEntradas();
         }
 
         private async Task OperacionBoton()
-        {
+        { 
+            ActualizarProgreso(40);
             LimpiaDatos();
+           
             try
             {
                 dtgSinAsignar.Enabled = false;
                 btnAlta.Enabled = false;
+                ActualizarProgreso(50);
                 if (_isBussy == true)
                 {
+                    await ProgressRetro();
                     return;
                 }
+                ActualizarProgreso(60);
                 CargaOrdenes();
+                ActualizarProgreso(70);
                 await CargaEntradas();
+                ActualizarProgreso(80);
+                ActualizarProgreso(100);
+
             }
             catch (Exception)
             {
                 throw;
             }
-            finally { btnAlta.Enabled = true; dtgSinAsignar.Enabled = true; }
+            finally
+            {
+                btnAlta.Enabled = true;
+                dtgSinAsignar.Enabled = true;
+                await ProgressRetro();
+            }
+        }
 
+        private async void ActualizarProgreso(int valorFinal)
+        {
+            progressBar1.Visible = true;
+            progressBar1.Value = 0;
+            if (progressBar1.InvokeRequired)
+            {
+                progressBar1.Invoke(new Action(() => ActualizarProgreso(valorFinal)));
+            }
+            else
+            {
+                // Si el valor es mayor que el actual, incrementamos.
+                if (valorFinal > progressBar1.Value)
+                {
+                    for (int i = progressBar1.Value; i <= valorFinal; i++)
+                    {
+                        progressBar1.Value = i;
+                        await Task.Delay(10); 
+                    }
+                }
+                // Si el valor es menor que el actual, decrementamos.
+                else
+                {
+                    for (int i = progressBar1.Value; i >= valorFinal; i--)
+                    {
+                        progressBar1.Value = i;
+                        await Task.Delay(10); 
+                    }
+                }
+            }
+        }
+
+
+        private async Task ProgressRetro()
+        {
+            
+                progressBar1.Value = 0;
+                progressBar1.Visible = false;
         }
 
         private async void frmAddToCarga_Load(object sender, EventArgs e)
@@ -88,11 +146,32 @@ namespace mainVentana.VistaInicioCoordinadores
 
             //CargaOrdenes();
             await CargaOperaciones();
-
+            await Task.Run(() => CargaSOrigen()); ;
             
 
         }
+        private void CargaSOrigen()
+        {
+            Servicios datos = new Servicios();
+            var lst2 = datos.llenaSuc();
+         
 
+            // Utilizamos Invoke para actualizar la UI de manera segura desde un hilo secundario
+            this.Invoke(new Action(() =>
+            {
+                cmbSucOrigen.DisplayMember = "C2";
+                cmbSucOrigen.ValueMember = "C1";
+                cmbSucOrigen.DataSource = lst2;
+                foreach (var i in from Sucursales i in cmbSucOrigen.Items select i)
+                {
+                    cmbSucOrigen.SelectedValue = i.c1;
+                    break;
+                }
+
+            }));
+
+            datos = null;
+        }
         private async void CargaOrdenes()
         {
 
@@ -195,10 +274,10 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private void CargaEntradaEnDgv(string nCarga)
         {
-
+            entradasCargadas.Clear();
             Negocios.NGCarga.GETcarga get = new Negocios.NGCarga.GETcarga();
-            var entradasTo = get.EntradasEnCargaConUsuario(sucursal, Convert.ToInt32(nCarga), datoTipoOper);
-            dgvCargadas.DataSource = entradasTo;
+            entradasCargadas = get.EntradasEnCargaConUsuario(sucursal, Convert.ToInt32(nCarga), datoTipoOper);
+            dgvCargadas.DataSource = entradasCargadas;
 
         }
         List<CargaCordsGeneral> lssGlobal = null;
@@ -210,6 +289,8 @@ namespace mainVentana.VistaInicioCoordinadores
             {
                 ngbdReportes rep = new ngbdReportes();
                 lssGlobal = await rep.CargaEntradasParaAsignarACarga(sucursal, dtFecha1.Value, dtFecha2.Value, datoTipoOper);
+                var etiquetasCargadas = entradasCargadas.Select(e => e.Etiqueta).ToList();
+                lssGlobal = lssGlobal.Where(e => !etiquetasCargadas.Contains(e.bulto)).ToList();
 
                 dtgSinAsignar.DataSource = lssGlobal;
 
@@ -224,7 +305,7 @@ namespace mainVentana.VistaInicioCoordinadores
 
        
 
-
+        /*
         private async void rSd_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -243,7 +324,7 @@ namespace mainVentana.VistaInicioCoordinadores
            // await OperacionBoton();
            // await CargaEntradas();
         }
-
+        */
         private void LimpiaDatos()
         {
 
@@ -312,8 +393,10 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private async void btnGuardar_Click(object sender, EventArgs e)
         {
+            ActualizarProgreso(5);
             if (dtgAsignados.Rows.Count == 0)
             {
+                ProgressRetro();
                 return;
 
             }
@@ -323,17 +406,21 @@ namespace mainVentana.VistaInicioCoordinadores
             }
             else
             {
-                
+
             }
+            ActualizarProgreso(10);
             await EjecutaFuncionDeModifica();
+            ActualizarProgreso(50);
             await OperacionBoton();
         }
 
         private async Task EjecutaFuncionDeModifica()
         {
+            ActualizarProgreso(15);
             if (datoTipoOper == "")
             {
                 MessageBox.Show("No se ha seleccionado una operación");
+                ProgressRetro();
                 return;
             }
             if (datoTipoOper == "BILL")
@@ -341,11 +428,13 @@ namespace mainVentana.VistaInicioCoordinadores
                 if (String.IsNullOrWhiteSpace(txbAliasAct.Text))
                 {
 
-                    if (MessageBox.Show("Al parecer no has asignado una dirección\n" + "¿Deseas continua?","Cuidado",MessageBoxButtons.YesNo) == DialogResult.No)
+                    if (MessageBox.Show("Al parecer no has asignado una dirección\n" + "¿Deseas continua?", "Cuidado", MessageBoxButtons.YesNo) == DialogResult.No)
                     {
+                        ProgressRetro();
                         return;
                     }
                 }
+                ActualizarProgreso(20);
                 txbCarga.Text = "";
                 _isBussy = true;
                 btnGuardar.Enabled = false;
@@ -359,12 +448,13 @@ namespace mainVentana.VistaInicioCoordinadores
                 string b_so = sucursal;
                 string b_car = _numeroBill;
                 string b_billCompleto = b_so + "-UD5501-" + b_car;
-
-              //  AltasBD bd = new AltasBD();
+                ActualizarProgreso(30);
+                //  AltasBD bd = new AltasBD();
                 AsignaDatosSireccion();
                 
                 if (st)
                 {
+                    ActualizarProgreso(35);
                     bool dato = await get.AsignarABill(listaBultos, b_billCompleto, fechaHoy, calle, colonia, estado, txbAliasAct.Text, zipp, numm, datoTipoOper);
                     if (dato == false)
                     {
@@ -375,6 +465,7 @@ namespace mainVentana.VistaInicioCoordinadores
                         MessageBox.Show("Documento " + _numeroBill + " creado con exito", "Terminado", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                         Notificacion(1, "El documento: " + _numeroBill + "\r\rSe asigno correctamente.", "Exito ");
                         Clipboard.SetText(_numeroBill);
+                        ActualizarProgreso(40);
                         cargaImprime();
                         cargaultbill();
                         await OperacionBoton();
@@ -683,6 +774,19 @@ namespace mainVentana.VistaInicioCoordinadores
                 dtgSinAsignar.DataSource = null; // Limpiamos el DataSource
                 dtgSinAsignar.DataSource = lssGlobal; // Establecemos la lista ordenada como nuevo DataSource
             }
+        }
+
+        private void cmbSucOrigen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var name = cmbSucOrigen.SelectedValue?.ToString().Trim();
+
+            if (String.IsNullOrWhiteSpace(name))
+            {
+                MessageBox.Show("La sucursal Destino no puede esta bacia");
+                return;
+            }
+            sucursal = name.Trim();
+           
         }
     }
 }

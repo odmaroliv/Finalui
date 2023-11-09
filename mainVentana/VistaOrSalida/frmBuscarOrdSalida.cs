@@ -32,7 +32,15 @@ namespace mainVentana.VistaOrSalida
             
             gunaDataGridView1.DataSource = null;
             AccesoSalidas sv = new AccesoSalidas();
-            gunaDataGridView1.DataSource = await sv.LlenaDGVSalidas(sOrigen, documento, numerosuc);
+            if (String.IsNullOrWhiteSpace(sOrigen))
+            {
+                gunaDataGridView1.DataSource = null;
+            }
+            else
+            {
+                gunaDataGridView1.DataSource = await sv.LlenaDGVSalidas(sOrigen, documento, numerosuc);
+            }
+           
         }
 
         private void gunaDataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

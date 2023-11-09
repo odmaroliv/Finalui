@@ -116,7 +116,7 @@ namespace Negocios.AccesoRecepciones
                     List<KDM1> kd = new List<KDM1>();
 
                     var d = (from fd in modelo.KDM1
-                             where fd.C1.Contains(origen) && fd.C4 == 50 && fd.C6 == numerosalida
+                             where fd.C1.Equals(origen) && fd.C4 == 50 && fd.C6 == numerosalida
                              select fd).FirstOrDefault();
 
 

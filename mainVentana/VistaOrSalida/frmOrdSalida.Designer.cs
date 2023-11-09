@@ -73,13 +73,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.gbxDatosGenerales = new Guna.UI.WinForms.GunaGroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.rbDCSL = new System.Windows.Forms.RadioButton();
-            this.rbDTJ = new System.Windows.Forms.RadioButton();
-            this.rbDSD = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rbOCSL = new System.Windows.Forms.RadioButton();
-            this.rbOTJ = new System.Windows.Forms.RadioButton();
-            this.rbOSD = new System.Windows.Forms.RadioButton();
             this.btnImportarExcel = new Guna.UI.WinForms.GunaGradientTileButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblSalida = new System.Windows.Forms.Label();
@@ -90,6 +84,8 @@
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.cmbSucOrigen = new Guna.UI.WinForms.GunaComboBox();
+            this.sucDestino = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaCargas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrdenesEntrada)).BeginInit();
@@ -127,15 +123,16 @@
             this.panel1.Location = new System.Drawing.Point(23, 54);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(885, 682);
+            this.panel1.Size = new System.Drawing.Size(1100, 769);
             this.panel1.TabIndex = 0;
             // 
             // iconButton1
             // 
+            this.iconButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.None;
             this.iconButton1.IconColor = System.Drawing.Color.Black;
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.Location = new System.Drawing.Point(556, 634);
+            this.iconButton1.Location = new System.Drawing.Point(660, 721);
             this.iconButton1.Name = "iconButton1";
             this.iconButton1.Size = new System.Drawing.Size(75, 23);
             this.iconButton1.TabIndex = 35;
@@ -164,7 +161,7 @@
             this.gunaAdvenceButton1.Image = ((System.Drawing.Image)(resources.GetObject("gunaAdvenceButton1.Image")));
             this.gunaAdvenceButton1.ImageSize = new System.Drawing.Size(20, 20);
             this.gunaAdvenceButton1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(58)))), ((int)(((byte)(170)))));
-            this.gunaAdvenceButton1.Location = new System.Drawing.Point(379, 620);
+            this.gunaAdvenceButton1.Location = new System.Drawing.Point(487, 707);
             this.gunaAdvenceButton1.Margin = new System.Windows.Forms.Padding(2);
             this.gunaAdvenceButton1.Name = "gunaAdvenceButton1";
             this.gunaAdvenceButton1.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
@@ -185,7 +182,7 @@
             this.lblTotalFaltantes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTotalFaltantes.AutoSize = true;
             this.lblTotalFaltantes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalFaltantes.Location = new System.Drawing.Point(286, 504);
+            this.lblTotalFaltantes.Location = new System.Drawing.Point(286, 591);
             this.lblTotalFaltantes.Name = "lblTotalFaltantes";
             this.lblTotalFaltantes.Size = new System.Drawing.Size(63, 13);
             this.lblTotalFaltantes.TabIndex = 33;
@@ -196,11 +193,11 @@
             this.gsbCargaEti.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.gsbCargaEti.LargeChange = 10;
-            this.gsbCargaEti.Location = new System.Drawing.Point(354, 284);
+            this.gsbCargaEti.Location = new System.Drawing.Point(458, 313);
             this.gsbCargaEti.Maximum = 100;
             this.gsbCargaEti.Name = "gsbCargaEti";
             this.gsbCargaEti.ScrollIdleColor = System.Drawing.Color.Silver;
-            this.gsbCargaEti.Size = new System.Drawing.Size(11, 214);
+            this.gsbCargaEti.Size = new System.Drawing.Size(11, 272);
             this.gsbCargaEti.TabIndex = 32;
             this.gsbCargaEti.ThumbColor = System.Drawing.Color.DimGray;
             this.gsbCargaEti.ThumbHoverColor = System.Drawing.Color.Gray;
@@ -211,7 +208,7 @@
             this.lblMensaje.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblMensaje.AutoSize = true;
             this.lblMensaje.ForeColor = System.Drawing.Color.Red;
-            this.lblMensaje.Location = new System.Drawing.Point(23, 663);
+            this.lblMensaje.Location = new System.Drawing.Point(23, 750);
             this.lblMensaje.Name = "lblMensaje";
             this.lblMensaje.Size = new System.Drawing.Size(0, 13);
             this.lblMensaje.TabIndex = 31;
@@ -220,7 +217,7 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(18, 504);
+            this.label4.Location = new System.Drawing.Point(18, 591);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(78, 13);
             this.label4.TabIndex = 30;
@@ -242,7 +239,7 @@
             this.btnScanini.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             this.btnScanini.Image = null;
             this.btnScanini.ImageSize = new System.Drawing.Size(100, 80);
-            this.btnScanini.Location = new System.Drawing.Point(18, 230);
+            this.btnScanini.Location = new System.Drawing.Point(18, 257);
             this.btnScanini.Margin = new System.Windows.Forms.Padding(2);
             this.btnScanini.Name = "btnScanini";
             this.btnScanini.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
@@ -297,7 +294,7 @@
             this.dgvListaCargas.RowHeadersWidth = 51;
             this.dgvListaCargas.RowTemplate.Height = 24;
             this.dgvListaCargas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvListaCargas.Size = new System.Drawing.Size(182, 112);
+            this.dgvListaCargas.Size = new System.Drawing.Size(182, 141);
             this.dgvListaCargas.TabIndex = 28;
             this.dgvListaCargas.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
             this.dgvListaCargas.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -348,7 +345,7 @@
             this.btnIniciaSalida.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             this.btnIniciaSalida.Image = null;
             this.btnIniciaSalida.ImageSize = new System.Drawing.Size(100, 80);
-            this.btnIniciaSalida.Location = new System.Drawing.Point(556, 9);
+            this.btnIniciaSalida.Location = new System.Drawing.Point(771, 9);
             this.btnIniciaSalida.Margin = new System.Windows.Forms.Padding(2);
             this.btnIniciaSalida.Name = "btnIniciaSalida";
             this.btnIniciaSalida.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
@@ -376,11 +373,11 @@
             this.txbEscaneo.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txbEscaneo.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txbEscaneo.Font = new System.Drawing.Font("Segoe UI", 18F);
-            this.txbEscaneo.Location = new System.Drawing.Point(215, 230);
+            this.txbEscaneo.Location = new System.Drawing.Point(215, 257);
             this.txbEscaneo.Name = "txbEscaneo";
             this.txbEscaneo.PasswordChar = '\0';
             this.txbEscaneo.Radius = 10;
-            this.txbEscaneo.Size = new System.Drawing.Size(655, 46);
+            this.txbEscaneo.Size = new System.Drawing.Size(870, 46);
             this.txbEscaneo.TabIndex = 1;
             this.txbEscaneo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbEscaneo_KeyDown);
             this.txbEscaneo.Leave += new System.EventHandler(this.txbEscaneo_Leave);
@@ -402,7 +399,7 @@
             this.bntSalidaPausa.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             this.bntSalidaPausa.Image = null;
             this.bntSalidaPausa.ImageSize = new System.Drawing.Size(100, 80);
-            this.bntSalidaPausa.Location = new System.Drawing.Point(18, 616);
+            this.bntSalidaPausa.Location = new System.Drawing.Point(18, 703);
             this.bntSalidaPausa.Margin = new System.Windows.Forms.Padding(2);
             this.bntSalidaPausa.Name = "bntSalidaPausa";
             this.bntSalidaPausa.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
@@ -412,7 +409,7 @@
             this.bntSalidaPausa.OnHoverImage = null;
             this.bntSalidaPausa.OnPressedColor = System.Drawing.Color.Black;
             this.bntSalidaPausa.Radius = 5;
-            this.bntSalidaPausa.Size = new System.Drawing.Size(347, 42);
+            this.bntSalidaPausa.Size = new System.Drawing.Size(435, 42);
             this.bntSalidaPausa.TabIndex = 26;
             this.bntSalidaPausa.Text = "Abrir Salida Pausada";
             this.bntSalidaPausa.Click += new System.EventHandler(this.gunaGradientTileButton2_Click_1);
@@ -451,7 +448,7 @@
             this.dgvOrdenesEntrada.Enabled = false;
             this.dgvOrdenesEntrada.EnableHeadersVisualStyles = false;
             this.dgvOrdenesEntrada.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvOrdenesEntrada.Location = new System.Drawing.Point(18, 284);
+            this.dgvOrdenesEntrada.Location = new System.Drawing.Point(18, 313);
             this.dgvOrdenesEntrada.Margin = new System.Windows.Forms.Padding(2);
             this.dgvOrdenesEntrada.Name = "dgvOrdenesEntrada";
             this.dgvOrdenesEntrada.ReadOnly = true;
@@ -459,7 +456,7 @@
             this.dgvOrdenesEntrada.RowHeadersWidth = 51;
             this.dgvOrdenesEntrada.RowTemplate.Height = 30;
             this.dgvOrdenesEntrada.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvOrdenesEntrada.Size = new System.Drawing.Size(331, 214);
+            this.dgvOrdenesEntrada.Size = new System.Drawing.Size(435, 272);
             this.dgvOrdenesEntrada.TabIndex = 25;
             this.dgvOrdenesEntrada.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
             this.dgvOrdenesEntrada.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -501,7 +498,7 @@
             this.gunaGradientTileButton1.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             this.gunaGradientTileButton1.Image = null;
             this.gunaGradientTileButton1.ImageSize = new System.Drawing.Size(100, 80);
-            this.gunaGradientTileButton1.Location = new System.Drawing.Point(653, 621);
+            this.gunaGradientTileButton1.Location = new System.Drawing.Point(868, 708);
             this.gunaGradientTileButton1.Margin = new System.Windows.Forms.Padding(2);
             this.gunaGradientTileButton1.Name = "gunaGradientTileButton1";
             this.gunaGradientTileButton1.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
@@ -553,8 +550,7 @@
             this.dgvEscaneados.AllowUserToDeleteRows = false;
             dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
             this.dgvEscaneados.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
-            this.dgvEscaneados.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgvEscaneados.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvEscaneados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvEscaneados.BackgroundColor = System.Drawing.Color.White;
@@ -584,7 +580,7 @@
             this.dgvEscaneados.DefaultCellStyle = dataGridViewCellStyle9;
             this.dgvEscaneados.EnableHeadersVisualStyles = false;
             this.dgvEscaneados.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvEscaneados.Location = new System.Drawing.Point(379, 284);
+            this.dgvEscaneados.Location = new System.Drawing.Point(487, 313);
             this.dgvEscaneados.Margin = new System.Windows.Forms.Padding(2);
             this.dgvEscaneados.Name = "dgvEscaneados";
             this.dgvEscaneados.ReadOnly = true;
@@ -592,7 +588,7 @@
             this.dgvEscaneados.RowHeadersWidth = 51;
             this.dgvEscaneados.RowTemplate.Height = 24;
             this.dgvEscaneados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEscaneados.Size = new System.Drawing.Size(491, 327);
+            this.dgvEscaneados.Size = new System.Drawing.Size(598, 385);
             this.dgvEscaneados.TabIndex = 3;
             this.dgvEscaneados.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
             this.dgvEscaneados.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -652,11 +648,11 @@
             this.gbxDetalles.Controls.Add(this.label13);
             this.gbxDetalles.ForeColor = System.Drawing.Color.White;
             this.gbxDetalles.LineColor = System.Drawing.Color.Blue;
-            this.gbxDetalles.Location = new System.Drawing.Point(556, 56);
+            this.gbxDetalles.Location = new System.Drawing.Point(771, 56);
             this.gbxDetalles.Margin = new System.Windows.Forms.Padding(2);
             this.gbxDetalles.Name = "gbxDetalles";
             this.gbxDetalles.Radius = 10;
-            this.gbxDetalles.Size = new System.Drawing.Size(311, 167);
+            this.gbxDetalles.Size = new System.Drawing.Size(311, 196);
             this.gbxDetalles.TabIndex = 2;
             this.gbxDetalles.Text = "Detalles";
             this.gbxDetalles.TextLocation = new System.Drawing.Point(10, 8);
@@ -665,7 +661,7 @@
             // 
             this.txbReferencia.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txbReferencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbReferencia.Location = new System.Drawing.Point(116, 131);
+            this.txbReferencia.Location = new System.Drawing.Point(116, 146);
             this.txbReferencia.MaxLength = 20;
             this.txbReferencia.Name = "txbReferencia";
             this.txbReferencia.Size = new System.Drawing.Size(184, 26);
@@ -676,7 +672,7 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(10, 131);
+            this.label3.Location = new System.Drawing.Point(10, 146);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(129, 22);
             this.label3.TabIndex = 126;
@@ -686,7 +682,7 @@
             // 
             this.txbChofer.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txbChofer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbChofer.Location = new System.Drawing.Point(116, 103);
+            this.txbChofer.Location = new System.Drawing.Point(116, 118);
             this.txbChofer.MaxLength = 20;
             this.txbChofer.Name = "txbChofer";
             this.txbChofer.Size = new System.Drawing.Size(184, 26);
@@ -697,7 +693,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(10, 103);
+            this.label2.Location = new System.Drawing.Point(10, 118);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(129, 22);
             this.label2.TabIndex = 124;
@@ -707,7 +703,7 @@
             // 
             this.txbPlacas.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txbPlacas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbPlacas.Location = new System.Drawing.Point(116, 72);
+            this.txbPlacas.Location = new System.Drawing.Point(116, 87);
             this.txbPlacas.MaxLength = 10;
             this.txbPlacas.Name = "txbPlacas";
             this.txbPlacas.Size = new System.Drawing.Size(184, 26);
@@ -718,7 +714,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(10, 72);
+            this.label1.Location = new System.Drawing.Point(10, 87);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(129, 22);
             this.label1.TabIndex = 122;
@@ -728,7 +724,7 @@
             // 
             this.txbTransportista.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txbTransportista.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbTransportista.Location = new System.Drawing.Point(116, 41);
+            this.txbTransportista.Location = new System.Drawing.Point(116, 56);
             this.txbTransportista.MaxLength = 20;
             this.txbTransportista.Name = "txbTransportista";
             this.txbTransportista.Size = new System.Drawing.Size(184, 26);
@@ -739,7 +735,7 @@
             this.label13.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(10, 41);
+            this.label13.Location = new System.Drawing.Point(10, 56);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(129, 22);
             this.label13.TabIndex = 120;
@@ -760,7 +756,7 @@
             this.gbxDatosGenerales.Margin = new System.Windows.Forms.Padding(2);
             this.gbxDatosGenerales.Name = "gbxDatosGenerales";
             this.gbxDatosGenerales.Radius = 10;
-            this.gbxDatosGenerales.Size = new System.Drawing.Size(332, 167);
+            this.gbxDatosGenerales.Size = new System.Drawing.Size(547, 196);
             this.gbxDatosGenerales.TabIndex = 0;
             this.gbxDatosGenerales.Text = "Datos generales";
             this.gbxDatosGenerales.TextLocation = new System.Drawing.Point(10, 8);
@@ -769,112 +765,29 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.rbDCSL);
-            this.groupBox2.Controls.Add(this.rbDTJ);
-            this.groupBox2.Controls.Add(this.rbDSD);
-            this.groupBox2.Location = new System.Drawing.Point(14, 103);
+            this.groupBox2.Controls.Add(this.sucDestino);
+            this.groupBox2.Location = new System.Drawing.Point(14, 117);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Size = new System.Drawing.Size(307, 58);
+            this.groupBox2.Size = new System.Drawing.Size(522, 66);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Sucursal Destino";
-            // 
-            // rbDCSL
-            // 
-            this.rbDCSL.AutoSize = true;
-            this.rbDCSL.ForeColor = System.Drawing.Color.Black;
-            this.rbDCSL.Location = new System.Drawing.Point(213, 18);
-            this.rbDCSL.Name = "rbDCSL";
-            this.rbDCSL.Size = new System.Drawing.Size(66, 17);
-            this.rbDCSL.TabIndex = 6;
-            this.rbDCSL.TabStop = true;
-            this.rbDCSL.Text = "Cabo SL";
-            this.rbDCSL.UseVisualStyleBackColor = true;
-            this.rbDCSL.CheckedChanged += new System.EventHandler(this.ValidaDestino);
-            // 
-            // rbDTJ
-            // 
-            this.rbDTJ.AutoSize = true;
-            this.rbDTJ.ForeColor = System.Drawing.Color.Black;
-            this.rbDTJ.Location = new System.Drawing.Point(125, 18);
-            this.rbDTJ.Name = "rbDTJ";
-            this.rbDTJ.Size = new System.Drawing.Size(60, 17);
-            this.rbDTJ.TabIndex = 5;
-            this.rbDTJ.TabStop = true;
-            this.rbDTJ.Text = "Tijuana";
-            this.rbDTJ.UseVisualStyleBackColor = true;
-            this.rbDTJ.CheckedChanged += new System.EventHandler(this.ValidaDestino);
-            // 
-            // rbDSD
-            // 
-            this.rbDSD.AutoSize = true;
-            this.rbDSD.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.rbDSD.ForeColor = System.Drawing.Color.Black;
-            this.rbDSD.Location = new System.Drawing.Point(18, 18);
-            this.rbDSD.Name = "rbDSD";
-            this.rbDSD.Size = new System.Drawing.Size(75, 17);
-            this.rbDSD.TabIndex = 4;
-            this.rbDSD.TabStop = true;
-            this.rbDSD.Text = "San Diego";
-            this.rbDSD.UseVisualStyleBackColor = true;
-            this.rbDSD.CheckedChanged += new System.EventHandler(this.ValidaDestino);
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.rbOCSL);
-            this.groupBox1.Controls.Add(this.rbOTJ);
-            this.groupBox1.Controls.Add(this.rbOSD);
+            this.groupBox1.Controls.Add(this.cmbSucOrigen);
             this.groupBox1.Location = new System.Drawing.Point(14, 41);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(307, 57);
+            this.groupBox1.Size = new System.Drawing.Size(522, 68);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Sucursal Origen";
-            // 
-            // rbOCSL
-            // 
-            this.rbOCSL.AutoSize = true;
-            this.rbOCSL.ForeColor = System.Drawing.Color.Black;
-            this.rbOCSL.Location = new System.Drawing.Point(213, 18);
-            this.rbOCSL.Name = "rbOCSL";
-            this.rbOCSL.Size = new System.Drawing.Size(66, 17);
-            this.rbOCSL.TabIndex = 6;
-            this.rbOCSL.TabStop = true;
-            this.rbOCSL.Text = "Cabo SL";
-            this.rbOCSL.UseVisualStyleBackColor = true;
-            this.rbOCSL.CheckedChanged += new System.EventHandler(this.ValidaOrigen);
-            // 
-            // rbOTJ
-            // 
-            this.rbOTJ.AutoSize = true;
-            this.rbOTJ.ForeColor = System.Drawing.Color.Black;
-            this.rbOTJ.Location = new System.Drawing.Point(125, 18);
-            this.rbOTJ.Name = "rbOTJ";
-            this.rbOTJ.Size = new System.Drawing.Size(60, 17);
-            this.rbOTJ.TabIndex = 5;
-            this.rbOTJ.TabStop = true;
-            this.rbOTJ.Text = "Tijuana";
-            this.rbOTJ.UseVisualStyleBackColor = true;
-            this.rbOTJ.CheckedChanged += new System.EventHandler(this.ValidaOrigen);
-            // 
-            // rbOSD
-            // 
-            this.rbOSD.AutoSize = true;
-            this.rbOSD.ForeColor = System.Drawing.Color.Black;
-            this.rbOSD.Location = new System.Drawing.Point(18, 18);
-            this.rbOSD.Name = "rbOSD";
-            this.rbOSD.Size = new System.Drawing.Size(75, 17);
-            this.rbOSD.TabIndex = 4;
-            this.rbOSD.TabStop = true;
-            this.rbOSD.Text = "San Diego";
-            this.rbOSD.UseVisualStyleBackColor = true;
-            this.rbOSD.CheckedChanged += new System.EventHandler(this.ValidaOrigen);
             // 
             // btnImportarExcel
             // 
@@ -893,7 +806,7 @@
             this.btnImportarExcel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             this.btnImportarExcel.Image = null;
             this.btnImportarExcel.ImageSize = new System.Drawing.Size(100, 80);
-            this.btnImportarExcel.Location = new System.Drawing.Point(579, 7);
+            this.btnImportarExcel.Location = new System.Drawing.Point(794, 7);
             this.btnImportarExcel.Margin = new System.Windows.Forms.Padding(2);
             this.btnImportarExcel.Name = "btnImportarExcel";
             this.btnImportarExcel.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
@@ -918,7 +831,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(925, 50);
+            this.panel2.Size = new System.Drawing.Size(1140, 50);
             this.panel2.TabIndex = 27;
             // 
             // lblSalida
@@ -981,7 +894,7 @@
             this.dgvObser.DefaultCellStyle = dataGridViewCellStyle12;
             this.dgvObser.EnableHeadersVisualStyles = false;
             this.dgvObser.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvObser.Location = new System.Drawing.Point(41, 574);
+            this.dgvObser.Location = new System.Drawing.Point(41, 661);
             this.dgvObser.Margin = new System.Windows.Forms.Padding(2);
             this.dgvObser.Name = "dgvObser";
             this.dgvObser.ReadOnly = true;
@@ -989,7 +902,7 @@
             this.dgvObser.RowHeadersWidth = 51;
             this.dgvObser.RowTemplate.Height = 30;
             this.dgvObser.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvObser.Size = new System.Drawing.Size(347, 91);
+            this.dgvObser.Size = new System.Drawing.Size(435, 91);
             this.dgvObser.TabIndex = 30;
             this.dgvObser.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
             this.dgvObser.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -1042,11 +955,50 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // cmbSucOrigen
+            // 
+            this.cmbSucOrigen.BackColor = System.Drawing.Color.Transparent;
+            this.cmbSucOrigen.BaseColor = System.Drawing.Color.White;
+            this.cmbSucOrigen.BorderColor = System.Drawing.Color.Silver;
+            this.cmbSucOrigen.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbSucOrigen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSucOrigen.FocusedColor = System.Drawing.Color.Empty;
+            this.cmbSucOrigen.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbSucOrigen.ForeColor = System.Drawing.Color.Black;
+            this.cmbSucOrigen.FormattingEnabled = true;
+            this.cmbSucOrigen.Location = new System.Drawing.Point(5, 28);
+            this.cmbSucOrigen.Name = "cmbSucOrigen";
+            this.cmbSucOrigen.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.cmbSucOrigen.OnHoverItemForeColor = System.Drawing.Color.White;
+            this.cmbSucOrigen.Size = new System.Drawing.Size(378, 26);
+            this.cmbSucOrigen.TabIndex = 37;
+            this.cmbSucOrigen.SelectedIndexChanged += new System.EventHandler(this.cmbSucOrigen_SelectedIndexChanged);
+            // 
+            // sucDestino
+            // 
+            this.sucDestino.AutoCompleteCustomSource.AddRange(new string[] {
+            "SD",
+            "TJ",
+            "CSL"});
+            this.sucDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.sucDestino.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sucDestino.FormattingEnabled = true;
+            this.sucDestino.Items.AddRange(new object[] {
+            "SD",
+            "TJ",
+            "CSL"});
+            this.sucDestino.Location = new System.Drawing.Point(5, 27);
+            this.sucDestino.Margin = new System.Windows.Forms.Padding(2);
+            this.sucDestino.Name = "sucDestino";
+            this.sucDestino.Size = new System.Drawing.Size(378, 28);
+            this.sucDestino.TabIndex = 104;
+            this.sucDestino.SelectedIndexChanged += new System.EventHandler(this.sucDestino_SelectedIndexChanged);
+            // 
             // frmOrdSalida
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(925, 746);
+            this.ClientSize = new System.Drawing.Size(1140, 833);
             this.Controls.Add(this.dgvObser);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -1066,9 +1018,7 @@
             this.gbxDetalles.PerformLayout();
             this.gbxDatosGenerales.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvObser)).EndInit();
@@ -1097,13 +1047,7 @@
         private System.Windows.Forms.Panel panel2;
         private Guna.UI.WinForms.GunaGradientTileButton bntSalidaPausa;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.RadioButton rbDCSL;
-        private System.Windows.Forms.RadioButton rbDTJ;
-        private System.Windows.Forms.RadioButton rbDSD;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton rbOCSL;
-        private System.Windows.Forms.RadioButton rbOTJ;
-        private System.Windows.Forms.RadioButton rbOSD;
         private Guna.UI.WinForms.GunaTextBox txbEscaneo;
         private System.Windows.Forms.Label lblSalida;
         private System.Windows.Forms.Label label9;
@@ -1126,5 +1070,7 @@
         private Guna.UI.WinForms.GunaAdvenceButton gunaAdvenceButton1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private FontAwesome.Sharp.IconButton iconButton1;
+        private Guna.UI.WinForms.GunaComboBox cmbSucOrigen;
+        private System.Windows.Forms.ComboBox sucDestino;
     }
 }

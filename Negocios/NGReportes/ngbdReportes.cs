@@ -120,7 +120,10 @@ namespace Negocios.NGReportes
         /// </summary>
         public async Task<List<vmInfoControlCors>> CargaControl(string dato, DateTime dateFrom, DateTime to)
         {
-
+            if (String.IsNullOrWhiteSpace(dato))
+            {
+                return null;
+            }
             try
             {
                 using (modelo2Entities modelo = new modelo2Entities())
@@ -131,7 +134,7 @@ namespace Negocios.NGReportes
                         query = from d in modelo.KDMENT
                                 join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
                                 join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
-                                where k.C9 <= to && k.C9 >= dateFrom && d.C1.Contains(dato) && d.C19.Contains(dato) && d.C34 == "" && k.C4 == 35
+                                where k.C9 <= to && k.C9 >= dateFrom && d.C1.Equals(dato) && d.C19.Equals(dato) && d.C34 == "" && k.C4 == 35
                                 orderby d.C6 descending
                                 select new vmInfoControlCors
                                 {
@@ -155,7 +158,7 @@ namespace Negocios.NGReportes
                         query = from d in modelo.KDMENT
                                 join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
                                 join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
-                                where k.C9 <= to && k.C9 >= dateFrom && d.C1.Contains(dato) && d.C19.Contains(dato) && d.C34 == "" && k.C12 == Common.Cache.CacheLogin.idusuario.ToString() && k.C4 == 35
+                                where k.C9 <= to && k.C9 >= dateFrom && d.C1.Equals(dato) && d.C19.Equals(dato) && d.C34 == "" && k.C12 == Common.Cache.CacheLogin.idusuario.ToString() && k.C4 == 35
                                 orderby d.C6 descending
                                 select new vmInfoControlCors
                                 {
@@ -196,6 +199,7 @@ namespace Negocios.NGReportes
             {
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
+                    modelo.Database.CommandTimeout = 500;
                     IQueryable<CargaCordsGeneral> query = null;
                     if (oper == "09")
                     {
@@ -206,7 +210,7 @@ namespace Negocios.NGReportes
                                     join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
                                     join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
                                     join u in modelo .KDUD on k.C10 equals u.C2
-                                    where k.C9 <= to && k.C9 >= dateFrom  /*&& d.C19.Contains(dato)*/ && d.C10.Contains(dato) && (d.C20 == "F" || d.C20 == "PR")  && k.C4 == 35 && ((k.C115 != "" && k.C115 != null) || u.C32 == "1") && (d.C45 == "" || d.C45 == null) && (d.C34 == "" || d.C34 == null)
+                                    where k.C9 <= to && k.C9 >= dateFrom  /*&& d.C19.Contains(dato)*/ && d.C10.Equals(dato) && (d.C20 == "F" || d.C20 == "PR")  && k.C4 == 35 && ((k.C115 != "" && k.C115 != null) || u.C32 == "1") && (d.C45 == "" || d.C45 == null) && (d.C34 == "" || d.C34 == null)
                                     orderby d.C6 descending
                                     select new CargaCordsGeneral
                                     {
@@ -231,7 +235,7 @@ namespace Negocios.NGReportes
                                     join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
                                     join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
                                     join u in modelo.KDUD on k.C10 equals u.C2
-                                    where k.C9 <= to && k.C9 >= dateFrom /*&&  d.C19.Contains(dato)*/ && d.C10.Contains(dato) && (d.C20 == "F" || d.C20 == "PR") && k.C4 == 35 && ((k.C115 != "" && k.C115 != null) || u.C32 == "1") && (d.C45 == "" || d.C45 == null) && (d.C34 == "" || d.C34 == null) && k.C12 == Common.Cache.CacheLogin.idusuario.ToString() 
+                                    where k.C9 <= to && k.C9 >= dateFrom /*&&  d.C19.Contains(dato)*/ && d.C10.Equals(dato) && (d.C20 == "F" || d.C20 == "PR") && k.C4 == 35 && ((k.C115 != "" && k.C115 != null) || u.C32 == "1") && (d.C45 == "" || d.C45 == null) && (d.C34 == "" || d.C34 == null) && k.C12 == Common.Cache.CacheLogin.idusuario.ToString() 
                                     orderby d.C6 descending
                                     select new CargaCordsGeneral
                                     {
@@ -258,7 +262,10 @@ namespace Negocios.NGReportes
                             query = from d in modelo.KDMENT
                                     join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
                                     join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
-                                    where k.C9 <= to && k.C9 >= dateFrom && d.C1.Contains(dato) && d.C19.Contains(dato) && (d.C34 == "" || d.C34 == null) && k.C4 == 35 && k.C101.Contains(oper) && (d.C16 == "" || d.C16 == null) && (d.C54 == "" || d.C54 == null)
+                                    where k.C9 <= to && k.C9 >= dateFrom && d.C19.Equals(dato)
+                                          && k.C4 == 35 && k.C101.Contains(oper)
+                                          // Aquí comprobamos si d.C1 es igual a dato, entonces verificamos las condiciones de d.C16 y d.C54
+                                          && (d.C1 != dato || (d.C16 == "" || d.C16 == null) && (d.C54 == "" || d.C54 == null))
                                     orderby d.C6 descending
                                     select new CargaCordsGeneral
                                     {
@@ -276,13 +283,17 @@ namespace Negocios.NGReportes
                                         desc = a.C11,
                                         aliss = k.C112,
                                     };
+
                         }
                         else
                         {
                             query = from d in modelo.KDMENT
                                     join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
                                     join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
-                                    where k.C9 <= to && k.C9 >= dateFrom && d.C1.Contains(dato) && d.C19.Contains(dato) && (d.C34 == "" || d.C34 == null) && k.C12 == Common.Cache.CacheLogin.idusuario.ToString() && k.C4 == 35 && k.C101.Contains(oper) && (d.C16 == "" || d.C16 == null) && (d.C54 == "" || d.C54 == null)
+                                    where k.C9 <= to && k.C9 >= dateFrom && d.C19.Equals(dato) && (d.C34 == "" || d.C34 == null)
+                                          && k.C12 == Common.Cache.CacheLogin.idusuario.ToString() && k.C4 == 35 && k.C101.Contains(oper)
+                                          // Aquí aplicamos la condición condicional para d.C16 y d.C54
+                                          && (d.C1 != dato || ((d.C16 == "" || d.C16 == null) && (d.C54 == "" || d.C54 == null)))
                                     orderby d.C6 descending
                                     select new CargaCordsGeneral
                                     {
@@ -300,6 +311,7 @@ namespace Negocios.NGReportes
                                         desc = a.C11,
                                         aliss = k.C112,
                                     };
+
                         }
                     }
                     
@@ -385,7 +397,7 @@ namespace Negocios.NGReportes
                                      //join a in modelo.KDUV on k.C12 equals a.C2
                                      //join u in modelo.KDUSUARIOS on a.C22 equals u.C1
 
-                                     where d.C1.Contains(dato) && k.C10 == nuCliente && (k.C115 == "" || k.C115 == null)
+                                     where d.C1.Equals(dato) && k.C10 == nuCliente && (k.C115 == "" || k.C115 == null)
                                      orderby d.C6 descending
 
                                      select new vmEntCordsCot
@@ -412,7 +424,7 @@ namespace Negocios.NGReportes
                                      //join a in modelo.KDUV on k.C12 equals a.C2
                                      //join u in modelo.KDUSUARIOS on a.C22 equals u.C1
 
-                                     where d.C1.Contains(dato) && k.C10 == nuCliente /*&& d.C34 == ""*/ && k.C12.Contains(Common.Cache.CacheLogin.idusuario.ToString()) && (k.C115 == "" || k.C115 == null)
+                                     where d.C1.Equals(dato) && k.C10 == nuCliente /*&& d.C34 == ""*/ && k.C12.Contains(Common.Cache.CacheLogin.idusuario.ToString()) && (k.C115 == "" || k.C115 == null)
                                      orderby d.C6 descending
 
                                      select new vmEntCordsCot
@@ -470,7 +482,7 @@ namespace Negocios.NGReportes
                                      //join a in modelo.KDUV on k.C12 equals a.C2
                                      //join u in modelo.KDUSUARIOS on a.C22 equals u.C1
                                      join c in modelo.KDUV on k.C12 equals c.C2
-                                     where d.C1.Contains(sOrigen) && d.C6.Contains(entrada)
+                                     where d.C1.Equals(sOrigen) && d.C6.Contains(entrada)
                                      orderby d.C6 descending
 
                                      select new vmInfoControlCors
@@ -601,7 +613,7 @@ namespace Negocios.NGReportes
                     using (modelo2Entities modelo = new modelo2Entities())
                     {
                         var lista = (from d in modelo.KDM1
-                                     where d.C1.Contains(sOrigen) && d.C4 == 34 && d.C5 == dato && d.C6.Contains(coti)
+                                     where d.C1.Equals(sOrigen) && d.C4 == 34 && d.C5 == dato && d.C6.Contains(coti)
                                      select d.C40).FirstOrDefault();
                         lst = lista;
                     }

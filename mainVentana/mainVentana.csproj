@@ -33,7 +33,7 @@
     <MinimumRequiredVersion>1.0.0.244</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>244</ApplicationRevision>
+    <ApplicationRevision>245</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -424,6 +424,12 @@
     </Compile>
     <Compile Include="Reportes\vmreportes\vmetiqueta.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="TraspasoMercancias\MovimientoMercanciaView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TraspasoMercancias\MovimientoMercanciaView.Designer.cs">
+      <DependentUpon>MovimientoMercanciaView.cs</DependentUpon>
+    </Compile>
     <Compile Include="tstflirk.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -707,6 +713,9 @@
     <EmbeddedResource Include="Reportes\TestReport.resx">
       <DependentUpon>TestReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TraspasoMercancias\MovimientoMercanciaView.resx">
+      <DependentUpon>MovimientoMercanciaView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="tstflirk.resx">
       <DependentUpon>tstflirk.cs</DependentUpon>
     </EmbeddedResource>
@@ -871,6 +880,13 @@
   <ItemGroup>
     <None Include="Resources\AlertaNoCargaArsys.wav" />
     <None Include="Resources\AlertaBienArsys.wav" />
+    <None Include="Resources\pilas-de-almacenamiento.png" />
+    <None Include="Resources\pilas-de-almacenamiento %281%29.png" />
+    <None Include="Resources\pilas-de-almacenamiento %282%29.png" />
+    <None Include="Resources\pilas-de-almacenamient.png" />
+    <None Include="Resources\movimientoalama.png" />
+    <None Include="Resources\almatrans.png" />
+    <None Include="Resources\pilas-de-almacenamiento %283%29.png" />
     <Content Include="x64\SQLite.Interop.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

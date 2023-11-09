@@ -44,6 +44,9 @@ namespace Datos.Datosenti
         public virtual DbSet<KDM2> KDM2 { get; set; }
         public virtual DbSet<SqlIov> SqlIov { get; set; }
         public virtual DbSet<KDUDCHOF> KDUDCHOF { get; set; }
+        public virtual DbSet<SubSucursales> SubSucursales { get; set; }
+        public virtual DbSet<TiposMovimiento> TiposMovimiento { get; set; }
+        public virtual DbSet<HistorialMovimientos> HistorialMovimientos { get; set; }
     
         public virtual ObjectResult<NO_RASTREO_Result> NO_RASTREO(Nullable<int> noRastCrear)
         {
@@ -322,6 +325,79 @@ namespace Datos.Datosenti
                 new ObjectParameter("modo", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aumentaSQLint", datoParameter, modoParameter);
+        }
+    
+        public virtual int spAgregarHistorialMovimiento(string etiqueta, Nullable<int> codigoTipoMovimiento, string documentoAnterior, string origen, string destino, string usuarioResponsable, string coordinador, string observaciones, string estado, string iP, string descripcionCorta, string linkDocumento, string alias, string cotizacion, Nullable<decimal> valorArnian, Nullable<decimal> valorFactura, string trackingProveedor)
+        {
+            var etiquetaParameter = etiqueta != null ?
+                new ObjectParameter("Etiqueta", etiqueta) :
+                new ObjectParameter("Etiqueta", typeof(string));
+    
+            var codigoTipoMovimientoParameter = codigoTipoMovimiento.HasValue ?
+                new ObjectParameter("CodigoTipoMovimiento", codigoTipoMovimiento) :
+                new ObjectParameter("CodigoTipoMovimiento", typeof(int));
+    
+            var documentoAnteriorParameter = documentoAnterior != null ?
+                new ObjectParameter("DocumentoAnterior", documentoAnterior) :
+                new ObjectParameter("DocumentoAnterior", typeof(string));
+    
+            var origenParameter = origen != null ?
+                new ObjectParameter("Origen", origen) :
+                new ObjectParameter("Origen", typeof(string));
+    
+            var destinoParameter = destino != null ?
+                new ObjectParameter("Destino", destino) :
+                new ObjectParameter("Destino", typeof(string));
+    
+            var usuarioResponsableParameter = usuarioResponsable != null ?
+                new ObjectParameter("UsuarioResponsable", usuarioResponsable) :
+                new ObjectParameter("UsuarioResponsable", typeof(string));
+    
+            var coordinadorParameter = coordinador != null ?
+                new ObjectParameter("Coordinador", coordinador) :
+                new ObjectParameter("Coordinador", typeof(string));
+    
+            var observacionesParameter = observaciones != null ?
+                new ObjectParameter("Observaciones", observaciones) :
+                new ObjectParameter("Observaciones", typeof(string));
+    
+            var estadoParameter = estado != null ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(string));
+    
+            var iPParameter = iP != null ?
+                new ObjectParameter("IP", iP) :
+                new ObjectParameter("IP", typeof(string));
+    
+            var descripcionCortaParameter = descripcionCorta != null ?
+                new ObjectParameter("DescripcionCorta", descripcionCorta) :
+                new ObjectParameter("DescripcionCorta", typeof(string));
+    
+            var linkDocumentoParameter = linkDocumento != null ?
+                new ObjectParameter("LinkDocumento", linkDocumento) :
+                new ObjectParameter("LinkDocumento", typeof(string));
+    
+            var aliasParameter = alias != null ?
+                new ObjectParameter("Alias", alias) :
+                new ObjectParameter("Alias", typeof(string));
+    
+            var cotizacionParameter = cotizacion != null ?
+                new ObjectParameter("Cotizacion", cotizacion) :
+                new ObjectParameter("Cotizacion", typeof(string));
+    
+            var valorArnianParameter = valorArnian.HasValue ?
+                new ObjectParameter("ValorArnian", valorArnian) :
+                new ObjectParameter("ValorArnian", typeof(decimal));
+    
+            var valorFacturaParameter = valorFactura.HasValue ?
+                new ObjectParameter("ValorFactura", valorFactura) :
+                new ObjectParameter("ValorFactura", typeof(decimal));
+    
+            var trackingProveedorParameter = trackingProveedor != null ?
+                new ObjectParameter("TrackingProveedor", trackingProveedor) :
+                new ObjectParameter("TrackingProveedor", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spAgregarHistorialMovimiento", etiquetaParameter, codigoTipoMovimientoParameter, documentoAnteriorParameter, origenParameter, destinoParameter, usuarioResponsableParameter, coordinadorParameter, observacionesParameter, estadoParameter, iPParameter, descripcionCortaParameter, linkDocumentoParameter, aliasParameter, cotizacionParameter, valorArnianParameter, valorFacturaParameter, trackingProveedorParameter);
         }
     }
 }

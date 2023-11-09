@@ -1,6 +1,7 @@
 ﻿using Datos.Datosenti;
 using Datos.ViewModels.Bill;
 using Datos.ViewModels.Carga;
+using Negocios.LOGs;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.SqlServer;
@@ -321,6 +322,7 @@ namespace Negocios.NGBill
                     d.C112 = datoHora;*/
                     modelo.KDM1.Add(d);
                     modelo.SaveChanges();
+                    GeneralMovimientosLog.AddMovimientoConParametrosDirectos(datoBill, 55, "", 55, "", datoSucIni, "","","Alta");
                     return true;
                 }
                 catch (DbEntityValidationException ex)

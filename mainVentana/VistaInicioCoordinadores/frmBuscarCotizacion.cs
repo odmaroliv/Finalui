@@ -1,6 +1,8 @@
-﻿using Datos.ViewModels.Coord;
+﻿using Datos.ViewModels;
+using Datos.ViewModels.Coord;
 using mainVentana.Reportes.Cotizaciones.cotToPDF;
 using mainVentana.VistaEntrada;
+using Negocios;
 using Negocios.NGCotizacion;
 using System;
 using System.Collections.Generic;
@@ -17,6 +19,7 @@ namespace mainVentana.VistaInicioCoordinadores
 {
     public partial class frmBuscarCotizacion : Form
     {
+        private string sucursalBusqueda;
         private int datparseado;
         private string _nCotD7 = "";
         public frmBuscarCotizacion()
@@ -46,24 +49,13 @@ namespace mainVentana.VistaInicioCoordinadores
 
         public async Task refresh(string id)
         {
-
+            EstableceSucursal();
             txbComent.Text = "";
-           string sucursal = default;
+           string sucursal = sucursalBusqueda;
 
             
 
-            if (rSd.Checked == true)
-            {
-                sucursal = "SD";
-            }
-            if (rTj.Checked == true)
-            {
-                sucursal = "TJ";
-            }
-            if (rCa.Checked == true)
-            {
-                sucursal = "CSL";
-            }
+            
 
             listaGeneralCot.Clear();
             listaInfoEnCot.Clear();
@@ -126,6 +118,17 @@ namespace mainVentana.VistaInicioCoordinadores
 
             lblEstatus.Text = ests;
             dt = null;
+        }
+        private void EstableceSucursal()
+        {
+            var name = cmbSucEntrada.SelectedValue?.ToString().Trim();
+
+            if (String.IsNullOrWhiteSpace(name))
+            {
+                MessageBox.Show("La sucursal Destino no puede esta bacia");
+                return;
+            }
+            sucursalBusqueda = name.Trim();
         }
         private void ValidabPrincipal()
         {
@@ -506,15 +509,43 @@ namespace mainVentana.VistaInicioCoordinadores
 
 
             }
-           
+
         }
 
         private void frmBuscarCotizacion_Load(object sender, EventArgs e)
         {
+            Task.Run(() => CargaSOrigen());
 
+        }
+        private void CargaSOrigen()
+        {
+            Servicios datos = new Servicios();
+            var lst2 = datos.llenaSuc();
+
+
+            // Utilizamos Invoke para actualizar la UI de manera segura desde un hilo secundario
+            this.Invoke(new Action(() =>
+            {
+                cmbSucEntrada.DisplayMember = "C2";
+                cmbSucEntrada.ValueMember = "C1";
+                cmbSucEntrada.DataSource = lst2;
+                foreach (var i in from Sucursales i in cmbSucEntrada.Items select i)
+                {
+                    cmbSucEntrada.SelectedValue = i.c1;
+                    break;
+                }
+
+            }));
+
+            datos = null;
         }
 
         private void gunaTextBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbSucEntrada_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

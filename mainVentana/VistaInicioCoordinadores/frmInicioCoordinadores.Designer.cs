@@ -32,10 +32,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.gunaElipsePanel3 = new Guna.UI.WinForms.GunaElipsePanel();
             this.label6 = new System.Windows.Forms.Label();
@@ -44,10 +44,6 @@
             this.dtFecha1 = new Guna.UI.WinForms.GunaDateTimePicker();
             this.lblCTotal = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rdId = new System.Windows.Forms.RadioButton();
-            this.rCa = new System.Windows.Forms.RadioButton();
-            this.rTj = new System.Windows.Forms.RadioButton();
-            this.rSd = new System.Windows.Forms.RadioButton();
             this.dtgEnts = new ADGV.AdvancedDataGridView();
             this.iconButton6 = new FontAwesome.Sharp.IconButton();
             this.gunaElipsePanel2 = new Guna.UI.WinForms.GunaElipsePanel();
@@ -81,6 +77,8 @@
             this.nudValArn = new System.Windows.Forms.NumericUpDown();
             this.txbEntradaDetalle = new Guna.UI.WinForms.GunaLineTextBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.cmbSucOrigen = new Guna.UI.WinForms.GunaComboBox();
+            this.cbxSinId = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -219,70 +217,22 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.rdId);
-            this.groupBox1.Controls.Add(this.rCa);
-            this.groupBox1.Controls.Add(this.rTj);
-            this.groupBox1.Controls.Add(this.rSd);
-            this.groupBox1.Location = new System.Drawing.Point(21, 23);
+            this.groupBox1.Controls.Add(this.cbxSinId);
+            this.groupBox1.Controls.Add(this.cmbSucOrigen);
+            this.groupBox1.Location = new System.Drawing.Point(21, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(312, 48);
+            this.groupBox1.Size = new System.Drawing.Size(336, 68);
             this.groupBox1.TabIndex = 137;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Sucursal";
-            // 
-            // rdId
-            // 
-            this.rdId.AutoSize = true;
-            this.rdId.Location = new System.Drawing.Point(244, 19);
-            this.rdId.Name = "rdId";
-            this.rdId.Size = new System.Drawing.Size(51, 17);
-            this.rdId.TabIndex = 3;
-            this.rdId.Text = "SinID";
-            this.rdId.UseVisualStyleBackColor = true;
-            this.rdId.CheckedChanged += new System.EventHandler(this.rSd_CheckedChanged);
-            // 
-            // rCa
-            // 
-            this.rCa.AutoSize = true;
-            this.rCa.Location = new System.Drawing.Point(175, 19);
-            this.rCa.Name = "rCa";
-            this.rCa.Size = new System.Drawing.Size(63, 17);
-            this.rCa.TabIndex = 2;
-            this.rCa.Text = "Cabo S.";
-            this.rCa.UseVisualStyleBackColor = true;
-            this.rCa.CheckedChanged += new System.EventHandler(this.rSd_CheckedChanged);
-            // 
-            // rTj
-            // 
-            this.rTj.AutoSize = true;
-            this.rTj.Location = new System.Drawing.Point(97, 19);
-            this.rTj.Name = "rTj";
-            this.rTj.Size = new System.Drawing.Size(60, 17);
-            this.rTj.TabIndex = 1;
-            this.rTj.Text = "Tijuana";
-            this.rTj.UseVisualStyleBackColor = true;
-            this.rTj.CheckedChanged += new System.EventHandler(this.rSd_CheckedChanged);
-            // 
-            // rSd
-            // 
-            this.rSd.AutoSize = true;
-            this.rSd.Checked = true;
-            this.rSd.Location = new System.Drawing.Point(6, 19);
-            this.rSd.Name = "rSd";
-            this.rSd.Size = new System.Drawing.Size(75, 17);
-            this.rSd.TabIndex = 0;
-            this.rSd.TabStop = true;
-            this.rSd.Text = "San Diego";
-            this.rSd.UseVisualStyleBackColor = true;
-            this.rSd.CheckedChanged += new System.EventHandler(this.rSd_CheckedChanged);
             // 
             // dtgEnts
             // 
             this.dtgEnts.AllowUserToAddRows = false;
             this.dtgEnts.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
-            this.dtgEnts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
+            this.dtgEnts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
             this.dtgEnts.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -291,25 +241,25 @@
             this.dtgEnts.BackgroundColor = System.Drawing.Color.White;
             this.dtgEnts.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dtgEnts.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgEnts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgEnts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
             this.dtgEnts.ColumnHeadersHeight = 65;
             this.dtgEnts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dtgEnts.DateWithTime = false;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgEnts.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgEnts.DefaultCellStyle = dataGridViewCellStyle19;
             this.dtgEnts.EnableHeadersVisualStyles = false;
             this.dtgEnts.GridColor = System.Drawing.Color.White;
             this.dtgEnts.Location = new System.Drawing.Point(21, 76);
@@ -317,14 +267,14 @@
             this.dtgEnts.Name = "dtgEnts";
             this.dtgEnts.ReadOnly = true;
             this.dtgEnts.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgEnts.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgEnts.RowHeadersDefaultCellStyle = dataGridViewCellStyle20;
             this.dtgEnts.RowHeadersVisible = false;
             this.dtgEnts.RowTemplate.DividerHeight = 1;
             this.dtgEnts.RowTemplate.Height = 50;
@@ -872,6 +822,35 @@
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
             // 
+            // cmbSucOrigen
+            // 
+            this.cmbSucOrigen.BackColor = System.Drawing.Color.Transparent;
+            this.cmbSucOrigen.BaseColor = System.Drawing.Color.White;
+            this.cmbSucOrigen.BorderColor = System.Drawing.Color.Silver;
+            this.cmbSucOrigen.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbSucOrigen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSucOrigen.FocusedColor = System.Drawing.Color.Empty;
+            this.cmbSucOrigen.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbSucOrigen.ForeColor = System.Drawing.Color.Black;
+            this.cmbSucOrigen.FormattingEnabled = true;
+            this.cmbSucOrigen.Location = new System.Drawing.Point(10, 35);
+            this.cmbSucOrigen.Name = "cmbSucOrigen";
+            this.cmbSucOrigen.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.cmbSucOrigen.OnHoverItemForeColor = System.Drawing.Color.White;
+            this.cmbSucOrigen.Size = new System.Drawing.Size(320, 26);
+            this.cmbSucOrigen.TabIndex = 199;
+            this.cmbSucOrigen.SelectedIndexChanged += new System.EventHandler(this.cmbSucOrigen_SelectedIndexChanged);
+            // 
+            // cbxSinId
+            // 
+            this.cbxSinId.AutoSize = true;
+            this.cbxSinId.Location = new System.Drawing.Point(10, 16);
+            this.cbxSinId.Name = "cbxSinId";
+            this.cbxSinId.Size = new System.Drawing.Size(55, 17);
+            this.cbxSinId.TabIndex = 200;
+            this.cbxSinId.Text = "Sin ID";
+            this.cbxSinId.UseVisualStyleBackColor = true;
+            // 
             // frmInicioCoordinadores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -907,9 +886,6 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private FontAwesome.Sharp.IconButton iconButton6;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton rCa;
-        private System.Windows.Forms.RadioButton rTj;
-        private System.Windows.Forms.RadioButton rSd;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private ADGV.AdvancedDataGridView dtgEnts;
         private Guna.UI.WinForms.GunaElipsePanel gunaElipsePanel2;
@@ -937,7 +913,6 @@
         private System.Windows.Forms.Label label7;
         private Guna.UI.WinForms.GunaDateTimePicker dtFecha2;
         private Guna.UI.WinForms.GunaDateTimePicker dtFecha1;
-        private System.Windows.Forms.RadioButton rdId;
         private Guna.UI.WinForms.GunaLineTextBox txbCordUsr;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
@@ -949,5 +924,7 @@
         private Guna.UI.WinForms.GunaLineTextBox txbPcolonia;
         private Guna.UI.WinForms.GunaLineTextBox txbPcalle;
         private Guna.UI.WinForms.GunaLineTextBox txbPcp;
+        private Guna.UI.WinForms.GunaComboBox cmbSucOrigen;
+        private System.Windows.Forms.CheckBox cbxSinId;
     }
 }

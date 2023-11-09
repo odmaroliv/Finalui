@@ -371,7 +371,7 @@ namespace Negocios.NGCotizacion
 
                 {
                     var lista = from d in modelo.KDM1
-                                where d.C1.Contains(datoSucIni) && d.C6 == Ent
+                                where d.C1.Equals(datoSucIni) && d.C6 == Ent
                                 select new vmNoCot
                                 {
                                     noCot = d.C115

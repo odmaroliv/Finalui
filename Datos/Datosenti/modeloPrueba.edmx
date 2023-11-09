@@ -5,6 +5,33 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="KEPLER_PRUEBASModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="HistorialMovimientos">
+          <Key>
+            <PropertyRef Name="MovimientoID" />
+          </Key>
+          <Property Name="MovimientoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Folio" Type="int" Nullable="false" />
+          <Property Name="TipoFolio" Type="int" Nullable="false" />
+          <Property Name="Etiqueta" Type="varchar" MaxLength="255" />
+          <Property Name="CodigoTipoMovimiento" Type="int" Nullable="false" />
+          <Property Name="DocumentoAnterior" Type="varchar" MaxLength="255" />
+          <Property Name="Origen" Type="varchar" MaxLength="255" />
+          <Property Name="Destino" Type="varchar" MaxLength="255" />
+          <Property Name="FechaHoraMovimiento" Type="datetime" />
+          <Property Name="UsuarioResponsable" Type="varchar" MaxLength="255" />
+          <Property Name="Coordinador" Type="varchar" MaxLength="255" />
+          <Property Name="Observaciones" Type="nvarchar(max)" />
+          <Property Name="Estado" Type="varchar" MaxLength="255" />
+          <Property Name="IP" Type="varchar" MaxLength="45" />
+          <Property Name="DescripcionCorta" Type="varchar" MaxLength="255" />
+          <Property Name="LinkDocumento" Type="varchar" MaxLength="255" />
+          <Property Name="Alias" Type="varchar" MaxLength="255" />
+          <Property Name="Cotizacion" Type="varchar" MaxLength="255" />
+          <Property Name="ValorArnian" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="ValorFactura" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="TrackingProveedor" Type="varchar" MaxLength="255" />
+          <Property Name="Entrada" Type="bit" />
+        </EntityType>
         <EntityType Name="KDFEMTOCFD">
           <Key>
             <PropertyRef Name="C1" />
@@ -348,6 +375,7 @@
           <Property Name="C10" Type="char" MaxLength="16" />
           <Property Name="C11" Type="char" MaxLength="16" />
           <Property Name="C12" Type="char" MaxLength="100" />
+          <Property Name="IDNumerico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="KDUD">
           <Key>
@@ -529,6 +557,28 @@
           <Property Name="C5" Type="char" MaxLength="100" />
           <Property Name="C16" Type="char" MaxLength="250" />
         </EntityType>
+        <EntityType Name="SubSucursales">
+          <Key>
+            <PropertyRef Name="SubID" />
+          </Key>
+          <Property Name="SubID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubSucursal" Type="nvarchar" MaxLength="255" />
+          <Property Name="KDMSID" Type="int" />
+        </EntityType>
+        <EntityType Name="TiposMovimiento">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="255" />
+          <Property Name="FechaCreacion" Type="datetime" />
+          <Property Name="Activo" Type="bit" />
+          <Property Name="NotasAdicionales" Type="text" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6035: La relación 'FK__SubSucurs__KDMSI__4FBCC72F' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
+        <Association Name="FK__SubSucurs__KDMSI__4FBCC72F" />-->
         <Function Name="AgregaKDMENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SUC" Type="varchar" Mode="In" />
           <Parameter Name="GEN" Type="varchar" Mode="In" />
@@ -588,7 +638,27 @@
           <Parameter Name="DATO" Type="nvarchar" Mode="In" />
           <Parameter Name="TIPO" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="spAgregarHistorialMovimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Etiqueta" Type="varchar" Mode="In" />
+          <Parameter Name="CodigoTipoMovimiento" Type="int" Mode="In" />
+          <Parameter Name="DocumentoAnterior" Type="varchar" Mode="In" />
+          <Parameter Name="Origen" Type="varchar" Mode="In" />
+          <Parameter Name="Destino" Type="varchar" Mode="In" />
+          <Parameter Name="UsuarioResponsable" Type="varchar" Mode="In" />
+          <Parameter Name="Coordinador" Type="varchar" Mode="In" />
+          <Parameter Name="Observaciones" Type="text" Mode="In" />
+          <Parameter Name="Estado" Type="varchar" Mode="In" />
+          <Parameter Name="IP" Type="varchar" Mode="In" />
+          <Parameter Name="DescripcionCorta" Type="varchar" Mode="In" />
+          <Parameter Name="LinkDocumento" Type="varchar" Mode="In" />
+          <Parameter Name="Alias" Type="varchar" Mode="In" />
+          <Parameter Name="Cotizacion" Type="varchar" Mode="In" />
+          <Parameter Name="ValorArnian" Type="decimal" Mode="In" />
+          <Parameter Name="ValorFactura" Type="decimal" Mode="In" />
+          <Parameter Name="TrackingProveedor" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="KEPLER_PRUEBASModelStoreContainer">
+          <EntitySet Name="HistorialMovimientos" EntityType="Self.HistorialMovimientos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KDFEMTOCFD" EntityType="Self.KDFEMTOCFD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KDID" EntityType="Self.KDID" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KDIDO" EntityType="Self.KDIDO" Schema="dbo" store:Type="Tables" />
@@ -606,6 +676,8 @@
           <EntitySet Name="KDUV" EntityType="Self.KDUV" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KDXD" EntityType="Self.KDXD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SqlIov" EntityType="Self.SqlIov" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubSucursales" EntityType="Self.SubSucursales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TiposMovimiento" EntityType="Self.TiposMovimiento" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -889,6 +961,7 @@
           <Property Name="C10" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
           <Property Name="C11" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
           <Property Name="C12" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="IDNumerico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="KDUD">
           <Key>
@@ -1135,6 +1208,28 @@
           <EntitySet Name="KDM2" EntityType="KEPLER_PRUEBASModel.KDM2" />
           <EntitySet Name="SqlIov" EntityType="KEPLER_PRUEBASModel.SqlIov" />
           <EntitySet Name="KDUDCHOF" EntityType="KEPLER_PRUEBASModel.KDUDCHOF" />
+          <EntitySet Name="SubSucursales" EntityType="KEPLER_PRUEBASModel.SubSucursales" />
+          <FunctionImport Name="spAgregarHistorialMovimiento">
+            <Parameter Name="Etiqueta" Mode="In" Type="String" />
+            <Parameter Name="CodigoTipoMovimiento" Mode="In" Type="Int32" />
+            <Parameter Name="DocumentoAnterior" Mode="In" Type="String" />
+            <Parameter Name="Origen" Mode="In" Type="String" />
+            <Parameter Name="Destino" Mode="In" Type="String" />
+            <Parameter Name="UsuarioResponsable" Mode="In" Type="String" />
+            <Parameter Name="Coordinador" Mode="In" Type="String" />
+            <Parameter Name="Observaciones" Mode="In" Type="String" />
+            <Parameter Name="Estado" Mode="In" Type="String" />
+            <Parameter Name="IP" Mode="In" Type="String" />
+            <Parameter Name="DescripcionCorta" Mode="In" Type="String" />
+            <Parameter Name="LinkDocumento" Mode="In" Type="String" />
+            <Parameter Name="Alias" Mode="In" Type="String" />
+            <Parameter Name="Cotizacion" Mode="In" Type="String" />
+            <Parameter Name="ValorArnian" Mode="In" Type="Decimal" />
+            <Parameter Name="ValorFactura" Mode="In" Type="Decimal" />
+            <Parameter Name="TrackingProveedor" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="TiposMovimiento" EntityType="KEPLER_PRUEBASModel.TiposMovimiento" />
+          <EntitySet Name="HistorialMovimientos" EntityType="KEPLER_PRUEBASModel.HistorialMovimientos" />
           </EntityContainer>
         <ComplexType Name="NO_RASTREO_Result">
           <Property Type="String" Name="rand_number" Nullable="false" MaxLength="13" />
@@ -1451,6 +1546,52 @@
           <Property Name="C2" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
           <Property Name="C3" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
         </EntityType>
+        <EntityType Name="SubSucursales">
+          <Key>
+            <PropertyRef Name="SubID" />
+          </Key>
+          <Property Name="SubID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubSucursal" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="KDMSID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TiposMovimiento">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+          <Property Name="Activo" Type="Boolean" />
+          <Property Name="NotasAdicionales" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="HistorialMovimientos">
+          <Key>
+            <PropertyRef Name="MovimientoID" />
+          </Key>
+          <Property Name="MovimientoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Folio" Type="Int32" Nullable="false" />
+          <Property Name="TipoFolio" Type="Int32" Nullable="false" />
+          <Property Name="Etiqueta" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoTipoMovimiento" Type="Int32" Nullable="false" />
+          <Property Name="DocumentoAnterior" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Origen" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Destino" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FechaHoraMovimiento" Type="DateTime" Precision="3" />
+          <Property Name="UsuarioResponsable" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Coordinador" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="IP" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="DescripcionCorta" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="LinkDocumento" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Alias" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Cotizacion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ValorArnian" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="ValorFactura" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="TrackingProveedor" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Entrada" Type="Boolean" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1711,6 +1852,7 @@
           <EntitySetMapping Name="KDMS">
             <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.KDMS">
               <MappingFragment StoreEntitySet="KDMS">
+                <ScalarProperty Name="IDNumerico" ColumnName="IDNumerico" />
                 <ScalarProperty Name="C1" ColumnName="C1" />
                 <ScalarProperty Name="C2" ColumnName="C2" />
                 <ScalarProperty Name="C3" ColumnName="C3" />
@@ -2011,6 +2153,56 @@
                 <ScalarProperty Name="C3" ColumnName="C3" />
                 <ScalarProperty Name="C2" ColumnName="C2" />
                 <ScalarProperty Name="C1" ColumnName="C1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubSucursales">
+            <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.SubSucursales">
+              <MappingFragment StoreEntitySet="SubSucursales">
+                <ScalarProperty Name="KDMSID" ColumnName="KDMSID" />
+                <ScalarProperty Name="SubSucursal" ColumnName="SubSucursal" />
+                <ScalarProperty Name="SubID" ColumnName="SubID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spAgregarHistorialMovimiento" FunctionName="KEPLER_PRUEBASModel.Store.spAgregarHistorialMovimiento" />
+          <EntitySetMapping Name="TiposMovimiento">
+            <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.TiposMovimiento">
+              <MappingFragment StoreEntitySet="TiposMovimiento">
+                <ScalarProperty Name="NotasAdicionales" ColumnName="NotasAdicionales" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistorialMovimientos">
+            <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.HistorialMovimientos">
+              <MappingFragment StoreEntitySet="HistorialMovimientos">
+                <ScalarProperty Name="Entrada" ColumnName="Entrada" />
+                <ScalarProperty Name="TrackingProveedor" ColumnName="TrackingProveedor" />
+                <ScalarProperty Name="ValorFactura" ColumnName="ValorFactura" />
+                <ScalarProperty Name="ValorArnian" ColumnName="ValorArnian" />
+                <ScalarProperty Name="Cotizacion" ColumnName="Cotizacion" />
+                <ScalarProperty Name="Alias" ColumnName="Alias" />
+                <ScalarProperty Name="LinkDocumento" ColumnName="LinkDocumento" />
+                <ScalarProperty Name="DescripcionCorta" ColumnName="DescripcionCorta" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Coordinador" ColumnName="Coordinador" />
+                <ScalarProperty Name="UsuarioResponsable" ColumnName="UsuarioResponsable" />
+                <ScalarProperty Name="FechaHoraMovimiento" ColumnName="FechaHoraMovimiento" />
+                <ScalarProperty Name="Destino" ColumnName="Destino" />
+                <ScalarProperty Name="Origen" ColumnName="Origen" />
+                <ScalarProperty Name="DocumentoAnterior" ColumnName="DocumentoAnterior" />
+                <ScalarProperty Name="CodigoTipoMovimiento" ColumnName="CodigoTipoMovimiento" />
+                <ScalarProperty Name="Etiqueta" ColumnName="Etiqueta" />
+                <ScalarProperty Name="TipoFolio" ColumnName="TipoFolio" />
+                <ScalarProperty Name="Folio" ColumnName="Folio" />
+                <ScalarProperty Name="MovimientoID" ColumnName="MovimientoID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

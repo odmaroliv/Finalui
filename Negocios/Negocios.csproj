@@ -81,6 +81,7 @@
     <Compile Include="ConeccionRed.cs" />
     <Compile Include="EnviarEmail.cs" />
     <Compile Include="LOGs\ArsLogs.cs" />
+    <Compile Include="LOGs\GeneralMovimientosLog.cs" />
     <Compile Include="MB\mbsecurity.cs" />
     <Compile Include="NGBill\BusquedaBill.cs" />
     <Compile Include="NGCarga\altasBDCarga.cs" />

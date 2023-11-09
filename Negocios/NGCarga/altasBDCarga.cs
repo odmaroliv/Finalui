@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using Datos.ViewModels.Carga;
 using System.Collections.ObjectModel;
 using Datos.ViewModels.Entradas;
+using Negocios.LOGs;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace Negocios.NGCarga
 {
@@ -86,7 +88,7 @@ namespace Negocios.NGCarga
                 try
                 {
                     var d = (from q in modelo.KDM1
-                             where q.C1.Contains(datoSucIni) && q.C6.Contains(datoOrdCarga) && q.C4 == 40
+                             where q.C1.Equals(datoSucIni) && q.C6.Contains(datoOrdCarga) && q.C4 == 40
                              select q).First();
 
 
@@ -105,6 +107,7 @@ namespace Negocios.NGCarga
                     d.C111 = datoFCorte;
                     d.C112 = datoHora;
                     modelo.SaveChanges();
+                    GeneralMovimientosLog.AddMovimientoConParametrosDirectos(datoOrdCarga, 40, "", 40, datoOrdCarga, datoSucIni, datoSucDest,"","Modifica");
                 }
                 catch (DbEntityValidationException e)
                 {
@@ -136,7 +139,7 @@ namespace Negocios.NGCarga
                 try
                 {
                     var d = (from q in modelo.KDM1
-                             where q.C1.Contains(datoSucIni) && q.C6.Contains(datoOrdCarga) && q.C4 == 40
+                             where q.C1.Equals(datoSucIni) && q.C6.Contains(datoOrdCarga) && q.C4 == 40
                              select q).First();
 
 
@@ -175,16 +178,19 @@ namespace Negocios.NGCarga
 
 
                     var d = (from q in modelo.KDMENT
-                             where q.C9.Contains(etiqueta) && q.C4 == 35
+                             where q.C9.Equals(etiqueta) && q.C4 == 35
                              select q);
 
                     foreach (var item in d)
                     {
                         item.C16 = carga;
+                        item.C72 = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
                     }
 
 
                     await modelo.SaveChangesAsync();
+                    GeneralMovimientosLog.AddMovimientoConParametrosDirectos(GeneralMovimientosLog.ObtenerFolioDesdeEtiqueta(etiqueta), 35, etiqueta, 40, carga, "", "", "", "Aplica", "", "Se aplica(Cierra) la orden " + carga);
+
                 }
                 catch (DbEntityValidationException e)
                 {
@@ -224,7 +230,7 @@ namespace Negocios.NGCarga
                 try
                 {
                     var d = (from q in modelo.KDMENT
-                             where q.C1.Contains(datoSucIni) && q.C6.Contains(datoEntrada) && q.C4 == 35
+                             where q.C1.Equals(datoSucIni) && q.C6.Contains(datoEntrada) && q.C4 == 35
                              select q);
 
                     foreach (var item in d)
@@ -274,9 +280,13 @@ namespace Negocios.NGCarga
 
                                 dato.C45 = carga;
                                 dato.C61 = fecha;
-                                
+
 
                                 modelo.SaveChanges();
+
+                                GeneralMovimientosLog.AddMovimientoConParametrosDirectos(GeneralMovimientosLog.ObtenerFolioDesdeEtiqueta(item.Etiqueta), 35, item.Etiqueta, 40, carga, "", "", "", "Agrega", "", "Se agrega a la carga numero: " + carga);
+
+
                             }
                             catch (Exception ex)
                             {
@@ -314,6 +324,8 @@ namespace Negocios.NGCarga
                                 */
 
                                 modelo.SaveChanges();
+                                GeneralMovimientosLog.AddMovimientoConParametrosDirectos(GeneralMovimientosLog.ObtenerFolioDesdeEtiqueta(item.Etiqueta), 35, item.Etiqueta, 40, carga, "", "", "", "Agrega", "", "Se agrega a la carga numero: " + carga);
+
                             }
                             catch (Exception ex)
                             {
@@ -372,6 +384,7 @@ namespace Negocios.NGCarga
                             dato.C29 = LimitarLongitud(num, 20);
 
                             modelo.SaveChanges();
+                            GeneralMovimientosLog.AddMovimientoConParametrosDirectos(GeneralMovimientosLog.ObtenerFolioDesdeEtiqueta(item.Etiqueta), 35, item.Etiqueta, 55, nBill, "", "", "", "Agrega","","Se agrega al bill numero: "+nBill,"",aliass);
                         }
                         catch (Exception ex)
                         {
@@ -440,7 +453,7 @@ namespace Negocios.NGCarga
             {
                 try
                 {
-                    var entradas = modelo.KDMENT.Where(q => q.C1.Contains(dtSucInicio) && q.C6.Contains(dtEntrada) && q.C54 == dtCargaAsignada);
+                    var entradas = modelo.KDMENT.Where(q => q.C1.Equals(dtSucInicio) && q.C6.Contains(dtEntrada) && q.C54 == dtCargaAsignada);
 
                     if (entradas.Any())
                     {
@@ -450,6 +463,7 @@ namespace Negocios.NGCarga
                         }
 
                         await modelo.SaveChangesAsync();
+                        GeneralMovimientosLog.AddMovimientoConParametrosDirectos(dtEntrada, 35, "", 40, dtCargaAsignada,dtSucInicio, "", "", "Baja", "", "Se baja "+ dtEntrada + " de la carga " + dtCargaAsignada);
                     }
                 }
                 catch (DbEntityValidationException e)

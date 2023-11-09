@@ -10,6 +10,7 @@ using Ventana1.vm;
 using System.Windows.Forms;
 
 using Datos.ViewModels.Coord;
+using Negocios.LOGs;
 
 namespace Negocios
 {
@@ -282,6 +283,8 @@ namespace Negocios
                     try
                     {
                         modelo.SaveChanges();
+                        GeneralMovimientosLog.AddMovimientoConParametrosDirectos(id, 35, "", 35, "", sucursalOrigen, sucursaldestino, cord, "Modifica","", "Se modifica la Entrada " + id,"",datoAlias,"", Convert.ToDecimal(valarn.Trim()), Convert.ToDecimal(valfact.Trim()));
+
                     }
                     catch (Exception ex)
                     {
@@ -395,7 +398,7 @@ namespace Negocios
                 d.C18 = c18;
                 d.C24 = c24;
                 d.C31 = c31;
-                d.C61 = c61;
+                d.C61 = c61; //ESTATUS DE PAUSA POR EJEMPLO PSTJ O PSSD
                 d.C63 = c63;
                 d.C67 = c67.Substring(0, Math.Min(c67.Length, 22)); //Elaboro
                 d.C68 = c68;
@@ -435,7 +438,7 @@ namespace Negocios
                     {
 
                         var d = (from fd in modelo.KDM1
-                                 where fd.C1.Contains(sucursal) && fd.C4 == 50 && fd.C6 == numerocarga
+                                 where fd.C1.Equals(sucursal) && fd.C4 == 50 && fd.C6 == numerocarga
                                  select fd).First();
 
                         d.C44 = numerosalida;
@@ -455,7 +458,7 @@ namespace Negocios
                     {
 
                         var d = (from fd in modelo.KDM1
-                                 where fd.C1.Contains(sucursal) && fd.C4 == 40 && fd.C6 == numerocarga
+                                 where fd.C1.Equals(sucursal) && fd.C4 == 40 && fd.C6 == numerocarga
                                  select fd).First();
 
                         d.C44 = numerosalida;
@@ -486,7 +489,7 @@ namespace Negocios
                     List<KDM1> kd = new List<KDM1>();
 
                     var d = (from fd in modelo.KDM1
-                             where fd.C1.Contains(origen) && fd.C4 == 45 && fd.C6 == numerosalida
+                             where fd.C1.Equals(origen) && fd.C4 == 45 && fd.C6 == numerosalida
                              select fd).FirstOrDefault();
 
 

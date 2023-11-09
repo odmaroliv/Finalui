@@ -22,6 +22,7 @@ using DocumentFormat.OpenXml.Office.Word;
 using iTextSharp.tool.xml.css;
 using ADGV;
 using mainVentana.Helpers;
+using Datos.ViewModels;
 
 namespace mainVentana.VistaInicioCoordinadores
 
@@ -128,7 +129,30 @@ namespace mainVentana.VistaInicioCoordinadores
             nudValFac.Controls[0].Enabled = false;
 
             await ejecutaeveto2();
-          
+            await Task.Run(() => CargaSOrigen()); ;
+        }
+
+        private void CargaSOrigen()
+        {
+            Servicios datos = new Servicios();
+            var lst2 = datos.llenaSuc();
+
+
+            // Utilizamos Invoke para actualizar la UI de manera segura desde un hilo secundario
+            this.Invoke(new Action(() =>
+            {
+                cmbSucOrigen.DisplayMember = "C2";
+                cmbSucOrigen.ValueMember = "C1";
+                cmbSucOrigen.DataSource = lst2;
+                foreach (var i in from Sucursales i in cmbSucOrigen.Items select i)
+                {
+                    cmbSucOrigen.SelectedValue = i.c1;
+                    break;
+                }
+
+            }));
+
+            datos = null;
         }
 
         private string sucursal = "";
@@ -138,7 +162,12 @@ namespace mainVentana.VistaInicioCoordinadores
 
         public async Task<bool> CargaControles()
         {
-            lss.Clear();
+            if (lss?.Count >0)
+            {
+                lss.Clear();
+            }
+           
+            /*
             // Utilizar un diccionario para mapear los RadioButton a sus valores correspondientes
             var radioButtonMapping = new Dictionary<RadioButton, string>
                 {
@@ -150,6 +179,8 @@ namespace mainVentana.VistaInicioCoordinadores
 
             // Encontrar el RadioButton seleccionado y obtener su valor correspondiente
             sucursal = radioButtonMapping.FirstOrDefault(r => r.Key.Checked).Value;
+            */
+
             ngbdReportes rep = new ngbdReportes();
             //var lss = new List<vmInfoControlCors>();
             if (sucursal == "9999")
@@ -160,7 +191,10 @@ namespace mainVentana.VistaInicioCoordinadores
             {
                 lss = await rep.CargaControl(sucursal, dtFecha1.Value, dtFecha2.Value);
             }
-
+            if (lss ==null)
+            {
+                return false;
+            }
             foreach (var item in lss)
             {
                 PropertyInfo[] properties = item.GetType().GetProperties();
@@ -688,6 +722,36 @@ namespace mainVentana.VistaInicioCoordinadores
                 throw;
             }
             finally { _abriendo = false; }
+           
+        }
+
+        private async void cmbSucOrigen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            iconButton6.Enabled = false;
+            _isBusy = true;
+            try
+            {
+                var name = cmbSucOrigen.SelectedValue?.ToString().Trim();
+
+                if (String.IsNullOrWhiteSpace(name))
+                {
+                    MessageBox.Show("La sucursal no puede esta bacia");
+                    return;
+                }
+                sucursal = cbxSinId.Checked == false? name.Trim(): "9999"; //9999 si es sin ID
+                bool ts = await CargaControles();
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            finally
+            {
+                iconButton6.Enabled = true;
+                _isBusy = false;
+            }
+
+
            
         }
     }

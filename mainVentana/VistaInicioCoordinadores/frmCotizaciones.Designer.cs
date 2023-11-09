@@ -111,14 +111,13 @@
             this.gunaGoogleSwitch4 = new Guna.UI.WinForms.GunaGoogleSwitch();
             this.gunaElipsePanel3 = new Guna.UI.WinForms.GunaElipsePanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rCa = new System.Windows.Forms.RadioButton();
-            this.rTj = new System.Windows.Forms.RadioButton();
-            this.rSd = new System.Windows.Forms.RadioButton();
             this.dtgEnts = new ADGV.AdvancedDataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.gunaTileButton2 = new Guna.UI.WinForms.GunaTileButton();
             this.label3 = new System.Windows.Forms.Label();
             this.gunaElipsePanel1 = new Guna.UI.WinForms.GunaElipsePanel();
+            this.label44 = new System.Windows.Forms.Label();
+            this.SwitchAlmacenaje = new Guna.UI.WinForms.GunaGoogleSwitch();
             this.lblTipoImp = new ReaLTaiizor.Controls.BigLabel();
             this.label41 = new System.Windows.Forms.Label();
             this.SwitchAdd = new Guna.UI.WinForms.GunaGoogleSwitch();
@@ -147,8 +146,7 @@
             this.ribbonPanel1 = new System.Windows.Forms.RibbonPanel();
             this.ribbonButton1 = new System.Windows.Forms.RibbonButton();
             this.ribbonTab2 = new System.Windows.Forms.RibbonTab();
-            this.SwitchAlmacenaje = new Guna.UI.WinForms.GunaGoogleSwitch();
-            this.label44 = new System.Windows.Forms.Label();
+            this.cmbSucEntrada = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.gunaElipsePanel6.SuspendLayout();
             this.gunaElipsePanel5.SuspendLayout();
@@ -1135,47 +1133,13 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.rCa);
-            this.groupBox1.Controls.Add(this.rTj);
-            this.groupBox1.Controls.Add(this.rSd);
+            this.groupBox1.Controls.Add(this.cmbSucEntrada);
             this.groupBox1.Location = new System.Drawing.Point(21, 31);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(237, 48);
+            this.groupBox1.Size = new System.Drawing.Size(337, 48);
             this.groupBox1.TabIndex = 148;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Sucursal";
-            // 
-            // rCa
-            // 
-            this.rCa.AutoSize = true;
-            this.rCa.Location = new System.Drawing.Point(153, 19);
-            this.rCa.Name = "rCa";
-            this.rCa.Size = new System.Drawing.Size(63, 17);
-            this.rCa.TabIndex = 2;
-            this.rCa.Text = "Cabo S.";
-            this.rCa.UseVisualStyleBackColor = true;
-            // 
-            // rTj
-            // 
-            this.rTj.AutoSize = true;
-            this.rTj.Location = new System.Drawing.Point(87, 19);
-            this.rTj.Name = "rTj";
-            this.rTj.Size = new System.Drawing.Size(60, 17);
-            this.rTj.TabIndex = 1;
-            this.rTj.Text = "Tijuana";
-            this.rTj.UseVisualStyleBackColor = true;
-            // 
-            // rSd
-            // 
-            this.rSd.AutoSize = true;
-            this.rSd.Checked = true;
-            this.rSd.Location = new System.Drawing.Point(6, 19);
-            this.rSd.Name = "rSd";
-            this.rSd.Size = new System.Drawing.Size(75, 17);
-            this.rSd.TabIndex = 0;
-            this.rSd.TabStop = true;
-            this.rSd.Text = "San Diego";
-            this.rSd.UseVisualStyleBackColor = true;
             // 
             // dtgEnts
             // 
@@ -1307,6 +1271,30 @@
             this.gunaElipsePanel1.Size = new System.Drawing.Size(522, 126);
             this.gunaElipsePanel1.TabIndex = 159;
             // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label44.Location = new System.Drawing.Point(217, 14);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(79, 16);
+            this.label44.TabIndex = 186;
+            this.label44.Text = "Almacenaje";
+            this.label44.UseMnemonic = false;
+            // 
+            // SwitchAlmacenaje
+            // 
+            this.SwitchAlmacenaje.BaseColor = System.Drawing.SystemColors.Control;
+            this.SwitchAlmacenaje.CheckedOffColor = System.Drawing.Color.DarkGray;
+            this.SwitchAlmacenaje.CheckedOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.SwitchAlmacenaje.FillColor = System.Drawing.Color.White;
+            this.SwitchAlmacenaje.Location = new System.Drawing.Point(220, 33);
+            this.SwitchAlmacenaje.Name = "SwitchAlmacenaje";
+            this.SwitchAlmacenaje.Size = new System.Drawing.Size(38, 20);
+            this.SwitchAlmacenaje.TabIndex = 185;
+            this.SwitchAlmacenaje.Tag = "Others TAXES";
+            this.SwitchAlmacenaje.CheckedChanged += new System.EventHandler(this.SwitchAlmacenaje_CheckedChanged);
+            // 
             // lblTipoImp
             // 
             this.lblTipoImp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -1374,7 +1362,7 @@
             this.lblNoCot.BackColor = System.Drawing.Color.Transparent;
             this.lblNoCot.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.lblNoCot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.lblNoCot.Location = new System.Drawing.Point(58, 64);
+            this.lblNoCot.Location = new System.Drawing.Point(73, 64);
             this.lblNoCot.Name = "lblNoCot";
             this.lblNoCot.Size = new System.Drawing.Size(105, 25);
             this.lblNoCot.TabIndex = 148;
@@ -1696,29 +1684,25 @@
             this.ribbonTab2.Name = "ribbonTab2";
             this.ribbonTab2.Text = "ribbonTab2";
             // 
-            // SwitchAlmacenaje
+            // cmbSucEntrada
             // 
-            this.SwitchAlmacenaje.BaseColor = System.Drawing.SystemColors.Control;
-            this.SwitchAlmacenaje.CheckedOffColor = System.Drawing.Color.DarkGray;
-            this.SwitchAlmacenaje.CheckedOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.SwitchAlmacenaje.FillColor = System.Drawing.Color.White;
-            this.SwitchAlmacenaje.Location = new System.Drawing.Point(220, 33);
-            this.SwitchAlmacenaje.Name = "SwitchAlmacenaje";
-            this.SwitchAlmacenaje.Size = new System.Drawing.Size(38, 20);
-            this.SwitchAlmacenaje.TabIndex = 185;
-            this.SwitchAlmacenaje.Tag = "Others TAXES";
-            this.SwitchAlmacenaje.CheckedChanged += new System.EventHandler(this.SwitchAlmacenaje_CheckedChanged);
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.Location = new System.Drawing.Point(217, 14);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(79, 16);
-            this.label44.TabIndex = 186;
-            this.label44.Text = "Almacenaje";
-            this.label44.UseMnemonic = false;
+            this.cmbSucEntrada.AutoCompleteCustomSource.AddRange(new string[] {
+            "SD",
+            "TJ",
+            "CSL"});
+            this.cmbSucEntrada.DisplayMember = "SD";
+            this.cmbSucEntrada.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSucEntrada.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbSucEntrada.FormattingEnabled = true;
+            this.cmbSucEntrada.Items.AddRange(new object[] {
+            "SD",
+            "TJ",
+            "CSL"});
+            this.cmbSucEntrada.Location = new System.Drawing.Point(8, 13);
+            this.cmbSucEntrada.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbSucEntrada.Name = "cmbSucEntrada";
+            this.cmbSucEntrada.Size = new System.Drawing.Size(314, 28);
+            this.cmbSucEntrada.TabIndex = 107;
             // 
             // frmCotizaciones
             // 
@@ -1744,7 +1728,6 @@
             this.gunaElipsePanel3.ResumeLayout(false);
             this.gunaElipsePanel3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgEnts)).EndInit();
             this.gunaElipsePanel1.ResumeLayout(false);
             this.gunaElipsePanel1.PerformLayout();
@@ -1788,9 +1771,6 @@
         private Guna.UI.WinForms.GunaTileButton gunaTileButton2;
         private ADGV.AdvancedDataGridView dtgEnts;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton rCa;
-        private System.Windows.Forms.RadioButton rTj;
-        private System.Windows.Forms.RadioButton rSd;
         private System.Windows.Forms.DataGridViewButtonColumn Column1;
         private System.Windows.Forms.TextBox txbParidad;
         private Guna.UI.WinForms.GunaComboBox cmbMoneda;
@@ -1869,5 +1849,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.Label label44;
         private Guna.UI.WinForms.GunaGoogleSwitch SwitchAlmacenaje;
+        private System.Windows.Forms.ComboBox cmbSucEntrada;
     }
 }
