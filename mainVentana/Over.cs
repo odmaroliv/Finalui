@@ -18,6 +18,7 @@ using mainVentana.VistaCreditoCobranza;
 using Datos.ViewModels;
 using Datos.ViewModels.CXC;
 using ClosedXML.Excel;
+using Datos.ViewModels.Reportes;
 
 namespace mainVentana
 {
@@ -28,12 +29,33 @@ namespace mainVentana
         frmInicioCoordinadores frm = new frmInicioCoordinadores();
         private string _tipoBusqueda = "Ent";
         private bool _isBusy = false;
+        private bool _isGunaBusy = false;
         public Over()
         {
             InitializeComponent();
-            
+          
+           
         }
+        
+        private async void gunaDataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                var selectedCell = gunaDataGridView1.SelectedCells[0];
+                if (selectedCell.ColumnIndex == gunaDataGridView1.Columns["C9"].Index)
+                {
+                    string folioSeleccionado = selectedCell.Value.ToString();
+                    await CargarMovimientosEnTreeView(folioSeleccionado);
+                }
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
+          
+           
+        }
         private void gunaDataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -174,12 +196,13 @@ namespace mainVentana
                     gunaDataGridView1.Rows[i].Cells[5].Style.BackColor = Color.FromArgb(68, 183, 255);
                     gunaDataGridView1.Rows[i].Cells[5].Style.ForeColor = Color.FromArgb(255, 255, 255);
                 }
+               
                 else if (valorCelda4 == valorCelda5 && string.IsNullOrWhiteSpace(valorCelda19))
                 {
                     gunaDataGridView1.Rows[i].Cells[5].Style.BackColor = Color.FromArgb(248, 44, 155);
                     gunaDataGridView1.Rows[i].Cells[5].Style.ForeColor = Color.FromArgb(255, 255, 255);
                 }
-                else if (valorCelda4 != valorCelda3 && valorCelda4 != valorCelda5)
+                else if (valorCelda4 != valorCelda3 && valorCelda3 != valorCelda5)
                 {
                     gunaDataGridView1.Rows[i].Cells[5].Style.BackColor = Color.FromArgb(252, 173, 5);
                     gunaDataGridView1.Rows[i].Cells[5].Style.ForeColor = Color.FromArgb(255, 255, 255);
@@ -193,7 +216,7 @@ namespace mainVentana
                     gunaDataGridView1.Rows[i].Cells[1].Style.ForeColor = Color.FromArgb(255, 255, 255);
                 }
 
-                if (tiempoEnDias > 10 && valorCelda5 == valorCelda3 && valorCelda19 != null)
+                if (tiempoEnDias >= 10 && valorCelda5 == valorCelda3 && String.IsNullOrWhiteSpace(valorCelda19))
                 {
                     gunaDataGridView1.Rows[i].Cells[2].Style.BackColor = Color.FromArgb(156, 19, 18);
                     gunaDataGridView1.Rows[i].Cells[2].Style.ForeColor = Color.FromArgb(255, 255, 255);
@@ -201,7 +224,7 @@ namespace mainVentana
                     gunaDataGridView1.Rows[i].Cells[5].Style.ForeColor = Color.FromArgb(255, 255, 255);
                 }
 
-                if (tiempoEnDias < 10 && valorCelda5 == valorCelda3 && valorCelda19 != null)
+                if (tiempoEnDias < 10 && valorCelda5 == valorCelda3 && String.IsNullOrWhiteSpace(valorCelda19))
                 {
                     gunaDataGridView1.Rows[i].Cells[2].Style.BackColor = Color.FromArgb(19, 156, 18);
                     gunaDataGridView1.Rows[i].Cells[2].Style.ForeColor = Color.FromArgb(255, 255, 255);
@@ -276,6 +299,52 @@ namespace mainVentana
                 throw;
             }
         }
+        private async Task CargarMovimientosEnTreeView(string etiquetaSeleccionada)
+        {
+            if (_isGunaBusy)
+            {
+                return;
+
+            }
+            _isGunaBusy = true;
+            Negocios.Servicios vld = new Negocios.Servicios();
+
+            List<vmHistorialMovimientos> movimientos = (await vld.BuscaHistorialDeMovimientosPorEtiqueta(etiquetaSeleccionada))
+        .OrderByDescending(m => m.FechaHoraMovimiento)
+        .ToList();
+
+            treeViewHistorial.Nodes.Clear();
+
+            // El nodo principal es la etiqueta
+            TreeNode nodoEtiqueta = new TreeNode($"Etiqueta: {etiquetaSeleccionada}");
+            treeViewHistorial.Nodes.Add(nodoEtiqueta);
+
+            // Agregar nodos de movimiento como nodos secundarios
+            foreach (vmHistorialMovimientos movimiento in movimientos)
+            {
+                TreeNode nodoMovimiento = new TreeNode($"{movimiento.NombreTipoMovimiento} | {movimiento.Observaciones} - ID: {movimiento.MovimientoID}");
+                nodoEtiqueta.Nodes.Add(nodoMovimiento);
+
+                // Aquí añadimos más detalles del movimiento como nodos hijos
+                //nodoMovimiento.Nodes.Add(new TreeNode($"Folio: {movimiento.Folio}"));
+                //nodoMovimiento.Nodes.Add(new TreeNode($"Tipo de Folio: {movimiento.TipoFolio}"));
+                //nodoMovimiento.Nodes.Add(new TreeNode($"Código de Tipo de Movimiento: {movimiento.CodigoTipoMovimiento}"));
+                //nodoMovimiento.Nodes.Add(new TreeNode($"Coordinador: {movimiento.Coordinador}"));
+                nodoMovimiento.Nodes.Add(new TreeNode($"Alert: {movimiento.DescripcionCorta}"));
+                nodoMovimiento.Nodes.Add(new TreeNode($"Documento: {movimiento.DocumentoAnterior}"));
+                nodoMovimiento.Nodes.Add(new TreeNode($"Origen: {movimiento.Origen}"));
+                nodoMovimiento.Nodes.Add(new TreeNode($"Destino: {movimiento.Destino}"));
+               // nodoMovimiento.Nodes.Add(new TreeNode($"Estado: {movimiento.Estado}"));
+                nodoMovimiento.Nodes.Add(new TreeNode($"Fecha: {movimiento.FechaHoraMovimiento.ToString("g")}"));
+                nodoMovimiento.Nodes.Add(new TreeNode($"Usuario Responsable: {movimiento.UsuarioResponsable}"));
+                nodoMovimiento.Nodes.Add(new TreeNode($"Trigger: {movimiento.Observaciones}"));
+
+            }
+            nodoEtiqueta.Expand();
+            _isGunaBusy = false;
+            //  nodoEtiqueta.ExpandAll(); // Esto expandirá todos los nodos dentro del nodo de la etiqueta
+        }
+
 
         private async void gunaTextBox2_KeyDown(object sender, KeyEventArgs e)
         {
@@ -289,6 +358,7 @@ namespace mainVentana
                     string id = "";
                     try
                     {
+                        treeViewHistorial.Nodes.Clear();
                         switch (_tipoBusqueda)
                         {
                             case "Ent":
@@ -686,6 +756,21 @@ namespace mainVentana
 
             }
             return exportado;
+        }
+
+        private void gunaDataGridView1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                var hitTestInfo = gunaDataGridView1.HitTest(e.X, e.Y);
+                if (hitTestInfo.Type == DataGridViewHitTestType.Cell)
+                {
+                    // Des-selecciona cualquier selección actual
+                    gunaDataGridView1.ClearSelection();
+                    // Selecciona la celda en la cual se hizo clic derecho
+                    gunaDataGridView1[hitTestInfo.ColumnIndex, hitTestInfo.RowIndex].Selected = true;
+                }
+            }
         }
         //--------------grafuca
 

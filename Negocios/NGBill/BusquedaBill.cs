@@ -181,6 +181,7 @@ namespace Negocios.NGBill
                         d.C46 = "BTRACKSALIDA";
                         d.C77 = DateTime.Now.ToString("MM/dd/yyyy");
                         await modelo.SaveChangesAsync();
+                        GeneralMovimientosLog.AddMovimientoConParametrosDirectos(GeneralMovimientosLog.ObtenerFolioDesdeEtiqueta(etiqueta), 35, etiqueta, 60, "BTRACKSALIDA", "", "", "", "Scanea");
                         return true;
                     }
                     else
@@ -243,12 +244,12 @@ namespace Negocios.NGBill
 
                         Negocios.LOGs.ArsLogs.LogEdit(x.Message, "BILL sale de arsys a Beetrack" + etiqueta);
 
-
-
                     }
                     try
                     {
                         modelo.BulkUpdate(kd.ToList());
+                        GeneralMovimientosLog.AddMovimientoConParametrosDirectos(GeneralMovimientosLog.ObtenerFolioDesdeEtiqueta(etiqueta), 35, etiqueta, 60, "BTRACKSALIDA", "", "", "", "Baja");
+
                     }
                     catch (Exception x)
                     {

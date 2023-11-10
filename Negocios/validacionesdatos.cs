@@ -29,10 +29,46 @@ namespace Negocios
 
         //REFERENCIA A LA CONECCION DE BD
 
+        public async Task<List<vmHistorialMovimientos>> BuscaHistorialDeMovimientosPorEtiqueta(string etiqueta)
+        {
+            try
+            {
+                using (var modelo = new modelo2Entities())
+                {
+                    var lst = await (from d in modelo.HistorialMovimientos
+                                     join t in modelo.TiposMovimiento on  d.CodigoTipoMovimiento equals  t.Codigo
+                                     where d.Etiqueta == etiqueta && d.TipoFolio == 35
+                                     select new vmHistorialMovimientos
+                                     {
+                                         MovimientoID = d.MovimientoID,
+                                         Folio = d.Etiqueta,
+                                         CodigoTipoMovimiento = d.CodigoTipoMovimiento,
+                                         Coordinador = d.Coordinador,
+                                         DescripcionCorta = d.DescripcionCorta,
+                                         Destino = d.Destino,
+                                         DocumentoAnterior = d.DocumentoAnterior,
+                                         Estado = d.Estado,
+                                         Etiqueta = d.Etiqueta,
+                                         FechaHoraMovimiento = (DateTime)d.FechaHoraMovimiento,
+                                         UsuarioResponsable = d.UsuarioResponsable,
+                                         Observaciones = d.Observaciones,
+                                         Origen = d.Origen,
+                                         TipoFolio = d.TipoFolio,
+                                         NombreTipoMovimiento = t.Nombre,
+
+                                     }).ToListAsync();
+                    return lst;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error de conexión a la base de datos: " + ex.Message);
+                throw;
+            }
+        }
 
 
-
-       public async Task<List<BusquedaInicial>> Cargabuscque(string id, string tipo, DateTime fecha1 = default, DateTime fecha2 = default)
+        public async Task<List<BusquedaInicial>> Cargabuscque(string id, string tipo, DateTime fecha1 = default, DateTime fecha2 = default)
         {
             List<BusquedaInicial> lst = new List<BusquedaInicial>();
             lst.Clear();

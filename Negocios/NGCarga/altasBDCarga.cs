@@ -189,7 +189,7 @@ namespace Negocios.NGCarga
 
 
                     await modelo.SaveChangesAsync();
-                    GeneralMovimientosLog.AddMovimientoConParametrosDirectos(GeneralMovimientosLog.ObtenerFolioDesdeEtiqueta(etiqueta), 35, etiqueta, 40, carga, "", "", "", "Aplica", "", "Se aplica(Cierra) la orden " + carga);
+                    
 
                 }
                 catch (DbEntityValidationException e)

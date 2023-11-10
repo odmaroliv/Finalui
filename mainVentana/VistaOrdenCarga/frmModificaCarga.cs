@@ -11,9 +11,12 @@ using System.Windows.Forms;
 using Datos.ViewModels;
 using Datos.ViewModels.Carga;
 using Datos.ViewModels.Entradas;
+using mainVentana.reportes.vmreportes;
 using Negocios;
+using Negocios.LOGs;
 using Negocios.NGCarga;
 using Ventana1.LoadControl;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace mainVentana.VistaOrdenCarga
 {
@@ -550,22 +553,21 @@ namespace mainVentana.VistaOrdenCarga
                     DataGridViewRow selectedRow = dgvEntEnCarga.Rows[dgvEntEnCarga.SelectedCells[0].RowIndex];
                     string e_eti;
                     string c_so = cmbSucOrigen.SelectedValue.ToString().Trim();
+                    string c_des = cmbSucDest.SelectedValue.ToString().Trim();  
                     string c_cargacompleta = c_so + "-UD4001-" + cargaAModificar;
                     foreach (DataGridViewRow i in dgvEntEnCarga.Rows)
                     {
                         e_eti = Convert.ToString(i.Cells[1].Value)?.Trim();
                         await get.CerrarCargaKdment(e_eti, c_cargacompleta);
+                        GeneralMovimientosLog.AddMovimientoConParametrosDirectos(GeneralMovimientosLog.ObtenerFolioDesdeEtiqueta(e_eti), 35, e_eti, 40, c_cargacompleta, c_so, c_des, "", "Aplica", "", "Se aplica(Cierra) la orden " + cargaAModificar);
                     }
                 }
                 catch (Exception)
                 {
-
                     throw;
                 }
             }
-
         }
-            
         private void CerrarCarga()
         {
            
