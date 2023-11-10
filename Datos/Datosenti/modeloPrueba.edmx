@@ -23,7 +23,7 @@
           <Property Name="Observaciones" Type="nvarchar(max)" />
           <Property Name="Estado" Type="varchar" MaxLength="255" />
           <Property Name="IP" Type="varchar" MaxLength="45" />
-          <Property Name="DescripcionCorta" Type="varchar" MaxLength="255" />
+          <Property Name="DescripcionCorta" Type="varchar" MaxLength="500" />
           <Property Name="LinkDocumento" Type="varchar" MaxLength="255" />
           <Property Name="Alias" Type="varchar" MaxLength="255" />
           <Property Name="Cotizacion" Type="varchar" MaxLength="255" />
@@ -639,6 +639,8 @@ advertencia 6035: La relación 'FK__SubSucurs__KDMSI__4FBCC72F' tiene columnas q
           <Parameter Name="TIPO" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="spAgregarHistorialMovimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Folio" Type="int" Mode="In" />
+          <Parameter Name="TipoFolio" Type="int" Mode="In" />
           <Parameter Name="Etiqueta" Type="varchar" Mode="In" />
           <Parameter Name="CodigoTipoMovimiento" Type="int" Mode="In" />
           <Parameter Name="DocumentoAnterior" Type="varchar" Mode="In" />
@@ -1210,6 +1212,8 @@ advertencia 6035: La relación 'FK__SubSucurs__KDMSI__4FBCC72F' tiene columnas q
           <EntitySet Name="KDUDCHOF" EntityType="KEPLER_PRUEBASModel.KDUDCHOF" />
           <EntitySet Name="SubSucursales" EntityType="KEPLER_PRUEBASModel.SubSucursales" />
           <FunctionImport Name="spAgregarHistorialMovimiento">
+            <Parameter Name="Folio" Mode="In" Type="Int32" />
+            <Parameter Name="TipoFolio" Mode="In" Type="Int32" />
             <Parameter Name="Etiqueta" Mode="In" Type="String" />
             <Parameter Name="CodigoTipoMovimiento" Mode="In" Type="Int32" />
             <Parameter Name="DocumentoAnterior" Mode="In" Type="String" />
@@ -1583,7 +1587,7 @@ advertencia 6035: La relación 'FK__SubSucurs__KDMSI__4FBCC72F' tiene columnas q
           <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="IP" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="DescripcionCorta" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DescripcionCorta" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="LinkDocumento" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Alias" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Cotizacion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />

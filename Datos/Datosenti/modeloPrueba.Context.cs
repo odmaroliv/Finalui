@@ -327,8 +327,16 @@ namespace Datos.Datosenti
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aumentaSQLint", datoParameter, modoParameter);
         }
     
-        public virtual int spAgregarHistorialMovimiento(string etiqueta, Nullable<int> codigoTipoMovimiento, string documentoAnterior, string origen, string destino, string usuarioResponsable, string coordinador, string observaciones, string estado, string iP, string descripcionCorta, string linkDocumento, string alias, string cotizacion, Nullable<decimal> valorArnian, Nullable<decimal> valorFactura, string trackingProveedor)
+        public virtual int spAgregarHistorialMovimiento(Nullable<int> folio, Nullable<int> tipoFolio, string etiqueta, Nullable<int> codigoTipoMovimiento, string documentoAnterior, string origen, string destino, string usuarioResponsable, string coordinador, string observaciones, string estado, string iP, string descripcionCorta, string linkDocumento, string alias, string cotizacion, Nullable<decimal> valorArnian, Nullable<decimal> valorFactura, string trackingProveedor)
         {
+            var folioParameter = folio.HasValue ?
+                new ObjectParameter("Folio", folio) :
+                new ObjectParameter("Folio", typeof(int));
+    
+            var tipoFolioParameter = tipoFolio.HasValue ?
+                new ObjectParameter("TipoFolio", tipoFolio) :
+                new ObjectParameter("TipoFolio", typeof(int));
+    
             var etiquetaParameter = etiqueta != null ?
                 new ObjectParameter("Etiqueta", etiqueta) :
                 new ObjectParameter("Etiqueta", typeof(string));
@@ -397,7 +405,7 @@ namespace Datos.Datosenti
                 new ObjectParameter("TrackingProveedor", trackingProveedor) :
                 new ObjectParameter("TrackingProveedor", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spAgregarHistorialMovimiento", etiquetaParameter, codigoTipoMovimientoParameter, documentoAnteriorParameter, origenParameter, destinoParameter, usuarioResponsableParameter, coordinadorParameter, observacionesParameter, estadoParameter, iPParameter, descripcionCortaParameter, linkDocumentoParameter, aliasParameter, cotizacionParameter, valorArnianParameter, valorFacturaParameter, trackingProveedorParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spAgregarHistorialMovimiento", folioParameter, tipoFolioParameter, etiquetaParameter, codigoTipoMovimientoParameter, documentoAnteriorParameter, origenParameter, destinoParameter, usuarioResponsableParameter, coordinadorParameter, observacionesParameter, estadoParameter, iPParameter, descripcionCortaParameter, linkDocumentoParameter, aliasParameter, cotizacionParameter, valorArnianParameter, valorFacturaParameter, trackingProveedorParameter);
         }
     }
 }

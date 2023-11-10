@@ -42,10 +42,16 @@ namespace mainVentana
             try
             {
                 var selectedCell = gunaDataGridView1.SelectedCells[0];
+                if (selectedCell.ColumnIndex == gunaDataGridView1.Columns["C6"].Index)
+                {
+                    string ValorSuc = gunaDataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+                    string folioSeleccionado = selectedCell.Value.ToString();
+                    await CargarMovimientosEnTreeView(folioSeleccionado, modo: 1, ValorSuc);
+                }
                 if (selectedCell.ColumnIndex == gunaDataGridView1.Columns["C9"].Index)
                 {
                     string folioSeleccionado = selectedCell.Value.ToString();
-                    await CargarMovimientosEnTreeView(folioSeleccionado);
+                    await CargarMovimientosEnTreeView(folioSeleccionado,modo: 0);
                 }
             }
             catch (Exception)
@@ -55,10 +61,6 @@ namespace mainVentana
             }
           
            
-        }
-        private void gunaDataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
         
         
@@ -299,8 +301,9 @@ namespace mainVentana
                 throw;
             }
         }
-        private async Task CargarMovimientosEnTreeView(string etiquetaSeleccionada)
+        private async Task CargarMovimientosEnTreeView(string etiquetaSeleccionada,int modo, string sucursalOr = null)
         {
+
             if (_isGunaBusy)
             {
                 return;
@@ -308,15 +311,27 @@ namespace mainVentana
             }
             _isGunaBusy = true;
             Negocios.Servicios vld = new Negocios.Servicios();
+            List<vmHistorialMovimientos> movimientos;
+            if (modo == 0)
+            {
+                movimientos = (await vld.BuscaHistorialDeMovimientosPorEtiqueta(etiquetaSeleccionada))
+       .OrderByDescending(m => m.FechaHoraMovimiento)
+       .ToList();
 
-            List<vmHistorialMovimientos> movimientos = (await vld.BuscaHistorialDeMovimientosPorEtiqueta(etiquetaSeleccionada))
-        .OrderByDescending(m => m.FechaHoraMovimiento)
-        .ToList();
 
+            }
+            else
+            {
+                movimientos = (await vld.BuscaHistorialDeMovimientosPorFolio(Convert.ToInt32(etiquetaSeleccionada),sucursalOr))
+       .OrderByDescending(m => m.FechaHoraMovimiento)
+       .ToList();
+
+            }
+            string tipoD = modo == 0 ? "Etiqueta: " : "Entrada: ";
             treeViewHistorial.Nodes.Clear();
 
             // El nodo principal es la etiqueta
-            TreeNode nodoEtiqueta = new TreeNode($"Etiqueta: {etiquetaSeleccionada}");
+            TreeNode nodoEtiqueta = new TreeNode($"{tipoD} {etiquetaSeleccionada}");
             treeViewHistorial.Nodes.Add(nodoEtiqueta);
 
             // Agregar nodos de movimiento como nodos secundarios
@@ -343,6 +358,7 @@ namespace mainVentana
             nodoEtiqueta.Expand();
             _isGunaBusy = false;
             //  nodoEtiqueta.ExpandAll(); // Esto expandirá todos los nodos dentro del nodo de la etiqueta
+            
         }
 
 

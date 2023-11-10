@@ -283,7 +283,7 @@ namespace Negocios
                     try
                     {
                         modelo.SaveChanges();
-                        GeneralMovimientosLog.AddMovimientoConParametrosDirectos(id, 35, "", 35, "", sucursalOrigen, sucursaldestino, cord, "Modifica","", "Se modifica la Entrada " + id,"",datoAlias,"", Convert.ToDecimal(valarn.Trim()), Convert.ToDecimal(valfact.Trim()));
+
 
                     }
                     catch (Exception ex)
@@ -304,6 +304,99 @@ namespace Negocios
                         }
                         //throw;
                     }
+                    StringBuilder descripcionCambios = new StringBuilder();
+
+                    // Sucursal destino
+                    if (!string.IsNullOrEmpty(sucursaldestino))
+                    {
+                        descripcionCambios.AppendLine($"Sucursal destino: {sucursaldestino.Trim()} | ");
+                    }
+
+                    // Cord
+                    if (!string.IsNullOrEmpty(cord))
+                    {
+                        descripcionCambios.AppendLine($"Cord: {cord.Trim()} | ");
+                    }
+
+                    // Notas
+                    if (!string.IsNullOrEmpty(notas))
+                    {
+                        descripcionCambios.AppendLine($"Notas: {notas.Trim()} | ");
+                    }
+
+                    // Referencia
+                    if (!string.IsNullOrEmpty(referencia))
+                    {
+                        descripcionCambios.AppendLine($"Referencia: {referencia.Trim()} | ");
+                    }
+
+                    // Tipo de operación
+                    if (!string.IsNullOrEmpty(tipooperacion))
+                    {
+                        descripcionCambios.AppendLine($"Tipo de operación: {tipooperacion.Trim()} | ");
+                    }
+
+                    // Valor factura
+                    if (!string.IsNullOrEmpty(valfact))
+                    {
+                        descripcionCambios.AppendLine($"Valor Fact: {valfact.Trim()} | ");
+                    }
+
+                    // Valor ARN
+                    if (!string.IsNullOrEmpty(valarn))
+                    {
+                        descripcionCambios.AppendLine($"Valor ARN: {valarn.Trim()} | ");
+                    }
+
+                    // Número de flete
+                    descripcionCambios.AppendLine($"flete: {noFlete} | ");
+
+                    // Número de cliente
+                    if (!string.IsNullOrEmpty(datoNuCliente))
+                    {
+                        descripcionCambios.AppendLine($"No. cliente: {datoNuCliente.Trim()} | ");
+                    }
+                    // Nombre del cliente
+                    if (!string.IsNullOrEmpty(datoNomCliente))
+                    {
+                        descripcionCambios.AppendLine($"cliente: {datoNomCliente} | ");
+                    }
+                    // Calle
+                    if (!string.IsNullOrEmpty(datoCalle))
+                    {
+                        descripcionCambios.AppendLine($"Calle: {datoCalle} | ");
+                    }
+
+                    // Colonia
+                    if (!string.IsNullOrEmpty(datoColonia))
+                    {
+                        descripcionCambios.AppendLine($"Colonia: {datoColonia} | ");
+                    }
+
+                    // Ciudad/ZIP
+                    if (!string.IsNullOrEmpty(datoCiudadZip))
+                    {
+                        descripcionCambios.AppendLine($"Ciudad/ZIP: {datoCiudadZip} | ");
+                    }
+
+                    // Proveedor
+                    if (!string.IsNullOrEmpty(datoProvedor))
+                    {
+                        descripcionCambios.AppendLine($"Proveedor: {datoProvedor} | ");
+                    }
+
+                    // Alias
+                    if (!string.IsNullOrEmpty(datoAlias))
+                    {
+                        descripcionCambios.AppendLine($"Alias: {datoAlias} | ");
+                    }
+                    
+                    // Limita la descripción a 500 caracteres
+                    string descripcionCorta = descripcionCambios.ToString().Substring(0, Math.Min(950, descripcionCambios.Length));
+
+                    
+
+                    GeneralMovimientosLog.AddMovimientoConParametrosDirectos(id, 35, "", 35, "", sucursalOrigen, sucursaldestino, cord, "Modifica", "", "Se modifica "+ descripcionCorta, "", datoAlias, "", Convert.ToDecimal(valarn.Trim()), Convert.ToDecimal(valfact.Trim()));
                 }
 
             }
