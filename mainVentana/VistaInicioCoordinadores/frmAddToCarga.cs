@@ -327,7 +327,8 @@ namespace mainVentana.VistaInicioCoordinadores
         */
         private void LimpiaDatos()
         {
-
+            lssGlobal?.Clear();
+            entradasCargadas?.Clear();
             listaBultos.Clear();
             dgvCargadas.DataSource = null;
             dtgSinAsignar.DataSource = null;

@@ -194,7 +194,7 @@ namespace Negocios.NGReportes
         /// </summary>
         public async Task<List<CargaCordsGeneral>> CargaEntradasParaAsignarACarga(string dato, DateTime dateFrom, DateTime to, string oper)
         {
-
+            var idUsuario = Common.Cache.CacheLogin.idusuario.ToString();
             try
             {
                 using (modelo2Entities modelo = new modelo2Entities())
@@ -209,22 +209,27 @@ namespace Negocios.NGReportes
                             query = from d in modelo.KDMENT
                                     join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
                                     join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
-                                    join u in modelo .KDUD on k.C10 equals u.C2
-                                    where k.C9 <= to && k.C9 >= dateFrom  /*&& d.C19.Contains(dato)*/ && d.C10.Equals(dato) && (d.C20 == "F" || d.C20 == "PR")  && k.C4 == 35 && ((k.C115 != "" && k.C115 != null) || u.C32 == "1") && (d.C45 == "" || d.C45 == null) && (d.C34 == "" || d.C34 == null)
+                                    join u in modelo.KDUD on k.C10 equals u.C2
+                                    where k.C9 <= to && k.C9 >= dateFrom
+                                          && d.C10.Equals(dato)
+                                          && (d.C20 == "F" || d.C20 == "PR")
+                                          && k.C4 == 35
+                                          && (!String.IsNullOrEmpty(k.C115) || u.C32 == "1")
+                                          && String.IsNullOrEmpty(d.C45)
+                                          && String.IsNullOrEmpty(d.C34)
+                                         // && k.C12 == idUsuario
                                     orderby d.C6 descending
                                     select new CargaCordsGeneral
                                     {
                                         bulto = d.C9,
                                         entrada = d.C6,
                                         fechaentrada = d.C69,
-
                                         cliente = k.C32,
                                         noCli = k.C10,
                                         Cotizacion = k.C115,
-
                                         SucursalInicio = d.C1,
                                         valFact = k.C102,
-                                        valArn = k.C16.ToString(),
+                                        valArn = (k.C16 != null) ? k.C16.ToString() : null,// Si k.C16 ya es una cadena, la conversión es innecesaria.
                                         desc = a.C11,
                                         aliss = k.C112,
                                     };
@@ -235,21 +240,26 @@ namespace Negocios.NGReportes
                                     join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
                                     join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
                                     join u in modelo.KDUD on k.C10 equals u.C2
-                                    where k.C9 <= to && k.C9 >= dateFrom /*&&  d.C19.Contains(dato)*/ && d.C10.Equals(dato) && (d.C20 == "F" || d.C20 == "PR") && k.C4 == 35 && ((k.C115 != "" && k.C115 != null) || u.C32 == "1") && (d.C45 == "" || d.C45 == null) && (d.C34 == "" || d.C34 == null) && k.C12 == Common.Cache.CacheLogin.idusuario.ToString() 
+                                    where k.C9 <= to && k.C9 >= dateFrom
+                                          && d.C10.Equals(dato)
+                                          && (d.C20 == "F" || d.C20 == "PR")
+                                          && k.C4 == 35
+                                          && (!String.IsNullOrEmpty(k.C115) || u.C32 == "1")
+                                          && String.IsNullOrEmpty(d.C45)
+                                          && String.IsNullOrEmpty(d.C34)
+                                          && k.C12 == idUsuario
                                     orderby d.C6 descending
                                     select new CargaCordsGeneral
                                     {
                                         bulto = d.C9,
                                         entrada = d.C6,
                                         fechaentrada = d.C69,
-
                                         cliente = k.C32,
                                         noCli = k.C10,
                                         Cotizacion = k.C115,
-
                                         SucursalInicio = d.C1,
                                         valFact = k.C102,
-                                        valArn = k.C16.ToString(),
+                                        valArn = (k.C16 != null) ? k.C16.ToString() : null,// Si k.C16 ya es una cadena, la conversión es innecesaria.
                                         desc = a.C11,
                                         aliss = k.C112,
                                     };
@@ -259,30 +269,29 @@ namespace Negocios.NGReportes
                     {
                         if (Common.Cache.CacheLogin.master == "1")
                         {
-                            query = from d in modelo.KDMENT
-                                    join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
-                                    join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
-                                    where k.C9 <= to && k.C9 >= dateFrom && d.C19.Equals(dato)
-                                          && k.C4 == 35 && k.C101.Contains(oper)
-                                          // Aquí comprobamos si d.C1 es igual a dato, entonces verificamos las condiciones de d.C16 y d.C54
-                                          && (d.C1 != dato || (d.C16 == "" || d.C16 == null) && (d.C54 == "" || d.C54 == null))
-                                    orderby d.C6 descending
-                                    select new CargaCordsGeneral
-                                    {
-                                        bulto = d.C9,
-                                        entrada = d.C6,
-                                        fechaentrada = d.C69,
+                             query = from d in modelo.KDMENT
+                                        join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
+                                        join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
+                                        where k.C9 <= to && k.C9 >= dateFrom
+                                              && d.C19.Equals(dato)
+                                              && k.C4 == 35 && k.C101.Contains(oper)
+                                              && (d.C1 != dato || (String.IsNullOrEmpty(d.C16) && String.IsNullOrEmpty(d.C54)))
+                                        orderby d.C6 descending
+                                        select new CargaCordsGeneral
+                                        {
+                                            bulto = d.C9,
+                                            entrada = d.C6,
+                                            fechaentrada = d.C69,
+                                            cliente = k.C32,
+                                            noCli = k.C10,
+                                            Cotizacion = k.C115,
+                                            SucursalInicio = d.C1,
+                                            valFact = k.C102,
+                                            valArn = (k.C16 != null) ? k.C16.ToString() : null, // Convierte solo si no es nulo
+                                            desc = a.C11,
+                                            aliss = k.C112,
+                                        };
 
-                                        cliente = k.C32,
-                                        noCli = k.C10,
-                                        Cotizacion = k.C115,
-
-                                        SucursalInicio = d.C1,
-                                        valFact = k.C102,
-                                        valArn = k.C16.ToString(),
-                                        desc = a.C11,
-                                        aliss = k.C112,
-                                    };
 
                         }
                         else
@@ -290,10 +299,12 @@ namespace Negocios.NGReportes
                             query = from d in modelo.KDMENT
                                     join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
                                     join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
-                                    where k.C9 <= to && k.C9 >= dateFrom && d.C19.Equals(dato) && (d.C34 == "" || d.C34 == null)
-                                          && k.C12 == Common.Cache.CacheLogin.idusuario.ToString() && k.C4 == 35 && k.C101.Contains(oper)
-                                          // Aquí aplicamos la condición condicional para d.C16 y d.C54
-                                          && (d.C1 != dato || ((d.C16 == "" || d.C16 == null) && (d.C54 == "" || d.C54 == null)))
+                                    where k.C9 <= to && k.C9 >= dateFrom
+                                                                && d.C19.Equals(dato)
+                                                                && (String.IsNullOrEmpty(d.C34))
+                                                                && k.C12 == idUsuario && k.C4 == 35 && k.C101.Contains(oper)
+                                                                // Utiliza la función 'String.IsNullOrEmpty' para las comprobaciones de nulos o vacíos.
+                                                                && (d.C1 != dato || (String.IsNullOrEmpty(d.C16) && String.IsNullOrEmpty(d.C54)))
                                     orderby d.C6 descending
                                     select new CargaCordsGeneral
                                     {
