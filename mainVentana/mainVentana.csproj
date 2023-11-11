@@ -30,10 +30,10 @@
     <UpdateUrl>https://raw.githubusercontent.com/odmaroliv/Finalui/master/published/</UpdateUrl>
     <ProductName>ARSYS</ProductName>
     <PublisherName>Daniel Olivares H.</PublisherName>
-    <MinimumRequiredVersion>1.0.0.248</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.0.249</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>248</ApplicationRevision>
+    <ApplicationRevision>249</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -887,6 +887,14 @@
     <None Include="Resources\movimientoalama.png" />
     <None Include="Resources\almatrans.png" />
     <None Include="Resources\pilas-de-almacenamiento %283%29.png" />
+    <None Include="Resources\clavee.png" />
+    <None Include="Resources\clave.png" />
+    <None Include="Resources\menos.png" />
+    <None Include="Resources\menos_Azul.png" />
+    <None Include="Resources\llave-vieja.png" />
+    <None Include="Resources\llave.png" />
+    <None Include="Resources\mas.png" />
+    <None Include="Resources\ver-mas.png" />
     <Content Include="x64\SQLite.Interop.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

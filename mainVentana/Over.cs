@@ -30,6 +30,8 @@ namespace mainVentana
         private string _tipoBusqueda = "Ent";
         private bool _isBusy = false;
         private bool _isGunaBusy = false;
+        private ImageList imgList = new ImageList();
+
         public Over()
         {
             InitializeComponent();
@@ -97,10 +99,26 @@ namespace mainVentana
 
             }
             CargaFecha();
+            InitializeTreeViewWithImageList();
             // gunaDataGridView1.CurrentCell = null;
         }
 
+        private void InitializeTreeViewWithImageList()
+        {
+            // Crear una nueva instancia de ImageList
+           
+            imgList.ImageSize = new Size(16, 16); // El tamaño de tus íconos
+            imgList.ColorDepth = ColorDepth.Depth32Bit;
 
+            // Añadir imágenes desde los recursos
+            // Asume que tienes imágenes llamadas tipoMovimientoIcon y alertIcon en tus recursos
+            imgList.Images.Add("tipoMovimiento", Properties.Resources.ver_mas);
+            imgList.Images.Add("alert", Properties.Resources.clave);
+            // Continúa agregando todas las imágenes que necesites
+
+            // Asignar el ImageList al TreeView
+            treeViewHistorial.ImageList = imgList;
+        }
         private void CargaFecha()
         {
             dtFecha1.Value = DateTime.Now.AddDays(-30);
@@ -301,65 +319,116 @@ namespace mainVentana
                 throw;
             }
         }
-        private async Task CargarMovimientosEnTreeView(string etiquetaSeleccionada,int modo, string sucursalOr = null)
+        private async Task CargarMovimientosEnTreeView(string etiquetaSeleccionada, int modo, string sucursalOr = null)
         {
-
             if (_isGunaBusy)
             {
                 return;
-
             }
             _isGunaBusy = true;
+
             Negocios.Servicios vld = new Negocios.Servicios();
             List<vmHistorialMovimientos> movimientos;
+
             if (modo == 0)
             {
                 movimientos = (await vld.BuscaHistorialDeMovimientosPorEtiqueta(etiquetaSeleccionada))
-       .OrderByDescending(m => m.FechaHoraMovimiento)
-       .ToList();
-
-
+                    .OrderByDescending(m => m.FechaHoraMovimiento)
+                    .ToList();
             }
             else
             {
-                movimientos = (await vld.BuscaHistorialDeMovimientosPorFolio(Convert.ToInt32(etiquetaSeleccionada),sucursalOr))
-       .OrderByDescending(m => m.FechaHoraMovimiento)
-       .ToList();
-
+                movimientos = (await vld.BuscaHistorialDeMovimientosPorFolio(Convert.ToInt32(etiquetaSeleccionada), sucursalOr))
+                    .OrderByDescending(m => m.FechaHoraMovimiento)
+                    .ToList();
             }
-            string tipoD = modo == 0 ? "Etiqueta: " : "Entrada: ";
+            Font regularFont = new Font("Consolas", 9.75F, FontStyle.Regular);
+            Font boldFont = new Font("Consolas", 9.75F, FontStyle.Bold);
+
+            treeViewHistorial.Font = regularFont;
+            treeViewHistorial.Nodes.Clear();
+            string[] titulos = new string[] { "ALERT:", "DOC:", "ORIGEN:", "DESTINO:", "FECHA:", "RESPONS:", "TRIGGER:" };
+            int maxLength = titulos.Max(t => t.Length);
+           
+
+            treeViewHistorial.ImageList = imgList;
+            if (!movimientos.Any())
+            {
+                _isGunaBusy = false; 
+                return;
+            }
+
+            
+            int maxTipoMovimientoLength = movimientos.Max(m => m.NombreTipoMovimiento.Length);
+
+            int maxTipoYObservacionesLength = movimientos.Max(m =>
+            $"{m.NombreTipoMovimiento} - ({m.Observaciones})".Length + " - []".Length);
+
             treeViewHistorial.Nodes.Clear();
 
-            // El nodo principal es la etiqueta
-            TreeNode nodoEtiqueta = new TreeNode($"{tipoD} {etiquetaSeleccionada}");
-            treeViewHistorial.Nodes.Add(nodoEtiqueta);
+            string tipoD = modo == 0 ? "ETIQUETA: " : "ENTRADA: ";
+            TreeNode nodoPrincipal = new TreeNode($"{tipoD} {etiquetaSeleccionada}")
+            {
+                NodeFont = new Font(treeViewHistorial.Font, FontStyle.Bold),
+                ImageKey = "tipoMovimiento", 
+                SelectedImageKey = "tipoMovimiento"
+            };
+            treeViewHistorial.Nodes.Add(nodoPrincipal);
 
-            // Agregar nodos de movimiento como nodos secundarios
+          
             foreach (vmHistorialMovimientos movimiento in movimientos)
             {
-                TreeNode nodoMovimiento = new TreeNode($"{movimiento.NombreTipoMovimiento} | {movimiento.Observaciones} - ID: {movimiento.MovimientoID}");
-                nodoEtiqueta.Nodes.Add(nodoMovimiento);
+                
+                string nombreTipoMovimientoRelleno = movimiento.NombreTipoMovimiento.PadRight(maxTipoMovimientoLength, ' ');
+                string tipoYObservaciones = $"{nombreTipoMovimientoRelleno} - ({movimiento.Observaciones})";
+                string tipoYObservacionesRelleno = tipoYObservaciones.PadRight(maxTipoYObservacionesLength, ' ');
 
-                // Aquí añadimos más detalles del movimiento como nodos hijos
-                //nodoMovimiento.Nodes.Add(new TreeNode($"Folio: {movimiento.Folio}"));
-                //nodoMovimiento.Nodes.Add(new TreeNode($"Tipo de Folio: {movimiento.TipoFolio}"));
-                //nodoMovimiento.Nodes.Add(new TreeNode($"Código de Tipo de Movimiento: {movimiento.CodigoTipoMovimiento}"));
-                //nodoMovimiento.Nodes.Add(new TreeNode($"Coordinador: {movimiento.Coordinador}"));
-                nodoMovimiento.Nodes.Add(new TreeNode($"Alert: {movimiento.DescripcionCorta}"));
-                nodoMovimiento.Nodes.Add(new TreeNode($"Documento: {movimiento.DocumentoAnterior}"));
-                nodoMovimiento.Nodes.Add(new TreeNode($"Origen: {movimiento.Origen}"));
-                nodoMovimiento.Nodes.Add(new TreeNode($"Destino: {movimiento.Destino}"));
-               // nodoMovimiento.Nodes.Add(new TreeNode($"Estado: {movimiento.Estado}"));
-                nodoMovimiento.Nodes.Add(new TreeNode($"Fecha: {movimiento.FechaHoraMovimiento.ToString("g")}"));
-                nodoMovimiento.Nodes.Add(new TreeNode($"Usuario Responsable: {movimiento.UsuarioResponsable}"));
-                nodoMovimiento.Nodes.Add(new TreeNode($"Trigger: {movimiento.Observaciones}"));
+                TreeNode nodoMovimiento = new TreeNode($"{tipoYObservacionesRelleno} - [{movimiento.FechaHoraMovimiento.ToString("d")}]")
+                {
+                    ImageKey = "alert", 
+                    SelectedImageKey = "alert",
+                    ToolTipText = "Haz clic para más detalles...",
+                    ForeColor = Color.DarkSlateBlue,
+                    NodeFont = boldFont
+                };
+                nodoPrincipal.Nodes.Add(nodoMovimiento);
+                if (!string.IsNullOrEmpty(movimiento.DescripcionCorta))
+                {
+                    nodoMovimiento.Nodes.Add(new TreeNode($"{titulos[0].PadRight(maxLength)}    → {movimiento.DescripcionCorta}"));
+                }
+                if (!string.IsNullOrEmpty(movimiento.DocumentoAnterior))
+                {
+                    nodoMovimiento.Nodes.Add(new TreeNode($"{titulos[1].PadRight(maxLength)}    → {movimiento.DocumentoAnterior}"));
+                }
+                if (!string.IsNullOrEmpty(movimiento.Origen))
+                {
+                    nodoMovimiento.Nodes.Add(new TreeNode($"{titulos[2].PadRight(maxLength)}    → {movimiento.Origen}"));
+                }
+                if (!string.IsNullOrEmpty(movimiento.Destino))
+                {
+                    nodoMovimiento.Nodes.Add(new TreeNode($"{titulos[3].PadRight(maxLength)}    → {movimiento.Destino}"));
+                }
+                if (movimiento.FechaHoraMovimiento != DateTime.MinValue) // Asumiendo que es una fecha que nunca será la mínima
+                {
+                    nodoMovimiento.Nodes.Add(new TreeNode($"{titulos[4].PadRight(maxLength)}    → {movimiento.FechaHoraMovimiento.ToString("g")}"));
+                }
+                if (!string.IsNullOrEmpty(movimiento.UsuarioResponsable))
+                {
+                    nodoMovimiento.Nodes.Add(new TreeNode($"{titulos[5].PadRight(maxLength)}    → {movimiento.UsuarioResponsable}"));
+                }
+                if (!string.IsNullOrEmpty(movimiento.Observaciones))
+                {
+                    nodoMovimiento.Nodes.Add(new TreeNode($"{titulos[6].PadRight(maxLength)}    → {movimiento.Observaciones}"));
+                }
 
             }
-            nodoEtiqueta.Expand();
+
+            // Mantener los nodos contraídos por defecto
+            nodoPrincipal.Expand();
+
             _isGunaBusy = false;
-            //  nodoEtiqueta.ExpandAll(); // Esto expandirá todos los nodos dentro del nodo de la etiqueta
-            
         }
+
 
 
         private async void gunaTextBox2_KeyDown(object sender, KeyEventArgs e)

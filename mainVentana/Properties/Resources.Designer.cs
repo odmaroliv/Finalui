@@ -196,6 +196,16 @@ namespace mainVentana.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap clave {
+            get {
+                object obj = ResourceManager.GetObject("clave", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap copiar {
             get {
                 object obj = ResourceManager.GetObject("copiar", resourceCulture);
@@ -322,6 +332,16 @@ namespace mainVentana.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap llave {
+            get {
+                object obj = ResourceManager.GetObject("llave", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap load {
             get {
                 object obj = ResourceManager.GetObject("load", resourceCulture);
@@ -345,6 +365,26 @@ namespace mainVentana.Properties {
         internal static System.Drawing.Bitmap log_in {
             get {
                 object obj = ResourceManager.GetObject("log_in", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mas {
+            get {
+                object obj = ResourceManager.GetObject("mas", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap menos_Azul {
+            get {
+                object obj = ResourceManager.GetObject("menos_Azul", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -443,6 +483,16 @@ namespace mainVentana.Properties {
         internal static System.Drawing.Bitmap staff_picks {
             get {
                 object obj = ResourceManager.GetObject("staff_picks", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ver_mas {
+            get {
+                object obj = ResourceManager.GetObject("ver_mas", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
