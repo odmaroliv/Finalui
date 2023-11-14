@@ -759,7 +759,7 @@ namespace mainVentana.VistaOrSalida
             if (index == -1)
             {
                 RepSonido(0);
-                if (sDestino != "TJ")
+                if (sOrigen != "TJ")
                 {
                     if (MessageBox.Show("Se agregara la etiqueta: \n" + etiqueta + "\nVolver a preguntar?", "Cuidado", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
