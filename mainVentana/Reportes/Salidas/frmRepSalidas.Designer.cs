@@ -28,17 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvSalidas = new Guna.UI.WinForms.GunaDataGridView();
             this.iconButton10 = new FontAwesome.Sharp.IconButton();
             this.txbBusqueda = new Guna.UI.WinForms.GunaTextBox();
             this.btnToExcel = new FontAwesome.Sharp.IconButton();
             this.SucCombo = new System.Windows.Forms.GroupBox();
-            this.rCa = new System.Windows.Forms.RadioButton();
-            this.rTj = new System.Windows.Forms.RadioButton();
-            this.rSd = new System.Windows.Forms.RadioButton();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.dtFecha2 = new Guna.UI.WinForms.GunaDateTimePicker();
@@ -46,14 +43,14 @@
             this.swTipo = new ReaLTaiizor.Controls.MaterialSwitch();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.loadControl1 = new Ventana1.LoadControl.loadControl();
+            this.cmbSucEntrada = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSalidas)).BeginInit();
-            this.SucCombo.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvSalidas
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dgvSalidas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
+            this.dgvSalidas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvSalidas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -62,23 +59,23 @@
             this.dgvSalidas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvSalidas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvSalidas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvSalidas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSalidas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dgvSalidas.ColumnHeadersHeight = 30;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvSalidas.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvSalidas.DefaultCellStyle = dataGridViewCellStyle12;
             this.dgvSalidas.EnableHeadersVisualStyles = false;
             this.dgvSalidas.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvSalidas.Location = new System.Drawing.Point(22, 86);
@@ -179,50 +176,12 @@
             // 
             // SucCombo
             // 
-            this.SucCombo.Controls.Add(this.rCa);
-            this.SucCombo.Controls.Add(this.rTj);
-            this.SucCombo.Controls.Add(this.rSd);
             this.SucCombo.Location = new System.Drawing.Point(22, 29);
             this.SucCombo.Name = "SucCombo";
             this.SucCombo.Size = new System.Drawing.Size(237, 48);
             this.SucCombo.TabIndex = 151;
             this.SucCombo.TabStop = false;
             this.SucCombo.Text = "Sucursal";
-            // 
-            // rCa
-            // 
-            this.rCa.AutoSize = true;
-            this.rCa.Location = new System.Drawing.Point(153, 19);
-            this.rCa.Name = "rCa";
-            this.rCa.Size = new System.Drawing.Size(63, 17);
-            this.rCa.TabIndex = 2;
-            this.rCa.Text = "Cabo S.";
-            this.rCa.UseVisualStyleBackColor = true;
-            this.rCa.CheckedChanged += new System.EventHandler(this.rSd_CheckedChanged);
-            // 
-            // rTj
-            // 
-            this.rTj.AutoSize = true;
-            this.rTj.Location = new System.Drawing.Point(87, 19);
-            this.rTj.Name = "rTj";
-            this.rTj.Size = new System.Drawing.Size(60, 17);
-            this.rTj.TabIndex = 1;
-            this.rTj.Text = "Tijuana";
-            this.rTj.UseVisualStyleBackColor = true;
-            this.rTj.CheckedChanged += new System.EventHandler(this.rSd_CheckedChanged);
-            // 
-            // rSd
-            // 
-            this.rSd.AutoSize = true;
-            this.rSd.Checked = true;
-            this.rSd.Location = new System.Drawing.Point(6, 19);
-            this.rSd.Name = "rSd";
-            this.rSd.Size = new System.Drawing.Size(75, 17);
-            this.rSd.TabIndex = 0;
-            this.rSd.TabStop = true;
-            this.rSd.Text = "San Diego";
-            this.rSd.UseVisualStyleBackColor = true;
-            this.rSd.CheckedChanged += new System.EventHandler(this.rSd_CheckedChanged);
             // 
             // label6
             // 
@@ -337,11 +296,33 @@
             this.loadControl1.TabIndex = 198;
             this.loadControl1.Visible = false;
             // 
+            // cmbSucEntrada
+            // 
+            this.cmbSucEntrada.AutoCompleteCustomSource.AddRange(new string[] {
+            "SD",
+            "TJ",
+            "CSL"});
+            this.cmbSucEntrada.DisplayMember = "SD";
+            this.cmbSucEntrada.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSucEntrada.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbSucEntrada.FormattingEnabled = true;
+            this.cmbSucEntrada.Items.AddRange(new object[] {
+            "SD",
+            "TJ",
+            "CSL"});
+            this.cmbSucEntrada.Location = new System.Drawing.Point(27, 44);
+            this.cmbSucEntrada.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbSucEntrada.Name = "cmbSucEntrada";
+            this.cmbSucEntrada.Size = new System.Drawing.Size(227, 28);
+            this.cmbSucEntrada.TabIndex = 199;
+            this.cmbSucEntrada.SelectedIndexChanged += new System.EventHandler(this.cmbSucEntrada_SelectedIndexChanged);
+            // 
             // frmRepSalidas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(978, 450);
+            this.Controls.Add(this.cmbSucEntrada);
             this.Controls.Add(this.loadControl1);
             this.Controls.Add(this.iconButton1);
             this.Controls.Add(this.swTipo);
@@ -357,9 +338,8 @@
             this.Name = "frmRepSalidas";
             this.ShowIcon = false;
             this.Text = "Reporte de Salidas";
+            this.Load += new System.EventHandler(this.frmRepSalidas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSalidas)).EndInit();
-            this.SucCombo.ResumeLayout(false);
-            this.SucCombo.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -372,9 +352,6 @@
         public Guna.UI.WinForms.GunaTextBox txbBusqueda;
         private FontAwesome.Sharp.IconButton btnToExcel;
         private System.Windows.Forms.GroupBox SucCombo;
-        private System.Windows.Forms.RadioButton rCa;
-        private System.Windows.Forms.RadioButton rTj;
-        private System.Windows.Forms.RadioButton rSd;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private Guna.UI.WinForms.GunaDateTimePicker dtFecha2;
@@ -382,5 +359,6 @@
         private ReaLTaiizor.Controls.MaterialSwitch swTipo;
         private FontAwesome.Sharp.IconButton iconButton1;
         private Ventana1.LoadControl.loadControl loadControl1;
+        private System.Windows.Forms.ComboBox cmbSucEntrada;
     }
 }

@@ -576,7 +576,8 @@ namespace Negocios.NGReportes
                                             MAX(k.C46) AS Link,
                                             MAX(k.C71) AS FechaCarga,
                                             MAX(k.C74) AS FechaRepFinal,
-                                            MAX(k.C77) AS FechaBol
+                                            MAX(k.C77) AS FechaBol,
+                                            MAX(k.C42) AS DescCorta
                                         FROM KDM1 m
                                         INNER JOIN KDMENT k ON m.C1 = k.C1 AND m.C6 = k.C6 AND m.C4 = k.C4
                                         INNER JOIN KDM1COMEN c ON c.C1 = m.C1 AND c.C6 = m.C6 AND c.C4 = m.C4

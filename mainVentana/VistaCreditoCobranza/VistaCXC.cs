@@ -18,6 +18,7 @@ using ClosedXML.Excel;
 using mainVentana.VistaOrSalida;
 using System.IO;
 using Datos.Datosenti;
+using System.Reflection;
 
 namespace mainVentana.VistaCreditoCobranza
 {
@@ -34,11 +35,22 @@ namespace mainVentana.VistaCreditoCobranza
 
         public VistaCXC()
         {
+            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             InitializeComponent();
             this.dtgEnts.MouseWheel += dtgEnts_MouseWheek;
+            EnableDoubleBuffering(dtgEnts);
         }
 
+        private void EnableDoubleBuffering(Control control)
+        {
+            // Obtener el tipo del control
+            Type dgvType = control.GetType();
 
+            // Obtener el campo "DoubleBuffered" y establecerlo en true
+            PropertyInfo pi = dgvType.GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic);
+            pi.SetValue(control, true, null);
+
+        }
 
 
         private void dtgEnts_MouseWheek(object sender, MouseEventArgs e)
@@ -75,17 +87,39 @@ namespace mainVentana.VistaCreditoCobranza
 
         private async void VistaCXC_Load(object sender, EventArgs e)
         {
+            dtgEnts.EnableHeadersVisualStyles = false;
             dtFecha1.Value = DateTime.Now;
             dtFecha2.Value = DateTime.Now.AddDays(1);
             dtFecha1.MinDate = DateTime.Now.AddDays(-90);
             dtFecha1.MaxDate = DateTime.Now.AddDays(1);
             dtFecha2.MinDate = DateTime.Now.AddDays(-90);
             dtFecha2.MaxDate = DateTime.Now.AddDays(1);
-           // await ejecutaeveto2();
-
+            // await ejecutaeveto2();
+            await Task.Run(() => CargaSOrigen()); ;
         }
 
+        private void CargaSOrigen()
+        {
+            Servicios datos = new Servicios();
+            var lst2 = datos.llenaSuc();
 
+
+            // Utilizamos Invoke para actualizar la UI de manera segura desde un hilo secundario
+            this.Invoke(new Action(() =>
+            {
+                cmbSucOrigen.DisplayMember = "C2";
+                cmbSucOrigen.ValueMember = "C1";
+                cmbSucOrigen.DataSource = lst2;
+                foreach (var i in from Sucursales i in cmbSucOrigen.Items select i)
+                {
+                    cmbSucOrigen.SelectedValue = i.c1;
+                    break;
+                }
+
+            }));
+
+            datos = null;
+        }
 
         public async Task ejecutaeveto2()
         {
@@ -97,21 +131,12 @@ namespace mainVentana.VistaCreditoCobranza
         private string sucursal = "";
         DataTable DatosDataTable = null;
         List<vmInicioCXC> dtgDatos = new List<vmInicioCXC>();
+        private bool _isBusy = false;
+
         public async Task<bool> CargaControles()
         {
             loadControl1.Visible = true;
-            if (rSd.Checked == true)
-            {
-                sucursal = "SD";
-            }
-            if (rTj.Checked == true)
-            {
-                sucursal = "TJ";
-            }
-            if (rCa.Checked == true)
-            {
-                sucursal = "CSL";
-            }
+           
 
             List<vmInicioCXCBd> lss = new List<vmInicioCXCBd>();
             // List<DatosCXC_Result7> dtt = new List<DatosCXC_Result7>();
@@ -183,7 +208,7 @@ namespace mainVentana.VistaCreditoCobranza
                     FechaCarga = w.FechaCarga?.Trim(),
                     FechaRepFinal = w.FechaRepFinal?.Trim(),
                     FechaBol = w.FechaBol?.Trim(),
-                   
+                    DescCorta = w.DescCorta?.Trim(),
                 });
 
 
@@ -511,16 +536,20 @@ namespace mainVentana.VistaCreditoCobranza
             bool exportado = false;
             using (XLWorkbook xlfile = new XLWorkbook())
             {
-                xlfile.AddWorksheet(nombre).FirstCell().InsertTable<T>(list, false);
-                //xlfile.Worksheets.Add("Reporte");
-                //xlfile.Table("Reporte").ShowAutoFilter = false;// Disable AutoFilter.
-                //xlfile.Table(nombre).Theme = XLTableTheme.TableStyleDark5;// Remove Theme.
+                var worksheet = xlfile.AddWorksheet(nombre);
+                worksheet.FirstCell().InsertTable<T>(list, false);
+
+                // Establecer un alto fijo para todas las filas del worksheet
+                var altoFijo = 15; // Este es el alto fijo para las filas, puedes ajustarlo según tus necesidades
+                worksheet.RowHeight = altoFijo; // Aplica el alto fijo a todas las filas
+                worksheet.Style.Alignment.WrapText = false; // Desactiva el ajuste de texto para todo el worksheet
+
                 xlfile.SaveAs(file);
                 exportado = true;
-
             }
             return exportado;
         }
+
 
         private async void iconButton1_Click(object sender, EventArgs e)
         {
@@ -553,7 +582,32 @@ namespace mainVentana.VistaCreditoCobranza
 
 
         }
-       
-       
+
+        private void cmbSucOrigen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            iconButton6.Enabled = false;
+            _isBusy = true;
+            try
+            {
+                var name = cmbSucOrigen.SelectedValue?.ToString().Trim();
+
+                if (String.IsNullOrWhiteSpace(name))
+                {
+                    MessageBox.Show("La sucursal no puede esta bacia");
+                    return;
+                }
+                sucursal = name.Trim();
+                //bool ts = await CargaControles();
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            finally
+            {
+                iconButton6.Enabled = true;
+                _isBusy = false;
+            }
+        }
     }
 }

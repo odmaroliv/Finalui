@@ -30,6 +30,7 @@ namespace Datos.ViewModels.CXC
         public string FechaCarga { get; set; }
         public string FechaRepFinal { get; set; }
         public string FechaBol { get; set; }
+        public string DescCorta { get; set; }
 
     }
 }

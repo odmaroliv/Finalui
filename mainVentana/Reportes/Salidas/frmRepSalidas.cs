@@ -1,6 +1,7 @@
 ﻿using ClosedXML.Excel;
 using Datos.ViewModels;
 using Datos.ViewModels.Salidas;
+using Negocios;
 using Negocios.Acceso_Salida;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,8 @@ namespace mainVentana.Reportes.Salidas
         public string sucursalGlobal = Negocios.Common.Cache.CacheLogin.sucGlobal == default ? "SD" : Negocios.Common.Cache.CacheLogin.sucGlobal;
         private string sucursal = "SD";
         private int _salidaBuscada;
+        private bool _isBusy =false;
+
         public frmRepSalidas()
         {
             InitializeComponent();
@@ -33,7 +36,7 @@ namespace mainVentana.Reportes.Salidas
 
         private void rSd_CheckedChanged(object sender, EventArgs e)
         {
-
+            /*
             var radioButtonMapping = new Dictionary<RadioButton, string>
                 {
         { rSd, "SD" },
@@ -44,6 +47,7 @@ namespace mainVentana.Reportes.Salidas
 
             // Encontrar el RadioButton seleccionado y obtener su valor correspondiente
             sucursal = radioButtonMapping.FirstOrDefault(r => r.Key.Checked).Value;
+            */
         }
 
         private void gunaTextBox2_KeyDown(object sender, KeyEventArgs e)
@@ -76,6 +80,11 @@ namespace mainVentana.Reportes.Salidas
        List<vmSalidaReporte> listaSalidas = new List<vmSalidaReporte>();
         private async void buscaSalida()
         {
+            if (_isBusy == true)
+            {
+                return;
+            }
+            _isBusy = true;
             AccesoSalidas sld = new AccesoSalidas();
             listaSalidas.Clear();
             if (swTipo.Checked==true)
@@ -90,7 +99,7 @@ namespace mainVentana.Reportes.Salidas
                 dgvSalidas.DataSource = listaSalidas;
 
             }
-            
+            _isBusy = false;
 
         }
 
@@ -217,6 +226,40 @@ namespace mainVentana.Reportes.Salidas
 
             }
             return exportado;
+        }
+
+        private void frmRepSalidas_Load(object sender, EventArgs e)
+        {
+            Task.Run(() => CargaSOrigen());
+
+        }
+        private void CargaSOrigen()
+        {
+            Servicios datos = new Servicios();
+            var lst2 = datos.llenaSuc();
+
+
+            // Utilizamos Invoke para actualizar la UI de manera segura desde un hilo secundario
+            this.Invoke(new Action(() =>
+            {
+                cmbSucEntrada.DisplayMember = "C2";
+                cmbSucEntrada.ValueMember = "C1";
+                cmbSucEntrada.DataSource = lst2;
+                foreach (var i in from Sucursales i in cmbSucEntrada.Items select i)
+                {
+                    cmbSucEntrada.SelectedValue = i.c1;
+                    break;
+                }
+
+            }));
+
+            datos = null;
+        }
+
+        private void cmbSucEntrada_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            sucursal = cmbSucEntrada.SelectedValue?.ToString();
+
         }
     }
 }

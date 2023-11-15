@@ -56,10 +56,10 @@ namespace mainVentana
                     await CargarMovimientosEnTreeView(folioSeleccionado,modo: 0);
                 }
             }
-            catch (Exception)
+            catch 
             {
 
-                throw;
+              //  throw;
             }
           
            
@@ -110,10 +110,16 @@ namespace mainVentana
             imgList.ImageSize = new Size(16, 16); // El tamaño de tus íconos
             imgList.ColorDepth = ColorDepth.Depth32Bit;
 
-            // Añadir imágenes desde los recursos
-            // Asume que tienes imágenes llamadas tipoMovimientoIcon y alertIcon en tus recursos
+           
             imgList.Images.Add("tipoMovimiento", Properties.Resources.ver_mas);
             imgList.Images.Add("alert", Properties.Resources.clave);
+            imgList.Images.Add("Carga", Properties.Resources.boxes);
+            imgList.Images.Add("Salida", Properties.Resources.delivery_truck);
+            imgList.Images.Add("Milla", Properties.Resources.clave);
+            imgList.Images.Add("BILL", Properties.Resources.staff_picks);
+            imgList.Images.Add("Cotización", Properties.Resources.delivery);
+            imgList.Images.Add("Entrada", Properties.Resources.log_in);
+            imgList.Images.Add("Recepción", Properties.Resources.warehouse);
             // Continúa agregando todas las imágenes que necesites
 
             // Asignar el ImageList al TreeView
@@ -382,10 +388,12 @@ namespace mainVentana
                 string nombreTipoMovimientoRelleno = movimiento.NombreTipoMovimiento.PadRight(maxTipoMovimientoLength, ' ');
                 string tipoYObservaciones = $"{nombreTipoMovimientoRelleno} - ({movimiento.Observaciones})";
                 string tipoYObservacionesRelleno = tipoYObservaciones.PadRight(maxTipoYObservacionesLength, ' ');
+                string imagenName = movimiento.NombreTipoMovimiento?.Trim();
+
 
                 TreeNode nodoMovimiento = new TreeNode($"{tipoYObservacionesRelleno} - [{movimiento.FechaHoraMovimiento.ToString("d")}]")
                 {
-                    ImageKey = "alert", 
+                    ImageKey = imagenName, 
                     SelectedImageKey = "alert",
                     ToolTipText = "Haz clic para más detalles...",
                     ForeColor = Color.DarkSlateBlue,
@@ -662,26 +670,41 @@ namespace mainVentana
         {
             if (gunaDataGridView1.Rows.Count > 0)
             {
-                string nombrecolumna = gunaDataGridView1.Columns[e.ColumnIndex].HeaderText;
-
-                
-                if (nombrecolumna.Trim() == "Link" && gunaDataGridView1.Rows[e.RowIndex].Cells[26].Value.ToString().Contains("BTRACKSALIDA") )
+                string id = "";
+              string orig = "";
+                try
                 {
-                    string valorEnt = gunaDataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-                    string ValorSuc = gunaDataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
-                    string url = string.Format("https://arniangroup.dispatchtrack.com/search/{0}", ValorSuc.Trim() + "-" + valorEnt.Trim()) ;
-                    System.Diagnostics.Process.Start(url);
-                    return;
-              
+                    string nombrecolumna = gunaDataGridView1.Columns[e.ColumnIndex].HeaderText;
+
+
+                    if (nombrecolumna.Trim() == "Link" && gunaDataGridView1.Rows[e.RowIndex].Cells[26].Value.ToString().Contains("BTRACKSALIDA"))
+                    {
+                        string valorEnt = gunaDataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+                        string ValorSuc = gunaDataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+                        string url = string.Format("https://arniangroup.dispatchtrack.com/search/{0}", ValorSuc.Trim() + "-" + valorEnt.Trim());
+                        System.Diagnostics.Process.Start(url);
+                        return;
+
+                    }
+
+                     id = gunaDataGridView1.Rows[e.RowIndex].Cells[0].Value?.ToString();
+                     orig = gunaDataGridView1.Rows[e.RowIndex].Cells[3].Value?.ToString();
+
+
+
+
+                    string valorPrimerCelda = gunaDataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
                 }
+                catch 
+                {
 
-                string id = gunaDataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-                string orig = gunaDataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
-
-
-               
-
-                string valorPrimerCelda = gunaDataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+                   // throw;
+                }
+                if (String.IsNullOrWhiteSpace(orig) || String.IsNullOrWhiteSpace(id))
+                {
+                    MessageBox.Show("Ocurrio un error");
+                    return;
+                }
                 frmSelectorFotos frm = new frmSelectorFotos();
                 frm.txbEntrada.Text = orig + "-UD3501-"+id;
                 frm.ShowDialog();

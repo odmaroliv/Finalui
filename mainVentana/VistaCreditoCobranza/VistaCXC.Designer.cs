@@ -61,10 +61,8 @@
             this.dtFecha2 = new Guna.UI.WinForms.GunaDateTimePicker();
             this.dtFecha1 = new Guna.UI.WinForms.GunaDateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rCa = new System.Windows.Forms.RadioButton();
-            this.rTj = new System.Windows.Forms.RadioButton();
-            this.rSd = new System.Windows.Forms.RadioButton();
             this.dtgEnts = new ADGV.AdvancedDataGridView();
+            this.cmbSucOrigen = new Guna.UI.WinForms.GunaComboBox();
             this.gunaElipsePanel2.SuspendLayout();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -72,7 +70,6 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.gunaElipsePanel3.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgEnts)).BeginInit();
             this.SuspendLayout();
             // 
@@ -390,6 +387,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gunaElipsePanel3.BackColor = System.Drawing.Color.Transparent;
             this.gunaElipsePanel3.BaseColor = System.Drawing.Color.White;
+            this.gunaElipsePanel3.Controls.Add(this.cmbSucOrigen);
             this.gunaElipsePanel3.Controls.Add(this.lblTotalResult);
             this.gunaElipsePanel3.Controls.Add(this.lblTotal);
             this.gunaElipsePanel3.Controls.Add(this.btnToExcel);
@@ -520,47 +518,12 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.rCa);
-            this.groupBox1.Controls.Add(this.rTj);
-            this.groupBox1.Controls.Add(this.rSd);
             this.groupBox1.Location = new System.Drawing.Point(21, 23);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(257, 53);
             this.groupBox1.TabIndex = 137;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Sucursal";
-            // 
-            // rCa
-            // 
-            this.rCa.AutoSize = true;
-            this.rCa.Location = new System.Drawing.Point(179, 19);
-            this.rCa.Name = "rCa";
-            this.rCa.Size = new System.Drawing.Size(63, 17);
-            this.rCa.TabIndex = 2;
-            this.rCa.Text = "Cabo S.";
-            this.rCa.UseVisualStyleBackColor = true;
-            // 
-            // rTj
-            // 
-            this.rTj.AutoSize = true;
-            this.rTj.Location = new System.Drawing.Point(97, 19);
-            this.rTj.Name = "rTj";
-            this.rTj.Size = new System.Drawing.Size(60, 17);
-            this.rTj.TabIndex = 1;
-            this.rTj.Text = "Tijuana";
-            this.rTj.UseVisualStyleBackColor = true;
-            // 
-            // rSd
-            // 
-            this.rSd.AutoSize = true;
-            this.rSd.Checked = true;
-            this.rSd.Location = new System.Drawing.Point(6, 19);
-            this.rSd.Name = "rSd";
-            this.rSd.Size = new System.Drawing.Size(75, 17);
-            this.rSd.TabIndex = 0;
-            this.rSd.TabStop = true;
-            this.rSd.Text = "San Diego";
-            this.rSd.UseVisualStyleBackColor = true;
             // 
             // dtgEnts
             // 
@@ -573,7 +536,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dtgEnts.AutoGenerateContextFilters = true;
-            this.dtgEnts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgEnts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dtgEnts.BackgroundColor = System.Drawing.Color.White;
             this.dtgEnts.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dtgEnts.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
@@ -614,7 +577,6 @@
             this.dtgEnts.RowHeadersVisible = false;
             this.dtgEnts.RowTemplate.DividerHeight = 1;
             this.dtgEnts.RowTemplate.Height = 50;
-            this.dtgEnts.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dtgEnts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgEnts.Size = new System.Drawing.Size(740, 287);
             this.dtgEnts.TabIndex = 138;
@@ -622,6 +584,25 @@
             this.dtgEnts.SortStringChanged += new System.EventHandler(this.dtgEnts_SortStringChanged);
             this.dtgEnts.FilterStringChanged += new System.EventHandler(this.dtgEnts_FilterStringChanged);
             this.dtgEnts.SelectionChanged += new System.EventHandler(this.dtgEnts_SelectionChanged);
+            // 
+            // cmbSucOrigen
+            // 
+            this.cmbSucOrigen.BackColor = System.Drawing.Color.Transparent;
+            this.cmbSucOrigen.BaseColor = System.Drawing.Color.White;
+            this.cmbSucOrigen.BorderColor = System.Drawing.Color.Silver;
+            this.cmbSucOrigen.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbSucOrigen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSucOrigen.FocusedColor = System.Drawing.Color.Empty;
+            this.cmbSucOrigen.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbSucOrigen.ForeColor = System.Drawing.Color.Black;
+            this.cmbSucOrigen.FormattingEnabled = true;
+            this.cmbSucOrigen.Location = new System.Drawing.Point(27, 42);
+            this.cmbSucOrigen.Name = "cmbSucOrigen";
+            this.cmbSucOrigen.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.cmbSucOrigen.OnHoverItemForeColor = System.Drawing.Color.White;
+            this.cmbSucOrigen.Size = new System.Drawing.Size(245, 26);
+            this.cmbSucOrigen.TabIndex = 200;
+            this.cmbSucOrigen.SelectedIndexChanged += new System.EventHandler(this.cmbSucOrigen_SelectedIndexChanged);
             // 
             // VistaCXC
             // 
@@ -642,8 +623,6 @@
             this.splitContainer1.ResumeLayout(false);
             this.gunaElipsePanel3.ResumeLayout(false);
             this.gunaElipsePanel3.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgEnts)).EndInit();
             this.ResumeLayout(false);
 
@@ -665,9 +644,6 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private Guna.UI.WinForms.GunaElipsePanel gunaElipsePanel3;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton rCa;
-        private System.Windows.Forms.RadioButton rTj;
-        private System.Windows.Forms.RadioButton rSd;
         private ADGV.AdvancedDataGridView dtgEnts;
         private System.Windows.Forms.GroupBox groupBox7;
         private Guna.UI.WinForms.GunaTileButton gunaTileButton3;
@@ -683,5 +659,6 @@
         private FontAwesome.Sharp.IconButton btnToExcel;
         private System.Windows.Forms.Label lblTotalResult;
         private System.Windows.Forms.Label lblTotal;
+        private Guna.UI.WinForms.GunaComboBox cmbSucOrigen;
     }
 }

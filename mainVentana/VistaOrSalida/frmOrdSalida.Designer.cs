@@ -73,7 +73,9 @@
             this.label13 = new System.Windows.Forms.Label();
             this.gbxDatosGenerales = new Guna.UI.WinForms.GunaGroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.sucDestino = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbSucOrigen = new Guna.UI.WinForms.GunaComboBox();
             this.btnImportarExcel = new Guna.UI.WinForms.GunaGradientTileButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblSalida = new System.Windows.Forms.Label();
@@ -84,8 +86,8 @@
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.cmbSucOrigen = new Guna.UI.WinForms.GunaComboBox();
-            this.sucDestino = new System.Windows.Forms.ComboBox();
+            this.gunaGoogleSwitch13 = new Guna.UI.WinForms.GunaGoogleSwitch();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaCargas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrdenesEntrada)).BeginInit();
@@ -103,6 +105,8 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.gunaGoogleSwitch13);
             this.panel1.Controls.Add(this.iconButton1);
             this.panel1.Controls.Add(this.gunaAdvenceButton1);
             this.panel1.Controls.Add(this.lblTotalFaltantes);
@@ -775,6 +779,26 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Sucursal Destino";
             // 
+            // sucDestino
+            // 
+            this.sucDestino.AutoCompleteCustomSource.AddRange(new string[] {
+            "SD",
+            "TJ",
+            "CSL"});
+            this.sucDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.sucDestino.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sucDestino.FormattingEnabled = true;
+            this.sucDestino.Items.AddRange(new object[] {
+            "SD",
+            "TJ",
+            "CSL"});
+            this.sucDestino.Location = new System.Drawing.Point(5, 27);
+            this.sucDestino.Margin = new System.Windows.Forms.Padding(2);
+            this.sucDestino.Name = "sucDestino";
+            this.sucDestino.Size = new System.Drawing.Size(378, 28);
+            this.sucDestino.TabIndex = 104;
+            this.sucDestino.SelectedIndexChanged += new System.EventHandler(this.sucDestino_SelectedIndexChanged);
+            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -788,6 +812,25 @@
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Sucursal Origen";
+            // 
+            // cmbSucOrigen
+            // 
+            this.cmbSucOrigen.BackColor = System.Drawing.Color.Transparent;
+            this.cmbSucOrigen.BaseColor = System.Drawing.Color.White;
+            this.cmbSucOrigen.BorderColor = System.Drawing.Color.Silver;
+            this.cmbSucOrigen.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbSucOrigen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSucOrigen.FocusedColor = System.Drawing.Color.Empty;
+            this.cmbSucOrigen.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbSucOrigen.ForeColor = System.Drawing.Color.Black;
+            this.cmbSucOrigen.FormattingEnabled = true;
+            this.cmbSucOrigen.Location = new System.Drawing.Point(5, 28);
+            this.cmbSucOrigen.Name = "cmbSucOrigen";
+            this.cmbSucOrigen.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.cmbSucOrigen.OnHoverItemForeColor = System.Drawing.Color.White;
+            this.cmbSucOrigen.Size = new System.Drawing.Size(378, 26);
+            this.cmbSucOrigen.TabIndex = 37;
+            this.cmbSucOrigen.SelectedIndexChanged += new System.EventHandler(this.cmbSucOrigen_SelectedIndexChanged);
             // 
             // btnImportarExcel
             // 
@@ -955,44 +998,28 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // cmbSucOrigen
+            // gunaGoogleSwitch13
             // 
-            this.cmbSucOrigen.BackColor = System.Drawing.Color.Transparent;
-            this.cmbSucOrigen.BaseColor = System.Drawing.Color.White;
-            this.cmbSucOrigen.BorderColor = System.Drawing.Color.Silver;
-            this.cmbSucOrigen.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbSucOrigen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSucOrigen.FocusedColor = System.Drawing.Color.Empty;
-            this.cmbSucOrigen.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cmbSucOrigen.ForeColor = System.Drawing.Color.Black;
-            this.cmbSucOrigen.FormattingEnabled = true;
-            this.cmbSucOrigen.Location = new System.Drawing.Point(5, 28);
-            this.cmbSucOrigen.Name = "cmbSucOrigen";
-            this.cmbSucOrigen.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.cmbSucOrigen.OnHoverItemForeColor = System.Drawing.Color.White;
-            this.cmbSucOrigen.Size = new System.Drawing.Size(378, 26);
-            this.cmbSucOrigen.TabIndex = 37;
-            this.cmbSucOrigen.SelectedIndexChanged += new System.EventHandler(this.cmbSucOrigen_SelectedIndexChanged);
+            this.gunaGoogleSwitch13.BaseColor = System.Drawing.SystemColors.Control;
+            this.gunaGoogleSwitch13.CheckedOffColor = System.Drawing.Color.DarkGray;
+            this.gunaGoogleSwitch13.CheckedOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.gunaGoogleSwitch13.FillColor = System.Drawing.Color.White;
+            this.gunaGoogleSwitch13.Location = new System.Drawing.Point(18, 31);
+            this.gunaGoogleSwitch13.Name = "gunaGoogleSwitch13";
+            this.gunaGoogleSwitch13.Size = new System.Drawing.Size(38, 20);
+            this.gunaGoogleSwitch13.TabIndex = 181;
+            this.gunaGoogleSwitch13.Tag = "No carga";
+            this.gunaGoogleSwitch13.CheckedChanged += new System.EventHandler(this.gunaGoogleSwitch13_CheckedChanged);
             // 
-            // sucDestino
+            // label5
             // 
-            this.sucDestino.AutoCompleteCustomSource.AddRange(new string[] {
-            "SD",
-            "TJ",
-            "CSL"});
-            this.sucDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.sucDestino.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sucDestino.FormattingEnabled = true;
-            this.sucDestino.Items.AddRange(new object[] {
-            "SD",
-            "TJ",
-            "CSL"});
-            this.sucDestino.Location = new System.Drawing.Point(5, 27);
-            this.sucDestino.Margin = new System.Windows.Forms.Padding(2);
-            this.sucDestino.Name = "sucDestino";
-            this.sucDestino.Size = new System.Drawing.Size(378, 28);
-            this.sucDestino.TabIndex = 104;
-            this.sucDestino.SelectedIndexChanged += new System.EventHandler(this.sucDestino_SelectedIndexChanged);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(18, 9);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(129, 22);
+            this.label5.TabIndex = 127;
+            this.label5.Text = "No orden de carga.";
             // 
             // frmOrdSalida
             // 
@@ -1072,5 +1099,7 @@
         private FontAwesome.Sharp.IconButton iconButton1;
         private Guna.UI.WinForms.GunaComboBox cmbSucOrigen;
         private System.Windows.Forms.ComboBox sucDestino;
+        private System.Windows.Forms.Label label5;
+        private Guna.UI.WinForms.GunaGoogleSwitch gunaGoogleSwitch13;
     }
 }

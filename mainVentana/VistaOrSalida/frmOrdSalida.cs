@@ -46,6 +46,9 @@ namespace mainVentana.VistaOrSalida
         int iniciodesalida = 0;
         private SoundPlayer alertaNoCargaPlayer;
         private SoundPlayer alertaBienPlayer;
+        private bool _noCarga = false;
+
+
         public frmOrdSalida()
         {
             InitializeComponent();
@@ -328,7 +331,7 @@ namespace mainVentana.VistaOrSalida
 
         private void GeneraExcel()
         {
-            if (dgvEscaneados.Rows.Count <= 0)
+            if (_noCarga==false && dgvEscaneados.Rows.Count <= 0)
             {
                 MessageBox.Show("No hay datos para Enviar");
                 return;
@@ -340,42 +343,50 @@ namespace mainVentana.VistaOrSalida
             int filasO = dgvOrdenesEntrada.Rows.Count;
 
             list.Add(new vmEnviodeNotificacion { OrdenSalidaAplicada = ulDato });
-
-            for (int i = 0; i < filasE; i++)
+            if (_noCarga == false)
             {
-
-                list.Add(new vmEnviodeNotificacion
+                for (int i = 0; i < filasE; i++)
                 {
 
-                    Etiqueta =  dgvEscaneados.Rows[i].Cells[0].Value == null ?"": dgvEscaneados.Rows[i].Cells[0].Value.ToString().Trim(),
-                    Pertenece = dgvEscaneados.Rows[i].Cells[1].Value == null ?"": dgvEscaneados.Rows[i].Cells[1].Value.ToString().Trim(),
-                    Correo =  dgvEscaneados.Rows[i].Cells[2].Value == null ? "" : dgvEscaneados.Rows[i].Cells[2].Value.ToString().Trim(),
+                    list.Add(new vmEnviodeNotificacion
+                    {
 
-                });
+                        Etiqueta = dgvEscaneados.Rows[i].Cells[0].Value == null ? "" : dgvEscaneados.Rows[i].Cells[0].Value.ToString().Trim(),
+                        Pertenece = dgvEscaneados.Rows[i].Cells[1].Value == null ? "" : dgvEscaneados.Rows[i].Cells[1].Value.ToString().Trim(),
+                        Correo = dgvEscaneados.Rows[i].Cells[2].Value == null ? "" : dgvEscaneados.Rows[i].Cells[2].Value.ToString().Trim(),
+
+                    });
+                }
             }
+            
             for (int i = 0; i < filasA; i++)
             {
+
                 list.Add(new vmEnviodeNotificacion
                 {
-                    Etiqueta =dgvObser.Rows[i].Cells[0].Value == null ? "" : dgvObser.Rows[i].Cells[0].Value.ToString().Trim(),
-                    notas = "Esta entrada no se encontro en ninguna orden cargada en esta salida (Pordria no existir)",
+                    Etiqueta = dgvObser.Rows[i].Cells[0].Value == null ? "" : dgvObser.Rows[i].Cells[0].Value.ToString().Trim(),
+                    notas = _noCarga == true ? "Salida creada sin Orden de Carga" : "Esta entrada no se encontro en ninguna orden cargada en esta salida (Pordria no existir)",
                     Correo = dgvObser.Rows[i].Cells[2].Value == null ? "sistemas@arnian.com" : dgvObser.Rows[i].Cells[2].Value.ToString().Trim()
 
                 });
 
 
             }
-            for (int i = 0; i < filasO; i++)
+            if (_noCarga==false)
             {
-                list.Add(new vmEnviodeNotificacion
+                for (int i = 0; i < filasO; i++)
                 {
-                    Etiqueta = dgvOrdenesEntrada.Rows[i].Cells[0].Value == null ? "" : dgvOrdenesEntrada.Rows[i].Cells[0].Value.ToString().Trim(),
-                    NoCargadas = "ESTA ETIQUETA NO FUE ESCANEADA EN ESTA SALIDA A PESAR DE ESTAR EN LAS ÓRDENES DE CARGA."
+                    list.Add(new vmEnviodeNotificacion
+                    {
+                        Etiqueta = dgvOrdenesEntrada.Rows[i].Cells[0].Value == null ? "" : dgvOrdenesEntrada.Rows[i].Cells[0].Value.ToString().Trim(),
+                        NoCargadas = "ESTA ETIQUETA NO FUE ESCANEADA EN ESTA SALIDA A PESAR DE ESTAR EN LAS ÓRDENES DE CARGA."
 
-                    //Correo = string.IsNullOrEmpty(dgvObser.Rows[i].Cells[2].Value.ToString()) ? "" : dgvObser.Rows[i].Cells[2].Value.ToString().Trim(),
+                        //Correo = string.IsNullOrEmpty(dgvObser.Rows[i].Cells[2].Value.ToString()) ? "" : dgvObser.Rows[i].Cells[2].Value.ToString().Trim(),
 
-                });
+                    });
 
+
+                }
 
             }
 
@@ -622,7 +633,7 @@ namespace mainVentana.VistaOrSalida
                 newRow.CreateCells(dgvObser);
 
                 newRow.Cells[0].Value = noExistente.Etiqueta;
-                newRow.Cells[1].Value = "No se encotro en ninguna Orden Cargada en este documento";
+                newRow.Cells[1].Value = _noCarga==true?"Sin orden de carga" : "No se encotro en ninguna Orden Cargada en este documento";
                 newRow.Cells[2].Value = row.Cells[2].Value.ToString().Trim();
                 dgvObser.Rows.Add(newRow);
             }
@@ -675,11 +686,15 @@ namespace mainVentana.VistaOrSalida
         private int ValidacionesGenerales()
         {
             int error = 0;
-            if (dgvListaCargas.RowCount == 0)
+            if (_noCarga == false)
             {
-                MessageBox.Show("No se han seleccionado Cargas");
-                error = 1;
+                if (dgvListaCargas.RowCount == 0)
+                {
+                    MessageBox.Show("No se han seleccionado Cargas");
+                    error = 1;
+                }
             }
+           
             if (sOrigen == "")
             {
                 MessageBox.Show("Es necesario selccionar una sucursal de Origen");
@@ -704,6 +719,7 @@ namespace mainVentana.VistaOrSalida
             return error;
         }
         private Queue<string> colaEtiquetas = new Queue<string>();
+       
 
         private void txbEscaneo_KeyDown(object sender, KeyEventArgs e)
         {
@@ -761,14 +777,18 @@ namespace mainVentana.VistaOrSalida
                 RepSonido(0);
                 if (sOrigen != "TJ")
                 {
-                    if (MessageBox.Show("Se agregara la etiqueta: \n" + etiqueta + "\nVolver a preguntar?", "Cuidado", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (_noCarga==false)
                     {
-                        RepSonido(0);
-                        if (MessageBox.Show("Deseas agregar esta etiqueta a la salida?\n" + etiqueta, "Cuidado", MessageBoxButtons.YesNo) == DialogResult.No)
+                        if (MessageBox.Show("Se agregara la etiqueta: \n" + etiqueta + "\nVolver a preguntar?", "Cuidado", MessageBoxButtons.YesNo) == DialogResult.Yes)
                         {
-                            return;
+                            RepSonido(0);
+                            if (MessageBox.Show("Deseas agregar esta etiqueta a la salida?\n" + etiqueta, "Cuidado", MessageBoxButtons.YesNo) == DialogResult.No)
+                            {
+                                return;
+                            }
                         }
                     }
+                   
                 }
                
                 AltKDMENT(etiqueta);
@@ -781,7 +801,7 @@ namespace mainVentana.VistaOrSalida
                 var obsRow = new DataGridViewRow();
                 obsRow.CreateCells(dgvObser);
                 obsRow.Cells[0].Value = etiqueta;
-                obsRow.Cells[1].Value = "Esta etiqueta no se encontró en ninguna Orden Cargada en este documento";
+                obsRow.Cells[1].Value = _noCarga == true?"Salida sin Carga" : "Esta etiqueta no se encontró en ninguna Orden Cargada en este documento";
                 obsRow.Cells[2].Value = cO;
                 dgvObser.Rows.Add(obsRow);
                 lblMensaje.Text = "Etiqueta: " + etiqueta + " no se encontró en las ordenes cargadas";
@@ -1332,7 +1352,7 @@ namespace mainVentana.VistaOrSalida
         {
             if (ValidacionesGenerales()==0)
             {
-                if (dgvEscaneados.Rows.Count>0)
+                if (_noCarga == true || dgvEscaneados.Rows.Count>0)
                 {
                     if (MessageBox.Show("Estás a punto de cerrar la salida \nA partir de aquí ya no se podrá modificar \nContinuar?", "Alerta", MessageBoxButtons.OKCancel) == DialogResult.OK)
                     {
@@ -1343,7 +1363,7 @@ namespace mainVentana.VistaOrSalida
                         {
                             MandaHookRing();
                         }
-                        catch (Exception)
+                        catch 
                         {
 
                            
@@ -1607,6 +1627,63 @@ namespace mainVentana.VistaOrSalida
             }
             sDestino = name.Trim();
             
+        }
+
+        private void gunaGoogleSwitch13_CheckedChanged(object sender, EventArgs e)
+        {
+            gunaGoogleSwitch13.CheckedChanged -= gunaGoogleSwitch13_CheckedChanged;
+            VistaEntrada.Desbloqueo buscador = new Desbloqueo();
+
+            buscador.cambiar += new Desbloqueo.cambio(SalidaSinCargaCheck);
+            buscador.ShowDialog();
+            gunaGoogleSwitch13.CheckedChanged += gunaGoogleSwitch13_CheckedChanged;
+
+
+
+        }
+
+        public async void SalidaSinCargaCheck(bool dato)
+        {
+            if (dato == true)
+            {
+               
+                if (MessageBox.Show("Seguro que quieres hacer una salida sin carga? \nNo se recomienda.", "Cuidado", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        string us = Negocios.Common.Cache.CacheLogin.username;
+                        if (us == "DOLIVARES" || us == "SLIMON" || us == "AGUZMAN")
+                        {
+                            _noCarga = true;
+                            gunaGoogleSwitch13.Checked =_noCarga;
+                        }
+                        else
+                        {
+
+                            _noCarga = false;
+                            gunaGoogleSwitch13.Checked = _noCarga;
+                            MessageBox.Show("No tienes autorizacion");
+                        }
+
+
+                    }
+                    catch (Exception)
+                    {
+                        _noCarga = false;
+                        gunaGoogleSwitch13.Checked = _noCarga;
+                        throw;
+                    }
+
+
+                }
+            }
+            else
+            {
+                _noCarga = false;
+                gunaGoogleSwitch13.Checked = _noCarga;
+                MessageBox.Show("No tienes autorizacion");
+            }
+           
         }
     }
 

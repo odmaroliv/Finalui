@@ -14,9 +14,12 @@ namespace mainVentana.VistaEntrada
     {
         public delegate void cambio (bool check);
         public event cambio cambiar;
+        private bool _isUsed = false;
+
         public Desbloqueo()
         {
             InitializeComponent();
+           // this.FormClosing +=
         }
 
         private void iconButton1_Click(object sender, EventArgs e)
@@ -25,7 +28,9 @@ namespace mainVentana.VistaEntrada
             {
                 if (gunaLineTextBox2.Text.Trim() == 1473698.ToString() || gunaLineTextBox2.Text.Trim() == 112233.ToString())
                 {
+                    _isUsed = true;
                     cambiar(true);
+                    
                     this.Dispose();
                     this.Close();
                 }
@@ -38,19 +43,32 @@ namespace mainVentana.VistaEntrada
             }
             catch (Exception)
             {
-                cambiar(true);
+                cambiar(false);
                // throw;
             }
-            finally {
+            finally
+            {
 
-                cambiar(false);
+                if (!_isUsed)
+                {
+                    cambiar(false);
+                }
+                else
+                {
+                    cambiar(true);
+                }
 
             }
-           
+
         }
 
         private void Desbloqueo_FormClosed(object sender, FormClosedEventArgs e)
         {
+            if (!_isUsed)
+            {
+                cambiar(false);
+            }
+            
             this.Dispose();
             this.Close();
         }

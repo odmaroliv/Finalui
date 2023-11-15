@@ -620,7 +620,7 @@ namespace Negocios
                     d.C16 = Convert.ToDecimal(valarn.Trim());
                     d.C42 = Convert.ToDecimal(valarn.Trim());
                     await modelo.SaveChangesAsync();
-
+                    GeneralMovimientosLog.AddMovimientoConParametrosDirectos(entrada, 35, "", 35, "", sucursalIni, "", "", "Entrada", "", $"Se modifican los valores: Valor Arnian: {valarn}, Valor Factura {valfact}");
                 }
             }
             catch (Exception ex)

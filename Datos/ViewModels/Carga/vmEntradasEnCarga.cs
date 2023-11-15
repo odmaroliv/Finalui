@@ -19,9 +19,9 @@ namespace Datos.ViewModels.Carga
         [DisplayName("Cliente.")]
         public string Cliente { get; set; }
 
-        [DisplayName("Cliente.")]
+        [DisplayName("Valor Arnian.")]
         public string valArn { get; set; }
-        [DisplayName("Cliente.")]
+        [DisplayName("Valor Factura.")]
         public string valFact { get; set; }
 
 
