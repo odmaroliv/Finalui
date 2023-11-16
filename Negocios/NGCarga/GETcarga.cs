@@ -70,7 +70,7 @@ namespace Negocios.NGCarga
 
                     {
                         var lista = from d in modelo.KDM1
-                                    where d.C1.Contains(dSucursalInicio) && d.C6.Equals(dOrdenDeCarga) && d.C4 == 40//&& d.C19 != sdestino 
+                                    where d.C1.Equals(dSucursalInicio) && d.C6.Equals(dOrdenDeCarga) && d.C4 == 40//&& d.C19 != sdestino 
                                     select new vmCargaConsultaGeneral
                                     {
                                         sucursalOrigen = d.C1,
@@ -223,7 +223,7 @@ namespace Negocios.NGCarga
                 {
                     var lista = from d in modelo.KDM1
                                     // join k in modelo.KDIDO on d.C101 equals k.C1
-                                where d.C1.Contains(datoSucIni) && d.C4 == 40 && d.C43 == "N" /*&& (d.C111 <= hoy)*/ && d.C101.Contains(oper) //&& d.C19 != sdestino 
+                                where d.C1.Equals(datoSucIni) && d.C4 == 40 && d.C43 == "N" /*&& (d.C111 <= hoy)*/ && d.C101.Contains(oper) //&& d.C19 != sdestino 
                                 orderby (d.C6) descending
                                 select new vmCargaCordinadores
                                 {
@@ -261,7 +261,7 @@ namespace Negocios.NGCarga
                 {
                     var lista = from d in modelo.KDM1
                                 join k in modelo.KDIDO on d.C101 equals k.C1
-                                where d.C1.Contains(datoSucIni) && d.C4 == 35 && d.C6 == entrada
+                                where d.C1.Equals(datoSucIni) && d.C4 == 35 && d.C6 == entrada
                                 orderby (d.C6) descending
                                 select new vmTOperacion
                                 {
@@ -304,7 +304,7 @@ namespace Negocios.NGCarga
                                      //join a in modelo.KDUV on k.C12 equals a.C2
                                      //join u in modelo.KDUSUARIOS on a.C22 equals u.C1
 
-                                 where d.C1.Contains(origen) && d.C6.Contains(entrada)
+                                 where d.C1.Equals(origen) && d.C6.Contains(entrada)
 
 
                                  select new vmInfoControlCors
@@ -349,7 +349,7 @@ namespace Negocios.NGCarga
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
                     var lista = from d in modelo.KDM1
-                                where d.C1.Contains(datoSucIni) && d.C4 == 40 && d.C43 == "N" && d.C101.Contains(oper)
+                                where d.C1.Equals(datoSucIni) && d.C4 == 40 && d.C43 == "N" && d.C101.Equals(oper)
                                 orderby (d.C6) descending
                                 select new vmCargaCordinadores
                                 {

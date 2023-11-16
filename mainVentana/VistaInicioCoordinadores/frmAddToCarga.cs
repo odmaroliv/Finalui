@@ -175,7 +175,7 @@ namespace mainVentana.VistaInicioCoordinadores
         private async void CargaOrdenes()
         {
 
-
+            cbxOrdenes.DataSource = null;
             await Task.Run(() =>
             {
 
@@ -327,6 +327,7 @@ namespace mainVentana.VistaInicioCoordinadores
         */
         private void LimpiaDatos()
         {
+            
             lssGlobal?.Clear();
             entradasCargadas?.Clear();
             listaBultos.Clear();
@@ -779,6 +780,7 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private void cmbSucOrigen_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LimpiaDatos();
             var name = cmbSucOrigen.SelectedValue?.ToString().Trim();
 
             if (String.IsNullOrWhiteSpace(name))
