@@ -2307,7 +2307,7 @@ namespace mainVentana.VistaEntrada
                             s += "^FO100,1010^FDDate:^FS\n";
                             s += string.Format("^FO100,1060^FD{0}^FS\n", q.Fecha.Value.Date.ToString("MM/dd/yyyy"));
                             s += "^CF0,190\n";
-                            s += string.Format("^FO450,930^FD{0}^FS\n", q.ZonaNumero.ToString());
+                            s += string.Format("^FO450,930^FD{0}^FS\n", q.ZonaNumero?.ToString());
                             s += "\n";
                             s += "^CF0,30";
                             s += string.Format("^FO50,1155^FDZona: {0}^FS\n", q.Zona);
