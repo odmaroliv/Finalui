@@ -90,7 +90,7 @@ namespace mainVentana.VistaCreditoCobranza
             dtgEnts.EnableHeadersVisualStyles = false;
             dtFecha1.Value = DateTime.Now;
             dtFecha2.Value = DateTime.Now.AddDays(1);
-            dtFecha1.MinDate = DateTime.Now.AddDays(-400);
+            dtFecha1.MinDate = DateTime.Now.AddDays(-800);
             dtFecha1.MaxDate = DateTime.Now.AddDays(1);
             dtFecha2.MinDate = DateTime.Now.AddDays(-90);
             dtFecha2.MaxDate = DateTime.Now.AddDays(1);
