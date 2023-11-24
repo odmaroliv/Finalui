@@ -61,7 +61,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cbxDestinoModify = new ReaLTaiizor.Controls.CheckBox();
-            this.cmbAlmacen = new System.Windows.Forms.ComboBox();
             this.label30 = new System.Windows.Forms.Label();
             this.cord = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -146,6 +145,7 @@
             this.lblBuscarEnt = new System.Windows.Forms.Label();
             this.btnBuscarEnt = new Guna.UI.WinForms.GunaCircleButton();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.cmbTipoEnt = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDocs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFotosModifi)).BeginInit();
@@ -575,8 +575,8 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox1.Controls.Add(this.cmbTipoEnt);
             this.groupBox1.Controls.Add(this.cbxDestinoModify);
-            this.groupBox1.Controls.Add(this.cmbAlmacen);
             this.groupBox1.Controls.Add(this.label30);
             this.groupBox1.Controls.Add(this.cord);
             this.groupBox1.Controls.Add(this.label15);
@@ -612,21 +612,6 @@
             this.cbxDestinoModify.Visible = false;
             this.cbxDestinoModify.CheckedChanged += new ReaLTaiizor.Controls.CheckBox.CheckedChangedEventHandler(this.cbxDestinoModify_CheckedChanged);
             // 
-            // cmbAlmacen
-            // 
-            this.cmbAlmacen.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.cmbAlmacen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbAlmacen.Enabled = false;
-            this.cmbAlmacen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.cmbAlmacen.FormattingEnabled = true;
-            this.cmbAlmacen.Items.AddRange(new object[] {
-            "Daniel Olivares"});
-            this.cmbAlmacen.Location = new System.Drawing.Point(454, 26);
-            this.cmbAlmacen.Margin = new System.Windows.Forms.Padding(2);
-            this.cmbAlmacen.Name = "cmbAlmacen";
-            this.cmbAlmacen.Size = new System.Drawing.Size(235, 28);
-            this.cmbAlmacen.TabIndex = 108;
-            // 
             // label30
             // 
             this.label30.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -635,7 +620,7 @@
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(88, 20);
             this.label30.TabIndex = 109;
-            this.label30.Text = "Almacen:";
+            this.label30.Text = "Tipo:";
             // 
             // cord
             // 
@@ -1740,6 +1725,26 @@
             this.btnBuscarEnt.Visible = false;
             this.btnBuscarEnt.Click += new System.EventHandler(this.btnBuscarEnt_Click);
             // 
+            // cmbTipoEnt
+            // 
+            this.cmbTipoEnt.AutoCompleteCustomSource.AddRange(new string[] {
+            "SD",
+            "TJ",
+            "CSL"});
+            this.cmbTipoEnt.DisplayMember = "SD";
+            this.cmbTipoEnt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipoEnt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbTipoEnt.FormattingEnabled = true;
+            this.cmbTipoEnt.Items.AddRange(new object[] {
+            "SD",
+            "TJ",
+            "CSL"});
+            this.cmbTipoEnt.Location = new System.Drawing.Point(454, 18);
+            this.cmbTipoEnt.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbTipoEnt.Name = "cmbTipoEnt";
+            this.cmbTipoEnt.Size = new System.Drawing.Size(235, 28);
+            this.cmbTipoEnt.TabIndex = 127;
+            // 
             // AltaEntrada
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1850,7 +1855,6 @@
         private System.Windows.Forms.Label label29;
         private Guna.UI.WinForms.GunaTextBox tbxRastreo;
         private Guna.UI.WinForms.GunaGroupBox Especificos;
-        private System.Windows.Forms.ComboBox cmbAlmacen;
         private System.Windows.Forms.Label label30;
         private Guna.UI.WinForms.GunaSeparator gunaSeparator1;
         private System.Windows.Forms.TextBox txbValArn;
@@ -1902,5 +1906,6 @@
         private System.Windows.Forms.Label label41;
         private ReaLTaiizor.Controls.CheckBox cbxDestinoModify;
         private ReaLTaiizor.Controls.CheckBox cbxDano;
+        private System.Windows.Forms.ComboBox cmbTipoEnt;
     }
 }

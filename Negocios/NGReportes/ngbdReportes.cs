@@ -14,6 +14,8 @@ using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net.NetworkInformation;
+using System.Reflection;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -795,6 +797,39 @@ namespace Negocios.NGReportes
             }
             catch (Exception)
             {
+                throw;
+            }
+        }
+        public async Task<List<vmClientesXCord>> CargaReporteClientesActivos(string cord, DateTime desde, DateTime hasta)
+        {
+           
+
+            List<vmClientesXCord> resultado = new List<vmClientesXCord>();
+            try
+            {
+                using (modelo2Entities context = new modelo2Entities()) // Asegúrate de que 'modelo2Entities' es el nombre correcto de tu contexto de base de datos
+                {
+                    var query = (from k1 in context.KDM1
+                                 join kd in context.KDUD on k1.C10 equals kd.C2
+                                 where k1.C12 == cord &&
+                                       k1.C9 >= desde &&
+                                       k1.C9 <= hasta
+                                 group new { k1, kd } by kd.C3 into grouped
+                                 select new vmClientesXCord
+                                 {
+                                     Cliente = grouped.Key,
+                                     Numero = grouped.FirstOrDefault().k1.C10, 
+                                     Coordinador = grouped.FirstOrDefault().k1.C12,
+                                     FechaCreacion = grouped.FirstOrDefault().kd.creation_date == null ?"": grouped.FirstOrDefault().kd.creation_date.ToString(),
+                                 });
+
+                    resultado = await query.ToListAsync();
+                }
+                return resultado;
+            }
+            catch (Exception)
+            {
+                // Considerar manejo adecuado de excepciones aquí
                 throw;
             }
         }

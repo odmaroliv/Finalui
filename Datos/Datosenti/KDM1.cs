@@ -130,5 +130,6 @@ namespace Datos.Datosenti
         public string C114 { get; set; }
         public string C115 { get; set; }
         public string C116 { get; set; }
+        public Nullable<int> TipoEntradaID { get; set; }
     }
 }

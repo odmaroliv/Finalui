@@ -163,6 +163,9 @@
     <Compile Include="Datosenti\SubSucursales.cs">
       <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
+    <Compile Include="Datosenti\TiposDeEntrada.cs">
+      <DependentUpon>modeloPrueba.tt</DependentUpon>
+    </Compile>
     <Compile Include="Datosenti\TiposMovimiento.cs">
       <DependentUpon>modeloPrueba.tt</DependentUpon>
     </Compile>
@@ -257,6 +260,7 @@
     <Compile Include="ViewModels\Entradas\vmCordinadores.cs" />
     <Compile Include="ViewModels\Entradas\Sucursales.cs" />
     <Compile Include="ViewModels\Entradas\vmRastreo.cs" />
+    <Compile Include="ViewModels\Entradas\vmTipoEntrada.cs" />
     <Compile Include="ViewModels\Entradas\vmTOperacion.cs" />
     <Compile Include="ViewModels\Entrega\ReportImage.cs" />
     <Compile Include="ViewModels\Entrega\vmImagenMapa.cs" />

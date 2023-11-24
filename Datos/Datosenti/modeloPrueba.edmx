@@ -23,7 +23,7 @@
           <Property Name="Observaciones" Type="nvarchar(max)" />
           <Property Name="Estado" Type="varchar" MaxLength="255" />
           <Property Name="IP" Type="varchar" MaxLength="45" />
-          <Property Name="DescripcionCorta" Type="varchar" MaxLength="500" />
+          <Property Name="DescripcionCorta" Type="varchar" MaxLength="1000" />
           <Property Name="LinkDocumento" Type="varchar" MaxLength="255" />
           <Property Name="Alias" Type="varchar" MaxLength="255" />
           <Property Name="Cotizacion" Type="varchar" MaxLength="255" />
@@ -185,6 +185,7 @@
           <Property Name="C114" Type="char" MaxLength="60" />
           <Property Name="C115" Type="char" MaxLength="60" />
           <Property Name="C116" Type="char" MaxLength="10" />
+          <Property Name="TipoEntradaID" Type="int" />
         </EntityType>
         <EntityType Name="KDM1COMEN">
           <Key>
@@ -565,6 +566,13 @@
           <Property Name="SubSucursal" Type="nvarchar" MaxLength="255" />
           <Property Name="KDMSID" Type="int" />
         </EntityType>
+        <EntityType Name="TiposDeEntrada">
+          <Key>
+            <PropertyRef Name="TipoEntradaID" />
+          </Key>
+          <Property Name="TipoEntradaID" Type="int" Nullable="false" />
+          <Property Name="NombreTipoEntrada" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
         <EntityType Name="TiposMovimiento">
           <Key>
             <PropertyRef Name="Codigo" />
@@ -679,6 +687,7 @@ advertencia 6035: La relación 'FK__SubSucurs__KDMSI__4FBCC72F' tiene columnas q
           <EntitySet Name="KDXD" EntityType="Self.KDXD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SqlIov" EntityType="Self.SqlIov" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubSucursales" EntityType="Self.SubSucursales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TiposDeEntrada" EntityType="Self.TiposDeEntrada" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TiposMovimiento" EntityType="Self.TiposMovimiento" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -824,6 +833,7 @@ advertencia 6035: La relación 'FK__SubSucurs__KDMSI__4FBCC72F' tiene columnas q
           <Property Name="C114" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
           <Property Name="C115" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
           <Property Name="C116" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="TipoEntradaID" Type="Int32" />
         </EntityType>
         <EntityType Name="KDM1COMEN">
           <Key>
@@ -1234,6 +1244,7 @@ advertencia 6035: La relación 'FK__SubSucurs__KDMSI__4FBCC72F' tiene columnas q
           </FunctionImport>
           <EntitySet Name="TiposMovimiento" EntityType="KEPLER_PRUEBASModel.TiposMovimiento" />
           <EntitySet Name="HistorialMovimientos" EntityType="KEPLER_PRUEBASModel.HistorialMovimientos" />
+          <EntitySet Name="TiposDeEntrada" EntityType="KEPLER_PRUEBASModel.TiposDeEntrada" />
           </EntityContainer>
         <ComplexType Name="NO_RASTREO_Result">
           <Property Type="String" Name="rand_number" Nullable="false" MaxLength="13" />
@@ -1587,7 +1598,7 @@ advertencia 6035: La relación 'FK__SubSucurs__KDMSI__4FBCC72F' tiene columnas q
           <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="IP" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="DescripcionCorta" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DescripcionCorta" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="LinkDocumento" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Alias" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Cotizacion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
@@ -1595,6 +1606,13 @@ advertencia 6035: La relación 'FK__SubSucurs__KDMSI__4FBCC72F' tiene columnas q
           <Property Name="ValorFactura" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="TrackingProveedor" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Entrada" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="TiposDeEntrada">
+          <Key>
+            <PropertyRef Name="TipoEntradaID" />
+          </Key>
+          <Property Name="TipoEntradaID" Type="Int32" Nullable="false" />
+          <Property Name="NombreTipoEntrada" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1621,6 +1639,7 @@ advertencia 6035: La relación 'FK__SubSucurs__KDMSI__4FBCC72F' tiene columnas q
           <EntitySetMapping Name="KDM1">
             <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.KDM1">
               <MappingFragment StoreEntitySet="KDM1">
+                <ScalarProperty Name="TipoEntradaID" ColumnName="TipoEntradaID" />
                 <ScalarProperty Name="C116" ColumnName="C116" />
                 <ScalarProperty Name="C1" ColumnName="C1" />
                 <ScalarProperty Name="C2" ColumnName="C2" />
@@ -2207,6 +2226,14 @@ advertencia 6035: La relación 'FK__SubSucurs__KDMSI__4FBCC72F' tiene columnas q
                 <ScalarProperty Name="TipoFolio" ColumnName="TipoFolio" />
                 <ScalarProperty Name="Folio" ColumnName="Folio" />
                 <ScalarProperty Name="MovimientoID" ColumnName="MovimientoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TiposDeEntrada">
+            <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.TiposDeEntrada">
+              <MappingFragment StoreEntitySet="TiposDeEntrada">
+                <ScalarProperty Name="NombreTipoEntrada" ColumnName="NombreTipoEntrada" />
+                <ScalarProperty Name="TipoEntradaID" ColumnName="TipoEntradaID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

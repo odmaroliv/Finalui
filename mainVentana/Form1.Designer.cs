@@ -124,6 +124,7 @@ namespace mainVentana
             this.cbxiSD = new System.Windows.Forms.RibbonButton();
             this.cbxiTJ = new System.Windows.Forms.RibbonButton();
             this.cbxiCSL = new System.Windows.Forms.RibbonButton();
+            this.cbxiIMSD = new System.Windows.Forms.RibbonButton();
             this.ribbonTab3 = new System.Windows.Forms.RibbonTab();
             this.rtabMy = new System.Windows.Forms.RibbonTab();
             this.rpnlGeneralesUsuario = new System.Windows.Forms.RibbonPanel();
@@ -133,7 +134,7 @@ namespace mainVentana
             this.ribbonButton4 = new System.Windows.Forms.RibbonButton();
             this.ribbonDescriptionMenuItem2 = new System.Windows.Forms.RibbonDescriptionMenuItem();
             this.panelContenedorForm = new System.Windows.Forms.Panel();
-            this.cbxiIMSD = new System.Windows.Forms.RibbonButton();
+            this.rbRepClientesActivos = new System.Windows.Forms.RibbonButton();
             this.panel11.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -637,6 +638,7 @@ namespace mainVentana
             this.rbtnReportes.DropDownItems.Add(this.rbReporteSalida);
             this.rbtnReportes.DropDownItems.Add(this.rbReporteClienteXcord);
             this.rbtnReportes.DropDownItems.Add(this.rbRepEntradasSD);
+            this.rbtnReportes.DropDownItems.Add(this.rbRepClientesActivos);
             this.rbtnReportes.Image = global::mainVentana.Properties.Resources.delivery;
             this.rbtnReportes.LargeImage = global::mainVentana.Properties.Resources.delivery;
             this.rbtnReportes.Name = "rbtnReportes";
@@ -836,6 +838,15 @@ namespace mainVentana
             this.cbxiCSL.Text = "Cabo San Lucas";
             this.cbxiCSL.Value = "CSL";
             // 
+            // cbxiIMSD
+            // 
+            this.cbxiIMSD.Image = ((System.Drawing.Image)(resources.GetObject("cbxiIMSD.Image")));
+            this.cbxiIMSD.LargeImage = ((System.Drawing.Image)(resources.GetObject("cbxiIMSD.LargeImage")));
+            this.cbxiIMSD.Name = "cbxiIMSD";
+            this.cbxiIMSD.SmallImage = ((System.Drawing.Image)(resources.GetObject("cbxiIMSD.SmallImage")));
+            this.cbxiIMSD.Text = "IMP-EXP SD CA";
+            this.cbxiIMSD.Value = "IMSD";
+            // 
             // ribbonTab3
             // 
             this.ribbonTab3.Name = "ribbonTab3";
@@ -907,14 +918,15 @@ namespace mainVentana
             this.panelContenedorForm.Size = new System.Drawing.Size(1113, 601);
             this.panelContenedorForm.TabIndex = 2;
             // 
-            // cbxiIMSD
+            // rbRepClientesActivos
             // 
-            this.cbxiIMSD.Image = ((System.Drawing.Image)(resources.GetObject("cbxiIMSD.Image")));
-            this.cbxiIMSD.LargeImage = ((System.Drawing.Image)(resources.GetObject("cbxiIMSD.LargeImage")));
-            this.cbxiIMSD.Name = "cbxiIMSD";
-            this.cbxiIMSD.SmallImage = ((System.Drawing.Image)(resources.GetObject("cbxiIMSD.SmallImage")));
-            this.cbxiIMSD.Text = "IMP-EXP SD CA";
-            this.cbxiIMSD.Value = "IMSD";
+            this.rbRepClientesActivos.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.rbRepClientesActivos.Image = ((System.Drawing.Image)(resources.GetObject("rbRepClientesActivos.Image")));
+            this.rbRepClientesActivos.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbRepClientesActivos.LargeImage")));
+            this.rbRepClientesActivos.Name = "rbRepClientesActivos";
+            this.rbRepClientesActivos.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbRepClientesActivos.SmallImage")));
+            this.rbRepClientesActivos.Text = "Clientes Activos";
+            this.rbRepClientesActivos.Click += new System.EventHandler(this.rbRepClientesActivos_Click);
             // 
             // Form1
             // 
@@ -1030,6 +1042,7 @@ namespace mainVentana
         private RibbonSeparator ribbonSeparator10;
         private RibbonButton rbtnMovimientos;
         private RibbonButton cbxiIMSD;
+        private RibbonButton rbRepClientesActivos;
     }
 }
 

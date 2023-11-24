@@ -24,6 +24,7 @@ using mainVentana.VistaBill;
 using mainVentana.Reportes.Salidas;
 using mainVentana.Reportes.Coords;
 using mainVentana.TraspasoMercancias;
+using mainVentana.Reportes.Clientes;
 
 namespace mainVentana
 {
@@ -669,6 +670,13 @@ namespace mainVentana
             Evide.FormClosed += frm_FormClosed_Libera;
             Evide.Show();
 
+        }
+
+        private void rbRepClientesActivos_Click(object sender, EventArgs e)
+        {
+            frmRepClientesActivos frmc = new frmRepClientesActivos();
+            frmc.ShowDialog();
+            frmc.Dispose();
         }
     }
 }

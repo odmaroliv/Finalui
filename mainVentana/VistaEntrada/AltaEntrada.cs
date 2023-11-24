@@ -120,7 +120,13 @@ namespace mainVentana.VistaEntrada
 
         private async void Guardar_Click(object sender, EventArgs e) //Click al boton guardar
         {
-            
+            string displayMember = cmbTipoEnt.DisplayMember;
+            if (cmbTipoEnt.SelectedItem != null)
+            {
+                var selectedItem = cmbTipoEnt.SelectedItem;
+                displayMember = selectedItem.GetType().GetProperty(cmbTipoEnt.DisplayMember).GetValue(selectedItem, null).ToString();               
+            }
+
             if (validapsoemail() ==1)
             {
                 return;
@@ -139,7 +145,7 @@ namespace mainVentana.VistaEntrada
             }
            
             groupBox1.Enabled = false;
-            if (MessageBox.Show("De: "+sucEntrada.Text + "\nPara: "+ sucDestino.Text, "Verificación",MessageBoxButtons.OKCancel,MessageBoxIcon.Exclamation)==DialogResult.Cancel)
+            if (MessageBox.Show("Entrada tipo: " + displayMember + "\n\nDe: " + sucEntrada.Text + "\n\nPara: "+ sucDestino.Text, "Verificación",MessageBoxButtons.OKCancel,MessageBoxIcon.Exclamation)==DialogResult.Cancel)
             {
                 groupBox1.Enabled = true;
                 return;
@@ -148,6 +154,11 @@ namespace mainVentana.VistaEntrada
             
             try
             {
+                if (cmbTipoEnt.SelectedItem == null)
+                {
+                    System.Windows.Forms.MessageBox.Show("El campo de tipo de entrada no puede estar vacio");
+                    return;
+                }
                 ValidacionEntradas validacion = new ValidacionEntradas();
                 if (tipodeDocumento == 1)
                 {
@@ -331,7 +342,7 @@ namespace mainVentana.VistaEntrada
             string datoNota = txbNotas.Text;
             string datoReferencia = txbReferencia.Text;
             string isDanado = cbxDano.Checked == true ? "1": "0"; //representa una entrada dañanada, se guarda por entrada completa, no por bulto en el campo 27 de kdm1 1 si esta dañada 0 si no lo esta
-
+            int tpoEntrada = Convert.ToInt32(cmbTipoEnt.SelectedValue);
             try
             {
                     bd.ActualizaSqlIov(datoSucIni.Trim(), 35);
@@ -349,7 +360,7 @@ namespace mainVentana.VistaEntrada
                 {
                     bd.agregaKDM1(datoSucIni, datoEntrada, datoMoneda, datoFecha, datoNuCliente, datoNoCord, datoValArn, datoNomCliente, datoCalle, datoColonia, datoCiudadZip,
            datoValFact, datoParidad, datoNoTrakin, datoProvedor, datoOrdCompra, datoNoFlete, datoNoUnidades, datoTipoUnidad, datoPeso, datoUnidadMedida, datoTipoOper,
-           datoSucDestino, datoBultos, datosAlias, datoNota, datoReferencia, isDanado);
+           datoSucDestino, datoBultos, datosAlias, datoNota, datoReferencia, isDanado, tpoEntrada);
                 }
                 catch (Exception ex)
                 {
@@ -698,6 +709,11 @@ namespace mainVentana.VistaEntrada
                     break;
                 }
 
+                var lstTiposEnt = datos.LlenaTiposEnt();
+                cmbTipoEnt.DisplayMember = "NombreTipoEntrada";
+                cmbTipoEnt.ValueMember = "TipoEntradaID";
+                cmbTipoEnt.DataSource = lstTiposEnt;
+                
                 cargaultent();
 
                 lblUser.Text = CacheLogin.username;
@@ -748,11 +764,7 @@ namespace mainVentana.VistaEntrada
                     tbxRastreo.Text = i.c1.ToString();
                 }
 
-                var lst8 = await datos.llenaAlmacenes();
-
-                cmbAlmacen.DisplayMember = "C2";
-                cmbAlmacen.ValueMember = "C1";
-                cmbAlmacen.DataSource = lst8;
+                
 
 
                 Cargaparidad();
@@ -1266,6 +1278,7 @@ namespace mainVentana.VistaEntrada
 
                     cargaultent();
                     cmbMoneda.SelectedIndex = 0;
+                    cmbTipoEnt.SelectedIndex = 0;
                     //regresafecha();
                     cargafecha();
                     lblTotalArchivos.Text = "...";
@@ -1385,7 +1398,7 @@ namespace mainVentana.VistaEntrada
                 limpiaImg();
 
             }
-            if (dato == 2)
+            if (dato == 2) //Modificacion
             {
                 tipodeDocumento = dato;
                 InicioModifica();
@@ -1395,6 +1408,7 @@ namespace mainVentana.VistaEntrada
         }
         private void InicioModifica()
         {
+            cmbTipoEnt.SelectedIndex = 0;
             gunaTileButton5.Visible = true;
             txbBuscarEnt.Text = default;
             btnBuscarEnt.Visible = true;
@@ -1425,6 +1439,8 @@ namespace mainVentana.VistaEntrada
                     sucEntrada.SelectedValue = i.c1;
                     break;
                 }
+
+
             }
             catch (Exception)
             {
@@ -1536,9 +1552,8 @@ namespace mainVentana.VistaEntrada
         {
             if (e.KeyCode == Keys.Return)
             {
-            
+ 
                 Funciones_para_Busqueda();
-
 
             }
         }
@@ -1547,6 +1562,7 @@ namespace mainVentana.VistaEntrada
             int valida = Validaciones_P_Busqueda();
             if (valida == 1)
             {
+                cmbTipoEnt.SelectedIndex = 0;
                 LimpiaIMG2();
                 if (Busqueda_Entrada(txbBuscarEnt.Text.Trim(), sucEntrada.SelectedValue.ToString().Trim()) == 0)
                 {
@@ -1560,9 +1576,10 @@ namespace mainVentana.VistaEntrada
                 coreoClientes = await datos.BuscarC11(lblCodCliente.Text);
                 label27.Text = "";
                 label28.Text = "";
-              //  detalles.Enabled = false;
                
-                    detalles.Enabled = true;
+                //  detalles.Enabled = false;
+
+                detalles.Enabled = true;
                     detalles.ReadOnly = true;
                 
             }
@@ -1620,7 +1637,20 @@ namespace mainVentana.VistaEntrada
 
                 }
                 //-----------------------------------
-                entradaBusqueda= q.C6.Trim();
+
+                //-------Tipo Entrada---------------
+                foreach (vmTipoEntrada i in cmbTipoEnt.Items)
+                {
+                    if (i.TipoEntradaID == q.tipoEntrada)
+                    {
+                        cmbTipoEnt.SelectedValue = i.TipoEntradaID;
+                        break;
+
+                    }
+
+                }
+                //-----------------------------------
+                entradaBusqueda = q.C6.Trim();
                 lblEntrada.Text = q.C6.Trim();
                 //cmbMoneda.Text = q.C7;
                 cmbMoneda.Text = q.C7.Trim();
@@ -1777,12 +1807,13 @@ namespace mainVentana.VistaEntrada
             string datoCiudadZip = label25.Text;
             string datoProvedor = proveedor.SelectedValue.ToString();
             string datosAlias = alias.Text;
+            int tpoEntrada = Convert.ToInt32(cmbTipoEnt.SelectedValue);
             DateTime datoFecha = regresafecha();
             AltasBD bd = new AltasBD();
             try
             {
                 bd.UpdateKDM1(datoEntrada, datoSucDestino, datoNoCord, datoNota, datoReferencia, pagado, datoTipoOper, datoValFact, datoValArn, datoSucOrigen, datoNoFlete, datoOrConpra,
-                    datoNuCliente,datoNomCliente,datoCalle,datoColonia,datoCiudadZip,datoProvedor, datosAlias, datoFecha);
+                    datoNuCliente,datoNomCliente,datoCalle,datoColonia,datoCiudadZip,datoProvedor, datosAlias, datoFecha, tpoEntrada);
                 if (detalles.Enabled == true)
                 {
                     bd.UpdateKDM1Coment(datoEntrada, datoSucOrigen, datoDescripcion);

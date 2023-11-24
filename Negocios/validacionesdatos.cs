@@ -645,6 +645,37 @@ namespace Negocios
 
         }
 
+        public List<vmTipoEntrada> LlenaTiposEnt()
+        {
+
+            try
+            {
+
+                using (modelo2Entities modelo = new modelo2Entities())
+
+                {
+                    var lista = from d in modelo.TiposDeEntrada
+                                select new vmTipoEntrada
+                                {
+                                    TipoEntradaID = d.TipoEntradaID,
+                                    NombreTipoEntrada = d.NombreTipoEntrada,
+                                };
+                                  
+                                
+                    return lista.ToList();
+                }
+            }
+
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+
+
+        }
 
         public List<SubSucursales> llenaSubSuc(bool esParametro, string suc = null)
         {
@@ -1405,7 +1436,8 @@ namespace Negocios
                                     C103 = d.C103,
                                     C108 = d.C108,
                                     C112 = d.C112,
-                                    descripcion = d2.C11
+                                    descripcion = d2.C11,
+                                    tipoEntrada = d.TipoEntradaID
 
 
                                 };

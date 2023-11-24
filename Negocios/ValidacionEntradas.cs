@@ -72,7 +72,7 @@ namespace Negocios
                 System.Windows.Forms.MessageBox.Show("El campo de detalles debe de contener una descripcio'n corta de la mercacia");
                 return false;
             }
-           
+            
 
             return true;
             

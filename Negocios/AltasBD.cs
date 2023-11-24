@@ -19,7 +19,7 @@ namespace Negocios
         public void agregaKDM1(string sucInicial, string entrada, string Moneda, DateTime fecha, string noCliente,
             string noCord, string valArn, string nomCliente, string calle, string colonia, string ciudadcodigozip, string valFact,
             string paridad, string noTrakin, string provedor, string orCompra, string noFlete, string noUnidades, string tipUnidad, string peso,
-            string unidadMedida, string tipOperacion, string sucDestino, string bultos, string Alias, string nota, string referencia, string isDano)
+            string unidadMedida, string tipOperacion, string sucDestino, string bultos, string Alias, string nota, string referencia, string isDano, int tpoEntrada)
         {
             try
             {
@@ -68,6 +68,7 @@ namespace Negocios
                     d.C103 = sucDestino.Trim();
                     d.C108 = bultos;
                     d.C112 = Alias.Trim();
+                    d.TipoEntradaID = tpoEntrada;
                     modelo.KDM1.Add(d);
                     modelo.SaveChanges();
 
@@ -212,7 +213,7 @@ namespace Negocios
         }
 
         public void UpdateKDM1(string id, string sucursaldestino, string cord, string notas, string referencia, string pagado, string tipooperacion, string valfact, string valarn, string sucursalOrigen,string noFlete, string datoOrConpra,
-            string datoNuCliente,string datoNomCliente,string datoCalle,string datoColonia,string datoCiudadZip,string datoProvedor, string datoAlias, DateTime fecha)
+            string datoNuCliente,string datoNomCliente,string datoCalle,string datoColonia,string datoCiudadZip,string datoProvedor, string datoAlias, DateTime fecha, int tpoEnrtada)
         {
             try
             {
@@ -270,7 +271,7 @@ namespace Negocios
                     {
                         d.C10 = datoNuCliente.Trim();
                     }
-
+                    d.TipoEntradaID = tpoEnrtada;
                     d.C32 = datoNomCliente;
                     d.C33 = datoCalle;
                     d.C34 = datoColonia;
@@ -283,8 +284,6 @@ namespace Negocios
                     try
                     {
                         modelo.SaveChanges();
-
-
                     }
                     catch (Exception ex)
                     {
@@ -293,7 +292,7 @@ namespace Negocios
                         {
                             foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
                             {
-                                // Acceder a los Entity Validation Errors
+                            
                                 foreach (var validationError in entityValidationError.ValidationErrors)
                                 {
                                     var propertyName = validationError.PropertyName;
