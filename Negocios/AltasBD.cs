@@ -213,7 +213,7 @@ namespace Negocios
         }
 
         public void UpdateKDM1(string id, string sucursaldestino, string cord, string notas, string referencia, string pagado, string tipooperacion, string valfact, string valarn, string sucursalOrigen,string noFlete, string datoOrConpra,
-            string datoNuCliente,string datoNomCliente,string datoCalle,string datoColonia,string datoCiudadZip,string datoProvedor, string datoAlias, DateTime fecha, int tpoEnrtada)
+            string datoNuCliente,string datoNomCliente,string datoCalle,string datoColonia,string datoCiudadZip,string datoProvedor, string datoAlias, DateTime fecha, int tpoEnrtada, string isDanado)
         {
             try
             {
@@ -257,7 +257,10 @@ namespace Negocios
                     {
                         d.C102 = valfact.Trim();
                     }
-
+                    if (!string.IsNullOrEmpty(valfact))
+                    {
+                        d.C27 = isDanado;
+                    }                    
                     if (!string.IsNullOrEmpty(valarn))
                     {
                         d.C16 = Convert.ToDecimal(valarn.Trim());

@@ -81,7 +81,8 @@ namespace mainVentana.VistaEntrada
                 cmbMoneda.Enabled = false;
                 txbValFact.Enabled = true;
                 txbValArn.Enabled = true;
-              
+                
+
                 //Especificos.Enabled = false; 
             }
 
@@ -1311,7 +1312,7 @@ namespace mainVentana.VistaEntrada
                     lblUser.Text = CacheLogin.username;
                     mdfImg.Visible = false;
                     iconButton2.Enabled = true;
-                    cbxDano.Enabled = false;
+                    cbxDano.Enabled = true;
 
                     limpiaImg();
                     GeneraRastreo();
@@ -1393,6 +1394,7 @@ namespace mainVentana.VistaEntrada
                 dgvDocs.Enabled = true;
                 dgvDocs.Visible = true;
 
+
                 abreModifica(true);
                 ReiniciaInfo(1);
                 limpiaImg();
@@ -1428,6 +1430,7 @@ namespace mainVentana.VistaEntrada
             cbxDestinoModify.Visible = true;
             cbxDestinoModify.Enable = true;
             sucDestino.Enabled = false;
+            cbxDano.Checked = false;
             abreModifica(false);
 
             try
@@ -1512,7 +1515,7 @@ namespace mainVentana.VistaEntrada
             gunaTileButton2.Enabled = true;
 
             detalles.Enabled = estatus;
-
+           
 
 
             if (estatus != true)
@@ -1808,12 +1811,13 @@ namespace mainVentana.VistaEntrada
             string datoProvedor = proveedor.SelectedValue.ToString();
             string datosAlias = alias.Text;
             int tpoEntrada = Convert.ToInt32(cmbTipoEnt.SelectedValue);
+            string isDanado = cbxDano.Checked == true ? "1" : "0"; //representa una entrada dañanada, se guarda por entrada completa, no por bulto en el campo 27 de kdm1 1 si esta dañada 0 si no lo esta
             DateTime datoFecha = regresafecha();
             AltasBD bd = new AltasBD();
             try
             {
                 bd.UpdateKDM1(datoEntrada, datoSucDestino, datoNoCord, datoNota, datoReferencia, pagado, datoTipoOper, datoValFact, datoValArn, datoSucOrigen, datoNoFlete, datoOrConpra,
-                    datoNuCliente,datoNomCliente,datoCalle,datoColonia,datoCiudadZip,datoProvedor, datosAlias, datoFecha, tpoEntrada);
+                    datoNuCliente,datoNomCliente,datoCalle,datoColonia,datoCiudadZip,datoProvedor, datosAlias, datoFecha, tpoEntrada, isDanado);
                 if (detalles.Enabled == true)
                 {
                     bd.UpdateKDM1Coment(datoEntrada, datoSucOrigen, datoDescripcion);
