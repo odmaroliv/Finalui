@@ -809,6 +809,7 @@ namespace Negocios.NGReportes
             {
                 using (modelo2Entities context = new modelo2Entities()) // Asegúrate de que 'modelo2Entities' es el nombre correcto de tu contexto de base de datos
                 {
+                    context.Database.CommandTimeout = 500;
                     var query = (from k1 in context.KDM1
                                  join kd in context.KDUD on k1.C10 equals kd.C2
                                  where k1.C12 == cord &&

@@ -47,7 +47,16 @@ namespace mainVentana.VistaOrSalida
         private SoundPlayer alertaNoCargaPlayer;
         private SoundPlayer alertaBienPlayer;
         private bool _noCarga = false;
-
+        enum ModoAltakdment
+        {
+            Alta,
+            Baja
+        }
+        enum EnumScaneadas
+        {
+            EscaneadasBien,
+            EscaneadasMal
+        }
 
         public frmOrdSalida()
         {
@@ -791,7 +800,7 @@ namespace mainVentana.VistaOrSalida
                    
                 }
                
-                AltKDMENT(etiqueta);
+                AltKDMENT(etiqueta,ModoAltakdment.Alta);
                 GeneralMovimientosLog.AddMovimientoConParametrosDirectos(GeneralMovimientosLog.ObtenerFolioDesdeEtiqueta(etiqueta), 35, etiqueta, 45, ulDatoSolo, sOrigen, sDestino,"", "Scaneo","","Se agrega a la salida "+ulDatoSolo);
 
 
@@ -808,7 +817,7 @@ namespace mainVentana.VistaOrSalida
             }
             else
             {
-                AltKDMENT(etiqueta);
+                AltKDMENT(etiqueta, ModoAltakdment.Alta);
                 GeneralMovimientosLog.AddMovimientoConParametrosDirectos(GeneralMovimientosLog.ObtenerFolioDesdeEtiqueta(etiqueta), 35, etiqueta,45, ulDatoSolo, sOrigen,sDestino,"","Scaneo","", "Se agrega a la salida " + ulDatoSolo);
                 RepSonido(1);
 
@@ -957,30 +966,47 @@ namespace mainVentana.VistaOrSalida
 
 
 
-
-
-
-
-
-
-        private async void AltKDMENT(string etiqueta)
+        private async void AltKDMENT(string etiqueta, ModoAltakdment modo, GunaDataGridView tipoTabla = null)
         {
             // Casos especiales donde se ejecuta ModificaKDMENTtj
             if ((sDestino == "SD" && sOrigen == "TJ") || (sDestino == "CSL" && sOrigen == "TJ"))
             {
-                await ModificaKDMENTtj(etiqueta);
+                
+                    if (modo == ModoAltakdment.Alta)
+                    {
+                    await ModificaKDMENTtj(etiqueta);
+                    }
+                    else if (modo == ModoAltakdment.Baja)
+                {
+                    await ModificaKDMENTBajatj(etiqueta);
+                    EliminarFilaPorEtiqueta(etiqueta,tipoTabla);
+                    MessageBox.Show("Se dio de baja","Alerta");
+                }
+
+
+
+
             }
             // Todos los demás casos ejecutan ModificaKDMENTsd
             else
             {
-                await ModificaKDMENTsd(etiqueta);
+                if (modo == ModoAltakdment.Alta)
+                {
+                    await ModificaKDMENTsd(etiqueta);
+                }
+                else if (modo == ModoAltakdment.Baja)
+                {
+                    await ModificaKDMENTBajasd(etiqueta);
+                    EliminarFilaPorEtiqueta(etiqueta, tipoTabla);
+                    MessageBox.Show("Se dio de baja", "Alerta");
+                }
             }
         }
 
         //Sucursal destino cabo sucursal origen tijuana
         private async Task<bool> ModificaKDMENTtj(string etiqueta)
         {
-           
+
             string uld = (string)ulDato.Trim().Clone();
             string sc = sDestino == "CSL" ? "PR" : "OC";
 
@@ -1006,9 +1032,9 @@ namespace mainVentana.VistaOrSalida
                         d.C63 = uld;
                         d.C64 = uld;
                         d.C65 = "E";
-                       // d.C66 = "";
-                       // d.C67 = "";
-                      //  d.C68 = "";
+                        // d.C66 = "";
+                        // d.C67 = "";
+                        //  d.C68 = "";
                         d.C75 = DateTime.Now.ToString("MM/dd/yyyy");
                         kd.Add(d);
                     }
@@ -1037,12 +1063,67 @@ namespace mainVentana.VistaOrSalida
                 }
             });
 
+            return true;
+
+        }
+        private async Task<bool> ModificaKDMENTBajatj(string etiqueta)
+        {
+
+            string uld = (string)ulDato.Trim().Clone();
+            string sc = sDestino == "CSL" ? "PR" : "OC";
 
 
+            await Task.Run(() =>
+            {
+                using (modelo2Entities modelo = new modelo2Entities())
+                {
+                    List<KDMENT> kd = new List<KDMENT>();
 
-            //----------------------------------------
+                    try
+                    {
+                        var d = (from fd in modelo.KDMENT
+                                 where fd.C9 == etiqueta.ToUpper().Trim()// 
+                                 select fd).First();
+                        //d.C17 = uld;
+                        d.C19 = sOrigen;
+                        d.C20 = "OC";
+                      
+                        d.C55 = "";
+                        //d.C56 = "";
+
+                        d.C63 = "";
+                        d.C64 = "";
+                        d.C65 = "";
+                        // d.C66 = "";
+                        // d.C67 = "";
+                        //  d.C68 = "";
+                        d.C75 = DateTime.Now.ToString("MM/dd/yyyy");
+                        kd.Add(d);
+                    }
+
+                    catch (Exception x)
+                    {
+                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Escaneo de Etiqueta" + etiqueta);
+
+                        MessageBox.Show("Ocurrio un Error, por favor no continue scaneando y contacte al administrador");
+
+                    }
+                    try
+                    {
+                        modelo.BulkUpdate(kd.ToList());
+                    }
+                    catch (Exception x)
+                    {
+
+                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Escaneo de Etiqueta" + etiqueta);
+
+                        MessageBox.Show("Ocurrio un Error, por favor no continue scaneando y contacte al administrador");
+
+                    }
 
 
+                }
+            });
 
             return true;
 
@@ -1096,7 +1177,7 @@ namespace mainVentana.VistaOrSalida
 
                         Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Escaneo de Etiqueta" + etiqueta);
 
-                       // MessageBox.Show("Ocurrio un Error, por favor no continue scaneando y contacte al administrador");
+                        // MessageBox.Show("Ocurrio un Error, por favor no continue scaneando y contacte al administrador");
 
                     }
                     try
@@ -1107,19 +1188,96 @@ namespace mainVentana.VistaOrSalida
                     {
                         Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Escaneo de Etiqueta" + etiqueta);
 
-                       // MessageBox.Show("Ocurrio un Error, por favor no continue scaneando y contacte al administrador");
+                        // MessageBox.Show("Ocurrio un Error, por favor no continue scaneando y contacte al administrador");
                     }
 
-                   
+
                 }
             });
 
+            return true;
+        }
+        private async Task<bool> ModificaKDMENTBajasd(string etiqueta)
+        {
 
 
+            string sc = sDestino == "CSL" ? "PR" : "OC";
+            await Task.Run(() =>
+            {
+                using (modelo2Entities modelo = new modelo2Entities())
+                {
+                    List<Datos.Datosenti.KDMENT> kd = new List<Datos.Datosenti.KDMENT>();
+
+
+                    string uld = (string)ulDato.Trim().Clone();
+
+                    try
+                    {
+
+                        var d = (from fd in modelo.KDMENT
+                                 where fd.C9 == etiqueta.ToUpper().Trim()// 
+                                 select fd).First();
+
+                        d.C12 = "";
+                        d.C17 = "";
+                        d.C19 = sOrigen;
+                        d.C20 = "OC";
+                        d.C55 = "";
+                        d.C73 = DateTime.Now.ToString("MM/dd/yyyy");
+
+                        kd.Add(d);
+                        //modelo.SaveChanges();
+
+                    }
+                    catch (Exception x)
+                    {
+
+                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Escaneo de Etiqueta" + etiqueta);
+
+                        // MessageBox.Show("Ocurrio un Error, por favor no continue scaneando y contacte al administrador");
+
+                    }
+                    try
+                    {
+                        modelo.BulkUpdate(kd.ToList());
+                    }
+                    catch (Exception x)
+                    {
+                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Escaneo de Etiqueta" + etiqueta);
+
+                        // MessageBox.Show("Ocurrio un Error, por favor no continue scaneando y contacte al administrador");
+                    }
+
+
+                }
+            });
 
             return true;
         }
-        
+        private void EliminarFilaPorEtiqueta(string etiqueta, GunaDataGridView dgv)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dgv.Rows)
+                {
+                    if (row.Cells[0].Value != null && row.Cells[0].Value.ToString() == etiqueta)
+                    {
+                        // Elimina la fila
+                        dgv.Rows.Remove(row);
+                        break; // Si solo esperas encontrar una coincidencia, usa break para salir del bucle
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
+        }
+
+
+
         private void Notifica(int nttipo, string nsalida)
         {
 
@@ -1684,6 +1842,37 @@ namespace mainVentana.VistaOrSalida
                 MessageBox.Show("No tienes autorizacion");
             }
            
+        }
+
+        private void dgvObser_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var selectedCell = dgvObser.SelectedCells[0];
+            string folioSeleccionado = selectedCell.Value?.ToString();
+            if (String.IsNullOrWhiteSpace(folioSeleccionado))
+            {
+                return;
+            }
+            if (MessageBox.Show($"Borrar la entrada {folioSeleccionado}\nde la salida?", "Borrar", MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                return;
+            }
+            AltKDMENT(folioSeleccionado, ModoAltakdment.Baja,dgvObser);
+
+        }
+
+        private void dgvEscaneados_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var selectedCell = dgvEscaneados.SelectedCells[0];
+            string folioSeleccionado = selectedCell.Value?.ToString();
+            if (String.IsNullOrWhiteSpace(folioSeleccionado))
+            {
+                return;
+            }
+            if (MessageBox.Show($"Borrar la entrada {folioSeleccionado}\nde la salida?", "Borrar", MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                return;
+            }
+            AltKDMENT(folioSeleccionado, ModoAltakdment.Baja,dgvEscaneados);
         }
     }
 

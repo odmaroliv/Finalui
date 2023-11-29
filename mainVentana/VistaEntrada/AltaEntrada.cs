@@ -30,6 +30,7 @@ using Datos.Datosenti;
 using DocumentFormat.OpenXml.Office2013.Excel;
 using Guna.UI.WinForms;
 using System.Threading;
+using static GMap.NET.Entity.OpenStreetMapGraphHopperRouteEntity;
 
 namespace mainVentana.VistaEntrada
 {
@@ -64,7 +65,7 @@ namespace mainVentana.VistaEntrada
             if (tipodeDocumento == 1)
             {
                 InicioEntrada();
-
+                detalles.Enabled = true;
             }
             if (modoCord == 2)
             {
@@ -1313,7 +1314,7 @@ namespace mainVentana.VistaEntrada
                     mdfImg.Visible = false;
                     iconButton2.Enabled = true;
                     cbxDano.Enabled = true;
-
+                    
                     limpiaImg();
                     GeneraRastreo();
                     Cargaparidad();
@@ -1983,7 +1984,7 @@ namespace mainVentana.VistaEntrada
                             using (HttpClient cliente = new HttpClient())
                             {
                                 cliente.DefaultRequestHeaders.Authorization = authValue;
-                                string nombreArchivo = sucEntrada.SelectedValue.ToString().Trim() + "-UD3501-" + lblEntrada.Text.Trim() + "_" + Path.GetFileName(nombreCompletoArchivo);
+                                string nombreArchivo = sucEntrada.SelectedValue.ToString().Trim() + "-UD3501-" + lblEntrada.Text.Trim() + "_" + System.IO.Path.GetFileName(nombreCompletoArchivo);
                                 MultipartFormDataContent frm = new MultipartFormDataContent();
                                 frm.Add(new StringContent(nombreArchivo), "nombreArchivo");
                                 frm.Add(new StringContent("1"), "idEstado");
