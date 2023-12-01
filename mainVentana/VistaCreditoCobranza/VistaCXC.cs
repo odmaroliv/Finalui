@@ -209,6 +209,9 @@ namespace mainVentana.VistaCreditoCobranza
                     FechaRepFinal = w.FechaRepFinal?.Trim(),
                     FechaBol = w.FechaBol?.Trim(),
                     DescCorta = w.DescCorta?.Trim(),
+                    TpEntrada = w.TpEntrada,
+                    isDanado = w.isDanado == "1" ? "Si" : "No",
+
                 });
 
 

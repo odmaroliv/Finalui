@@ -2182,7 +2182,6 @@ namespace mainVentana.VistaEntrada
                         var onlyFileName = System.IO.Path.GetFileName(file);
                         DataGridViewRow row = new DataGridViewRow();
                         row.CreateCells(dgvDocs);
-
                         row.Cells[0].Value = onlyFileName;
                         row.Cells[1].Value = file;
                         DataGridViewButtonColumn btng = new DataGridViewButtonColumn();

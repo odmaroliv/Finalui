@@ -31,6 +31,8 @@ namespace Datos.ViewModels.CXC
         public string FechaRepFinal { get; set; }
         public string FechaBol { get; set; }
         public string DescCorta { get; set; }
+        public int? TpEntrada { get; set; }
+        public string isDanado { get; set; }
 
     }
 }
