@@ -77,7 +77,7 @@ namespace mainVentana.VistaInicioCoordinadores
                     return;
                 }
                 ActualizarProgreso(60);
-                CargaOrdenes();
+                await CargaOrdenes();
                 ActualizarProgreso(70);
                 await CargaEntradas();
                 ActualizarProgreso(80);
@@ -172,7 +172,7 @@ namespace mainVentana.VistaInicioCoordinadores
 
             datos = null;
         }
-        private async void CargaOrdenes()
+        private async Task CargaOrdenes()
         {
 
             cbxOrdenes.DataSource = null;
