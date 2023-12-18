@@ -106,6 +106,7 @@ namespace mainVentana
             this.rbReporteSalida = new System.Windows.Forms.RibbonButton();
             this.rbReporteClienteXcord = new System.Windows.Forms.RibbonButton();
             this.rbRepEntradasSD = new System.Windows.Forms.RibbonButton();
+            this.rbRepClientesActivos = new System.Windows.Forms.RibbonButton();
             this.ribbonSeparator9 = new System.Windows.Forms.RibbonSeparator();
             this.rbtnAjustes = new System.Windows.Forms.RibbonButton();
             this.apiConfig = new System.Windows.Forms.RibbonButton();
@@ -134,7 +135,7 @@ namespace mainVentana
             this.ribbonButton4 = new System.Windows.Forms.RibbonButton();
             this.ribbonDescriptionMenuItem2 = new System.Windows.Forms.RibbonDescriptionMenuItem();
             this.panelContenedorForm = new System.Windows.Forms.Panel();
-            this.rbRepClientesActivos = new System.Windows.Forms.RibbonButton();
+            this.rbRepClienteXZona = new System.Windows.Forms.RibbonButton();
             this.panel11.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -639,6 +640,7 @@ namespace mainVentana
             this.rbtnReportes.DropDownItems.Add(this.rbReporteClienteXcord);
             this.rbtnReportes.DropDownItems.Add(this.rbRepEntradasSD);
             this.rbtnReportes.DropDownItems.Add(this.rbRepClientesActivos);
+            this.rbtnReportes.DropDownItems.Add(this.rbRepClienteXZona);
             this.rbtnReportes.Image = global::mainVentana.Properties.Resources.delivery;
             this.rbtnReportes.LargeImage = global::mainVentana.Properties.Resources.delivery;
             this.rbtnReportes.Name = "rbtnReportes";
@@ -676,6 +678,16 @@ namespace mainVentana
             this.rbRepEntradasSD.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbRepEntradasSD.SmallImage")));
             this.rbRepEntradasSD.Text = "Entradas Con tiempo";
             this.rbRepEntradasSD.Click += new System.EventHandler(this.rbRepEntradasSD_Click);
+            // 
+            // rbRepClientesActivos
+            // 
+            this.rbRepClientesActivos.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.rbRepClientesActivos.Image = ((System.Drawing.Image)(resources.GetObject("rbRepClientesActivos.Image")));
+            this.rbRepClientesActivos.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbRepClientesActivos.LargeImage")));
+            this.rbRepClientesActivos.Name = "rbRepClientesActivos";
+            this.rbRepClientesActivos.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbRepClientesActivos.SmallImage")));
+            this.rbRepClientesActivos.Text = "Clientes Activos";
+            this.rbRepClientesActivos.Click += new System.EventHandler(this.rbRepClientesActivos_Click);
             // 
             // ribbonSeparator9
             // 
@@ -918,15 +930,15 @@ namespace mainVentana
             this.panelContenedorForm.Size = new System.Drawing.Size(1113, 601);
             this.panelContenedorForm.TabIndex = 2;
             // 
-            // rbRepClientesActivos
+            // rbRepClienteXZona
             // 
-            this.rbRepClientesActivos.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
-            this.rbRepClientesActivos.Image = ((System.Drawing.Image)(resources.GetObject("rbRepClientesActivos.Image")));
-            this.rbRepClientesActivos.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbRepClientesActivos.LargeImage")));
-            this.rbRepClientesActivos.Name = "rbRepClientesActivos";
-            this.rbRepClientesActivos.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbRepClientesActivos.SmallImage")));
-            this.rbRepClientesActivos.Text = "Clientes Activos";
-            this.rbRepClientesActivos.Click += new System.EventHandler(this.rbRepClientesActivos_Click);
+            this.rbRepClienteXZona.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.rbRepClienteXZona.Image = ((System.Drawing.Image)(resources.GetObject("rbRepClienteXZona.Image")));
+            this.rbRepClienteXZona.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbRepClienteXZona.LargeImage")));
+            this.rbRepClienteXZona.Name = "rbRepClienteXZona";
+            this.rbRepClienteXZona.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbRepClienteXZona.SmallImage")));
+            this.rbRepClienteXZona.Text = "ClientesXZona";
+            this.rbRepClienteXZona.Click += new System.EventHandler(this.rbRepClienteXZona_Click);
             // 
             // Form1
             // 
@@ -1043,6 +1055,7 @@ namespace mainVentana
         private RibbonButton rbtnMovimientos;
         private RibbonButton cbxiIMSD;
         private RibbonButton rbRepClientesActivos;
+        private RibbonButton rbRepClienteXZona;
     }
 }
 

@@ -782,8 +782,8 @@ namespace Negocios.NGReportes
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
                     var query = from d in modelo.KDUD
-                                join k in modelo.KDUV on d.C12  equals k.C2
-                                
+                                join k in modelo.KDUV on d.C12 equals k.C2
+
                                 where k.C2 == Cord
                                 orderby d.C6 descending
                                 select new vmClientesXCord
@@ -802,6 +802,36 @@ namespace Negocios.NGReportes
                 throw;
             }
         }
+        public async Task<List<vmClientesXCord>> CargaReporteClientesXZona(string Cord)
+        {
+
+            try
+            {
+                using (modelo2Entities modelo = new modelo2Entities())
+                {
+                    var query = from d in modelo.KDUD
+                                join k in modelo.KDUV on d.C12 equals k.C2
+                                where d.C14 == Cord
+                                orderby d.C6 descending
+                                select new vmClientesXCord
+                                {
+                                    Cliente = d.C3,
+                                    Numero = d.C2,
+                                    Coordinador = k.C3,
+                                    FechaCreacion = d.creation_date.ToString()
+                                };
+
+                    var result = await query.AsNoTracking().ToListAsync();
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
         public async Task<List<vmClientesXCord>> CargaReporteClientesActivos(string cord, DateTime desde, DateTime hasta)
         {
            

@@ -351,8 +351,8 @@ namespace mainVentana.VistaInicioCoordinadores
             cmbCor.DisplayMember = "C3";
             cmbCor.DataSource = lst1;
 
-            
 
+           // AccesoClientes ac = new AccesoClientes();
 
             cmbZona.DataSource = null;
            

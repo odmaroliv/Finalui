@@ -706,7 +706,8 @@ namespace Negocios.Acceso_Salida
                                                  salida = k.C6,
                                                  referencia = k.C11,
                                                  fecha = k.C9,
-                                                 elaboro = k.C67
+                                                 elaboro = k.C67,
+                                                 destino = k.C103,  
                                              }).ToList();
 
                             lst2 = oDocument;

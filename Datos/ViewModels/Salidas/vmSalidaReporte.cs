@@ -13,5 +13,6 @@ namespace Datos.ViewModels.Salidas
         public DateTime? fecha { get; set; }
         public decimal? totalArnian { get; set; }
         public string elaboro { get; set; }
+        public string destino { get; set; }
     }
 }

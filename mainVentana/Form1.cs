@@ -678,5 +678,14 @@ namespace mainVentana
             frmc.ShowDialog();
             frmc.Dispose();
         }
+
+        private void rbRepClienteXZona_Click(object sender, EventArgs e)
+        {
+            frmRepClientexZona rep = new frmRepClientexZona();
+            openForms.Add(rep);
+            rep.FormClosed += frm_FormClosed_Libera;
+            rep.Show();
+            
+        }
     }
 }
