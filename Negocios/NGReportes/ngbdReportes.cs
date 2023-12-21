@@ -203,7 +203,7 @@ namespace Negocios.NGReportes
                 {
                     modelo.Database.CommandTimeout = 500;
                     IQueryable<CargaCordsGeneral> query = null;
-                    if (oper == "09")
+                    if (oper == "09") //entrega bill
                     {
 
                         if (Common.Cache.CacheLogin.master == "1")
@@ -214,8 +214,9 @@ namespace Negocios.NGReportes
                                     join u in modelo.KDUD on k.C10 equals u.C2
                                     where k.C9 <= to && k.C9 >= dateFrom
                                           && d.C10.Equals(dato)
+                                           && k.C4 == 35
                                           && (d.C20 == "F" || d.C20 == "PR")
-                                          && k.C4 == 35
+                                         
                                           && (!String.IsNullOrEmpty(k.C115) || u.C32 == "1")
                                           && String.IsNullOrEmpty(d.C45)
                                           && String.IsNullOrEmpty(d.C34)
@@ -244,8 +245,9 @@ namespace Negocios.NGReportes
                                     join u in modelo.KDUD on k.C10 equals u.C2
                                     where k.C9 <= to && k.C9 >= dateFrom
                                           && d.C10.Equals(dato)
+                                           && k.C4 == 35
                                           && (d.C20 == "F" || d.C20 == "PR")
-                                          && k.C4 == 35
+                                         
                                           && (!String.IsNullOrEmpty(k.C115) || u.C32 == "1")
                                           && String.IsNullOrEmpty(d.C45)
                                           && String.IsNullOrEmpty(d.C34)
