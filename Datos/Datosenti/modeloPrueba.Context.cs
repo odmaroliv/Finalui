@@ -48,6 +48,8 @@ namespace Datos.Datosenti
         public virtual DbSet<TiposMovimiento> TiposMovimiento { get; set; }
         public virtual DbSet<HistorialMovimientos> HistorialMovimientos { get; set; }
         public virtual DbSet<TiposDeEntrada> TiposDeEntrada { get; set; }
+        public virtual DbSet<EstadosAlmacenamiento> EstadosAlmacenamiento { get; set; }
+        public virtual DbSet<Inventario> Inventario { get; set; }
     
         public virtual ObjectResult<NO_RASTREO_Result> NO_RASTREO(Nullable<int> noRastCrear)
         {

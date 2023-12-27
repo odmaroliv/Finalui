@@ -26,6 +26,9 @@
         <EntityTypeShape EntityType="KEPLER_PRUEBASModel.TiposMovimiento" Width="1.5" PointX="11.375" PointY="13.75" />
         <EntityTypeShape EntityType="KEPLER_PRUEBASModel.HistorialMovimientos" Width="1.5" PointX="15.375" PointY="0.75" />
         <EntityTypeShape EntityType="KEPLER_PRUEBASModel.TiposDeEntrada" Width="1.5" PointX="15.375" PointY="6.75" />
+        <EntityTypeShape EntityType="KEPLER_PRUEBASModel.EstadosAlmacenamiento" Width="1.5" PointX="13.375" PointY="16.875" />
+        <EntityTypeShape EntityType="KEPLER_PRUEBASModel.Inventario" Width="1.5" PointX="15.625" PointY="16" />
+        <AssociationConnector Association="KEPLER_PRUEBASModel.FK__Inventari__IDEst__1EE485AA" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

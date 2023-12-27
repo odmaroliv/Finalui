@@ -467,6 +467,77 @@ namespace Negocios
                     throw;
                 }
             }
+            else if(tipo == "Inventario")
+            {
+                int folio;
+                if (!int.TryParse(id, out folio))
+                {
+                    // Manejar el caso en que la conversión falla
+                    // Por ejemplo, asignar un valor predeterminado o mostrar un mensaje de error
+                    folio = 0; // Valor predeterminado en caso de error
+                };
+
+                try
+                {
+                    using (var modelo = new modelo2Entities())
+                    {
+                        lst = await (from d in modelo.KDMENT
+                                     join k in modelo.KDM1 on new { d.C1, d.C6, d.C4 } equals new { k.C1, k.C6, k.C4 }
+                                     join c in modelo.KDUV on k.C12 equals c.C2
+                                     where d.IDinventario == folio
+                                     orderby d.C6 descending, d.C7 descending
+                                     select new BusquedaInicial
+                                     {
+                                         C6 = d.C6.Trim(),
+                                         C9 = d.C9.Trim(),
+                                         origen = d.C1.Trim(),
+                                         C69 = k.C9.ToString(), // se cambia de c69 a k.c9 porque esta fallando la fecha de kdment
+                                         C10 = d.C10.Trim(),
+                                         C19 = d.C19.Trim(),
+                                         cliente = k.C32.Trim(),
+                                         cargaasig = d.C54.Trim(),
+                                         cafecha = d.C71.Trim(),
+                                         cargaapl = d.C16.Trim(),
+                                         capfecha = d.C72.Trim(),
+                                         osalida = d.C17.Trim(),
+                                         osfecha = d.C73.Trim(),
+                                         // receptran = d.C18.Trim(),
+                                         //receptranfecha = d.C74.Trim(),
+                                         receptran = d.C67.Trim(),
+                                         receptranfecha = d.C76.Trim(),
+
+                                         saltrans = d.C64.Trim(),
+                                         saltransfehcha = d.C75.Trim(),
+                                         //repfinal = d.C67.Trim(),
+                                         //repfinalfecha = d.C76.Trim(),
+                                         repfinal = d.C18.Trim(),
+                                         repfinalfecha = d.C74.Trim(),
+                                         bill = d.C34.Trim(),
+                                         billfecha = d.C77.Trim(),
+                                         C42 = d.C42.Trim(),//desc corta
+                                         elaborado = k.C81.Trim(),
+                                         coord = c.C3.Trim(),
+                                         link = d.C46,
+                                         alias = k.C112,
+                                         cot = k.C115,
+                                         valArn = k.C16.ToString(),
+                                         valFact = k.C102,
+                                         tOper = k.C101,
+                                         nFlete = k.C95,
+                                         ultimamodifi = k.C67,
+                                         ultimamodififecha = k.C68 != null ? k.C68.ToString() : null
+
+
+                                     }).ToListAsync();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error de conexión a la base de datos: " + ex.Message);
+                    throw;
+                }
+            }
+            
             return lst;
         }
 

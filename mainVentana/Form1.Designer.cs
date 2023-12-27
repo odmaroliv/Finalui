@@ -83,15 +83,10 @@ namespace mainVentana
             this.rbtnEntrada = new System.Windows.Forms.RibbonButton();
             this.rbtnEntradaAlta = new System.Windows.Forms.RibbonButton();
             this.ribbonButton5 = new System.Windows.Forms.RibbonButton();
-            this.ribbonSeparator4 = new System.Windows.Forms.RibbonSeparator();
             this.rbtnCargas = new System.Windows.Forms.RibbonButton();
-            this.ribbonSeparator5 = new System.Windows.Forms.RibbonSeparator();
             this.rbtnSalida = new System.Windows.Forms.RibbonButton();
-            this.ribbonSeparator6 = new System.Windows.Forms.RibbonSeparator();
             this.rbtnRecepcion = new System.Windows.Forms.RibbonButton();
-            this.ribbonSeparator7 = new System.Windows.Forms.RibbonSeparator();
             this.rbtnBill = new System.Windows.Forms.RibbonButton();
-            this.ribbonSeparator3 = new System.Windows.Forms.RibbonSeparator();
             this.rbtnCord = new System.Windows.Forms.RibbonButton();
             this.vbtnCotizacion = new System.Windows.Forms.RibbonButton();
             this.rCordbtnBuscaCot = new System.Windows.Forms.RibbonButton();
@@ -101,19 +96,18 @@ namespace mainVentana
             this.consultaBill = new System.Windows.Forms.RibbonButton();
             this.rbtnEntregasPruebas = new System.Windows.Forms.RibbonButton();
             this.rbtnConsultaCargaCord = new System.Windows.Forms.RibbonButton();
-            this.ribbonSeparator8 = new System.Windows.Forms.RibbonSeparator();
             this.rbtnReportes = new System.Windows.Forms.RibbonButton();
             this.rbReporteSalida = new System.Windows.Forms.RibbonButton();
             this.rbReporteClienteXcord = new System.Windows.Forms.RibbonButton();
             this.rbRepEntradasSD = new System.Windows.Forms.RibbonButton();
             this.rbRepClientesActivos = new System.Windows.Forms.RibbonButton();
-            this.ribbonSeparator9 = new System.Windows.Forms.RibbonSeparator();
+            this.rbRepClienteXZona = new System.Windows.Forms.RibbonButton();
             this.rbtnAjustes = new System.Windows.Forms.RibbonButton();
             this.apiConfig = new System.Windows.Forms.RibbonButton();
             this.ribbonButton6 = new System.Windows.Forms.RibbonButton();
             this.rbAgregarUsuario = new System.Windows.Forms.RibbonButton();
-            this.ribbonSeparator10 = new System.Windows.Forms.RibbonSeparator();
             this.rbtnMovimientos = new System.Windows.Forms.RibbonButton();
+            this.rbtnInventario = new System.Windows.Forms.RibbonButton();
             this.rpnlAccesosWeb = new System.Windows.Forms.RibbonPanel();
             this.ribbonItemGroup1 = new System.Windows.Forms.RibbonItemGroup();
             this.lblWha = new System.Windows.Forms.RibbonLabel();
@@ -135,7 +129,6 @@ namespace mainVentana
             this.ribbonButton4 = new System.Windows.Forms.RibbonButton();
             this.ribbonDescriptionMenuItem2 = new System.Windows.Forms.RibbonDescriptionMenuItem();
             this.panelContenedorForm = new System.Windows.Forms.Panel();
-            this.rbRepClienteXZona = new System.Windows.Forms.RibbonButton();
             this.panel11.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -152,7 +145,7 @@ namespace mainVentana
             this.panel11.Location = new System.Drawing.Point(0, 707);
             this.panel11.Margin = new System.Windows.Forms.Padding(2);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(1113, 74);
+            this.panel11.Size = new System.Drawing.Size(1245, 74);
             this.panel11.TabIndex = 1;
             // 
             // panel13
@@ -166,7 +159,7 @@ namespace mainVentana
             this.panel13.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel13.Location = new System.Drawing.Point(0, 2);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(1113, 72);
+            this.panel13.Size = new System.Drawing.Size(1245, 72);
             this.panel13.TabIndex = 6;
             // 
             // lblRol
@@ -184,7 +177,7 @@ namespace mainVentana
             this.panel14.Controls.Add(this.panel16);
             this.panel14.Controls.Add(this.panel15);
             this.panel14.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel14.Location = new System.Drawing.Point(873, 0);
+            this.panel14.Location = new System.Drawing.Point(1005, 0);
             this.panel14.Margin = new System.Windows.Forms.Padding(2);
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(240, 72);
@@ -279,11 +272,14 @@ namespace mainVentana
             this.panel17.Location = new System.Drawing.Point(0, 0);
             this.panel17.Margin = new System.Windows.Forms.Padding(2);
             this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(1113, 109);
+            this.panel17.Size = new System.Drawing.Size(1245, 120);
             this.panel17.TabIndex = 3;
             // 
             // ribbon1
             // 
+            this.ribbon1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ribbon1.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.ribbon1.BorderMode = System.Windows.Forms.RibbonWindowMode.InsideWindow;
             this.ribbon1.ContextSpace = -25;
@@ -316,7 +312,7 @@ namespace mainVentana
             this.ribbon1.QuickAccessToolbar.Enabled = false;
             this.ribbon1.QuickAccessToolbar.Visible = false;
             this.ribbon1.RibbonTabFont = new System.Drawing.Font("Trebuchet MS", 9F);
-            this.ribbon1.Size = new System.Drawing.Size(1113, 107);
+            this.ribbon1.Size = new System.Drawing.Size(1245, 117);
             this.ribbon1.TabIndex = 0;
             this.ribbon1.Tabs.Add(this.ribbonTab1);
             this.ribbon1.Tabs.Add(this.ribbonTab3);
@@ -424,22 +420,15 @@ namespace mainVentana
             this.rpnlInicio.ButtonMoreEnabled = false;
             this.rpnlInicio.ButtonMoreVisible = false;
             this.rpnlInicio.Items.Add(this.rbtnEntrada);
-            this.rpnlInicio.Items.Add(this.ribbonSeparator4);
             this.rpnlInicio.Items.Add(this.rbtnCargas);
-            this.rpnlInicio.Items.Add(this.ribbonSeparator5);
             this.rpnlInicio.Items.Add(this.rbtnSalida);
-            this.rpnlInicio.Items.Add(this.ribbonSeparator6);
             this.rpnlInicio.Items.Add(this.rbtnRecepcion);
-            this.rpnlInicio.Items.Add(this.ribbonSeparator7);
             this.rpnlInicio.Items.Add(this.rbtnBill);
-            this.rpnlInicio.Items.Add(this.ribbonSeparator3);
             this.rpnlInicio.Items.Add(this.rbtnCord);
-            this.rpnlInicio.Items.Add(this.ribbonSeparator8);
             this.rpnlInicio.Items.Add(this.rbtnReportes);
-            this.rpnlInicio.Items.Add(this.ribbonSeparator9);
             this.rpnlInicio.Items.Add(this.rbtnAjustes);
-            this.rpnlInicio.Items.Add(this.ribbonSeparator10);
             this.rpnlInicio.Items.Add(this.rbtnMovimientos);
+            this.rpnlInicio.Items.Add(this.rbtnInventario);
             this.rpnlInicio.Name = "rpnlInicio";
             this.rpnlInicio.Text = "Pantallas";
             // 
@@ -475,10 +464,6 @@ namespace mainVentana
             this.ribbonButton5.Text = "Alta Proovedor";
             this.ribbonButton5.Click += new System.EventHandler(this.ribbonButton5_Click);
             // 
-            // ribbonSeparator4
-            // 
-            this.ribbonSeparator4.Name = "ribbonSeparator4";
-            // 
             // rbtnCargas
             // 
             this.rbtnCargas.Image = global::mainVentana.Properties.Resources.boxes;
@@ -487,10 +472,6 @@ namespace mainVentana
             this.rbtnCargas.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbtnCargas.SmallImage")));
             this.rbtnCargas.Text = "Carga";
             this.rbtnCargas.Click += new System.EventHandler(this.rbtnCargas_Click);
-            // 
-            // ribbonSeparator5
-            // 
-            this.ribbonSeparator5.Name = "ribbonSeparator5";
             // 
             // rbtnSalida
             // 
@@ -501,10 +482,6 @@ namespace mainVentana
             this.rbtnSalida.Text = "Salida";
             this.rbtnSalida.Click += new System.EventHandler(this.rbtnSalida_Click);
             // 
-            // ribbonSeparator6
-            // 
-            this.ribbonSeparator6.Name = "ribbonSeparator6";
-            // 
             // rbtnRecepcion
             // 
             this.rbtnRecepcion.Image = global::mainVentana.Properties.Resources.warehouse;
@@ -514,10 +491,6 @@ namespace mainVentana
             this.rbtnRecepcion.Text = "Recepcion";
             this.rbtnRecepcion.Click += new System.EventHandler(this.rbtnRecepcion_Click);
             // 
-            // ribbonSeparator7
-            // 
-            this.ribbonSeparator7.Name = "ribbonSeparator7";
-            // 
             // rbtnBill
             // 
             this.rbtnBill.Image = global::mainVentana.Properties.Resources.staff_picks;
@@ -526,10 +499,6 @@ namespace mainVentana
             this.rbtnBill.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbtnBill.SmallImage")));
             this.rbtnBill.Text = "BOL";
             this.rbtnBill.Click += new System.EventHandler(this.rbtnBill_Click);
-            // 
-            // ribbonSeparator3
-            // 
-            this.ribbonSeparator3.Name = "ribbonSeparator3";
             // 
             // rbtnCord
             // 
@@ -630,10 +599,6 @@ namespace mainVentana
             this.rbtnConsultaCargaCord.Text = "Consulta Cargas";
             this.rbtnConsultaCargaCord.Click += new System.EventHandler(this.rbtnConsultaCargaCord_Click);
             // 
-            // ribbonSeparator8
-            // 
-            this.ribbonSeparator8.Name = "ribbonSeparator8";
-            // 
             // rbtnReportes
             // 
             this.rbtnReportes.DropDownItems.Add(this.rbReporteSalida);
@@ -689,9 +654,15 @@ namespace mainVentana
             this.rbRepClientesActivos.Text = "Clientes Activos";
             this.rbRepClientesActivos.Click += new System.EventHandler(this.rbRepClientesActivos_Click);
             // 
-            // ribbonSeparator9
+            // rbRepClienteXZona
             // 
-            this.ribbonSeparator9.Name = "ribbonSeparator9";
+            this.rbRepClienteXZona.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.rbRepClienteXZona.Image = ((System.Drawing.Image)(resources.GetObject("rbRepClienteXZona.Image")));
+            this.rbRepClienteXZona.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbRepClienteXZona.LargeImage")));
+            this.rbRepClienteXZona.Name = "rbRepClienteXZona";
+            this.rbRepClienteXZona.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbRepClienteXZona.SmallImage")));
+            this.rbRepClienteXZona.Text = "ClientesXZona";
+            this.rbRepClienteXZona.Click += new System.EventHandler(this.rbRepClienteXZona_Click);
             // 
             // rbtnAjustes
             // 
@@ -734,10 +705,6 @@ namespace mainVentana
             this.rbAgregarUsuario.Text = "Crear Usuarios";
             this.rbAgregarUsuario.Click += new System.EventHandler(this.rbAgregarUsuario_Click);
             // 
-            // ribbonSeparator10
-            // 
-            this.ribbonSeparator10.Name = "ribbonSeparator10";
-            // 
             // rbtnMovimientos
             // 
             this.rbtnMovimientos.Enabled = false;
@@ -747,6 +714,15 @@ namespace mainVentana
             this.rbtnMovimientos.SmallImage = global::mainVentana.Properties.Resources.almatrans;
             this.rbtnMovimientos.Text = "Movimientos";
             this.rbtnMovimientos.Click += new System.EventHandler(this.rbtnMovimientos_Click);
+            // 
+            // rbtnInventario
+            // 
+            this.rbtnInventario.Image = global::mainVentana.Properties.Resources.product;
+            this.rbtnInventario.LargeImage = global::mainVentana.Properties.Resources.product;
+            this.rbtnInventario.Name = "rbtnInventario";
+            this.rbtnInventario.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbtnInventario.SmallImage")));
+            this.rbtnInventario.Text = "Inventario";
+            this.rbtnInventario.Click += new System.EventHandler(this.rbtnInventario_Click);
             // 
             // rpnlAccesosWeb
             // 
@@ -924,27 +900,17 @@ namespace mainVentana
             this.panelContenedorForm.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelContenedorForm.Location = new System.Drawing.Point(0, 104);
+            this.panelContenedorForm.Location = new System.Drawing.Point(0, 122);
             this.panelContenedorForm.Margin = new System.Windows.Forms.Padding(2);
             this.panelContenedorForm.Name = "panelContenedorForm";
-            this.panelContenedorForm.Size = new System.Drawing.Size(1113, 601);
+            this.panelContenedorForm.Size = new System.Drawing.Size(1245, 583);
             this.panelContenedorForm.TabIndex = 2;
-            // 
-            // rbRepClienteXZona
-            // 
-            this.rbRepClienteXZona.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
-            this.rbRepClienteXZona.Image = ((System.Drawing.Image)(resources.GetObject("rbRepClienteXZona.Image")));
-            this.rbRepClienteXZona.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbRepClienteXZona.LargeImage")));
-            this.rbRepClienteXZona.Name = "rbRepClienteXZona";
-            this.rbRepClienteXZona.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbRepClienteXZona.SmallImage")));
-            this.rbRepClienteXZona.Text = "ClientesXZona";
-            this.rbRepClienteXZona.Click += new System.EventHandler(this.rbRepClienteXZona_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1113, 781);
+            this.ClientSize = new System.Drawing.Size(1245, 781);
             this.Controls.Add(this.panelContenedorForm);
             this.Controls.Add(this.panel17);
             this.Controls.Add(this.panel11);
@@ -1001,17 +967,11 @@ namespace mainVentana
         private RibbonButton ribbonButton2;
         private RibbonPanel rpnlInicio;
         private RibbonButton rbtnEntrada;
-        private RibbonSeparator ribbonSeparator4;
         private RibbonButton rbtnCargas;
-        private RibbonSeparator ribbonSeparator5;
         private RibbonButton rbtnSalida;
-        private RibbonSeparator ribbonSeparator6;
         private RibbonButton rbtnRecepcion;
-        private RibbonSeparator ribbonSeparator7;
         private RibbonButton rbtnBill;
-        private RibbonSeparator ribbonSeparator8;
         private RibbonButton rbtnReportes;
-        private RibbonSeparator ribbonSeparator9;
         private RibbonButton rbtnAjustes;
         private RibbonDescriptionMenuItem ribbonDescriptionMenuItem1;
         private RibbonDescriptionMenuItem ribbonDescriptionMenuItem2;
@@ -1031,7 +991,6 @@ namespace mainVentana
         private RibbonPanel rpnlGeneralesUsuario;
         private RibbonButton ribbonButton3;
         private RibbonButton apiConfig;
-        private RibbonSeparator ribbonSeparator3;
         private RibbonButton rbtnCord;
         private RibbonButton vbtnCotizacion;
         private RibbonButton rCordbtnBuscaCot;
@@ -1051,11 +1010,11 @@ namespace mainVentana
         private RibbonButton rbReporteSalida;
         private RibbonButton rbReporteClienteXcord;
         private RibbonButton rbRepEntradasSD;
-        private RibbonSeparator ribbonSeparator10;
         private RibbonButton rbtnMovimientos;
         private RibbonButton cbxiIMSD;
         private RibbonButton rbRepClientesActivos;
         private RibbonButton rbRepClienteXZona;
+        private RibbonButton rbtnInventario;
     }
 }
 

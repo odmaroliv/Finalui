@@ -30,10 +30,10 @@
     <UpdateUrl>https://raw.githubusercontent.com/odmaroliv/Finalui/master/published/</UpdateUrl>
     <ProductName>ARSYS</ProductName>
     <PublisherName>Daniel Olivares H.</PublisherName>
-    <MinimumRequiredVersion>1.0.0.261</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.0.262</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>261</ApplicationRevision>
+    <ApplicationRevision>262</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -591,6 +591,12 @@
     <Compile Include="VistaInicioFoto\frmSelectorFotos.Designer.cs">
       <DependentUpon>frmSelectorFotos.cs</DependentUpon>
     </Compile>
+    <Compile Include="vistaInventario\frmInventarioMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vistaInventario\frmInventarioMain.Designer.cs">
+      <DependentUpon>frmInventarioMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaLogin\vmLogin.cs" />
     <Compile Include="VistaOrdenCarga\frmOrdenDeCarga.cs">
       <SubType>Form</SubType>
@@ -807,6 +813,9 @@
       <DependentUpon>frmSelectorFotos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\rp\cargaSola.rdlc" />
+    <EmbeddedResource Include="vistaInventario\frmInventarioMain.resx">
+      <DependentUpon>frmInventarioMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VistaOrdenCarga\frmOrdenDeCarga.resx">
       <DependentUpon>frmOrdenDeCarga.cs</DependentUpon>
     </EmbeddedResource>

@@ -5,6 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="KEPLER_PRUEBASModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="EstadosAlmacenamiento">
+          <Key>
+            <PropertyRef Name="IDEstado" />
+          </Key>
+          <Property Name="IDEstado" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="HistorialMovimientos">
           <Key>
             <PropertyRef Name="MovimientoID" />
@@ -31,6 +38,22 @@
           <Property Name="ValorFactura" Type="decimal" Precision="10" Scale="2" />
           <Property Name="TrackingProveedor" Type="varchar" MaxLength="255" />
           <Property Name="Entrada" Type="bit" />
+        </EntityType>
+        <EntityType Name="Inventario">
+          <Key>
+            <PropertyRef Name="IDInventario" />
+          </Key>
+          <Property Name="IDInventario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaInicioInventario" Type="datetime" />
+          <Property Name="FechaFinalInventario" Type="datetime" />
+          <Property Name="IDBodega" Type="varchar" MaxLength="5" />
+          <Property Name="RealizadoPor" Type="varchar" MaxLength="50" />
+          <Property Name="SeccionInventario" Type="varchar" MaxLength="100" />
+          <Property Name="TipoInventario" Type="varchar" MaxLength="50" />
+          <Property Name="Comentario" Type="varchar" MaxLength="200" />
+          <Property Name="CantidadContada" Type="int" />
+          <Property Name="IDResponsableVerificacion" Type="varchar" MaxLength="50" />
+          <Property Name="IDEstado" Type="int" />
         </EntityType>
         <EntityType Name="KDFEMTOCFD">
           <Key>
@@ -359,6 +382,7 @@
           <Property Name="C79" Type="char" MaxLength="40" />
           <Property Name="C80" Type="char" MaxLength="40" />
           <Property Name="C81" Type="char" MaxLength="40" />
+          <Property Name="IDinventario" Type="int" />
         </EntityType>
         <EntityType Name="KDMS">
           <Key>
@@ -584,6 +608,18 @@
           <Property Name="Activo" Type="bit" />
           <Property Name="NotasAdicionales" Type="text" />
         </EntityType>
+        <Association Name="FK__Inventari__IDEst__1EE485AA">
+          <End Role="EstadosAlmacenamiento" Type="Self.EstadosAlmacenamiento" Multiplicity="0..1" />
+          <End Role="Inventario" Type="Self.Inventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadosAlmacenamiento">
+              <PropertyRef Name="IDEstado" />
+            </Principal>
+            <Dependent Role="Inventario">
+              <PropertyRef Name="IDEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <!--Errores durante la generación:
 advertencia 6035: La relación 'FK__SubSucurs__KDMSI__4FBCC72F' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
         <Association Name="FK__SubSucurs__KDMSI__4FBCC72F" />-->
@@ -668,7 +704,9 @@ advertencia 6035: La relación 'FK__SubSucurs__KDMSI__4FBCC72F' tiene columnas q
           <Parameter Name="TrackingProveedor" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="KEPLER_PRUEBASModelStoreContainer">
+          <EntitySet Name="EstadosAlmacenamiento" EntityType="Self.EstadosAlmacenamiento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HistorialMovimientos" EntityType="Self.HistorialMovimientos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inventario" EntityType="Self.Inventario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KDFEMTOCFD" EntityType="Self.KDFEMTOCFD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KDID" EntityType="Self.KDID" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KDIDO" EntityType="Self.KDIDO" Schema="dbo" store:Type="Tables" />
@@ -689,6 +727,10 @@ advertencia 6035: La relación 'FK__SubSucurs__KDMSI__4FBCC72F' tiene columnas q
           <EntitySet Name="SubSucursales" EntityType="Self.SubSucursales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TiposDeEntrada" EntityType="Self.TiposDeEntrada" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TiposMovimiento" EntityType="Self.TiposMovimiento" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Inventari__IDEst__1EE485AA" Association="Self.FK__Inventari__IDEst__1EE485AA">
+            <End Role="EstadosAlmacenamiento" EntitySet="EstadosAlmacenamiento" />
+            <End Role="Inventario" EntitySet="Inventario" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -956,6 +998,7 @@ advertencia 6035: La relación 'FK__SubSucurs__KDMSI__4FBCC72F' tiene columnas q
           <Property Name="C79" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
           <Property Name="C80" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
           <Property Name="C81" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+          <Property Name="IDinventario" Type="Int32" />
         </EntityType>
         <EntityType Name="KDMS">
           <Key>
@@ -1245,6 +1288,12 @@ advertencia 6035: La relación 'FK__SubSucurs__KDMSI__4FBCC72F' tiene columnas q
           <EntitySet Name="TiposMovimiento" EntityType="KEPLER_PRUEBASModel.TiposMovimiento" />
           <EntitySet Name="HistorialMovimientos" EntityType="KEPLER_PRUEBASModel.HistorialMovimientos" />
           <EntitySet Name="TiposDeEntrada" EntityType="KEPLER_PRUEBASModel.TiposDeEntrada" />
+          <EntitySet Name="EstadosAlmacenamiento" EntityType="KEPLER_PRUEBASModel.EstadosAlmacenamiento" />
+          <EntitySet Name="Inventario" EntityType="KEPLER_PRUEBASModel.Inventario" />
+          <AssociationSet Name="FK__Inventari__IDEst__1EE485AA" Association="KEPLER_PRUEBASModel.FK__Inventari__IDEst__1EE485AA">
+            <End Role="EstadosAlmacenamiento" EntitySet="EstadosAlmacenamiento" />
+            <End Role="Inventario" EntitySet="Inventario" />
+          </AssociationSet>
           </EntityContainer>
         <ComplexType Name="NO_RASTREO_Result">
           <Property Type="String" Name="rand_number" Nullable="false" MaxLength="13" />
@@ -1614,6 +1663,43 @@ advertencia 6035: La relación 'FK__SubSucurs__KDMSI__4FBCC72F' tiene columnas q
           <Property Name="TipoEntradaID" Type="Int32" Nullable="false" />
           <Property Name="NombreTipoEntrada" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="EstadosAlmacenamiento">
+          <Key>
+            <PropertyRef Name="IDEstado" />
+          </Key>
+          <Property Name="IDEstado" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Inventario" Relationship="KEPLER_PRUEBASModel.FK__Inventari__IDEst__1EE485AA" FromRole="EstadosAlmacenamiento" ToRole="Inventario" />
+        </EntityType>
+        <EntityType Name="Inventario">
+          <Key>
+            <PropertyRef Name="IDInventario" />
+          </Key>
+          <Property Name="IDInventario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaInicioInventario" Type="DateTime" Precision="3" />
+          <Property Name="FechaFinalInventario" Type="DateTime" Precision="3" />
+          <Property Name="IDBodega" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="RealizadoPor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SeccionInventario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TipoInventario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Comentario" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CantidadContada" Type="Int32" />
+          <Property Name="IDResponsableVerificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IDEstado" Type="Int32" />
+          <NavigationProperty Name="EstadosAlmacenamiento" Relationship="KEPLER_PRUEBASModel.FK__Inventari__IDEst__1EE485AA" FromRole="Inventario" ToRole="EstadosAlmacenamiento" />
+        </EntityType>
+        <Association Name="FK__Inventari__IDEst__1EE485AA">
+          <End Type="KEPLER_PRUEBASModel.EstadosAlmacenamiento" Role="EstadosAlmacenamiento" Multiplicity="0..1" />
+          <End Type="KEPLER_PRUEBASModel.Inventario" Role="Inventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadosAlmacenamiento">
+              <PropertyRef Name="IDEstado" />
+            </Principal>
+            <Dependent Role="Inventario">
+              <PropertyRef Name="IDEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1788,6 +1874,7 @@ advertencia 6035: La relación 'FK__SubSucurs__KDMSI__4FBCC72F' tiene columnas q
           <EntitySetMapping Name="KDMENT">
             <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.KDMENT">
               <MappingFragment StoreEntitySet="KDMENT">
+                <ScalarProperty Name="IDinventario" ColumnName="IDinventario" />
                 <ScalarProperty Name="C1" ColumnName="C1" />
                 <ScalarProperty Name="C2" ColumnName="C2" />
                 <ScalarProperty Name="C3" ColumnName="C3" />
@@ -2234,6 +2321,31 @@ advertencia 6035: La relación 'FK__SubSucurs__KDMSI__4FBCC72F' tiene columnas q
               <MappingFragment StoreEntitySet="TiposDeEntrada">
                 <ScalarProperty Name="NombreTipoEntrada" ColumnName="NombreTipoEntrada" />
                 <ScalarProperty Name="TipoEntradaID" ColumnName="TipoEntradaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstadosAlmacenamiento">
+            <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.EstadosAlmacenamiento">
+              <MappingFragment StoreEntitySet="EstadosAlmacenamiento">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IDEstado" ColumnName="IDEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inventario">
+            <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.Inventario">
+              <MappingFragment StoreEntitySet="Inventario">
+                <ScalarProperty Name="IDEstado" ColumnName="IDEstado" />
+                <ScalarProperty Name="IDResponsableVerificacion" ColumnName="IDResponsableVerificacion" />
+                <ScalarProperty Name="CantidadContada" ColumnName="CantidadContada" />
+                <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+                <ScalarProperty Name="TipoInventario" ColumnName="TipoInventario" />
+                <ScalarProperty Name="SeccionInventario" ColumnName="SeccionInventario" />
+                <ScalarProperty Name="RealizadoPor" ColumnName="RealizadoPor" />
+                <ScalarProperty Name="IDBodega" ColumnName="IDBodega" />
+                <ScalarProperty Name="FechaFinalInventario" ColumnName="FechaFinalInventario" />
+                <ScalarProperty Name="FechaInicioInventario" ColumnName="FechaInicioInventario" />
+                <ScalarProperty Name="IDInventario" ColumnName="IDInventario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

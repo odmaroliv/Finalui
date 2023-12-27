@@ -208,7 +208,7 @@ namespace Negocios.NGReportes
 
                         if (Common.Cache.CacheLogin.master == "1")
                         {
-                            query = from d in modelo.KDMENT
+                            query = from d in modelo.KDMENT.AsNoTracking()
                                     join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
                                     join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
                                     join u in modelo.KDUD on k.C10 equals u.C2
@@ -239,7 +239,7 @@ namespace Negocios.NGReportes
                         }
                         else
                         {
-                            query = from d in modelo.KDMENT
+                            query = from d in modelo.KDMENT.AsNoTracking()
                                     join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
                                     join a in modelo.KDM1COMEN on new { k.C1, k.C4, k.C6 } equals new { a.C1, a.C4, a.C6 }
                                     join u in modelo.KDUD on k.C10 equals u.C2

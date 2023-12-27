@@ -603,6 +603,21 @@ namespace mainVentana
                                 formatodeceldas();
                                 e.Handled = true;
                                 break;
+                            case "Inventario":
+                                if (esTecleado) return;
+                                esTecleado = true;
+                                //ValidabPrincipal();
+                                id = gunaTextBox2.Text;
+                                await refresh(id, _tipoBusqueda);
+                                if (gunaDataGridView1.RowCount <= 0)
+                                {
+                                    MessageBox.Show("No se encontraron datos");
+                                    return;
+                                }
+                                await Task.Run(() => { Thread.Sleep(1000); });
+                                formatodeceldas();
+                                e.Handled = true;
+                                break;
 
                         }
                     }

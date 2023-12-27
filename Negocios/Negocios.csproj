@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="accesCommon\NgAccesData.cs" />
     <Compile Include="Acceso Salida\AccesoSalidas.cs" />
+    <Compile Include="accesoInventario\ngAccesoInventario.cs" />
     <Compile Include="AccesoRecepciones\altasRecepciones.cs" />
     <Compile Include="AccesoRecepciones\ngAccesoRecepciones.cs" />
     <Compile Include="AltasBD.cs" />

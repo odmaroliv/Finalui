@@ -25,6 +25,7 @@ using mainVentana.Reportes.Salidas;
 using mainVentana.Reportes.Coords;
 using mainVentana.TraspasoMercancias;
 using mainVentana.Reportes.Clientes;
+using mainVentana.vistaInventario;
 
 namespace mainVentana
 {
@@ -685,6 +686,14 @@ namespace mainVentana
             openForms.Add(rep);
             rep.FormClosed += frm_FormClosed_Libera;
             rep.Show();
+            
+        }
+
+        private void rbtnInventario_Click(object sender, EventArgs e)
+        {
+            frmInventarioMain frm = new frmInventarioMain();
+            
+            frm.ShowDialog();
             
         }
     }
