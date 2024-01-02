@@ -545,9 +545,6 @@ namespace mainVentana.VistaInicioCoordinadores
 
         }
 
-        private void cmbSucEntrada_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }

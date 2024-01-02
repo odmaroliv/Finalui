@@ -114,6 +114,83 @@ namespace Negocios.NGCotizacion
                 throw;
             }
         }
+        public async Task<List<vmBusquedaCot>> BuscarCotizacionPorCantidad(decimal valorArnian = 0, decimal valorFactura = 0)
+        {
+            try
+            {
+                var lst2 = new List<vmBusquedaCot>();
+                await Task.Run(() =>
+                {
+                    using (modelo2Entities modelo = new modelo2Entities())
+                    {
+                        decimal valorBusqueda = valorArnian != 0 ? valorArnian : valorFactura;
+                        decimal rangoInferior = valorBusqueda - 1;
+                        decimal rangoSuperior = valorBusqueda + 1;
+
+                        var consulta = modelo.KDM1.AsQueryable();
+
+                        if (valorArnian != 0)
+                        {
+                            consulta = consulta.Where(d => d.C16 >= rangoInferior && d.C16 <= rangoSuperior && d.C4 == 34);
+                        }
+                        else
+                        {
+                            var resultadosTemporales = consulta.Where(d => d.C4 == 34).ToList();
+                            consulta = resultadosTemporales.Where(d => decimal.TryParse(d.C83, out decimal valorC83) && valorC83 >= rangoInferior && valorC83 <= rangoSuperior).AsQueryable();
+                        }
+
+                        var lst = consulta.Select(d => new vmBusquedaCot
+                        {
+                            C1 = d.C1,
+
+                            C6 = d.C6,
+                            C82 = d.C82,
+                            C16 = d.C16,
+                            C40 = d.C40,
+                            C42 = d.C42,
+                            C93 = d.C93,
+                            C94 = d.C94,
+                            C83 = d.C83,
+                            C84 = d.C84,
+                            C89 = d.C89,
+                            C30 = d.C30,
+                            C14 = d.C14,
+                            C10 = d.C10,
+                            C32 = d.C32,
+                            C33 = d.C33,
+                            C34 = d.C34,
+                            C35 = d.C35,
+
+
+                            C7 = d.C7,
+
+                            C9 = d.C9,
+
+                            C13 = d.C13,
+
+
+                            C67 = d.C67,
+
+
+                            C86 = d.C86,
+                            C24 = d.C24,
+                            C43 = d.C43,
+                            C44 = d.C44,
+                            C27 = d.C27,
+                            C113 = d.C113
+                        });
+
+                        lst2 = lst.ToList();
+                    }
+                });
+                return lst2;
+            }
+            catch (Exception EX)
+            {
+                throw;
+            }
+        }
+
 
 
         public async Task<List<vmOldBusquedaCot>> BuscarCitizacionPorClienteOld(string id, string origen, string ivaPor, DateTime fh1, DateTime fh2) //BUSQUEDA RAPIDA POR ENTRADA <Funciona en la pantalla principal Form1>

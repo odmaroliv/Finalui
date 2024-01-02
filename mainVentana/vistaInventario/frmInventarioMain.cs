@@ -146,8 +146,8 @@ namespace mainVentana.vistaInventario
 
         private void frmInventarioMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-           ;
-            if (MessageBox.Show("Seguro que quieres cerrar esta ventana", "Cuidado", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+           
+            if (MessageBox.Show("Mantener activa esta ventana", "Cuidado", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
             {
                 e.Cancel = true;            
                 return;
@@ -329,6 +329,12 @@ namespace mainVentana.vistaInventario
             gbGeneral.Enabled = false;
         }
 
-
+        private void txbEscaneo_Leave(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("para dejar de scannear dá click en CANCELAR", "Cuidado", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                txbEscaneo.Focus();
+            }
+        }
     }
 }

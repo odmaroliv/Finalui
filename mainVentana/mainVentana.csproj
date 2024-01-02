@@ -30,10 +30,10 @@
     <UpdateUrl>https://raw.githubusercontent.com/odmaroliv/Finalui/master/published/</UpdateUrl>
     <ProductName>ARSYS</ProductName>
     <PublisherName>Daniel Olivares H.</PublisherName>
-    <MinimumRequiredVersion>1.0.0.263</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.0.264</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>263</ApplicationRevision>
+    <ApplicationRevision>264</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -403,6 +403,12 @@
     <Compile Include="Reportes\Cotizaciones\cotToPDF\frmToRepCot.Designer.cs">
       <DependentUpon>frmToRepCot.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\Cotizaciones\frnRepCotizacionesXcantidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Cotizaciones\frnRepCotizacionesXcantidad.Designer.cs">
+      <DependentUpon>frnRepCotizacionesXcantidad.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\DashBoardArturo\VMsucursalesValorArn.cs" />
     <Compile Include="Reportes\Entrega\frmComprobanteEntImp.cs">
       <SubType>Form</SubType>
@@ -718,6 +724,9 @@
       <DependentUpon>frmToRepCot.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Cotizaciones\cotToPDF\repToPdfCot.rdlc" />
+    <EmbeddedResource Include="Reportes\Cotizaciones\frnRepCotizacionesXcantidad.resx">
+      <DependentUpon>frnRepCotizacionesXcantidad.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Entrega\frmComprobanteEntImp.resx">
       <DependentUpon>frmComprobanteEntImp.cs</DependentUpon>
     </EmbeddedResource>

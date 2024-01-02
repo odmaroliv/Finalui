@@ -1,6 +1,8 @@
 ﻿using Datos.Datosenti;
+using Datos.ViewModels.Entradas;
 using Datos.ViewModels.Inventario;
 using Datos.ViewModels.Recepciones;
+using Negocios.LOGs;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
@@ -34,6 +36,7 @@ namespace Negocios.accesoInventario
                     };
                     modelo.Inventario.Add(nuevoInventario);
                     modelo.SaveChanges();
+                    GeneralMovimientosLog.AddMovimientoConParametrosDirectos(dtaInv.IDInventario,33,"",33,"",dtaInv.IDBodega,"","","Inicio","","Se inicia el inventario","","","",0,0,"");
                     return nuevoInventario.IDInventario; // IDInventario es el campo autoincrementable
                 }
             }
@@ -83,6 +86,8 @@ namespace Negocios.accesoInventario
                     d.IDEstado = 2;
 
                     modelo.SaveChanges();
+                    GeneralMovimientosLog.AddMovimientoConParametrosDirectos(dtaInv.IDInventario, 33, "", 33, "", dtaInv.IDBodega, "", "", "Cierra", "", "Se cierra el inventario", "", "", "", 0, 0, "");
+
                     return true;
                     //return nuevoInventario.IDInventario; // IDInventario es el campo autoincrementable
                 }
@@ -130,6 +135,7 @@ namespace Negocios.accesoInventario
                         d.IDinventario = entrada.Folio;
                         d.C19 = sucursalInventario;
                         modelo.SaveChanges();
+                        GeneralMovimientosLog.AddMovimientoConParametrosDirectos(entrada.Folio, 35, entrada.Etiqueta, 33, "", sucursalInventario, "", "", "Scanea", "", $"Se scanea en el inventario {entrada.Folio}", "", "", "", 0, 0, "");
                         return true;
                     }
                     else

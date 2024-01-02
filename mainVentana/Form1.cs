@@ -26,6 +26,7 @@ using mainVentana.Reportes.Coords;
 using mainVentana.TraspasoMercancias;
 using mainVentana.Reportes.Clientes;
 using mainVentana.vistaInventario;
+using mainVentana.Reportes.Cotizaciones;
 
 namespace mainVentana
 {
@@ -691,9 +692,23 @@ namespace mainVentana
 
         private void rbtnInventario_Click(object sender, EventArgs e)
         {
+            if (Negocios.Common.Cache.CacheLogin.rol != "ADMIN" && Negocios.Common.Cache.CacheLogin.rol != "JALMA")
+            {
+                return;
+            }
+
             frmInventarioMain frm = new frmInventarioMain();
             
             frm.ShowDialog();
+            
+        }
+
+        private void rbRepCotXCantidad_Click(object sender, EventArgs e)
+        {
+            frnRepCotizacionesXcantidad rep = new frnRepCotizacionesXcantidad();
+            openForms.Add(rep);
+            rep.FormClosed += frm_FormClosed_Libera;
+            rep.Show();
             
         }
     }

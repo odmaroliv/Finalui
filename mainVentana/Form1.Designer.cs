@@ -129,6 +129,7 @@ namespace mainVentana
             this.ribbonButton4 = new System.Windows.Forms.RibbonButton();
             this.ribbonDescriptionMenuItem2 = new System.Windows.Forms.RibbonDescriptionMenuItem();
             this.panelContenedorForm = new System.Windows.Forms.Panel();
+            this.rbRepCotXCantidad = new System.Windows.Forms.RibbonButton();
             this.panel11.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -606,6 +607,7 @@ namespace mainVentana
             this.rbtnReportes.DropDownItems.Add(this.rbRepEntradasSD);
             this.rbtnReportes.DropDownItems.Add(this.rbRepClientesActivos);
             this.rbtnReportes.DropDownItems.Add(this.rbRepClienteXZona);
+            this.rbtnReportes.DropDownItems.Add(this.rbRepCotXCantidad);
             this.rbtnReportes.Image = global::mainVentana.Properties.Resources.delivery;
             this.rbtnReportes.LargeImage = global::mainVentana.Properties.Resources.delivery;
             this.rbtnReportes.Name = "rbtnReportes";
@@ -906,6 +908,16 @@ namespace mainVentana
             this.panelContenedorForm.Size = new System.Drawing.Size(1245, 583);
             this.panelContenedorForm.TabIndex = 2;
             // 
+            // rbRepCotXCantidad
+            // 
+            this.rbRepCotXCantidad.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.rbRepCotXCantidad.Image = ((System.Drawing.Image)(resources.GetObject("rbRepCotXCantidad.Image")));
+            this.rbRepCotXCantidad.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbRepCotXCantidad.LargeImage")));
+            this.rbRepCotXCantidad.Name = "rbRepCotXCantidad";
+            this.rbRepCotXCantidad.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbRepCotXCantidad.SmallImage")));
+            this.rbRepCotXCantidad.Text = "RepCotXCantidad";
+            this.rbRepCotXCantidad.Click += new System.EventHandler(this.rbRepCotXCantidad_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1015,6 +1027,7 @@ namespace mainVentana
         private RibbonButton rbRepClientesActivos;
         private RibbonButton rbRepClienteXZona;
         private RibbonButton rbtnInventario;
+        private RibbonButton rbRepCotXCantidad;
     }
 }
 

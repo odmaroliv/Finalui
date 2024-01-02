@@ -197,38 +197,33 @@ namespace mainVentana
                 DateTime fechaactual = DateTime.Now;
                 DateTime fechaent;
 
-                if (gunaDataGridView1.Rows[i].Cells[2].Value == null || string.IsNullOrEmpty(gunaDataGridView1.Rows[i].Cells[2].Value.ToString()))
+                
+                if (!DateTime.TryParse(gunaDataGridView1.Rows[i].Cells[2].Value?.ToString().Trim(), out fechaent))
                 {
-                    fechaent = DateTime.Parse("7/6/2021 12:16:02 PM"); // Revisar esta fecha
-                }
-                else
-                {
-                    if (!DateTime.TryParse(gunaDataGridView1.Rows[i].Cells[2].Value.ToString().Trim(), out fechaent))
-                    {
-                        fechaent = DateTime.Parse("7/6/2021 12:16:02 PM"); // Revisar esta fecha
-                    }
+                    fechaent = new DateTime(2021, 7, 6, 12, 16, 2); // Fecha por defecto
                 }
 
                 int tiempoEnDias = (fechaactual - fechaent).Days;
 
-                string valorCelda4 = gunaDataGridView1.Rows[i].Cells[4].Value?.ToString();
-                string valorCelda5 = gunaDataGridView1.Rows[i].Cells[5].Value?.ToString();
-                string valorCelda3 = gunaDataGridView1.Rows[i].Cells[3].Value?.ToString();
-                string valorCelda19 = gunaDataGridView1.Rows[i].Cells[19].Value?.ToString();
-                string valorCelda26 = gunaDataGridView1.Rows[i].Cells[26].Value?.ToString();
+                
+                string valorCelda4 = gunaDataGridView1.Rows[i].Cells[4].Value?.ToString().Trim().ToLower();
+                string valorCelda5 = gunaDataGridView1.Rows[i].Cells[5].Value?.ToString().Trim().ToLower();
+                string valorCelda3 = gunaDataGridView1.Rows[i].Cells[3].Value?.ToString().Trim().ToLower();
+                string valorCelda19 = gunaDataGridView1.Rows[i].Cells[19].Value?.ToString().Trim();
+                string valorCelda26 = gunaDataGridView1.Rows[i].Cells[26].Value?.ToString().Trim();
 
-                if (valorCelda4 == valorCelda5 && !string.IsNullOrWhiteSpace(valorCelda19))
+                // p String.Equals  no distinguen mayúsculas y minúsculas
+                if (String.Equals(valorCelda4, valorCelda5, StringComparison.OrdinalIgnoreCase) && !string.IsNullOrWhiteSpace(valorCelda19))
                 {
                     gunaDataGridView1.Rows[i].Cells[5].Style.BackColor = Color.FromArgb(68, 183, 255);
                     gunaDataGridView1.Rows[i].Cells[5].Style.ForeColor = Color.FromArgb(255, 255, 255);
                 }
-               
-                else if (valorCelda4 == valorCelda5 && string.IsNullOrWhiteSpace(valorCelda19))
+                else if (String.Equals(valorCelda4, valorCelda5, StringComparison.OrdinalIgnoreCase) && string.IsNullOrWhiteSpace(valorCelda19))
                 {
                     gunaDataGridView1.Rows[i].Cells[5].Style.BackColor = Color.FromArgb(248, 44, 155);
                     gunaDataGridView1.Rows[i].Cells[5].Style.ForeColor = Color.FromArgb(255, 255, 255);
                 }
-                else if (valorCelda4 != valorCelda3 && valorCelda3 != valorCelda5)
+                else if (!String.Equals(valorCelda4, valorCelda3, StringComparison.OrdinalIgnoreCase) && !String.Equals(valorCelda3, valorCelda5, StringComparison.OrdinalIgnoreCase))
                 {
                     gunaDataGridView1.Rows[i].Cells[5].Style.BackColor = Color.FromArgb(252, 173, 5);
                     gunaDataGridView1.Rows[i].Cells[5].Style.ForeColor = Color.FromArgb(255, 255, 255);
@@ -242,7 +237,7 @@ namespace mainVentana
                     gunaDataGridView1.Rows[i].Cells[1].Style.ForeColor = Color.FromArgb(255, 255, 255);
                 }
 
-                if (tiempoEnDias >= 10 && valorCelda5 == valorCelda3 && String.IsNullOrWhiteSpace(valorCelda19))
+                if (tiempoEnDias >= 10 && String.Equals(valorCelda5, valorCelda3, StringComparison.OrdinalIgnoreCase) && String.IsNullOrWhiteSpace(valorCelda19))
                 {
                     gunaDataGridView1.Rows[i].Cells[2].Style.BackColor = Color.FromArgb(156, 19, 18);
                     gunaDataGridView1.Rows[i].Cells[2].Style.ForeColor = Color.FromArgb(255, 255, 255);
@@ -250,7 +245,7 @@ namespace mainVentana
                     gunaDataGridView1.Rows[i].Cells[5].Style.ForeColor = Color.FromArgb(255, 255, 255);
                 }
 
-                if (tiempoEnDias < 10 && valorCelda5 == valorCelda3 && String.IsNullOrWhiteSpace(valorCelda19))
+                if (tiempoEnDias < 10 && String.Equals(valorCelda5, valorCelda3, StringComparison.OrdinalIgnoreCase) && String.IsNullOrWhiteSpace(valorCelda19))
                 {
                     gunaDataGridView1.Rows[i].Cells[2].Style.BackColor = Color.FromArgb(19, 156, 18);
                     gunaDataGridView1.Rows[i].Cells[2].Style.ForeColor = Color.FromArgb(255, 255, 255);
@@ -259,6 +254,7 @@ namespace mainVentana
                 }
             }
         }
+
 
 
         private void gunaShadowPanel2_Click(object sender, EventArgs e)
