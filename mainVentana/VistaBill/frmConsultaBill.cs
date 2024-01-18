@@ -130,33 +130,42 @@ namespace mainVentana.VistaBill
         {
             using (frmBillVisorImp bill = new frmBillVisorImp())
             {
-                bill.from = _infoBill.fromNombre;
-                bill.fromCalle = _infoBill.fromCalle;
-                bill.fromDir1 = _infoBill.fromCalle;
-                bill.fromDir2 = _infoBill.fromColonia;
-                bill.Coordinador = _infoBill.coord;
-                bill.Note = "";
-                bill.Cellphone = _infoBill.telCliente;
-                bill.to = _infoBill.toNombre;
-                bill.toCalle = _infoBill.toCalle;
-                bill.toDir1 = _infoBill.toColonia;
-                bill.toDir2 = _infoBill.toLocalidad;
-                bill.ShipDate = DateTime.Now.ToString();
-                bill.totalCases = lstEntsBill.Count().ToString();
-                bill.numeroBill = _billBuscado.ToString();
+                try
+                {
+                    bill.from = _infoBill.fromNombre;
+                    bill.fromCalle = _infoBill.fromCalle;
+                    bill.fromDir1 = _infoBill.fromCalle;
+                    bill.fromDir2 = _infoBill.fromColonia;
+                    bill.Coordinador = _infoBill.coord;
+                    bill.Note = "";
+                    bill.Cellphone = _infoBill.telCliente;
+                    bill.to = _infoBill.toNombre;
+                    bill.toCalle = _infoBill.toCalle;
+                    bill.toDir1 = _infoBill.toColonia;
+                    bill.toDir2 = _infoBill.toLocalidad;
+                    bill.ShipDate = DateTime.Now.ToString();
+                    bill.totalCases = lstEntsBill.Count().ToString();
+                    bill.numeroBill = _billBuscado.ToString();
 
 
 
 
-                bill.lst = lstEntsBill;
-                bill.ShowDialog();
+                    bill.lst = lstEntsBill;
+                    bill.ShowDialog();
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+               
             }
 
         }
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            if (_billBuscado <100)
+            if (_billBuscado <1)
             {
                 return;
             }

@@ -115,6 +115,10 @@ namespace mainVentana.VistaInicioCoordinadores
 
         private async void frmInicioCoordinadores_Load(object sender, EventArgs e)
         {
+            if (Negocios.Common.Cache.CacheLogin.rol == "ADMIN")
+            {
+                iconButton1.Enabled = true;
+            }
 
             dtgEnts.EnableHeadersVisualStyles = false;
             //dtgEnts.dou = false;
