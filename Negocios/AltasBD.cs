@@ -11,6 +11,8 @@ using System.Windows.Forms;
 
 using Datos.ViewModels.Coord;
 using Negocios.LOGs;
+using Negocios.Odoo;
+using Datos.ViewModels.Odoo;
 
 namespace Negocios
 {
@@ -118,6 +120,15 @@ namespace Negocios
                 }
             }
         }
+
+        //TODO: implementar este metodo para la creacion de la entrada en odoo
+        public async Task<bool> CreateOdooEntryv(OdooProductTemplate odooProductTemplate)
+        {
+            OdooClient odooClient = new OdooClient();
+            return await odooClient.CreateOdooEntry(odooProductTemplate);
+
+        }
+
 
         public void agregaComentKDM1(string sucEntrada, string codEntrada, string moneda, DateTime fecha, string codCliente, string desc)
         {

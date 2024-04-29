@@ -1436,6 +1436,18 @@ namespace Negocios
                     {
                         Common.Cache.CacheLogin.rhook = lst2.rhook.Trim();
                     }
+                    string sql2 = @"SELECT C5 AS bbud, AS C16 AS bbps FROM SqlIov WHERE C1 LIKE '%lastmillewh%'";
+                    var lista2 = modelo.Database.SqlQuery<vmLogin>(sql2).ToList();
+
+                    var lst3 = lista2.FirstOrDefault();
+                    if (lst3 != null)
+                    {
+                        Common.Cache.CacheLogin.bbps = lst3.bbps.Trim();
+                        Common.Cache.CacheLogin.bbud = lst3.bbud.Trim();
+                    }
+
+
+
                 }
                 return true;
             }

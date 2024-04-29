@@ -22,5 +22,7 @@ namespace mainVentana.vmLogin
         public string smatppss { get; set; }
         public string rhook { get; set; }
         public string master { get; set; }
+        public  string bbud { get; set; }
+        public  string bbps { get; set; }
     }
 }

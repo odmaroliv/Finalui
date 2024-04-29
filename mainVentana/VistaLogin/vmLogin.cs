@@ -18,5 +18,7 @@ namespace mainVentana.VistaLogin
         public string numero { get; set; }
         public string rol { get; set; }
         public string estatus { get; set; }
+        public  string bbud { get; set; }
+        public  string bbps { get; set; }
     }
 }

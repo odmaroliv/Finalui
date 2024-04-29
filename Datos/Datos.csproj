@@ -58,6 +58,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -277,6 +280,9 @@
     <Compile Include="ViewModels\Inventario\vmFolioPasado.cs" />
     <Compile Include="ViewModels\Inventario\vmInventario.cs" />
     <Compile Include="ViewModels\Log\HistorialMovimientosParams.cs" />
+    <Compile Include="ViewModels\Odoo\JsonPropertyAttribute.cs" />
+    <Compile Include="ViewModels\Odoo\OdooClienteDto.cs" />
+    <Compile Include="ViewModels\Odoo\OdooProductTemplate.cs" />
     <Compile Include="ViewModels\Recepciones\vmCargaOrdenesDeRecepcion.cs" />
     <Compile Include="ViewModels\Recepciones\vmEntBySalida.cs" />
     <Compile Include="ViewModels\Recepciones\vmNoRecepcion.cs" />
