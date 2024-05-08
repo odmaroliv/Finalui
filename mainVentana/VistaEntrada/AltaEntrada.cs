@@ -33,6 +33,7 @@ using System.Threading;
 using static GMap.NET.Entity.OpenStreetMapGraphHopperRouteEntity;
 using Negocios.Odoo;
 using System.Data.SqlClient;
+using System.Data.Entity.Validation;
 
 namespace mainVentana.VistaEntrada
 {
@@ -391,6 +392,18 @@ namespace mainVentana.VistaEntrada
 
                         await actualizaKDMENT(bd, context, datoSucIni, datoEntrada, datoBultos, datoSucDestino, datoFecha, idOdoo,label23.Text);
 
+                        var errors = context.GetValidationErrors();
+                        if (errors.Any())
+                        {
+                            foreach (var failure in errors)
+                            {
+                                foreach (var error in failure.ValidationErrors)
+                                {
+                                    Console.WriteLine($"Property: {error.PropertyName} Error: {error.ErrorMessage}");
+                                }
+                            }
+                            // Puedes decidir no llamar a SaveChanges si hay errores
+                        }
                         // Si llegas aquí, todos los SPs se ejecutaron sin error
                         await context.SaveChangesAsync();
                         dbContextTransaction.Commit(); // Confirma todas las operaciones
@@ -398,7 +411,10 @@ namespace mainVentana.VistaEntrada
                     }
                     catch (Exception ex)
                     {
-                        dbContextTransaction.Rollback(); // Revierte todas las operaciones si algo falla
+                     
+                     
+                    
+                    dbContextTransaction.Rollback(); // Revierte todas las operaciones si algo falla
                         MessageBox.Show("Error en altaKDM1: " + ex.Message);
                         return 3; // Código de error genérico para fallo en la transacción
                     }

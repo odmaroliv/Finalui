@@ -70,7 +70,7 @@ namespace Negocios
                     d.C102 = valFact == "" ? "0" : valFact; //este valor lo usamos en los reportes
                     d.C103 = sucDestino.Trim();
                     d.C108 = bultos;
-                    d.C112 = Alias.Trim();
+                    d.C112 =  Alias?.Substring(0, Math.Min(Alias.Length, 30)); ;
                     d.TipoEntradaID = tpoEntrada;
                     d.odooidproduct = idOdoo;
                 d.odoosalesp = salesodop;
