@@ -368,14 +368,13 @@ namespace mainVentana.VistaEntrada
                             parsedDatoNoCord = 35;
                         }
 
-                        // Llamada para actualizar SQL
-                        await bd.ActualizaSqlIov(context, datoSucIni.Trim(), 35);
-
+                        
 
                         // Si llegas aquí, todos los parseos fueron exitosos, y puedes usar las variables parsed
                         idOdoo = await odoo.CreateEntInOdoo($"{datoSucIni.Trim()}-{datoEntrada.Trim()}", parsedDatoNuCliente, parsedDatoNoCord, 0, datoDetalles, false, datoSucIni, datoTipoOper, $"{datoSucIni.Trim()}-{datoEntrada.Trim()}", Convert.ToInt32(datoBultos));
                         if (idOdoo == -1)
                         {
+                            await bd.ActualizaSqlIov(context, datoSucIni.Trim(), 35);
                             return 1;
                         }
 
@@ -384,7 +383,9 @@ namespace mainVentana.VistaEntrada
                         // Agregar KDM1
                         await bd.agregaKDM1(context, datoSucIni, datoEntrada, datoMoneda, datoFecha, parsedDatoNuCliente.ToString(), parsedDatoNoCord.ToString(), datoValArn, datoNomCliente, datoCalle, datoColonia, datoCiudadZip, datoValFact, datoParidad, datoNoTrakin, datoProvedor, datoOrdCompra, datoNoFlete, datoNoUnidades, datoTipoUnidad, datoPeso, datoUnidadMedida, datoTipoOper, datoSucDestino, datoBultos, datosAlias, datoNota, datoReferencia, isDanado, tpoEntrada, idOdoo, odoosalesp);
 
-                       
+                        // Llamada para actualizar SQL
+                        await bd.ActualizaSqlIov(context, datoSucIni.Trim(), 35);
+
 
 
 
