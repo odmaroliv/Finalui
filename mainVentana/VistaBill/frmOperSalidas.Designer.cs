@@ -44,6 +44,7 @@
             this.labelAlert = new System.Windows.Forms.Label();
             this.gunaAdvenceButton1 = new Guna.UI.WinForms.GunaAdvenceButton();
             this.lblQueueCount = new System.Windows.Forms.Label();
+            this.lblUniqueId = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gunaDataGridView1)).BeginInit();
             this.panelAlert.SuspendLayout();
@@ -52,6 +53,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.lblUniqueId);
             this.panel1.Controls.Add(this.cmbVehuculo);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.txbEtiqueta);
@@ -65,6 +67,7 @@
             // 
             // cmbVehuculo
             // 
+            this.cmbVehuculo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbVehuculo.BackColor = System.Drawing.Color.Transparent;
             this.cmbVehuculo.BaseColor = System.Drawing.Color.White;
             this.cmbVehuculo.BorderColor = System.Drawing.Color.Silver;
@@ -95,6 +98,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
@@ -117,6 +121,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(757, 22);
             this.label1.Name = "label1";
@@ -126,6 +131,7 @@
             // 
             // dtpTiempo
             // 
+            this.dtpTiempo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dtpTiempo.Location = new System.Drawing.Point(829, 16);
             this.dtpTiempo.Name = "dtpTiempo";
             this.dtpTiempo.Size = new System.Drawing.Size(200, 20);
@@ -299,6 +305,18 @@
             this.lblQueueCount.TabIndex = 16;
             this.lblQueueCount.UseMnemonic = false;
             // 
+            // lblUniqueId
+            // 
+            this.lblUniqueId.AutoSize = true;
+            this.lblUniqueId.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUniqueId.ForeColor = System.Drawing.Color.Black;
+            this.lblUniqueId.Location = new System.Drawing.Point(19, 84);
+            this.lblUniqueId.Name = "lblUniqueId";
+            this.lblUniqueId.Size = new System.Drawing.Size(54, 24);
+            this.lblUniqueId.TabIndex = 16;
+            this.lblUniqueId.Text = "GUID";
+            this.lblUniqueId.UseMnemonic = false;
+            // 
             // frmOperSalidas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -340,5 +358,6 @@
         private Guna.UI.WinForms.GunaComboBox cmbVehuculo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblQueueCount;
+        private System.Windows.Forms.Label lblUniqueId;
     }
 }

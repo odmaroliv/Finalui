@@ -117,6 +117,10 @@ namespace Datos.ViewModels.Bill
 
         [DisplayName("Alias")]
         public string Alias { get; set; }
+        [DisplayName("odoo_id")]
+        public string OdooId { get; set; }
+        [DisplayName("Nota")]
+        public string Nota { get; set; }
 
 
         /*    [DisplayName("VEHICULO")]

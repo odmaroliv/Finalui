@@ -209,6 +209,8 @@
           <Property Name="C115" Type="char" MaxLength="60" />
           <Property Name="C116" Type="char" MaxLength="10" />
           <Property Name="TipoEntradaID" Type="int" />
+          <Property Name="odooidproduct" Type="bigint" />
+          <Property Name="odoosalesp" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="KDM1COMEN">
           <Key>
@@ -383,6 +385,8 @@
           <Property Name="C80" Type="char" MaxLength="40" />
           <Property Name="C81" Type="char" MaxLength="40" />
           <Property Name="IDinventario" Type="int" />
+          <Property Name="odooidproduct" Type="bigint" />
+          <Property Name="odoosalesp" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="KDMS">
           <Key>
@@ -660,6 +664,8 @@ advertencia 6035: La relación 'FK__SubSucurs__KDMSI__4FBCC72F' tiene columnas q
           <Parameter Name="TEL1" Type="varchar" Mode="In" />
           <Parameter Name="TEL2" Type="varchar" Mode="In" />
           <Parameter Name="SUC_GRID" Type="varchar" Mode="In" />
+          <Parameter Name="SALES_USER_ODO" Type="varchar" Mode="In" />
+          <Parameter Name="PRODUCT_ID_ODO" Type="bigint" Mode="In" />
         </Function>
         <Function Name="aumentaSQLint" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="dato" Type="nvarchar" Mode="In" />
@@ -876,6 +882,8 @@ advertencia 6035: La relación 'FK__SubSucurs__KDMSI__4FBCC72F' tiene columnas q
           <Property Name="C115" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
           <Property Name="C116" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="TipoEntradaID" Type="Int32" />
+          <Property Name="odooidproduct" Type="Int64" />
+          <Property Name="odoosalesp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="KDM1COMEN">
           <Key>
@@ -999,6 +1007,8 @@ advertencia 6035: La relación 'FK__SubSucurs__KDMSI__4FBCC72F' tiene columnas q
           <Property Name="C80" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
           <Property Name="C81" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
           <Property Name="IDinventario" Type="Int32" />
+          <Property Name="odooidproduct" Type="Int64" />
+          <Property Name="odoosalesp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="KDMS">
           <Key>
@@ -1223,6 +1233,8 @@ advertencia 6035: La relación 'FK__SubSucurs__KDMSI__4FBCC72F' tiene columnas q
             <Parameter Name="TEL1" Mode="In" Type="String" />
             <Parameter Name="TEL2" Mode="In" Type="String" />
             <Parameter Name="SUC_GRID" Mode="In" Type="String" />
+            <Parameter Name="SALES_USER_ODO" Mode="In" Type="String" />
+            <Parameter Name="PRODUCT_ID_ODO" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="AgregaKDMENT_Rev">
             <Parameter Name="SUC" Mode="In" Type="String" />
@@ -1725,6 +1737,8 @@ advertencia 6035: La relación 'FK__SubSucurs__KDMSI__4FBCC72F' tiene columnas q
           <EntitySetMapping Name="KDM1">
             <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.KDM1">
               <MappingFragment StoreEntitySet="KDM1">
+                <ScalarProperty Name="odoosalesp" ColumnName="odoosalesp" />
+                <ScalarProperty Name="odooidproduct" ColumnName="odooidproduct" />
                 <ScalarProperty Name="TipoEntradaID" ColumnName="TipoEntradaID" />
                 <ScalarProperty Name="C116" ColumnName="C116" />
                 <ScalarProperty Name="C1" ColumnName="C1" />
@@ -1874,6 +1888,8 @@ advertencia 6035: La relación 'FK__SubSucurs__KDMSI__4FBCC72F' tiene columnas q
           <EntitySetMapping Name="KDMENT">
             <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.KDMENT">
               <MappingFragment StoreEntitySet="KDMENT">
+                <ScalarProperty Name="odoosalesp" ColumnName="odoosalesp" />
+                <ScalarProperty Name="odooidproduct" ColumnName="odooidproduct" />
                 <ScalarProperty Name="IDinventario" ColumnName="IDinventario" />
                 <ScalarProperty Name="C1" ColumnName="C1" />
                 <ScalarProperty Name="C2" ColumnName="C2" />

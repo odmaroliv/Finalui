@@ -39,21 +39,35 @@ namespace mainVentana.VistaOrdenCarga
         {
             return yourString.Any(ch => !char.IsLetterOrDigit(ch));
         }
-        private void txbCarga_KeyDown(object sender, KeyEventArgs e)
+        private async void txbCarga_KeyDown(object sender, KeyEventArgs e)
         {
-
-
-            if (e.KeyCode == Keys.Return)
+            try
             {
-                ColocaDatos();
+                loadControl1.Visible = true;
+                if (e.KeyCode == Keys.Return)
+                {
+                    await ColocaDatos();
+                }
+
             }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally {
+
+                loadControl1.Visible = false;
+            }
+
+          
 
 
 
 
         }
 
-        private void ColocaDatos()
+        private async Task ColocaDatos()
         {
             var lst = new vmCargaConsultaGeneral();
             string numeroDeCarga = !String.IsNullOrEmpty(txbCarga.Text) ? txbCarga.Text.Trim() : "";
@@ -65,7 +79,7 @@ namespace mainVentana.VistaOrdenCarga
             txbCarga.Text = numeroDeCarga;
 
             GETcarga get = new GETcarga();
-            lst = get.ObtieneOrdenDeCargaPorIdYSucursal(cmbSucOrigen.SelectedValue.ToString().Trim(), numeroDeCarga);
+            lst =await  get.ObtieneOrdenDeCargaPorIdYSucursal(cmbSucOrigen.SelectedValue.ToString().Trim(), numeroDeCarga);
 
 
 
@@ -85,7 +99,7 @@ namespace mainVentana.VistaOrdenCarga
 
             if (modoForm=="Consulta" || modoForm == "Cerrar")
             {
-                CargaEntradaEnDgv();
+                await CargaEntradaEnDgv();
             }
            
 
@@ -268,7 +282,7 @@ namespace mainVentana.VistaOrdenCarga
         List<vmEntradasEnCarga> entradasTo = new List<vmEntradasEnCarga>();
         private bool _isCerrar = false;
 
-        private void CargaEntradaEnDgv()
+        private async Task CargaEntradaEnDgv()
         {
             string modo = "";
             if (hopeSwitch1.Checked==true)
@@ -277,7 +291,7 @@ namespace mainVentana.VistaOrdenCarga
             }
             entradasTo = null;
            Negocios.NGCarga.GETcarga get = new Negocios.NGCarga.GETcarga();
-            entradasTo = get.EntradasEnCarga(cmbSucOrigen.SelectedValue.ToString(), Convert.ToInt32(cargaAModificar),modo);
+            entradasTo = await get.EntradasEnCarga(cmbSucOrigen.SelectedValue.ToString(), Convert.ToInt32(cargaAModificar),modo);
             dgvEntEnCarga.DataSource = entradasTo;
             txbTotal.Text = dgvEntEnCarga.Rows.Count.ToString();
         }

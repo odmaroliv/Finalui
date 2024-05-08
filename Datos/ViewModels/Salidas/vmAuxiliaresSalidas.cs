@@ -11,5 +11,6 @@ namespace Datos.ViewModels.Salidas
         public string Correo { get; set; }
         public string orden { get; set; }
         public string Etiqueta { get; set; }
+        public long OdooIdProductos { get; set; }
     }
 }

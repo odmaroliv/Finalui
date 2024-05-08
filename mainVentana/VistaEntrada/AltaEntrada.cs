@@ -31,6 +31,8 @@ using DocumentFormat.OpenXml.Office2013.Excel;
 using Guna.UI.WinForms;
 using System.Threading;
 using static GMap.NET.Entity.OpenStreetMapGraphHopperRouteEntity;
+using Negocios.Odoo;
+using System.Data.SqlClient;
 
 namespace mainVentana.VistaEntrada
 {
@@ -309,7 +311,7 @@ namespace mainVentana.VistaEntrada
 
         }
         string datoEntrada; //variable global de entrada cuando se click al boton de guardar ---------------------------------------
-        private Task<int> altaKDM1()
+        private async Task<int> altaKDM1()
         {
             int bndra = 0;
             AltasBD bd = new AltasBD();
@@ -317,22 +319,21 @@ namespace mainVentana.VistaEntrada
             string datoSucIni = sucEntrada.SelectedValue.ToString();
             datoEntrada = recuperUltimaent();
             string datoMoneda = cmbMoneda.GetItemText(cmbMoneda.SelectedItem).ToString();
-            DateTime datoFecha =  regresafecha();
-            
-            string datoNoCord = cord.SelectedValue.ToString();
+            DateTime datoFecha = regresafecha();
+
+            string datoNoCord = label24.Text;
             string datoValArn = txbValArn.Text;
             string datoNuCliente = lblCodCliente.Text;
-            string datoNomCliente = cliente.Text;
-            string datoCalle = label23.Text;
-            string datoColonia = label24.Text;
-            string datoCiudadZip = label25.Text;
+            string datoNomCliente = String.IsNullOrWhiteSpace(lblParentName.Text) || lblParentName.Text == "false"? cliente.Text :lblParentName.Text;
+            string datoCalle = "";
+            string datoColonia = "";
+            string datoCiudadZip = "";
             string datoProvedor = proveedor.SelectedValue.ToString();
             string datoValFact = txbValFact.Text;
             string datoParidad = lblParidad.Text;
             string datoNoTrakin = tbxRastreo.Text;
-            
             string datoOrdCompra = ordenCompra.Text;
-            string datoNoFlete = numFlete.Text; 
+            string datoNoFlete = numFlete.Text;
             string datoNoUnidades = unidades.Text;
             string datoTipoUnidad = cmbUnidades.SelectedValue.ToString();
             string datoPeso = peso.Text;
@@ -340,56 +341,72 @@ namespace mainVentana.VistaEntrada
             string datoTipoOper = tipoOper.SelectedValue.ToString();
             string datoSucDestino = sucDestino.SelectedValue.ToString();
             string datoBultos = bultos.Text;
-            string datosAlias = alias.Text;
+            string datosAlias = cliente.Text;
             string datoNota = txbNotas.Text;
             string datoReferencia = txbReferencia.Text;
-            string isDanado = cbxDano.Checked == true ? "1": "0"; //representa una entrada dañanada, se guarda por entrada completa, no por bulto en el campo 27 de kdm1 1 si esta dañada 0 si no lo esta
+            string isDanado = cbxDano.Checked ? "1" : "0";
             int tpoEntrada = Convert.ToInt32(cmbTipoEnt.SelectedValue);
-            try
+            long idOdoo;
+            string datoDetalles = detalles.Text;
+            string odoosalesp = label23.Text;
+
+            using (var context = new modelo2Entities()) // Asumiendo que modelo2Entities es tu DbContext
             {
-                    bd.ActualizaSqlIov(datoSucIni.Trim(), 35);
+                using (var dbContextTransaction = context.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        // Crear entidad en Odoo
+                        OdooClient odoo = new OdooClient();
+                        if (!int.TryParse(datoNuCliente, out int parsedDatoNuCliente))
+                        {
+                            parsedDatoNuCliente = 2257;
+                        }
+
+                        if (!int.TryParse(datoNoCord, out int parsedDatoNoCord))
+                        {
+                            parsedDatoNoCord = 35;
+                        }
+
+                        
+
+                        // Si llegas aquí, todos los parseos fueron exitosos, y puedes usar las variables parsed
+                        idOdoo = await odoo.CreateEntInOdoo($"{datoSucIni.Trim()}-{datoEntrada.Trim()}", parsedDatoNuCliente, parsedDatoNoCord, 0, datoDetalles, false, datoSucIni, datoTipoOper, $"{datoSucIni.Trim()}-{datoEntrada.Trim()}", Convert.ToInt32(datoBultos));
+                        if (idOdoo == -1)
+                        {
+                            return 1;
+                        }
+
+                       
+
+                        // Agregar KDM1
+                        await bd.agregaKDM1(context, datoSucIni, datoEntrada, datoMoneda, datoFecha, parsedDatoNuCliente.ToString(), parsedDatoNoCord.ToString(), datoValArn, datoNomCliente, datoCalle, datoColonia, datoCiudadZip, datoValFact, datoParidad, datoNoTrakin, datoProvedor, datoOrdCompra, datoNoFlete, datoNoUnidades, datoTipoUnidad, datoPeso, datoUnidadMedida, datoTipoOper, datoSucDestino, datoBultos, datosAlias, datoNota, datoReferencia, isDanado, tpoEntrada, idOdoo, odoosalesp);
+
+                        // Llamada para actualizar SQL
+                        await bd.ActualizaSqlIov(context, datoSucIni.Trim(), 35);
+
+
+
+
+                        await actualizaKDMENT(bd, context, datoSucIni, datoEntrada, datoBultos, datoSucDestino, datoFecha, idOdoo,label23.Text);
+
+                        // Si llegas aquí, todos los SPs se ejecutaron sin error
+                        await context.SaveChangesAsync();
+                        dbContextTransaction.Commit(); // Confirma todas las operaciones
+                        return 0; // Retorna 0 si todo fue exitoso
+                    }
+                    catch (Exception ex)
+                    {
+                        dbContextTransaction.Rollback(); // Revierte todas las operaciones si algo falla
+                        MessageBox.Show("Error en altaKDM1: " + ex.Message);
+                        return 3; // Código de error genérico para fallo en la transacción
+                    }
                 }
-                catch (Exception ex)
-                {
-                    Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "altaKDM1(), bd.ActualizaSqlIov(datoSucIni.Trim(), 35);");
-                MessageBox.Show("Error:  altaKDM1(), bd.ActualizaSqlIov(datoSucIni.Trim(), 35);" + ex.Message);
-                bndra = 1;
-                return Task.FromResult(bndra);
-
-                //throw;
             }
-            try
-                {
-                    bd.agregaKDM1(datoSucIni, datoEntrada, datoMoneda, datoFecha, datoNuCliente, datoNoCord, datoValArn, datoNomCliente, datoCalle, datoColonia, datoCiudadZip,
-           datoValFact, datoParidad, datoNoTrakin, datoProvedor, datoOrdCompra, datoNoFlete, datoNoUnidades, datoTipoUnidad, datoPeso, datoUnidadMedida, datoTipoOper,
-           datoSucDestino, datoBultos, datosAlias, datoNota, datoReferencia, isDanado, tpoEntrada);
-                }
-                catch (Exception ex)
-                {
-                    Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "altaKDM1(), bd.agregaKDM1()...");
-                MessageBox.Show("Error:  altaKDM1(), bd.agregaKDM1()..." + ex.Message);
-                bndra = 2;
-                return Task.FromResult(bndra);
-                //throw;
-            }
-
-            try
-                {
-                    actualizaKDMENT(datoSucIni, datoEntrada, datoBultos, datoSucDestino, datoFecha);
-                }
-                catch (Exception ex)
-                {
-                    Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "altaKDM1(),  actualizaKDMENT()...");
-                MessageBox.Show("Error: altaKDM1(), actualizaKDMENT()..." + ex.Message);
-                bndra = 3;
-                return Task.FromResult(bndra);
-                // throw;
-            }
-            return Task.FromResult(bndra);
-
-
+           
         }
 
+        
         private async void ModificaEtiquetas(string bultos)
         {
 
@@ -402,13 +419,15 @@ namespace mainVentana.VistaEntrada
             
             try
             {
-                await Task.Run(() =>
+                using (var context = new modelo2Entities()) // Asumiendo que modelo2Entities es tu DbContext
                 {
-                    actualizaKDMENT(datoSucIni, dtEntrada, datoBultos, datoSucDestino, datoFecha);
-                 
-                });
 
-
+                    if (!long.TryParse(lblNoOdoo.Text, out long parsedDatoNuodoo))
+                    {
+                        parsedDatoNuodoo = 0;
+                    }
+                    await actualizaKDMENT(bd, context, datoSucIni, dtEntrada, datoBultos, datoSucDestino, datoFecha, parsedDatoNuodoo, label23.Text);
+                }  
             }
             catch (Exception ex)
             {
@@ -452,16 +471,16 @@ namespace mainVentana.VistaEntrada
 
 
        
-        private void actualizaKDMENT(string datoSucIni, string datoEntrada, string datoBultos, string datoSucDestino, DateTime datoFecha)
+        private async Task actualizaKDMENT(AltasBD bd,modelo2Entities context,string datoSucIni, string datoEntrada, string datoBultos, string datoSucDestino, DateTime datoFecha, long odooProductId, string odooSalesP)
         {
             string datoDetalles = detalles.Text;
-            AltasBD bd = new AltasBD();
+            
             for (int i = 1; i <= Convert.ToInt32(datoBultos); i++)
             {
                 try
                 {
-                    bd.agregaKDMENT(datoSucIni, datoEntrada, i.ToString(), datoSucIni.Trim() + "-UD3501-" + datoEntrada.Trim(), datoSucIni.Trim() + "-" + datoEntrada.Trim() + "-" + i.ToString(), datoSucDestino, datoSucIni.Trim(),
-              datoDetalles.Length >= 100 ? datoDetalles.Substring(0, 100) : datoDetalles, datoFecha.ToString("MM/dd/yyyy HH:mm:ss"), 0, 0, "OE");
+             await  bd.agregaKDMENTOld(context, datoSucIni, datoEntrada, i.ToString(), datoSucIni.Trim() + "-UD3501-" + datoEntrada.Trim(), datoSucIni.Trim() + "-" + datoEntrada.Trim() + "-" + i.ToString(), datoSucDestino, datoSucIni.Trim(),
+              datoDetalles.Length >= 100 ? datoDetalles.Substring(0, 100) : datoDetalles, datoFecha.ToString("MM/dd/yyyy HH:mm:ss"), 0, 0, "OE", odooProductId: odooProductId, odooSalesP: odooSalesP);
 
                 }
                 catch (Exception x)
@@ -474,15 +493,12 @@ namespace mainVentana.VistaEntrada
 
             }
 
-
-
-
             //bd.agregaKDMENT();
         }
         private async Task envEmail()
         {
 
-            string cordCordinadorCMB = cord.SelectedValue.ToString().Trim();
+            long cordCordinadorCMB = String.IsNullOrWhiteSpace(label24.Text) ? 0 : Convert.ToInt32(label24.Text);
 
             string doc = tipodeDocumento == 2 ? lblEntrada.Text.Trim() : noEntGlobal;
             EnviarEmail servicio = new EnviarEmail();
@@ -535,7 +551,7 @@ namespace mainVentana.VistaEntrada
 
         private async Task ReenviaEnvEmail()
         {
-            string cordCordinadorCMB = cord.SelectedValue.ToString().Trim();
+            long cordCordinadorCMB =String.IsNullOrWhiteSpace(label24.Text)?0:Convert.ToInt32(label24.Text); //cord.SelectedValue.ToString().Trim();
             string doc = tipodeDocumento == 2 ? lblEntrada.Text.Trim() : noEntGlobal;
             EnviarEmail servicio = new EnviarEmail();
 
@@ -823,9 +839,13 @@ namespace mainVentana.VistaEntrada
            
         }
         string coreoClientes;
-        public void moverinfo(string dato, string dato2, string dato3, string dato4, string dato5, string dato6, string dato7, string correoCliente, int bandera) //cambia los datos de los textbox alias y clientes, la bandera dependera de la manera en la que se haya abierto el frm buscar, 0 clientes 1 alias, ADEMAS tambien sirve para cambiar el campo de cord
+        public void moverinfo(string dato, string dato2, string dato3, string dato4, string dato5, string dato6, string dato7, string correoCliente, int bandera, string parentName) //cambia los datos de los textbox alias y clientes, la bandera dependera de la manera en la que se haya abierto el frm buscar, 0 clientes 1 alias, ADEMAS tambien sirve para cambiar el campo de cord
         {
+            label24.Text = "";
+            label25.Text = "";
+            coreoClientes = "";
             coreoClientes = correoCliente;
+            lblParentName.Text = parentName;
             if (bandera == 0) //clientes
             {
                 cliente.Text = dato;
@@ -833,17 +853,19 @@ namespace mainVentana.VistaEntrada
                 label23.Text = dato4;
                 label24.Text = dato5;
                 label25.Text = dato6;
-                label26.Text = "Dir Cliente";
+                label26.Text = "SU";
                 lblCodCliente.Text = dato7;
 
-                foreach (vmCordinadores i in cord.Items)
+                cord.SelectedValue = dato4??"";
+
+                /*foreach (vmCordinadores i in cord.Items)
                 {
                     if (i.c2.Trim() == dato3)
                     {
                         cord.SelectedValue = i.c2;
                         break;
                     }
-                }
+                }*/
             }
 
             else if (bandera == 1)//alias
@@ -1576,8 +1598,8 @@ namespace mainVentana.VistaEntrada
                 SelectorFotos(sucEntrada.SelectedValue.ToString().Trim() + "-UD3501-" + txbBuscarEnt.Text.Trim());
                 //CargaFotos(txbBuscarEnt.Text.Trim(), sucEntrada.SelectedValue.ToString().Trim());
                 //CargaDocPDF();
-                Servicios datos = new Servicios();
-                coreoClientes = await datos.BuscarC11(lblCodCliente.Text);
+                OdooClient datos = new OdooClient();
+                coreoClientes = await datos.GetClientById(String.IsNullOrWhiteSpace(lblCodCliente.Text)? "3558": lblCodCliente.Text);
                 label27.Text = "";
                 label28.Text = "";
                
@@ -1664,16 +1686,16 @@ namespace mainVentana.VistaEntrada
                 txbReferencia.Text = vtxtref.Trim();
 
                 //--------Coordinador asignado-------------------
-                foreach (vmCordinadores i in cord.Items)
-                {
-                    if (i.c2.Trim() == q.C12.Trim())
-                    {
-                        cord.SelectedValue = i.c2;
-                        break;
+                //foreach (vmCordinadores i in cord.Items)
+                //{
+                //    if (i.c2.Trim() == q.C12.Trim())
+                //    {
+                //        cord.SelectedValue = i.c2;
+                //        break;
 
-                    }
+                //    }
 
-                }
+                //}
 
                 txbValArn.Text = q.C16.ToString().Trim();
                 txbNotas.Text = q.C24?.Trim();
@@ -1754,6 +1776,9 @@ namespace mainVentana.VistaEntrada
 
                 bultos.Text = Convert.ToInt32(q.C108).ToString().Trim();
                 detalles.Text = q.descripcion.Trim();
+                label24.Text = q.C12;
+                label23.Text = q.odoosalesp;
+                lblNoOdoo.Text = q.OdooId?.ToString() ?? "0";
                 string rbt = q.C44 ?? "NoPagado";
                 RDBpagar(rbt.Trim());
                 bandera = 1;
@@ -1793,7 +1818,7 @@ namespace mainVentana.VistaEntrada
         {
             string datoSucOrigen = sucEntrada.SelectedValue.ToString().Trim();
             string datoSucDestino = sucDestino.SelectedValue.ToString().Trim();
-            string datoNoCord = cord.SelectedValue.ToString().Trim();
+            string datoNoCord = label24.Text;
             string datoNota = txbNotas.Text.Trim();
             string datoReferencia = txbReferencia.Text.Trim();
             string datoTipoOper = tipoOper.SelectedValue.ToString().Trim();

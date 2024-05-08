@@ -1,8 +1,10 @@
 ﻿using Datos.ViewModels.Coord.Clientes;
 using Datos.ViewModels.Entradas;
 using Datos.ViewModels.Entradas.mvlistas;
+using Datos.ViewModels.Odoo;
 using Negocios;
 using Negocios.NGClientes;
+using Negocios.Odoo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,10 +21,13 @@ namespace mainVentana.VistaEntrada
     public partial class BusquedasEnt : Form
     {
 
-        public delegate void pasar(string alias, string cliente, string cord, string calle, string colonia, string ciudad, string codigocliente,string CorreosCliente, int bandera);
+        public delegate void pasar(string alias, string cliente, string cord, string calle, string colonia, string ciudad, string codigocliente,string CorreosCliente, int bandera, string parentName = "");
         //public delegate void pasar2(string dato,string cliente, int bandera);
         public event pasar pasado;
-       // public event pasar2 pasado2;
+        // public event pasar2 pasado2;
+
+        List<OdooClienteDto> listaClintes = new List<OdooClienteDto>();
+
         public BusquedasEnt()
         {
             InitializeComponent();
@@ -30,7 +35,14 @@ namespace mainVentana.VistaEntrada
 
         private async void BusquedasEnt_Load(object sender, EventArgs e)
         {
-            comboBox1.AutoCompleteCustomSource =await aliasList();
+            comboBox1.AutoCompleteCustomSource = await aliasList();
+            if (listaClintes.Any())
+            {
+                comboBox1.Enabled = true;
+                txbClave.Enabled = true;
+                txbOBusqueda.Enabled = true;
+                    
+            }
             if (label2.Text == "CLIENTE")
             {
                 txbClave.Visible = true;
@@ -40,13 +52,13 @@ namespace mainVentana.VistaEntrada
         private void pasarinfo()
         {
             if (label2.Text == "CLIENTE")
-            { pasado(gunaTextBox2.Text,"",gunaTextBox1.Text,calle,colonia,ciudad, Codcliente, CorreosCliente, 0); }
+            { pasado(gunaTextBox2.Text,"",gunaTextBox1.Text,calle,colonia,ciudad, Codcliente, CorreosCliente, 0,parent); }
             else if (label2.Text == "ALIAS")
-            { pasado(gunaTextBox2.Text, gunaTextBox3.Text, gunaTextBox1.Text,calle,colonia,ciudad,Codcliente, CorreosCliente, 1); }
+            { pasado(gunaTextBox2.Text, gunaTextBox3.Text, gunaTextBox1.Text,calle,colonia,ciudad,Codcliente, CorreosCliente, 1, parent); }
 
             else if (label2.Text == "ALIASDIREC")
             {
-                pasado(gunaTextBox2.Text, gunaTextBox3.Text, zip, calle, colonia, ciudad, Codcliente, num, 1);
+                pasado(gunaTextBox2.Text, gunaTextBox3.Text, zip, calle, colonia, ciudad, Codcliente, num, 1, parent);
             }
 
         }
@@ -57,22 +69,26 @@ namespace mainVentana.VistaEntrada
             Servicios datos = new Servicios();
             if (label2.Text == "ALIAS")
             {
-                
-                var lst = await datos.llenaAlias();
-                foreach (var p in lst)
+                OdooClient od = new OdooClient();
+                listaClintes = await od.GetAllClients();
+               
+                //var lst = await datos.llenaAlias();
+                foreach (var p in listaClintes)
                 {
-                    List.Add(p.c1);
-                    
+                    List.Add($"{p.Name}");
+
                 }
                 
             }
             else if (label2.Text == "CLIENTE")
             {
-                var lst =  await datos.llenaClientes();
-                foreach (var p in lst)
+                OdooClient od = new OdooClient();
+                listaClintes = await od.GetAllClients();
+               // var lst =  await datos.llenaClientes();
+                foreach (var p in listaClintes)
                 {
-                    List.Add(p.c3);
-                    
+                    List.Add($"{p.Name}");
+
                 }
                
             }
@@ -112,6 +128,7 @@ namespace mainVentana.VistaEntrada
         string calle;
         string colonia;
         string ciudad;
+        string parent;
         string zip;
         string num;
         string Codcliente;
@@ -130,23 +147,26 @@ namespace mainVentana.VistaEntrada
                 if (label2.Text == "ALIAS")
                 {
                     Servicios datos = new Servicios();
-                    var lst = await datos.llenaAlias();
+                    //var lst = await datos.llenaAlias();
+               
+
+
                     string comboBoxText = comboBox1.Text.Trim();
                     int bandera = 0;
 
-                    foreach (var d in lst)
+                    foreach (var d in listaClintes)
                     {
-                        if (comboBoxText != " " && d.c1.ToString().Trim() == comboBoxText)
+                        if (comboBoxText != " " && d.Name.ToString().Trim() == comboBoxText)
                         {
                             bandera = 1;
-                            gunaTextBox2.Text = string.IsNullOrEmpty(d.c1.ToString()) ? "" : d.c1.ToString().Trim();
-                            gunaTextBox3.Text = validCli(d.c3.ToString())[0].ToString();
-                            gunaTextBox1.Text = validCli(d.c3.ToString())[1].ToString();
-                            CorreosCliente = validCli(d.c3.ToString())[2].ToString();
-                            Codcliente = validCli(d.c3.ToString())[3].ToString();
-                            calle = d.c4.ToString();
-                            colonia = d.c5.ToString();
-                            ciudad = d.c6.ToString();
+                            gunaTextBox2.Text = string.IsNullOrEmpty(d.Name) ? "" : d.Name;
+                            gunaTextBox3.Text = d.Id.ToString();
+                            gunaTextBox1.Text = d.Id.ToString();
+                            CorreosCliente = d.Email;
+                            Codcliente = d.Id.ToString();
+                            calle = "";
+                            colonia ="";
+                            parent = d.ParentName;
                             pasarinfo();
                             this.Close();
                             break;
@@ -206,6 +226,7 @@ namespace mainVentana.VistaEntrada
                             calle = d.c4.ToString();
                             colonia = d.c5.ToString();
                             ciudad = d.c6.ToString();
+                            //parent = d.ParentName;
                             pasarinfo();
                             this.Close();
                             break;
@@ -247,20 +268,24 @@ namespace mainVentana.VistaEntrada
                 else if (label2.Text == "CLIENTE")
                 {
                     Servicios datos = new Servicios();
-                    var lst = await datos.llenaClientes();
+                    //var lst = await datos.llenaClientes();
+
+                 
+
                     int bandera = 0;
-                    foreach (var d in lst)
+                    foreach (var d in listaClintes)
                     {
-                        if (d.c3.ToString().Trim() == comboBox1.Text.Trim() && comboBox1.Text != " ")
+                        if (d.Name.ToString().Trim() == comboBox1.Text.Trim() && comboBox1.Text != " ")
                         {
                             bandera = 1;
-                            gunaTextBox2.Text = string.IsNullOrEmpty(d.c3.ToString()) ? "" : d.c3.ToString().Trim();
-                            gunaTextBox1.Text = string.IsNullOrEmpty(d.c12.ToString()) ? "" : d.c12.ToString().Trim();
-                            CorreosCliente = d.c11.Trim();
-                            calle = d.c4.ToString();
-                            colonia = d.c5.ToString();
-                            ciudad = d.c6.ToString();
-                            Codcliente = string.IsNullOrEmpty(d.c2) ? "" : d.c2.Trim();
+                            gunaTextBox2.Text = string.IsNullOrEmpty(d.Name.ToString()) ? "" : d.Name.ToString().Trim();
+                            gunaTextBox1.Text = string.IsNullOrEmpty(d.SalesUserId) ? "" : d.SalesUserId.ToString().Trim();
+                            CorreosCliente = d.Email ?? d.Email.Trim();
+                            calle = d.SalesUserName;
+                            colonia = d.SalesUserId;
+                            ciudad = "";
+                            Codcliente = d.Id.ToString();
+                            parent = d.ParentName;
                             //CorreosCliente = d.c11;
                             pasarinfo();
                             this.Dispose();
@@ -341,13 +366,13 @@ namespace mainVentana.VistaEntrada
                 {
                     _clave = txbClave.Text.Trim();
                 }
-                var dt = ac.BuscaInfoCliente(_clave);
+                var dt = listaClintes.Where(x => x.Id.ToString() == _clave).Select(x=>x.Name).FirstOrDefault();
                 if (dt == null)
                 {
                     MessageBox.Show("Error, puede ser que el dato que tratas de buscar no exista, ya se ha retornado un valor vacio.", "Error");
                     return;
                 }
-                comboBox1.Text = dt.C3.Trim();
+                comboBox1.Text = dt.Trim();
 
             }
 
@@ -360,7 +385,7 @@ namespace mainVentana.VistaEntrada
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                var listaClientes = new List<vmClienteDinamicoBusqueda>();
+               // var listaClientes = new List<vmClienteDinamicoBusqueda>();
                 Servicios datos = new Servicios();
                 try
                 {
@@ -369,20 +394,21 @@ namespace mainVentana.VistaEntrada
 
                     if (label2.Text == "CLIENTE")
                     {
-                        listaClientes = await datos.LlenaClientesInteractivo(txbOBusqueda.Text,1);
-                        dgvBusqueda.DataSource = listaClientes;
+                        //listaClientes = await datos.LlenaClientesInteractivo(txbOBusqueda.Text, 1);
+                  
+                        dgvBusqueda.DataSource = listaClintes.Where(x => x.Name.Contains(txbOBusqueda.Text)).ToList();
                     }
                     else if (label2.Text == "ALIAS")
                     {
-                        listaClientes = await datos.LlenaClientesInteractivo(txbOBusqueda.Text, 2);
-                        dgvBusqueda.DataSource = listaClientes;
+                        //listaClientes = await datos.LlenaClientesInteractivo(txbOBusqueda.Text, 2);
+                        dgvBusqueda.DataSource = listaClintes.Where(x => x.Name.Contains(txbOBusqueda.Text));
 
                     }
 
                     else if (label2.Text == "ALIASDIREC")
                     {
-                        listaClientes = await datos.LlenaClientesInteractivo(txbOBusqueda.Text, 2);
-                        dgvBusqueda.DataSource = listaClientes;
+                        //listaClientes = await datos.LlenaClientesInteractivo(txbOBusqueda.Text, 2);
+                        dgvBusqueda.DataSource = listaClintes.Where(x => x.Name.Contains(txbOBusqueda.Text));
                     }
 
 
@@ -424,7 +450,7 @@ namespace mainVentana.VistaEntrada
                 {
                     if (e.RowIndex >= 0 && e.RowIndex < dgvBusqueda.Rows.Count)
                     {
-                        var valorCelda = dgvBusqueda.Rows[e.RowIndex].Cells[1].Value?.ToString()?.Trim();
+                        var valorCelda = dgvBusqueda.Rows[e.RowIndex].Cells[0].Value?.ToString()?.Trim();
                         if (!string.IsNullOrEmpty(valorCelda))
                         {
                             comboBox1.Text = valorCelda;

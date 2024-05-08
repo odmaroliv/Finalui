@@ -116,7 +116,7 @@ namespace Negocios
                     {
                         lst = await (from d in modelo.KDMENT
                                      join k in modelo.KDM1 on new { d.C1, d.C6, d.C4 } equals new { k.C1, k.C6, k.C4 }
-                                     join c in modelo.KDUV on k.C12 equals c.C2
+                                    // join c in modelo.KDUV on k.C12 equals c.C2
                                      where d.C6 == id
                                      orderby d.C6 descending, d.C7 descending
                                      select new BusquedaInicial
@@ -149,7 +149,7 @@ namespace Negocios
                                          billfecha = d.C77.Trim(),
                                          C42 = d.C42.Trim(),//desc corta
                                          elaborado = k.C81.Trim(),
-                                         coord = c.C3.Trim(),
+                                        // coord = c.C3.Trim(),
                                          link = d.C46,
                                          alias = k.C112,
                                          cot = k.C115,
@@ -178,7 +178,7 @@ namespace Negocios
                     {
                         lst = await (from d in modelo.KDMENT
                                      join k in modelo.KDM1 on new { d.C1, d.C6, d.C4 } equals new { k.C1, k.C6, k.C4 }
-                                     join c in modelo.KDUV on k.C12 equals c.C2
+                                    // join c in modelo.KDUV on k.C12 equals c.C2
                                      where k.C95.Contains(id)
                                      orderby d.C6 descending, d.C7 descending
                                      select new BusquedaInicial
@@ -206,7 +206,7 @@ namespace Negocios
                                          billfecha = d.C77.Trim(),
                                          C42 = d.C42.Trim(),
                                          elaborado = k.C81.Trim(),
-                                         coord = c.C3.Trim(),
+                                        // coord = c.C3.Trim(),
                                          link = d.C46,
                                          alias = k.C112,
                                          cot = k.C115,
@@ -235,7 +235,7 @@ namespace Negocios
 
                         lst = await (from d in modelo.KDMENT
                                      join k in modelo.KDM1 on new { d.C1, d.C6, d.C4 } equals new { k.C1, k.C6, k.C4 }
-                                     join c in modelo.KDUV on k.C12 equals c.C2
+                                    // join c in modelo.KDUV on k.C12 equals c.C2
                                      where k.C9 <= fecha2 && k.C9 >= fecha1 && k.C10.Equals(id)
                                      orderby d.C6 descending, d.C7 descending
                                      select new BusquedaInicial
@@ -263,7 +263,7 @@ namespace Negocios
                                          billfecha = d.C77.Trim(),
                                          C42 = d.C42.Trim(),
                                          elaborado = k.C81.Trim(),
-                                         coord = c.C3.Trim(),
+                                        // coord = c.C3.Trim(),
                                          link = d.C46,
                                          alias = k.C112,
                                          cot = k.C115,
@@ -292,7 +292,7 @@ namespace Negocios
                         modelo.Database.CommandTimeout = 300;
                         lst = await (from d in modelo.KDMENT
                                      join k in modelo.KDM1 on new { d.C1, d.C6, d.C4 } equals new { k.C1, k.C6, k.C4 }
-                                     join c in modelo.KDUV on k.C12 equals c.C2
+                                    // join c in modelo.KDUV on k.C12 equals c.C2
                                      where k.C9 <= fecha2 && k.C9 >= fecha1 && k.C12 == Common.Cache.CacheLogin.idusuario.ToString()
                                      orderby d.C6 descending, d.C7 descending
                                      select new BusquedaInicial
@@ -320,7 +320,7 @@ namespace Negocios
                                          billfecha = d.C77.Trim(),
                                          C42 = d.C42.Trim(),
                                          elaborado = k.C81.Trim(),
-                                         coord = c.C3.Trim(),
+                                      //   coord = c.C3.Trim(),
                                          link = d.C46,
                                          alias = k.C112,
                                          cot = k.C115,
@@ -350,10 +350,10 @@ namespace Negocios
                         // Construcción base de la consulta
                         var baseQuery = from d in modelo.KDMENT
                                         join k in modelo.KDM1 on new { d.C1, d.C6, d.C4 } equals new { k.C1, k.C6, k.C4 }
-                                        join c in modelo.KDUV on k.C12 equals c.C2
+                                       // join c in modelo.KDUV on k.C12 equals c.C2
                                         where k.C9 <= fecha2 && k.C9 >= fecha1 && d.C19 == tipo
                                         orderby d.C6 descending, d.C7 descending
-                                        select new { d, k, c };
+                                        select new { d, k };
 
                         // Aplicar filtro adicional si master no es "1"
                         if (Common.Cache.CacheLogin.master != "1")
@@ -388,7 +388,7 @@ namespace Negocios
                                              billfecha = item.d.C77.Trim(),
                                              C42 = item.d.C42.Trim(),
                                              elaborado = item.k.C81.Trim(),
-                                             coord = item.c.C3.Trim(),
+                                           //  coord = item.c.C3.Trim(),
                                              link = item.d.C46,
                                              alias = item.k.C112,
                                              cot = item.k.C115,
@@ -422,7 +422,7 @@ namespace Negocios
                         modelo.Database.CommandTimeout = 300;
                         lst = await (from d in modelo.KDMENT
                                      join k in modelo.KDM1 on new { d.C1, d.C6, d.C4 } equals new { k.C1, k.C6, k.C4 }
-                                     join c in modelo.KDUV on k.C12 equals c.C2
+                                    // join c in modelo.KDUV on k.C12 equals c.C2
                                      where k.C9 <= fecha2 && k.C9 >= fecha1 && (id == "ALL" || k.C81 == id)
                                      orderby d.C6 descending, d.C7 descending
                                      select new BusquedaInicial
@@ -450,7 +450,7 @@ namespace Negocios
                                          billfecha = d.C77.Trim(),
                                          C42 = d.C42.Trim(),
                                          elaborado = k.C81.Trim(),
-                                         coord = c.C3.Trim(),
+                                      //   coord = c.C3.Trim(),
                                          link = d.C46,
                                          alias = k.C112,
                                          cot = k.C115,
@@ -483,7 +483,7 @@ namespace Negocios
                     {
                         lst = await (from d in modelo.KDMENT
                                      join k in modelo.KDM1 on new { d.C1, d.C6, d.C4 } equals new { k.C1, k.C6, k.C4 }
-                                     join c in modelo.KDUV on k.C12 equals c.C2
+                                     //join c in modelo.KDUV on k.C12 equals c.C2
                                      where d.IDinventario == folio
                                      orderby d.C6 descending, d.C7 descending
                                      select new BusquedaInicial
@@ -516,7 +516,7 @@ namespace Negocios
                                          billfecha = d.C77.Trim(),
                                          C42 = d.C42.Trim(),//desc corta
                                          elaborado = k.C81.Trim(),
-                                         coord = c.C3.Trim(),
+                                      //   coord = c.C3.Trim(),
                                          link = d.C46,
                                          alias = k.C112,
                                          cot = k.C115,
@@ -1436,7 +1436,7 @@ namespace Negocios
                     {
                         Common.Cache.CacheLogin.rhook = lst2.rhook.Trim();
                     }
-                    string sql2 = @"SELECT C5 AS bbud, AS C16 AS bbps FROM SqlIov WHERE C1 LIKE '%lastmillewh%'";
+                    string sql2 = @"SELECT C5 AS bbud, C16 AS bbps FROM SqlIov WHERE C1 LIKE '%lastmillewh%'";
                     var lista2 = modelo.Database.SqlQuery<vmLogin>(sql2).ToList();
 
                     var lst3 = lista2.FirstOrDefault();
@@ -1520,7 +1520,9 @@ namespace Negocios
                                     C108 = d.C108,
                                     C112 = d.C112,
                                     descripcion = d2.C11,
-                                    tipoEntrada = d.TipoEntradaID
+                                    tipoEntrada = d.TipoEntradaID,
+                                    OdooId = d.odooidproduct,
+                                   odoosalesp = d.odoosalesp
 
 
                                 };
@@ -1553,8 +1555,8 @@ namespace Negocios
                 {
                     var lista = from d in modelo.KDM1
                                 join d2 in modelo.KDMENT on new { d.C1, d.C4, d.C6 } equals new { d2.C1, d2.C4, d2.C6 }
-                                join t3 in modelo.KDUD on d.C10 equals t3.C2
-                                join t4 in modelo.KDUK on t3.C14 equals t4.C1
+                                //join t3 in modelo.KDUD on d.C10 equals t3.C2
+                                // join t4 in modelo.KDUK on t3.C14 equals t4.C1
                                 where d.C1.Equals(sucursal) && d.C4.Equals(35) && d.C6.Equals(id)
                                 orderby (d.C5)
                                 select new vmEtiquetasReporte
@@ -1567,9 +1569,9 @@ namespace Negocios
                                     Fecha = d.C9,
                                     Alias = d.C112,
                                     NEtiqueta = d2.C7,
-                                    //barcode = t3.BARCODE,
-                                    Zona = t4.C2,
-                                    ZonaNumero = t4.C1,
+                                    //barcode = ""//t3.BARCODE,
+                                    Zona = "",//t4.C2,
+                                    ZonaNumero = ""//t4.C1,
 
                                 };
                     lst2 = lista.ToList();

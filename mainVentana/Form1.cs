@@ -68,6 +68,7 @@ namespace mainVentana
         }
         private void validamenu()
         {
+            
             if (CacheLogin.rol.Trim() == "ADMIN")
             {
                 rbtnAjustes.Enabled = true;

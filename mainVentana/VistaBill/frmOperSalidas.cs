@@ -15,6 +15,8 @@ using System.Diagnostics;
 using Datos.ViewModels.Bill;
 using mainVentana.Reportes.rbill;
 using Datos.ViewModels.Reportes.Bill;
+using Negocios.Odoo;
+using DocumentFormat.OpenXml.Office2016.Drawing.Charts;
 
 namespace mainVentana.VistaBill
 {
@@ -22,11 +24,15 @@ namespace mainVentana.VistaBill
     {
 
         private Queue<string> taskQueue = new Queue<string>();
-
-
+        private bool isBussy = false;
+        private string uniqueId;
+        private readonly OdooClient _odooCliente;
         public frmOperSalidas()
         {
             InitializeComponent();
+            _odooCliente = new OdooClient();
+            uniqueId = Guid.NewGuid().ToString();
+            lblUniqueId.Text = uniqueId;
         }
 
         /* private void gunaAdvenceButton1_Click(object sender, EventArgs e)
@@ -46,6 +52,13 @@ namespace mainVentana.VistaBill
 
         private void gunaAdvenceButton2_Click(object sender, EventArgs e)
         {
+            if (isBussy)
+            {
+                labelAlert.Text = "Aun hay trabajos pendientes;";
+                panelAlert.BackColor = Color.Red;
+                return;
+            }
+
             if (cmbVehuculo.SelectedItem == null)
             {
                 MessageBox.Show("Por favor selecciona un Vehiculo");
@@ -133,34 +146,48 @@ namespace mainVentana.VistaBill
         List<VMSalidasBill> listaeti = new List<VMSalidasBill>();
         private async void txbEtiqueta_KeyDown(object sender, KeyEventArgs e)
         {
-            if (cmbVehuculo.SelectedItem == null)
+           
+            try
             {
-                MessageBox.Show("Por favor selecciona un Vehiculo");
-                return;
+                isBussy = true;
+                if (cmbVehuculo.SelectedItem == null)
+                {
+                    MessageBox.Show("Por favor selecciona un Vehiculo");
+                    return;
+                }
+
+                if (e.KeyCode != Keys.Enter)
+                    return;
+
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+
+                string eti = txbEtiqueta.Text.Replace("'", "-");
+                if (Verifica(eti) == 1)
+                    return;
+
+                // Añade la tarea a la cola.
+                taskQueue.Enqueue(eti);
+                txbEtiqueta.Text = "";
+                // Actualiza lblQueueCount.
+                lblQueueCount.Text = $"Tareas en cola: {taskQueue.Count}";
+
+                // Si no hay otras tareas en proceso, comienza a procesar la cola.
+                if (taskQueue.Count == 1)
+                {
+                    await ProcessQueue();
+                }
+                lblQueueCount.Text = $"Tareas en cola: {taskQueue.Count}";
             }
-
-            if (e.KeyCode != Keys.Enter)
-                return;
-
-            e.Handled = true;
-            e.SuppressKeyPress = true;
-
-            string eti = txbEtiqueta.Text.Replace("'", "-");
-            if (Verifica(eti) == 1)
-                return;
-
-            // Añade la tarea a la cola.
-            taskQueue.Enqueue(eti);
-            txbEtiqueta.Text = "";
-            // Actualiza lblQueueCount.
-            lblQueueCount.Text = $"Tareas en cola: {taskQueue.Count}";
-
-            // Si no hay otras tareas en proceso, comienza a procesar la cola.
-            if (taskQueue.Count == 1)
+            catch (Exception)
             {
-                await ProcessQueue();
+
+                throw;
             }
-            lblQueueCount.Text = $"Tareas en cola: {taskQueue.Count}";
+            finally {
+                isBussy = false;
+            }
+           
         }
 
         private async Task ProcessQueue()
@@ -180,14 +207,14 @@ namespace mainVentana.VistaBill
 
                 try
                 {
-                    var ss = await Task.Run(() => bd.SalidasOperacion(eti, fecha, vehiculo));
+                    var ss = await Task.Run(() => bd.SalidasOperacion(_odooCliente,eti, fecha, vehiculo));
 
                     if (ss.Any())
                     {
                        
                         listaeti.Insert(0, ss[0]);
                        // listaeti.Add(ss[0]);
-                        await Task.Run(() => bd.ModificaKDMENTToBill(eti));  // Convertir en método asíncrono y usar await.
+                        await Task.Run(() => bd.ModificaKDMENTToBill(eti, uniqueId));  // Convertir en método asíncrono y usar await.
                     }
                     else
                     {

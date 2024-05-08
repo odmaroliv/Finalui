@@ -22,14 +22,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DocumentFormat.OpenXml.Presentation;
 using Negocios.LOGs;
+using Negocios.Odoo;
 
 namespace mainVentana.VistaRecepcion
 {
     public partial class frmRecepcion : Form
     {
+        private readonly OdooClient _odooClient;
         public frmRecepcion()
         {
             InitializeComponent();
+            _odooClient = new OdooClient();
         }
         string ulSalidaPSolo = "";
         string ulDato = "";
@@ -38,7 +41,7 @@ namespace mainVentana.VistaRecepcion
         string sEnvia = ""; //SUCURSAL QUE ENVIA LA SALIDA
         int iniciodesalida = 0;
 
-
+        
 
         //abre la ventana de seleccion de ordenes de salida
         private void btnAlta_Click(object sender, EventArgs e)
@@ -311,7 +314,7 @@ namespace mainVentana.VistaRecepcion
         }
 
 
-        private void btnScanini_Click(object sender, EventArgs e)
+        private async void btnScanini_Click(object sender, EventArgs e)
         {
 
             if (btnIniciaSalida.Enabled == true)
@@ -330,7 +333,7 @@ namespace mainVentana.VistaRecepcion
 
             if (MessageBox.Show("Estas apunto de iniciar el Scaneo, revisa las Ordenes para evitar errores, da click en Cancelar para dar un segundo vistazo", "Atencion", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                ModificaKDM1();
+                await ModificaKDM1();
                 txbEscaneo.Enabled = true;
                 txbEscaneo.Focus();
 
@@ -364,7 +367,7 @@ namespace mainVentana.VistaRecepcion
         }
 
 
-        private async void AltKDMENT(string eti)
+        private async void AltKDMENT(string eti, long productId)
         {
             /* if (sRecepcion == "SD")
              {
@@ -394,11 +397,14 @@ namespace mainVentana.VistaRecepcion
             {
                 // Si la recepción es final, llama a ModificaKDMENTsd
                 await ModificaKDMENTsd(sRecepcion, eti, "F");
+                _odooClient.UpdateCurrentSuc(productId, sRecepcion, true);
             }
             else if (tipoRecepcion == "R")
             {
                 // Si la recepción es transitoria, llama a ModificaKDMENTtj
                 await ModificaKDMENTtj(sRecepcion, eti,"R");
+                _odooClient.UpdateCurrentSuc(productId, sRecepcion);
+
             }
             else
             {
@@ -492,9 +498,13 @@ namespace mainVentana.VistaRecepcion
 
         private void ProcesarEtiquetaEncontrada(string etiqueta, int fila)
         {
-            AltKDMENT(etiqueta);
-            GeneralMovimientosLog.AddMovimientoConParametrosDirectos(GeneralMovimientosLog.ObtenerFolioDesdeEtiqueta(etiqueta), 35, etiqueta, 50, ulDatoSolo, sRecepcion, sEnvia,"", "Scaneo", "","Se agrega a la recepcion " + ulDatoSolo);
             var correoOrden = new Negocios.Acceso_Salida.AccesoSalidas().ObtieCorreo(etiqueta);
+            AltKDMENT(etiqueta, correoOrden.OdooIdProductos);
+            
+            GeneralMovimientosLog.AddMovimientoConParametrosDirectos(GeneralMovimientosLog.ObtenerFolioDesdeEtiqueta(etiqueta), 35, etiqueta, 50, ulDatoSolo, sRecepcion, sEnvia,"", "Scaneo", "","Se agrega a la recepcion " + ulDatoSolo);
+            
+
+           
             lista.RemoveAt(lista.FindIndex(a => a.Etiqueta.Trim().Equals(etiqueta)));
             dgvOrdenesEntrada.DataSource = null;
             dgvOrdenesEntrada.DataSource = lista;
@@ -510,10 +520,11 @@ namespace mainVentana.VistaRecepcion
 
         private void ProcesarEtiquetaNoEncontrada(string etiqueta)
         {
-            AltKDMENT(etiqueta);
-            GeneralMovimientosLog.AddMovimientoConParametrosDirectos(GeneralMovimientosLog.ObtenerFolioDesdeEtiqueta(etiqueta), 35, etiqueta, 50, ulDatoSolo, sRecepcion, sEnvia,"", "Scaneo","", "Se agrega a la recepcion " + ulDatoSolo);
-
             var correoOrden = new Negocios.Acceso_Salida.AccesoSalidas().ObtieCorreo(etiqueta);
+            
+            AltKDMENT(etiqueta, correoOrden.OdooIdProductos);
+            GeneralMovimientosLog.AddMovimientoConParametrosDirectos(GeneralMovimientosLog.ObtenerFolioDesdeEtiqueta(etiqueta), 35, etiqueta, 50, ulDatoSolo, sRecepcion, sEnvia,"", "Scaneo","", "Se agrega a la recepcion " + ulDatoSolo); 
+           
             DataGridViewRow rowObser = new DataGridViewRow();
             rowObser.CreateCells(dgvObser);
             rowObser.Cells[0].Value = etiqueta;

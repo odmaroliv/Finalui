@@ -4,6 +4,7 @@ using Datos.ViewModels.Entradas;
 using Datos.ViewModels.Reportes;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,7 +52,7 @@ namespace Negocios.NGCarga
         /// <param name="ordendecarga"></param>
         /// <returns>campos</returns>
         //
-        public vmCargaConsultaGeneral ObtieneOrdenDeCargaPorIdYSucursal(string datoSucIni, string ordendecarga)
+        public async Task<vmCargaConsultaGeneral> ObtieneOrdenDeCargaPorIdYSucursal(string datoSucIni, string ordendecarga)
         {
             //var lst2 = new List<vmCargaConsultaGeneral>();
             string dSucursalInicio = !String.IsNullOrEmpty(datoSucIni.Trim()) ? datoSucIni : "";
@@ -69,7 +70,7 @@ namespace Negocios.NGCarga
                     using (modelo2Entities modelo = new modelo2Entities())
 
                     {
-                        var lista = from d in modelo.KDM1
+                        var lista = from d in modelo.KDM1.AsNoTracking()
                                     where d.C1.Equals(dSucursalInicio) && d.C6.Equals(dOrdenDeCarga) && d.C4 == 40//&& d.C19 != sdestino 
                                     select new vmCargaConsultaGeneral
                                     {
@@ -85,7 +86,7 @@ namespace Negocios.NGCarga
                                         horaCierre = d.C112,
                                         estatus = d.C43,
                                     };
-                        return (vmCargaConsultaGeneral)lista.FirstOrDefault();
+                        return (vmCargaConsultaGeneral) await lista.FirstOrDefaultAsync();
 
 
                     }
@@ -101,7 +102,7 @@ namespace Negocios.NGCarga
 
 
         }
-        public List<vmEntradasEnCarga> EntradasEnCarga(string datoSucIni, int carga, string modo=null)
+        public async Task<List<vmEntradasEnCarga>> EntradasEnCarga(string datoSucIni, int carga, string modo=null)
         {
             string codigo = datoSucIni.Trim() + "-UD4001-" + carga.ToString("D7");
 
@@ -116,7 +117,7 @@ namespace Negocios.NGCarga
                     {
                         var lista = from d in modelo.KDMENT
                                     join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
-                                    where d.C45.Contains(codigo) //&& d.C19 != sdestino 
+                                    where d.C45.Equals(codigo) //&& d.C19 != sdestino 
                                     select new vmEntradasEnCarga
                                     {
                                         Entrada = d.C6,
@@ -126,13 +127,13 @@ namespace Negocios.NGCarga
                                         valArn = k.C42 == null ? "" : k.C42.ToString(),
                                         valFact = k.C102,
                                     };
-                        lst2 = lista.ToList();
+                        lst2 = await lista.ToListAsync();
                     }
                     else
                     {
                         var lista = from d in modelo.KDMENT
                                     join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
-                                    where d.C54.Contains(codigo) //&& d.C19 != sdestino 
+                                    where d.C54.Equals(codigo) //&& d.C19 != sdestino 
                                     select new vmEntradasEnCarga
                                     {
                                         Entrada = d.C6,
@@ -142,7 +143,7 @@ namespace Negocios.NGCarga
                                         valArn = k.C42 == null ? "" : k.C42.ToString(),
                                         valFact = k.C102,
                                     };
-                        lst2 = lista.ToList();
+                        lst2 = await lista.ToListAsync();
                     }
                     
                 }

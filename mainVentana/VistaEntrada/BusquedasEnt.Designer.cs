@@ -35,6 +35,9 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.gunaShadowPanel1 = new Guna.UI.WinForms.GunaShadowPanel();
+            this.foreverLabel2 = new ReaLTaiizor.Controls.ForeverLabel();
+            this.dgvBusqueda = new Guna.UI.WinForms.GunaDataGridView();
+            this.txbOBusqueda = new System.Windows.Forms.TextBox();
             this.txbClave = new System.Windows.Forms.TextBox();
             this.foreverLabel1 = new ReaLTaiizor.Controls.ForeverLabel();
             this.label2 = new System.Windows.Forms.Label();
@@ -42,12 +45,9 @@
             this.gunaShadowPanel2 = new Guna.UI.WinForms.GunaShadowPanel();
             this.gunaTextBox1 = new Guna.UI.WinForms.GunaTextBox();
             this.gunaTextBox3 = new Guna.UI.WinForms.GunaTextBox();
-            this.txbOBusqueda = new System.Windows.Forms.TextBox();
-            this.dgvBusqueda = new Guna.UI.WinForms.GunaDataGridView();
-            this.foreverLabel2 = new ReaLTaiizor.Controls.ForeverLabel();
             this.gunaShadowPanel1.SuspendLayout();
-            this.gunaShadowPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBusqueda)).BeginInit();
+            this.gunaShadowPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // gunaTextBox2
@@ -70,12 +70,15 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.comboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.comboBox1.Enabled = false;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(29, 49);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(296, 21);
+            this.comboBox1.Size = new System.Drawing.Size(410, 21);
             this.comboBox1.TabIndex = 1;
             this.comboBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox1_KeyDown);
             // 
@@ -112,13 +115,99 @@
             this.gunaShadowPanel1.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
             this.gunaShadowPanel1.ShadowDepth = 50;
             this.gunaShadowPanel1.ShadowShift = 10;
-            this.gunaShadowPanel1.Size = new System.Drawing.Size(352, 282);
+            this.gunaShadowPanel1.Size = new System.Drawing.Size(466, 282);
             this.gunaShadowPanel1.TabIndex = 7;
+            // 
+            // foreverLabel2
+            // 
+            this.foreverLabel2.AutoSize = true;
+            this.foreverLabel2.BackColor = System.Drawing.Color.Transparent;
+            this.foreverLabel2.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.foreverLabel2.ForeColor = System.Drawing.Color.LightGray;
+            this.foreverLabel2.Location = new System.Drawing.Point(27, 105);
+            this.foreverLabel2.Name = "foreverLabel2";
+            this.foreverLabel2.Size = new System.Drawing.Size(110, 13);
+            this.foreverLabel2.TabIndex = 12;
+            this.foreverLabel2.Text = "Busqueda dinamica:";
+            // 
+            // dgvBusqueda
+            // 
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            this.dgvBusqueda.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvBusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvBusqueda.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvBusqueda.BackgroundColor = System.Drawing.Color.White;
+            this.dgvBusqueda.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvBusqueda.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvBusqueda.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBusqueda.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvBusqueda.ColumnHeadersHeight = 4;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvBusqueda.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvBusqueda.EnableHeadersVisualStyles = false;
+            this.dgvBusqueda.GridColor = System.Drawing.Color.White;
+            this.dgvBusqueda.Location = new System.Drawing.Point(29, 147);
+            this.dgvBusqueda.Name = "dgvBusqueda";
+            this.dgvBusqueda.ReadOnly = true;
+            this.dgvBusqueda.RowHeadersVisible = false;
+            this.dgvBusqueda.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvBusqueda.Size = new System.Drawing.Size(409, 109);
+            this.dgvBusqueda.TabIndex = 11;
+            this.dgvBusqueda.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
+            this.dgvBusqueda.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
+            this.dgvBusqueda.ThemeStyle.AlternatingRowsStyle.Font = null;
+            this.dgvBusqueda.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.dgvBusqueda.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.dgvBusqueda.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.dgvBusqueda.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.dgvBusqueda.ThemeStyle.GridColor = System.Drawing.Color.White;
+            this.dgvBusqueda.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.dgvBusqueda.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvBusqueda.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.dgvBusqueda.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.dgvBusqueda.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.dgvBusqueda.ThemeStyle.HeaderStyle.Height = 4;
+            this.dgvBusqueda.ThemeStyle.ReadOnly = true;
+            this.dgvBusqueda.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
+            this.dgvBusqueda.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvBusqueda.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.dgvBusqueda.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvBusqueda.ThemeStyle.RowsStyle.Height = 22;
+            this.dgvBusqueda.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dgvBusqueda.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvBusqueda.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBusqueda_CellDoubleClick);
+            // 
+            // txbOBusqueda
+            // 
+            this.txbOBusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbOBusqueda.Enabled = false;
+            this.txbOBusqueda.Location = new System.Drawing.Point(29, 121);
+            this.txbOBusqueda.Name = "txbOBusqueda";
+            this.txbOBusqueda.Size = new System.Drawing.Size(409, 20);
+            this.txbOBusqueda.TabIndex = 10;
+            this.txbOBusqueda.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbOBusqueda_KeyPress);
             // 
             // txbClave
             // 
             this.txbClave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbClave.Location = new System.Drawing.Point(225, 90);
+            this.txbClave.Enabled = false;
+            this.txbClave.Location = new System.Drawing.Point(339, 90);
             this.txbClave.Name = "txbClave";
             this.txbClave.Size = new System.Drawing.Size(100, 20);
             this.txbClave.TabIndex = 9;
@@ -132,7 +221,7 @@
             this.foreverLabel1.BackColor = System.Drawing.Color.Transparent;
             this.foreverLabel1.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.foreverLabel1.ForeColor = System.Drawing.Color.LightGray;
-            this.foreverLabel1.Location = new System.Drawing.Point(223, 73);
+            this.foreverLabel1.Location = new System.Drawing.Point(337, 73);
             this.foreverLabel1.Name = "foreverLabel1";
             this.foreverLabel1.Size = new System.Drawing.Size(34, 13);
             this.foreverLabel1.TabIndex = 8;
@@ -149,6 +238,8 @@
             // 
             // gunaGradientTileButton4
             // 
+            this.gunaGradientTileButton4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gunaGradientTileButton4.Animated = true;
             this.gunaGradientTileButton4.AnimationHoverSpeed = 0.07F;
             this.gunaGradientTileButton4.AnimationSpeed = 0.03F;
@@ -163,7 +254,7 @@
             this.gunaGradientTileButton4.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             this.gunaGradientTileButton4.Image = null;
             this.gunaGradientTileButton4.ImageSize = new System.Drawing.Size(100, 80);
-            this.gunaGradientTileButton4.Location = new System.Drawing.Point(29, 117);
+            this.gunaGradientTileButton4.Location = new System.Drawing.Point(91, 84);
             this.gunaGradientTileButton4.Margin = new System.Windows.Forms.Padding(2);
             this.gunaGradientTileButton4.Name = "gunaGradientTileButton4";
             this.gunaGradientTileButton4.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
@@ -173,7 +264,7 @@
             this.gunaGradientTileButton4.OnHoverImage = null;
             this.gunaGradientTileButton4.OnPressedColor = System.Drawing.Color.Black;
             this.gunaGradientTileButton4.Radius = 5;
-            this.gunaGradientTileButton4.Size = new System.Drawing.Size(296, 41);
+            this.gunaGradientTileButton4.Size = new System.Drawing.Size(296, 63);
             this.gunaGradientTileButton4.TabIndex = 21;
             this.gunaGradientTileButton4.Text = "Validar y aceptar";
             this.gunaGradientTileButton4.Click += new System.EventHandler(this.gunaGradientTileButton4_Click);
@@ -189,14 +280,14 @@
             this.gunaShadowPanel2.Controls.Add(this.gunaTextBox3);
             this.gunaShadowPanel2.Controls.Add(this.gunaGradientTileButton4);
             this.gunaShadowPanel2.Controls.Add(this.gunaTextBox2);
-            this.gunaShadowPanel2.Location = new System.Drawing.Point(9, 286);
+            this.gunaShadowPanel2.Location = new System.Drawing.Point(9, 296);
             this.gunaShadowPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.gunaShadowPanel2.Name = "gunaShadowPanel2";
             this.gunaShadowPanel2.Radius = 10;
             this.gunaShadowPanel2.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(183)))), ((int)(((byte)(255)))));
             this.gunaShadowPanel2.ShadowDepth = 50;
             this.gunaShadowPanel2.ShadowShift = 10;
-            this.gunaShadowPanel2.Size = new System.Drawing.Size(352, 166);
+            this.gunaShadowPanel2.Size = new System.Drawing.Size(466, 156);
             this.gunaShadowPanel2.TabIndex = 8;
             // 
             // gunaTextBox1
@@ -233,102 +324,17 @@
             this.gunaTextBox3.TabIndex = 22;
             this.gunaTextBox3.Visible = false;
             // 
-            // txbOBusqueda
-            // 
-            this.txbOBusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbOBusqueda.Location = new System.Drawing.Point(29, 121);
-            this.txbOBusqueda.Name = "txbOBusqueda";
-            this.txbOBusqueda.Size = new System.Drawing.Size(295, 20);
-            this.txbOBusqueda.TabIndex = 10;
-            this.txbOBusqueda.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbOBusqueda_KeyPress);
-            // 
-            // dgvBusqueda
-            // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.dgvBusqueda.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvBusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvBusqueda.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvBusqueda.BackgroundColor = System.Drawing.Color.White;
-            this.dgvBusqueda.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvBusqueda.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dgvBusqueda.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBusqueda.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvBusqueda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvBusqueda.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dgvBusqueda.EnableHeadersVisualStyles = false;
-            this.dgvBusqueda.GridColor = System.Drawing.Color.White;
-            this.dgvBusqueda.Location = new System.Drawing.Point(29, 147);
-            this.dgvBusqueda.Name = "dgvBusqueda";
-            this.dgvBusqueda.ReadOnly = true;
-            this.dgvBusqueda.RowHeadersVisible = false;
-            this.dgvBusqueda.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvBusqueda.Size = new System.Drawing.Size(295, 109);
-            this.dgvBusqueda.TabIndex = 11;
-            this.dgvBusqueda.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
-            this.dgvBusqueda.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
-            this.dgvBusqueda.ThemeStyle.AlternatingRowsStyle.Font = null;
-            this.dgvBusqueda.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
-            this.dgvBusqueda.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
-            this.dgvBusqueda.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
-            this.dgvBusqueda.ThemeStyle.BackColor = System.Drawing.Color.White;
-            this.dgvBusqueda.ThemeStyle.GridColor = System.Drawing.Color.White;
-            this.dgvBusqueda.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.dgvBusqueda.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgvBusqueda.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            this.dgvBusqueda.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.dgvBusqueda.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBusqueda.ThemeStyle.HeaderStyle.Height = 4;
-            this.dgvBusqueda.ThemeStyle.ReadOnly = true;
-            this.dgvBusqueda.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
-            this.dgvBusqueda.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dgvBusqueda.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            this.dgvBusqueda.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            this.dgvBusqueda.ThemeStyle.RowsStyle.Height = 22;
-            this.dgvBusqueda.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvBusqueda.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            this.dgvBusqueda.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBusqueda_CellDoubleClick);
-            // 
-            // foreverLabel2
-            // 
-            this.foreverLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.foreverLabel2.AutoSize = true;
-            this.foreverLabel2.BackColor = System.Drawing.Color.Transparent;
-            this.foreverLabel2.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.foreverLabel2.ForeColor = System.Drawing.Color.LightGray;
-            this.foreverLabel2.Location = new System.Drawing.Point(27, 97);
-            this.foreverLabel2.Name = "foreverLabel2";
-            this.foreverLabel2.Size = new System.Drawing.Size(110, 13);
-            this.foreverLabel2.TabIndex = 12;
-            this.foreverLabel2.Text = "Busqueda dinamica:";
-            // 
             // BusquedasEnt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(370, 461);
+            this.ClientSize = new System.Drawing.Size(484, 461);
             this.Controls.Add(this.gunaShadowPanel2);
             this.Controls.Add(this.gunaShadowPanel1);
             this.KeyPreview = true;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(386, 500);
+            this.MaximumSize = new System.Drawing.Size(500, 500);
             this.MinimumSize = new System.Drawing.Size(386, 400);
             this.Name = "BusquedasEnt";
             this.ShowIcon = false;
@@ -338,8 +344,8 @@
             this.Load += new System.EventHandler(this.BusquedasEnt_Load);
             this.gunaShadowPanel1.ResumeLayout(false);
             this.gunaShadowPanel1.PerformLayout();
-            this.gunaShadowPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBusqueda)).EndInit();
+            this.gunaShadowPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

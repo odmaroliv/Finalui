@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Media;
 using Datos.Datosenti;
+using Datos.ViewModels.Odoo;
 using mainVentana.Helpers;
 using mainVentana.Loading;
 using mainVentana.Properties;
@@ -21,6 +22,7 @@ using mainVentana.vistaConfiguraciones;
 using NAudio.Wave;
 using Negocios;
 using Negocios.Common;
+using Negocios.Odoo;
 
 namespace mainVentana
 {
@@ -155,18 +157,22 @@ namespace mainVentana
 
         private async Task Inicio()
         {
-           /* int result = await ConeccionRed.TestInternet();
+            /* int result = await ConeccionRed.TestInternet();
 
-            // Verificar la conexión a internet
-            if (result != 0)
-            {
-                MessageBox.Show("No hay conexión a internet.");
-                return;
-            }
-           */
+             // Verificar la conexión a internet
+             if (result != 0)
+             {
+                 MessageBox.Show("No hay conexión a internet.");
+                 return;
+             }
+            */
 
             // Validar credenciales de inicio de sesión
             Servicios vld = new Servicios();
+           
+            
+
+
             if (!vld.cargalogin(txbUsr.Text.Trim(), txbPass2.Text.Trim()))
             {
                 MessageBox.Show("Usuario o contraseña incorrectos.");
@@ -176,6 +182,7 @@ namespace mainVentana
             // Obtener configuraciones de correo electrónico
             bool smtp = await vld.ObtieneEmail();
             bool hk = await vld.RingCHook();
+            
             // Mostrar formulario
             using (SoundPlayer player = new SoundPlayer(Properties.Resources.SonidoArsys))
             {

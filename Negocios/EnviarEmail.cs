@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Negocios.Odoo;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,14 +15,14 @@ namespace Negocios
     public class EnviarEmail
     {
 
-        public async Task<int> EnviaMail(string Entrada, string Cliente, string Notraking, string Alias, string OrdCompra, string Noflete, string Proveedor, string Desc, List<string> Archivos, string correosClientes, bool isDano, string idCord = "")
+        public async Task<int> EnviaMail(string Entrada, string Cliente, string Notraking, string Alias, string OrdCompra, string Noflete, string Proveedor, string Desc, List<string> Archivos, string correosClientes, bool isDano, long idCord = 0)
         {
             int bandera = default;
 
             try
             {
-                Negocios.Servicios ng = new Servicios();
-                string correoCord = await ng.obtieneCorreoCord(idCord);
+               OdooClient ng = new OdooClient();
+                var correoCord = await ng.GetUserById(idCord);
 
                 await Task.Run(() =>
                 {

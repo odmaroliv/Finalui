@@ -53,7 +53,9 @@ namespace Datos.ViewModels.Entradas
                public string C108 {get; set;}
                public string C112 { get; set; }
         public string descripcion { get; set; }
+        public string odoosalesp { get; set; }
         public int? tipoEntrada { get; set; }
+        public long? OdooId { get; set; }
 
     }
 }

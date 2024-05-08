@@ -1,11 +1,14 @@
 ﻿using Datos.Datosenti;
 using Datos.ViewModels.Bill;
 using Datos.ViewModels.Carga;
+using Datos.ViewModels.Odoo;
 using Negocios.LOGs;
+using Negocios.Odoo;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.SqlServer;
 using System.Data.Entity.Validation;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,25 +18,29 @@ namespace Negocios.NGBill
     public class BusquedaBill
     {
 
-        public List<VMSalidasBill> SalidasOperacion(string dato, string fecha, string vehiculo)
+        public async Task<List<VMSalidasBill>> SalidasOperacion(OdooClient cliente, string dato, string fecha, string vehiculo)
         {
             try
             {
+             
+                
+
+
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
                     var lista = from d in modelo.KDMENT.AsNoTracking()
                                 join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
-                                join a in modelo.KDUD on k.C10 equals a.C2
-                                join c in modelo.KDM1COMEN on k.C6 equals c.C6
-                                join v in modelo.KDUV on k.C12 equals v.C2
+                                //join a in modelo.KDUD on k.C10 equals a.C2
+                               // join c in modelo.KDM1COMEN on k.C6 equals c.C6
+                                //join v in modelo.KDUV on k.C12 equals v.C2
                                 where d.C9 == dato
                                 select new
                                 {
                                     d,
                                     k,
-                                    a,
-                                    c,
-                                    v
+                                    //a,
+                                   // c,
+                                    
                                 };
 
                     var resultadoPrimeraConsulta = lista.FirstOrDefault();
@@ -41,77 +48,49 @@ namespace Negocios.NGBill
                     if (resultadoPrimeraConsulta != null)
                     {
 
+
+
                         try
                         {
-                            string[] partes = resultadoPrimeraConsulta.k.C115 != null ? resultadoPrimeraConsulta.k.C115.Split('-') : null;
-
-
-                            string rCodigo = (partes != null && partes.Length >= 2) ? partes[1].Trim() : string.Empty;
-                            string rSuc = (partes != null && partes.Length > 0) ? partes[0] : string.Empty;
-
-                            var resultadoSegundaQuery = (from k in modelo.KDM1.AsNoTracking()
-                                                             //join a in modelo.KDFEMTOCFD on k.C30 equals a.C2
-                                                         where k.C4 == 34 && k.C6 == rCodigo && k.C1 == rSuc
-                                                         select new { k.C16, k.C30, k.C40 }).FirstOrDefault();
-
-                            if (resultadoSegundaQuery != null && partes != null)
+                            var coord = new OdooCoordenadas();
+                            var odoo = await cliente.GetProductToBeetrackById(resultadoPrimeraConsulta.k.odooidproduct ?? 0);
+                            if (!String.IsNullOrWhiteSpace(odoo.defaultCoordinates))
                             {
-                                return lista.ToList().Select(x => new VMSalidasBill
-                                {
-                                    ORIGEN = "",
-                                    entrada = x.d.C1.Trim() + "-" + x.d.C6,
-                                    etiqueta = x.d.C9,
-                                    Direccion = x.d.C25.Trim() + ", " + x.d.C26.Trim() + ", " + x.d.C27.Trim(),
-                                    NOMBREITEM = x.d.C42.Trim(),
-                                    CANTIDAD = "1",
-                                    fechamin = fecha,
-                                    fechamax = fecha,
-                                    idcontacto = x.k.C10,
-                                    nomcotacto = x.k.C32,
-                                    EMAIL = x.a.C11,
-                                    Telefono = x.d.C29,
-                                    VEHICULO = vehiculo,
-                                    Pago = x.c.C13,
-                                    Quote = x.k.C115,
-                                    Bill = x.d.C34,
-                                    Coordinador = x.v.C3,
-                                    TServicio = x.k.C101,
-                                    Tpago = string.IsNullOrWhiteSpace(resultadoSegundaQuery.C30) ? string.Empty : resultadoSegundaQuery.C30.ToString(),
-                                    CantidaDlls = (decimal)(resultadoSegundaQuery.C16 != null ? resultadoSegundaQuery.C16 : 0),
-                                    Paridad = Math.Truncate((double)(resultadoSegundaQuery.C40 != null ? resultadoSegundaQuery.C40 : 0) * 100) / 100,
-                                    Alias = string.IsNullOrWhiteSpace(x.d.C24) ? x.k.C112 : x.d.C24,
-
-                                }).ToList();
-
+                                coord = ParseCoordenada(odoo.defaultCoordinates);
                             }
-                            else
+                            
+
+
+                            return lista.ToList().Select(x => new VMSalidasBill
                             {
-                                return lista.ToList().Select(x => new VMSalidasBill
-                                {
-                                    ORIGEN = "",
-                                    entrada = x.d.C1.Trim() + "-" + x.d.C6,
-                                    etiqueta = x.d.C9,
-                                    Direccion = x.d.C25.Trim() + ", " + x.d.C26.Trim() + ", " + x.d.C27.Trim(),
-                                    NOMBREITEM = x.d.C42.Trim(),
-                                    CANTIDAD = "1",
-                                    fechamin = fecha,
-                                    fechamax = fecha,
-                                    idcontacto = x.k.C10,
-                                    nomcotacto = x.k.C32,
-                                    EMAIL = x.a.C11,
-                                    Telefono = x.d.C29,
-                                    VEHICULO = vehiculo,
-                                    Pago = x.c.C13,
-                                    Quote = x.k.C115,
-                                    Bill = x.d.C34,
-                                    Coordinador = x.v.C3,
-                                    TServicio = x.k.C101,
-                                    Tpago = "",
-                                    CantidaDlls = 0,
-                                    Paridad = 0,
-                                    Alias = string.IsNullOrWhiteSpace(x.d.C24) ? x.k.C112 : x.d.C24,
-                                }).ToList();
-                            }
+                                ORIGEN = "",
+                                entrada = x.d.C1.Trim() + "-" + x.d.C6,
+                                etiqueta = x.d.C9,
+                                Direccion = odoo.contactAddress,
+                                NOMBREITEM = x.d.C42.Trim(),
+                                CANTIDAD = "1",
+                                fechamin = fecha,
+                                fechamax = fecha,
+                                idcontacto = odoo.idContacto.ToString(),
+                                nomcotacto = odoo.name,
+                                EMAIL = odoo.email,
+                                Telefono = odoo.phone,
+                                VEHICULO = vehiculo,
+                                LATITUD = coord.Latitud??"",
+                                LONGITUD = coord.Longitud??"",
+                                // Pago = x.c.C13,
+                                // Quote = x.k.C115,
+                                //  Bill = x.d.C34,
+                                Coordinador = odoo.salesUserName,
+                                // TServicio = x.k.C101,
+                                Tpago = odoo.tipoPago,
+                                OdooId = odoo.idProducto.ToString(),
+                                Nota = odoo.description_sale
+                                //CantidaDlls = (decimal)(resultadoSegundaQuery.C16 != null ? resultadoSegundaQuery.C16 : 0),
+                                //Paridad = Math.Truncate((double)(resultadoSegundaQuery.C40 != null ? resultadoSegundaQuery.C40 : 0) * 100) / 100,
+                                //Alias = string.IsNullOrWhiteSpace(x.d.C24) ? x.k.C112 : x.d.C24,
+
+                            }).ToList();
 
                         }
                         catch (Exception ex)
@@ -151,6 +130,33 @@ namespace Negocios.NGBill
             }
         }
 
+        public static OdooCoordenadas ParseCoordenada(string input)
+        {
+           
+            try
+            {
+               
+                // Limpiar la cadena de entrada removiendo espacios y caracteres no deseados
+                string cleanedInput = new string(Array.FindAll<char>(input.ToCharArray(), (c => (char.IsDigit(c) || c == '.' || c == ',' || c == '-'))));
+
+                // Dividir la cadena en base a la coma
+                string[] parts = cleanedInput.Split(',');
+
+                if (parts.Length != 2)
+                {
+                    throw new ArgumentException("Formato de entrada no válido. Debe ser 'latitud, longitud'");
+                }
+
+
+                return new OdooCoordenadas { Latitud = parts[0].Trim(), Longitud = parts[1].Trim() };
+            }
+            catch (Exception)
+            {
+
+                return new OdooCoordenadas();
+            }
+           
+        }
 
         public void RealizarConsultaSinSentido()
         {
@@ -158,7 +164,8 @@ namespace Negocios.NGBill
             {
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
-                    SalidasOperacion("SD-001235-1", "", "Test");
+                    OdooClient odooClient = new OdooClient();
+                    SalidasOperacion(odooClient,"SD-001235-1", "", "Test");
                 }
             }
             catch (Exception)
@@ -166,7 +173,7 @@ namespace Negocios.NGBill
                 throw;
             }
         }
-        public async Task<bool> ModificaKDMENTToBill(string etiqueta)
+        public async Task<bool> ModificaKDMENTToBill(string etiqueta, string guid)
         {
             using (modelo2Entities modelo = new modelo2Entities())
             {
@@ -178,7 +185,7 @@ namespace Negocios.NGBill
 
                     if (d != null)
                     {
-                        d.C46 = "BTRACKSALIDA";
+                        d.C46 =!String.IsNullOrWhiteSpace(guid)? guid : "BTRACKSALIDA";
                         d.C77 = DateTime.Now.ToString("MM/dd/yyyy");
                         await modelo.SaveChangesAsync();
                         GeneralMovimientosLog.AddMovimientoConParametrosDirectos(GeneralMovimientosLog.ObtenerFolioDesdeEtiqueta(etiqueta), 35, etiqueta, 60, "BTRACKSALIDA", "", "", "", "Scanea");

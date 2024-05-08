@@ -27,11 +27,11 @@ namespace Negocios
                 System.Windows.Forms.MessageBox.Show("El campo de Tipo de operacion no puede estar vacio", "Error");
                 return false;
             }
-            if( cord == null || cord == "")
+          /*  if( cord == null || cord == "")
             {
                 System.Windows.Forms.MessageBox.Show("La entrada no puede quedar sin un coordinador, es necesario se le asigne uno, ya que de lo contrario no se podra dar salida de esta mercancia","Falta Asignar Coordinador");
                 return false;
-            }
+            }*/
             if(cliente == null || cliente == "")
             {
                 System.Windows.Forms.MessageBox.Show("El campo cliente no puede esta vacio", "Falta el campo cliente");

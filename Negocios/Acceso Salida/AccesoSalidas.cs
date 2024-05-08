@@ -381,9 +381,8 @@ namespace Negocios.Acceso_Salida
                         {
                             lst2.Clear();
                             var oDocument = (from q in modelo.KDMENT
-                                             join k in modelo.KDM1 on new { q.C1, q.C4, q.C6 } equals new { k.C1, k.C4, k.C6 }
-                                             join a in modelo.KDUV on k.C12 equals a.C2
-                                             join u in modelo.KDUSUARIOS on a.C22 equals u.C1
+                                             //join k in modelo.KDM1 on new { q.C1, q.C4, q.C6 } equals new { k.C1, k.C4, k.C6 }
+                                             //join a in modelo.KDUV on k.C12 equals a.C2
                                              where q.C64.Contains(salida)
 
                                              //group k by q.C55 into g
@@ -393,7 +392,7 @@ namespace Negocios.Acceso_Salida
                                              {
                                                  Documento = q.C9,
                                                  Referencia = q.C67,
-                                                 correo = u.C9,
+                                                 //correo = u.C9,
                                              }).ToList();
 
                             lst2 = oDocument;
@@ -431,8 +430,8 @@ namespace Negocios.Acceso_Salida
                             lst2.Clear();
                             var oDocument = (from q in modelo.KDMENT
                                              join k in modelo.KDM1 on new { q.C1, q.C4, q.C6 } equals new { k.C1, k.C4, k.C6 }
-                                             join a in modelo.KDUV on k.C12 equals a.C2
-                                             join u in modelo.KDUSUARIOS on a.C22 equals u.C1
+                                             //join a in modelo.KDUV on k.C12 equals a.C2
+                                             //join u in modelo.KDUSUARIOS on a.C22 equals u.C1
                                              where q.C55.Contains(salida)
 
                                              //group k by q.C55 into g
@@ -442,7 +441,7 @@ namespace Negocios.Acceso_Salida
                                              {
                                                  Documento = q.C9,
                                                  Referencia = q.C54,
-                                                 correo = u.C9
+                                                // correo = u.C9
                                              }).ToList();
 
                             lst2 = oDocument;
@@ -580,17 +579,22 @@ namespace Negocios.Acceso_Salida
 
                 using (var modelo = new modelo2Entities())
                 {
-                    // AsNoTracking para mejorar el rendimiento kshi k kshi k
-                    var query = modelo.KDMENT.AsNoTracking()
-                        .Where(d => d.C1.StartsWith(sori) && d.C4 == 35 && d.C9.StartsWith(stiqueta))
-                        .Join(modelo.KDM1, d => new { d.C1, d.C4, d.C6 }, k => new { k.C1, k.C4, k.C6 }, (d, k) => new { d, k })
-                        .Join(modelo.KDUV, dk => dk.k.C12, a => a.C2, (dk, a) => new { dk, a })
-                        .Join(modelo.KDUSUARIOS, da => da.a.C22, u => u.C1, (da, u) => new vmAuxiliaresSalidas
-                        {
-                            Correo = u.C9,
-                            orden = sorigen == "TJ" ? da.dk.d.C67 : da.dk.d.C16,
-                            Etiqueta = da.dk.d.C9
-                        });
+                     var query = modelo.KDMENT.AsNoTracking()
+                .Join(
+                    modelo.KDM1,                    // La tabla con la que quieres hacer join
+                    kdment => new { kdment.C1, kdment.C6 },  // Claves de la primera tabla
+                    kdm1 => new { kdm1.C1, kdm1.C6 },        // Claves de la segunda tabla
+                    (kdment, kdm1) => new { KDMENT = kdment, KDM1 = kdm1 }  // Resultado del join
+                )
+                .Where(joined => joined.KDMENT.C1.StartsWith(sori) && joined.KDMENT.C4 == 35 && joined.KDMENT.C9.StartsWith(stiqueta))
+                .Select(joined => new vmAuxiliaresSalidas
+                {
+                    orden = sorigen == "TJ" ? joined.KDMENT.C67 : joined.KDMENT.C16,
+                    Etiqueta = joined.KDMENT.C9,
+                    Correo = "",  // Aquí puedes usar algún campo de joined.KDM1 si es necesario
+                    OdooIdProductos = (long)joined.KDM1.odooidproduct  // Asumiendo que hay un campo OdooId en KDM1
+                });
+
 
 
                     var lst = query.FirstOrDefault();

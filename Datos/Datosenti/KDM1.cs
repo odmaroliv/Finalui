@@ -131,5 +131,7 @@ namespace Datos.Datosenti
         public string C115 { get; set; }
         public string C116 { get; set; }
         public Nullable<int> TipoEntradaID { get; set; }
+        public Nullable<long> odooidproduct { get; set; }
+        public string odoosalesp { get; set; }
     }
 }

@@ -96,5 +96,7 @@ namespace Datos.Datosenti
         public string C80 { get; set; }
         public string C81 { get; set; }
         public Nullable<int> IDinventario { get; set; }
+        public Nullable<long> odooidproduct { get; set; }
+        public string odoosalesp { get; set; }
     }
 }

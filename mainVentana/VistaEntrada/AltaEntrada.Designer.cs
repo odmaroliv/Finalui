@@ -146,6 +146,8 @@
             this.lblBuscarEnt = new System.Windows.Forms.Label();
             this.btnBuscarEnt = new Guna.UI.WinForms.GunaCircleButton();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.lblNoOdoo = new System.Windows.Forms.Label();
+            this.lblParentName = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDocs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFotosModifi)).BeginInit();
@@ -501,6 +503,7 @@
             this.gunaTileButton2.BaseColor = System.Drawing.Color.Blue;
             this.gunaTileButton2.BorderColor = System.Drawing.Color.Black;
             this.gunaTileButton2.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.gunaTileButton2.Enabled = false;
             this.gunaTileButton2.FocusedColor = System.Drawing.Color.Empty;
             this.gunaTileButton2.Font = new System.Drawing.Font("Segoe UI Light", 15.75F, System.Drawing.FontStyle.Bold);
             this.gunaTileButton2.ForeColor = System.Drawing.Color.White;
@@ -516,6 +519,7 @@
             this.gunaTileButton2.Size = new System.Drawing.Size(139, 35);
             this.gunaTileButton2.TabIndex = 110;
             this.gunaTileButton2.Text = "Buscar";
+            this.gunaTileButton2.Visible = false;
             this.gunaTileButton2.Click += new System.EventHandler(this.gunaTileButton2_Click);
             // 
             // cliente
@@ -1253,6 +1257,7 @@
             // groupBox6
             // 
             this.groupBox6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox6.Controls.Add(this.lblNoOdoo);
             this.groupBox6.Controls.Add(this.cbxDano);
             this.groupBox6.Controls.Add(this.bntImpEntC);
             this.groupBox6.Controls.Add(this.mdfImg);
@@ -1745,12 +1750,36 @@
             this.btnBuscarEnt.Visible = false;
             this.btnBuscarEnt.Click += new System.EventHandler(this.btnBuscarEnt_Click);
             // 
+            // lblNoOdoo
+            // 
+            this.lblNoOdoo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblNoOdoo.Enabled = false;
+            this.lblNoOdoo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoOdoo.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblNoOdoo.Location = new System.Drawing.Point(172, 16);
+            this.lblNoOdoo.Name = "lblNoOdoo";
+            this.lblNoOdoo.Size = new System.Drawing.Size(117, 22);
+            this.lblNoOdoo.TabIndex = 132;
+            this.lblNoOdoo.Text = "Odoo";
+            // 
+            // lblParentName
+            // 
+            this.lblParentName.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblParentName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblParentName.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblParentName.Location = new System.Drawing.Point(22, 14);
+            this.lblParentName.Name = "lblParentName";
+            this.lblParentName.Size = new System.Drawing.Size(104, 25);
+            this.lblParentName.TabIndex = 132;
+            this.lblParentName.Text = "Moneda";
+            // 
             // AltaEntrada
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.ClientSize = new System.Drawing.Size(1238, 713);
+            this.Controls.Add(this.lblParentName);
             this.Controls.Add(this.btnBuscarEnt);
             this.Controls.Add(this.lblBuscarEnt);
             this.Controls.Add(this.txbBuscarEnt);
@@ -1907,5 +1936,7 @@
         private ReaLTaiizor.Controls.CheckBox cbxDestinoModify;
         private ReaLTaiizor.Controls.CheckBox cbxDano;
         private System.Windows.Forms.ComboBox cmbTipoEnt;
+        private System.Windows.Forms.Label lblNoOdoo;
+        private System.Windows.Forms.Label lblParentName;
     }
 }

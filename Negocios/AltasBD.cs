@@ -13,20 +13,21 @@ using Datos.ViewModels.Coord;
 using Negocios.LOGs;
 using Negocios.Odoo;
 using Datos.ViewModels.Odoo;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace Negocios
 {
     public class AltasBD
     {
-        public void agregaKDM1(string sucInicial, string entrada, string Moneda, DateTime fecha, string noCliente,
+        public async Task agregaKDM1(modelo2Entities context,string sucInicial, string entrada, string Moneda, DateTime fecha, string noCliente,
             string noCord, string valArn, string nomCliente, string calle, string colonia, string ciudadcodigozip, string valFact,
             string paridad, string noTrakin, string provedor, string orCompra, string noFlete, string noUnidades, string tipUnidad, string peso,
-            string unidadMedida, string tipOperacion, string sucDestino, string bultos, string Alias, string nota, string referencia, string isDano, int tpoEntrada)
+            string unidadMedida, string tipOperacion, string sucDestino, string bultos, string Alias, string nota, string referencia, string isDano, int tpoEntrada,long idOdoo, string salesodop)
         {
             try
             {
-                using (modelo2Entities modelo = new modelo2Entities())
-                {
+               
                     var d = new KDM1();
                     d.C1 = sucInicial.Trim();
                     d.C2 = "U";
@@ -71,10 +72,12 @@ namespace Negocios
                     d.C108 = bultos;
                     d.C112 = Alias.Trim();
                     d.TipoEntradaID = tpoEntrada;
-                    modelo.KDM1.Add(d);
-                    modelo.SaveChanges();
+                    d.odooidproduct = idOdoo;
+                d.odoosalesp = salesodop;
+                    context.KDM1.Add(d);
+                    //await context.SaveChangesAsync();
 
-                }
+                
             }
             catch (DbEntityValidationException e)
             {
@@ -100,17 +103,15 @@ namespace Negocios
             }
 
         }
-        public void ActualizaSqlIov(string datoSucIni, int modo, string dato = null)
+        public async Task ActualizaSqlIov(modelo2Entities context,string datoSucIni, int modo, string dato = null)
         {
 
 
             string br = "KFUD" + modo + "01." + datoSucIni;
-            using (modelo2Entities modelo = new modelo2Entities())
-            {
-
+            
                 try
                 {
-                    modelo.aumentaSQLint(br, modo.ToString().Trim());
+                    context.aumentaSQLint(br, modo.ToString().Trim());
                 }
                 catch (Exception ex)
                 {
@@ -118,7 +119,7 @@ namespace Negocios
                     System.Windows.Forms.MessageBox.Show("Ha Ocurrido un error, datos faltantes o incorrectos.");
                     throw;
                 }
-            }
+            
         }
 
         //TODO: implementar este metodo para la creacion de la entrada en odoo
@@ -164,44 +165,125 @@ namespace Negocios
 
         }
 
-        public void agregaKDMENT(string sucInicio, string folEntrada, string numEtiqueta, string documento, string etiqueta, string sucDestino, string sucActual, string desc, string fecha,
-            int repEspecial, int modo, string proceso)
+        public async Task AgregaKDMEntries(modelo2Entities context, List<KDMEntry> entries)
         {
             try
             {
-                using (modelo2Entities modelo = new modelo2Entities())
+                foreach (var entry in entries)
                 {
-                    modelo.AgregaKDMENT(
-                        sucInicio,
-                        "U",
-                        "D",
-                        "35",
-                        "1",
-                        folEntrada,
-                        numEtiqueta,
-                        documento,
-                        etiqueta,
-                        sucDestino,
-                        sucActual,
-                        desc,
-                        fecha,
-                        "E",
-                        "E",
-                        "E",
-                        "ESPECIAL",
-                        "ESPECIAL",
-                        "ESPECIAL",
-                        "F",
-                        repEspecial,
-                        modo,
-                        proceso,
+                  /*  context.AgregaKDMENT(
+                        entry.SucInicio, "U", "D", "35", "1", entry.FolEntrada, entry.NumEtiqueta,
+                        entry.Documento, entry.Etiqueta, entry.SucDestino, entry.SucActual,
+                        entry.Desc, entry.Fecha.ToString("MM/dd/yyyy HH:mm:ss"), "E", "E", "E",
+                        "ESPECIAL", "ESPECIAL", "ESPECIAL", "F", entry.RepEspecial, entry.Modo, entry.Proceso,
                         null, null, null, null, null, null, null, null, null, null, null, null, null
-
-                        );
-
-                    modelo.SaveChanges();
-
+                    );*/
                 }
+            }
+            catch (DbEntityValidationException e)
+            {
+                // Manejo de errores
+                throw;
+            }
+        }
+
+        public async Task agregaKDMENTOld(modelo2Entities context, string sucInicio, string folEntrada, string numEtiqueta, string documento, string etiqueta, string sucDestino, string sucActual, string desc, string fecha,
+           int repEspecial, int modo, string proceso, long odooProductId, string odooSalesP)
+        {
+
+            var parametros = new[]
+{
+    new SqlParameter("@SUC", sucInicio ?? (object)DBNull.Value),
+    new SqlParameter("@GEN", "U" ?? (object)DBNull.Value),
+    new SqlParameter("@NAT", "D" ?? (object)DBNull.Value),
+    new SqlParameter("@GRU", "35" ?? (object)DBNull.Value),
+    new SqlParameter("@TIP", "1" ?? (object)DBNull.Value),
+    new SqlParameter("@FOL", folEntrada ?? (object)DBNull.Value),
+    new SqlParameter("@PARTIDA", numEtiqueta ?? (object)DBNull.Value),
+    new SqlParameter("@DOCUMENTO", documento ?? (object)DBNull.Value),
+    new SqlParameter("@ETIQUETA", etiqueta ?? (object)DBNull.Value),
+    new SqlParameter("@SUCD", sucDestino ?? (object)DBNull.Value),
+    new SqlParameter("@SUCA", sucActual ?? (object)DBNull.Value),
+    new SqlParameter("@DESC", desc ?? (object)DBNull.Value),
+    new SqlParameter("@FECHA_HORA",fecha ?? (object)DBNull.Value),
+    new SqlParameter("@C11", "E" ?? (object)DBNull.Value),
+    new SqlParameter("@C12", "E" ?? (object)DBNull.Value),
+    new SqlParameter("@C13", "E" ?? (object)DBNull.Value),
+    new SqlParameter("@C16", "ESPECIAL" ?? (object)DBNull.Value),
+    new SqlParameter("@C17", "ESPECIAL" ?? (object)DBNull.Value),
+    new SqlParameter("@C18", "ESPECIAL" ?? (object)DBNull.Value),
+    new SqlParameter("@C20", "N" ?? (object)DBNull.Value),
+    new SqlParameter("@ESPECIAL",repEspecial),
+    new SqlParameter("@MODO", modo) { Value = 0 },
+    new SqlParameter("@PROCESO", "OE" ?? (object)DBNull.Value),
+    new SqlParameter("@PROCESO_DOCTO", DBNull.Value),
+    new SqlParameter("@PROCESO_FECHA_HORA", DBNull.Value),
+    new SqlParameter("@AGREGADO", DBNull.Value),
+    new SqlParameter("@ESTATUS", DBNull.Value),
+    new SqlParameter("@FECHA_ES", DBNull.Value),
+    new SqlParameter("@ID_DIR", DBNull.Value),
+    new SqlParameter("@DIRECCION", DBNull.Value), //ahora sera el nombre del vendedor
+    new SqlParameter("@COLONIA", DBNull.Value),
+    new SqlParameter("@POBLACION", DBNull.Value),
+    new SqlParameter("@CP", DBNull.Value),
+    new SqlParameter("@TEL1", DBNull.Value),
+    new SqlParameter("@TEL2", DBNull.Value),
+    new SqlParameter("@SUC_GRID", DBNull.Value),
+    new SqlParameter("@SALES_USER_ODO", odooSalesP ?? (object)DBNull.Value),
+    new SqlParameter("@@PRODUCT_ID_ODO", odooProductId),
+};
+            try
+            {
+                int filasAfectadas =await context.Database.ExecuteSqlCommandAsync("EXEC AgregaKDMENT @SUC, @GEN, @NAT, @GRU, @TIP, @FOL, @PARTIDA, @DOCUMENTO, @ETIQUETA, @SUCD, @SUCA, @DESC, @FECHA_HORA, @C11, @C12, @C13, @C16, @C17, @C18, @C20, @ESPECIAL, @MODO, @PROCESO, @PROCESO_DOCTO, @PROCESO_FECHA_HORA, @AGREGADO, @ESTATUS, @FECHA_ES, @ID_DIR, @DIRECCION, @COLONIA, @POBLACION, @CP, @TEL1, @TEL2, @SUC_GRID", parametros);
+                if (filasAfectadas<=0)
+                {
+                    throw new ArgumentException($"No se actualizo esta entrada: {numEtiqueta}");
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+/*
+            try
+            {
+
+                context.AgregaKDMENT(
+                    sucInicio,
+                    "U",
+                    "D",
+                    "35",
+                    "1",
+                    folEntrada,
+                    numEtiqueta,
+                    documento,
+                    etiqueta,
+                    sucDestino,
+                    sucActual,
+                    desc,
+                    fecha,
+                    "E",
+                    "E",
+                    "E",
+                    "ESPECIAL",
+                    "ESPECIAL",
+                    "ESPECIAL",
+                    "F",
+                    repEspecial,
+                    modo,
+                    proceso,
+                    null, null, null, null, null, null, null, null, null, null, null, null, null
+
+                    );
+
+                 context.SaveChanges();
+
+
             }
             catch (DbEntityValidationException e)
             {
@@ -220,7 +302,7 @@ namespace Negocios
                     }
                 }
                 throw;
-            }
+            }*/
         }
 
         public void UpdateKDM1(string id, string sucursaldestino, string cord, string notas, string referencia, string pagado, string tipooperacion, string valfact, string valarn, string sucursalOrigen,string noFlete, string datoOrConpra,

@@ -1,5 +1,6 @@
 ﻿using Datos.ViewModels.Entradas;
 using Negocios;
+using Negocios.Odoo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -139,12 +140,12 @@ namespace mainVentana.VistaEntrada
             {
                 int cantidadBultos = datosLista.Count + Convert.ToInt32(nFilas);
                 BajaDB baja = new BajaDB();
-               bool estus = await baja.BorraEtiquitas(listaNueva);
+                OdooClient od= new OdooClient();
+                bool estus = await baja.BorraEtiquitas(listaNueva);
                 if (estus == true)
                 {
                     pasado(cantidadBultos.ToString());
                     await baja.ActualizaBultos(entrada, suOrigen, cantidadBultos.ToString());
-
                     MessageBox.Show("Se han agregado las " + nFilas + " etiquetas satisfactoriamente \nIMPORTANTE \nVuelve a buscar la entrada para observar los resultados y poder imprimir", "successful", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
                 else

@@ -60,7 +60,7 @@ namespace Datos.Datosenti
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<NO_RASTREO_Result>("NO_RASTREO", noRastCrearParameter);
         }
     
-        public virtual int AgregaKDMENT(string sUC, string gEN, string nAT, string gRU, string tIP, string fOL, string pARTIDA, string dOCUMENTO, string eTIQUETA, string sUCD, string sUCA, string dESC, string fECHA_HORA, string c11, string c12, string c13, string c16, string c17, string c18, string c20, Nullable<int> eSPECIAL, Nullable<int> mODO, string pROCESO, string pROCESO_DOCTO, string pROCESO_FECHA_HORA, string aGREGADO, string eSTATUS, string fECHA_ES, string iD_DIR, string dIRECCION, string cOLONIA, string pOBLACION, string cP, string tEL1, string tEL2, string sUC_GRID)
+        public virtual int AgregaKDMENT(string sUC, string gEN, string nAT, string gRU, string tIP, string fOL, string pARTIDA, string dOCUMENTO, string eTIQUETA, string sUCD, string sUCA, string dESC, string fECHA_HORA, string c11, string c12, string c13, string c16, string c17, string c18, string c20, Nullable<int> eSPECIAL, Nullable<int> mODO, string pROCESO, string pROCESO_DOCTO, string pROCESO_FECHA_HORA, string aGREGADO, string eSTATUS, string fECHA_ES, string iD_DIR, string dIRECCION, string cOLONIA, string pOBLACION, string cP, string tEL1, string tEL2, string sUC_GRID, string sALES_USER_ODO, Nullable<long> pRODUCT_ID_ODO)
         {
             var sUCParameter = sUC != null ?
                 new ObjectParameter("SUC", sUC) :
@@ -206,7 +206,15 @@ namespace Datos.Datosenti
                 new ObjectParameter("SUC_GRID", sUC_GRID) :
                 new ObjectParameter("SUC_GRID", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AgregaKDMENT", sUCParameter, gENParameter, nATParameter, gRUParameter, tIPParameter, fOLParameter, pARTIDAParameter, dOCUMENTOParameter, eTIQUETAParameter, sUCDParameter, sUCAParameter, dESCParameter, fECHA_HORAParameter, c11Parameter, c12Parameter, c13Parameter, c16Parameter, c17Parameter, c18Parameter, c20Parameter, eSPECIALParameter, mODOParameter, pROCESOParameter, pROCESO_DOCTOParameter, pROCESO_FECHA_HORAParameter, aGREGADOParameter, eSTATUSParameter, fECHA_ESParameter, iD_DIRParameter, dIRECCIONParameter, cOLONIAParameter, pOBLACIONParameter, cPParameter, tEL1Parameter, tEL2Parameter, sUC_GRIDParameter);
+            var sALES_USER_ODOParameter = sALES_USER_ODO != null ?
+                new ObjectParameter("SALES_USER_ODO", sALES_USER_ODO) :
+                new ObjectParameter("SALES_USER_ODO", typeof(string));
+    
+            var pRODUCT_ID_ODOParameter = pRODUCT_ID_ODO.HasValue ?
+                new ObjectParameter("PRODUCT_ID_ODO", pRODUCT_ID_ODO) :
+                new ObjectParameter("PRODUCT_ID_ODO", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AgregaKDMENT", sUCParameter, gENParameter, nATParameter, gRUParameter, tIPParameter, fOLParameter, pARTIDAParameter, dOCUMENTOParameter, eTIQUETAParameter, sUCDParameter, sUCAParameter, dESCParameter, fECHA_HORAParameter, c11Parameter, c12Parameter, c13Parameter, c16Parameter, c17Parameter, c18Parameter, c20Parameter, eSPECIALParameter, mODOParameter, pROCESOParameter, pROCESO_DOCTOParameter, pROCESO_FECHA_HORAParameter, aGREGADOParameter, eSTATUSParameter, fECHA_ESParameter, iD_DIRParameter, dIRECCIONParameter, cOLONIAParameter, pOBLACIONParameter, cPParameter, tEL1Parameter, tEL2Parameter, sUC_GRIDParameter, sALES_USER_ODOParameter, pRODUCT_ID_ODOParameter);
         }
     
         public virtual int AgregaKDMENT_Rev(string sUC, string gEN, string nAT, string gRU, string tIP, string fOL, string eTIQUETA, string c41, string c42, string c43, string c44, string c45, Nullable<int> mODO, string pROCESO)
