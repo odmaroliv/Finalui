@@ -217,7 +217,7 @@ namespace Negocios.NGReportes
                                            && k.C4 == 35
                                           && (d.C20 == "F" || d.C20 == "PR")
                                          
-                                          && (!String.IsNullOrEmpty(k.C115) || u.C32 == "1")
+                                          //&& (!String.IsNullOrEmpty(k.C115) || u.C32 == "1")
                                           && String.IsNullOrEmpty(d.C45)
                                           && String.IsNullOrEmpty(d.C34)
                                          // && k.C12 == idUsuario
@@ -248,7 +248,7 @@ namespace Negocios.NGReportes
                                            && k.C4 == 35
                                           && (d.C20 == "F" || d.C20 == "PR")
                                          
-                                          && (!String.IsNullOrEmpty(k.C115) || u.C32 == "1")
+                                          //&& (!String.IsNullOrEmpty(k.C115) || u.C32 == "1")
                                           && String.IsNullOrEmpty(d.C45)
                                           && String.IsNullOrEmpty(d.C34)
                                           && k.C12 == idUsuario
@@ -288,7 +288,7 @@ namespace Negocios.NGReportes
                                             fechaentrada = d.C69,
                                             cliente = k.C32,
                                             noCli = k.C10,
-                                            Cotizacion = k.C115,
+                                            //Cotizacion = k.C115,
                                             SucursalInicio = d.C1,
                                             valFact = k.C102,
                                             valArn = (k.C16 != null) ? k.C16.ToString() : null, // Convierte solo si no es nulo
