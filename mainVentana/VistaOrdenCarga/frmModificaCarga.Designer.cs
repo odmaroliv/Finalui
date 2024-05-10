@@ -119,6 +119,7 @@
             this.hopeSwitch1.BaseOffColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(223)))), ((int)(((byte)(230)))));
             this.hopeSwitch1.BaseOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
             this.hopeSwitch1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.hopeSwitch1.Enabled = false;
             this.hopeSwitch1.ForeColor = System.Drawing.Color.White;
             this.hopeSwitch1.Location = new System.Drawing.Point(818, 32);
             this.hopeSwitch1.Name = "hopeSwitch1";
@@ -126,6 +127,7 @@
             this.hopeSwitch1.TabIndex = 30;
             this.hopeSwitch1.Text = "hopeSwitch1";
             this.hopeSwitch1.UseVisualStyleBackColor = false;
+            this.hopeSwitch1.Visible = false;
             this.hopeSwitch1.CheckedChanged += new System.EventHandler(this.hopeSwitch1_CheckedChanged);
             // 
             // loadControl1

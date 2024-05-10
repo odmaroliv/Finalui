@@ -53,7 +53,7 @@ namespace Negocios.NGBill
                         try
                         {
                             var coord = new OdooCoordenadas();
-                            var odoo = await cliente.GetProductToBeetrackById(resultadoPrimeraConsulta.k.odooidproduct ?? 0);
+                            OdooToBeeModel odoo = await cliente.GetProductToBeetrackById(resultadoPrimeraConsulta.k.odooidproduct ?? 0);
                             if (!String.IsNullOrWhiteSpace(odoo.defaultCoordinates))
                             {
                                 coord = ParseCoordenada(odoo.defaultCoordinates);
@@ -66,26 +66,26 @@ namespace Negocios.NGBill
                                 ORIGEN = "",
                                 entrada = x.d.C1.Trim() + "-" + x.d.C6,
                                 etiqueta = x.d.C9,
-                                Direccion = odoo.contactAddress,
+                                Direccion = odoo?.contactAddress ??"",
                                 NOMBREITEM = x.d.C42.Trim(),
                                 CANTIDAD = "1",
                                 fechamin = fecha,
                                 fechamax = fecha,
-                                idcontacto = odoo.idContacto.ToString(),
-                                nomcotacto = odoo.name,
-                                EMAIL = odoo.email,
-                                Telefono = odoo.phone,
+                                idcontacto = odoo?.idContacto.ToString() ?? "",
+                                nomcotacto = odoo?.name ?? "",
+                                EMAIL = odoo?.email ?? "",
+                                Telefono = odoo?.phone ?? "",
                                 VEHICULO = vehiculo,
-                                LATITUD = coord.Latitud??"",
-                                LONGITUD = coord.Longitud??"",
+                                LATITUD = coord?.Latitud??"",
+                                LONGITUD = coord?.Longitud??"",
                                 // Pago = x.c.C13,
                                 // Quote = x.k.C115,
                                 //  Bill = x.d.C34,
-                                Coordinador = odoo.salesUserName,
+                                Coordinador = odoo?.salesUserName ??"",
                                 // TServicio = x.k.C101,
-                                Tpago = odoo.tipoPago,
-                                OdooId = odoo.idProducto.ToString(),
-                                Nota = odoo.description_sale
+                                Tpago = odoo?.tipoPago ?? "",
+                                OdooId = odoo?.idProducto.ToString() ?? "",
+                                Nota = odoo?.description_sale ?? ""
                                 //CantidaDlls = (decimal)(resultadoSegundaQuery.C16 != null ? resultadoSegundaQuery.C16 : 0),
                                 //Paridad = Math.Truncate((double)(resultadoSegundaQuery.C40 != null ? resultadoSegundaQuery.C40 : 0) * 100) / 100,
                                 //Alias = string.IsNullOrWhiteSpace(x.d.C24) ? x.k.C112 : x.d.C24,

@@ -133,28 +133,29 @@ namespace Negocios.Odoo
         }
         public async Task<OdooToBeeModel> GetProductToBeetrackById(long productId)
         {
+            OdooToBeeModel retu = new OdooToBeeModel();
             try
             {
-
+                
                 HttpResponseMessage response = await _client.GetAsync($"api/OdooClient/GetProductTemplanteById?productId={productId}");
                 if (response.IsSuccessStatusCode)
                 {
                     string content = await response.Content.ReadAsStringAsync();
                     var client = JsonConvert.DeserializeObject<OdooToBeeModel>(content);
                     if (client == null)
-                        return null;
+                        return retu;
 
 
                     return client;
                 }
                 else
                 {
-                    return null;
+                    return retu;
                 }
             }
             catch (Exception ex)
             {
-                return null;
+                return retu;
             }
         }
 

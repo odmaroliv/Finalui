@@ -413,12 +413,12 @@ namespace mainVentana.VistaOrdenCarga
                 error = 1;
             }
 
-            if (fcha == -1 && _isCerrar ==false)
+           /* if (fcha == -1 && _isCerrar ==false)
             {
                 MessageBox.Show("La fecha de cierre no puede ser anterior a la fecha de hoy");
                 dtmFcierre.Focus();
                 error = 1;
-            }
+            }*/
             if (fcha == 0 &&_isCerrar == false)
             {
                 if (dtmHora.Value.Hour <= DateTime.Now.Hour)
@@ -527,12 +527,11 @@ namespace mainVentana.VistaOrdenCarga
             loadControl1.Visible = true;
             try
             {
-                if (dgvEntEnCarga.Rows.Count == 0)
+                if (dgvEntEnCarga.Rows.Count > 0)
                 {
-
-                    return;
+                    await CerrarKdment();
                 }
-                await CerrarKdment();
+               
                 CerrarCarga();
             }
             catch (Exception ex)

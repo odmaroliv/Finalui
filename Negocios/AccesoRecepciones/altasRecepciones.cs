@@ -9,7 +9,7 @@ namespace Negocios.AccesoRecepciones
 {
     public class altasRecepciones
     {
-        public async void CRecepcionEnKDM1(string c1, string c2, string c3, decimal c4, decimal c5, string c6, decimal c8, DateTime c9, string c11, decimal c16, DateTime c18, string c24
+        public async Task CRecepcionEnKDM1(string c1, string c2, string c3, decimal c4, decimal c5, string c6, decimal c8, DateTime c9, string c11, decimal c16, DateTime c18, string c24
            , string c31, string c61, string c63, string c67, DateTime c68, string c47)
         {
 
@@ -44,7 +44,7 @@ namespace Negocios.AccesoRecepciones
                 modelo.KDM1.Add(d);
                 try
                 {
-                    modelo.SaveChanges();
+                    await modelo.SaveChangesAsync();
                 }
                 catch (Exception ex)
                 {
@@ -66,11 +66,8 @@ namespace Negocios.AccesoRecepciones
                     List<KDM1> kd = new List<KDM1>();
 
                     var d = (from fd in modelo.KDM1
-                             where fd.C103.Contains(sucursal) && fd.C4 == 45 && fd.C6 == numerocarga
+                             where /*fd.C103.Contains(sucursal) &&*/ fd.C4 == 45 && fd.C6 == numerocarga //borre la verificacion sobre la sucursal destino ya que aveces la sucursal destino no es deonde se da recepcion 5/10/2024
                              select fd).First();
-
-
-
                     d.C45 = numerosalida;
                     kd.Add(d);
 

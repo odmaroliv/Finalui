@@ -203,7 +203,7 @@ namespace Negocios.NGReportes
                 {
                     modelo.Database.CommandTimeout = 500;
                     IQueryable<CargaCordsGeneral> query = null;
-                    if (oper == "09") //entrega bill
+                    if (oper == "09" || oper == "BILL" ) //entrega bill
                     {
 
                         if (Common.Cache.CacheLogin.master == "1")

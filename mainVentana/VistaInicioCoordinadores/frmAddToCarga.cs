@@ -77,7 +77,13 @@ namespace mainVentana.VistaInicioCoordinadores
                     return;
                 }
                 ActualizarProgreso(60);
-                await CargaOrdenes();
+
+                if (swBill.Checked == false)
+                {
+                    await CargaOrdenes();
+
+                }
+                //await CargaOrdenes();
                 ActualizarProgreso(70);
                 await CargaEntradas();
                 ActualizarProgreso(80);

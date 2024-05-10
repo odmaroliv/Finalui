@@ -717,7 +717,7 @@ namespace mainVentana.VistaRecepcion
 
             return true;
         }
-        private void gunaGradientTileButton3_Click(object sender, EventArgs e)
+        private async void gunaGradientTileButton3_Click(object sender, EventArgs e)
         {
             int error = ValidacionesGenerales(); //1 error o 0 normal
 
@@ -729,7 +729,7 @@ namespace mainVentana.VistaRecepcion
             string senvi = cmbSucOrigen.SelectedValue.ToString();
             if (MessageBox.Show("Estas apunto de iniciar la Recepcion,\renvía: "+senvi+"\rRecibe: "+sRecepcion+ "\rrecuerda que este numero quedara reservado hasta que la finalices formalmente", "Atencion", MessageBoxButtons.OKCancel,MessageBoxIcon.Warning) == DialogResult.OK)
             {
-                CreaRecepcionEnKDM1();
+                await CreaRecepcionEnKDM1();
                 btnIniciaSalida.Enabled = false;
                 btnImportarExcel.Enabled = false;
                 bntSalidaPausa.Enabled = false;
@@ -740,7 +740,7 @@ namespace mainVentana.VistaRecepcion
         }
 
 
-        private async void CreaRecepcionEnKDM1()
+        private async Task CreaRecepcionEnKDM1()
         {
             groupBox1.Enabled = false;
             cmbSucOrigen.Enabled = false;
@@ -762,7 +762,7 @@ namespace mainVentana.VistaRecepcion
             BuscaUltimaSalidaFull(sRecepcion);
             Negocios.AccesoRecepciones.altasRecepciones at = new Negocios.AccesoRecepciones.altasRecepciones();
             at.ActualizaSqlIov(sRecepcion.Trim(), 50, ulDatoSolo.Trim());
-            at.CRecepcionEnKDM1(sRecepcion.Trim()
+            await at.CRecepcionEnKDM1(sRecepcion.Trim()
                 , "U"
                 , "D"
                 , Convert.ToDecimal(50)
