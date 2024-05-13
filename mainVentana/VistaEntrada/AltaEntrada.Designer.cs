@@ -110,6 +110,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.cbxDano = new ReaLTaiizor.Controls.CheckBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.lblNoOdoo = new System.Windows.Forms.Label();
             this.bntImpEntC = new FontAwesome.Sharp.IconButton();
             this.mdfImg = new FontAwesome.Sharp.IconButton();
             this.cbxNotif = new ReaLTaiizor.Controls.CheckBox();
@@ -146,7 +147,6 @@
             this.lblBuscarEnt = new System.Windows.Forms.Label();
             this.btnBuscarEnt = new Guna.UI.WinForms.GunaCircleButton();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.lblNoOdoo = new System.Windows.Forms.Label();
             this.lblParentName = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDocs)).BeginInit();
@@ -1279,6 +1279,18 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Detalles";
             // 
+            // lblNoOdoo
+            // 
+            this.lblNoOdoo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblNoOdoo.Enabled = false;
+            this.lblNoOdoo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoOdoo.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblNoOdoo.Location = new System.Drawing.Point(172, 16);
+            this.lblNoOdoo.Name = "lblNoOdoo";
+            this.lblNoOdoo.Size = new System.Drawing.Size(117, 22);
+            this.lblNoOdoo.TabIndex = 132;
+            this.lblNoOdoo.Text = "Odoo";
+            // 
             // bntImpEntC
             // 
             this.bntImpEntC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -1750,18 +1762,6 @@
             this.btnBuscarEnt.Visible = false;
             this.btnBuscarEnt.Click += new System.EventHandler(this.btnBuscarEnt_Click);
             // 
-            // lblNoOdoo
-            // 
-            this.lblNoOdoo.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblNoOdoo.Enabled = false;
-            this.lblNoOdoo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoOdoo.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblNoOdoo.Location = new System.Drawing.Point(172, 16);
-            this.lblNoOdoo.Name = "lblNoOdoo";
-            this.lblNoOdoo.Size = new System.Drawing.Size(117, 22);
-            this.lblNoOdoo.TabIndex = 132;
-            this.lblNoOdoo.Text = "Odoo";
-            // 
             // lblParentName
             // 
             this.lblParentName.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -1771,7 +1771,6 @@
             this.lblParentName.Name = "lblParentName";
             this.lblParentName.Size = new System.Drawing.Size(104, 25);
             this.lblParentName.TabIndex = 132;
-            this.lblParentName.Text = "Moneda";
             // 
             // AltaEntrada
             // 

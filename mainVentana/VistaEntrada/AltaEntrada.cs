@@ -532,7 +532,9 @@ namespace mainVentana.VistaEntrada
             try
             {
 
-                var respuesta = await servicio.EnviaMail(doc, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, archivos, coreoClientes, cbxDano.Checked, cordCordinadorCMB);
+                string nmCliente = string.IsNullOrWhiteSpace(lblParentName?.Text.Trim()) || lblParentName?.Text.Trim() == "false" ? "cliente.Text" : lblParentName?.Text.Trim();
+
+                var respuesta = await servicio.EnviaMail(doc, nmCliente, tbxRastreo.Text, cliente.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, archivos, coreoClientes, cbxDano.Checked, cordCordinadorCMB);
                 //var respuesta = await servicio.EnviaMailAmazonSES(doc, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, archivos, coreoClientes, cordCordinadorCMB);
 
                 if (respuesta == 1)
@@ -597,7 +599,9 @@ namespace mainVentana.VistaEntrada
 
             try
             {
-                var respuesta = await servicio.EnviaMail(doc, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, archivos, coreoClientes, cbxDano.Checked, cordCordinadorCMB);
+                string nmCliente = string.IsNullOrWhiteSpace(lblParentName?.Text.Trim()) || lblParentName?.Text.Trim() == "false" ? "cliente.Text" : lblParentName?.Text.Trim();
+
+                var respuesta = await servicio.EnviaMail(doc, nmCliente, tbxRastreo.Text, cliente.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, archivos, coreoClientes, cbxDano.Checked, cordCordinadorCMB);
 
                 if (respuesta == 1)
                 {
@@ -1326,6 +1330,7 @@ namespace mainVentana.VistaEntrada
                     lblCodCliente.Text = default;
                     cord.SelectedIndex = 0;
                     txbValArn.Text = "1";
+                    lblParentName.Text = default;
                     cliente.Text = default;
                     label23.Text = default;
                     label24.Text = default;
