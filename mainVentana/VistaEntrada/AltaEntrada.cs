@@ -532,7 +532,7 @@ namespace mainVentana.VistaEntrada
             try
             {
 
-                string nmCliente = string.IsNullOrWhiteSpace(lblParentName?.Text.Trim()) || lblParentName?.Text.Trim() == "false" ? "cliente.Text" : lblParentName?.Text.Trim();
+                string nmCliente = string.IsNullOrWhiteSpace(lblParentName?.Text.Trim()) || lblParentName?.Text.Trim() == "false" ? cliente.Text.Trim() : lblParentName?.Text.Trim();
 
                 var respuesta = await servicio.EnviaMail(doc, nmCliente, tbxRastreo.Text, cliente.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, archivos, coreoClientes, cbxDano.Checked, cordCordinadorCMB);
                 //var respuesta = await servicio.EnviaMailAmazonSES(doc, cliente.Text, tbxRastreo.Text, alias.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, archivos, coreoClientes, cordCordinadorCMB);
@@ -599,7 +599,7 @@ namespace mainVentana.VistaEntrada
 
             try
             {
-                string nmCliente = string.IsNullOrWhiteSpace(lblParentName?.Text.Trim()) || lblParentName?.Text.Trim() == "false" ? "cliente.Text" : lblParentName?.Text.Trim();
+                string nmCliente = string.IsNullOrWhiteSpace(lblParentName?.Text.Trim()) || lblParentName?.Text.Trim() == "false" ? cliente.Text.Trim() : lblParentName?.Text.Trim();
 
                 var respuesta = await servicio.EnviaMail(doc, nmCliente, tbxRastreo.Text, cliente.Text, ordenCompra.Text, numFlete.Text, proveedor.Text, detalles.Text, archivos, coreoClientes, cbxDano.Checked, cordCordinadorCMB);
 
