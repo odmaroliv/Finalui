@@ -15,8 +15,9 @@ namespace Datos.ViewModels.Odoo
 
        // [JsonProperty("parent_name")]
         public string ParentName { get; set; }
+        public string ParentId { get; set; }
 
-       // [JsonProperty("email")]
+        // [JsonProperty("email")]
         public string Email { get; set; }
 
       //  [JsonProperty("phone")]

@@ -326,6 +326,8 @@ namespace mainVentana.VistaEntrada
             string datoValArn = txbValArn.Text;
             string datoNuCliente = lblCodCliente.Text;
             string datoNomCliente = String.IsNullOrWhiteSpace(lblParentName.Text) || lblParentName.Text == "false"? cliente.Text :lblParentName.Text;
+            string datoParentId = String.IsNullOrWhiteSpace(lblParentId.Text) || lblParentId.Text == "false" ? "" : lblParentId.Text;
+
             string datoCalle = "";
             string datoColonia = "";
             string datoCiudadZip = "";
@@ -382,7 +384,7 @@ namespace mainVentana.VistaEntrada
                        
 
                         // Agregar KDM1
-                        await bd.agregaKDM1(context, datoSucIni, datoEntrada, datoMoneda, datoFecha, parsedDatoNuCliente.ToString(), parsedDatoNoCord.ToString(), datoValArn, datoNomCliente, datoCalle, datoColonia, datoCiudadZip, datoValFact, datoParidad, datoNoTrakin, datoProvedor, datoOrdCompra, datoNoFlete, datoNoUnidades, datoTipoUnidad, datoPeso, datoUnidadMedida, datoTipoOper, datoSucDestino, datoBultos, datosAlias, datoNota, datoReferencia, isDanado, tpoEntrada, idOdoo, odoosalesp);
+                        await bd.agregaKDM1(context, datoSucIni, datoEntrada, datoMoneda, datoFecha, parsedDatoNuCliente.ToString(), parsedDatoNoCord.ToString(), datoValArn, datoNomCliente, datoCalle, datoColonia, datoCiudadZip, datoValFact, datoParidad, datoNoTrakin, datoProvedor, datoOrdCompra, datoNoFlete, datoNoUnidades, datoTipoUnidad, datoPeso, datoUnidadMedida, datoTipoOper, datoSucDestino, datoBultos, datosAlias, datoNota, datoReferencia, isDanado, tpoEntrada, idOdoo, odoosalesp, datoParentId);
 
                         // Llamada para actualizar SQL
                         await bd.ActualizaSqlIov(context, datoSucIni.Trim(), 35);
@@ -860,13 +862,14 @@ namespace mainVentana.VistaEntrada
            
         }
         string coreoClientes;
-        public void moverinfo(string dato, string dato2, string dato3, string dato4, string dato5, string dato6, string dato7, string correoCliente, int bandera, string parentName) //cambia los datos de los textbox alias y clientes, la bandera dependera de la manera en la que se haya abierto el frm buscar, 0 clientes 1 alias, ADEMAS tambien sirve para cambiar el campo de cord
+        public void moverinfo(string dato, string dato2, string dato3, string dato4, string dato5, string dato6, string dato7, string correoCliente, int bandera, string parentName, string parentId) //cambia los datos de los textbox alias y clientes, la bandera dependera de la manera en la que se haya abierto el frm buscar, 0 clientes 1 alias, ADEMAS tambien sirve para cambiar el campo de cord
         {
             label24.Text = "";
             label25.Text = "";
             coreoClientes = "";
             coreoClientes = correoCliente;
             lblParentName.Text = parentName;
+            lblParentId.Text = parentId;
             if (bandera == 0) //clientes
             {
                 cliente.Text = dato;
@@ -874,6 +877,7 @@ namespace mainVentana.VistaEntrada
                 label23.Text = dato4;
                 label24.Text = dato5;
                 label25.Text = dato6;
+                
                 label26.Text = "SU";
                 lblCodCliente.Text = dato7;
 
@@ -1331,6 +1335,7 @@ namespace mainVentana.VistaEntrada
                     cord.SelectedIndex = 0;
                     txbValArn.Text = "1";
                     lblParentName.Text = default;
+                    lblParentId.Text = default;
                     cliente.Text = default;
                     label23.Text = default;
                     label24.Text = default;

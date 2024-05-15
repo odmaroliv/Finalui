@@ -148,6 +148,7 @@
             this.btnBuscarEnt = new Guna.UI.WinForms.GunaCircleButton();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.lblParentName = new System.Windows.Forms.Label();
+            this.lblParentId = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDocs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFotosModifi)).BeginInit();
@@ -1769,8 +1770,18 @@
             this.lblParentName.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblParentName.Location = new System.Drawing.Point(22, 14);
             this.lblParentName.Name = "lblParentName";
-            this.lblParentName.Size = new System.Drawing.Size(104, 25);
+            this.lblParentName.Size = new System.Drawing.Size(440, 25);
             this.lblParentName.TabIndex = 132;
+            // 
+            // lblParentId
+            // 
+            this.lblParentId.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblParentId.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblParentId.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblParentId.Location = new System.Drawing.Point(476, 13);
+            this.lblParentId.Name = "lblParentId";
+            this.lblParentId.Size = new System.Drawing.Size(43, 25);
+            this.lblParentId.TabIndex = 133;
             // 
             // AltaEntrada
             // 
@@ -1778,6 +1789,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.ClientSize = new System.Drawing.Size(1238, 713);
+            this.Controls.Add(this.lblParentId);
             this.Controls.Add(this.lblParentName);
             this.Controls.Add(this.btnBuscarEnt);
             this.Controls.Add(this.lblBuscarEnt);
@@ -1937,5 +1949,6 @@
         private System.Windows.Forms.ComboBox cmbTipoEnt;
         private System.Windows.Forms.Label lblNoOdoo;
         private System.Windows.Forms.Label lblParentName;
+        private System.Windows.Forms.Label lblParentId;
     }
 }

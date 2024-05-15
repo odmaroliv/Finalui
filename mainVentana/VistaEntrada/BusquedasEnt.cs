@@ -21,12 +21,22 @@ namespace mainVentana.VistaEntrada
     public partial class BusquedasEnt : Form
     {
 
-        public delegate void pasar(string alias, string cliente, string cord, string calle, string colonia, string ciudad, string codigocliente,string CorreosCliente, int bandera, string parentName = "");
+        public delegate void pasar(string alias, string cliente, string cord, string calle, string colonia, string ciudad, string codigocliente,string CorreosCliente, int bandera, string parentName = "", string parentId = "");
         //public delegate void pasar2(string dato,string cliente, int bandera);
         public event pasar pasado;
         // public event pasar2 pasado2;
 
         List<OdooClienteDto> listaClintes = new List<OdooClienteDto>();
+        string calle;
+        string colonia;
+        string ciudad;
+        string parent;
+        string parentId;
+        string zip;
+        string num;
+        string Codcliente;
+        string CorreosCliente;
+
 
         public BusquedasEnt()
         {
@@ -52,13 +62,13 @@ namespace mainVentana.VistaEntrada
         private void pasarinfo()
         {
             if (label2.Text == "CLIENTE")
-            { pasado(gunaTextBox2.Text,"",gunaTextBox1.Text,calle,colonia,ciudad, Codcliente, CorreosCliente, 0,parent); }
+            { pasado(gunaTextBox2.Text,"",gunaTextBox1.Text,calle,colonia,ciudad, Codcliente, CorreosCliente, 0,parent, parentId); }
             else if (label2.Text == "ALIAS")
-            { pasado(gunaTextBox2.Text, gunaTextBox3.Text, gunaTextBox1.Text,calle,colonia,ciudad,Codcliente, CorreosCliente, 1, parent); }
+            { pasado(gunaTextBox2.Text, gunaTextBox3.Text, gunaTextBox1.Text,calle,colonia,ciudad,Codcliente, CorreosCliente, 1, parent, parentId); }
 
             else if (label2.Text == "ALIASDIREC")
             {
-                pasado(gunaTextBox2.Text, gunaTextBox3.Text, zip, calle, colonia, ciudad, Codcliente, num, 1, parent);
+                pasado(gunaTextBox2.Text, gunaTextBox3.Text, zip, calle, colonia, ciudad, Codcliente, num, 1, parent, parentId);
             }
 
         }
@@ -125,14 +135,7 @@ namespace mainVentana.VistaEntrada
         {
 
         }
-        string calle;
-        string colonia;
-        string ciudad;
-        string parent;
-        string zip;
-        string num;
-        string Codcliente;
-        string CorreosCliente;
+       
         private void gunaGradientTileButton4_Click(object sender, EventArgs e)
         {
             Ejecuta();
@@ -167,6 +170,7 @@ namespace mainVentana.VistaEntrada
                             calle = "";
                             colonia ="";
                             parent = d.ParentName;
+                            parentId = d.ParentId;
                             pasarinfo();
                             this.Close();
                             break;
@@ -286,6 +290,7 @@ namespace mainVentana.VistaEntrada
                             ciudad = "";
                             Codcliente = d.Id.ToString();
                             parent = d.ParentName;
+                            parentId = d.ParentId;
                             //CorreosCliente = d.c11;
                             pasarinfo();
                             this.Dispose();
@@ -325,13 +330,10 @@ namespace mainVentana.VistaEntrada
             {
                 if (d.c2.ToString().Trim() == clave.Trim())
                 {
-
                     lista.Add(cliente = d.c3.ToString().Trim());
                     lista.Add(cord = (d.c12.ToString().Trim()));
                     lista.Add(cord = (d.c11.ToString().Trim()));
                     lista.Add(codclient = (d.c2.ToString().Trim()));
-
-
                 }
 
    

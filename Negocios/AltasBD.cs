@@ -23,7 +23,7 @@ namespace Negocios
         public async Task agregaKDM1(modelo2Entities context,string sucInicial, string entrada, string Moneda, DateTime fecha, string noCliente,
             string noCord, string valArn, string nomCliente, string calle, string colonia, string ciudadcodigozip, string valFact,
             string paridad, string noTrakin, string provedor, string orCompra, string noFlete, string noUnidades, string tipUnidad, string peso,
-            string unidadMedida, string tipOperacion, string sucDestino, string bultos, string Alias, string nota, string referencia, string isDano, int tpoEntrada,long idOdoo, string salesodop)
+            string unidadMedida, string tipOperacion, string sucDestino, string bultos, string Alias, string nota, string referencia, string isDano, int tpoEntrada,long idOdoo, string salesodop, string parentId)
         {
             try
             {
@@ -42,6 +42,7 @@ namespace Negocios
                     d.C11 = referencia;
                     d.C12 = noCord;
                     d.C16 = valArn == "" ? 1 : Convert.ToDecimal(valArn);
+                    d.C17 = parentId;
                     d.C24 = nota;
                     d.C27 = isDano;
                     d.C31 = "Ent";

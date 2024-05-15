@@ -703,7 +703,7 @@ namespace mainVentana.VistaInicioCoordinadores
             buscador.pasado += new BusquedasEnt.pasar(moverinfo);
             buscador.ShowDialog();
         }
-        public void moverinfo(string dato, string dato2, string dato3, string dato4, string dato5, string dato6, string dato7, string correoCliente, int bandera, string parentName ="") //cambia los datos de los textbox alias y clientes, la bandera dependera de la manera en la que se haya abierto el frm buscar, 0 clientes 1 alias, ADEMAS tambien sirve para cambiar el campo de cord
+        public void moverinfo(string dato, string dato2, string dato3, string dato4, string dato5, string dato6, string dato7, string correoCliente, int bandera, string parentName ="", string parentId = "") //cambia los datos de los textbox alias y clientes, la bandera dependera de la manera en la que se haya abierto el frm buscar, 0 clientes 1 alias, ADEMAS tambien sirve para cambiar el campo de cord
         {
             _infoDesdeAlias = true;
             LimpiVar();
