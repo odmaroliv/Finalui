@@ -1489,6 +1489,7 @@ namespace Negocios
                                     C11 = d.C11,
                                     C12 = d.C12,
                                     C16 = d.C16,
+                                    C17 = d.C17, //nuevo cliente en odoo
                                     C24 = d.C24,
                                     C27 = d.C27,
                                     C31 = d.C31,

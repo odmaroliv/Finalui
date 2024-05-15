@@ -92,17 +92,17 @@ namespace mainVentana.VistaBill
                 string entrada = lstEntsBill[0].etiqueta.Trim();
                 _infoBill = await bs.InfoEnBill(entrada);
                 dgvEntEnCarga.DataSource = lstEntsBill;
-                lblFromNombre.Text = _infoBill.fromNombre;
-                lblFromCalle.Text = _infoBill.fromCalle;
-                lblFromColonia.Text = _infoBill.fromColonia;
-                lblFromLocalidad.Text = _infoBill.fromLocalidad;
-                lblFromZip.Text = _infoBill.fromZip;
-                lblToNombre.Text = _infoBill.toNombre;
-                lblToCalle.Text = _infoBill.toCalle;
-                lblToColonia.Text = _infoBill.toColonia;
-                lblToLocalidad.Text = _infoBill.toLocalidad;
-                lblToZip.Text = _infoBill.toZip;
-                lblTel.Text = _infoBill.telCliente;
+                lblFromNombre.Text = _infoBill?.fromNombre ?? "";
+                lblFromCalle.Text = _infoBill?.fromCalle ?? "";
+                lblFromColonia.Text = _infoBill?.fromColonia ?? "";
+                lblFromLocalidad.Text = _infoBill?.fromLocalidad ?? "";
+                lblFromZip.Text = _infoBill?.fromZip ?? "" ;
+                lblToNombre.Text = _infoBill?.toNombre ?? "";
+                lblToCalle.Text = _infoBill?.toCalle ?? "";
+                lblToColonia.Text = _infoBill?.toColonia ??"";
+                lblToLocalidad.Text = _infoBill?.toLocalidad??"";
+                lblToZip.Text = _infoBill?.toZip??"";
+                lblTel.Text = _infoBill?.telCliente ??"";
                 lblCantida.Text = lstEntsBill.Count().ToString();
 
             }
@@ -132,17 +132,17 @@ namespace mainVentana.VistaBill
             {
                 try
                 {
-                    bill.from = _infoBill.fromNombre;
-                    bill.fromCalle = _infoBill.fromCalle;
-                    bill.fromDir1 = _infoBill.fromCalle;
-                    bill.fromDir2 = _infoBill.fromColonia;
-                    bill.Coordinador = _infoBill.coord;
+                    bill.from = _infoBill?.fromNombre ?? "";
+                    bill.fromCalle = _infoBill?.fromCalle ?? "";
+                    bill.fromDir1 = _infoBill?.fromCalle ?? "";
+                    bill.fromDir2 = _infoBill?.fromColonia ??"";
+                    bill.Coordinador = _infoBill?.coord??"";
                     bill.Note = "";
-                    bill.Cellphone = _infoBill.telCliente;
-                    bill.to = _infoBill.toNombre;
-                    bill.toCalle = _infoBill.toCalle;
-                    bill.toDir1 = _infoBill.toColonia;
-                    bill.toDir2 = _infoBill.toLocalidad;
+                    bill.Cellphone = _infoBill?.telCliente ?? "";
+                    bill.to = _infoBill?.toNombre ??"";
+                    bill.toCalle = _infoBill?.toCalle??"";
+                    bill.toDir1 = _infoBill?.toColonia??"";
+                    bill.toDir2 = _infoBill?.toLocalidad ?? "";
                     bill.ShipDate = DateTime.Now.ToString();
                     bill.totalCases = lstEntsBill.Count().ToString();
                     bill.numeroBill = _billBuscado.ToString();

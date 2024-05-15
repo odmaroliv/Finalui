@@ -74,7 +74,7 @@ namespace Negocios
                     d.C112 =  Alias?.Substring(0, Math.Min(Alias.Length, 30)); ;
                     d.TipoEntradaID = tpoEntrada;
                     d.odooidproduct = idOdoo;
-                d.odoosalesp = salesodop;
+                    d.odoosalesp = salesodop;
                     context.KDM1.Add(d);
                     //await context.SaveChangesAsync();
 
@@ -307,7 +307,7 @@ namespace Negocios
         }
 
         public void UpdateKDM1(string id, string sucursaldestino, string cord, string notas, string referencia, string pagado, string tipooperacion, string valfact, string valarn, string sucursalOrigen,string noFlete, string datoOrConpra,
-            string datoNuCliente,string datoNomCliente,string datoCalle,string datoColonia,string datoCiudadZip,string datoProvedor, string datoAlias, DateTime fecha, int tpoEnrtada, string isDanado)
+            string datoNuCliente,string datoNomCliente,string datoCalle,string datoColonia,string datoCiudadZip,string datoProvedor, string datoAlias, DateTime fecha, int tpoEnrtada, string isDanado, string salesodop, string parentId)
         {
             try
             {
@@ -368,6 +368,15 @@ namespace Negocios
                     {
                         d.C10 = datoNuCliente.Trim();
                     }
+                    if (!string.IsNullOrEmpty(parentId))
+                    {
+                        d.C17 = parentId.Trim();
+                    }
+                    if (!string.IsNullOrEmpty(salesodop))
+                    {
+                        d.odoosalesp = salesodop.Trim();
+                    }
+                    
                     d.TipoEntradaID = tpoEnrtada;
                     d.C32 = datoNomCliente;
                     d.C33 = datoCalle;

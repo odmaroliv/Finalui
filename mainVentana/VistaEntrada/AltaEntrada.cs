@@ -1460,6 +1460,7 @@ namespace mainVentana.VistaEntrada
         }
         private void InicioModifica()
         {
+            
             cmbTipoEnt.SelectedIndex = 0;
             gunaTileButton5.Visible = true;
             txbBuscarEnt.Text = default;
@@ -1528,7 +1529,8 @@ namespace mainVentana.VistaEntrada
             cord.SelectedIndex = 0;
             //cord.Enabled            = estatus;
 
-
+            lblParentId.Text = default;
+            lblParentName.Text = default;
             cliente.Text = default;
             cliente.Enabled = estatus;
 
@@ -1726,8 +1728,8 @@ namespace mainVentana.VistaEntrada
 
                 txbValArn.Text = q.C16.ToString().Trim();
                 txbNotas.Text = q.C24?.Trim();
-                cliente.Text = q.C32.Trim();
-                alias.Text = q.C112.Trim();
+                cliente.Text = q.C112.Trim();
+                //alias.Text = q.C112.Trim();
                 lblParidad.Text = q.C40.ToString().Trim();
                 tbxRastreo.Text = q.C80.Trim();
                 lblUser.Text = q.C81.Trim();
@@ -1806,6 +1808,8 @@ namespace mainVentana.VistaEntrada
                 label24.Text = q.C12;
                 label23.Text = q.odoosalesp;
                 lblNoOdoo.Text = q.OdooId?.ToString() ?? "0";
+                lblParentName.Text = q?.C32 ?? "";
+                lblParentId.Text = q?.C17 ?? "";
                 string rbt = q.C44 ?? "NoPagado";
                 RDBpagar(rbt.Trim());
                 bandera = 1;
@@ -1855,22 +1859,26 @@ namespace mainVentana.VistaEntrada
             string datoDescripcion = detalles.Text.Trim();
             string datoNoFlete = numFlete.Text.Trim();
             string datoOrConpra = ordenCompra.Text.Trim();
+            string datoParentId = String.IsNullOrWhiteSpace(lblParentId.Text) || lblParentId.Text == "false" ? "" : lblParentId.Text;
+
 
             string datoNuCliente = lblCodCliente.Text;
-            string datoNomCliente = cliente.Text;
+            string datoNomCliente = String.IsNullOrWhiteSpace(lblParentName.Text) || lblParentName.Text == "false" ? cliente.Text : lblParentName.Text;
             string datoCalle = label23.Text;
             string datoColonia = label24.Text;
             string datoCiudadZip = label25.Text;
             string datoProvedor = proveedor.SelectedValue.ToString();
-            string datosAlias = alias.Text;
+            string datosAlias = cliente.Text;
             int tpoEntrada = Convert.ToInt32(cmbTipoEnt.SelectedValue);
             string isDanado = cbxDano.Checked == true ? "1" : "0"; //representa una entrada dañanada, se guarda por entrada completa, no por bulto en el campo 27 de kdm1 1 si esta dañada 0 si no lo esta
+            string odoosalesp = label23.Text;
+
             DateTime datoFecha = regresafecha();
             AltasBD bd = new AltasBD();
             try
             {
                 bd.UpdateKDM1(datoEntrada, datoSucDestino, datoNoCord, datoNota, datoReferencia, pagado, datoTipoOper, datoValFact, datoValArn, datoSucOrigen, datoNoFlete, datoOrConpra,
-                    datoNuCliente,datoNomCliente,datoCalle,datoColonia,datoCiudadZip,datoProvedor, datosAlias, datoFecha, tpoEntrada, isDanado);
+                    datoNuCliente,datoNomCliente,datoCalle,datoColonia,datoCiudadZip,datoProvedor, datosAlias, datoFecha, tpoEntrada, isDanado, odoosalesp, datoParentId);
                 if (detalles.Enabled == true)
                 {
                     bd.UpdateKDM1Coment(datoEntrada, datoSucOrigen, datoDescripcion);
