@@ -327,7 +327,7 @@ namespace Negocios.AccesoRecepciones
                             {
                                 var lista = from d in modelo.KDMENT
 
-                                            where d.C17.Equals(id) && String.IsNullOrEmpty(d.C34) && String.IsNullOrEmpty(d.C67) && d.C20 == "OC"
+                                            where d.C17.Equals(id) && String.IsNullOrEmpty(d.C67) //&& (d.C20 == "PR" || d.C20 == "F")
                                             select new vmEntBySalida
                                             {
                                                 Etiqueta = d.C9.Trim(),
