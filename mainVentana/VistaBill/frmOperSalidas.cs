@@ -17,12 +17,16 @@ using mainVentana.Reportes.rbill;
 using Datos.ViewModels.Reportes.Bill;
 using Negocios.Odoo;
 using DocumentFormat.OpenXml.Office2016.Drawing.Charts;
+using Negocios;
+using System.Windows.Interop;
 
 namespace mainVentana.VistaBill
 {
     public partial class frmOperSalidas : Form
     {
 
+        string fullPath;
+        string path;
         private Queue<string> taskQueue = new Queue<string>();
         private bool isBussy = false;
         private string uniqueId;
@@ -50,7 +54,7 @@ namespace mainVentana.VistaBill
 
         }
 
-        private void gunaAdvenceButton2_Click(object sender, EventArgs e)
+        private async void gunaAdvenceButton2_Click(object sender, EventArgs e)
         {
             if (isBussy)
             {
@@ -65,7 +69,63 @@ namespace mainVentana.VistaBill
                 return;
             }
             ExportExcel();
+            if (MessageBox.Show("Quieres enviar un correo al cliente con los dumentos a entregar?","Notificar",MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                cbxNotificar.Checked = true;
+            }
+            else
+            {
+                cbxNotificar.Checked = false;
+            }
+            if (cbxNotificar.Checked)
+            {
+                string correoCliente = ObtenerCorreoCliente(listaeti);
+                if (!string.IsNullOrEmpty(correoCliente))
+                {
+                    EnviarEmail servicio = new EnviarEmail();
+                    string encabezado = $"Salida de ruta {DateTime.Now}";
+                    string cuerpo = "Lista de Entradas a entregar";
+                    //string archivo = "Ruta del archivo"; // Asigna la ruta del archivo exportado
+                    await servicio.EnviaMailSencillo(encabezado, cuerpo, fullPath, correoCliente);
 
+                }
+                else
+                {
+                    MessageBox.Show("No se encontró un correo válido en las filas.");
+                }
+            }
+            if (!string.IsNullOrWhiteSpace(fullPath))
+            {
+                string folderPath = Path.GetDirectoryName(fullPath);
+                Process.Start("explorer.exe", folderPath);
+                // Process.Start(fullPath);
+            }
+
+        }
+
+        private string ObtenerCorreoCliente(List<VMSalidasBill> lista)
+        {
+            foreach (var item in lista)
+            {
+                if (!string.IsNullOrEmpty(item.EMAIL) && IsValidEmail(item.EMAIL))
+                {
+                    return item.EMAIL;
+                }
+            }
+            return null;
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         private void ExportExcel()
@@ -99,7 +159,7 @@ namespace mainVentana.VistaBill
                     }
 
                     //Exporting to Excel
-                    string path = null;
+                     path = null;
 
 
                     saveFileDialog1.InitialDirectory = @"C\:";
@@ -118,13 +178,14 @@ namespace mainVentana.VistaBill
                     }*/
                     using (XLWorkbook xlfile = new XLWorkbook())
                     {
+
                         string hoy = DateTime.Now.ToString("dd-MM-yyyy");
-                        string fullPath = path + "_" + hoy + ".xlsx";
+                        fullPath = path + "_" + hoy + ".xlsx";
                         xlfile.Worksheets.Add(dt, "ParaBEE");
                         xlfile.Table("ParaBEE").ShowAutoFilter = false;// Disable AutoFilter.
                         xlfile.Table("ParaBEE").Theme = XLTableTheme.None;// Remove Theme.
                         xlfile.SaveAs(fullPath);
-                        Process.Start(fullPath);
+                       
                     }
                 }
                 else
@@ -213,8 +274,10 @@ namespace mainVentana.VistaBill
                     {
                        
                         listaeti.Insert(0, ss[0]);
-                       // listaeti.Add(ss[0]);
+
+                        // listaeti.Add(ss[0]);
                         await Task.Run(() => bd.ModificaKDMENTToBill(eti, uniqueId));  // Convertir en método asíncrono y usar await.
+
                     }
                     else
                     {

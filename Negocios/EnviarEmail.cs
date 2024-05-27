@@ -130,7 +130,93 @@ namespace Negocios
             return bandera;
         }
 
+        public async Task<int> EnviaMailSencillo(string encabezado, string body, string archivo, string correosClientes)
+        {
+            int bandera = default;
 
+            try
+            {
+             
+                await Task.Run(() =>
+                {
+                    MailMessage msg = new MailMessage();
+                    SmtpClient smtp = new SmtpClient();
+                    msg.IsBodyHtml = true;
+                    msg.From = new MailAddress("notificaciones@arnian.com");
+                    msg.Subject = encabezado;
+                    long pesoArch = 0;
+
+                    
+                        msg.Attachments.Add(new Attachment(archivo));
+                        FileInfo fileinfo = new FileInfo(archivo);
+                        pesoArch = pesoArch + fileinfo.Length;
+                    
+
+                    if (pesoArch >= 25000000)
+                    {
+                        bandera = 1;
+                    }
+
+                    
+
+                        msg.Body = body;
+                    
+
+                    try
+                    {
+                        
+
+                        if (!string.IsNullOrWhiteSpace(correosClientes))
+                        {
+                            string[] toCC = correosClientes.Split(',');
+                            foreach (string ToCCId in toCC)
+                            {
+                                msg.CC.Add(new MailAddress(ToCCId));
+                            }
+                        }
+
+                        msg.CC.Add(new MailAddress("sistemas@arnian.com"));
+                    }
+                    catch (Exception x)
+                    {
+                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Podria esta vacia la cadena de Correo");
+                        bandera = 2;
+                    }
+
+                    try
+                    {
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.Port = 587;
+                        smtp.EnableSsl = true;
+                        smtp.UseDefaultCredentials = false;
+                        NetworkCredential nc = new NetworkCredential(Common.Cache.CacheLogin.smtpemail, Common.Cache.CacheLogin.smatppss);
+                        smtp.Credentials = nc;
+                        smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                        smtp.Send(msg);
+                        msg.Attachments.Clear();
+                        msg.Attachments.Dispose();
+                        msg.Dispose();
+                        msg = null;
+                        smtp.Dispose();
+                        smtp = null;
+                        bandera = 3;
+                    }
+                    catch (Exception x)
+                    {
+                        bandera = 2;
+                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Correo, al hacer clic al boton de guardar o cualquier boton de que llame al corre, anteriormente este error se dio porque no se podia autenticar una cuenta, estaba bloqueada en el Administrador de dominio");
+                        throw;
+                    }
+
+                });
+                return bandera;
+            }
+            catch (Exception x)
+            {
+                Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Correo SMTP NORMAL " + encabezado);
+            }
+            return bandera;
+        }
 
         /*
             public async Task<int> EnviaMailAmazonSES(string Entrada, string Cliente, string Notraking, string Alias, string OrdCompra, string Noflete, string Proveedor, string Desc, List<string> attachmentPaths, string correosClientes, string idCord = "")
