@@ -568,10 +568,8 @@ namespace Negocios.Acceso_Salida
 
         public vmAuxiliaresSalidas ObtieCorreo(string stiqueta, string sorigen = null)
         {
-
             try
             {
-
                 var ch = new[] { '-' };
                 var etiquetaSplit = stiqueta.Split(ch);
                 var sori = etiquetaSplit[0];
@@ -579,34 +577,37 @@ namespace Negocios.Acceso_Salida
 
                 using (var modelo = new modelo2Entities())
                 {
-                     var query = modelo.KDMENT.AsNoTracking()
-                .Join(
-                    modelo.KDM1,                    // La tabla con la que quieres hacer join
-                    kdment => new { kdment.C1, kdment.C6 },  // Claves de la primera tabla
-                    kdm1 => new { kdm1.C1, kdm1.C6 },        // Claves de la segunda tabla
-                    (kdment, kdm1) => new { KDMENT = kdment, KDM1 = kdm1 }  // Resultado del join
-                )
-                .Where(joined => joined.KDMENT.C1.StartsWith(sori) && joined.KDMENT.C4 == 35 && joined.KDMENT.C9.StartsWith(stiqueta))
-                .Select(joined => new vmAuxiliaresSalidas
-                {
-                    orden = sorigen == "TJ" ? joined.KDMENT.C67 : joined.KDMENT.C16,
-                    Etiqueta = joined.KDMENT.C9,
-                    Correo = "",  // Aquí puedes usar algún campo de joined.KDM1 si es necesario
-                    OdooIdProductos = (long)joined.KDM1.odooidproduct  // Asumiendo que hay un campo OdooId en KDM1
-                });
-
-
+                    var query = from q in modelo.KDMENT
+                                join k in modelo.KDM1 on new { q.C1, q.C4, q.C6 } equals new { k.C1, k.C4, k.C6 }
+                                where //q.C1 == sori
+                                   //&& q.C4 == 35
+                                    q.C9 == stiqueta
+                                select new vmAuxiliaresSalidas
+                                {
+                                    orden = sorigen == "TJ" ? q.C67 : q.C16,
+                                    Etiqueta = q.C9,
+                                    Correo = "",  // Aquí puedes usar algún campo de kdm1 si es necesario
+                                    OdooIdProductos = (long)k.odooidproduct  // Asumiendo que hay un campo OdooId en KDM1
+                                };
 
                     var lst = query.FirstOrDefault();
 
-                    return lst ?? new vmAuxiliaresSalidas { Etiqueta = "No se encontro esta etiquita", Correo = "", orden = "" };
+                    if (lst == null)
+                    {
+                        Console.WriteLine("No se encontraron resultados.");
+                        return new vmAuxiliaresSalidas { Etiqueta = "No se encontró esta etiqueta", Correo = "", orden = "" };
+                    }
+
+                    return lst;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return new vmAuxiliaresSalidas { Etiqueta = "No se encontro esta etiquita", Correo = "", orden = "" };
+                Console.WriteLine($"Error: {ex.Message}");
+                return new vmAuxiliaresSalidas { Etiqueta = "No se encontró esta etiqueta", Correo = "", orden = "" };
             }
         }
+
 
 
         /* public List<string> ObtieneCorreos(List<string> nda)

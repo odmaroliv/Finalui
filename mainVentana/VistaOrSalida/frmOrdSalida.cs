@@ -13,6 +13,7 @@ using Negocios;
 using Negocios.Acceso_Salida;
 using Negocios.LOGs;
 using Negocios.NGCotizacion;
+using Negocios.Odoo;
 using Negocios.WebHooks;
 using OfficeOpenXml;
 using SpreadsheetLight;
@@ -47,6 +48,8 @@ namespace mainVentana.VistaOrSalida
         private SoundPlayer alertaNoCargaPlayer;
         private SoundPlayer alertaBienPlayer;
         private bool _noCarga = false;
+
+        private readonly OdooClient _odooClient;
         enum ModoAltakdment
         {
             Alta,
@@ -70,6 +73,7 @@ namespace mainVentana.VistaOrSalida
             {
                 // Aquí puedes manejar el error si los archivos de sonido no pueden ser cargados
             }
+            _odooClient = new OdooClient();
         }
 
         private void btnAlta_Click(object sender, EventArgs e)
@@ -802,11 +806,12 @@ namespace mainVentana.VistaOrSalida
                
                 AltKDMENT(etiqueta,ModoAltakdment.Alta);
                 GeneralMovimientosLog.AddMovimientoConParametrosDirectos(GeneralMovimientosLog.ObtenerFolioDesdeEtiqueta(etiqueta), 35, etiqueta, 45, ulDatoSolo, sOrigen, sDestino,"", "Scaneo","","Se agrega a la salida "+ulDatoSolo);
-
+                
 
 
 
                 var cO = sls.ObtieCorreo(etiqueta, sOrigen.Trim());
+                _odooClient.UpdateCurrentSalida(cO.OdooIdProductos, ulDato);
                 var obsRow = new DataGridViewRow();
                 obsRow.CreateCells(dgvObser);
                 obsRow.Cells[0].Value = etiqueta;
@@ -823,6 +828,7 @@ namespace mainVentana.VistaOrSalida
 
 
                 var cOr = sls.ObtieCorreo(etiqueta, sOrigen.Trim());
+                _odooClient.UpdateCurrentSalida(cOr.OdooIdProductos, ulDato);
                 lista.RemoveAt(index);
                 dgvOrdenesEntrada.DataSource = null;
                 dgvOrdenesEntrada.DataSource = lista;

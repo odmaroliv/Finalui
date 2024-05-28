@@ -222,6 +222,7 @@ namespace Negocios.Odoo
                     NewIdClient = default,
                     NewIdSalesUser = default,
                     NewQtyEtiquetas = default,
+                    OutputNumber = default,
                     NewTOperacion = default,
                     IsReadyForBill = isReadyForBill,
                     IsFinished = default
@@ -231,7 +232,7 @@ namespace Negocios.Odoo
                 var json = JsonConvert.SerializeObject(updateRequest);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                string url = $"api/OdooClient/UpdateCurrentSucOrClientOrQtyEtiquetasOrOperationOrReadyBillOrFinished?productId={productId}&newLocation={Uri.EscapeDataString(newLocation)}";
+                string url = $"api/OdooClient/UpdateCurrentSucOrClientOrQtyEtiquetasOrOperationOrReadyBillOrFinishedOrOutput?productId={productId}&newLocation={Uri.EscapeDataString(newLocation)}";
                 if (isReadyForBill)
                 {
                     url += "&isReadyForBill=true"; // Añadir el parámetro solo si es true
@@ -270,7 +271,7 @@ namespace Negocios.Odoo
                 var json = JsonConvert.SerializeObject(updateRequest);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                string url = $"api/OdooClient/UpdateCurrentSucOrClientOrQtyEtiquetasOrOperationOrReadyBillOrFinished?productId={productId}&newQtyEtiquetas={NewQtyEtiquetas}";
+                string url = $"api/OdooClient/UpdateCurrentSucOrClientOrQtyEtiquetasOrOperationOrReadyBillOrFinishedOrOutput?productId={productId}&newQtyEtiquetas={NewQtyEtiquetas}";
                
                 HttpResponseMessage response = await _client.PutAsync(url, content);
                 if (response.IsSuccessStatusCode)
@@ -289,7 +290,48 @@ namespace Negocios.Odoo
                 return;
             }
         }
+        public async Task UpdateCurrentSalida(long productId, string salida)
+        {
 
+
+            try
+            {
+                var updateRequest = new ProductUpdateRequest
+                {
+                    ProductId = productId,
+                    NewLocation = default,
+                    NewIdClient = default,
+                    NewIdSalesUser = default,
+                    NewQtyEtiquetas = default,
+                    OutputNumber = salida,
+                    NewTOperacion = default,
+                    IsReadyForBill = default,
+                    IsFinished = default
+                };
+
+                // Convertir el objeto a JSON
+                var json = JsonConvert.SerializeObject(updateRequest);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                string url = $"api/OdooClient/UpdateCurrentSucOrClientOrQtyEtiquetasOrOperationOrReadyBillOrFinishedOrOutput?productId={productId}&output={Uri.EscapeDataString(salida)}";
+
+                HttpResponseMessage response = await _client.PutAsync(url, content);
+                if (response.IsSuccessStatusCode)
+                {
+
+                }
+                else
+                {
+                    // Manejar error, posiblemente lanzar una excepción o devolver un código específico
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar la excepción, loguear error, etc.
+                return;
+            }
+        }
 
     }
 }

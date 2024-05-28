@@ -50,6 +50,8 @@ namespace mainVentana.VistaEntrada
         private string sbeArchivos = "";
         public int modoCord = 0;
 
+        private readonly OdooClient _odooClient;
+
         string usernameapi = Settings.Default.apiFotosUs;
         string passwordapi = Settings.Default.apiFotosPs;
         public AltaEntrada( int modoCor = 0)
@@ -60,6 +62,7 @@ namespace mainVentana.VistaEntrada
             // Configurar la autenticación aquí
             var authValue = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{usernameapi}:{passwordapi}")));
             _client.DefaultRequestHeaders.Authorization = authValue;
+            _odooClient = new OdooClient();
         }
 
         private void AltaEntrada_Load(object sender, EventArgs e)
@@ -360,7 +363,7 @@ namespace mainVentana.VistaEntrada
                     try
                     {
                         // Crear entidad en Odoo
-                        OdooClient odoo = new OdooClient();
+                       
                         if (!int.TryParse(datoNuCliente, out int parsedDatoNuCliente))
                         {
                             parsedDatoNuCliente = 2257;
@@ -374,7 +377,7 @@ namespace mainVentana.VistaEntrada
                         
 
                         // Si llegas aquí, todos los parseos fueron exitosos, y puedes usar las variables parsed
-                        idOdoo = await odoo.CreateEntInOdoo($"{datoSucIni.Trim()}-{datoEntrada.Trim()}", parsedDatoNuCliente, parsedDatoNoCord, 0, datoDetalles, false, datoSucIni, datoTipoOper, $"{datoSucIni.Trim()}-{datoEntrada.Trim()}", Convert.ToInt32(datoBultos));
+                        idOdoo = await _odooClient.CreateEntInOdoo($"{datoSucIni.Trim()}-{datoEntrada.Trim()}", parsedDatoNuCliente, parsedDatoNoCord, 0, datoDetalles, false, datoSucIni, datoTipoOper, $"{datoSucIni.Trim()}-{datoEntrada.Trim()}", Convert.ToInt32(datoBultos));
                         if (idOdoo == -1)
                         {
                             await bd.ActualizaSqlIov(context, datoSucIni.Trim(), 35);
@@ -435,7 +438,7 @@ namespace mainVentana.VistaEntrada
             string datoBultos = bultos.Trim();
             string datoSucDestino = sucDestino.SelectedValue.ToString();
             DateTime datoFecha = regresafecha();
-            
+
             try
             {
                 using (var context = new modelo2Entities()) // Asumiendo que modelo2Entities es tu DbContext
@@ -446,7 +449,10 @@ namespace mainVentana.VistaEntrada
                         parsedDatoNuodoo = 0;
                     }
                     await actualizaKDMENT(bd, context, datoSucIni, dtEntrada, datoBultos, datoSucDestino, datoFecha, parsedDatoNuodoo, label23.Text);
-                }  
+                    
+                }
+
+
             }
             catch (Exception ex)
             {
@@ -1627,8 +1633,8 @@ namespace mainVentana.VistaEntrada
                 SelectorFotos(sucEntrada.SelectedValue.ToString().Trim() + "-UD3501-" + txbBuscarEnt.Text.Trim());
                 //CargaFotos(txbBuscarEnt.Text.Trim(), sucEntrada.SelectedValue.ToString().Trim());
                 //CargaDocPDF();
-                OdooClient datos = new OdooClient();
-                coreoClientes = await datos.GetClientById(String.IsNullOrWhiteSpace(lblCodCliente.Text)? "3558": lblCodCliente.Text);
+               
+                coreoClientes = await _odooClient.GetClientById(String.IsNullOrWhiteSpace(lblCodCliente.Text)? "3558": lblCodCliente.Text);
                 label27.Text = "";
                 label28.Text = "";
                

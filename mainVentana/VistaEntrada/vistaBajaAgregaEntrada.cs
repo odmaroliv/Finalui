@@ -21,13 +21,14 @@ namespace mainVentana.VistaEntrada
         public delegate void pasar(string total);
        
         public event pasar pasado;
-
+        private readonly OdooClient _odooClient;
         private List<vmEtiquetasInfo> datosLista;
         public string suOrigen;
         public string entrada;
         public vistaBajaAgregaEntrada()
         {
             InitializeComponent();
+            _odooClient = new OdooClient();
         }
 
         private void btnEntrada_Click(object sender, EventArgs e)
@@ -102,7 +103,7 @@ namespace mainVentana.VistaEntrada
                 string nuevoTotal = (Convert.ToInt32(txbTotalEt.Text) - nFilas).ToString();
 
                 await baja.ActualizaBultos(entrada, suOrigen, nuevoTotal);
-
+               
                 MessageBox.Show("Se han borrado las " + nFilas + " etiquetas satisfactoriamente \nIMPORTANTE \nVuelve a buscar la entrada para observar los resultados y poder imprimir", "successful", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
             catch (Exception)
@@ -146,6 +147,7 @@ namespace mainVentana.VistaEntrada
                 {
                     pasado(cantidadBultos.ToString());
                     await baja.ActualizaBultos(entrada, suOrigen, cantidadBultos.ToString());
+                   
                     MessageBox.Show("Se han agregado las " + nFilas + " etiquetas satisfactoriamente \nIMPORTANTE \nVuelve a buscar la entrada para observar los resultados y poder imprimir", "successful", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
                 else

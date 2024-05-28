@@ -10,6 +10,7 @@ namespace Datos.ViewModels.Odoo
     {
         public long ProductId { get; set; }
         public string NewLocation { get; set; }
+        public string OutputNumber { get; set; }
         public long NewIdClient { get; set; }
         public long NewIdSalesUser { get; set; }
         public int NewQtyEtiquetas { get; set; }
