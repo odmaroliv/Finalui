@@ -383,7 +383,7 @@ namespace Negocios
                     d.C34 = datoColonia;
                     d.C35 = datoCiudadZip;
                     d.C92 = datoProvedor;
-                    d.C112 = datoAlias;
+                    d.C112 = datoAlias?.Substring(0, Math.Min(datoAlias.Length, 30)); 
                     d.C67 = d.C67 = Common.Cache.CacheLogin.username.ToString().Trim().Substring(0, Math.Min(Common.Cache.CacheLogin.username.ToString().Trim().Length, 22));//Ultimo en modificar la entrada
                     d.C68 = fecha;//fecha de la ultima modificacion
                     d.C69 = fecha.Hour.ToString();//Hora de la ultima modificacion
