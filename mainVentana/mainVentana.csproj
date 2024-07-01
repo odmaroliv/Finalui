@@ -30,10 +30,10 @@
     <UpdateUrl>https://raw.githubusercontent.com/odmaroliv/Finalui/master/published/</UpdateUrl>
     <ProductName>ARSYS</ProductName>
     <PublisherName>Daniel Olivares H.</PublisherName>
-    <MinimumRequiredVersion>1.0.0.284</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.0.285</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>284</ApplicationRevision>
+    <ApplicationRevision>285</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -64,10 +64,10 @@
     <ApplicationIcon>icoarn.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>5140E5CA6C58D3A1E7B361FAAA424ED45C9A1493</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>40E988D05EF0E3C031817B0E342F550C75846E67</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>mainVentana_1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>mainVentana_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -320,8 +320,8 @@
     <Reference Include="UIAutomationProvider" />
     <Reference Include="UIAutomationTypes" />
     <Reference Include="WindowsBase" />
-    <Reference Include="Z.EntityFramework.Extensions, Version=8.102.2.5, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
-      <HintPath>..\packages\Z.EntityFramework.Extensions.8.102.2.5\lib\net45\Z.EntityFramework.Extensions.dll</HintPath>
+    <Reference Include="Z.EntityFramework.Extensions, Version=8.103.0.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Z.EntityFramework.Extensions.8.103.0\lib\net45\Z.EntityFramework.Extensions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -861,7 +861,7 @@
     <EmbeddedResource Include="VistaWMS\frmMainWMS.resx">
       <DependentUpon>frmMainWMS.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="mainVentana_1_TemporaryKey.pfx" />
+    <None Include="mainVentana_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Datos.ViewModels.Bill.vmBillEntradaDoc.datasource" />
     <None Include="Properties\DataSources\Datos.ViewModels.Carga.vmEntradasEnCarga.datasource" />
