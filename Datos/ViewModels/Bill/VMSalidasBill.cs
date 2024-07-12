@@ -121,6 +121,8 @@ namespace Datos.ViewModels.Bill
         public string OdooId { get; set; }
         [DisplayName("Nota")]
         public string Nota { get; set; }
+        [DisplayName("NumCotizacion")]
+        public string NumCot { get; set; }
 
 
         /*    [DisplayName("VEHICULO")]

@@ -20,6 +20,7 @@ namespace Datos.ViewModels.Odoo
         public string defaultCoordinates { get; set; }
         public string contactAddress { get; set; }
         public string salesUserName { get; set; }
+        public string current_quote { get; set; }
 
     }
 }

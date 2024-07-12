@@ -12,6 +12,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.WebRequestMethods;
 
 namespace Negocios.NGBill
 {
@@ -79,7 +80,8 @@ namespace Negocios.NGBill
                                 LATITUD = coord?.Latitud??"",
                                 LONGITUD = coord?.Longitud??"",
                                 // Pago = x.c.C13,
-                                // Quote = x.k.C115,
+                                 Quote = $"https://app.arniangroup.com/#/quotationseach/{ odoo?.current_quote.Trim() ?? ""}",
+                                NumCot = odoo?.current_quote.Trim() ?? "",
                                 //  Bill = x.d.C34,
                                 Coordinador = odoo?.salesUserName ??"",
                                 // TServicio = x.k.C101,
