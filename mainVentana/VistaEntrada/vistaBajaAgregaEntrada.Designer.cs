@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gunaElipsePanel2 = new Guna.UI.WinForms.GunaElipsePanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txbTotalEt = new System.Windows.Forms.TextBox();
             this.dtgEtiquetas = new ADGV.AdvancedDataGridView();
             this.gunaElipsePanel1 = new Guna.UI.WinForms.GunaElipsePanel();
             this.lblEntrada = new Guna.UI.WinForms.GunaLabel();
@@ -40,6 +42,9 @@
             this.gunaGradientTileButton1 = new Guna.UI.WinForms.GunaGradientTileButton();
             this.btnEntrada = new Guna.UI.WinForms.GunaGradientTileButton();
             this.gunaElipsePanel3 = new Guna.UI.WinForms.GunaElipsePanel();
+            this.txbDescripcion = new ReaLTaiizor.Controls.MaterialRichTextBox();
+            this.txbEntiquetaSeleccionada = new System.Windows.Forms.TextBox();
+            this.buttonSaveDesc = new Guna.UI.WinForms.GunaGradientTileButton();
             this.gbxBorra = new Guna.UI.WinForms.GunaGroupBox();
             this.btnBorra = new Guna.UI.WinForms.GunaTileButton();
             this.label6 = new System.Windows.Forms.Label();
@@ -48,8 +53,16 @@
             this.btnAgrega = new Guna.UI.WinForms.GunaTileButton();
             this.lblAgrega = new System.Windows.Forms.Label();
             this.nAgrega = new Guna.UI.WinForms.GunaNumeric();
-            this.txbTotalEt = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.AddOrDeletePanel = new System.Windows.Forms.Panel();
+            this.tbxLongitud = new System.Windows.Forms.TextBox();
+            this.txbAnchura = new System.Windows.Forms.TextBox();
+            this.txbAltura = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblLongitud = new System.Windows.Forms.Label();
+            this.lblAnchura = new System.Windows.Forms.Label();
+            this.lblAltura = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lblPesoV = new System.Windows.Forms.Label();
             this.gunaElipsePanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgEtiquetas)).BeginInit();
             this.gunaElipsePanel1.SuspendLayout();
@@ -57,6 +70,7 @@
             this.gunaElipsePanel3.SuspendLayout();
             this.gbxBorra.SuspendLayout();
             this.gbxAgrega.SuspendLayout();
+            this.AddOrDeletePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // gunaElipsePanel2
@@ -69,19 +83,37 @@
             this.gunaElipsePanel2.Controls.Add(this.label1);
             this.gunaElipsePanel2.Controls.Add(this.txbTotalEt);
             this.gunaElipsePanel2.Controls.Add(this.dtgEtiquetas);
-            this.gunaElipsePanel2.Location = new System.Drawing.Point(12, 183);
+            this.gunaElipsePanel2.Location = new System.Drawing.Point(12, 132);
             this.gunaElipsePanel2.Name = "gunaElipsePanel2";
             this.gunaElipsePanel2.Radius = 20;
-            this.gunaElipsePanel2.Size = new System.Drawing.Size(510, 335);
+            this.gunaElipsePanel2.Size = new System.Drawing.Size(673, 426);
             this.gunaElipsePanel2.TabIndex = 160;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.label1.Location = new System.Drawing.Point(21, 370);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(138, 13);
+            this.label1.TabIndex = 161;
+            this.label1.Text = "Total de etiquetas actuales:";
+            // 
+            // txbTotalEt
+            // 
+            this.txbTotalEt.Location = new System.Drawing.Point(24, 386);
+            this.txbTotalEt.Name = "txbTotalEt";
+            this.txbTotalEt.ReadOnly = true;
+            this.txbTotalEt.Size = new System.Drawing.Size(100, 20);
+            this.txbTotalEt.TabIndex = 140;
             // 
             // dtgEtiquetas
             // 
             this.dtgEtiquetas.AllowUserToAddRows = false;
             this.dtgEtiquetas.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
-            this.dtgEtiquetas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
+            this.dtgEtiquetas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dtgEtiquetas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -90,25 +122,25 @@
             this.dtgEtiquetas.BackgroundColor = System.Drawing.Color.White;
             this.dtgEtiquetas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dtgEtiquetas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgEtiquetas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgEtiquetas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dtgEtiquetas.ColumnHeadersHeight = 30;
             this.dtgEtiquetas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dtgEtiquetas.DateWithTime = false;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgEtiquetas.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgEtiquetas.DefaultCellStyle = dataGridViewCellStyle7;
             this.dtgEtiquetas.EnableHeadersVisualStyles = false;
             this.dtgEtiquetas.GridColor = System.Drawing.Color.White;
             this.dtgEtiquetas.Location = new System.Drawing.Point(22, 12);
@@ -116,22 +148,23 @@
             this.dtgEtiquetas.Name = "dtgEtiquetas";
             this.dtgEtiquetas.ReadOnly = true;
             this.dtgEtiquetas.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgEtiquetas.RowHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgEtiquetas.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dtgEtiquetas.RowHeadersVisible = false;
             this.dtgEtiquetas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dtgEtiquetas.RowTemplate.DividerHeight = 1;
             this.dtgEtiquetas.RowTemplate.Height = 50;
             this.dtgEtiquetas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgEtiquetas.Size = new System.Drawing.Size(466, 254);
+            this.dtgEtiquetas.Size = new System.Drawing.Size(629, 345);
             this.dtgEtiquetas.TabIndex = 139;
             this.dtgEtiquetas.TimeFilter = false;
+            this.dtgEtiquetas.SelectionChanged += new System.EventHandler(this.dtgEtiquetas_SelectionChanged);
             // 
             // gunaElipsePanel1
             // 
@@ -143,34 +176,34 @@
             this.gunaElipsePanel1.Location = new System.Drawing.Point(12, 12);
             this.gunaElipsePanel1.Name = "gunaElipsePanel1";
             this.gunaElipsePanel1.Radius = 20;
-            this.gunaElipsePanel1.Size = new System.Drawing.Size(776, 148);
+            this.gunaElipsePanel1.Size = new System.Drawing.Size(1157, 108);
             this.gunaElipsePanel1.TabIndex = 159;
             // 
             // lblEntrada
             // 
             this.lblEntrada.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblEntrada.AutoSize = true;
-            this.lblEntrada.Font = new System.Drawing.Font("Segoe UI Black", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEntrada.Location = new System.Drawing.Point(174, 9);
+            this.lblEntrada.Font = new System.Drawing.Font("Segoe UI Black", 60F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEntrada.Location = new System.Drawing.Point(369, 0);
             this.lblEntrada.Name = "lblEntrada";
-            this.lblEntrada.Size = new System.Drawing.Size(419, 128);
+            this.lblEntrada.Size = new System.Drawing.Size(348, 106);
             this.lblEntrada.TabIndex = 0;
             this.lblEntrada.Text = "Entrada";
             this.lblEntrada.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.gunaGradientTileButton1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnEntrada, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 544);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(22, 29);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 100);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(488, 104);
             this.tableLayoutPanel1.TabIndex = 158;
             // 
             // gunaGradientTileButton1
@@ -190,7 +223,7 @@
             this.gunaGradientTileButton1.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             this.gunaGradientTileButton1.Image = null;
             this.gunaGradientTileButton1.ImageSize = new System.Drawing.Size(100, 80);
-            this.gunaGradientTileButton1.Location = new System.Drawing.Point(402, 2);
+            this.gunaGradientTileButton1.Location = new System.Drawing.Point(246, 2);
             this.gunaGradientTileButton1.Margin = new System.Windows.Forms.Padding(2);
             this.gunaGradientTileButton1.Name = "gunaGradientTileButton1";
             this.gunaGradientTileButton1.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
@@ -200,7 +233,7 @@
             this.gunaGradientTileButton1.OnHoverImage = null;
             this.gunaGradientTileButton1.OnPressedColor = System.Drawing.Color.Black;
             this.gunaGradientTileButton1.Radius = 5;
-            this.gunaGradientTileButton1.Size = new System.Drawing.Size(396, 96);
+            this.gunaGradientTileButton1.Size = new System.Drawing.Size(240, 100);
             this.gunaGradientTileButton1.TabIndex = 22;
             this.gunaGradientTileButton1.Text = "Agregar";
             this.gunaGradientTileButton1.Click += new System.EventHandler(this.gunaGradientTileButton1_Click);
@@ -215,7 +248,6 @@
             this.btnEntrada.BaseColor2 = System.Drawing.Color.Maroon;
             this.btnEntrada.BorderColor = System.Drawing.Color.Black;
             this.btnEntrada.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.btnEntrada.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnEntrada.FocusedColor = System.Drawing.Color.Empty;
             this.btnEntrada.Font = new System.Drawing.Font("Trebuchet MS", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEntrada.ForeColor = System.Drawing.Color.White;
@@ -232,7 +264,7 @@
             this.btnEntrada.OnHoverImage = null;
             this.btnEntrada.OnPressedColor = System.Drawing.Color.Black;
             this.btnEntrada.Radius = 5;
-            this.btnEntrada.Size = new System.Drawing.Size(396, 96);
+            this.btnEntrada.Size = new System.Drawing.Size(240, 100);
             this.btnEntrada.TabIndex = 21;
             this.btnEntrada.Text = "Eliminar";
             this.btnEntrada.Click += new System.EventHandler(this.btnEntrada_Click);
@@ -244,16 +276,84 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gunaElipsePanel3.BackColor = System.Drawing.Color.Transparent;
             this.gunaElipsePanel3.BaseColor = System.Drawing.Color.White;
-            this.gunaElipsePanel3.Controls.Add(this.gbxBorra);
-            this.gunaElipsePanel3.Controls.Add(this.gbxAgrega);
-            this.gunaElipsePanel3.Location = new System.Drawing.Point(554, 183);
+            this.gunaElipsePanel3.Controls.Add(this.lblPesoV);
+            this.gunaElipsePanel3.Controls.Add(this.textBox1);
+            this.gunaElipsePanel3.Controls.Add(this.lblAltura);
+            this.gunaElipsePanel3.Controls.Add(this.lblAnchura);
+            this.gunaElipsePanel3.Controls.Add(this.lblLongitud);
+            this.gunaElipsePanel3.Controls.Add(this.label2);
+            this.gunaElipsePanel3.Controls.Add(this.txbAltura);
+            this.gunaElipsePanel3.Controls.Add(this.txbAnchura);
+            this.gunaElipsePanel3.Controls.Add(this.tbxLongitud);
+            this.gunaElipsePanel3.Controls.Add(this.txbDescripcion);
+            this.gunaElipsePanel3.Controls.Add(this.txbEntiquetaSeleccionada);
+            this.gunaElipsePanel3.Controls.Add(this.buttonSaveDesc);
+            this.gunaElipsePanel3.Location = new System.Drawing.Point(691, 132);
             this.gunaElipsePanel3.Name = "gunaElipsePanel3";
             this.gunaElipsePanel3.Radius = 20;
-            this.gunaElipsePanel3.Size = new System.Drawing.Size(234, 335);
+            this.gunaElipsePanel3.Size = new System.Drawing.Size(478, 426);
             this.gunaElipsePanel3.TabIndex = 161;
+            // 
+            // txbDescripcion
+            // 
+            this.txbDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbDescripcion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txbDescripcion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txbDescripcion.Depth = 0;
+            this.txbDescripcion.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbDescripcion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txbDescripcion.Hint = "";
+            this.txbDescripcion.Location = new System.Drawing.Point(22, 53);
+            this.txbDescripcion.MaxLength = 249;
+            this.txbDescripcion.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
+            this.txbDescripcion.Name = "txbDescripcion";
+            this.txbDescripcion.Size = new System.Drawing.Size(426, 140);
+            this.txbDescripcion.TabIndex = 163;
+            this.txbDescripcion.Text = "";
+            // 
+            // txbEntiquetaSeleccionada
+            // 
+            this.txbEntiquetaSeleccionada.Location = new System.Drawing.Point(22, 12);
+            this.txbEntiquetaSeleccionada.Name = "txbEntiquetaSeleccionada";
+            this.txbEntiquetaSeleccionada.ReadOnly = true;
+            this.txbEntiquetaSeleccionada.Size = new System.Drawing.Size(160, 20);
+            this.txbEntiquetaSeleccionada.TabIndex = 162;
+            // 
+            // buttonSaveDesc
+            // 
+            this.buttonSaveDesc.Animated = true;
+            this.buttonSaveDesc.AnimationHoverSpeed = 0.07F;
+            this.buttonSaveDesc.AnimationSpeed = 0.03F;
+            this.buttonSaveDesc.BackColor = System.Drawing.Color.Transparent;
+            this.buttonSaveDesc.BaseColor1 = System.Drawing.Color.Blue;
+            this.buttonSaveDesc.BaseColor2 = System.Drawing.Color.Navy;
+            this.buttonSaveDesc.BorderColor = System.Drawing.Color.Black;
+            this.buttonSaveDesc.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonSaveDesc.FocusedColor = System.Drawing.Color.Empty;
+            this.buttonSaveDesc.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSaveDesc.ForeColor = System.Drawing.Color.White;
+            this.buttonSaveDesc.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            this.buttonSaveDesc.Image = null;
+            this.buttonSaveDesc.ImageSize = new System.Drawing.Size(100, 80);
+            this.buttonSaveDesc.Location = new System.Drawing.Point(103, 332);
+            this.buttonSaveDesc.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonSaveDesc.Name = "buttonSaveDesc";
+            this.buttonSaveDesc.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
+            this.buttonSaveDesc.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(43)))), ((int)(((byte)(255)))));
+            this.buttonSaveDesc.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.buttonSaveDesc.OnHoverForeColor = System.Drawing.Color.White;
+            this.buttonSaveDesc.OnHoverImage = null;
+            this.buttonSaveDesc.OnPressedColor = System.Drawing.Color.Black;
+            this.buttonSaveDesc.Radius = 5;
+            this.buttonSaveDesc.Size = new System.Drawing.Size(318, 74);
+            this.buttonSaveDesc.TabIndex = 23;
+            this.buttonSaveDesc.Text = "Guardar descripcion";
             // 
             // gbxBorra
             // 
+            this.gbxBorra.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.gbxBorra.BackColor = System.Drawing.Color.Transparent;
             this.gbxBorra.BaseColor = System.Drawing.Color.White;
             this.gbxBorra.BorderColor = System.Drawing.Color.Gainsboro;
@@ -262,7 +362,7 @@
             this.gbxBorra.Controls.Add(this.nBorra);
             this.gbxBorra.Enabled = false;
             this.gbxBorra.LineColor = System.Drawing.Color.Gainsboro;
-            this.gbxBorra.Location = new System.Drawing.Point(13, 173);
+            this.gbxBorra.Location = new System.Drawing.Point(573, 13);
             this.gbxBorra.Name = "gbxBorra";
             this.gbxBorra.Size = new System.Drawing.Size(210, 145);
             this.gbxBorra.TabIndex = 160;
@@ -323,6 +423,7 @@
             // 
             // gbxAgrega
             // 
+            this.gbxAgrega.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.gbxAgrega.BackColor = System.Drawing.Color.Transparent;
             this.gbxAgrega.BaseColor = System.Drawing.Color.White;
             this.gbxAgrega.BorderColor = System.Drawing.Color.Gainsboro;
@@ -331,7 +432,7 @@
             this.gbxAgrega.Controls.Add(this.nAgrega);
             this.gbxAgrega.Enabled = false;
             this.gbxAgrega.LineColor = System.Drawing.Color.Gainsboro;
-            this.gbxAgrega.Location = new System.Drawing.Point(13, 18);
+            this.gbxAgrega.Location = new System.Drawing.Point(890, 13);
             this.gbxAgrega.Name = "gbxAgrega";
             this.gbxAgrega.Size = new System.Drawing.Size(210, 145);
             this.gbxAgrega.TabIndex = 140;
@@ -350,7 +451,7 @@
             this.btnAgrega.ForeColor = System.Drawing.Color.White;
             this.btnAgrega.Image = null;
             this.btnAgrega.ImageSize = new System.Drawing.Size(52, 52);
-            this.btnAgrega.Location = new System.Drawing.Point(6, 97);
+            this.btnAgrega.Location = new System.Drawing.Point(3, 107);
             this.btnAgrega.Name = "btnAgrega";
             this.btnAgrega.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnAgrega.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -390,34 +491,106 @@
             this.nAgrega.Text = "gunaNumeric1";
             this.nAgrega.Value = ((long)(0));
             // 
-            // txbTotalEt
+            // AddOrDeletePanel
             // 
-            this.txbTotalEt.Location = new System.Drawing.Point(22, 296);
-            this.txbTotalEt.Name = "txbTotalEt";
-            this.txbTotalEt.ReadOnly = true;
-            this.txbTotalEt.Size = new System.Drawing.Size(100, 20);
-            this.txbTotalEt.TabIndex = 140;
+            this.AddOrDeletePanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddOrDeletePanel.Controls.Add(this.gbxAgrega);
+            this.AddOrDeletePanel.Controls.Add(this.gbxBorra);
+            this.AddOrDeletePanel.Controls.Add(this.tableLayoutPanel1);
+            this.AddOrDeletePanel.Location = new System.Drawing.Point(12, 564);
+            this.AddOrDeletePanel.Name = "AddOrDeletePanel";
+            this.AddOrDeletePanel.Size = new System.Drawing.Size(1157, 177);
+            this.AddOrDeletePanel.TabIndex = 162;
             // 
-            // label1
+            // tbxLongitud
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label1.Location = new System.Drawing.Point(19, 278);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(138, 13);
-            this.label1.TabIndex = 161;
-            this.label1.Text = "Total de etiquetas actuales:";
+            this.tbxLongitud.Location = new System.Drawing.Point(22, 217);
+            this.tbxLongitud.Name = "tbxLongitud";
+            this.tbxLongitud.Size = new System.Drawing.Size(82, 20);
+            this.tbxLongitud.TabIndex = 164;
+            // 
+            // txbAnchura
+            // 
+            this.txbAnchura.Location = new System.Drawing.Point(128, 217);
+            this.txbAnchura.Name = "txbAnchura";
+            this.txbAnchura.Size = new System.Drawing.Size(82, 20);
+            this.txbAnchura.TabIndex = 165;
+            // 
+            // txbAltura
+            // 
+            this.txbAltura.Location = new System.Drawing.Point(231, 217);
+            this.txbAltura.Name = "txbAltura";
+            this.txbAltura.Size = new System.Drawing.Size(82, 20);
+            this.txbAltura.TabIndex = 166;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.label2.Location = new System.Drawing.Point(19, 37);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(111, 13);
+            this.label2.TabIndex = 167;
+            this.label2.Text = "Descripcion Individual";
+            // 
+            // lblLongitud
+            // 
+            this.lblLongitud.AutoSize = true;
+            this.lblLongitud.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.lblLongitud.Location = new System.Drawing.Point(19, 201);
+            this.lblLongitud.Name = "lblLongitud";
+            this.lblLongitud.Size = new System.Drawing.Size(65, 13);
+            this.lblLongitud.TabIndex = 168;
+            this.lblLongitud.Text = "Longitud (in)";
+            // 
+            // lblAnchura
+            // 
+            this.lblAnchura.AutoSize = true;
+            this.lblAnchura.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.lblAnchura.Location = new System.Drawing.Point(125, 201);
+            this.lblAnchura.Name = "lblAnchura";
+            this.lblAnchura.Size = new System.Drawing.Size(64, 13);
+            this.lblAnchura.TabIndex = 169;
+            this.lblAnchura.Text = "Anchura (in)";
+            // 
+            // lblAltura
+            // 
+            this.lblAltura.AutoSize = true;
+            this.lblAltura.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.lblAltura.Location = new System.Drawing.Point(228, 201);
+            this.lblAltura.Name = "lblAltura";
+            this.lblAltura.Size = new System.Drawing.Size(51, 13);
+            this.lblAltura.TabIndex = 170;
+            this.lblAltura.Text = "Altura (in)";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(333, 217);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(115, 20);
+            this.textBox1.TabIndex = 171;
+            // 
+            // lblPesoV
+            // 
+            this.lblPesoV.AutoSize = true;
+            this.lblPesoV.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.lblPesoV.Location = new System.Drawing.Point(331, 201);
+            this.lblPesoV.Name = "lblPesoV";
+            this.lblPesoV.Size = new System.Drawing.Size(126, 13);
+            this.lblPesoV.TabIndex = 172;
+            this.lblPesoV.Text = "Peso Volumetrico (Libras)";
             // 
             // vistaBajaAgregaEntrada
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 644);
+            this.ClientSize = new System.Drawing.Size(1181, 753);
+            this.Controls.Add(this.AddOrDeletePanel);
             this.Controls.Add(this.gunaElipsePanel3);
             this.Controls.Add(this.gunaElipsePanel2);
             this.Controls.Add(this.gunaElipsePanel1);
-            this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "vistaBajaAgregaEntrada";
             this.ShowIcon = false;
             this.Text = "Agrega o Elimina Entradas";
@@ -429,10 +602,12 @@
             this.gunaElipsePanel1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.gunaElipsePanel3.ResumeLayout(false);
+            this.gunaElipsePanel3.PerformLayout();
             this.gbxBorra.ResumeLayout(false);
             this.gbxBorra.PerformLayout();
             this.gbxAgrega.ResumeLayout(false);
             this.gbxAgrega.PerformLayout();
+            this.AddOrDeletePanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -457,5 +632,18 @@
         private Guna.UI.WinForms.GunaLabel lblEntrada;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txbTotalEt;
+        private System.Windows.Forms.Panel AddOrDeletePanel;
+        private System.Windows.Forms.TextBox txbEntiquetaSeleccionada;
+        private Guna.UI.WinForms.GunaGradientTileButton buttonSaveDesc;
+        private ReaLTaiizor.Controls.MaterialRichTextBox txbDescripcion;
+        private System.Windows.Forms.Label lblPesoV;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label lblAltura;
+        private System.Windows.Forms.Label lblAnchura;
+        private System.Windows.Forms.Label lblLongitud;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txbAltura;
+        private System.Windows.Forms.TextBox txbAnchura;
+        private System.Windows.Forms.TextBox tbxLongitud;
     }
 }

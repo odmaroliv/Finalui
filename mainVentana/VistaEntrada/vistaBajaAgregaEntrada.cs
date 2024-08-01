@@ -1,4 +1,5 @@
 ﻿using Datos.ViewModels.Entradas;
+using Guna.UI.WinForms;
 using Negocios;
 using Negocios.Odoo;
 using System;
@@ -15,6 +16,8 @@ namespace mainVentana.VistaEntrada
 {
   
     // public event pasar2 pasado2;
+
+
     public partial class vistaBajaAgregaEntrada : Form
     {
 
@@ -25,6 +28,12 @@ namespace mainVentana.VistaEntrada
         private List<vmEtiquetasInfo> datosLista;
         public string suOrigen;
         public string entrada;
+
+        private string _etiquetaSeleccionada = "";
+        private string _descripcionSeleccionada = "";
+
+
+
         public vistaBajaAgregaEntrada()
         {
             InitializeComponent();
@@ -45,12 +54,23 @@ namespace mainVentana.VistaEntrada
 
         private void vistaBajaAgregaEntrada_Load(object sender, EventArgs e)
         {
-            if (entrada=="00" || entrada == default)
+            if (entrada == "00" || entrada == default)
             {
                 lblEntrada.Text = "Error";
                 return;
             }
 
+
+            string us = Negocios.Common.Cache.CacheLogin.username;
+            if (us == "DOLIVARES")
+            {
+                AddOrDeletePanel.Enabled = true;
+               
+            }
+            else
+            {
+                AddOrDeletePanel.Enabled = false;
+            }
 
             lblEntrada.Text = entrada;
             LlamaDatosEtiqueta();
@@ -176,6 +196,30 @@ namespace mainVentana.VistaEntrada
             await agregaDatos();
             this.Dispose();
             this.Close();
+        }
+
+        
+
+        private void dtgEtiquetas_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dtgEtiquetas.SelectedCells.Count > 0)
+                {
+                    int selectedrowindex = dtgEtiquetas.SelectedCells[1].RowIndex;
+                    DataGridViewRow selectedRow = dtgEtiquetas.Rows[selectedrowindex];
+                    _etiquetaSeleccionada = Convert.ToString(selectedRow?.Cells[1]?.Value ??"").Trim();
+                    _descripcionSeleccionada = Convert.ToString(selectedRow?.Cells[3]?.Value ??"").Trim();
+                    txbEntiquetaSeleccionada.Text = _etiquetaSeleccionada;
+                    txbDescripcion.Text = _descripcionSeleccionada;
+                }
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("El valor no puede ser 0 o un espacio vacio, esto esta apunto de generar un error interno, manten asi la apilacion, no la cierres y pide soporte de Sistemas.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            }
         }
     }
 }

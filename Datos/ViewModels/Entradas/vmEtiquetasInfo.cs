@@ -11,5 +11,6 @@ namespace Datos.ViewModels.Entradas
         public decimal nEtiqueta { get; set; }
         public string Etiqueta { get; set; }
         public string Carga { get; set; }
+        public string Descripcion { get; set; }
     }
 }

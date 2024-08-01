@@ -1723,6 +1723,7 @@ namespace Negocios
                                         nEtiqueta = d.C7,
                                         Etiqueta = d.C9,
                                         Carga = d.C16,
+                                        Descripcion = d.C42
 
                                     };
                         lst2 = lista.ToList();
