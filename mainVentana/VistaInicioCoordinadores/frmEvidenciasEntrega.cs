@@ -223,6 +223,7 @@ namespace mainVentana.VistaInicioCoordinadores
         { rSd, "SD" },
         { rTj, "TJ" },
         { rCa, "CSL" },
+         { rImsd, "IMSD" },
 
                  };
 

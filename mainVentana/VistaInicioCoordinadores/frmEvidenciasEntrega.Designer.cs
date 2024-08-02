@@ -43,6 +43,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.gbFirma = new System.Windows.Forms.GroupBox();
             this.pbxFirma = new System.Windows.Forms.PictureBox();
+            this.rImsd = new System.Windows.Forms.RadioButton();
             this.SucCombo.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.gbFirma.SuspendLayout();
@@ -115,12 +116,13 @@
             // 
             // SucCombo
             // 
+            this.SucCombo.Controls.Add(this.rImsd);
             this.SucCombo.Controls.Add(this.rCa);
             this.SucCombo.Controls.Add(this.rTj);
             this.SucCombo.Controls.Add(this.rSd);
             this.SucCombo.Location = new System.Drawing.Point(12, 17);
             this.SucCombo.Name = "SucCombo";
-            this.SucCombo.Size = new System.Drawing.Size(237, 48);
+            this.SucCombo.Size = new System.Drawing.Size(303, 48);
             this.SucCombo.TabIndex = 151;
             this.SucCombo.TabStop = false;
             this.SucCombo.Text = "Sucursal";
@@ -134,6 +136,7 @@
             this.rCa.TabIndex = 2;
             this.rCa.Text = "Cabo S.";
             this.rCa.UseVisualStyleBackColor = true;
+            this.rCa.ClientSizeChanged += new System.EventHandler(this.rSd_CheckedChanged_1);
             // 
             // rTj
             // 
@@ -144,6 +147,7 @@
             this.rTj.TabIndex = 1;
             this.rTj.Text = "Tijuana";
             this.rTj.UseVisualStyleBackColor = true;
+            this.rTj.CheckedChanged += new System.EventHandler(this.rSd_CheckedChanged_1);
             // 
             // rSd
             // 
@@ -234,6 +238,17 @@
             this.pbxFirma.TabIndex = 0;
             this.pbxFirma.TabStop = false;
             // 
+            // rImsd
+            // 
+            this.rImsd.AutoSize = true;
+            this.rImsd.Location = new System.Drawing.Point(222, 19);
+            this.rImsd.Name = "rImsd";
+            this.rImsd.Size = new System.Drawing.Size(52, 17);
+            this.rImsd.TabIndex = 3;
+            this.rImsd.Text = "IMSD";
+            this.rImsd.UseVisualStyleBackColor = true;
+            this.rImsd.CheckedChanged += new System.EventHandler(this.rSd_CheckedChanged_1);
+            // 
             // frmEvidenciasEntrega
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -279,5 +294,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox gbFirma;
         private System.Windows.Forms.PictureBox pbxFirma;
+        private System.Windows.Forms.RadioButton rImsd;
     }
 }
