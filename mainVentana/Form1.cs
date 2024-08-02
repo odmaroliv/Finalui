@@ -27,6 +27,7 @@ using mainVentana.TraspasoMercancias;
 using mainVentana.Reportes.Clientes;
 using mainVentana.vistaInventario;
 using mainVentana.Reportes.Cotizaciones;
+using mainVentana.VistaEntrada.ReportesEntradas;
 
 namespace mainVentana
 {
@@ -711,6 +712,14 @@ namespace mainVentana
             rep.FormClosed += frm_FormClosed_Libera;
             rep.Show();
             
+        }
+
+        private void rbRepEntradasTotalesPorUsuario_Click(object sender, EventArgs e)
+        {
+            frmReporteEntradas rep = new frmReporteEntradas();
+            openForms.Add(rep);
+            rep.FormClosed += frm_FormClosed_Libera;
+            rep.Show();
         }
     }
 }

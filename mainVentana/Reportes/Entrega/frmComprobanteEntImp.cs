@@ -20,9 +20,10 @@ namespace mainVentana.Reportes.Entrega
         public string fechaEntrega;
         public string recibio;
         public string cordsEnt;
+        public string clienteParam;
 
         public byte[] imgSignature;
-        public byte[] imgMapa;
+        public byte[] imgMapa = null;
         public vmReportDataEntrega ReportData { get; set; }
 
 
@@ -49,6 +50,7 @@ namespace mainVentana.Reportes.Entrega
             reportParameters.Add(new ReportParameter("fechaEntrega", fechaEntrega));
             reportParameters.Add(new ReportParameter("recibio", recibio));
             reportParameters.Add(new ReportParameter("cordsEnt", cordsEnt));
+            reportParameters.Add(new ReportParameter("clienteParam", clienteParam));
 
             //this.reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("NombreDataSource", objetoFuenteDeDatos));
 

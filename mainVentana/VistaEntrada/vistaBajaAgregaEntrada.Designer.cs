@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gunaElipsePanel2 = new Guna.UI.WinForms.GunaElipsePanel();
             this.label1 = new System.Windows.Forms.Label();
             this.txbTotalEt = new System.Windows.Forms.TextBox();
@@ -42,6 +42,15 @@
             this.gunaGradientTileButton1 = new Guna.UI.WinForms.GunaGradientTileButton();
             this.btnEntrada = new Guna.UI.WinForms.GunaGradientTileButton();
             this.gunaElipsePanel3 = new Guna.UI.WinForms.GunaElipsePanel();
+            this.lblPesoV = new System.Windows.Forms.Label();
+            this.txbVolumetrico = new System.Windows.Forms.TextBox();
+            this.lblAltura = new System.Windows.Forms.Label();
+            this.lblAnchura = new System.Windows.Forms.Label();
+            this.lblLongitud = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txbAltura = new System.Windows.Forms.TextBox();
+            this.txbAnchura = new System.Windows.Forms.TextBox();
+            this.tbxLongitud = new System.Windows.Forms.TextBox();
             this.txbDescripcion = new ReaLTaiizor.Controls.MaterialRichTextBox();
             this.txbEntiquetaSeleccionada = new System.Windows.Forms.TextBox();
             this.buttonSaveDesc = new Guna.UI.WinForms.GunaGradientTileButton();
@@ -54,15 +63,9 @@
             this.lblAgrega = new System.Windows.Forms.Label();
             this.nAgrega = new Guna.UI.WinForms.GunaNumeric();
             this.AddOrDeletePanel = new System.Windows.Forms.Panel();
-            this.tbxLongitud = new System.Windows.Forms.TextBox();
-            this.txbAnchura = new System.Windows.Forms.TextBox();
-            this.txbAltura = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblLongitud = new System.Windows.Forms.Label();
-            this.lblAnchura = new System.Windows.Forms.Label();
-            this.lblAltura = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.lblPesoV = new System.Windows.Forms.Label();
+            this.cbxEstibable = new System.Windows.Forms.CheckBox();
+            this.lblPeso = new System.Windows.Forms.Label();
+            this.txbPesoReal = new System.Windows.Forms.TextBox();
             this.gunaElipsePanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgEtiquetas)).BeginInit();
             this.gunaElipsePanel1.SuspendLayout();
@@ -111,9 +114,9 @@
             // 
             this.dtgEtiquetas.AllowUserToAddRows = false;
             this.dtgEtiquetas.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
-            this.dtgEtiquetas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
+            this.dtgEtiquetas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dtgEtiquetas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -122,25 +125,25 @@
             this.dtgEtiquetas.BackgroundColor = System.Drawing.Color.White;
             this.dtgEtiquetas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dtgEtiquetas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgEtiquetas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgEtiquetas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dtgEtiquetas.ColumnHeadersHeight = 30;
             this.dtgEtiquetas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dtgEtiquetas.DateWithTime = false;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgEtiquetas.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgEtiquetas.DefaultCellStyle = dataGridViewCellStyle3;
             this.dtgEtiquetas.EnableHeadersVisualStyles = false;
             this.dtgEtiquetas.GridColor = System.Drawing.Color.White;
             this.dtgEtiquetas.Location = new System.Drawing.Point(22, 12);
@@ -148,14 +151,14 @@
             this.dtgEtiquetas.Name = "dtgEtiquetas";
             this.dtgEtiquetas.ReadOnly = true;
             this.dtgEtiquetas.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgEtiquetas.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgEtiquetas.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dtgEtiquetas.RowHeadersVisible = false;
             this.dtgEtiquetas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dtgEtiquetas.RowTemplate.DividerHeight = 1;
@@ -276,8 +279,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gunaElipsePanel3.BackColor = System.Drawing.Color.Transparent;
             this.gunaElipsePanel3.BaseColor = System.Drawing.Color.White;
+            this.gunaElipsePanel3.Controls.Add(this.lblPeso);
+            this.gunaElipsePanel3.Controls.Add(this.txbPesoReal);
+            this.gunaElipsePanel3.Controls.Add(this.cbxEstibable);
             this.gunaElipsePanel3.Controls.Add(this.lblPesoV);
-            this.gunaElipsePanel3.Controls.Add(this.textBox1);
+            this.gunaElipsePanel3.Controls.Add(this.txbVolumetrico);
             this.gunaElipsePanel3.Controls.Add(this.lblAltura);
             this.gunaElipsePanel3.Controls.Add(this.lblAnchura);
             this.gunaElipsePanel3.Controls.Add(this.lblLongitud);
@@ -293,6 +299,93 @@
             this.gunaElipsePanel3.Radius = 20;
             this.gunaElipsePanel3.Size = new System.Drawing.Size(478, 426);
             this.gunaElipsePanel3.TabIndex = 161;
+            // 
+            // lblPesoV
+            // 
+            this.lblPesoV.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPesoV.AutoSize = true;
+            this.lblPesoV.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.lblPesoV.Location = new System.Drawing.Point(330, 268);
+            this.lblPesoV.Name = "lblPesoV";
+            this.lblPesoV.Size = new System.Drawing.Size(126, 13);
+            this.lblPesoV.TabIndex = 172;
+            this.lblPesoV.Text = "Peso Volumetrico (Libras)";
+            // 
+            // txbVolumetrico
+            // 
+            this.txbVolumetrico.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbVolumetrico.Location = new System.Drawing.Point(332, 284);
+            this.txbVolumetrico.Name = "txbVolumetrico";
+            this.txbVolumetrico.ReadOnly = true;
+            this.txbVolumetrico.Size = new System.Drawing.Size(115, 20);
+            this.txbVolumetrico.TabIndex = 171;
+            // 
+            // lblAltura
+            // 
+            this.lblAltura.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblAltura.AutoSize = true;
+            this.lblAltura.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.lblAltura.Location = new System.Drawing.Point(228, 201);
+            this.lblAltura.Name = "lblAltura";
+            this.lblAltura.Size = new System.Drawing.Size(51, 13);
+            this.lblAltura.TabIndex = 170;
+            this.lblAltura.Text = "Altura (in)";
+            // 
+            // lblAnchura
+            // 
+            this.lblAnchura.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblAnchura.AutoSize = true;
+            this.lblAnchura.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.lblAnchura.Location = new System.Drawing.Point(125, 201);
+            this.lblAnchura.Name = "lblAnchura";
+            this.lblAnchura.Size = new System.Drawing.Size(64, 13);
+            this.lblAnchura.TabIndex = 169;
+            this.lblAnchura.Text = "Anchura (in)";
+            // 
+            // lblLongitud
+            // 
+            this.lblLongitud.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblLongitud.AutoSize = true;
+            this.lblLongitud.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.lblLongitud.Location = new System.Drawing.Point(19, 201);
+            this.lblLongitud.Name = "lblLongitud";
+            this.lblLongitud.Size = new System.Drawing.Size(65, 13);
+            this.lblLongitud.TabIndex = 168;
+            this.lblLongitud.Text = "Longitud (in)";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.label2.Location = new System.Drawing.Point(19, 37);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(111, 13);
+            this.label2.TabIndex = 167;
+            this.label2.Text = "Descripcion Individual";
+            // 
+            // txbAltura
+            // 
+            this.txbAltura.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txbAltura.Location = new System.Drawing.Point(231, 217);
+            this.txbAltura.Name = "txbAltura";
+            this.txbAltura.Size = new System.Drawing.Size(82, 20);
+            this.txbAltura.TabIndex = 166;
+            // 
+            // txbAnchura
+            // 
+            this.txbAnchura.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txbAnchura.Location = new System.Drawing.Point(128, 217);
+            this.txbAnchura.Name = "txbAnchura";
+            this.txbAnchura.Size = new System.Drawing.Size(82, 20);
+            this.txbAnchura.TabIndex = 165;
+            // 
+            // tbxLongitud
+            // 
+            this.tbxLongitud.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.tbxLongitud.Location = new System.Drawing.Point(22, 217);
+            this.tbxLongitud.Name = "tbxLongitud";
+            this.tbxLongitud.Size = new System.Drawing.Size(82, 20);
+            this.tbxLongitud.TabIndex = 164;
             // 
             // txbDescripcion
             // 
@@ -323,6 +416,7 @@
             // 
             // buttonSaveDesc
             // 
+            this.buttonSaveDesc.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.buttonSaveDesc.Animated = true;
             this.buttonSaveDesc.AnimationHoverSpeed = 0.07F;
             this.buttonSaveDesc.AnimationSpeed = 0.03F;
@@ -350,6 +444,7 @@
             this.buttonSaveDesc.Size = new System.Drawing.Size(318, 74);
             this.buttonSaveDesc.TabIndex = 23;
             this.buttonSaveDesc.Text = "Guardar descripcion";
+            this.buttonSaveDesc.Click += new System.EventHandler(this.buttonSaveDesc_Click);
             // 
             // gbxBorra
             // 
@@ -503,84 +598,41 @@
             this.AddOrDeletePanel.Size = new System.Drawing.Size(1157, 177);
             this.AddOrDeletePanel.TabIndex = 162;
             // 
-            // tbxLongitud
+            // cbxEstibable
             // 
-            this.tbxLongitud.Location = new System.Drawing.Point(22, 217);
-            this.tbxLongitud.Name = "tbxLongitud";
-            this.tbxLongitud.Size = new System.Drawing.Size(82, 20);
-            this.tbxLongitud.TabIndex = 164;
+            this.cbxEstibable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxEstibable.AutoSize = true;
+            this.cbxEstibable.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cbxEstibable.Checked = true;
+            this.cbxEstibable.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbxEstibable.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cbxEstibable.Location = new System.Drawing.Point(333, 15);
+            this.cbxEstibable.Name = "cbxEstibable";
+            this.cbxEstibable.Size = new System.Drawing.Size(112, 17);
+            this.cbxEstibable.TabIndex = 173;
+            this.cbxEstibable.Text = "Se puede estibar?";
+            this.cbxEstibable.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cbxEstibable.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.cbxEstibable.UseVisualStyleBackColor = true;
             // 
-            // txbAnchura
+            // lblPeso
             // 
-            this.txbAnchura.Location = new System.Drawing.Point(128, 217);
-            this.txbAnchura.Name = "txbAnchura";
-            this.txbAnchura.Size = new System.Drawing.Size(82, 20);
-            this.txbAnchura.TabIndex = 165;
+            this.lblPeso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblPeso.AutoSize = true;
+            this.lblPeso.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.lblPeso.Location = new System.Drawing.Point(329, 201);
+            this.lblPeso.Name = "lblPeso";
+            this.lblPeso.Size = new System.Drawing.Size(68, 13);
+            this.lblPeso.TabIndex = 175;
+            this.lblPeso.Text = "Peso (Libras)";
             // 
-            // txbAltura
+            // txbPesoReal
             // 
-            this.txbAltura.Location = new System.Drawing.Point(231, 217);
-            this.txbAltura.Name = "txbAltura";
-            this.txbAltura.Size = new System.Drawing.Size(82, 20);
-            this.txbAltura.TabIndex = 166;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label2.Location = new System.Drawing.Point(19, 37);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(111, 13);
-            this.label2.TabIndex = 167;
-            this.label2.Text = "Descripcion Individual";
-            // 
-            // lblLongitud
-            // 
-            this.lblLongitud.AutoSize = true;
-            this.lblLongitud.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.lblLongitud.Location = new System.Drawing.Point(19, 201);
-            this.lblLongitud.Name = "lblLongitud";
-            this.lblLongitud.Size = new System.Drawing.Size(65, 13);
-            this.lblLongitud.TabIndex = 168;
-            this.lblLongitud.Text = "Longitud (in)";
-            // 
-            // lblAnchura
-            // 
-            this.lblAnchura.AutoSize = true;
-            this.lblAnchura.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.lblAnchura.Location = new System.Drawing.Point(125, 201);
-            this.lblAnchura.Name = "lblAnchura";
-            this.lblAnchura.Size = new System.Drawing.Size(64, 13);
-            this.lblAnchura.TabIndex = 169;
-            this.lblAnchura.Text = "Anchura (in)";
-            // 
-            // lblAltura
-            // 
-            this.lblAltura.AutoSize = true;
-            this.lblAltura.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.lblAltura.Location = new System.Drawing.Point(228, 201);
-            this.lblAltura.Name = "lblAltura";
-            this.lblAltura.Size = new System.Drawing.Size(51, 13);
-            this.lblAltura.TabIndex = 170;
-            this.lblAltura.Text = "Altura (in)";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(333, 217);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(115, 20);
-            this.textBox1.TabIndex = 171;
-            // 
-            // lblPesoV
-            // 
-            this.lblPesoV.AutoSize = true;
-            this.lblPesoV.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.lblPesoV.Location = new System.Drawing.Point(331, 201);
-            this.lblPesoV.Name = "lblPesoV";
-            this.lblPesoV.Size = new System.Drawing.Size(126, 13);
-            this.lblPesoV.TabIndex = 172;
-            this.lblPesoV.Text = "Peso Volumetrico (Libras)";
+            this.txbPesoReal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txbPesoReal.Location = new System.Drawing.Point(332, 217);
+            this.txbPesoReal.Name = "txbPesoReal";
+            this.txbPesoReal.Size = new System.Drawing.Size(82, 20);
+            this.txbPesoReal.TabIndex = 174;
             // 
             // vistaBajaAgregaEntrada
             // 
@@ -637,7 +689,7 @@
         private Guna.UI.WinForms.GunaGradientTileButton buttonSaveDesc;
         private ReaLTaiizor.Controls.MaterialRichTextBox txbDescripcion;
         private System.Windows.Forms.Label lblPesoV;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txbVolumetrico;
         private System.Windows.Forms.Label lblAltura;
         private System.Windows.Forms.Label lblAnchura;
         private System.Windows.Forms.Label lblLongitud;
@@ -645,5 +697,8 @@
         private System.Windows.Forms.TextBox txbAltura;
         private System.Windows.Forms.TextBox txbAnchura;
         private System.Windows.Forms.TextBox tbxLongitud;
+        private System.Windows.Forms.CheckBox cbxEstibable;
+        private System.Windows.Forms.Label lblPeso;
+        private System.Windows.Forms.TextBox txbPesoReal;
     }
 }

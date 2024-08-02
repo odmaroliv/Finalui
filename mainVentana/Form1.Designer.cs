@@ -102,6 +102,7 @@ namespace mainVentana
             this.rbRepEntradasSD = new System.Windows.Forms.RibbonButton();
             this.rbRepClientesActivos = new System.Windows.Forms.RibbonButton();
             this.rbRepClienteXZona = new System.Windows.Forms.RibbonButton();
+            this.rbRepCotXCantidad = new System.Windows.Forms.RibbonButton();
             this.rbtnAjustes = new System.Windows.Forms.RibbonButton();
             this.apiConfig = new System.Windows.Forms.RibbonButton();
             this.ribbonButton6 = new System.Windows.Forms.RibbonButton();
@@ -129,7 +130,7 @@ namespace mainVentana
             this.ribbonButton4 = new System.Windows.Forms.RibbonButton();
             this.ribbonDescriptionMenuItem2 = new System.Windows.Forms.RibbonDescriptionMenuItem();
             this.panelContenedorForm = new System.Windows.Forms.Panel();
-            this.rbRepCotXCantidad = new System.Windows.Forms.RibbonButton();
+            this.rbRepEntradasTotalesPorUsuario = new System.Windows.Forms.RibbonButton();
             this.panel11.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -608,6 +609,7 @@ namespace mainVentana
             this.rbtnReportes.DropDownItems.Add(this.rbRepClientesActivos);
             this.rbtnReportes.DropDownItems.Add(this.rbRepClienteXZona);
             this.rbtnReportes.DropDownItems.Add(this.rbRepCotXCantidad);
+            this.rbtnReportes.DropDownItems.Add(this.rbRepEntradasTotalesPorUsuario);
             this.rbtnReportes.Image = global::mainVentana.Properties.Resources.delivery;
             this.rbtnReportes.LargeImage = global::mainVentana.Properties.Resources.delivery;
             this.rbtnReportes.Name = "rbtnReportes";
@@ -665,6 +667,16 @@ namespace mainVentana
             this.rbRepClienteXZona.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbRepClienteXZona.SmallImage")));
             this.rbRepClienteXZona.Text = "ClientesXZona";
             this.rbRepClienteXZona.Click += new System.EventHandler(this.rbRepClienteXZona_Click);
+            // 
+            // rbRepCotXCantidad
+            // 
+            this.rbRepCotXCantidad.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.rbRepCotXCantidad.Image = ((System.Drawing.Image)(resources.GetObject("rbRepCotXCantidad.Image")));
+            this.rbRepCotXCantidad.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbRepCotXCantidad.LargeImage")));
+            this.rbRepCotXCantidad.Name = "rbRepCotXCantidad";
+            this.rbRepCotXCantidad.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbRepCotXCantidad.SmallImage")));
+            this.rbRepCotXCantidad.Text = "RepCotXCantidad";
+            this.rbRepCotXCantidad.Click += new System.EventHandler(this.rbRepCotXCantidad_Click);
             // 
             // rbtnAjustes
             // 
@@ -908,15 +920,15 @@ namespace mainVentana
             this.panelContenedorForm.Size = new System.Drawing.Size(1245, 583);
             this.panelContenedorForm.TabIndex = 2;
             // 
-            // rbRepCotXCantidad
+            // rbRepEntradasTotalesPorUsuario
             // 
-            this.rbRepCotXCantidad.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
-            this.rbRepCotXCantidad.Image = ((System.Drawing.Image)(resources.GetObject("rbRepCotXCantidad.Image")));
-            this.rbRepCotXCantidad.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbRepCotXCantidad.LargeImage")));
-            this.rbRepCotXCantidad.Name = "rbRepCotXCantidad";
-            this.rbRepCotXCantidad.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbRepCotXCantidad.SmallImage")));
-            this.rbRepCotXCantidad.Text = "RepCotXCantidad";
-            this.rbRepCotXCantidad.Click += new System.EventHandler(this.rbRepCotXCantidad_Click);
+            this.rbRepEntradasTotalesPorUsuario.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.rbRepEntradasTotalesPorUsuario.Image = ((System.Drawing.Image)(resources.GetObject("rbRepEntradasTotalesPorUsuario.Image")));
+            this.rbRepEntradasTotalesPorUsuario.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbRepEntradasTotalesPorUsuario.LargeImage")));
+            this.rbRepEntradasTotalesPorUsuario.Name = "rbRepEntradasTotalesPorUsuario";
+            this.rbRepEntradasTotalesPorUsuario.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbRepEntradasTotalesPorUsuario.SmallImage")));
+            this.rbRepEntradasTotalesPorUsuario.Text = "Entradas x Usuario";
+            this.rbRepEntradasTotalesPorUsuario.Click += new System.EventHandler(this.rbRepEntradasTotalesPorUsuario_Click);
             // 
             // Form1
             // 
@@ -1028,6 +1040,7 @@ namespace mainVentana
         private RibbonButton rbRepClienteXZona;
         private RibbonButton rbtnInventario;
         private RibbonButton rbRepCotXCantidad;
+        private RibbonButton rbRepEntradasTotalesPorUsuario;
     }
 }
 

@@ -36,11 +36,7 @@ namespace mainVentana.VistaInicioCoordinadores
             InitializeComponent();
             try
             {
-                gMapControl1.MapProvider = GMapProviders.OpenStreetMap;
-                GMaps.Instance.Mode = AccessMode.ServerOnly; // Para evitar mostrar mensajes de error en caso de falta de conexión a Internet
-                gMapControl1.SetPositionByKeywords("Tijuana, Mexico"); // Establece una ubicación inicial por nombre de ciudad o país
-                gMapControl1.Zoom = 5; // Ajusta el nivel de zoom inicial
-                
+               
             }
             catch (Exception)
             {
@@ -61,7 +57,7 @@ namespace mainVentana.VistaInicioCoordinadores
             lblRecibe.Text = "";
             flowLayoutPanel1.Controls.Clear();
             pbxFirma.Image = null;
-          gMapControl1.SetPositionByKeywords("Tijuana, Mexico");
+         
             _dtoCompleto = "";
 
 
@@ -77,7 +73,7 @@ namespace mainVentana.VistaInicioCoordinadores
             }
             string auth = _codigoBee.Trim();
             string idprod = _dtoCompleto ?? _dtoCompleto.Trim();
-            string sURL = $"https://app.beetrack.com/api/external/v1/dispatches/{idprod}?evaluations=true";
+            string sURL = $"https://arniangroup.dispatchtrack.com/api/external/v1/dispatches/{idprod}?evaluations=true";
 
             // Limpiar los controles PictureBox existentes antes de agregar nuevos
             flowLayoutPanel1.Controls.Clear();
@@ -110,8 +106,7 @@ namespace mainVentana.VistaInicioCoordinadores
                         {
                             LimpiaDatos();
                         }
-                        BuscaMapa();
-
+                    
                     }
                     else
                     {
@@ -126,20 +121,7 @@ namespace mainVentana.VistaInicioCoordinadores
                 throw;
             }
         }
-        private void BuscaMapa()
-        {
-            double latitude, longitude;
-            if (double.TryParse(datosEntrada.latitude, out latitude) && double.TryParse(datosEntrada.longitude, out longitude))
-            {
-                gMapControl1.Position = new PointLatLng(latitude, longitude);
-                gMapControl1.Zoom = 15;
-            }
-            else
-            {
-
-                MessageBox.Show("Las coordenadas no son válidas.");
-            }
-        }
+        
         private void LoadEvaluationAnswers(Dispatch ispatch)
         {
             foreach (var answer in ispatch.evaluation_answers)
@@ -306,6 +288,7 @@ namespace mainVentana.VistaInicioCoordinadores
             }
             using (frmComprobanteEntImp rp = new frmComprobanteEntImp())
             {
+                rp.clienteParam = datosEntrada.contact_name;
                 rp.nArnian = datosEntrada.identifier.ToString();
                 rp.recibio = datosEntrada.evaluation_answers[2].value ?? datosEntrada.evaluation_answers[2].value.ToString();
                 // Asume que datosEntrada.arrived_at es una cadena en formato ISO 8601
@@ -331,19 +314,7 @@ namespace mainVentana.VistaInicioCoordinadores
                 {
                     return;
                 }
-                if (gMapControl1 != null)
-                {
-                    using (MemoryStream ms = new MemoryStream())
-                    {
-                        gMapControl1.ToImage().Save(ms, pbxFirma.Image.RawFormat);
-                        rp.imgMapa = ms.ToArray();
-                    }
-                  
-                }
-                else
-                {
-                    return;
-                }
+               
 
                 // Abre el formulario rp
                 rp.ShowDialog();

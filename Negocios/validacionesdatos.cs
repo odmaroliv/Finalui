@@ -121,6 +121,7 @@ namespace Negocios
                                      orderby d.C6 descending, d.C7 descending
                                      select new BusquedaInicial
                                      {
+                                         
                                          C6 = d.C6.Trim(),
                                          C9 = d.C9.Trim(),
                                          origen = d.C1.Trim(),
@@ -149,7 +150,7 @@ namespace Negocios
                                          billfecha = d.C77.Trim(),
                                          C42 = d.C42.Trim(),//desc corta
                                          elaborado = k.C81.Trim(),
-                                        // coord = c.C3.Trim(),
+                                         coord = k.odoosalesp,
                                          link = d.C46,
                                          alias = k.C112,
                                          cot = k.C115,
@@ -643,6 +644,42 @@ namespace Negocios
 
 
         }
+
+
+        public async Task<List<vmEntradaReporteTotales>> llenaUserEntradas()
+        {
+
+            try
+            {
+                var lst2 = new List<vmEntradaReporteTotales>();
+                await Task.Run(() =>
+                {
+                    using (modelo2Entities modelo = new modelo2Entities())
+
+                    {
+                        var lista = from d in modelo.KDUSUARIOS
+                                    where d.C4 == "JALMA" || d.C4 == "OENTRA"
+                                    select new vmEntradaReporteTotales
+                                    {
+                                        usuario = d.C1.Trim(),
+                                        nombre = d.C2.Trim(),
+                                    };
+                        lst2 = lista.ToList();
+
+                    }
+                });
+
+                return lst2;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+        }
+
 
         public async Task<List<vmCordinadores>> llenaCordOLD()
         {
@@ -1420,6 +1457,42 @@ namespace Negocios
                 return false;
             }
         }
+
+        public async Task<List<vmEntradaListaReporte>> ObtieneEntradasPorUsario(string usr, DateTime fIni, DateTime fFin)
+        {
+            List<vmEntradaListaReporte> totalList = new List<vmEntradaListaReporte>();
+            try
+            {
+                using (modelo2Entities modelo = new modelo2Entities())
+                {
+                    // Ajustar fIni para que comience a las 00:00:00
+                    var inicio = fIni.Date; // El primer momento del día
+
+                    // Ajustar fFin para incluir todo el último minuto del día
+                    var fin = fFin.Date.AddDays(1).AddTicks(-1); // El último momento del día
+
+                    // Consulta para obtener el total de entradas en el rango de fechas ajustado
+                    var totalEntradas = await (from d in modelo.KDM1
+                                               join d2 in modelo.KDMENT on new { d.C1, d.C4, d.C6 } equals new { d2.C1, d2.C4, d2.C6 }
+                                               where d.C81 == usr && d.C9 >= inicio && d.C9 <= fin
+                                               select d)
+                                              .CountAsync();
+
+                    totalList.Add(new vmEntradaListaReporte
+                    {
+                        nombre = usr,
+                        total = totalEntradas
+                    });
+                }
+                return totalList;
+            }
+            catch (Exception ex)
+            {
+                Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "No se han obtenido resultados para el smtp en la ventana de login");
+                return totalList;
+            }
+        }
+
 
         public async Task<bool> RingCHook()
         {

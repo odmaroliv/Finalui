@@ -30,10 +30,10 @@
     <UpdateUrl>https://raw.githubusercontent.com/odmaroliv/Finalui/master/published/</UpdateUrl>
     <ProductName>ARSYS</ProductName>
     <PublisherName>Daniel Olivares H.</PublisherName>
-    <MinimumRequiredVersion>1.0.0.287</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.0.288</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>287</ApplicationRevision>
+    <ApplicationRevision>288</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -527,6 +527,12 @@
     <Compile Include="VistaEntrada\Proovedor\frmProovedorAdd.Designer.cs">
       <DependentUpon>frmProovedorAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaEntrada\ReportesEntradas\frmReporteEntradas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaEntrada\ReportesEntradas\frmReporteEntradas.Designer.cs">
+      <DependentUpon>frmReporteEntradas.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaEntrada\vistaBajaAgregaEntrada.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -787,6 +793,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VistaEntrada\Proovedor\frmProovedorAdd.resx">
       <DependentUpon>frmProovedorAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaEntrada\ReportesEntradas\frmReporteEntradas.resx">
+      <DependentUpon>frmReporteEntradas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VistaEntrada\vistaBajaAgregaEntrada.resx">
       <DependentUpon>vistaBajaAgregaEntrada.cs</DependentUpon>

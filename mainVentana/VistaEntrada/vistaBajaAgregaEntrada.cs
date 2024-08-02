@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace mainVentana.VistaEntrada
 {
-  
+
     // public event pasar2 pasado2;
 
 
@@ -22,7 +22,7 @@ namespace mainVentana.VistaEntrada
     {
 
         public delegate void pasar(string total);
-       
+
         public event pasar pasado;
         private readonly OdooClient _odooClient;
         private List<vmEtiquetasInfo> datosLista;
@@ -61,11 +61,11 @@ namespace mainVentana.VistaEntrada
             }
 
 
-            string us = Negocios.Common.Cache.CacheLogin.username;
-            if (us == "DOLIVARES")
+            string _rol = Negocios.Common.Cache.CacheLogin.rol;
+            if (_rol == "ADMIN" || _rol == "JALMA")
             {
                 AddOrDeletePanel.Enabled = true;
-               
+
             }
             else
             {
@@ -89,16 +89,16 @@ namespace mainVentana.VistaEntrada
 
                 MessageBox.Show("Ocurrio un error, contacta al administrador.");
             }
-            txbTotalEt.Text = dtgEtiquetas.Rows.Count == 0?"": dtgEtiquetas.Rows.Count.ToString();
+            txbTotalEt.Text = dtgEtiquetas.Rows.Count == 0 ? "" : dtgEtiquetas.Rows.Count.ToString();
         }
 
 
         private async Task eliminaDatos()
         {
-           
+
             int index = 1;
             long nFilas = nBorra.Value;
-            if (nFilas==0)
+            if (nFilas == 0)
             {
                 return;
             }
@@ -106,7 +106,7 @@ namespace mainVentana.VistaEntrada
             List<string> listaNueva = new List<string>();
             foreach (var item in datosLista)
             {
-                if (index<=nFilas)
+                if (index <= nFilas)
                 {
                     listaNueva.Add(item.Etiqueta);
                 }
@@ -123,7 +123,7 @@ namespace mainVentana.VistaEntrada
                 string nuevoTotal = (Convert.ToInt32(txbTotalEt.Text) - nFilas).ToString();
 
                 await baja.ActualizaBultos(entrada, suOrigen, nuevoTotal);
-               
+
                 MessageBox.Show("Se han borrado las " + nFilas + " etiquetas satisfactoriamente \nIMPORTANTE \nVuelve a buscar la entrada para observar los resultados y poder imprimir", "successful", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
             catch (Exception)
@@ -149,32 +149,32 @@ namespace mainVentana.VistaEntrada
             List<string> listaNueva = new List<string>();
             foreach (var item in datosLista)
             {
-              
-                    listaNueva.Add(item.Etiqueta);
-               
+
+                listaNueva.Add(item.Etiqueta);
+
             }
-           
-                
-            
-            
+
+
+
+
             try
             {
                 int cantidadBultos = datosLista.Count + Convert.ToInt32(nFilas);
                 BajaDB baja = new BajaDB();
-                OdooClient od= new OdooClient();
+                OdooClient od = new OdooClient();
                 bool estus = await baja.BorraEtiquitas(listaNueva);
                 if (estus == true)
                 {
                     pasado(cantidadBultos.ToString());
                     await baja.ActualizaBultos(entrada, suOrigen, cantidadBultos.ToString());
-                   
+
                     MessageBox.Show("Se han agregado las " + nFilas + " etiquetas satisfactoriamente \nIMPORTANTE \nVuelve a buscar la entrada para observar los resultados y poder imprimir", "successful", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
                 else
                 {
                     MessageBox.Show("Ocurrio un error y no se han podido agregar las etiquetas");
                 }
-                
+
             }
             catch (Exception)
             {
@@ -198,7 +198,7 @@ namespace mainVentana.VistaEntrada
             this.Close();
         }
 
-        
+
 
         private void dtgEtiquetas_SelectionChanged(object sender, EventArgs e)
         {
@@ -208,8 +208,8 @@ namespace mainVentana.VistaEntrada
                 {
                     int selectedrowindex = dtgEtiquetas.SelectedCells[1].RowIndex;
                     DataGridViewRow selectedRow = dtgEtiquetas.Rows[selectedrowindex];
-                    _etiquetaSeleccionada = Convert.ToString(selectedRow?.Cells[1]?.Value ??"").Trim();
-                    _descripcionSeleccionada = Convert.ToString(selectedRow?.Cells[3]?.Value ??"").Trim();
+                    _etiquetaSeleccionada = Convert.ToString(selectedRow?.Cells[1]?.Value ?? "").Trim();
+                    _descripcionSeleccionada = Convert.ToString(selectedRow?.Cells[3]?.Value ?? "").Trim();
                     txbEntiquetaSeleccionada.Text = _etiquetaSeleccionada;
                     txbDescripcion.Text = _descripcionSeleccionada;
                 }
@@ -219,6 +219,74 @@ namespace mainVentana.VistaEntrada
             {
                 MessageBox.Show("El valor no puede ser 0 o un espacio vacio, esto esta apunto de generar un error interno, manten asi la apilacion, no la cierres y pide soporte de Sistemas.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
+            }
+        }
+
+        private void buttonSaveDesc_Click(object sender, EventArgs e)
+        {
+            CalculaPesoVolumetrico();
+        }
+
+
+        private void CalculaPesoVolumetrico()
+        {
+            try
+            {
+                // Leer y validar los valores de los TextBox
+                if (!decimal.TryParse(txbAnchura.Text, out decimal ancho) || ancho <= 0)
+                {
+                    MessageBox.Show("Por favor, ingrese un valor numérico positivo válido para Ancho.", "Error de formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (!decimal.TryParse(txbAltura.Text, out decimal alto) || alto <= 0)
+                {
+                    MessageBox.Show("Por favor, ingrese un valor numérico positivo válido para Alto.", "Error de formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (!decimal.TryParse(tbxLongitud.Text, out decimal largo) || largo <= 0)
+                {
+                    MessageBox.Show("Por favor, ingrese un valor numérico positivo válido para Largo.", "Error de formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (!decimal.TryParse(txbPesoReal.Text, out decimal pesoReal) || pesoReal < 0)
+                {
+                    MessageBox.Show("Por favor, ingrese un valor numérico positivo válido para Peso Real.", "Error de formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Definir el factor volumétrico para libras
+                const decimal factorVolumetrico = 166m;
+
+                // Definir la altura de caja de tráiler estándar en pulgadas (por ejemplo, 100 pulgadas)
+                const decimal alturaCajaTrailer = 100m;
+
+                // Calcular el peso volumétrico
+                decimal pesoVolumetrico = 0m;
+
+                // Verificar si el ítem es estibable
+                if (cbxEstibable.Checked)
+                {
+                    // Calcular el peso volumétrico en libras
+                    pesoVolumetrico = (ancho * alto * largo) / factorVolumetrico;
+                }
+                else
+                {
+                    // Si no es estibable, usa la altura completa del tráiler para el cálculo
+                    pesoVolumetrico = (ancho * alturaCajaTrailer * largo) / factorVolumetrico;
+                }
+
+                // Determinar el peso a usar: el mayor entre peso real y peso volumétrico
+                decimal pesoFinal = Math.Max(pesoReal, pesoVolumetrico);
+
+                // Establecer el valor en el TextBox de Volumetrico
+                txbVolumetrico.Text = pesoFinal.ToString("F2"); // Formato con 2 decimales
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocurrió un error inesperado: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

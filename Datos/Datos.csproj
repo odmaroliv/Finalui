@@ -260,6 +260,8 @@
     <Compile Include="ViewModels\Entradas\vmAlmacenes.cs" />
     <Compile Include="ViewModels\Entradas\vmEntradaById.cs" />
     <Compile Include="ViewModels\Entradas\vmEntradaByIdComent.cs" />
+    <Compile Include="ViewModels\Entradas\vmEntradaListaReporte.cs" />
+    <Compile Include="ViewModels\Entradas\vmEntradaReporteTotales.cs" />
     <Compile Include="ViewModels\Entradas\vmEtiquetasInfo.cs" />
     <Compile Include="ViewModels\Entradas\vmFotosById.cs" />
     <Compile Include="ViewModels\Entradas\vmListaFotos.cs" />
