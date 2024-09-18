@@ -211,6 +211,7 @@
           <Property Name="TipoEntradaID" Type="int" />
           <Property Name="odooidproduct" Type="bigint" />
           <Property Name="odoosalesp" Type="varchar" MaxLength="50" />
+          <Property Name="is_reviewed" Type="bit" />
         </EntityType>
         <EntityType Name="KDM1COMEN">
           <Key>
@@ -884,6 +885,7 @@ advertencia 6035: La relación 'FK__SubSucurs__KDMSI__4FBCC72F' tiene columnas q
           <Property Name="TipoEntradaID" Type="Int32" />
           <Property Name="odooidproduct" Type="Int64" />
           <Property Name="odoosalesp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="is_reviewed" Type="Boolean" />
         </EntityType>
         <EntityType Name="KDM1COMEN">
           <Key>
@@ -1737,6 +1739,7 @@ advertencia 6035: La relación 'FK__SubSucurs__KDMSI__4FBCC72F' tiene columnas q
           <EntitySetMapping Name="KDM1">
             <EntityTypeMapping TypeName="KEPLER_PRUEBASModel.KDM1">
               <MappingFragment StoreEntitySet="KDM1">
+                <ScalarProperty Name="is_reviewed" ColumnName="is_reviewed" />
                 <ScalarProperty Name="odoosalesp" ColumnName="odoosalesp" />
                 <ScalarProperty Name="odooidproduct" ColumnName="odooidproduct" />
                 <ScalarProperty Name="TipoEntradaID" ColumnName="TipoEntradaID" />

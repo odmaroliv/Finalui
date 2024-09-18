@@ -57,6 +57,7 @@ namespace Datos.ViewModels.Entradas
         public string odoosalesp { get; set; }
         public int? tipoEntrada { get; set; }
         public long? OdooId { get; set; }
+        public bool? isReviwed { get; set; }
 
     }
 }

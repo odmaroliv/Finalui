@@ -23,7 +23,7 @@ namespace Negocios
         public async Task agregaKDM1(modelo2Entities context,string sucInicial, string entrada, string Moneda, DateTime fecha, string noCliente,
             string noCord, string valArn, string nomCliente, string calle, string colonia, string ciudadcodigozip, string valFact,
             string paridad, string noTrakin, string provedor, string orCompra, string noFlete, string noUnidades, string tipUnidad, string peso,
-            string unidadMedida, string tipOperacion, string sucDestino, string bultos, string Alias, string nota, string referencia, string isDano, int tpoEntrada,long idOdoo, string salesodop, string parentId)
+            string unidadMedida, string tipOperacion, string sucDestino, string bultos, string Alias, string nota, string referencia, string isDano, int tpoEntrada,long idOdoo, string salesodop, string parentId, bool isRevisado)
         {
             try
             {
@@ -75,6 +75,7 @@ namespace Negocios
                     d.TipoEntradaID = tpoEntrada;
                     d.odooidproduct = idOdoo;
                     d.odoosalesp = salesodop;
+                    d.is_reviewed = isRevisado;
                     context.KDM1.Add(d);
                     //await context.SaveChangesAsync();
 
@@ -307,7 +308,7 @@ namespace Negocios
         }
 
         public void UpdateKDM1(string id, string sucursaldestino, string cord, string notas, string referencia, string pagado, string tipooperacion, string valfact, string valarn, string sucursalOrigen,string noFlete, string datoOrConpra,
-            string datoNuCliente,string datoNomCliente,string datoCalle,string datoColonia,string datoCiudadZip,string datoProvedor, string datoAlias, DateTime fecha, int tpoEnrtada, string isDanado, string salesodop, string parentId)
+            string datoNuCliente,string datoNomCliente,string datoCalle,string datoColonia,string datoCiudadZip,string datoProvedor, string datoAlias, DateTime fecha, int tpoEnrtada, string isDanado, string salesodop, string parentId, bool isRevisado)
         {
             try
             {
@@ -376,7 +377,8 @@ namespace Negocios
                     {
                         d.odoosalesp = salesodop.Trim();
                     }
-                    
+
+                    d.is_reviewed = isRevisado;
                     d.TipoEntradaID = tpoEnrtada;
                     d.C32 = datoNomCliente;
                     d.C33 = datoCalle;
@@ -495,6 +497,8 @@ namespace Negocios
                     {
                         descripcionCambios.AppendLine($"Alias: {datoAlias} | ");
                     }
+
+
                     
                     // Limita la descripción a 500 caracteres
                     string descripcionCorta = descripcionCambios.ToString().Substring(0, Math.Min(950, descripcionCambios.Length));

@@ -131,6 +131,34 @@ namespace Negocios.Odoo
                 return null;
             }
         }
+        public async Task<string> UpdateReviewed(string odooId)
+        {
+            try
+            {
+                var idLong = Convert.ToInt64(odooId);
+                HttpResponseMessage response = await _client.GetAsync($"api/OdooClient/UpdateProducteviewedAsync?id={idLong}");
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    var clients = JsonConvert.DeserializeObject<string>(content);
+                    if (clients == null)
+                        return null;
+
+
+                    return clients;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
         public async Task<OdooToBeeModel> GetProductToBeetrackById(long productId)
         {
             OdooToBeeModel retu = new OdooToBeeModel();

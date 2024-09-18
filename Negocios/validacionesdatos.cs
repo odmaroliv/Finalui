@@ -1596,7 +1596,8 @@ namespace Negocios
                                     descripcion = d2.C11,
                                     tipoEntrada = d.TipoEntradaID,
                                     OdooId = d.odooidproduct,
-                                   odoosalesp = d.odoosalesp
+                                    odoosalesp = d.odoosalesp,
+                                    isReviwed = d.is_reviewed,
 
 
                                 };

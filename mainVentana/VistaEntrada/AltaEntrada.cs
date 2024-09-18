@@ -209,7 +209,19 @@ namespace mainVentana.VistaEntrada
                         await SubeFotos();
 
 
+
                         await envEmail();
+
+                        if (cbxIsRevisada.Checked == true)
+                        {
+                            if (string.IsNullOrWhiteSpace(lblNoOdoo.Text))
+                            {
+                                return;
+                            }
+                            await UpdateRevisado(lblNoOdoo?.Text.Trim());
+                        }
+
+
                         SelectPrinter();
                         //barcode();
                         //Crea_codigo_de_barras(); desactivado por erri en drawin 
@@ -275,6 +287,16 @@ namespace mainVentana.VistaEntrada
                              
                             }
                             updateDatos(pagado);
+                            if (cbxIsRevisada.Checked == true)
+                            {
+                                if (string.IsNullOrWhiteSpace(lblNoOdoo.Text))
+                                {
+                                    return;
+                                }
+                                await UpdateRevisado(lblNoOdoo?.Text.Trim());
+                            }
+                            
+                            
                             SelectPrinter();
 
                             //llamareporte();
@@ -314,6 +336,15 @@ namespace mainVentana.VistaEntrada
 
 
         }
+
+        private async Task UpdateRevisado(string odooId)
+        {
+            string odooRes = await _odooClient.UpdateReviewed(odooId);
+           
+
+        }
+
+
         string datoEntrada; //variable global de entrada cuando se click al boton de guardar ---------------------------------------
         private async Task<int> altaKDM1()
         {
@@ -355,6 +386,7 @@ namespace mainVentana.VistaEntrada
             long idOdoo;
             string datoDetalles = detalles.Text;
             string odoosalesp = label23.Text;
+           
 
             using (var context = new modelo2Entities()) // Asumiendo que modelo2Entities es tu DbContext
             {
@@ -387,7 +419,7 @@ namespace mainVentana.VistaEntrada
                        
 
                         // Agregar KDM1
-                        await bd.agregaKDM1(context, datoSucIni, datoEntrada, datoMoneda, datoFecha, parsedDatoNuCliente.ToString(), parsedDatoNoCord.ToString(), datoValArn, datoNomCliente, datoCalle, datoColonia, datoCiudadZip, datoValFact, datoParidad, datoNoTrakin, datoProvedor, datoOrdCompra, datoNoFlete, datoNoUnidades, datoTipoUnidad, datoPeso, datoUnidadMedida, datoTipoOper, datoSucDestino, datoBultos, datosAlias, datoNota, datoReferencia, isDanado, tpoEntrada, idOdoo, odoosalesp, datoParentId);
+                        await bd.agregaKDM1(context, datoSucIni, datoEntrada, datoMoneda, datoFecha, parsedDatoNuCliente.ToString(), parsedDatoNoCord.ToString(), datoValArn, datoNomCliente, datoCalle, datoColonia, datoCiudadZip, datoValFact, datoParidad, datoNoTrakin, datoProvedor, datoOrdCompra, datoNoFlete, datoNoUnidades, datoTipoUnidad, datoPeso, datoUnidadMedida, datoTipoOper, datoSucDestino, datoBultos, datosAlias, datoNota, datoReferencia, isDanado, tpoEntrada, idOdoo, odoosalesp, datoParentId, cbxIsRevisada.Checked);
 
                         // Llamada para actualizar SQL
                         await bd.ActualizaSqlIov(context, datoSucIni.Trim(), 35);
@@ -1369,7 +1401,8 @@ namespace mainVentana.VistaEntrada
                     mdfImg.Visible = false;
                     iconButton2.Enabled = true;
                     cbxDano.Enabled = true;
-                    
+                    cbxIsRevisada.Checked = false;
+
                     limpiaImg();
                     GeneraRastreo();
                     Cargaparidad();
@@ -1420,7 +1453,7 @@ namespace mainVentana.VistaEntrada
                 label28.Text = default;
                 detalles.Text = default;
                 lblUser.Text = CacheLogin.username;
-
+                cbxIsRevisada.Checked = false;
                 limpiaImg();
                 GeneraRastreo();
                 Cargaparidad();
@@ -1488,6 +1521,7 @@ namespace mainVentana.VistaEntrada
             cbxDestinoModify.Enable = true;
             sucDestino.Enabled = false;
             cbxDano.Checked = false;
+            cbxIsRevisada.Checked = false;
             abreModifica(false);
 
             try
@@ -1769,6 +1803,7 @@ namespace mainVentana.VistaEntrada
 
                 }
                 cbxDano.Checked = q.C27?.Contains("1") ?? false;
+                cbxIsRevisada.Checked = q.isReviwed ?? false;
 
                 peso.Text = q.C99.ToString();
 
@@ -1884,7 +1919,7 @@ namespace mainVentana.VistaEntrada
             try
             {
                 bd.UpdateKDM1(datoEntrada, datoSucDestino, datoNoCord, datoNota, datoReferencia, pagado, datoTipoOper, datoValFact, datoValArn, datoSucOrigen, datoNoFlete, datoOrConpra,
-                    datoNuCliente,datoNomCliente,datoCalle,datoColonia,datoCiudadZip,datoProvedor, datosAlias, datoFecha, tpoEntrada, isDanado, odoosalesp, datoParentId);
+                    datoNuCliente,datoNomCliente,datoCalle,datoColonia,datoCiudadZip,datoProvedor, datosAlias, datoFecha, tpoEntrada, isDanado, odoosalesp, datoParentId, cbxIsRevisada.Checked);
                 if (detalles.Enabled == true)
                 {
                     bd.UpdateKDM1Coment(datoEntrada, datoSucOrigen, datoDescripcion);

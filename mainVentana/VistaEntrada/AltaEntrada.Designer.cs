@@ -150,6 +150,7 @@
             this.lblParentName = new System.Windows.Forms.Label();
             this.lblParentId = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
+            this.cbxIsRevisada = new ReaLTaiizor.Controls.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDocs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFotosModifi)).BeginInit();
@@ -1259,6 +1260,7 @@
             // groupBox6
             // 
             this.groupBox6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox6.Controls.Add(this.cbxIsRevisada);
             this.groupBox6.Controls.Add(this.lblNoOdoo);
             this.groupBox6.Controls.Add(this.cbxDano);
             this.groupBox6.Controls.Add(this.bntImpEntC);
@@ -1795,6 +1797,24 @@
             this.label18.TabIndex = 134;
             this.label18.Text = "PERTENECE:";
             // 
+            // cbxIsRevisada
+            // 
+            this.cbxIsRevisada.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxIsRevisada.Checked = false;
+            this.cbxIsRevisada.CheckedBackColor = System.Drawing.Color.AliceBlue;
+            this.cbxIsRevisada.CheckedBorderColor = System.Drawing.Color.DarkBlue;
+            this.cbxIsRevisada.CheckedDisabledColor = System.Drawing.Color.WhiteSmoke;
+            this.cbxIsRevisada.CheckedEnabledColor = System.Drawing.Color.Black;
+            this.cbxIsRevisada.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cbxIsRevisada.Enable = true;
+            this.cbxIsRevisada.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxIsRevisada.ForeColor = System.Drawing.Color.Black;
+            this.cbxIsRevisada.Location = new System.Drawing.Point(459, 13);
+            this.cbxIsRevisada.Name = "cbxIsRevisada";
+            this.cbxIsRevisada.Size = new System.Drawing.Size(111, 16);
+            this.cbxIsRevisada.TabIndex = 133;
+            this.cbxIsRevisada.Text = "Revisada";
+            // 
             // AltaEntrada
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1964,5 +1984,6 @@
         private System.Windows.Forms.Label lblParentName;
         private System.Windows.Forms.Label lblParentId;
         private System.Windows.Forms.Label label18;
+        private ReaLTaiizor.Controls.CheckBox cbxIsRevisada;
     }
 }
