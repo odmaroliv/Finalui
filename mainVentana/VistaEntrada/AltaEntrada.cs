@@ -34,6 +34,8 @@ using static GMap.NET.Entity.OpenStreetMapGraphHopperRouteEntity;
 using Negocios.Odoo;
 using System.Data.SqlClient;
 using System.Data.Entity.Validation;
+using Negocios.LOGs;
+using System.Text.RegularExpressions;
 
 namespace mainVentana.VistaEntrada
 {
@@ -1915,6 +1917,16 @@ namespace mainVentana.VistaEntrada
             string odoosalesp = label23.Text;
 
             DateTime datoFecha = regresafecha();
+
+            if (ContainsUrl(datoDescripcion))
+            {
+                if (!ContainsOnlyGoogleDriveUrls(datoDescripcion))
+                {
+                    MessageBox.Show("Solo se permiten URLs de Google Drive. Por favor, revise la descripción.");
+                    return; // Sale de la función si hay URLs no permitidas
+                }
+            }
+
             AltasBD bd = new AltasBD();
             try
             {
@@ -1928,6 +1940,10 @@ namespace mainVentana.VistaEntrada
                 {
                     bd.UpdateKDMentSuc(datoEntrada, datoSucOrigen, datoSucDestino);
                 }
+                if (detalles.Enabled == true && detalles.ReadOnly == false)
+                {
+                    GeneralMovimientosLog.AddMovimientoConParametrosDirectos(datoEntrada, 35, "", 35, "", datoSucOrigen, datoSucDestino, datoNoCord, "Modifica", "", $"{Negocios.Common.Cache.CacheLogin.nombre} modifica la descripcion a: " + detalles.Text);
+                }
             }
             catch (Exception)
             {
@@ -1938,6 +1954,29 @@ namespace mainVentana.VistaEntrada
            
         }
 
+        private bool ContainsUrl(string text)
+        {
+            string urlPattern = @"https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)";
+            return Regex.IsMatch(text, urlPattern);
+        }
+
+        // Función auxiliar para verificar si todas las URLs son de Google Drive
+        private bool ContainsOnlyGoogleDriveUrls(string text)
+        {
+            string urlPattern = @"https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)";
+            MatchCollection matches = Regex.Matches(text, urlPattern);
+
+            foreach (Match match in matches)
+            {
+                string url = match.Value;
+                if (!url.Contains("drive.google.com"))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
 
 
 
@@ -2726,6 +2765,7 @@ namespace mainVentana.VistaEntrada
             if (MessageBox.Show("Deseas modificar la descripcion? \nTen en cuenta que este texto se muestra en la notificacion al cliente; si la entrada ya tiene un proceso hacer esto puede generar problemas, es preferible que mejor se modifique la nota", "CUIDADO", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 detalles.Enabled = true;
+                detalles.ReadOnly = false;
             }
             
         }
