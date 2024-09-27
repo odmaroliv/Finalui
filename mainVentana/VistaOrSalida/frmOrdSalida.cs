@@ -1816,7 +1816,7 @@ namespace mainVentana.VistaOrSalida
                     try
                     {
                         string us = Negocios.Common.Cache.CacheLogin.username;
-                        if (us == "DOLIVARES" || us == "EZAVALA" || us == "JNOBREGA")
+                        if (us == "DOLIVARES" || us == "EZAVALA" || us == "CARLOSDA")
                         {
                             _noCarga = true;
                             gunaGoogleSwitch13.Checked =_noCarga;
