@@ -623,95 +623,80 @@ namespace Negocios
             }
         }
 
+
         public async Task ModificaStatusSalida(string sucursal, string numerosalida, string numerocarga)
         {
-
-
             await Task.Run(() =>
             {
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
-                    List<KDM1> kd = new List<KDM1>();
-
-                    //   int datoNumeroDocumento = sucursal == "TJ" ? 50 : 40 ;
-
-
-                    if (sucursal == "TJ")
-                    {
-
-                        var d = (from fd in modelo.KDM1
-                                 where fd.C1.Equals(sucursal) && fd.C4 == 50 && fd.C6 == numerocarga
-                                 select fd).First();
-
-                        d.C44 = numerosalida;
-                        kd.Add(d);
-
-                        try
-                        {
-                            modelo.BulkUpdate(kd.ToList());
-                        }
-                        catch (Exception ex)
-                        {
-                            Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "AltasBD.ModificaStatusSalida() " + numerosalida);
-                            throw;
-                        }
-                    }
-                    else
-                    {
-
-                        var d = (from fd in modelo.KDM1
-                                 where fd.C1.Equals(sucursal) && fd.C4 == 40 && fd.C6 == numerocarga
-                                 select fd).First();
-
-                        d.C44 = numerosalida;
-                        kd.Add(d);
-
-                        try
-                        {
-                            modelo.BulkUpdate(kd.ToList());
-                        }
-                        catch (Exception ex)
-                        {
-                            Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "AltasBD.ModificaStatusSalida() " + numerosalida);
-                            throw;
-                        }
-                    }
-
-
-                }
-            });
-        }
-        public async Task TerminaSalida(string numerosalida, string origen)
-
-        {
-            await Task.Run(() =>
-            {
-                using (modelo2Entities modelo = new modelo2Entities())
-                {
-                    List<KDM1> kd = new List<KDM1>();
-
-                    var d = (from fd in modelo.KDM1
-                             where fd.C1.Equals(origen) && fd.C4 == 45 && fd.C6 == numerosalida
-                             select fd).FirstOrDefault();
-
-
-                    d.C43 = "A";
-                    d.C61 = "";
-                    kd.Add(d);
-
                     try
                     {
-                        modelo.BulkUpdate(kd.ToList());
+                        // Verifica el valor de sucursal y selecciona los registros correspondientes
+                        var kdList = (from fd in modelo.KDM1
+                                      where fd.C1.Equals(sucursal) &&
+                                            fd.C4 == (sucursal == "TJ" ? 50 : 40) &&
+                                            fd.C6 == numerocarga
+                                      select fd).ToList();
+
+                        // Modifica el campo C44 para cada entidad en kdList
+                        foreach (var item in kdList)
+                        {
+                            item.C44 = numerosalida;
+                        }
+
+                        // Guarda los cambios en la base de datos de una vez
+                        modelo.SaveChanges();
                     }
                     catch (Exception ex)
                     {
-                        Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "AltasBD.TerminaSalida() " + numerosalida);
-                        
+                        // Registra el error y lanza la excepción
+                        Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "AltasBD.ModificaStatusSalida() " + numerosalida);
                         throw;
                     }
                 }
             });
         }
+
+
+
+        
+
+
+        public async Task TerminaSalida(string numerosalida, string origen)
+        {
+            await Task.Run(() =>
+            {
+                using (modelo2Entities modelo = new modelo2Entities())
+                {
+                    try
+                    {
+
+                        var kdList = (from fd in modelo.KDM1
+                                      where fd.C1.Equals(origen) && fd.C4 == 45 && fd.C6 == numerosalida
+                                      select fd).ToList();
+
+
+                        foreach (var item in kdList)
+                        {
+                            item.C43 = "A";
+                            item.C61 = "";
+                        }
+
+
+                        modelo.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+
+                        Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "AltasBD.TerminaSalida() " + numerosalida);
+                        throw;
+                    }
+                }
+            });
+        }
+
+
 
         //--------------------carga--------------------------------
 

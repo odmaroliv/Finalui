@@ -1,5 +1,6 @@
 ﻿using Datos.Datosenti;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -55,7 +56,7 @@ namespace Negocios.AccesoRecepciones
 
 
 
-        public async Task ModificaStatusRecepcionSDCSL(string sucursal , string numerosalida, string numerocarga)
+        public async Task ModificaStatusRecepcionSDCSL(string sucursal, string numerosalida, string numerocarga)
         {
 
 
@@ -65,15 +66,18 @@ namespace Negocios.AccesoRecepciones
                 {
                     List<KDM1> kd = new List<KDM1>();
 
-                    var d = (from fd in modelo.KDM1
-                             where /*fd.C103.Contains(sucursal) &&*/ fd.C4 == 45 && fd.C6 == numerocarga //borre la verificacion sobre la sucursal destino ya que aveces la sucursal destino no es deonde se da recepcion 5/10/2024
-                             select fd).First();
-                    d.C45 = numerosalida;
-                    kd.Add(d);
+                    var kdList = (from fd in modelo.KDM1
+                                  where fd.C4 == 45 && fd.C6 == numerocarga
+                                  select fd).ToList();
+
+                    foreach (var item in kdList)
+                    {
+                        item.C45 = numerosalida;
+                    }
 
                     try
                     {
-                        modelo.BulkUpdate(kd.ToList());
+                        modelo.SaveChanges();
                     }
                     catch (Exception ex)
                     {
@@ -112,19 +116,22 @@ namespace Negocios.AccesoRecepciones
                 {
                     List<KDM1> kd = new List<KDM1>();
 
-                    var d = (from fd in modelo.KDM1
-                             where fd.C1.Equals(origen) && fd.C4 == 50 && fd.C6 == numerosalida
-                             select fd).FirstOrDefault();
+
+                    var kdList = (from fd in modelo.KDM1
+                                  where fd.C1.Equals(origen) && fd.C4 == 50 && fd.C6 == numerosalida
+                                  select fd).ToList();
 
 
-
-                    d.C43 = "A";
-                    d.C61 = "";
-                    kd.Add(d);
+                    foreach (var item in kdList)
+                    {
+                        item.C43 = "A";
+                        item.C61 = "";
+                    }
 
                     try
                     {
-                        modelo.BulkUpdate(kd.ToList());
+
+                        modelo.SaveChanges();
                     }
                     catch (Exception ex)
                     {
@@ -133,6 +140,7 @@ namespace Negocios.AccesoRecepciones
                 }
             });
         }
+
 
     }
 }

@@ -551,66 +551,53 @@ namespace mainVentana.VistaRecepcion
         //Sucursal ORIGEN TIJUANA REPCEPCION
         private async Task<bool> ModificaKDMENTtj(string sucOrigen, string etiqueta, string tipo)
         {
-
             string uld = (string)ulDato.Trim().Clone();
-            //string sc = sDestino == "CSL" ? "PR" : "OC";
+            string statusRecep = tipo;
 
-            //string eti = String.IsNullOrWhiteSpace(txbEscaneo.Text) ? "000000" : txbEscaneo.Text.ToString().ToUpper().Trim();
-            string statusRecep = tipo; // VerificaEntrada(etiqueta, sucOrigen);
-            await Task.Run(() =>
+            return await Task.Run(() =>
             {
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
-                    List<KDMENT> kd = new List<KDMENT>();
-
                     try
                     {
+                        // Selecciona el registro que cumple con la condición
                         var d = (from fd in modelo.KDMENT
-                                 where fd.C9 == etiqueta// 
-                                 select fd).First();
-                        //d.C17 = uld;
-                        d.C19 = sRecepcion;
-                        d.C20 = statusRecep;
-                        d.C23 = "";
+                                 where fd.C9 == etiqueta
+                                 select fd).FirstOrDefault();
 
-                        d.C56 = uld;
-                        d.C66 = uld;
-                        d.C67 = uld;
-                        d.C68 = "E";
-                        d.C76 = DateTime.Now.ToString("MM/dd/yyyy");
+                        if (d != null)
+                        {
+                            // Actualiza los campos necesarios
+                            d.C19 = sRecepcion;
+                            d.C20 = statusRecep;
+                            d.C23 = "";
+                            d.C56 = uld;
+                            d.C66 = uld;
+                            d.C67 = uld;
+                            d.C68 = "E";
+                            d.C76 = DateTime.Now.ToString("MM/dd/yyyy");
 
-
-                        kd.Add(d);
-                    }
-
-                    catch (Exception x)
-                    {
-
-
-                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Escaneo de Etiqueta" + etiqueta);
-
-                        MessageBox.Show("Ocurrio un Error, por favor no continue scaneando y contacte al administrador");
-                    }
-                    try
-                    {
-                        modelo.BulkUpdate(kd.ToList());
+                            // Guarda los cambios en la base de datos
+                            modelo.SaveChanges();
+                            return true; // Devuelve true si la actualización es exitosa
+                        }
+                        else
+                        {
+                            // Registra un error si no se encuentra el registro
+                            Negocios.LOGs.ArsLogs.LogEdit("Etiqueta no encontrada: " + etiqueta, "Escaneo de Etiqueta");
+                            MessageBox.Show("Etiqueta no encontrada, por favor contacte al administrador.");
+                            return false;
+                        }
                     }
                     catch (Exception x)
                     {
-                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Escaneo de Etiqueta" + etiqueta);
-
-                        MessageBox.Show("Ocurrio un Error, por favor no continue scaneando y contacte al administrador");
-
+                        // Registra el error y muestra un mensaje de advertencia
+                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Escaneo de Etiqueta " + etiqueta);
+                        MessageBox.Show("Ocurrió un error, por favor no continúe escaneando y contacte al administrador.");
+                        return false;
                     }
-
-
                 }
             });
-
-            
-
-            return true;
-
         }
 
 
@@ -622,7 +609,7 @@ namespace mainVentana.VistaRecepcion
         /// <param name="etiqueta">Etiqueta de la entrada a verificar</param>
         /// <param name="verificador">Indice del caso verificador</param>
         /// <returns>FALSE si no se cumple la condicion o TRUE si se resuelve correctamente</returns>
-        private  string VerificaEntrada(string etiqueta,string sucActual, int verificador = default)
+        private string VerificaEntrada(string etiqueta,string sucActual, int verificador = default)
         {
            
 
@@ -652,71 +639,54 @@ namespace mainVentana.VistaRecepcion
         //sucursa recibe san diego o cabo
         private async Task<bool> ModificaKDMENTsd(string sucOrigen, string etiqueta, string tipo)
         {
+            string statusRecep = tipo;
+            string uld = (string)ulDato.Trim().Clone();
 
-            // string eti = String.IsNullOrWhiteSpace(txbEscaneo.Text) ? "000000" : txbEscaneo.Text.ToString().ToUpper().Trim();
-            string statusRecep =  tipo;//VerificaEntrada(etiqueta, sucOrigen);
-            // string sc = sDestino == "CSL" ? "PR" : "OC";
-            await Task.Run(() =>
+            return await Task.Run(() =>
             {
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
-                    List<Datos.Datosenti.KDMENT> kd = new List<Datos.Datosenti.KDMENT>();
-
-
-                    string uld = (string)ulDato.Trim().Clone();
-
                     try
                     {
-
+                        // Selecciona el registro que cumple con la condición
                         var d = (from fd in modelo.KDMENT
                                  where fd.C9 == etiqueta
-                                 select fd).First();
+                                 select fd).FirstOrDefault();
 
-                        d.C13 = "E";
-                        d.C18 = uld;
-                        //d.C18 = "";
-                        d.C19 = sRecepcion;
-                        d.C20 = statusRecep;
+                        if (d != null)
+                        {
+                            // Actualiza los campos necesarios
+                            d.C13 = "E";
+                            d.C18 = uld;
+                            d.C19 = sRecepcion;
+                            d.C20 = statusRecep;
+                            d.C23 = "";
+                            d.C56 = uld;
+                            d.C74 = DateTime.Now.ToString("MM/dd/yyyy");
 
-                        d.C23 = "";
-                        d.C56 = uld;
-                        // d.C56 = "";
-
-                        d.C74 = DateTime.Now.ToString("MM/dd/yyyy");
-                        //d.C75 = "";
-                        kd.Add(d);
-                        //modelo.SaveChanges();
-
+                            // Guarda los cambios en la base de datos
+                            modelo.SaveChanges();
+                            return true; // Devuelve true si la actualización es exitosa
+                        }
+                        else
+                        {
+                            // Registra un error si no se encuentra el registro
+                            Negocios.LOGs.ArsLogs.LogEdit("Etiqueta no encontrada: " + etiqueta, "Escaneo de Etiqueta");
+                            MessageBox.Show("Etiqueta no encontrada, por favor contacte al administrador.");
+                            return false;
+                        }
                     }
                     catch (Exception x)
                     {
-
-
-                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Escaneo de Etiqueta" + etiqueta);
-
-                        MessageBox.Show("Ocurrio un Error, por favor no continue scaneando y contacte al administrador");
+                        // Registra el error y muestra un mensaje de advertencia
+                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Escaneo de Etiqueta " + etiqueta);
+                        MessageBox.Show("Ocurrió un error, por favor no continúe escaneando y contacte al administrador.");
+                        return false;
                     }
-                    try
-                    {
-                        modelo.BulkUpdate(kd.ToList());
-                    }
-                    catch (Exception x)
-                    {
-
-                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Escaneo de Etiqueta" + etiqueta);
-
-                        MessageBox.Show("Ocurrio un Error, por favor no continue scaneando y contacte al administrador");
-                    }
-
-
                 }
             });
-
-
-
-
-            return true;
         }
+
         private async void gunaGradientTileButton3_Click(object sender, EventArgs e)
         {
             int error = ValidacionesGenerales(); //1 error o 0 normal

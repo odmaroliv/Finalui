@@ -156,31 +156,37 @@ namespace Negocios.NGCotizacion
                 }
             }
         }
-        public async Task <bool> ModificaKDM1Cotiza(List<vmEntCordsCot> lst, string nCot)
+        public async Task<bool> ModificaKDM1Cotiza(List<vmEntCordsCot> lst, string nCot)
         {
-
             bool bandera = true;
+
             await Task.Run(() =>
             {
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
-                    List<KDM1> kd = new List<KDM1>();
-                    foreach (var i in lst)
-                    {
-                        var d = (from fd in modelo.KDM1
-                                 where fd.C1.Equals(i.Origen) && fd.C4 == 35 && fd.C6.Contains(i.entrada)
-                                 select fd).First();
-
-                        d.C115 = nCot;
-                        kd.Add(d);
-
-                    }
-                    
-
-
                     try
                     {
-                        modelo.BulkUpdate(kd.ToList());
+                        foreach (var i in lst)
+                        {
+                            // Selecciona el registro que cumple con las condiciones
+                            var d = (from fd in modelo.KDM1
+                                     where fd.C1.Equals(i.Origen) && fd.C4 == 35 && fd.C6.Contains(i.entrada)
+                                     select fd).FirstOrDefault();
+
+                            if (d != null)
+                            {
+                                // Actualiza el campo C115
+                                d.C115 = nCot;
+                            }
+                            else
+                            {
+                                bandera = false;
+                                Negocios.LOGs.ArsLogs.LogEdit("Registro no encontrado para la entrada: " + i.entrada, "ModificaKDM1Cotiza(), AltaCotización()");
+                            }
+                        }
+
+                        // Guarda todos los cambios en la base de datos de una sola vez
+                        modelo.SaveChanges();
                     }
                     catch (Exception ex)
                     {
@@ -188,14 +194,35 @@ namespace Negocios.NGCotizacion
                         Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "ModificaKDM1Cotiza(), AltaCotización()");
                         throw;
                     }
+
+                    // Registra los movimientos en el log
                     foreach (var i in lst)
                     {
-                        GeneralMovimientosLog.AddMovimientoConParametrosDirectos(i.entrada?.Trim(), 35, "", 34, nCot, i.Origen?.Trim(), "", "", "Cotiza","","Se agrega a la cotizacion No. "+nCot,"","",nCot,Convert.ToDecimal(i.valArn),Convert.ToDecimal(i.valFact));
+                        GeneralMovimientosLog.AddMovimientoConParametrosDirectos(
+                            i.entrada?.Trim(),
+                            35,
+                            "",
+                            34,
+                            nCot,
+                            i.Origen?.Trim(),
+                            "",
+                            "",
+                            "Cotiza",
+                            "",
+                            "Se agrega a la cotizacion No. " + nCot,
+                            "",
+                            "",
+                            nCot,
+                            Convert.ToDecimal(i.valArn),
+                            Convert.ToDecimal(i.valFact)
+                        );
                     }
                 }
             });
+
             return bandera;
         }
+
         public void CancelarCotizacion(string SucCoti,
           string NoCotizacion)
         {
@@ -226,43 +253,61 @@ namespace Negocios.NGCotizacion
         }
         public async Task CancelaCotEnEntradas(List<vmEntCot> lst)
         {
-
-
             await Task.Run(() =>
             {
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
-                    List<KDM1> kd = new List<KDM1>();
-                    foreach (var i in lst)
-                    {
-                        var d = (from fd in modelo.KDM1
-                                 where fd.C1.Equals(i.sucursal) && fd.C4 == 35 && fd.C6.Contains(i.Entrada)
-                                 select fd).First();
-
-                        d.C115 = "";
-                        kd.Add(d);
-
-                    }
-
-
                     try
                     {
-                        modelo.BulkUpdate(kd.ToList());
+                        foreach (var i in lst)
+                        {
+                            // Selecciona el registro que cumple con las condiciones
+                            var d = (from fd in modelo.KDM1
+                                     where fd.C1.Equals(i.sucursal) && fd.C4 == 35 && fd.C6.Contains(i.Entrada)
+                                     select fd).FirstOrDefault();
+
+                            if (d != null)
+                            {
+                                // Actualiza el campo C115
+                                d.C115 = "";
+                            }
+                            else
+                            {
+                                // Opcional: Maneja el caso cuando no se encuentra el registro
+                                Negocios.LOGs.ArsLogs.LogEdit("Registro no encontrado para la entrada: " + i.Entrada, "CancelaCotEnEntradas");
+                            }
+                        }
+
+                        // Guarda todos los cambios en la base de datos de una sola vez
+                        modelo.SaveChanges();
                     }
                     catch (Exception ex)
                     {
+                        Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "Error en CancelaCotEnEntradas");
                         throw;
                     }
 
+                    // Registra los movimientos en el log
                     foreach (var i in lst)
                     {
-                        GeneralMovimientosLog.AddMovimientoConParametrosDirectos(i.Entrada?.Trim(), 35, "", 34, "", i.sucursal?.Trim(), "", "", "Baja", "", "Se baja de cotizacion");
-
+                        GeneralMovimientosLog.AddMovimientoConParametrosDirectos(
+                            i.Entrada?.Trim(),
+                            35,
+                            "",
+                            34,
+                            "",
+                            i.sucursal?.Trim(),
+                            "",
+                            "",
+                            "Baja",
+                            "",
+                            "Se baja de cotización"
+                        );
                     }
-
                 }
             });
         }
+
         public void PagoCotizacion(string SucCoti,
          string NoCotizacion, string stado)
         {

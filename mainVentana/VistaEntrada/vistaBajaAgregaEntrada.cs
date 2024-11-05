@@ -119,7 +119,7 @@ namespace mainVentana.VistaEntrada
             try
             {
                 BajaDB baja = new BajaDB();
-                await baja.BorraEtiquitas(listaNueva);
+                await baja.BorraEtiquetas(listaNueva);
                 string nuevoTotal = (Convert.ToInt32(txbTotalEt.Text) - nFilas).ToString();
 
                 await baja.ActualizaBultos(entrada, suOrigen, nuevoTotal);
@@ -162,7 +162,7 @@ namespace mainVentana.VistaEntrada
                 int cantidadBultos = datosLista.Count + Convert.ToInt32(nFilas);
                 BajaDB baja = new BajaDB();
                 OdooClient od = new OdooClient();
-                bool estus = await baja.BorraEtiquitas(listaNueva);
+                bool estus = await baja.BorraEtiquetas(listaNueva);
                 if (estus == true)
                 {
                     pasado(cantidadBultos.ToString());

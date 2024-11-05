@@ -1012,254 +1012,212 @@ namespace mainVentana.VistaOrSalida
         //Sucursal destino cabo sucursal origen tijuana
         private async Task<bool> ModificaKDMENTtj(string etiqueta)
         {
-
             string uld = (string)ulDato.Trim().Clone();
             string sc = sDestino == "CSL" ? "PR" : "OC";
 
-
-            await Task.Run(() =>
+            return await Task.Run(() =>
             {
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
-                    List<KDMENT> kd = new List<KDMENT>();
-
                     try
                     {
+
                         var d = (from fd in modelo.KDMENT
-                                 where fd.C9 == etiqueta.ToUpper().Trim()// 
-                                 select fd).First();
-                        //d.C17 = uld;
-                        d.C19 = sOrigen;
-                        d.C20 = sc;
-                        d.C23 = "";
-                        d.C55 = uld;
-                        //d.C56 = "";
+                                 where fd.C9 == etiqueta.ToUpper().Trim()
+                                 select fd).FirstOrDefault();
 
-                        d.C63 = uld;
-                        d.C64 = uld;
-                        d.C65 = "E";
-                        // d.C66 = "";
-                        // d.C67 = "";
-                        //  d.C68 = "";
-                        d.C75 = DateTime.Now.ToString("MM/dd/yyyy");
-                        kd.Add(d);
-                    }
+                        if (d != null)
+                        {
 
-                    catch (Exception x)
-                    {
-                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Escaneo de Etiqueta" + etiqueta);
+                            d.C19 = sOrigen;
+                            d.C20 = sc;
+                            d.C23 = "";
+                            d.C55 = uld;
+                            d.C63 = uld;
+                            d.C64 = uld;
+                            d.C65 = "E";
+                            d.C75 = DateTime.Now.ToString("MM/dd/yyyy");
 
-                        MessageBox.Show("Ocurrio un Error, por favor no continue scaneando y contacte al administrador");
 
-                    }
-                    try
-                    {
-                        modelo.BulkUpdate(kd.ToList());
+                            modelo.SaveChanges();
+                            return true; // Devuelve true si se actualizó exitosamente
+                        }
+                        else
+                        {
+
+                            Negocios.LOGs.ArsLogs.LogEdit("Etiqueta no encontrada: " + etiqueta, "Escaneo de Etiqueta");
+                            MessageBox.Show("Etiqueta no encontrada, por favor contacte al administrador.");
+                            return false;
+                        }
                     }
                     catch (Exception x)
                     {
 
-                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Escaneo de Etiqueta" + etiqueta);
-
-                        MessageBox.Show("Ocurrio un Error, por favor no continue scaneando y contacte al administrador");
-
+                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Escaneo de Etiqueta " + etiqueta);
+                        MessageBox.Show("Ocurrió un error, por favor no continúe escaneando y contacte al administrador.");
+                        return false;
                     }
-
-
                 }
             });
-
-            return true;
-
         }
+
+
+
         private async Task<bool> ModificaKDMENTBajatj(string etiqueta)
         {
-
             string uld = (string)ulDato.Trim().Clone();
             string sc = sDestino == "CSL" ? "PR" : "OC";
 
-
-            await Task.Run(() =>
+            return await Task.Run(() =>
             {
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
-                    List<KDMENT> kd = new List<KDMENT>();
-
                     try
                     {
+                        // Selecciona el registro que cumple con la condición
                         var d = (from fd in modelo.KDMENT
-                                 where fd.C9 == etiqueta.ToUpper().Trim()// 
-                                 select fd).First();
-                        //d.C17 = uld;
-                        d.C19 = sOrigen;
-                        d.C20 = "OC";
-                      
-                        d.C55 = "";
-                        //d.C56 = "";
+                                 where fd.C9 == etiqueta.ToUpper().Trim()
+                                 select fd).FirstOrDefault();
 
-                        d.C63 = "";
-                        d.C64 = "";
-                        d.C65 = "";
-                        // d.C66 = "";
-                        // d.C67 = "";
-                        //  d.C68 = "";
-                        d.C75 = DateTime.Now.ToString("MM/dd/yyyy");
-                        kd.Add(d);
-                    }
+                        if (d != null)
+                        {
+                            // Actualiza los campos necesarios
+                            d.C19 = sOrigen;
+                            d.C20 = "OC";
+                            d.C55 = "";
+                            d.C63 = "";
+                            d.C64 = "";
+                            d.C65 = "";
+                            d.C75 = DateTime.Now.ToString("MM/dd/yyyy");
 
-                    catch (Exception x)
-                    {
-                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Escaneo de Etiqueta" + etiqueta);
-
-                        MessageBox.Show("Ocurrio un Error, por favor no continue scaneando y contacte al administrador");
-
-                    }
-                    try
-                    {
-                        modelo.BulkUpdate(kd.ToList());
+                            // Guarda el cambio en la base de datos
+                            modelo.SaveChanges();
+                            return true; // Devuelve true si la actualización es exitosa
+                        }
+                        else
+                        {
+                            // Registra un error si no se encuentra el registro
+                            Negocios.LOGs.ArsLogs.LogEdit("Etiqueta no encontrada: " + etiqueta, "Escaneo de Etiqueta");
+                            MessageBox.Show("Etiqueta no encontrada, por favor contacte al administrador.");
+                            return false;
+                        }
                     }
                     catch (Exception x)
                     {
-
-                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Escaneo de Etiqueta" + etiqueta);
-
-                        MessageBox.Show("Ocurrio un Error, por favor no continue scaneando y contacte al administrador");
-
+                        // Registra el error y muestra un mensaje de advertencia
+                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Escaneo de Etiqueta " + etiqueta);
+                        MessageBox.Show("Ocurrió un error, por favor no continúe escaneando y contacte al administrador.");
+                        return false;
                     }
-
-
                 }
             });
-
-            return true;
-
         }
+
 
         private async Task<bool> ModificaKDMENTsd(string etiqueta)
         {
-
-
             string sc = sDestino == "CSL" ? "PR" : "OC";
-            await Task.Run(() =>
+            string uld = (string)ulDato.Trim().Clone();
+
+            return await Task.Run(() =>
             {
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
-                    List<Datos.Datosenti.KDMENT> kd = new List<Datos.Datosenti.KDMENT>();
-
-
-                    string uld = (string)ulDato.Trim().Clone();
-
                     try
                     {
-
+                        // Selecciona el registro que cumple con la condición
                         var d = (from fd in modelo.KDMENT
-                                 where fd.C9 == etiqueta.ToUpper().Trim()// 
-                                 select fd).First();
+                                 where fd.C9 == etiqueta.ToUpper().Trim()
+                                 select fd).FirstOrDefault();
 
-                        d.C12 = "E";
-                        d.C17 = uld;
-                        d.C18 = "";
-                        d.C19 = sOrigen;
-                        d.C20 = sc;
+                        if (d != null)
+                        {
+                            // Actualiza los campos necesarios
+                            d.C12 = "E";
+                            d.C17 = uld;
+                            d.C18 = "";
+                            d.C19 = sOrigen;
+                            d.C20 = sc;
+                            d.C23 = "";
+                            d.C55 = uld;
+                            d.C56 = "";
+                            d.C63 = "";
+                            d.C64 = "";
+                            d.C65 = "";
+                            d.C66 = "";
+                            d.C67 = "";
+                            d.C68 = "";
+                            d.C73 = DateTime.Now.ToString("MM/dd/yyyy");
+                            d.C75 = "";
 
-                        d.C23 = "";
-                        d.C55 = uld;
-                        d.C56 = "";
-
-                        d.C63 = "";
-                        d.C64 = "";
-                        d.C65 = "";
-                        d.C66 = "";
-                        d.C67 = "";
-                        d.C68 = "";
-                        d.C73 = DateTime.Now.ToString("MM/dd/yyyy");
-                        d.C75 = "";
-                        kd.Add(d);
-                        //modelo.SaveChanges();
-
+                            // Guarda los cambios en la base de datos
+                            modelo.SaveChanges();
+                            return true; // Devuelve true si la actualización es exitosa
+                        }
+                        else
+                        {
+                            // Registra un error si no se encuentra el registro
+                            Negocios.LOGs.ArsLogs.LogEdit("Etiqueta no encontrada: " + etiqueta, "Escaneo de Etiqueta");
+                            return false;
+                        }
                     }
                     catch (Exception x)
                     {
-
-                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Escaneo de Etiqueta" + etiqueta);
-
-                        // MessageBox.Show("Ocurrio un Error, por favor no continue scaneando y contacte al administrador");
-
+                        // Registra el error y muestra un mensaje de advertencia
+                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Escaneo de Etiqueta " + etiqueta);
+                        return false;
                     }
-                    try
-                    {
-                        modelo.BulkUpdate(kd.ToList());
-                    }
-                    catch (Exception x)
-                    {
-                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Escaneo de Etiqueta" + etiqueta);
-
-                        // MessageBox.Show("Ocurrio un Error, por favor no continue scaneando y contacte al administrador");
-                    }
-
-
                 }
             });
-
-            return true;
         }
+
         private async Task<bool> ModificaKDMENTBajasd(string etiqueta)
         {
-
-
             string sc = sDestino == "CSL" ? "PR" : "OC";
-            await Task.Run(() =>
+            string uld = (string)ulDato.Trim().Clone();
+
+            return await Task.Run(() =>
             {
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
-                    List<Datos.Datosenti.KDMENT> kd = new List<Datos.Datosenti.KDMENT>();
-
-
-                    string uld = (string)ulDato.Trim().Clone();
-
                     try
                     {
-
+                        // Selecciona el registro que cumple con la condición
                         var d = (from fd in modelo.KDMENT
-                                 where fd.C9 == etiqueta.ToUpper().Trim()// 
-                                 select fd).First();
+                                 where fd.C9 == etiqueta.ToUpper().Trim()
+                                 select fd).FirstOrDefault();
 
-                        d.C12 = "";
-                        d.C17 = "";
-                        d.C19 = sOrigen;
-                        d.C20 = "OC";
-                        d.C55 = "";
-                        d.C73 = DateTime.Now.ToString("MM/dd/yyyy");
+                        if (d != null)
+                        {
+                            // Actualiza los campos necesarios
+                            d.C12 = "";
+                            d.C17 = "";
+                            d.C19 = sOrigen;
+                            d.C20 = "OC";
+                            d.C55 = "";
+                            d.C73 = DateTime.Now.ToString("MM/dd/yyyy");
 
-                        kd.Add(d);
-                        //modelo.SaveChanges();
-
+                            // Guarda los cambios en la base de datos
+                            modelo.SaveChanges();
+                            return true; // Devuelve true si la actualización es exitosa
+                        }
+                        else
+                        {
+                            // Registra un error si no se encuentra el registro
+                            Negocios.LOGs.ArsLogs.LogEdit("Etiqueta no encontrada: " + etiqueta, "Escaneo de Etiqueta");
+                            return false;
+                        }
                     }
                     catch (Exception x)
                     {
-
-                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Escaneo de Etiqueta" + etiqueta);
-
-                        // MessageBox.Show("Ocurrio un Error, por favor no continue scaneando y contacte al administrador");
-
+                        // Registra el error y muestra un mensaje de advertencia
+                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Escaneo de Etiqueta " + etiqueta);
+                        return false;
                     }
-                    try
-                    {
-                        modelo.BulkUpdate(kd.ToList());
-                    }
-                    catch (Exception x)
-                    {
-                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "Escaneo de Etiqueta" + etiqueta);
-
-                        // MessageBox.Show("Ocurrio un Error, por favor no continue scaneando y contacte al administrador");
-                    }
-
-
                 }
             });
-
-            return true;
         }
+
         private void EliminarFilaPorEtiqueta(string etiqueta, GunaDataGridView dgv)
         {
             try

@@ -223,71 +223,70 @@ namespace Negocios.NGBill
 
         public async Task<bool> ModificaKDMENTToBillBorra(string etiqueta)
         {
-
-
-            //string sc = sDestino == "CSL" ? "PR" : "OC";
-            await Task.Run(() =>
+            return await Task.Run(() =>
             {
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
-                    List<Datos.Datosenti.KDMENT> kd = new List<Datos.Datosenti.KDMENT>();
-
-
-                    //string uld = (string)ulDato.Trim().Clone();
-
                     try
                     {
-
+                        // Selecciona el registro que cumple con la condición
                         var d = (from fd in modelo.KDMENT
-                                 where fd.C9 == etiqueta.ToUpper().Trim()// 
-                                 select fd).First();
+                                 where fd.C9 == etiqueta.ToUpper().Trim()
+                                 select fd).FirstOrDefault();
 
-                        d.C46 = "";
-                        d.C77 = "";
-                        kd.Add(d);
+                        if (d != null)
+                        {
+                            // Actualiza los campos necesarios
+                            d.C46 = "";
+                            d.C77 = "";
 
+                            // Guarda los cambios en la base de datos
+                            modelo.SaveChanges();
 
+                            // Registra el movimiento en el log
+                            GeneralMovimientosLog.AddMovimientoConParametrosDirectos(
+                                GeneralMovimientosLog.ObtenerFolioDesdeEtiqueta(etiqueta),
+                                35,
+                                etiqueta,
+                                60,
+                                "BTRACKSALIDA",
+                                "",
+                                "",
+                                "",
+                                "Baja"
+                            );
+
+                            return true; // Devuelve true si la actualización es exitosa
+                        }
+                        else
+                        {
+                            // Registra un error si no se encuentra el registro
+                            Negocios.LOGs.ArsLogs.LogEdit("Etiqueta no encontrada: " + etiqueta, "BILL sale de arsys a Beetrack");
+                            return false;
+                        }
                     }
                     catch (Exception x)
                     {
-
-                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "BILL sale de arsys a Beetrack" + etiqueta);
-
-                    }
-                    try
-                    {
-                        modelo.BulkUpdate(kd.ToList());
-                        GeneralMovimientosLog.AddMovimientoConParametrosDirectos(GeneralMovimientosLog.ObtenerFolioDesdeEtiqueta(etiqueta), 35, etiqueta, 60, "BTRACKSALIDA", "", "", "", "Baja");
-
-                    }
-                    catch (Exception x)
-                    {
-                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "BILL sale de arsys a Beetrack" + etiqueta);
+                        // Registra el error y maneja las excepciones de validación de entidad
+                        Negocios.LOGs.ArsLogs.LogEdit(x.Message, "BILL sale de arsys a Beetrack " + etiqueta);
                         if (x is DbEntityValidationException entityValidationEx)
                         {
                             foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
                             {
-                                // Acceder a los Entity Validation Errors
                                 foreach (var validationError in entityValidationError.ValidationErrors)
                                 {
                                     var propertyName = validationError.PropertyName;
                                     var errorMessage = validationError.ErrorMessage;
-                                    Negocios.LOGs.ArsLogs.LogEdit($"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}", "BusquedaBill.cs, ModificaKDMENTToBillBorra()..." + etiqueta + "    ");
+                                    Negocios.LOGs.ArsLogs.LogEdit($"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}", "BusquedaBill.cs, ModificaKDMENTToBillBorra()... " + etiqueta);
                                 }
                             }
                         }
-
+                        return false;
                     }
-
-
                 }
             });
-
-
-
-
-            return true;
         }
+
 
 
 

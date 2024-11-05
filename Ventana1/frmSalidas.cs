@@ -506,91 +506,74 @@ namespace Ventana1
             string eti = "";
             string sc = sDestino == "CSL" && sOrigen == "TJ" ? "PR" : "OC";
 
-
             await Task.Run(() =>
             {
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
-                    List<KDMENT> kd = new List<KDMENT>();
                     foreach (var q in dgvInicial.Rows)
                     {
                         string msn = dgvInicial.Rows[nm].Cells[0].Value.ToString();
-
-
-
                         string uld = (string)ulDato.Trim().Clone();
-
-                        var etisuc = msn.Split(Convert.ToChar("-"))[0];
-
-                        nm = nm + 1;
+                        string etisuc = msn.Split(Convert.ToChar("-"))[0];
+                        nm += 1;
 
                         try
                         {
+                            // Selecciona el registro que cumple con la condición
                             var d = (from fd in modelo.KDMENT
-                                     where fd.C9 == msn.Trim()// 
-                                     select fd).First();
-                            //d.C17 = uld;
-                            d.C19 = sOrigen;
-                            d.C20 = sc;
-                            d.C23 = "";
-                            d.C55 = uld;
-                            d.C56 = "";
+                                     where fd.C9 == msn.Trim()
+                                     select fd).FirstOrDefault();
 
-                            d.C63 = uld;
-                            d.C64 = uld;
-                            d.C65 = "E";
-                            d.C66 = "";
-                            d.C67 = "";
-                            d.C68 = "";
-                            d.C75 = DateTime.Now.ToString("dd/MM/yyyy");
-                            kd.Add(d);
-                            eti = etisuc;
-                            if (etisuc == sDestino)
+                            if (d != null)
                             {
-                                lsexito.Add(new vmErroresScanSalidas { etiqueta = msn, error = "La etiqueta pertece a la sucursal de salida" });
-                                
-                                continue;
+                                // Actualiza los campos necesarios
+                                d.C19 = sOrigen;
+                                d.C20 = sc;
+                                d.C23 = "";
+                                d.C55 = uld;
+                                d.C56 = "";
+                                d.C63 = uld;
+                                d.C64 = uld;
+                                d.C65 = "E";
+                                d.C66 = "";
+                                d.C67 = "";
+                                d.C68 = "";
+                                d.C75 = DateTime.Now.ToString("dd/MM/yyyy");
+
+                                eti = etisuc;
+                                if (etisuc == sDestino)
+                                {
+                                    lsexito.Add(new vmErroresScanSalidas { etiqueta = msn, error = "La etiqueta pertenece a la sucursal de salida" });
+                                    continue;
+                                }
+
+                                lsexito.Add(new vmErroresScanSalidas { etiqueta = msn, error = "Actualizada sin detalles" });
                             }
-                           
-
-
-                            //modelo.SaveChanges();
-                            lsexito.Add(new vmErroresScanSalidas { etiqueta = msn, error = "Actualizada con sin detalles" });
-
+                            else
+                            {
+                                lserror.Add(new vmErroresScanSalidas { etiqueta = msn, error = "Registro no encontrado" });
+                            }
                         }
-                        catch (Exception J)
+                        catch (Exception ex)
                         {
-
-                            lserror.Add(new vmErroresScanSalidas { etiqueta = msn, error = J.Message.ToString() });
-
-                            continue;
-
+                            lserror.Add(new vmErroresScanSalidas { etiqueta = msn, error = ex.Message.ToString() });
                         }
-
-
-
-
                     }
-                    modelo.BulkUpdate(kd.ToList());
 
+                    // Guarda todos los cambios en la base de datos de una sola vez
+                    modelo.SaveChanges();
                 }
             });
 
-
+            // Actualiza los DataGridView y contadores
             dgvError.DataSource = lserror.ToList();
-
             dgvExito.DataSource = lsexito.ToList();
-
-            txbtError.Text = lserror.Count().ToString();
-            txbtCorrecto.Text = lsexito.Count().ToString();
-
-            //----------------------------------------
-
-
+            txbtError.Text = lserror.Count.ToString();
+            txbtCorrecto.Text = lsexito.Count.ToString();
 
             return true;
-
         }
+
         //Sucursal destino cabo o tjuana sucursal origen san diego
         private async Task<bool> ModificaKDMENTsd()
         {
@@ -599,85 +582,79 @@ namespace Ventana1
             List<vmErroresScanSalidas> lsexito = new List<vmErroresScanSalidas>();
             string eti = "";
             string sc = sDestino == "CSL" && sOrigen == "SD" ? "PR" : "OC";
+
             await Task.Run(() =>
             {
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
-                    List<Datos.Datosenti.KDMENT> kd = new List<Datos.Datosenti.KDMENT>();
                     foreach (var q in dgvInicial.Rows)
                     {
                         string msn = dgvInicial.Rows[nm].Cells[0].Value.ToString();
-
-
                         string uld = (string)ulDato.Trim().Clone();
+                        string etisuc = msn.Split(Convert.ToChar("-"))[0];
+                        nm += 1;
 
-                        var etisuc = msn.Split(Convert.ToChar("-"))[0];
-
-                        nm = nm + 1;
                         try
                         {
-
-
-
+                            // Selecciona el registro que cumple con la condición
                             var d = (from fd in modelo.KDMENT
-                                     where fd.C9 == msn.Trim()// 
-                                     select fd).First();
+                                     where fd.C9 == msn.Trim()
+                                     select fd).FirstOrDefault();
 
-                            d.C12 = "E";
-                            d.C17 = uld;
-                            d.C18 = "";
-                            d.C19 = sOrigen;
-                            d.C20 = sc;
-
-                            d.C23 = "";
-                            d.C55 = uld;
-                            d.C56 = "";
-
-                            d.C63 = "";
-                            d.C64 = "";
-                            d.C65 = "";
-                            d.C66 = "";
-                            d.C67 = "";
-                            d.C68 = "";
-                            d.C73 = DateTime.Now.ToString("dd/MM/yyyy");
-                            d.C75 = "";
-                            kd.Add(d);
-                            //modelo.SaveChanges();
-                            eti = etisuc;
-                            if (etisuc == sDestino)
+                            if (d != null)
                             {
-                                lsexito.Add(new vmErroresScanSalidas { etiqueta = msn, error = "La etiqueta pertece a la sucursal de salida" });
+                                // Actualiza los campos necesarios
+                                d.C12 = "E";
+                                d.C17 = uld;
+                                d.C18 = "";
+                                d.C19 = sOrigen;
+                                d.C20 = sc;
+                                d.C23 = "";
+                                d.C55 = uld;
+                                d.C56 = "";
+                                d.C63 = "";
+                                d.C64 = "";
+                                d.C65 = "";
+                                d.C66 = "";
+                                d.C67 = "";
+                                d.C68 = "";
+                                d.C73 = DateTime.Now.ToString("dd/MM/yyyy");
+                                d.C75 = "";
 
-                                continue;
+                                eti = etisuc;
+                                if (etisuc == sDestino)
+                                {
+                                    lsexito.Add(new vmErroresScanSalidas { etiqueta = msn, error = "La etiqueta pertenece a la sucursal de salida" });
+                                    continue;
+                                }
+
+                                lsexito.Add(new vmErroresScanSalidas { etiqueta = msn, error = "Actualizada sin detalles" });
                             }
-                            lsexito.Add(new vmErroresScanSalidas { etiqueta = msn, error = "Actualizada con con detalles" });
-
+                            else
+                            {
+                                lserror.Add(new vmErroresScanSalidas { etiqueta = msn, error = "Registro no encontrado" });
+                            }
                         }
-                        catch (Exception J)
+                        catch (Exception ex)
                         {
-
-                            lserror.Add(new vmErroresScanSalidas { etiqueta = msn, error = J.Message.ToString() });
-
-                            continue;
-
+                            lserror.Add(new vmErroresScanSalidas { etiqueta = msn, error = ex.Message.ToString() });
                         }
-
                     }
-                    modelo.BulkUpdate(kd.ToList());
+
+                    // Guarda todos los cambios en la base de datos de una sola vez
+                    modelo.SaveChanges();
                 }
             });
 
-
-
+            // Actualiza los DataGridView y contadores
             dgvError.DataSource = lserror.ToList();
-
             dgvExito.DataSource = lsexito.ToList();
-
-            txbtError.Text = lserror.Count().ToString();
-            txbtCorrecto.Text = lsexito.Count().ToString();
+            txbtError.Text = lserror.Count.ToString();
+            txbtCorrecto.Text = lsexito.Count.ToString();
 
             return true;
         }
+
 
         private async Task<bool> ModificaKDMENTTOCABO()
         {
@@ -685,97 +662,79 @@ namespace Ventana1
             List<vmErroresScanSalidas> lserror = new List<vmErroresScanSalidas>();
             List<vmErroresScanSalidas> lsexito = new List<vmErroresScanSalidas>();
             string eti = "";
-            //string sc = sDestino == "CSL" && sOrigen == "TJ" ? "PR" : "OC";
-
 
             await Task.Run(() =>
             {
                 using (modelo2Entities modelo = new modelo2Entities())
                 {
-                    List<KDMENT> kd = new List<KDMENT>();
                     foreach (var q in dgvInicial.Rows)
                     {
                         string msn = dgvInicial.Rows[nm].Cells[0].Value.ToString();
-
-
-
                         string uld = (string)ulDato.Trim().Clone();
-
-                        var etisuc = msn.Split(Convert.ToChar("-"))[0];
-
-                        nm = nm + 1;
+                        string etisuc = msn.Split(Convert.ToChar("-"))[0];
+                        nm += 1;
 
                         try
                         {
+                            // Selecciona el registro que cumple con la condición
                             var d = (from fd in modelo.KDMENT
-                                     where fd.C9 == msn.Trim()// 
-                                     select fd).First();
-                            d.C12 = "E";
-                            d.C17 = uld;
-                            d.C18 = "";
-                            d.C19 = sOrigen;
-                            d.C20 = "PR";
+                                     where fd.C9 == msn.Trim()
+                                     select fd).FirstOrDefault();
 
-                            d.C23 = "";
-                            d.C55 = uld;
-                            d.C56 = "";
-
-                            d.C63 = "";
-                            d.C64 = "";
-                            d.C65 = "";
-                            d.C66 = "";
-                            d.C67 = "";
-                            d.C68 = "";
-                            d.C73 = DateTime.Now.ToString("dd/MM/yyyy");
-                            d.C75 = "";
-                            kd.Add(d);
-                            eti = etisuc;
-                            if (etisuc == sDestino)
+                            if (d != null)
                             {
-                                lsexito.Add(new vmErroresScanSalidas { etiqueta = msn, error = "La etiqueta pertece a la sucursal de salida" });
+                                // Actualiza los campos necesarios
+                                d.C12 = "E";
+                                d.C17 = uld;
+                                d.C18 = "";
+                                d.C19 = sOrigen;
+                                d.C20 = "PR";
+                                d.C23 = "";
+                                d.C55 = uld;
+                                d.C56 = "";
+                                d.C63 = "";
+                                d.C64 = "";
+                                d.C65 = "";
+                                d.C66 = "";
+                                d.C67 = "";
+                                d.C68 = "";
+                                d.C73 = DateTime.Now.ToString("dd/MM/yyyy");
+                                d.C75 = "";
 
-                                continue;
+                                eti = etisuc;
+                                if (etisuc == sDestino)
+                                {
+                                    lsexito.Add(new vmErroresScanSalidas { etiqueta = msn, error = "La etiqueta pertenece a la sucursal de salida" });
+                                    continue;
+                                }
+
+                                lsexito.Add(new vmErroresScanSalidas { etiqueta = msn, error = "Actualizada sin detalles" });
                             }
-
-
-
-                            //modelo.SaveChanges();
-                            lsexito.Add(new vmErroresScanSalidas { etiqueta = msn, error = "Actualizada con sin detalles" });
-
+                            else
+                            {
+                                lserror.Add(new vmErroresScanSalidas { etiqueta = msn, error = "Registro no encontrado" });
+                            }
                         }
-                        catch (Exception J)
+                        catch (Exception ex)
                         {
-
-                            lserror.Add(new vmErroresScanSalidas { etiqueta = msn, error = J.Message.ToString() });
-
-                            continue;
-
+                            lserror.Add(new vmErroresScanSalidas { etiqueta = msn, error = ex.Message.ToString() });
                         }
-
-
-
-
                     }
-                    modelo.BulkUpdate(kd.ToList());
 
+                    // Guarda todos los cambios en la base de datos de una sola vez
+                    modelo.SaveChanges();
                 }
             });
 
-
+            // Actualiza los DataGridView y contadores
             dgvError.DataSource = lserror.ToList();
-
             dgvExito.DataSource = lsexito.ToList();
-
-            txbtError.Text = lserror.Count().ToString();
-            txbtCorrecto.Text = lsexito.Count().ToString();
-
-            //----------------------------------------
-
-
+            txbtError.Text = lserror.Count.ToString();
+            txbtCorrecto.Text = lsexito.Count.ToString();
 
             return true;
-
         }
+
         private void panel4_Paint(object sender, PaintEventArgs e)
         {
 

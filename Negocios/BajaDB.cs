@@ -11,51 +11,48 @@ namespace Negocios
 {
     public class BajaDB
     {
-        
-       public async Task<bool> BorraEtiquitas(List<string> lst)
+
+        public async Task<bool> BorraEtiquetas(List<string> lst)
         {
             bool b = true;
             try
             {
-                
                 await Task.Run(() =>
                 {
                     using (modelo2Entities modelo = new modelo2Entities())
-
                     {
-                        List<KDMENT> kd = new List<KDMENT>();
-
-                        foreach (var i in lst)
-                        {
-                            var d = (from q in modelo.KDMENT
-                                     where q.C9 == i && q.C4 == 35
-                                     select q).First();
-
-                            kd.Add(d);
-                            
-                        }
                         try
                         {
-                            modelo.KDMENT.BulkDelete(kd);
+                            foreach (var i in lst)
+                            {
+                                // Selecciona el registro que cumple con la condición
+                                var d = (from q in modelo.KDMENT
+                                         where q.C9 == i && q.C4 == 35
+                                         select q).FirstOrDefault();
+
+                                if (d != null)
+                                {
+                                    // Elimina el registro del contexto
+                                    modelo.KDMENT.Remove(d);
+                                }
+                            }
+
+                            // Guarda los cambios en la base de datos para eliminar los registros
+                            modelo.SaveChanges();
                             b = true;
                         }
                         catch (Exception)
                         {
-                            b= false;
+                            b = false;
                         }
-                        kd.Clear();
-                      
-
                     }
                 });
-
-             
             }
             catch (Exception)
             {
-
                 throw;
             }
+
             return b;
         }
 
