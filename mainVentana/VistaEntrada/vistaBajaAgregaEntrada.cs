@@ -28,6 +28,7 @@ namespace mainVentana.VistaEntrada
         private List<vmEtiquetasInfo> datosLista;
         public string suOrigen;
         public string entrada;
+        public string odooId;
 
         private string _etiquetaSeleccionada = "";
         private string _descripcionSeleccionada = "";
@@ -95,6 +96,8 @@ namespace mainVentana.VistaEntrada
 
         private async Task eliminaDatos()
         {
+            OdooClient od = new OdooClient();
+            long idProductOdoo = Convert.ToInt64(odooId);
 
             int index = 1;
             long nFilas = nBorra.Value;
@@ -121,8 +124,11 @@ namespace mainVentana.VistaEntrada
                 BajaDB baja = new BajaDB();
                 await baja.BorraEtiquetas(listaNueva);
                 string nuevoTotal = (Convert.ToInt32(txbTotalEt.Text) - nFilas).ToString();
+                int bultosTotalN = Convert.ToInt32(nuevoTotal);
 
-                await baja.ActualizaBultos(entrada, suOrigen, nuevoTotal);
+                //await baja.ActualizaBultos(entrada, suOrigen, nuevoTotal);
+
+                await od.UpdateQtyEtiquetasAsync(idProductOdoo, bultosTotalN);
 
                 MessageBox.Show("Se han borrado las " + nFilas + " etiquetas satisfactoriamente \nIMPORTANTE \nVuelve a buscar la entrada para observar los resultados y poder imprimir", "successful", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
@@ -162,11 +168,13 @@ namespace mainVentana.VistaEntrada
                 int cantidadBultos = datosLista.Count + Convert.ToInt32(nFilas);
                 BajaDB baja = new BajaDB();
                 OdooClient od = new OdooClient();
+                long idProductOdoo = Convert.ToInt64(odooId);
                 bool estus = await baja.BorraEtiquetas(listaNueva);
                 if (estus == true)
                 {
                     pasado(cantidadBultos.ToString());
-                    await baja.ActualizaBultos(entrada, suOrigen, cantidadBultos.ToString());
+                    //await baja.ActualizaBultos(entrada, suOrigen, cantidadBultos.ToString());
+                    await od.UpdateQtyEtiquetasAsync(idProductOdoo, cantidadBultos);
 
                     MessageBox.Show("Se han agregado las " + nFilas + " etiquetas satisfactoriamente \nIMPORTANTE \nVuelve a buscar la entrada para observar los resultados y poder imprimir", "successful", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }

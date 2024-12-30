@@ -2778,6 +2778,7 @@ namespace mainVentana.VistaEntrada
                 {
                     vEnt.suOrigen = sucEntrada.SelectedValue.ToString().Trim();
                     vEnt.entrada = entradaBusqueda == "" || entradaBusqueda == default ? "00" : entradaBusqueda.Trim();
+                    vEnt.odooId = lblNoOdoo.Text == "" || lblNoOdoo.Text == default ? "00" : lblNoOdoo.Text.Trim();
                     vEnt.pasado += new vistaBajaAgregaEntrada.pasar(ModificaEtiquetas);
                     vEnt.ShowDialog();
                     vEnt.pasado -= new vistaBajaAgregaEntrada.pasar(ModificaEtiquetas);

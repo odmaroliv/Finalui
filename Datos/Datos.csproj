@@ -290,6 +290,7 @@
     <Compile Include="ViewModels\Odoo\OdooToBeeModel.cs" />
     <Compile Include="ViewModels\Odoo\OdooUserModel.cs" />
     <Compile Include="ViewModels\Odoo\ProductUpdateRequest.cs" />
+    <Compile Include="ViewModels\Odoo\UpdateQtyEtiquetasRequestDto.cs" />
     <Compile Include="ViewModels\Recepciones\vmCargaOrdenesDeRecepcion.cs" />
     <Compile Include="ViewModels\Recepciones\vmEntBySalida.cs" />
     <Compile Include="ViewModels\Recepciones\vmNoRecepcion.cs" />

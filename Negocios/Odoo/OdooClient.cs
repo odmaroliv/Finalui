@@ -164,7 +164,7 @@ namespace Negocios.Odoo
             OdooToBeeModel retu = new OdooToBeeModel();
             try
             {
-                
+
                 HttpResponseMessage response = await _client.GetAsync($"api/OdooClient/GetProductTemplanteById?productId={productId}");
                 if (response.IsSuccessStatusCode)
                 {
@@ -184,6 +184,47 @@ namespace Negocios.Odoo
             catch (Exception ex)
             {
                 return retu;
+            }
+        }
+
+        public async Task<bool> UpdateQtyEtiquetasAsync(long productId, int qty)
+        {
+            try
+            {
+                // Crear el objeto de la solicitud
+                var requestDto = new UpdateQtyEtiquetasRequestDto
+                {
+                    ProductId = productId,
+                    Qty = qty
+                };
+
+                // Serializar el objeto a JSON
+                var json = JsonConvert.SerializeObject(requestDto);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                // Configurar la URL del endpoint
+                string url = "api/OdooClient/UpdateQtyEtiquetas";
+
+                // Enviar la solicitud PUT
+                HttpResponseMessage response = await _client.PutAsync(url, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    // Operación exitosa
+                    return true;
+                }
+                else
+                {
+                    // Manejar el caso de error
+                    var errorContent = await response.Content.ReadAsStringAsync();
+                    throw new Exception($"Error al actualizar: {errorContent}");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones
+                Console.WriteLine($"Error: {ex.Message}");
+                return false;
             }
         }
 
