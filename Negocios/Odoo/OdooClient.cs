@@ -79,6 +79,24 @@ namespace Negocios.Odoo
             }
         }
 
+
+        public async Task<List<OdooClienteDto>> SearchClients(string searchTerm)
+        {
+
+            var response = await _client.GetAsync($"api/OdooClient/search?searchTerm={Uri.EscapeDataString(searchTerm)}");
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                var clients = JsonConvert.DeserializeObject<List<OdooClienteDto>>(content);
+                if (clients == null || clients.Count == 0)
+                    return new List<OdooClienteDto>();
+
+
+                return new List<OdooClienteDto>(clients);
+            }
+            return new List<OdooClienteDto>();
+        }
+
         public async Task<string> GetUserById(long idUser)
         {
             try
@@ -105,7 +123,7 @@ namespace Negocios.Odoo
             }
         }
 
-        public async Task<string> GetClientById(string clientId)
+        public async Task<OdooClienteDto> GetClientById(string clientId)
         {
             try
             {
@@ -119,7 +137,7 @@ namespace Negocios.Odoo
                         return null;
 
 
-                    return clients.Email;
+                    return clients;
                 }
                 else
                 {
@@ -308,7 +326,8 @@ namespace Negocios.Odoo
                 }
 
                 HttpResponseMessage response = await _client.PutAsync(url, content);
-                if (response.IsSuccessStatusCode) { 
+                if (response.IsSuccessStatusCode)
+                {
 
                 }
                 else
@@ -333,7 +352,7 @@ namespace Negocios.Odoo
                 var updateRequest = new ProductUpdateRequest
                 {
                     ProductId = productId,
-                  
+
                 };
 
                 // Convertir el objeto a JSON
@@ -341,7 +360,7 @@ namespace Negocios.Odoo
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
                 string url = $"api/OdooClient/UpdateCurrentSucOrClientOrQtyEtiquetasOrOperationOrReadyBillOrFinishedOrOutput?productId={productId}&newQtyEtiquetas={NewQtyEtiquetas}";
-               
+
                 HttpResponseMessage response = await _client.PutAsync(url, content);
                 if (response.IsSuccessStatusCode)
                 {
@@ -401,6 +420,8 @@ namespace Negocios.Odoo
                 return;
             }
         }
+
+        
 
     }
 }

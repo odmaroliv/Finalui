@@ -1,7 +1,9 @@
-﻿using Datos.ViewModels.Coord.Clientes;
+﻿using Datos.ViewModels;
+using Datos.ViewModels.Coord.Clientes;
 using Datos.ViewModels.Entradas;
 using Datos.ViewModels.Entradas.mvlistas;
 using Datos.ViewModels.Odoo;
+using DocumentFormat.OpenXml.Drawing;
 using Negocios;
 using Negocios.NGClientes;
 using Negocios.Odoo;
@@ -11,6 +13,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,10 +24,17 @@ namespace mainVentana.VistaEntrada
     public partial class BusquedasEnt : Form
     {
 
-        public delegate void pasar(string alias, string cliente, string cord, string calle, string colonia, string ciudad, string codigocliente,string CorreosCliente, int bandera, string parentName = "", string parentId = "");
+        public delegate void pasar(string alias, string cliente, string cord, string calle, string colonia, string ciudad, string codigocliente,string CorreosCliente, int bandera,string codigoPostal, string parentName = "", string parentId = "");
         //public delegate void pasar2(string dato,string cliente, int bandera);
         public event pasar pasado;
         // public event pasar2 pasado2;
+        private bool _isSearching = false;
+        private bool _isUserTyping = false;
+        private int _lastCursorPosition = 0;
+        private bool _isFormReady = false;
+
+        private bool _disposed = false;
+        private readonly Timer _searchTimer;
 
         List<OdooClienteDto> listaClintes = new List<OdooClienteDto>();
         string calle;
@@ -41,30 +51,225 @@ namespace mainVentana.VistaEntrada
         public BusquedasEnt()
         {
             InitializeComponent();
+            _searchTimer = new Timer { Interval = 300 };
+            InitializeControls();
+
         }
 
-        private async void BusquedasEnt_Load(object sender, EventArgs e)
+       
+
+        private void ComboBox1_TextChanged(object sender, EventArgs e)
         {
-            comboBox1.AutoCompleteCustomSource = await aliasList();
-            if (listaClintes.Any())
+            if (!_isUserTyping)
             {
-                comboBox1.Enabled = true;
-                txbClave.Enabled = true;
-                txbOBusqueda.Enabled = true;
-                    
+                _lastCursorPosition = comboBox1.SelectionStart;
+                _isUserTyping = true;
+                _searchTimer.Stop();
+                _searchTimer.Start();
             }
-            if (label2.Text == "CLIENTE")
+        }
+
+        private void InitializeControls()
+        {
+            // Configuración básica del ComboBox
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDown;
+            comboBox1.AutoCompleteMode = AutoCompleteMode.None;
+            comboBox1.AutoCompleteSource = AutoCompleteSource.None;
+
+            // Configurar timer para búsqueda
+            _searchTimer.Tick += async (s, e) =>
             {
-                txbClave.Visible = true;
+                _searchTimer.Stop();
+                await SearchClients();
+            };
+
+            // Eventos del ComboBox
+            comboBox1.TextChanged += ComboBox1_TextChanged;
+   
+            comboBox1.SelectionChangeCommitted += ComboBox1_SelectionChangeCommitted;
+            comboBox1.LostFocus += ComboBox1_LostFocus;
+            comboBox1.DropDown += ComboBox1_DropDown;
+          
+
+        }
+
+        private async Task SearchClients()
+        {
+            if (_isSearching) return;
+
+            try
+            {
+                _isSearching = true;
+                string searchText = comboBox1.Text.Trim();
+
+                if (string.IsNullOrWhiteSpace(searchText))
+                {
+                    comboBox1.Items.Clear();
+                    return;
+                }
+
+                var odoo = new OdooClient();
+                var clients = await odoo.SearchClients(searchText);
+
+                if (clients != null && clients.Any())
+                {
+                    comboBox1.BeginUpdate();
+                    string currentText = comboBox1.Text;
+                    int cursorPosition = comboBox1.SelectionStart;
+
+                    try
+                    {
+                        comboBox1.Items.Clear();
+                        foreach (var client in clients)
+                        {
+                            comboBox1.Items.Add(new ClienteComboItem
+                            {
+                                DisplayText = $"{client.Name} [{client.Id}]",
+                                Cliente = client
+                            });
+                        }
+                    }
+                    finally
+                    {
+                        comboBox1.EndUpdate();
+                    }
+
+                    comboBox1.Text = currentText;
+                    comboBox1.SelectionStart = cursorPosition;
+                    comboBox1.SelectionLength = 0;
+
+                    if (!comboBox1.DroppedDown)
+                    {
+                        comboBox1.DroppedDown = true;
+                    }
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al buscar clientes: {ex.Message}", "Error",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                _isUserTyping = false;
+                _isSearching = false;
+            }
+        }
+
+        private void ValidateAndAccept(OdooClienteDto cliente = null)
+        {
+            try
+            {
+                if (cliente == null && comboBox1.SelectedItem is ClienteComboItem selectedItem)
+                {
+                    cliente = selectedItem.Cliente;
+                }
+
+                if (cliente != null)
+                {
+                    switch (label2.Text)
+                    {
+                        case "ALIAS":
+                            gunaTextBox2.Text = cliente.Name ?? "";
+                            gunaTextBox3.Text = cliente.Id.ToString();
+                            gunaTextBox1.Text = cliente.Id.ToString();
+                            CorreosCliente = cliente.Email;
+                            Codcliente = cliente.Id.ToString();
+                            calle = "";
+                            colonia = "";
+                            parent = cliente.ParentName;
+                            parentId = cliente.ParentId;
+                            zip = cliente.Zip;
+                            pasarinfo();
+                            this.Close();
+                            break;
+
+                        case "CLIENTE":
+                            gunaTextBox2.Text = cliente.Name ?? "";
+                            gunaTextBox1.Text = cliente.SalesUserId ?? "";
+                            CorreosCliente = cliente.Email;
+                            calle = cliente.SalesUserName;
+                            colonia = cliente.SalesUserId;
+                            ciudad = "";
+                            Codcliente = cliente.Id.ToString();
+                            parent = cliente.ParentName;
+                            parentId = cliente.ParentId;
+                            zip = cliente.Zip;
+                            pasarinfo();
+                            this.Close();
+                            break;
+
+                        case "ALIASDIREC":
+                            gunaTextBox2.Text = cliente.Name ?? "";
+                            gunaTextBox3.Text = cliente.Id.ToString();
+                            gunaTextBox1.Text = cliente.Id.ToString();
+                            num = cliente.Phone ?? "";
+                            Codcliente = cliente.Id.ToString();
+                            calle = "";
+                            colonia = "";
+                            ciudad = "";
+                            pasarinfo();
+                            this.Close();
+                            break;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show($"Cliente no válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al procesar la selección: {ex.Message}", "Error",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void ComboBox1_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedItem is ClienteComboItem selectedItem)
+            {
+                ValidateAndAccept(selectedItem.Cliente);
+            }
+        }
+        private void ComboBox1_DropDown(object sender, EventArgs e)
+        {
+            _lastCursorPosition = comboBox1.SelectionStart;
+        }
+
+        private void ComboBox1_LostFocus(object sender, EventArgs e)
+        {
+            _isUserTyping = false;
+        }
+
+        //-------------------
+
+        private  void BusquedasEnt_Load(object sender, EventArgs e)
+        {
+            comboBox1.DroppedDown = true;
+
+            comboBox1.Enabled = true;
+               txbClave.Enabled = true;
+                
+            //comboBox1.AutoCompleteCustomSource = await aliasList();
+            //if (listaClintes.Any())
+            //{
+            //    comboBox1.Enabled = true;
+            //    txbClave.Enabled = true;
+            //    txbOBusqueda.Enabled = true;
+
+            //}
+            //if (label2.Text == "CLIENTE")
+            //{
+            //    txbClave.Visible = true;
+            //}
         }
 
         private void pasarinfo()
         {
             if (label2.Text == "CLIENTE")
-            { pasado(gunaTextBox2.Text,"",gunaTextBox1.Text,calle,colonia,ciudad, Codcliente, CorreosCliente, 0,parent, parentId); }
+            { pasado(gunaTextBox2.Text,"",gunaTextBox1.Text,calle,colonia,ciudad, Codcliente, CorreosCliente, 0,zip,parent, parentId); }
             else if (label2.Text == "ALIAS")
-            { pasado(gunaTextBox2.Text, gunaTextBox3.Text, gunaTextBox1.Text,calle,colonia,ciudad,Codcliente, CorreosCliente, 1, parent, parentId); }
+            { pasado(gunaTextBox2.Text, gunaTextBox3.Text, gunaTextBox1.Text,calle,colonia,ciudad,Codcliente, CorreosCliente, 1,zip, parent, parentId); }
 
             else if (label2.Text == "ALIASDIREC")
             {
@@ -119,18 +324,7 @@ namespace mainVentana.VistaEntrada
 
         }
 
-        private void comboBox1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-            
-
-        }
-
-
-
-
-
-
+   
         private void gunaTextBox2_TextChanged(object sender, EventArgs e)
         {
 
@@ -147,173 +341,186 @@ namespace mainVentana.VistaEntrada
         {
             try
             {
-                if (label2.Text == "ALIAS")
+                // Obtener el cliente seleccionado del ComboBox
+                var selectedItem = comboBox1.SelectedItem as ClienteComboItem;
+                OdooClienteDto cliente = null;
+
+                if (selectedItem != null)
                 {
-                    Servicios datos = new Servicios();
-                    //var lst = await datos.llenaAlias();
-               
-
-
-                    string comboBoxText = comboBox1.Text.Trim();
-                    int bandera = 0;
-
-                    foreach (var d in listaClintes)
-                    {
-                        if (comboBoxText != " " && d.Name.ToString().Trim() == comboBoxText)
-                        {
-                            bandera = 1;
-                            gunaTextBox2.Text = string.IsNullOrEmpty(d.Name) ? "" : d.Name;
-                            gunaTextBox3.Text = d.Id.ToString();
-                            gunaTextBox1.Text = d.Id.ToString();
-                            CorreosCliente = d.Email;
-                            Codcliente = d.Id.ToString();
-                            calle = "";
-                            colonia ="";
-                            parent = d.ParentName;
-                            parentId = d.ParentId;
-                            pasarinfo();
-                            this.Close();
-                            break;
-                        }
-                    }
-
-                    /*  Servicios datos = new Servicios();
-                      var lst = await datos.llenaAlias();
-                      int bandera = 0;
-                      foreach (var d in lst)
-                      {
-                          if (d.c1.ToString().Trim() == comboBox1.Text.Trim() && comboBox1.Text != " ")
-                          {
-                              bandera = 1;
-                              gunaTextBox2.Text = string.IsNullOrEmpty(d.c1.ToString()) ? "" : d.c1.ToString().Trim();
-                              gunaTextBox3.Text = validCli(d.c3.ToString())[0].ToString();
-                              gunaTextBox1.Text = validCli(d.c3.ToString())[1].ToString();
-                              CorreosCliente = validCli(d.c3.ToString())[2].ToString();
-                              Codcliente = validCli(d.c3.ToString())[3].ToString();
-                              calle = d.c4.ToString();
-                              colonia = d.c5.ToString();
-                              ciudad = d.c6.ToString();
-                              pasarinfo();
-                              this.Dispose();
-                              this.Close();
-
-                          }*/
-
-                
-
-                if (bandera == 0)
-                    {
-                        gunaTextBox2.Text = "";
-                        MessageBox.Show("Dato incorrecto, el alias: " + comboBox1.Text + ", NO se encuentra en la base de datos ");
-
-                    }
-
+                    cliente = selectedItem.Cliente;
                 }
-                else if (label2.Text == "ALIASDIREC")
+                else
                 {
-                    Servicios datos = new Servicios();
-                    var lst = await datos.llenaAlias();
-                    string comboBoxText = comboBox1.Text.Trim();
-                    int bandera = 0;
-
-                    foreach (var d in lst)
+                    // Si no hay selección, intentar extraer el ID del texto
+                    string searchText = comboBox1.Text.Trim();
+                    // Buscar el ID entre corchetes [xxxx]
+                    var match = System.Text.RegularExpressions.Regex.Match(searchText, @"\[(\d+)\]");
+                    if (match.Success)
                     {
-                        if (comboBoxText != " " && d.c1.ToString().Trim() == comboBoxText)
-                        {
-                            bandera = 1;
-                            gunaTextBox2.Text = string.IsNullOrEmpty(d.c1.ToString()) ? "" : d.c1.ToString().Trim();
-                            gunaTextBox3.Text = validCli(d.c3.ToString())[0].ToString();
-                            gunaTextBox1.Text = validCli(d.c3.ToString())[1].ToString();
-                            zip = d.c7;
-                            num = d.c8;
-                            Codcliente = validCli(d.c3.ToString())[3].ToString();
-                            calle = d.c4.ToString();
-                            colonia = d.c5.ToString();
-                            ciudad = d.c6.ToString();
-                            //parent = d.ParentName;
-                            pasarinfo();
-                            this.Close();
-                            break;
-                        }
+                        string idStr = match.Groups[1].Value;
+                        var odoo = new OdooClient();
+                        var clients = await odoo.SearchClients(idStr);
+                        cliente = clients.FirstOrDefault();
                     }
-
-                    /*  Servicios datos = new Servicios();
-                      var lst = await datos.llenaAlias();
-                      int bandera = 0;
-                      foreach (var d in lst)
-                      {
-                          if (d.c1.ToString().Trim() == comboBox1.Text.Trim() && comboBox1.Text != " ")
-                          {
-                              bandera = 1;
-                              gunaTextBox2.Text = string.IsNullOrEmpty(d.c1.ToString()) ? "" : d.c1.ToString().Trim();
-                              gunaTextBox3.Text = validCli(d.c3.ToString())[0].ToString();
-                              gunaTextBox1.Text = validCli(d.c3.ToString())[1].ToString();
-                              CorreosCliente = validCli(d.c3.ToString())[2].ToString();
-                              Codcliente = validCli(d.c3.ToString())[3].ToString();
-                              calle = d.c4.ToString();
-                              colonia = d.c5.ToString();
-                              ciudad = d.c6.ToString();
-                              pasarinfo();
-                              this.Dispose();
-                              this.Close();
-
-                          }*/
-
-
-
-                    if (bandera == 0)
+                    else
                     {
-                        gunaTextBox2.Text = "";
-                        MessageBox.Show("Dato incorrecto, el alias: " + comboBox1.Text + ", NO se encuentra en la base de datos ");
-
+                        // Si no hay ID entre corchetes, intentar buscar por nombre completo
+                        var odoo = new OdooClient();
+                        var clients = await odoo.SearchClients(searchText);
+                        cliente = clients.FirstOrDefault();
                     }
-
                 }
-                else if (label2.Text == "CLIENTE")
+
+                if (cliente != null)
                 {
-                    Servicios datos = new Servicios();
-                    //var lst = await datos.llenaClientes();
-
-                 
-
-                    int bandera = 0;
-                    foreach (var d in listaClintes)
+                    if (label2.Text == "ALIAS")
                     {
-                        if (d.Name.ToString().Trim() == comboBox1.Text.Trim() && comboBox1.Text != " ")
+                        gunaTextBox2.Text = string.IsNullOrEmpty(cliente.Name) ? "" : cliente.Name;
+                        gunaTextBox3.Text = cliente.Id.ToString();
+                        gunaTextBox1.Text = cliente.Id.ToString();
+                        CorreosCliente = cliente.Email;
+                        Codcliente = cliente.Id.ToString();
+                        calle = "";
+                        colonia = "";
+                        parent = cliente.ParentName;
+                        parentId = cliente.ParentId;
+                        zip = cliente.Zip;
+                        pasarinfo();
+                        this.Close();
+                    }
+                    else if (label2.Text == "CLIENTE")
+                    {
+                        gunaTextBox2.Text = string.IsNullOrEmpty(cliente.Name) ? "" : cliente.Name.Trim();
+                        gunaTextBox1.Text = string.IsNullOrEmpty(cliente.SalesUserId) ? "" : cliente.SalesUserId.Trim();
+                        CorreosCliente = cliente.Email ?? cliente.Email?.Trim();
+                        calle = cliente.SalesUserName;
+                        colonia = cliente.SalesUserId;
+                        ciudad = "";
+                        Codcliente = cliente.Id.ToString();
+                        parent = cliente.ParentName;
+                        parentId = cliente.ParentId;
+                        zip = cliente.Zip;
+                        pasarinfo();
+                        this.Close();
+                    }
+                    else if (label2.Text == "ALIASDIREC")
+                    {
+                        // Mantener la lógica original para ALIASDIREC ya que requiere datos adicionales
+                        Servicios datos = new Servicios();
+                        var lst = await datos.llenaAlias();
+                        var aliasMatch = lst.FirstOrDefault(d => d.c1.ToString().Trim() == cliente.Name.Trim());
+
+                        if (aliasMatch != null)
                         {
-                            bandera = 1;
-                            gunaTextBox2.Text = string.IsNullOrEmpty(d.Name.ToString()) ? "" : d.Name.ToString().Trim();
-                            gunaTextBox1.Text = string.IsNullOrEmpty(d.SalesUserId) ? "" : d.SalesUserId.ToString().Trim();
-                            CorreosCliente = d.Email ?? d.Email.Trim();
-                            calle = d.SalesUserName;
-                            colonia = d.SalesUserId;
-                            ciudad = "";
-                            Codcliente = d.Id.ToString();
-                            parent = d.ParentName;
-                            parentId = d.ParentId;
-                            //CorreosCliente = d.c11;
+                            gunaTextBox2.Text = string.IsNullOrEmpty(aliasMatch.c1.ToString()) ? "" : aliasMatch.c1.ToString().Trim();
+                            gunaTextBox3.Text = validCli(aliasMatch.c3.ToString())[0].ToString();
+                            gunaTextBox1.Text = validCli(aliasMatch.c3.ToString())[1].ToString();
+                            num = aliasMatch.c8;
+                            Codcliente = validCli(aliasMatch.c3.ToString())[3].ToString();
+                            calle = aliasMatch.c4.ToString();
+                            colonia = aliasMatch.c5.ToString();
+                            ciudad = aliasMatch.c6.ToString();
                             pasarinfo();
-                            this.Dispose();
                             this.Close();
-
                         }
-
+                        else
+                        {
+                            gunaTextBox2.Text = "";
+                            MessageBox.Show("Dato incorrecto, el alias: " + comboBox1.Text + ", NO se encuentra en la base de datos ");
+                        }
                     }
-
-                    if (bandera == 0)
-                    {
-                        gunaTextBox2.Text = "";
-                        MessageBox.Show("Dato incorrecto, el cliente: " + comboBox1.Text + ", NO se encuentra en la base de datos ");
-
-                    }
+                }
+                else
+                {
+                    gunaTextBox2.Text = "";
+                    MessageBox.Show($"Dato incorrecto, el {label2.Text.ToLower()}: {comboBox1.Text}, NO se encuentra en la base de datos ");
                 }
             }
             catch (Exception)
             {
-
-                MessageBox.Show("Ocurrio un error, buscando un alias o un cliente, lo mas comun es que el cliente o alias que intentas buscar tenga algun error en su informacion, trata de revizar que no sea asi.");
+                MessageBox.Show("Ocurrió un error buscando un alias o un cliente. Lo más común es que el cliente o alias que intentas buscar tenga algún error en su información.");
             }
-           
+        }
+
+        private void HandleClientSelection(OdooClienteDto cliente)
+        {
+            if (cliente == null) return;
+
+            try
+            {
+                switch (label2.Text)
+                {
+                    case "ALIAS":
+                        gunaTextBox2.Text = cliente.Name ?? "";
+                        gunaTextBox3.Text = cliente.Id.ToString();
+                        gunaTextBox1.Text = cliente.Id.ToString();
+                        CorreosCliente = cliente.Email;
+                        Codcliente = cliente.Id.ToString();
+                        calle = "";
+                        colonia = "";
+                        parent = cliente.ParentName;
+                        parentId = cliente.ParentId;
+                        zip = cliente.Zip;
+                        pasarinfo();
+                        this.Close();
+                        break;
+
+                    case "CLIENTE":
+                        gunaTextBox2.Text = string.IsNullOrEmpty(cliente.Name) ? "" : cliente.Name.Trim();
+                        gunaTextBox1.Text = string.IsNullOrEmpty(cliente.SalesUserId) ? "" : cliente.SalesUserId.Trim();
+                        CorreosCliente = cliente.Email?.Trim() ?? "";
+                        calle = cliente.SalesUserName;
+                        colonia = cliente.SalesUserId;
+                        ciudad = "";
+                        Codcliente = cliente.Id.ToString();
+                        parent = cliente.ParentName;
+                        parentId = cliente.ParentId;
+                        zip = cliente.Zip;
+                        pasarinfo();
+                        this.Close();
+                        break;
+
+                    case "ALIASDIREC":
+                        gunaTextBox2.Text = cliente.Name ?? "";
+                        gunaTextBox3.Text = cliente.Id.ToString();
+                        gunaTextBox1.Text = cliente.Id.ToString();
+                        num = cliente.Phone ?? "";
+                        Codcliente = cliente.Id.ToString();
+                        calle = "";
+                        colonia = "";
+                        ciudad = "";
+                        pasarinfo();
+                        this.Close();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al procesar la selección: {ex.Message}",
+                              "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void comboBox1_DropDownClosed(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(comboBox1.Text))
+                {
+                    comboBox1.SelectionStart = Math.Min(_lastCursorPosition, comboBox1.Text.Length);
+                    comboBox1.SelectionLength = 0;
+                }
+            }
+            catch (ArgumentOutOfRangeException) 
+            {
+                // Ignora el error sin hacer nada
+            }
+            catch (Exception)
+            {
+                
+                throw; 
+            }
+
         }
 
 
@@ -343,14 +550,33 @@ namespace mainVentana.VistaEntrada
 
         private void comboBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            switch (e.KeyCode)
             {
-                Ejecuta();
+                case Keys.Enter:
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+                    ValidateAndAccept();
+                    break;
+
+                case Keys.Up:
+                case Keys.Down:
+                    if (!comboBox1.DroppedDown)
+                    {
+                        comboBox1.DroppedDown = true;
+                    }
+                    break;
             }
         }
 
         private void BusquedasEnt_FormClosed(object sender, FormClosedEventArgs e)
+
         {
+            // Limpiar recursos
+            if (_searchTimer != null)
+            {
+                _searchTimer.Stop();
+                _searchTimer.Dispose();
+            }
             this.Dispose();
             this.Close();
         }
@@ -398,19 +624,19 @@ namespace mainVentana.VistaEntrada
                     {
                         //listaClientes = await datos.LlenaClientesInteractivo(txbOBusqueda.Text, 1);
                   
-                        dgvBusqueda.DataSource = listaClintes.Where(x => x.Name.Contains(txbOBusqueda.Text)).ToList();
+                        dgvBusqueda.DataSource = listaClintes.Where(x => x.Name.ToUpper().Contains(txbOBusqueda.Text.ToUpper())).ToList();
                     }
                     else if (label2.Text == "ALIAS")
                     {
                         //listaClientes = await datos.LlenaClientesInteractivo(txbOBusqueda.Text, 2);
-                        dgvBusqueda.DataSource = listaClintes.Where(x => x.Name.Contains(txbOBusqueda.Text));
+                        dgvBusqueda.DataSource = listaClintes.Where(x => x.Name.ToUpper().Contains(txbOBusqueda.Text.ToUpper()));
 
                     }
 
                     else if (label2.Text == "ALIASDIREC")
                     {
                         //listaClientes = await datos.LlenaClientesInteractivo(txbOBusqueda.Text, 2);
-                        dgvBusqueda.DataSource = listaClintes.Where(x => x.Name.Contains(txbOBusqueda.Text));
+                        dgvBusqueda.DataSource = listaClintes.Where(x => x.Name.ToUpper().Contains(txbOBusqueda.Text.ToUpper()));
                     }
 
 
@@ -478,5 +704,6 @@ namespace mainVentana.VistaEntrada
                 MessageBox.Show($"Ocurrió un error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+       
     }
 }

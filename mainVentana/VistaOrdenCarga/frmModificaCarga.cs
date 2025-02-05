@@ -184,7 +184,7 @@ namespace mainVentana.VistaOrdenCarga
                 Servicios datos = new Servicios();
 
                 //LLenado de los CoboBox de las sucursales
-                var lst2 = datos.llenaSuc();
+                var lst2 = await  datos.llenaSuc();
                 var lst2_2 = new List<Sucursales>(lst2);
 
                 cmbSucOrigen.DisplayMember = "C2";

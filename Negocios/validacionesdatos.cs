@@ -720,7 +720,7 @@ namespace Negocios
 
 
 
-        public List<Sucursales> llenaSuc()
+        public async Task<List<Sucursales>> llenaSuc()
         {
 
             try
@@ -738,7 +738,7 @@ namespace Negocios
                                    
 
                                 };
-                    return lista.ToList();
+                    return await lista.ToListAsync();
                 }
             }
 
@@ -753,7 +753,7 @@ namespace Negocios
 
         }
 
-        public List<vmTipoEntrada> LlenaTiposEnt()
+        public async  Task<List<vmTipoEntrada>> LlenaTiposEnt()
         {
 
             try
@@ -770,7 +770,7 @@ namespace Negocios
                                 };
                                   
                                 
-                    return lista.ToList();
+                    return await lista.ToListAsync();
                 }
             }
 
@@ -785,7 +785,7 @@ namespace Negocios
 
         }
 
-        public List<SubSucursales> llenaSubSuc(bool esParametro, string suc = null)
+        public async  Task<List<SubSucursales>> llenaSubSuc(bool esParametro, string suc = null)
         {
             try
             {
@@ -806,7 +806,7 @@ namespace Negocios
                         query = query.Where(d => d.KDMSID == indexSuc);
                     }
                     
-                    var nd = query.ToList();
+                    var nd = await query.ToListAsync();
                     
                     return nd;
 
@@ -1262,29 +1262,19 @@ namespace Negocios
         {
             try
             {
-                var lst2 = new List<vmRastreo>();
-                await Task.Run(() =>
+                using (modelo2Entities modelo = new modelo2Entities())
                 {
-                    using (modelo2Entities modelo = new modelo2Entities())
-
-                    {
-                        var lista = from d in modelo.NO_RASTREO(1)
-
-                                    select new vmRastreo
-                                    {
-                                        c1 = d.rand_number.Trim(),
-                                        //c2 = (DateTime)d.fecha_creacion
-                                    };
-                        lst2 = lista.ToList();
-
-                    }
-                });
-
-                return lst2;
+                    var lista = await Task.FromResult(modelo.NO_RASTREO(1)
+                               .Select(d => new vmRastreo
+                               {
+                                   c1 = d.rand_number.Trim(),
+                                   //c2 = (DateTime)d.fecha_creacion
+                               }).ToList());
+                    return lista;
+                }
             }
             catch (Exception)
             {
-
                 throw;
             }
         }

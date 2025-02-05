@@ -1170,10 +1170,10 @@ namespace mainVentana.VistaRecepcion
             return exportado;
         }
 
-        private void frmRecepcion_Load(object sender, EventArgs e)
+        private async void frmRecepcion_Load(object sender, EventArgs e)
         {
             Servicios datos = new Servicios();
-            var lst2 = datos.llenaSuc();
+            var lst2 =await  datos.llenaSuc();
             var lst2_2 = new List<Sucursales>(lst2);
 
             cmbSucOrigen.DisplayMember = "C2";

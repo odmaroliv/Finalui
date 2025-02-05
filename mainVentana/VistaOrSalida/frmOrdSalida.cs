@@ -1655,16 +1655,16 @@ namespace mainVentana.VistaOrSalida
            MandaHookRing();
         }
 
-        private void frmOrdSalida_Load(object sender, EventArgs e)
+        private async void frmOrdSalida_Load(object sender, EventArgs e)
         {
             
-            Task.Run(() => { CargaSOrigen(); });
+            await CargaSOrigen(); 
            
         }
-        private void CargaSOrigen()
+        private async Task CargaSOrigen()
         {
             Servicios datos = new Servicios();
-            var lst2 = datos.llenaSuc();
+            var lst2 = await datos.llenaSuc();
             var lst2_2 = new List<Sucursales>(lst2);
 
             // Utilizamos Invoke para actualizar la UI de manera segura desde un hilo secundario

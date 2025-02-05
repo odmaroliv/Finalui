@@ -94,7 +94,7 @@ namespace mainVentana.TraspasoMercancias
         /// Modo 0 = busca sub=sucursales 
         /// </summary>
         /// <param name="modo"></param>
-        private void LoadSubSuc(int modo)
+        private async Task LoadSubSuc(int modo)
         {
             if (modo == 0)
             {
@@ -105,7 +105,7 @@ namespace mainVentana.TraspasoMercancias
                 if (isLoadSubSucCalled) return;
                 string datoSucIni = cmbSucOrigen.SelectedValue?.ToString()?.Trim();
                 if (String.IsNullOrWhiteSpace(datoSucIni)) return;
-                var lstSubs = datos.llenaSubSuc(true, datoSucIni);
+                var lstSubs = await datos.llenaSubSuc(true, datoSucIni);
                 if (lstSubs.Count <= 0) { cmbSucDestino.DataSource = null; return; }
                 cmbSucDestino.DataSource = lstSubs;
                 cmbSucDestino.DisplayMember = "SubSucursal";
@@ -122,8 +122,9 @@ namespace mainVentana.TraspasoMercancias
                 if (isLoadSubSucCalled) return;
                 string datoSucIni = cmbSucOrigen.SelectedValue?.ToString()?.Trim();
                 if (String.IsNullOrWhiteSpace(datoSucIni)) return;
-                var lstSubs = datos.llenaSuc();
-                if (lstSubs.Count <= 0) { cmbSucDestino.DataSource = null; return; }
+                var lstSubs = await datos.llenaSuc();
+                if (lstSubs.Count <= 0) 
+                { cmbSucDestino.DataSource = null; return; }
                 cmbSucDestino.DataSource = lstSubs;
                 cmbSucDestino.DisplayMember = "c2";
                 cmbSucDestino.ValueMember = "C1";
@@ -158,7 +159,7 @@ namespace mainVentana.TraspasoMercancias
         /// </summary>
         /// <param name="sender">Es el objeto con sus propiedades accesibles como el Tag</param>
         /// <param name="e"></param>
-        private void radioButton_CheckedChanged(object sender, EventArgs e)
+        private async void radioButton_CheckedChanged(object sender, EventArgs e)
         {
             cmbSucDestino.DataSource = null;
             cmbSucOrigen.DataSource = null; 
@@ -175,12 +176,12 @@ namespace mainVentana.TraspasoMercancias
             if (chk.Tag.ToString()=="0")
             {
                 cmbSucDestino.DataSource = null;
-                var lst2 = datos.llenaSuc();
+                var lst2 = await datos.llenaSuc();
                 LlenarComboBoxSucursales(lst2);
             }
             else
             {
-                var lst2 = datos.llenaSubSuc(false);
+                var lst2 = await datos.llenaSubSuc(false);
                 LlenarComboBoxSucursales(lst2);
                 LoadSubSuc(0);
             }

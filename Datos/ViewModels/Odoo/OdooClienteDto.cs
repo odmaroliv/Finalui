@@ -27,10 +27,12 @@ namespace Datos.ViewModels.Odoo
 
       //  [JsonProperty("user_id")]
         public string SalesUserId { get; set; }
-       // [JsonProperty("user_name")]
+        // [JsonProperty("user_name")]
         public string SalesUserName { get; set; }
 
-       // [JsonProperty("id")]
+        public string Zip { get; set; }
+
+        // [JsonProperty("id")]
         public long Id { get; set; }
 
     }

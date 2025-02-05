@@ -36,6 +36,8 @@ using System.Data.SqlClient;
 using System.Data.Entity.Validation;
 using Negocios.LOGs;
 using System.Text.RegularExpressions;
+using System.Reflection.Emit;
+using Negocios.NGClientes;
 
 namespace mainVentana.VistaEntrada
 {
@@ -366,7 +368,7 @@ namespace mainVentana.VistaEntrada
 
             string datoCalle = "";
             string datoColonia = "";
-            string datoCiudadZip = "";
+            string datoCiudadZip = lblZipCode.Text?.Trim() == "false" ? "NA" : lblZipCode.Text?.Trim();
             string datoProvedor = proveedor.SelectedValue.ToString();
             string datoValFact = txbValFact.Text;
             string datoParidad = lblParidad.Text;
@@ -777,7 +779,7 @@ namespace mainVentana.VistaEntrada
             {
                 Servicios datos = new Servicios();
 
-                var lst2 = datos.llenaSuc();
+                var lst2 = await datos.llenaSuc();
 
                 sucEntrada.DisplayMember = "C2";
                 sucEntrada.ValueMember = "C1";
@@ -790,7 +792,7 @@ namespace mainVentana.VistaEntrada
                     break;
                 }
 
-                var lstTiposEnt = datos.LlenaTiposEnt();
+                var lstTiposEnt = await datos.LlenaTiposEnt();
                 cmbTipoEnt.DisplayMember = "NombreTipoEntrada";
                 cmbTipoEnt.ValueMember = "TipoEntradaID";
                 cmbTipoEnt.DataSource = lstTiposEnt;
@@ -902,7 +904,7 @@ namespace mainVentana.VistaEntrada
            
         }
         string coreoClientes;
-        public void moverinfo(string dato, string dato2, string dato3, string dato4, string dato5, string dato6, string dato7, string correoCliente, int bandera, string parentName, string parentId) //cambia los datos de los textbox alias y clientes, la bandera dependera de la manera en la que se haya abierto el frm buscar, 0 clientes 1 alias, ADEMAS tambien sirve para cambiar el campo de cord
+        public void moverinfo(string dato, string dato2, string dato3, string dato4, string dato5, string dato6, string dato7, string correoCliente, int bandera,string codigoPostal, string parentName, string parentId) //cambia los datos de los textbox alias y clientes, la bandera dependera de la manera en la que se haya abierto el frm buscar, 0 clientes 1 alias, ADEMAS tambien sirve para cambiar el campo de cord
         {
             label24.Text = "";
             label25.Text = "";
@@ -910,6 +912,7 @@ namespace mainVentana.VistaEntrada
             coreoClientes = correoCliente;
             lblParentName.Text = parentName;
             lblParentId.Text = parentId;
+            lblZipCode.Text = codigoPostal;
             if (bandera == 0) //clientes
             {
                 cliente.Text = dato;
@@ -1404,6 +1407,7 @@ namespace mainVentana.VistaEntrada
                     iconButton2.Enabled = true;
                     cbxDano.Enabled = true;
                     cbxIsRevisada.Checked = false;
+                    lblZipCode.Text = default;
 
                     limpiaImg();
                     GeneraRastreo();
@@ -1472,6 +1476,7 @@ namespace mainVentana.VistaEntrada
         {
             if (dato == 1)//Abre alta entrada
             {
+
                 tipodeDocumento = dato;
                 gunaTileButton5.Visible = false;
                 btnBuscarEnt.Visible = false;
@@ -1501,7 +1506,7 @@ namespace mainVentana.VistaEntrada
         }
         private void InicioModifica()
         {
-            
+            lblZipCode.Text = default;
             cmbTipoEnt.SelectedIndex = 0;
             gunaTileButton5.Visible = true;
             txbBuscarEnt.Text = default;
@@ -1669,11 +1674,13 @@ namespace mainVentana.VistaEntrada
                 SelectorFotos(sucEntrada.SelectedValue.ToString().Trim() + "-UD3501-" + txbBuscarEnt.Text.Trim());
                 //CargaFotos(txbBuscarEnt.Text.Trim(), sucEntrada.SelectedValue.ToString().Trim());
                 //CargaDocPDF();
-               
-                coreoClientes = await _odooClient.GetClientById(String.IsNullOrWhiteSpace(lblCodCliente.Text)? "3558": lblCodCliente.Text);
+
+                var dataClientes = await _odooClient.GetClientById(String.IsNullOrWhiteSpace(lblCodCliente.Text) ? "3558" : lblCodCliente.Text);
+                coreoClientes = dataClientes.Email.Trim();
                 label27.Text = "";
                 label28.Text = "";
-               
+                lblZipCode.Text = dataClientes.Zip?.Trim();
+
                 //  detalles.Enabled = false;
 
                 detalles.Enabled = true;
@@ -1909,7 +1916,7 @@ namespace mainVentana.VistaEntrada
             string datoNomCliente = String.IsNullOrWhiteSpace(lblParentName.Text) || lblParentName.Text == "false" ? cliente.Text : lblParentName.Text;
             string datoCalle = label23.Text;
             string datoColonia = label24.Text;
-            string datoCiudadZip = label25.Text;
+            string datoCiudadZip = lblZipCode.Text;
             string datoProvedor = proveedor.SelectedValue.ToString();
             string datosAlias = cliente.Text;
             int tpoEntrada = Convert.ToInt32(cmbTipoEnt.SelectedValue);
@@ -2412,6 +2419,12 @@ namespace mainVentana.VistaEntrada
         }
         private void SelectPrinterWithRange()
         {
+            // Obtener el ZIP desde el label
+            string zipCode = lblZipCode.Text.Trim() == "false"?"NA": lblZipCode.Text.Trim();
+
+            // Obtener solo el número de la zona
+            (string ZonaNumero, string ZonaNombre) = ObtenerZonaPorCodigoPostal(zipCode);
+
             // Obtener el rango de etiquetas a imprimir
             int fromLabel = 0;
             int toLabel = 0;
@@ -2482,10 +2495,11 @@ namespace mainVentana.VistaEntrada
                             s += "^FO100,1010^FDDate:^FS\n";
                             s += string.Format("^FO100,1060^FD{0}^FS\n", q.Fecha.Value.Date.ToString("MM/dd/yyyy"));
                             s += "^CF0,190\n";
-                            s += string.Format("^FO450,930^FD{0}^FS\n", q.ZonaNumero?.ToString());
+                            s += string.Format("^FO450,930^FD{0}^FS\n", ZonaNumero.ToString());
                             s += "\n";
                             s += "^CF0,30";
-                            s += string.Format("^FO50,1155^FDZona: {0}^FS\n", q.Zona);
+                            s += string.Format("^FO50,1140^FDZona: {0}^FS\n", ZonaNombre);
+                            s += string.Format("^FO50,1175^FDCodigo Postal: {0}^FS\n", zipCode);
                             s += "\n";
                             s += "^XZ\n";
                             s += "\n";
@@ -2531,9 +2545,36 @@ namespace mainVentana.VistaEntrada
             }
         }
 
+        private (string ZonaNumero, string ZonaNombre) ObtenerZonaPorCodigoPostal(string zipCode)
+        {
+            int codigoPostal;
+
+            // Intentamos convertir el ZIP en un número
+            if (int.TryParse(zipCode, out codigoPostal))
+            {
+                if (codigoPostal >= 23450 && codigoPostal <= 23499) return ("1", "CABO SAN LUCAS");
+                if (codigoPostal >= 23400 && codigoPostal <= 23429) return ("2", "SAN JOSÉ CENTRO");
+                if (codigoPostal >= 23430 && codigoPostal <= 23449) return ("4", "SAN JOSÉ COSTA");
+                if (codigoPostal >= 23300 && codigoPostal <= 23305) return ("3", "TODOS SANTOS");
+                if (codigoPostal >= 23330 && codigoPostal <= 23332) return ("5", "LOS BARRILES");
+                if (codigoPostal >= 23000 && codigoPostal <= 23299) return ("6", "LA PAZ");
+                if (codigoPostal >= 23880 && codigoPostal <= 23899) return ("7", "LORETO");
+            }
+
+            // Si no se encuentra una zona, devuelve "NA"
+            return ("NA", "ZONA NO DEFINIDA");
+        }
+
+
 
         private void SelectPrinter()
         {
+            // Obtener el ZIP desde el label
+            string zipCode = lblZipCode.Text.Trim() == "false" ? "NA" : lblZipCode.Text.Trim();
+
+            // Obtener solo el número de la zona
+            (string ZonaNumero, string ZonaNombre) = ObtenerZonaPorCodigoPostal(zipCode);
+
             System.Windows.Forms.PrintDialog printDialog = new System.Windows.Forms.PrintDialog();
             printDialog.PrinterSettings = new PrinterSettings();
             if (printDialog.ShowDialog() == DialogResult.OK)
@@ -2586,10 +2627,11 @@ namespace mainVentana.VistaEntrada
                         s += "^FO100,1010^FDDate:^FS\n";
                         s += string.Format("^FO100,1060^FD{0}^FS\n", q.Fecha.Value.Date.ToString("MM/dd/yyyy"));
                         s += "^CF0,190\n";
-                        s += string.Format("^FO450,930^FD{0}^FS\n", q.ZonaNumero.ToString());
+                        s += string.Format("^FO450,930^FD{0}^FS\n", ZonaNumero.ToString());
                         s += "\n";
                         s += "^CF0,30";
-                        s += string.Format("^FO50,1155^FDZona: {0}^FS\n", q.Zona);
+                        s += string.Format("^FO50,1140^FDZona: {0}^FS\n", ZonaNombre);
+                        s += string.Format("^FO50,1175^FDCodigo Postal: {0}^FS\n", zipCode);
                         s += "\n";
                         s += "^XZ\n";
                         s += "\n";
