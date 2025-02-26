@@ -51,10 +51,10 @@ namespace mainVentana.vistaInventario
             _foliosAbiertos = repository.ObtieneFoliosAbiertos(sucursal: _sucursalInventario);
             dgvFoliosAbiertos.DataSource = _foliosAbiertos;
         }
-        private void CargaSOrigen()
+        private async void CargaSOrigen()
         {
             Servicios datos = new Servicios();
-            var lst2 = datos.llenaSuc();
+            var lst2 = await datos.llenaSuc();
 
             this.Invoke(new Action(() =>
             {
