@@ -24,7 +24,6 @@ namespace Negocios
 
         public async Task<int> EnviaMail(string Entrada, string Cliente, string Notraking, string Alias, string OrdCompra, string Noflete, string Proveedor, string Desc, List<string> Archivos, string correosClientes, bool isDano, long idCord = 0)
         {
-
             int bandera = default;
             try
             {
@@ -67,6 +66,7 @@ namespace Negocios
                 {
                     Negocios.LOGs.ArsLogs.LogEdit("Ninguno de los archivos pudo ser procesado", "Sin adjuntos válidos");
                     bandera = 4;
+                    // No retornamos aquí para permitir que se envíe el correo sin adjuntos
                 }
 
                 // Dividir los archivos en lotes que respeten el tamaño máximo total
@@ -80,7 +80,7 @@ namespace Negocios
                     // Si agregar este archivo excedería el límite o el número máximo de archivos, crear nuevo lote
                     if (tamanoLoteActual + tamanoArchivo > TAMANO_MAXIMO_TOTAL_POR_CORREO ||
                         contadorArchivosLote >= MAXIMO_ARCHIVOS_POR_CORREO)
-            {
+                    {
                         if (loteActual.Count > 0)
                         {
                             lotesDeArchivos.Add(new List<string>(loteActual));
@@ -100,6 +100,13 @@ namespace Negocios
                 if (loteActual.Count > 0)
                 {
                     lotesDeArchivos.Add(loteActual);
+                }
+
+                // MODIFICACIÓN CLAVE: Si no hay lotes (porque no había archivos válidos), crear un lote vacío
+                if (lotesDeArchivos.Count == 0)
+                {
+                    lotesDeArchivos.Add(new List<string>());  // Lote vacío para enviar correo sin adjuntos
+                    Negocios.LOGs.ArsLogs.LogEdit("No hay archivos válidos para adjuntar, se enviará el correo sin adjuntos", "Correo sin adjuntos");
                 }
 
                 Negocios.LOGs.ArsLogs.LogEdit($"Distribución de archivos: {archivosValidos.Count} archivos divididos en {lotesDeArchivos.Count} lotes", "Información de distribución");
@@ -156,14 +163,13 @@ namespace Negocios
             }
             catch (Exception x)
             {
-                Negocios.
-        LOGs.ArsLogs.LogEdit($"Excepción en el método EnviaMail: {x.Message}", $"Correo SMTP NORMAL {Entrada}");
+                Negocios.LOGs.ArsLogs.LogEdit($"Excepción en el método EnviaMail: {x.Message}", $"Correo SMTP NORMAL {Entrada}");
                 return 2;
-            } 
+            }
         }
 
-            // Método interno para enviar un lote de archivos
-            async Task<int> EnviarLoteDeArchivos(
+        // Método interno para enviar un lote de archivos
+        async Task<int> EnviarLoteDeArchivos(
                 List<string> archivosLote,
                 string asunto,
                 string Entrada, string Cliente, string Notraking, string Alias,
