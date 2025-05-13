@@ -579,6 +579,25 @@ namespace mainVentana
                                 formatodeceldas();
                                 e.Handled = true;
                                 break;
+                            case "IMSD":
+                                if (esTecleado) return;
+                                esTecleado = true;
+                                /* //id = gunaTextBox2.Text;
+                                 if (id == "" || id.Length < 2)
+                                 {
+                                     MessageBox.Show("El campo de busqueda esta vacio!");
+                                     return;
+                                 }*/
+                                await refresh(id, _tipoBusqueda);
+                                if (gunaDataGridView1.RowCount <= 0)
+                                {
+                                    MessageBox.Show("No se encontraron datos");
+                                    return;
+                                }
+                                await Task.Run(() => { Thread.Sleep(1000); });
+                                formatodeceldas();
+                                e.Handled = true;
+                                break;
                             case "usrEnt":
                                 if (esTecleado) return;
                                 esTecleado = true;

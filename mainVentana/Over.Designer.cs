@@ -76,6 +76,7 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.gunaDataGridView1 = new Guna.UI.WinForms.GunaDataGridView();
             this.loadControl1 = new Ventana1.LoadControl.loadControl();
+            this.rIms = new System.Windows.Forms.RadioButton();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -227,7 +228,7 @@
             this.gbxTipoBusqueda.Controls.Add(this.tableLayoutPanel1);
             this.gbxTipoBusqueda.Location = new System.Drawing.Point(22, 12);
             this.gbxTipoBusqueda.Name = "gbxTipoBusqueda";
-            this.gbxTipoBusqueda.Size = new System.Drawing.Size(945, 56);
+            this.gbxTipoBusqueda.Size = new System.Drawing.Size(1017, 56);
             this.gbxTipoBusqueda.TabIndex = 17;
             this.gbxTipoBusqueda.TabStop = false;
             this.gbxTipoBusqueda.Text = "Tipo de Busqueda";
@@ -239,15 +240,15 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.AutoScroll = true;
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.52519F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.4748F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.15423F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.84577F));
             this.tableLayoutPanel1.Controls.Add(this.panel11, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel7, 0, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 9);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(939, 47);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1005, 47);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panel11
@@ -261,10 +262,10 @@
             this.panel11.Controls.Add(this.label1);
             this.panel11.Controls.Add(this.dtFecha2);
             this.panel11.Controls.Add(this.label2);
-            this.panel11.Location = new System.Drawing.Point(637, 3);
+            this.panel11.Location = new System.Drawing.Point(698, 3);
             this.panel11.MinimumSize = new System.Drawing.Size(270, 40);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(299, 40);
+            this.panel11.Size = new System.Drawing.Size(304, 40);
             this.panel11.TabIndex = 1;
             // 
             // dtFecha1
@@ -278,7 +279,7 @@
             this.dtFecha1.Font = new System.Drawing.Font("Segoe UI", 7F);
             this.dtFecha1.ForeColor = System.Drawing.Color.Black;
             this.dtFecha1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtFecha1.Location = new System.Drawing.Point(33, 3);
+            this.dtFecha1.Location = new System.Drawing.Point(38, 3);
             this.dtFecha1.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtFecha1.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtFecha1.Name = "dtFecha1";
@@ -297,7 +298,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(139, 5);
+            this.label1.Location = new System.Drawing.Point(144, 5);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(17, 13);
             this.label1.TabIndex = 172;
@@ -314,7 +315,7 @@
             this.dtFecha2.Font = new System.Drawing.Font("Segoe UI", 7F);
             this.dtFecha2.ForeColor = System.Drawing.Color.Black;
             this.dtFecha2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtFecha2.Location = new System.Drawing.Point(159, 3);
+            this.dtFecha2.Location = new System.Drawing.Point(164, 3);
             this.dtFecha2.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtFecha2.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtFecha2.Name = "dtFecha2";
@@ -333,7 +334,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(7, 5);
+            this.label2.Location = new System.Drawing.Point(12, 5);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(25, 13);
             this.label2.TabIndex = 171;
@@ -344,6 +345,7 @@
             this.panel7.AutoScroll = true;
             this.panel7.AutoScrollMargin = new System.Drawing.Size(1, 1);
             this.panel7.AutoScrollMinSize = new System.Drawing.Size(40, 0);
+            this.panel7.Controls.Add(this.rIms);
             this.panel7.Controls.Add(this.rInventario);
             this.panel7.Controls.Add(this.rEntradas);
             this.panel7.Controls.Add(this.rSalida);
@@ -356,13 +358,13 @@
             this.panel7.Controls.Add(this.rTj);
             this.panel7.Location = new System.Drawing.Point(3, 3);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(628, 41);
+            this.panel7.Size = new System.Drawing.Size(689, 41);
             this.panel7.TabIndex = 0;
             // 
             // rInventario
             // 
             this.rInventario.AutoSize = true;
-            this.rInventario.Location = new System.Drawing.Point(553, 3);
+            this.rInventario.Location = new System.Drawing.Point(607, 3);
             this.rInventario.Name = "rInventario";
             this.rInventario.Size = new System.Drawing.Size(72, 17);
             this.rInventario.TabIndex = 176;
@@ -374,7 +376,7 @@
             // rEntradas
             // 
             this.rEntradas.AutoSize = true;
-            this.rEntradas.Location = new System.Drawing.Point(482, 3);
+            this.rEntradas.Location = new System.Drawing.Point(536, 3);
             this.rEntradas.Name = "rEntradas";
             this.rEntradas.Size = new System.Drawing.Size(67, 17);
             this.rEntradas.TabIndex = 175;
@@ -386,7 +388,7 @@
             // rSalida
             // 
             this.rSalida.AutoSize = true;
-            this.rSalida.Location = new System.Drawing.Point(438, 3);
+            this.rSalida.Location = new System.Drawing.Point(492, 3);
             this.rSalida.Name = "rSalida";
             this.rSalida.Size = new System.Drawing.Size(38, 17);
             this.rSalida.TabIndex = 174;
@@ -680,12 +682,12 @@
             this.gunaTextBox2.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.gunaTextBox2.Font = new System.Drawing.Font("Trebuchet MS", 18F);
             this.gunaTextBox2.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.gunaTextBox2.Location = new System.Drawing.Point(974, 21);
+            this.gunaTextBox2.Location = new System.Drawing.Point(1044, 21);
             this.gunaTextBox2.Margin = new System.Windows.Forms.Padding(2);
             this.gunaTextBox2.Name = "gunaTextBox2";
             this.gunaTextBox2.PasswordChar = '\0';
             this.gunaTextBox2.Radius = 10;
-            this.gunaTextBox2.Size = new System.Drawing.Size(372, 47);
+            this.gunaTextBox2.Size = new System.Drawing.Size(302, 47);
             this.gunaTextBox2.TabIndex = 11;
             this.gunaTextBox2.Text = "Buscar...";
             this.gunaTextBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gunaTextBox2_KeyDown);
@@ -879,6 +881,18 @@
             this.loadControl1.TabIndex = 18;
             this.loadControl1.Visible = false;
             // 
+            // rIms
+            // 
+            this.rIms.AutoSize = true;
+            this.rIms.Location = new System.Drawing.Point(438, 3);
+            this.rIms.Name = "rIms";
+            this.rIms.Size = new System.Drawing.Size(52, 17);
+            this.rIms.TabIndex = 177;
+            this.rIms.Tag = "IMSD";
+            this.rIms.Text = "IMSD";
+            this.rIms.UseVisualStyleBackColor = true;
+            this.rIms.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
             // Over
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -957,5 +971,6 @@
         private System.Windows.Forms.RadioButton rEntradas;
         private System.Windows.Forms.TreeView treeViewHistorial;
         private System.Windows.Forms.RadioButton rInventario;
+        private System.Windows.Forms.RadioButton rIms;
     }
 }

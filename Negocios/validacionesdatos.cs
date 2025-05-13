@@ -341,7 +341,7 @@ namespace Negocios
                     throw;
                 }
             }
-            else if (tipo == "SD" || tipo == "TJ" || tipo == "CSL")
+            else if (tipo == "SD" || tipo == "TJ" || tipo == "CSL" || tipo == "IMSD")
             {
                 try
                 {
@@ -352,7 +352,7 @@ namespace Negocios
                         var baseQuery = from d in modelo.KDMENT
                                         join k in modelo.KDM1 on new { d.C1, d.C6, d.C4 } equals new { k.C1, k.C6, k.C4 }
                                        // join c in modelo.KDUV on k.C12 equals c.C2
-                                        where k.C9 <= fecha2 && k.C9 >= fecha1 && d.C19 == tipo
+                                        where k.C9 <= fecha2 && k.C9 >= fecha1 && d.C19 == tipo && (d.C46 == "" || d.C46 == null) // se quitan las que ya tenga salida de betrack
                                         orderby d.C6 descending, d.C7 descending
                                         select new { d, k };
 
