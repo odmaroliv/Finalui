@@ -20,6 +20,7 @@ namespace Datos.ViewModels.Reportes
         public string Zona { get; set; }
         public byte[] barcode { get; set; }
         public decimal NEtiqueta { get; set; }
+        public string nOdooCliente { get; set; }
 
     }
 }

@@ -1636,7 +1636,9 @@ namespace Negocios
                                     NEtiqueta = d2.C7,
                                     //barcode = ""//t3.BARCODE,
                                     Zona = "",//t4.C2,
-                                    ZonaNumero = ""//t4.C1,
+                                    ZonaNumero = "",//t4.C1,
+                                    nOdooCliente = d.C10, 
+                                    
 
                                 };
                     lst2 = lista.ToList();
