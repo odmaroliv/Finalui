@@ -52,7 +52,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>0D0DAE9DEBD81A6F8AC204A5BC210D2B0BBC3C36</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>CE626700F1CC72BA437E543B916486573A2DD475</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>Ventana1_TemporaryKey.pfx</ManifestKeyFile>

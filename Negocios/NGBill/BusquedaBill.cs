@@ -19,115 +19,102 @@ namespace Negocios.NGBill
     public class BusquedaBill
     {
 
-        public async Task<List<VMSalidasBill>> SalidasOperacion(OdooClient cliente, string dato, string fecha, string vehiculo)
+        public async Task<List<VMSalidasBill>> SalidasOperacion(
+     OdooClient cliente,
+     string dato,
+     string fecha,
+     string vehiculo)
         {
             try
             {
-             
-                
-
-
-                using (modelo2Entities modelo = new modelo2Entities())
+                using (var modelo = new modelo2Entities())
                 {
-                    var lista = from d in modelo.KDMENT.AsNoTracking()
-                                join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 } equals new { k.C1, k.C4, k.C6 }
-                                //join a in modelo.KDUD on k.C10 equals a.C2
-                               // join c in modelo.KDM1COMEN on k.C6 equals c.C6
-                                //join v in modelo.KDUV on k.C12 equals v.C2
+                    // 1) Traer los datos base de EF
+                    var query = from d in modelo.KDMENT.AsNoTracking()
+                                join k in modelo.KDM1 on new { d.C1, d.C4, d.C6 }
+                                                       equals new { k.C1, k.C4, k.C6 }
                                 where d.C9 == dato
-                                select new
-                                {
-                                    d,
-                                    k,
-                                    //a,
-                                   // c,
-                                    
-                                };
+                                select new { d, k };
 
-                    var resultadoPrimeraConsulta = lista.FirstOrDefault();
-
-                    if (resultadoPrimeraConsulta != null)
-                    {
-
-
-
-                        try
-                        {
-                            var coord = new OdooCoordenadas();
-                            OdooToBeeModel odoo = await cliente.GetProductToBeetrackById(resultadoPrimeraConsulta.k.odooidproduct ?? 0);
-                            if (!String.IsNullOrWhiteSpace(odoo.defaultCoordinates))
-                            {
-                                coord = ParseCoordenada(odoo.defaultCoordinates);
-                            }
-                            
-
-
-                            return lista.ToList().Select(x => new VMSalidasBill
-                            {
-                                ORIGEN = "",
-                                entrada = x.d.C1.Trim() + "-" + x.d.C6,
-                                etiqueta = x.d.C9,
-                                Direccion = odoo?.contactAddress ??"",
-                                NOMBREITEM = x.d.C42.Trim(),
-                                CANTIDAD = "1",
-                                fechamin = fecha,
-                                fechamax = fecha,
-                                idcontacto = odoo?.idContacto.ToString() ?? "",
-                                nomcotacto = odoo?.name ?? "",
-                                EMAIL = odoo?.email ?? "",
-                                Telefono = odoo?.phone ?? "",
-                                VEHICULO = vehiculo,
-                                LATITUD = coord?.Latitud??"",
-                                LONGITUD = coord?.Longitud??"",
-                                // Pago = x.c.C13,
-                                 Quote = $"https://app.arniangroup.com/#/quotationseach/{ odoo?.current_quote.Trim() ?? ""}",
-                                NumCot = odoo?.current_quote.Trim() ?? "",
-                                //  Bill = x.d.C34,
-                                Coordinador = odoo?.salesUserName ??"",
-                                // TServicio = x.k.C101,
-                                Tpago = odoo?.tipoPago ?? "",
-                                OdooId = odoo?.idProducto.ToString() ?? "",
-                                Nota = odoo?.description_sale ?? ""
-                                //CantidaDlls = (decimal)(resultadoSegundaQuery.C16 != null ? resultadoSegundaQuery.C16 : 0),
-                                //Paridad = Math.Truncate((double)(resultadoSegundaQuery.C40 != null ? resultadoSegundaQuery.C40 : 0) * 100) / 100,
-                                //Alias = string.IsNullOrWhiteSpace(x.d.C24) ? x.k.C112 : x.d.C24,
-
-                            }).ToList();
-
-                        }
-                        catch (Exception ex)
-                        {
-                            Negocios.LOGs.ArsLogs.LogEdit(ex.Message, "BusquedaBill.cs, SalidasOperacion()... " + dato + "    ");
-
-
-
-                            if (ex is DbEntityValidationException entityValidationEx)
-                            {
-                                foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
-                                {
-                                    // Acceder a los Entity Validation Errors
-                                    foreach (var validationError in entityValidationError.ValidationErrors)
-                                    {
-                                        var propertyName = validationError.PropertyName;
-                                        var errorMessage = validationError.ErrorMessage;
-                                        Negocios.LOGs.ArsLogs.LogEdit($"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}", "BusquedaBill.cs, SalidasOperacion()..." + dato + "    ");
-                                    }
-                                }
-                            }
-                            throw;
-                        }
-
-
-                    }
-                    else
-                    {
-                        // Manejo de error si no se encuentra resultado en la primera consulta
+                    var primerResultado = query.FirstOrDefault();
+                    if (primerResultado == null)
                         return new List<VMSalidasBill>();
+
+                    // 2) Llamada a Odoo
+                    OdooToBeeModel odooInfo = await cliente
+                        .GetProductToBeetrackById(primerResultado.k.odooidproduct ?? 0);
+
+                    // 3) Parsear coordenadas por defecto
+                    var defaultCoord = new OdooCoordenadas();
+                    if (!string.IsNullOrWhiteSpace(odooInfo.defaultCoordinates))
+                        defaultCoord = ParseCoordenada(odooInfo.defaultCoordinates);
+
+                    // 4) Proyección con manejo de errores específico
+                    try
+                    {
+                        return query
+                            .Where(x => x.d != null)
+                            .AsEnumerable()  // para que ToString() y demás no se traduzcan a SQL
+                            .Select(x =>
+                            {
+                                var d = x.d;
+                                var quote = (odooInfo.current_quote ?? string.Empty).Trim();
+
+                                return new VMSalidasBill
+                                {
+                                    ORIGEN = string.Empty,
+                                    entrada = $"{(d.C1 ?? string.Empty).Trim()}-{(d.C6 ?? string.Empty)}",
+                                    etiqueta = d.C9 ?? string.Empty,
+                                    Direccion = odooInfo.contactAddress ?? string.Empty,
+                                    NOMBREITEM = (d.C42 ?? string.Empty).Trim(),
+                                    CANTIDAD = "1",
+                                    fechamin = fecha,
+                                    fechamax = fecha,
+                                    idcontacto = odooInfo.idContacto.ToString(),
+                                    nomcotacto = odooInfo.name ?? string.Empty,
+                                    EMAIL = odooInfo.email ?? string.Empty,
+                                    Telefono = odooInfo.phone ?? string.Empty,
+                                    VEHICULO = vehiculo,
+                                    LATITUD = defaultCoord.Latitud ?? string.Empty,
+                                    LONGITUD = defaultCoord.Longitud ?? string.Empty,
+                                    Quote = $"https://app.arniangroup.com/#/quotationseach/{quote}",
+                                    NumCot = quote,
+                                    Coordinador = odooInfo.salesUserName ?? string.Empty,
+                                    Tpago = odooInfo.tipoPago ?? string.Empty,
+                                    OdooId = odooInfo.idProducto.ToString(),
+                                    Nota = odooInfo.description_sale ?? string.Empty
+                                };
+                            })
+                            .ToList();
+                    }
+                    catch (Exception ex)
+                    {
+                        // Logging de excepción genérica
+                        Negocios.LOGs.ArsLogs.LogEdit(
+                            ex.Message,
+                            $"BusquedaBill.cs SalidasOperacion() dato={dato}"
+                        );
+
+                        // Si es validación de EF, loggear cada error
+                        if (ex is DbEntityValidationException valEx)
+                        {
+                            foreach (var entErr in valEx.EntityValidationErrors)
+                                foreach (var ve in entErr.ValidationErrors)
+                                {
+                                    Negocios.LOGs.ArsLogs.LogEdit(
+                                        $"Entity Validation Error - Prop: {ve.PropertyName}, Msg: {ve.ErrorMessage}",
+                                        $"BusquedaBill.cs SalidasOperacion() dato={dato}"
+                                    );
+                                }
+                        }
+
+                        throw;  // relanzar para que el caller lo maneje
                     }
                 }
             }
-            catch (Exception)
+            catch
             {
+                // Aquí podrías agregar logging global si lo deseas
                 throw;
             }
         }
