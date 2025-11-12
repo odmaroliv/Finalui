@@ -1,8 +1,10 @@
 ﻿// Helpers/GeneraraCodigoBr.cs
 using System;
+using System.Drawing.Imaging;
+using System.Drawing;
 using System.IO;
-using BarcodeStandard;
-using SkiaSharp;
+using ZXing.Common;
+using ZXing;
 
 namespace mainVentana.Helpers
 {
@@ -10,23 +12,22 @@ namespace mainVentana.Helpers
     {
         public static string GenerarCodigoBarrasPng(string data)
         {
-            var barcode = new Barcode
+            var writer = new ZXing.BarcodeWriter
             {
-                IncludeLabel = false,
-                Alignment = AlignmentPositions.Center,
-                BackColor = new SKColorF(1f, 1f, 1f, 1f), // blanco
-                ForeColor = new SKColorF(0f, 0f, 0f, 1f), // negro
+                Format = BarcodeFormat.CODE_128,
+                Options = new EncodingOptions
+                {
+                    Width = 600,
+                    Height = 180,
+                    Margin = 2,
+                    PureBarcode = true
+                }
             };
 
-            // En BarcodeStandard, Encode devuelve SKImage
-            using (SKImage img = barcode.Encode(BarcodeStandard.Type.Code128, data, 600, 180))
-            using (SKData png = img.Encode(SKEncodedImageFormat.Png, 100))
+            using (Bitmap bmp = writer.Write(data))
             {
                 string path = Path.Combine(Path.GetTempPath(), $"BAR_{Guid.NewGuid():N}.png");
-                using (var fs = File.Open(path, FileMode.Create, FileAccess.Write, FileShare.None))
-                {
-                    png.SaveTo(fs);
-                }
+                bmp.Save(path, ImageFormat.Png);
                 return path;
             }
         }
