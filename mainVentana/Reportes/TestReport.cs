@@ -29,7 +29,8 @@ namespace mainVentana.Reportes
         public string repNumBultos;
         public string repContMercancia;
         public string repNotas;
-        
+        public string repCodigoTexto; // "origen-entrada"
+        public string repBarPath;     // ruta del PNG del código de barras
         // public List<vmEtiquetasReporte> lstrep = new List<vmEtiquetasReporte>();
 
         public TestReport()
@@ -66,8 +67,10 @@ namespace mainVentana.Reportes
             reportParameters.Add(new ReportParameter("repNumBultos", repNumBultos));
             reportParameters.Add(new ReportParameter("repContMercancia", repContMercancia));
             reportParameters.Add(new ReportParameter("repNotas", repNotas));
-            
+            reportParameters.Add(new ReportParameter("repBarCode", new Uri(repBarPath).AbsoluteUri));
 
+
+            //new ReportParameter("repBarCode", new Uri(repBarPath).AbsoluteUri);
             // reportParameters.Add(new ReportParameter("repBarCode", new Uri(repTBar).AbsoluteUri));
 
             //cargaimg();
