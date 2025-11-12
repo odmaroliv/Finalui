@@ -19,6 +19,8 @@ using Negocios.Odoo;
 using DocumentFormat.OpenXml.Office2016.Drawing.Charts;
 using Negocios;
 using System.Windows.Interop;
+using NPOI.HSSF.UserModel;
+using NPOI.SS.UserModel;
 
 namespace mainVentana.VistaBill
 {
@@ -138,31 +140,26 @@ namespace mainVentana.VistaBill
                 {
                     DataTable dt = new DataTable();
 
-
-
                     foreach (DataGridViewColumn column in gunaDataGridView1.Columns)
                     {
                         dt.Columns.Add(column.HeaderText, column.ValueType);
                     }
 
-                    //dt.Columns.Add("VEHICULO", typeof(string));
-
                     foreach (DataGridViewRow row in gunaDataGridView1.Rows)
                     {
                         dt.Rows.Add();
-                        // Asignar el valor de la variable "vehiculo" a la nueva columna en cada fila
-                        // dt.Rows[dt.Rows.Count - 1]["VEHICULO"] = vehiculo;
                         foreach (DataGridViewCell cell in row.Cells)
                         {
                             dt.Rows[dt.Rows.Count - 1][cell.ColumnIndex] = cell.Value == null ? "" : cell.Value.ToString();
                         }
                     }
 
-                    //Exporting to Excel
-                     path = null;
+                    // Usuario elige formato
+                    saveFileDialog1.InitialDirectory = @"C:\";
+                    saveFileDialog1.Filter = "Excel 97-2003 (*.xls)|*.xls|Excel 2007-2019 (*.xlsx)|*.xlsx";
+                    saveFileDialog1.FilterIndex = 1; // Por defecto XLS
+                    saveFileDialog1.DefaultExt = "xls";
 
-
-                    saveFileDialog1.InitialDirectory = @"C\:";
                     if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                     {
                         path = saveFileDialog1.FileName;
@@ -172,35 +169,103 @@ namespace mainVentana.VistaBill
                         return;
                     }
 
-                    /*if (!Directory.Exists(folderPath))
-                    {
-                        Directory.CreateDirectory(folderPath);
-                    }*/
-                    using (XLWorkbook xlfile = new XLWorkbook())
-                    {
+                    string hoy = DateTime.Now.ToString("dd-MM-yyyy");
+                    string extension = Path.GetExtension(path).ToLower();
 
-                        string hoy = DateTime.Now.ToString("dd-MM-yyyy");
-                        fullPath = path + "_" + hoy + ".xlsx";
-                        xlfile.Worksheets.Add(dt, "ParaBEE");
-                        xlfile.Table("ParaBEE").ShowAutoFilter = false;// Disable AutoFilter.
-                        xlfile.Table("ParaBEE").Theme = XLTableTheme.None;// Remove Theme.
-                        xlfile.SaveAs(fullPath);
-                       
+                    if (string.IsNullOrEmpty(extension))
+                    {
+                        extension = saveFileDialog1.FilterIndex == 1 ? ".xls" : ".xlsx";
                     }
+
+                    string directory = Path.GetDirectoryName(path);
+                    string fileName = Path.GetFileNameWithoutExtension(path) + "_" + hoy + extension;
+                    fullPath = Path.Combine(directory, fileName);
+
+                    // Exportar según el formato elegido
+                    if (extension == ".xls")
+                    {
+                        ExportToXLS(dt, fullPath);
+                    }
+                    else
+                    {
+                        ExportToXLSX(dt, fullPath);
+                    }
+
+                    MessageBox.Show($"Archivo exportado exitosamente:\n{fullPath}",
+                                   "Exportación Exitosa",
+                                   MessageBoxButtons.OK,
+                                   MessageBoxIcon.Information);
                 }
                 else
                 {
                     MessageBox.Show("No hay datos para exportar");
                     return;
                 }
-
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                MessageBox.Show($"Error al exportar: {ex.Message}",
+                               "Error",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Error);
             }
-           
+        }
+
+        // Método para exportar a XLS usando NPOI
+        private void ExportToXLS(DataTable dt, string filePath)
+        {
+            HSSFWorkbook workbook = new HSSFWorkbook();
+            ISheet sheet = workbook.CreateSheet("ParaBEE");
+
+            // Crear encabezados
+            IRow headerRow = sheet.CreateRow(0);
+            for (int i = 0; i < dt.Columns.Count; i++)
+            {
+                ICell cell = headerRow.CreateCell(i);
+                cell.SetCellValue(dt.Columns[i].ColumnName);
+
+                // Estilo para encabezados (opcional)
+                ICellStyle headerStyle = workbook.CreateCellStyle();
+                IFont font = workbook.CreateFont();
+                font.IsBold = true;
+                headerStyle.SetFont(font);
+                cell.CellStyle = headerStyle;
+            }
+
+            // Agregar datos
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                IRow dataRow = sheet.CreateRow(i + 1);
+                for (int j = 0; j < dt.Columns.Count; j++)
+                {
+                    ICell cell = dataRow.CreateCell(j);
+                    cell.SetCellValue(dt.Rows[i][j]?.ToString() ?? "");
+                }
+            }
+
+            // Auto-ajustar columnas (opcional)
+            for (int i = 0; i < dt.Columns.Count; i++)
+            {
+                sheet.AutoSizeColumn(i);
+            }
+
+            // Guardar archivo
+            using (FileStream fs = new FileStream(filePath, FileMode.Create, FileAccess.Write))
+            {
+                workbook.Write(fs);
+            }
+        }
+
+        // Método para exportar a XLSX usando ClosedXML
+        private void ExportToXLSX(DataTable dt, string filePath)
+        {
+            using (XLWorkbook xlfile = new XLWorkbook())
+            {
+                xlfile.Worksheets.Add(dt, "ParaBEE");
+                xlfile.Table("ParaBEE").ShowAutoFilter = false;
+                xlfile.Table("ParaBEE").Theme = XLTableTheme.None;
+                xlfile.SaveAs(filePath);
+            }
         }
 
 
