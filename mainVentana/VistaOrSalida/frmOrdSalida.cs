@@ -320,7 +320,6 @@ namespace mainVentana.VistaOrSalida
             foreach (DataGridViewRow i in dgvListaCargas.Rows)
             {
                 lista.AddRange(await datos.CargaEntByCarga(i.Cells[0].Value.ToString().Trim(), sOrigen));
-
             }
             for (int i = 0; i < dgvListaCargas.Rows.Count; i++)
             {

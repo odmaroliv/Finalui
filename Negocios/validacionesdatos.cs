@@ -1712,7 +1712,7 @@ namespace Negocios
                         {
                             var lista = from d in modelo.KDMENT
 
-                                        where d.C16.Equals(id) //&& String.IsNullOrEmpty(d.C18) && String.IsNullOrEmpty(d.C55)
+                                        where d.C54.Equals(id) // d.C16.Equals(id) // && String.IsNullOrEmpty(d.C18) && String.IsNullOrEmpty(d.C55) //Se cambia la carga aplicada c16 por la asignada 54
                                         select new vmEntByCarga
                                         {
                                             Etiqueta = d.C9,
