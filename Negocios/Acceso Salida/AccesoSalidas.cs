@@ -104,7 +104,7 @@ namespace Negocios.Acceso_Salida
                             string query = "SELECT DISTINCT q.C54 as Documento " +
                                             "FROM KDMENT q " +
                                             // "INNER JOIN KDM1 k ON q.C54 = CONCAT(TRIM({0}),'-UD4001-',k.C6) " +
-                                            "WHERE q.c46 !='BTRACKSALIDA'  AND ( C16 IS NOT NULL AND C16 != '')  AND q.C54 LIKE '%' + {0} + '%' AND q.C19 = {0}  AND (q.C20 <> 'F' or q.C20 IS NULL)" +
+                                            "WHERE q.c46 !='BTRACKSALIDA'  AND ( C16 IS NOT NULL AND C16 != '')  AND q.C54 LIKE '%' + {0} + '%'   AND (q.C20 <> 'F' or q.C20 IS NULL)" +
                                             "GROUP BY q.C54 " +
                                             "ORDER BY q.C54 DESC ";
 

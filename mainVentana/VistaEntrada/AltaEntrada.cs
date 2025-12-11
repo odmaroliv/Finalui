@@ -39,6 +39,8 @@ using System.Text.RegularExpressions;
 using System.Reflection.Emit;
 using Negocios.NGClientes;
 using mainVentana.Helpers;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace mainVentana.VistaEntrada
 {
@@ -2101,13 +2103,11 @@ namespace mainVentana.VistaEntrada
             List<string> archivos = new List<string>();
             try
             {
-               
                 if (dgvDocs.Rows.Count > 0)
                 {
                     foreach (DataGridViewRow row in dgvDocs.Rows)
                     {
                         archivos.Add(row.Cells[1].Value.ToString());
-
                     }
 
                     foreach (var q in archivos)
@@ -2115,67 +2115,89 @@ namespace mainVentana.VistaEntrada
                         string mensajeRespuesta = "";
                         int tipoRespuesta = 2;
                         string nombreCompletoArchivo = q;
-                        byte[] arrContenido = null;
 
+                        // Verificar que el archivo existe
+                        if (!File.Exists(nombreCompletoArchivo))
+                        {
+                            mensajeRespuesta = $"El archivo no existe: {nombreCompletoArchivo}";
+                            continue;
+                        }
+
+                        // Verificar tamaño del archivo
+                        FileInfo fileInfo = new FileInfo(nombreCompletoArchivo);
+                        if (fileInfo.Length > 50 * 1024 * 1024) // 50 MB límite
+                        {
+                            mensajeRespuesta = $"Archivo muy grande (>{fileInfo.Length / 1024 / 1024} MB): {nombreCompletoArchivo}";
+                            Negocios.LOGs.ArsLogs.LogEdit(mensajeRespuesta, "Carga de archivos");
+                            continue;
+                        }
+
+                        byte[] arrContenido = null;
                         using (FileStream fs = new FileStream(nombreCompletoArchivo, FileMode.Open, FileAccess.Read, FileShare.Read))
                         {
                             arrContenido = new byte[fs.Length];
                             await fs.ReadAsync(arrContenido, 0, arrContenido.Length);
                         }
-                        if (arrContenido == null) mensajeRespuesta = "Ocurrió un inconveniente al obtener el contenido del archivo " + nombreCompletoArchivo;
+
+                        if (arrContenido == null || arrContenido.Length == 0)
+                        {
+                            mensajeRespuesta = "Ocurrió un inconveniente al obtener el contenido del archivo " + nombreCompletoArchivo;
+                            Negocios.LOGs.ArsLogs.LogEdit(mensajeRespuesta, "Carga de archivos");
+                        }
                         else
                         {
                             var authValue = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{usernameapi}:{passwordapi}")));
-                            using (var clientHandler = new HttpClientHandler { Credentials = new CredentialCache { { new Uri("http://104.198.241.64:90/"), "Basic", new NetworkCredential(usernameapi, passwordapi) } } }) ;
 
-                            string url = "http://104.198.241.64:90/api/Archivo";
-                            using (HttpClient cliente = new HttpClient())
+                            // CORREGIDO: Usar el clientHandler correctamente
+                            using (var clientHandler = new HttpClientHandler
                             {
+                                Credentials = new CredentialCache
+                        {
+                            { new Uri("http://104.198.241.64:90/"), "Basic", new NetworkCredential(usernameapi, passwordapi) }
+                        }
+                            })
+                            using (HttpClient cliente = new HttpClient(clientHandler))
+                            {
+                                // Aumentar timeout para archivos grandes
+                                cliente.Timeout = TimeSpan.FromMinutes(5);
                                 cliente.DefaultRequestHeaders.Authorization = authValue;
+
+                                string url = "http://104.198.241.64:90/api/Archivo";
                                 string nombreArchivo = sucEntrada.SelectedValue.ToString().Trim() + "-UD3501-" + lblEntrada.Text.Trim() + "_" + System.IO.Path.GetFileName(nombreCompletoArchivo);
+
                                 MultipartFormDataContent frm = new MultipartFormDataContent();
                                 frm.Add(new StringContent(nombreArchivo), "nombreArchivo");
                                 frm.Add(new StringContent("1"), "idEstado");
                                 frm.Add(new ByteArrayContent(arrContenido), "contenido", nombreArchivo);
+
                                 using (HttpResponseMessage resultadoConsulta = await cliente.PostAsync(url, frm))
                                 {
                                     mensajeRespuesta = await resultadoConsulta.Content.ReadAsStringAsync();
                                     if (resultadoConsulta.IsSuccessStatusCode)
+                                    {
                                         tipoRespuesta = 1;
+                                        Negocios.LOGs.ArsLogs.LogEdit($"Archivo subido exitosamente: {nombreArchivo}", "Carga de archivos");
+                                    }
                                     else
+                                    {
                                         tipoRespuesta = 2;
+                                        Negocios.LOGs.ArsLogs.LogEdit($"Error al subir: {nombreArchivo} - Status: {resultadoConsulta.StatusCode} - {mensajeRespuesta}", "Carga de archivos");
+                                    }
                                 }
                             }
                         }
-
-                        /* MessageBoxIcon iconoMensaje;
-                         if (tipoRespuesta == 1)
-                             iconoMensaje = MessageBoxIcon.Information;
-                         else if (tipoRespuesta == 2)
-                             iconoMensaje = MessageBoxIcon.Warning;
-                         else
-                             iconoMensaje = MessageBoxIcon.Error;
-                         MessageBox.Show(mensajeRespuesta, "Carga de archivos", MessageBoxButtons.OK, iconoMensaje);
-                        */
                     }
-
-
-
                 }
             }
             catch (Exception x)
             {
-
-                Negocios.LOGs.ArsLogs.LogEdit(x.Message," No se han cargados las fotos " + DateTime.Now.ToString());
+                Negocios.LOGs.ArsLogs.LogEdit($"Excepción: {x.Message} - StackTrace: {x.StackTrace}", "Error carga de fotos " + DateTime.Now.ToString());
             }
             finally
             {
                 archivos.Clear();
             }
-           
-            
         }
-
 
 
         #endregion Fin de Modifica entrada__________________________________________________________________________________________________________________________________

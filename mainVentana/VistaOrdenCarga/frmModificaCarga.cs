@@ -92,7 +92,7 @@ namespace mainVentana.VistaOrdenCarga
             if (!lst.estatus.Contains("N") && modoForm!="Consulta")
             {
                 MessageBox.Show("Esta Orden ya no se puede modificar (Cerrada), contacte al administradir de Sistemas", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                //return;
             }
 
             cargaAModificar = numeroDeCarga;
