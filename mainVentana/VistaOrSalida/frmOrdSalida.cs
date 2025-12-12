@@ -1773,7 +1773,7 @@ namespace mainVentana.VistaOrSalida
                     try
                     {
                         string us = Negocios.Common.Cache.CacheLogin.username;
-                        if (us == "DOLIVARES" || us == "EZAVALA" || us == "CARLOSDA")
+                        if (us == "DOLIVARES" || us == "EZAVALA" || us == "SLIMON")
                         {
                             _noCarga = true;
                             gunaGoogleSwitch13.Checked =_noCarga;
