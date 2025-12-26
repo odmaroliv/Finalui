@@ -102,11 +102,13 @@ namespace Negocios
                     lotesDeArchivos.Add(loteActual);
                 }
 
-                // MODIFICACIÓN CLAVE: Si no hay lotes (porque no había archivos válidos), crear un lote vacío
-                if (lotesDeArchivos.Count == 0)
+                if (archivosValidos.Count == 0)
                 {
-                    lotesDeArchivos.Add(new List<string>());  // Lote vacío para enviar correo sin adjuntos
-                    Negocios.LOGs.ArsLogs.LogEdit("No hay archivos válidos para adjuntar, se enviará el correo sin adjuntos", "Correo sin adjuntos");
+                    Negocios.LOGs.ArsLogs.LogEdit(
+                        "El usuario seleccionó archivos, pero ninguno fue válido. No se envía correo.",
+                        "ERROR ADJUNTOS"
+                    );
+                    return 4; // o el código que ya usas para error de adjuntos
                 }
 
                 Negocios.LOGs.ArsLogs.LogEdit($"Distribución de archivos: {archivosValidos.Count} archivos divididos en {lotesDeArchivos.Count} lotes", "Información de distribución");
