@@ -18,7 +18,7 @@ namespace Negocios
     {
        
         const long TAMANO_MAXIMO_TOTAL_POR_CORREO = 15000000; // 15MB como límite por correo
-        const long TAMANO_MAXIMO_ARCHIVO = 7000000; // 7MB por archivo individual
+        const long TAMANO_MAXIMO_ARCHIVO = 9 * 1024 * 1024; // 7MB por archivo individual
         const int TIMEOUT_SMTP = 300000; // 5 minutos
         const int MAXIMO_ARCHIVOS_POR_CORREO = 10; // Máximo número de archivos por correo
 

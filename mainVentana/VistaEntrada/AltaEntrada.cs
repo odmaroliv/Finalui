@@ -2454,7 +2454,7 @@ namespace mainVentana.VistaEntrada
                 // Convertir a MB
                 var pesoArchMB = pesoArch / 1024 / 1024;
 
-                if (pesoArchMB >= 24)
+                if (pesoArchMB >= 50)
                 {
                     MessageBox.Show("Tus archivos superan el tamaño maximo permitido por Google, por favor elimina algun archivo.");
                     bandera = 1;
