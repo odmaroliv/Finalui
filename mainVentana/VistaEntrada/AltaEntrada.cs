@@ -2101,6 +2101,10 @@ namespace mainVentana.VistaEntrada
         private async Task CargaPH()
         {
             List<string> archivos = new List<string>();
+            int totalArchivos = 0;
+            int archivosSubidos = 0;
+            int archivosRechazados = 0;
+
             try
             {
                 if (dgvDocs.Rows.Count > 0)
@@ -2110,60 +2114,83 @@ namespace mainVentana.VistaEntrada
                         archivos.Add(row.Cells[1].Value.ToString());
                     }
 
+                    totalArchivos = archivos.Count;
+                    Negocios.LOGs.ArsLogs.LogEdit($"Iniciando carga de {totalArchivos} archivos", "Carga de archivos");
+
                     foreach (var q in archivos)
                     {
                         string mensajeRespuesta = "";
                         int tipoRespuesta = 2;
                         string nombreCompletoArchivo = q;
 
-                        // Verificar que el archivo existe
-                        if (!File.Exists(nombreCompletoArchivo))
+                        try
                         {
-                            mensajeRespuesta = $"El archivo no existe: {nombreCompletoArchivo}";
-                            continue;
-                        }
+                            // Verificar que el archivo existe
+                            if (!File.Exists(nombreCompletoArchivo))
+                            {
+                                mensajeRespuesta = $"El archivo no existe: {nombreCompletoArchivo}";
+                                Negocios.LOGs.ArsLogs.LogEdit(mensajeRespuesta, "Carga de archivos - RECHAZADO");
+                                archivosRechazados++;
+                                continue;
+                            }
 
-                        // Verificar tamaño del archivo
-                        FileInfo fileInfo = new FileInfo(nombreCompletoArchivo);
-                        if (fileInfo.Length > 50 * 1024 * 1024) // 50 MB límite
-                        {
-                            mensajeRespuesta = $"Archivo muy grande (>{fileInfo.Length / 1024 / 1024} MB): {nombreCompletoArchivo}";
-                            Negocios.LOGs.ArsLogs.LogEdit(mensajeRespuesta, "Carga de archivos");
-                            continue;
-                        }
+                            // Verificar tamaño del archivo (límite aumentado a 100 MB)
+                            FileInfo fileInfo = new FileInfo(nombreCompletoArchivo);
+                            long tamanoMB = fileInfo.Length / 1024 / 1024;
 
-                        byte[] arrContenido = null;
-                        using (FileStream fs = new FileStream(nombreCompletoArchivo, FileMode.Open, FileAccess.Read, FileShare.Read))
-                        {
-                            arrContenido = new byte[fs.Length];
-                            await fs.ReadAsync(arrContenido, 0, arrContenido.Length);
-                        }
+                            if (fileInfo.Length > 100 * 1024 * 1024) // 100 MB límite
+                            {
+                                mensajeRespuesta = $"Archivo muy grande ({tamanoMB} MB, máximo 100 MB): {nombreCompletoArchivo}";
+                                Negocios.LOGs.ArsLogs.LogEdit(mensajeRespuesta, "Carga de archivos - RECHAZADO");
+                                archivosRechazados++;
+                                continue;
+                            }
 
-                        if (arrContenido == null || arrContenido.Length == 0)
-                        {
-                            mensajeRespuesta = "Ocurrió un inconveniente al obtener el contenido del archivo " + nombreCompletoArchivo;
-                            Negocios.LOGs.ArsLogs.LogEdit(mensajeRespuesta, "Carga de archivos");
-                        }
-                        else
-                        {
-                            var authValue = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{usernameapi}:{passwordapi}")));
+                            Negocios.LOGs.ArsLogs.LogEdit($"Leyendo archivo ({tamanoMB} MB): {nombreCompletoArchivo}", "Carga de archivos");
 
-                            // CORREGIDO: Usar el clientHandler correctamente
+                            // Leer contenido del archivo
+                            byte[] arrContenido = null;
+                            using (FileStream fs = new FileStream(nombreCompletoArchivo, FileMode.Open, FileAccess.Read, FileShare.Read))
+                            {
+                                arrContenido = new byte[fs.Length];
+                                await fs.ReadAsync(arrContenido, 0, arrContenido.Length);
+                            }
+
+                            if (arrContenido == null || arrContenido.Length == 0)
+                            {
+                                mensajeRespuesta = $"Error al leer el contenido del archivo (0 bytes): {nombreCompletoArchivo}";
+                                Negocios.LOGs.ArsLogs.LogEdit(mensajeRespuesta, "Carga de archivos - ERROR");
+                                archivosRechazados++;
+                                continue;
+                            }
+
+                            // Preparar autenticación
+                            var authValue =
+         new AuthenticationHeaderValue("Basic",
+                                Convert.ToBase64String(Encoding.UTF8.GetBytes($"{usernameapi}:{passwordapi}")));
+
+                            // Configurar cliente HTTP
                             using (var clientHandler = new HttpClientHandler
                             {
                                 Credentials = new CredentialCache
                         {
-                            { new Uri("http://104.198.241.64:90/"), "Basic", new NetworkCredential(usernameapi, passwordapi) }
+                            { new Uri("http://104.198.241.64:90/"), "Basic",
+                              new NetworkCredential(usernameapi, passwordapi) }
                         }
                             })
                             using (HttpClient cliente = new HttpClient(clientHandler))
                             {
-                                // Aumentar timeout para archivos grandes
-                                cliente.Timeout = TimeSpan.FromMinutes(5);
+                                // Timeout de 10 minutos para archivos grandes
+                                cliente.Timeout = TimeSpan.FromMinutes(10);
                                 cliente.DefaultRequestHeaders.Authorization = authValue;
 
                                 string url = "http://104.198.241.64:90/api/Archivo";
-                                string nombreArchivo = sucEntrada.SelectedValue.ToString().Trim() + "-UD3501-" + lblEntrada.Text.Trim() + "_" + System.IO.Path.GetFileName(nombreCompletoArchivo);
+                                string nombreArchivo = sucEntrada.SelectedValue.ToString().Trim() +
+                                                     "-UD3501-" +
+                                                     lblEntrada.Text.Trim() + "_" +
+                                                     System.IO.Path.GetFileName(nombreCompletoArchivo);
+
+                                Negocios.LOGs.ArsLogs.LogEdit($"Subiendo archivo: {nombreArchivo}", "Carga de archivos");
 
                                 MultipartFormDataContent frm = new MultipartFormDataContent();
                                 frm.Add(new StringContent(nombreArchivo), "nombreArchivo");
@@ -2173,28 +2200,59 @@ namespace mainVentana.VistaEntrada
                                 using (HttpResponseMessage resultadoConsulta = await cliente.PostAsync(url, frm))
                                 {
                                     mensajeRespuesta = await resultadoConsulta.Content.ReadAsStringAsync();
+
                                     if (resultadoConsulta.IsSuccessStatusCode)
                                     {
                                         tipoRespuesta = 1;
-                                        Negocios.LOGs.ArsLogs.LogEdit($"Archivo subido exitosamente: {nombreArchivo}", "Carga de archivos");
+                                        archivosSubidos++;
+                                        Negocios.LOGs.ArsLogs.LogEdit(
+                                            $"✓ Archivo subido exitosamente [{archivosSubidos}/{totalArchivos}]: {nombreArchivo}",
+                                            "Carga de archivos - ÉXITO");
                                     }
                                     else
                                     {
                                         tipoRespuesta = 2;
-                                        Negocios.LOGs.ArsLogs.LogEdit($"Error al subir: {nombreArchivo} - Status: {resultadoConsulta.StatusCode} - {mensajeRespuesta}", "Carga de archivos");
+                                        archivosRechazados++;
+                                        Negocios.LOGs.ArsLogs.LogEdit(
+                                            $"✗ Error al subir [{archivosRechazados} rechazados]: {nombreArchivo} - " +
+                                            $"Status: {resultadoConsulta.StatusCode} ({(int)resultadoConsulta.StatusCode}) - " +
+                                            $"Respuesta: {mensajeRespuesta}",
+                                            "Carga de archivos - ERROR HTTP");
                                     }
                                 }
                             }
                         }
+                        catch (Exception ex)
+                        {
+                            archivosRechazados++;
+                            Negocios.LOGs.ArsLogs.LogEdit(
+                                $"✗ Excepción al procesar archivo: {nombreCompletoArchivo} - " +
+                                $"Error: {ex.Message} - StackTrace: {ex.StackTrace}",
+                                "Carga de archivos - EXCEPCIÓN");
+                        }
                     }
+                }
+                else
+                {
+                    Negocios.LOGs.ArsLogs.LogEdit("No hay archivos en la grilla para subir", "Carga de archivos");
                 }
             }
             catch (Exception x)
             {
-                Negocios.LOGs.ArsLogs.LogEdit($"Excepción: {x.Message} - StackTrace: {x.StackTrace}", "Error carga de fotos " + DateTime.Now.ToString());
+                Negocios.LOGs.ArsLogs.LogEdit(
+                    $"Excepción general: {x.Message} - StackTrace: {x.StackTrace}",
+                    "Error carga de archivos " + DateTime.Now.ToString());
             }
             finally
             {
+                // Resumen final
+                string resumen = $"═══ RESUMEN CARGA DE ARCHIVOS ═══\n" +
+                                $"Total: {totalArchivos} | Subidos: {archivosSubidos} | " +
+                                $"Rechazados: {archivosRechazados} | " +
+                                $"Tasa éxito: {(totalArchivos > 0 ? (archivosSubidos * 100.0 / totalArchivos).ToString("F1") : "0")}%";
+
+                Negocios.LOGs.ArsLogs.LogEdit(resumen, "Carga de archivos - RESUMEN");
+
                 archivos.Clear();
             }
         }
