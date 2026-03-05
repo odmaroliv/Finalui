@@ -153,145 +153,111 @@ namespace Negocios.Acceso_Salida
 
         public async Task<List<vmCargaOrdenesDeSalida>> LlenaDGVSalidas(string sucori, string doc, int numerosuc)
         {
-            
-            string estatuss = default;
-            estatuss = "PS" + sucori.Trim();
-            /*if (sucori.Trim() == "TJ")
-            {
-                estatuss = "PSTJ";
-            }
-            if (sucori.Trim() == "SD")
-            {
-                estatuss = "PSSD";
-            }
-            if (sucori.Trim() == "CSL")
-            {
-                estatuss = "PSCSL";
-            }*/
+            string estatuss = "PS" + sucori.Trim();
+            int maxRetries = 3;
+            int retryCount = 0;
 
-            int cha = sucori.Trim().ToString().Length;
-            int cade = "-UD4501-".Length;
-            if (sucori.Contains("TJ"))
+            while (retryCount < maxRetries)
             {
                 try
                 {
                     var lst2 = new List<vmCargaOrdenesDeSalida>();
+
                     await Task.Run(() =>
                     {
                         using (modelo2Entities modelo = new modelo2Entities())
                         {
-                            modelo.Database.CommandTimeout = 300;
-                            lst2.Clear();
-                            string query = "WITH CTE AS (SELECT DISTINCT q.C55 as Documento, MAX(k.C11) as Referencia, MAX(k.C9) as Fecha " +
-                                  "FROM KDMENT q " +
-                                  "INNER JOIN KDM1 k ON q.C55 = CONCAT(TRIM({0}),'-UD4501-',k.C6) " +
-                                  "WHERE q.C19 = {0} AND k.C61 = {1} AND k.C4 = {2} AND q.c46 !='BTRACKSALIDA'" +
-                                  "GROUP BY q.C55) " +
-                                  "SELECT Documento, Referencia, Fecha FROM CTE ORDER BY Documento DESC OFFSET 0 ROWS FETCH NEXT {3} ROWS ONLY";
+                            modelo.Database.CommandTimeout = 120; // Reducido de 300 a 120 segundos
 
-                            var result = modelo.Database.SqlQuery<vmCargaOrdenesDeSalida>(query, sucori, estatuss, 45, 30).ToList();
-                            lst2 = result;
-                        }
-                    });
-                    return lst2;
-                }
-                catch (Exception ex)
-                {
-                    if (ex is DbEntityValidationException entityValidationEx)
-                    {
-                        foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
-                        {
-                            // Acceder a los Entity Validation Errors
-                            foreach (var validationError in entityValidationError.ValidationErrors)
-                            {
-                                var propertyName = validationError.PropertyName;
-                                var errorMessage = validationError.ErrorMessage;
-                                Negocios.LOGs.ArsLogs.LogEdit($"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}", "AccesoSalida.LlenaDGVSalidas().. ");
-                            }
-                        }
-                    }
-                    throw;
-                }
-            }
-            else
-            {
-                try
-                {
-                    var lst2 = new List<vmCargaOrdenesDeSalida>();
-                    await Task.Run(() =>
-                    {
-                        using (modelo2Entities modelo = new modelo2Entities())
-                        {
-                            lst2.Clear();
-                            /*  var oDocument = (from q in modelo.KDMENT.AsQueryable()
-                                               join k in modelo.KDM1 on q.C55 equals sucori.Trim() + "-UD4501-" + k.C6
-                                               where string.IsNullOrEmpty(q.C18) && q.C55.Contains(sucori) && q.C19.Contains(sucori) && k.C43.Contains("P") && k.C4 == 45
+                            // Query optimizada con NOLOCK para evitar deadlocks
+                            string query = @"
+                        WITH CTE AS (
+                            SELECT DISTINCT 
+                                q.C55 as Documento, 
+                                MAX(k.C11) as Referencia, 
+                                MAX(k.C9) as Fecha
+                            FROM KDMENT q WITH (NOLOCK)
+                            INNER JOIN KDM1 k WITH (NOLOCK) 
+                                ON q.C55 = CONCAT(RTRIM(LTRIM(@p0)), '-UD4501-', k.C6)
+                            WHERE q.C19 = @p0 
+                                AND k.C61 = @p1 
+                                AND k.C4 = @p2 
+                                AND ISNULL(q.C46, '') != 'BTRACKSALIDA'
+                                " + (sucori.Contains("TJ") ? "" : "AND (q.C18 = '' OR q.C18 IS NULL)") + @"
+                            GROUP BY q.C55
+                        )
+                        SELECT Documento, Referencia, Fecha 
+                        FROM CTE 
+                        ORDER BY Documento DESC 
+                        OFFSET 0 ROWS 
+                        FETCH NEXT @p3 ROWS ONLY";
 
-                                               group k by q.C55 into g
-
-
-                                               select new vmCargaOrdenesDeSalida
-                                               {
-                                                   Documento = g.Key,
-                                                   Referencia = g.Select(x => x.C11).FirstOrDefault(),
-                                                   Fecha = g.Select(x => x.C9).FirstOrDefault().Value
-
-                                               }).OrderByDescending(x => x.Documento).Take(30).ToList();*/
-
-                            string query = "WITH CTE AS (SELECT DISTINCT q.C55 as Documento, MAX(k.C11) as Referencia, MAX(k.C9) as Fecha " +
-                                 "FROM KDMENT q " +
-                                 "INNER JOIN KDM1 k ON q.C55 = CONCAT(TRIM({0}),'-UD4501-',k.C6) " +
-                                 "WHERE (q.C18 = '' OR q.C18 IS NULL) AND q.C19 = {0} AND k.C61 = {1} AND k.C4 = {2} AND q.c46 !='BTRACKSALIDA' " +
-                                 "GROUP BY q.C55) " +
-                                 "SELECT Documento, Referencia, Fecha FROM CTE ORDER BY Documento DESC OFFSET 0 ROWS FETCH NEXT {3} ROWS ONLY";
-
-                            var result = modelo.Database.SqlQuery<vmCargaOrdenesDeSalida>(query, sucori, estatuss, 45, 30).ToList();
+                            var result = modelo.Database.SqlQuery<vmCargaOrdenesDeSalida>(
+                                query,
+                                sucori.Trim(),
+                                estatuss,
+                                45,
+                                30
+                            ).ToList();
 
                             lst2 = result;
                         }
                     });
+
                     return lst2;
                 }
-                catch (Exception ex)
+                catch (SqlException sqlEx)
                 {
-                    if (ex is DbEntityValidationException entityValidationEx)
+                    // Código de error de deadlock en SQL Server
+                    if (sqlEx.Number == 1205 && retryCount < maxRetries - 1)
                     {
-                        foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
+                        retryCount++;
+                        Negocios.LOGs.ArsLogs.LogEdit(
+                            $"Deadlock detectado. Reintento {retryCount} de {maxRetries}. Error: {sqlEx.Message}",
+                            "AccesoSalida.LlenaDGVSalidas()"
+                        );
+
+                        // Espera exponencial antes de reintentar
+                        await Task.Delay(100 * retryCount);
+                        continue;
+                    }
+
+                    // Si no es deadlock o ya agotamos los reintentos, lanzamos el error
+                    Negocios.LOGs.ArsLogs.LogEdit(
+                        $"Error SQL: {sqlEx.Message}",
+                        "AccesoSalida.LlenaDGVSalidas()"
+                    );
+                    throw;
+                }
+                catch (DbEntityValidationException entityValidationEx)
+                {
+                    foreach (var entityValidationError in entityValidationEx.EntityValidationErrors)
+                    {
+                        foreach (var validationError in entityValidationError.ValidationErrors)
                         {
-                            // Acceder a los Entity Validation Errors
-                            foreach (var validationError in entityValidationError.ValidationErrors)
-                            {
-                                var propertyName = validationError.PropertyName;
-                                var errorMessage = validationError.ErrorMessage;
-                                Negocios.LOGs.ArsLogs.LogEdit($"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}", "AccesoSalida.LlenaDGVSalidas().. ");
-                            }
+                            var propertyName = validationError.PropertyName;
+                            var errorMessage = validationError.ErrorMessage;
+                            Negocios.LOGs.ArsLogs.LogEdit(
+                                $"Entity Validation Error - Property: {propertyName}, Message: {errorMessage}",
+                                "AccesoSalida.LlenaDGVSalidas()"
+                            );
                         }
                     }
                     throw;
                 }
+                catch (Exception ex)
+                {
+                    Negocios.LOGs.ArsLogs.LogEdit(
+                        $"Error general: {ex.Message}",
+                        "AccesoSalida.LlenaDGVSalidas()"
+                    );
+                    throw;
+                }
             }
 
+            // Si llegamos aquí, agotamos todos los reintentos
+            throw new Exception($"No se pudo completar la operación después de {maxRetries} intentos debido a deadlocks.");
         }
-
-        /*  public List<string> BuscUltimaSalida(string suc)
-          {
-
-              List<string> lista1 = new List<string>();
-
-              using (modelo2Entities db = new modelo2Entities())
-              {
-                  var lst = from k in db.NumeroMAX(suc, "45")
-
-                            select k;
-
-                  lista1 = lst.ToList();
-
-              }
-
-
-              return lista1;
-
-          }*/
         public List<vnNoSalida> BuscUltimaSalida(string datoSucIni, int modo)
         {
             string br = "KFUD" + modo + "01." + datoSucIni;
