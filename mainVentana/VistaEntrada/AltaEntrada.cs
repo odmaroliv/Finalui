@@ -375,7 +375,7 @@ namespace mainVentana.VistaEntrada
             string datoProvedor = proveedor.SelectedValue.ToString();
             string datoValFact = txbValFact.Text;
             string datoParidad = lblParidad.Text;
-            string datoNoTrakin = tbxRastreo.Text;
+            string datoNoTrakin = tbxRastreo.Text?.Trim();
             string datoOrdCompra = ordenCompra.Text;
             string datoNoFlete = numFlete.Text;
             string datoNoUnidades = unidades.Text;
@@ -416,7 +416,7 @@ namespace mainVentana.VistaEntrada
                         
 
                         // Si llegas aquí, todos los parseos fueron exitosos, y puedes usar las variables parsed
-                        idOdoo = await _odooClient.CreateEntInOdoo($"{datoSucIni.Trim()}-{datoEntrada.Trim()}", parsedDatoNuCliente, parsedDatoNoCord, 0, datoDetalles, false, datoSucIni, datoTipoOper, $"{datoSucIni.Trim()}-{datoEntrada.Trim()}", Convert.ToInt32(datoBultos));
+                        idOdoo = await _odooClient.CreateEntInOdoo($"{datoSucIni.Trim()}-{datoEntrada.Trim()}", parsedDatoNuCliente, parsedDatoNoCord, 0, datoDetalles, false, datoSucIni, datoTipoOper, datoNoTrakin, $"{datoSucIni.Trim()}-{datoEntrada.Trim()}", Convert.ToInt32(datoBultos));
                         if (idOdoo == -1)
                         {
                             await bd.ActualizaSqlIov(context, datoSucIni.Trim(), 35);

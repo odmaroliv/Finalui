@@ -246,7 +246,7 @@ namespace Negocios.Odoo
             }
         }
 
-        public async Task<long> CreateEntInOdoo(string name, int relatedPartnerId, int relatedAgentId, decimal listPrice, string descriptionSale, bool purchaseOk, string currentLocation, string tOperacion, string defaultCode, int initialStock)
+        public async Task<long> CreateEntInOdoo(string name, int relatedPartnerId, int relatedAgentId, decimal listPrice, string descriptionSale, bool purchaseOk, string currentLocation, string tOperacion, string defaultCode,string barcode, int initialStock)
         {
             OdooProductTemplate productTemplate = new OdooProductTemplate
             {
@@ -259,6 +259,7 @@ namespace Negocios.Odoo
                 CurrentLocation = currentLocation.Trim(),
                 TOperacion = tOperacion,
                 DefaultCode = defaultCode,
+                Barcode = barcode,
                 InitialStock = initialStock
             };
 

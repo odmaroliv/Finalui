@@ -17,6 +17,7 @@ namespace Datos.ViewModels.Odoo
         public string CurrentLocation { get; set; }
         public string TOperacion { get; set; }
         public string DefaultCode { get; set; }
+        public string Barcode { get; set; }
         public int InitialStock { get; set; }
     }
 }
