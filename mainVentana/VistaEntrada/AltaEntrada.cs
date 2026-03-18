@@ -1979,7 +1979,10 @@ namespace mainVentana.VistaEntrada
             foreach (Match match in matches)
             {
                 string url = match.Value;
-                if (!url.Contains("drive.google.com"))
+
+                if (!url.Contains("drive.google.com") &&
+                    !url.Contains("photos.google.com") &&
+                    !url.Contains("photos.app.goo.gl"))
                 {
                     return false;
                 }
