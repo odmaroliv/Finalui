@@ -2627,28 +2627,133 @@ namespace mainVentana.VistaEntrada
 
         private (string ZonaNumero, string ZonaNombre) ObtenerZonaPorCodigoPostal(string zipCode)
         {
-            if (!int.TryParse(zipCode, out var codigoPostal))
+            if (!int.TryParse(zipCode, out var cp))
                 return ("NA", "ZONA NO DEFINIDA");
 
-            // —————– Baja California Sur —————–
-            if (codigoPostal >= 23450 && codigoPostal <= 23499) return ("1", "CABO SAN LUCAS");
-            if (codigoPostal >= 23400 && codigoPostal <= 23429) return ("2", "SAN JOSÉ CENTRO");
-            if (codigoPostal >= 23430 && codigoPostal <= 23449) return ("4", "SAN JOSÉ COSTA");
-            if (codigoPostal >= 23300 && codigoPostal <= 23305) return ("3", "TODOS SANTOS");
-            if (codigoPostal >= 23330 && codigoPostal <= 23332) return ("5", "LOS BARRILES");
-            if (codigoPostal >= 23000 && codigoPostal <= 23299) return ("6", "LA PAZ");
-            if (codigoPostal >= 23880 && codigoPostal <= 23899) return ("7", "LORETO"); // Ejemplo: CP 23883 
+            // ═══════════════════════════════════════════════════════════════
+            // BAJA CALIFORNIA SUR — Fuente: Catálogo SEPOMEX
+            // ═══════════════════════════════════════════════════════════════
 
-            // —————– Baja California —————–
-            if (codigoPostal >= 21400 && codigoPostal <= 21499) return ("8", "TECATE");             // CP 21420
-            if (codigoPostal >= 21000 && codigoPostal <= 21999) return ("9", "MEXICALI");         // CP 21000
-            if (codigoPostal >= 22000 && codigoPostal <= 22699) return ("10", "TIJUANA");         // CP 22000
-            if (codigoPostal >= 22700 && codigoPostal <= 22799) return ("11", "PLAYAS DE ROSARITO"); // CP 22703
-            if (codigoPostal >= 22800 && codigoPostal <= 22899) return ("12", "ENSENADA");        // CP 22800
-            if (codigoPostal >= 22900 && codigoPostal <= 22999) return ("13", "SAN QUINTÍN");      // Ejemplo: CP 22930 
+            // ── Municipio LA PAZ ──────────────────────────────────────────
 
-            // Zona no contemplada
-            return ("NA", "ZONA NO DEFINIDA");
+            if (cp >= 23000 && cp <= 23099) return ("6A", "LA PAZ CIUDAD");
+            // Colonias urbanas: Centro, Palmira, Esterito, Zona Industrial,
+            // Pescadores, Lomas del Mezquitito, El Progreso, Santa Mónica, etc.
+
+            if (cp >= 23100 && cp <= 23299) return ("6B", "LA PAZ PERIFÉRICO / RURAL");
+            // San Bartolo, El Triunfo, San Antonio, San Juan de los Planes,
+            // El Centenario, Chametla, Pichilingue, rancherías y ejidos del municipio
+
+            // ── Municipio LA PAZ — Pacífico / Cabo Oeste ──────────────────
+
+            if (cp >= 23300 && cp <= 23329) return ("3", "TODOS SANTOS");
+            // Todos Santos, El Pescadero, Los Cerritos, San Carlos, Punta Lobos,
+            // barrios históricos, La Esperanza, Brisas del Pacífico
+
+            if (cp >= 23330 && cp <= 23359) return ("5", "LOS BARRILES");
+            // Los Barriles, Buenos Aires, El Coro
+
+            if (cp >= 23360 && cp <= 23399) return ("16", "CABO ESTE RURAL");
+            // El Cardonal, Punta Pescadero, San Jacinto, San Pedro de la Soledad,
+            // El Barranco, Plutarco Elías Calles, rancherías del Cabo Este interior
+
+            // ── Municipio LOS CABOS ───────────────────────────────────────
+
+            if (cp >= 23400 && cp <= 23449) return ("2", "SAN JOSÉ DEL CABO");
+            // Centro, Costa Azul, Santa Anita, Aeropuerto Los Cabos,
+            // Guaymitas, Las Veredas, Mauricio Castro, Lomas de Rosarito, etc.
+
+            if (cp >= 23450 && cp <= 23499) return ("1", "CABO SAN LUCAS");
+            // Centro, El Tezal, El Médano, Pedregal, Mariano Matamoros,
+            // Lomas del Cabo, Arcos del Sol, Brisas del Pacífico, etc.
+
+            if (cp >= 23500 && cp <= 23559) return ("15", "LOS CABOS RURAL / SIERRA");
+            // Santiago, Miraflores, Caduaño, Boca de la Sierra,
+            // Agua Caliente, El Ranchito, Los Frailes, interior serrano
+
+            if (cp >= 23560 && cp <= 23599) return ("17", "LA RIBERA / CABO PULMO / ZACATITOS");
+            // Corredor costero Cabo Este: Las Cuevas, Zacatitos, La Ribera,
+            // Cabo Pulmo, Buenavista, La Candelaria, Los Pozos, El Sauzal
+
+            // ── Municipio COMONDÚ ─────────────────────────────────────────
+
+            if (cp >= 23600 && cp <= 23699) return ("BCS1", "CIUDAD CONSTITUCIÓN");
+            // Ciudad Constitución y delegaciones del Valle de Santo Domingo:
+            // Pioneros, Conjunto Urbano, INFONAVIT San Martín, Batequitos, etc.
+
+            if (cp >= 23700 && cp <= 23739) return ("BCS2", "CIUDAD INSURGENTES / COMONDÚ NORTE");
+            // Ciudad Insurgentes, Villa Ignacio Zaragoza, Villa Hidalgo,
+            // Teotlán, Benito Juárez, ejidos del Valle Agrícola Norte
+
+            if (cp >= 23740 && cp <= 23759) return ("BCS3", "PUERTO SAN CARLOS / BAHÍA MAGDALENA");
+            // Puerto San Carlos, Puerto Magdalena, Puerto Cortés, Puerto Alcatraz
+            // (zona portuaria e industrial pesquera del Pacífico)
+
+            if (cp >= 23760 && cp <= 23799) return ("BCS4", "COMONDÚ RURAL CENTRO");
+            // Ley Federal de Aguas (ejidos 1-5), Villa Morelos, El Vergel,
+            // ranchos y delegaciones rurales del centro del municipio
+
+            if (cp >= 23800 && cp <= 23879) return ("BCS5", "SIERRA DE COMONDÚ / LA PURÍSIMA");
+            // San Miguel de Comondú, San José de Comondú, La Purísima,
+            // San Juanico, Santo Domingo, Francisco Villa, ejidos serranos
+
+            // ── Municipio LORETO ──────────────────────────────────────────
+
+            if (cp >= 23880 && cp <= 23899) return ("7", "LORETO");
+            // Loreto ciudad, Nopoló, Puerto Escondido, San Javier,
+            // Agua Verde, San Carlos, rancherías de la sierra y costa
+
+            // ── Municipio MULEGÉ ──────────────────────────────────────────
+
+            if (cp >= 23900 && cp <= 23919) return ("BCS6", "HEROICA MULEGÉ");
+            // Mulegé ciudad, Santa Águeda, San José de Magdalena,
+            // San Bruno, Isla San Marcos, Punta Chivato
+
+            if (cp >= 23920 && cp <= 23929) return ("BCS7", "SANTA ROSALÍA");
+            // Santa Rosalía, Mesa Francia, Mesa México, El Gavilán, San Lino
+
+            if (cp >= 23930 && cp <= 23939) return ("BCS8", "SAN IGNACIO / VIZCAÍNO");
+            // San Ignacio, Villa Alberto Alvarado Arámburo (El Vizcaíno),
+            // ejidos Emiliano Zapata, Gustavo Díaz Ordaz
+
+            if (cp >= 23940 && cp <= 23949) return ("BCS9", "GUERRERO NEGRO");
+            // Guerrero Negro, Benito Juárez, Laguneros, INFONAVIT/FOVISSSTE
+
+            if (cp >= 23950 && cp <= 23999) return ("BCS10", "VIZCAÍNO / BAHÍAS DEL PACÍFICO NORTE");
+            // Bahía Tortugas, Bahía Asunción, Punta Abreojos, Estero de la Bocana,
+            // Isla Natividad, Punta Eugenia, San Hipólito, San Francisco de la Sierra
+
+            // ═══════════════════════════════════════════════════════════════
+            // BAJA CALIFORNIA NORTE
+            // ⚠ Pendiente: cargar catálogo SEPOMEX de BC para validar rangos
+            // ═══════════════════════════════════════════════════════════════
+
+            // ── Municipio TECATE ──────────────────────────────────────────
+            // ⚠ DEBE ir antes del bloque Mexicali (21000-21999 lo contiene)
+            if (cp >= 21400 && cp <= 21499) return ("8", "TECATE");
+
+            // ── Municipio MEXICALI ────────────────────────────────────────
+            // ⚠ San Felipe va antes del bloque general de Mexicali
+            if (cp >= 21850 && cp <= 21899) return ("14", "SAN FELIPE");
+
+            if (cp >= 21000 && cp <= 21999) return ("9", "MEXICALI");
+
+            // ── Municipio TIJUANA ─────────────────────────────────────────
+            if (cp >= 22000 && cp <= 22699) return ("10", "TIJUANA");
+
+            // ── Municipio PLAYAS DE ROSARITO ──────────────────────────────
+            if (cp >= 22700 && cp <= 22799) return ("11", "PLAYAS DE ROSARITO");
+
+            // ── Municipio ENSENADA ────────────────────────────────────────
+            if (cp >= 22800 && cp <= 22899) return ("12", "ENSENADA");
+
+            if (cp >= 22900 && cp <= 22999) return ("13", "SAN QUINTÍN / ENSENADA SUR");
+            // San Quintín, Lázaro Cárdenas, Camalú, Colonet,
+            // Vicente Guerrero, El Rosario
+
+            // ═══════════════════════════════════════════════════════════════
+
+            return ("NA", "CÓDIGO POSTAL NO RECONOCIDO");
         }
 
 
