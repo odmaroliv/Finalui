@@ -2753,6 +2753,8 @@ namespace mainVentana.VistaEntrada
 
             // ═══════════════════════════════════════════════════════════════
 
+            if (cp >= 11111 && cp <= 11111) return ("111", "CSL OCURRE");
+
             return ("NA", "CÓDIGO POSTAL NO RECONOCIDO");
         }
 
