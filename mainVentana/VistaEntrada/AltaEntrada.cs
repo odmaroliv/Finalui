@@ -1970,7 +1970,7 @@ namespace mainVentana.VistaEntrada
             return Regex.IsMatch(text, urlPattern);
         }
 
-        // Función auxiliar para verificar si todas las URLs son de Google Drive
+        // Función auxiliar para verificar si todas las URLs son de Google Drive o Arnian
         private bool ContainsOnlyGoogleDriveUrls(string text)
         {
             string urlPattern = @"https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)";
@@ -1982,6 +1982,7 @@ namespace mainVentana.VistaEntrada
 
                 if (!url.Contains("drive.google.com") &&
                     !url.Contains("photos.google.com") &&
+                    !url.Contains("truckscan.arniangroup.com") &&
                     !url.Contains("photos.app.goo.gl"))
                 {
                     return false;
