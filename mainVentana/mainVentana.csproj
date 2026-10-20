@@ -30,10 +30,10 @@
     <UpdateUrl>https://raw.githubusercontent.com/odmaroliv/Finalui/master/published/</UpdateUrl>
     <ProductName>ARSYS</ProductName>
     <PublisherName>Daniel Olivares H.</PublisherName>
-    <MinimumRequiredVersion>1.0.0.329</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.0.330</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>329</ApplicationRevision>
+    <ApplicationRevision>330</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -64,7 +64,7 @@
     <ApplicationIcon>icoarn.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>476CD93062261507434E19DD0DF202A096819EDA</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>7AC73F7591AACE4C93444193CA0E5B3E7415FB16</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>mainVentana_TemporaryKey.pfx</ManifestKeyFile>
